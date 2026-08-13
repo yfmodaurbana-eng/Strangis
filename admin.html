@@ -1,0 +1,1749 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111111">
+
+<title>Administración | Tienda Online</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f5f5f5;
+    color:#111;
+}
+
+button,
+input,
+textarea,
+select{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.header{
+    background:#111;
+    color:white;
+    padding:18px 20px;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.header-inner{
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+}
+
+.logo{
+    font-size:21px;
+    font-weight:800;
+}
+
+.store-button{
+    color:white;
+    text-decoration:none;
+    background:#333;
+    padding:10px 15px;
+    border-radius:8px;
+    font-size:14px;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:25px 18px 60px;
+}
+
+.title{
+    margin-bottom:25px;
+}
+
+.title h1{
+    font-size:32px;
+    margin-bottom:7px;
+}
+
+.title p{
+    color:#777;
+}
+
+.panel{
+    background:white;
+    border-radius:14px;
+    padding:22px;
+    margin-bottom:25px;
+    box-shadow:0 5px 25px rgba(0,0,0,.05);
+}
+
+.panel h2{
+    font-size:20px;
+    margin-bottom:20px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:17px;
+}
+
+.field{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.full{
+    grid-column:1/-1;
+}
+
+label{
+    font-size:13px;
+    font-weight:700;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+    border:1px solid #ddd;
+    border-radius:8px;
+    padding:12px;
+    background:white;
+    outline:none;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+    border-color:#111;
+}
+
+textarea{
+    min-height:110px;
+    resize:vertical;
+}
+
+/* COLORES */
+
+.color-input{
+    display:flex;
+    gap:8px;
+}
+
+.color-input input{
+    flex:1;
+}
+
+.colors{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+    margin-top:10px;
+}
+
+.color-tag{
+    background:#eee;
+    border-radius:20px;
+    padding:7px 11px;
+    font-size:13px;
+}
+
+.color-tag button{
+    border:0;
+    background:none;
+    margin-left:5px;
+}
+
+/* IMÁGENES */
+
+.image-url-row{
+    display:flex;
+    gap:8px;
+    margin-bottom:10px;
+}
+
+.image-url-row input{
+    flex:1;
+}
+
+.image-url-row button{
+    width:44px;
+    border:0;
+    border-radius:8px;
+    background:#fee;
+    color:#b00000;
+    font-size:18px;
+}
+
+.add-image{
+    width:100%;
+    border:2px dashed #ccc;
+    background:#fafafa;
+    padding:14px;
+    border-radius:9px;
+    font-weight:700;
+}
+
+.add-image:hover{
+    border-color:#111;
+}
+
+.help{
+    font-size:12px;
+    color:#777;
+    margin-top:7px;
+}
+
+/* GALERÍA */
+
+.gallery-wrapper{
+    margin-top:18px;
+}
+
+.gallery{
+    display:flex;
+    overflow-x:auto;
+    gap:12px;
+    scroll-snap-type:x mandatory;
+    padding-bottom:10px;
+    -webkit-overflow-scrolling:touch;
+}
+
+.gallery::-webkit-scrollbar{
+    height:5px;
+}
+
+.gallery::-webkit-scrollbar-thumb{
+    background:#bbb;
+    border-radius:10px;
+}
+
+.gallery-item{
+    position:relative;
+    flex:0 0 180px;
+    scroll-snap-align:start;
+}
+
+.gallery-item img{
+    width:180px;
+    height:230px;
+    object-fit:cover;
+    border-radius:10px;
+    display:block;
+    background:#eee;
+}
+
+.image-number{
+    position:absolute;
+    top:8px;
+    left:8px;
+    background:#111;
+    color:white;
+    padding:5px 8px;
+    border-radius:5px;
+    font-size:11px;
+}
+
+.image-error{
+    width:180px;
+    height:230px;
+    background:#eee;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:15px;
+    font-size:12px;
+    color:#888;
+}
+
+/* BOTONES */
+
+.buttons{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:22px;
+}
+
+.btn{
+    border:0;
+    padding:12px 17px;
+    border-radius:8px;
+    font-weight:700;
+}
+
+.btn-black{
+    background:#111;
+    color:white;
+}
+
+.btn-gray{
+    background:#eee;
+    color:#111;
+}
+
+.btn-green{
+    background:#25d366;
+    color:white;
+}
+
+.btn-red{
+    background:#ffecec;
+    color:#a00000;
+}
+
+/* PRODUCTOS */
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+}
+
+.product{
+    background:white;
+    border:1px solid #e5e5e5;
+    border-radius:12px;
+    overflow:hidden;
+}
+
+.product-image{
+    width:100%;
+    aspect-ratio:3/4;
+    object-fit:cover;
+    background:#eee;
+}
+
+.product-body{
+    padding:13px;
+}
+
+.reference{
+    color:#888;
+    font-size:11px;
+    margin-bottom:5px;
+}
+
+.product-name{
+    font-weight:800;
+    margin-bottom:5px;
+}
+
+.price{
+    font-size:18px;
+    font-weight:800;
+    margin-bottom:12px;
+}
+
+.product-buttons{
+    display:flex;
+    gap:7px;
+}
+
+.product-buttons button{
+    flex:1;
+    border:0;
+    padding:9px 5px;
+    border-radius:7px;
+    font-size:12px;
+    font-weight:700;
+}
+
+/* CÓDIGO */
+
+.code-area{
+    width:100%;
+    min-height:300px;
+    background:#171717;
+    color:#eee;
+    border:0;
+    border-radius:10px;
+    padding:15px;
+    font-family:monospace;
+    font-size:12px;
+    line-height:1.5;
+    resize:vertical;
+}
+
+/* VACÍO */
+
+.empty{
+    background:white;
+    border-radius:12px;
+    padding:40px;
+    text-align:center;
+    color:#777;
+    grid-column:1/-1;
+}
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+    bottom:25px;
+    left:50%;
+    transform:translate(-50%,20px);
+    background:#111;
+    color:white;
+    padding:13px 18px;
+    border-radius:9px;
+    opacity:0;
+    pointer-events:none;
+    transition:.25s;
+    z-index:500;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translate(-50%,0);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+    .products{
+        grid-template-columns:repeat(3,1fr);
+    }
+}
+
+@media(max-width:700px){
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:auto;
+    }
+
+    .products{
+        grid-template-columns:repeat(2,1fr);
+        gap:10px;
+    }
+
+    .panel{
+        padding:17px;
+    }
+
+    .title h1{
+        font-size:27px;
+    }
+
+    .gallery-item{
+        flex-basis:160px;
+    }
+
+    .gallery-item img,
+    .image-error{
+        width:160px;
+        height:210px;
+    }
+}
+
+@media(max-width:420px){
+
+    .header-inner{
+        align-items:flex-start;
+    }
+
+    .logo{
+        font-size:17px;
+    }
+
+    .store-button{
+        font-size:11px;
+    }
+
+    .image-url-row{
+        gap:5px;
+    }
+
+    .image-url-row button{
+        width:40px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="header-inner">
+
+        <div class="logo">
+            Tienda Online · Admin
+        </div>
+
+        <a
+            href="index.html"
+            class="store-button"
+        >
+            🛍️ Ver tienda
+        </a>
+
+    </div>
+
+</header>
+
+
+<main class="container">
+
+    <div class="title">
+
+        <h1>
+            Panel de administración
+        </h1>
+
+        <p>
+            Crea tus productos y genera el código para tu tienda.
+        </p>
+
+    </div>
+
+
+    <!-- DATOS DEL PRODUCTO -->
+
+    <section class="panel">
+
+        <h2>
+            📦 Información del producto
+        </h2>
+
+        <div class="form-grid">
+
+
+            <div class="field">
+
+                <label>
+                    Nombre del producto *
+                </label>
+
+                <input
+                    id="name"
+                    type="text"
+                    placeholder="Ej: Camiseta Oversize Premium"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Referencia / SKU *
+                </label>
+
+                <input
+                    id="reference"
+                    type="text"
+                    placeholder="Ej: CAM-001"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Precio (€) *
+                </label>
+
+                <input
+                    id="price"
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    placeholder="29.99"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Stock
+                </label>
+
+                <input
+                    id="stock"
+                    type="number"
+                    min="0"
+                    value="10"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Categoría
+                </label>
+
+                <select id="category">
+
+                    <option>
+                        Camisetas
+                    </option>
+
+                    <option>
+                        Sudaderas
+                    </option>
+
+                    <option>
+                        Pantalones
+                    </option>
+
+                    <option>
+                        Vestidos
+                    </option>
+
+                    <option>
+                        Chaquetas
+                    </option>
+
+                    <option>
+                        Otros
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Tallas
+                </label>
+
+                <input
+                    id="sizes"
+                    type="text"
+                    placeholder="S, M, L, XL"
+                >
+
+            </div>
+
+
+            <div class="field full">
+
+                <label>
+                    Descripción
+                </label>
+
+                <textarea
+                    id="description"
+                    placeholder="Describe el producto..."
+                ></textarea>
+
+            </div>
+
+
+            <!-- COLORES -->
+
+            <div class="field full">
+
+                <label>
+                    Colores disponibles
+                </label>
+
+                <div class="color-input">
+
+                    <input
+                        id="colorInput"
+                        type="text"
+                        placeholder="Ej: Negro"
+                        onkeydown="colorEnter(event)"
+                    >
+
+                    <button
+                        class="btn btn-black"
+                        onclick="addColor()"
+                    >
+                        + Añadir
+                    </button>
+
+                </div>
+
+                <div
+                    id="colors"
+                    class="colors"
+                ></div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- IMÁGENES -->
+
+    <section class="panel">
+
+        <h2>
+            📸 Imágenes del producto
+        </h2>
+
+        <p class="help" style="margin-bottom:15px;">
+            Pega aquí las URLs directas de tus imágenes.
+            La primera imagen será la imagen principal del producto.
+        </p>
+
+
+        <div id="imageInputs"></div>
+
+
+        <button
+            class="add-image"
+            onclick="addImageInput()"
+        >
+            ＋ Añadir URL de imagen
+        </button>
+
+
+        <div class="gallery-wrapper">
+
+            <strong>
+                Vista previa
+            </strong>
+
+            <div
+                id="gallery"
+                class="gallery"
+            ></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ACCIONES -->
+
+    <section class="panel">
+
+        <div class="buttons">
+
+            <button
+                class="btn btn-black"
+                onclick="saveProduct()"
+            >
+                💾 Guardar producto
+            </button>
+
+            <button
+                class="btn btn-gray"
+                onclick="clearForm()"
+            >
+                🧹 Limpiar
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- PRODUCTOS -->
+
+    <section class="panel">
+
+        <h2>
+            🛍️ Productos guardados
+        </h2>
+
+        <div
+            id="products"
+            class="products"
+        ></div>
+
+    </section>
+
+
+    <!-- GENERADOR -->
+
+    <section class="panel">
+
+        <h2>
+            📋 Código para index.html
+        </h2>
+
+        <p class="help" style="margin-bottom:15px;">
+            Selecciona un producto y copia el código generado.
+        </p>
+
+        <textarea
+            id="generatedCode"
+            class="code-area"
+            readonly
+            placeholder="Aquí aparecerá el código del producto..."
+        ></textarea>
+
+
+        <div class="buttons">
+
+            <button
+                class="btn btn-green"
+                onclick="copyCode()"
+            >
+                📋 Copiar código
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<div
+    id="toast"
+    class="toast"
+></div>
+
+
+<script>
+
+/*
+==================================================
+TIENDA ONLINE - ADMIN
+==================================================
+*/
+
+
+const STORAGE_KEY =
+    "tienda_online_productos_urls";
+
+
+let products =
+    loadProducts();
+
+
+let colors = [];
+
+
+/* ==============================================
+   CARGAR PRODUCTOS
+============================================== */
+
+function loadProducts(){
+
+    try{
+
+        const data =
+            localStorage.getItem(STORAGE_KEY);
+
+        return data
+            ? JSON.parse(data)
+            : [];
+
+    }catch(error){
+
+        console.error(error);
+
+        return [];
+
+    }
+
+}
+
+
+/* ==============================================
+   GUARDAR
+============================================== */
+
+function saveStorage(){
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(products)
+    );
+
+}
+
+
+/* ==============================================
+   COLORES
+============================================== */
+
+function colorEnter(event){
+
+    if(event.key === "Enter"){
+
+        event.preventDefault();
+
+        addColor();
+
+    }
+
+}
+
+
+function addColor(){
+
+    const input =
+        document.getElementById("colorInput");
+
+    const value =
+        input.value.trim();
+
+
+    if(!value){
+
+        return;
+
+    }
+
+
+    if(colors.includes(value)){
+
+        showToast(
+            "Ese color ya existe."
+        );
+
+        return;
+
+    }
+
+
+    colors.push(value);
+
+    input.value = "";
+
+    renderColors();
+
+}
+
+
+function removeColor(index){
+
+    colors.splice(index,1);
+
+    renderColors();
+
+}
+
+
+function renderColors(){
+
+    const container =
+        document.getElementById("colors");
+
+
+    container.innerHTML =
+        colors.map(
+            (color,index) => `
+
+                <div class="color-tag">
+
+                    ${escapeHTML(color)}
+
+                    <button
+                        onclick="removeColor(${index})"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+            `
+        ).join("");
+
+}
+
+
+/* ==============================================
+   IMÁGENES
+============================================== */
+
+function addImageInput(value = ""){
+
+    const container =
+        document.getElementById("imageInputs");
+
+
+    const row =
+        document.createElement("div");
+
+    row.className =
+        "image-url-row";
+
+
+    const input =
+        document.createElement("input");
+
+    input.type =
+        "url";
+
+    input.placeholder =
+        "https://ejemplo.com/imagen.jpg";
+
+    input.value =
+        value;
+
+
+    input.addEventListener(
+        "input",
+        updateGallery
+    );
+
+
+    const button =
+        document.createElement("button");
+
+    button.type =
+        "button";
+
+    button.innerHTML =
+        "×";
+
+
+    button.onclick =
+        function(){
+
+            row.remove();
+
+            updateGallery();
+
+        };
+
+
+    row.appendChild(input);
+
+    row.appendChild(button);
+
+    container.appendChild(row);
+
+
+    updateGallery();
+
+}
+
+
+function getImageURLs(){
+
+    const inputs =
+        document.querySelectorAll(
+            "#imageInputs input"
+        );
+
+
+    return Array
+        .from(inputs)
+        .map(input => input.value.trim())
+        .filter(Boolean);
+
+}
+
+
+function updateGallery(){
+
+    const urls =
+        getImageURLs();
+
+
+    const gallery =
+        document.getElementById(
+            "gallery"
+        );
+
+
+    gallery.innerHTML = "";
+
+
+    urls.forEach(
+        (url,index) => {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+            item.className =
+                "gallery-item";
+
+
+            const number =
+                document.createElement(
+                    "span"
+                );
+
+            number.className =
+                "image-number";
+
+            number.textContent =
+                index + 1;
+
+
+            const img =
+                document.createElement(
+                    "img"
+                );
+
+            img.src =
+                url;
+
+            img.alt =
+                "Imagen " + (index + 1);
+
+
+            img.onerror =
+                function(){
+
+                    const error =
+                        document.createElement(
+                            "div"
+                        );
+
+                    error.className =
+                        "image-error";
+
+                    error.textContent =
+                        "No se pudo cargar esta imagen.";
+
+                    item.replaceChild(
+                        error,
+                        img
+                    );
+
+                };
+
+
+            item.appendChild(number);
+
+            item.appendChild(img);
+
+            gallery.appendChild(item);
+
+        }
+    );
+
+}
+
+
+/* ==============================================
+   GUARDAR PRODUCTO
+============================================== */
+
+function saveProduct(){
+
+    const name =
+        document
+            .getElementById("name")
+            .value
+            .trim();
+
+
+    const reference =
+        document
+            .getElementById("reference")
+            .value
+            .trim()
+            .toUpperCase();
+
+
+    const price =
+        parseFloat(
+            document
+                .getElementById("price")
+                .value
+        );
+
+
+    const stock =
+        parseInt(
+            document
+                .getElementById("stock")
+                .value
+        ) || 0;
+
+
+    const category =
+        document
+            .getElementById("category")
+            .value;
+
+
+    const sizes =
+        document
+            .getElementById("sizes")
+            .value
+            .split(",")
+            .map(x => x.trim())
+            .filter(Boolean);
+
+
+    const description =
+        document
+            .getElementById("description")
+            .value
+            .trim();
+
+
+    const images =
+        getImageURLs();
+
+
+    if(!name){
+
+        showToast(
+            "Introduce el nombre del producto."
+        );
+
+        return;
+
+    }
+
+
+    if(!reference){
+
+        showToast(
+            "Introduce la referencia."
+        );
+
+        return;
+
+    }
+
+
+    if(isNaN(price)){
+
+        showToast(
+            "Introduce un precio válido."
+        );
+
+        return;
+
+    }
+
+
+    if(!images.length){
+
+        showToast(
+            "Añade al menos una URL de imagen."
+        );
+
+        return;
+
+    }
+
+
+    const product = {
+
+        id:
+            Date.now(),
+
+        name,
+
+        reference,
+
+        price,
+
+        stock,
+
+        category,
+
+        sizes,
+
+        colors:[...colors],
+
+        description,
+
+        images
+
+    };
+
+
+    products.push(product);
+
+    saveStorage();
+
+    renderProducts();
+
+    generateCode(product);
+
+    showToast(
+        "Producto guardado correctamente."
+    );
+
+}
+
+
+/* ==============================================
+   MOSTRAR PRODUCTOS
+============================================== */
+
+function renderProducts(){
+
+    const container =
+        document.getElementById(
+            "products"
+        );
+
+
+    if(!products.length){
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                <h3>
+                    No hay productos todavía
+                </h3>
+
+                <p style="margin-top:7px;">
+                    Crea tu primer producto arriba.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        products.map(
+            product => {
+
+                const image =
+                    product.images[0];
+
+
+                return `
+
+                    <article class="product">
+
+                        <img
+                            class="product-image"
+                            src="${escapeAttribute(image)}"
+                            alt="${escapeAttribute(product.name)}"
+                            onerror="this.style.display='none'"
+                        >
+
+                        <div class="product-body">
+
+                            <div class="reference">
+
+                                REF:
+                                ${escapeHTML(product.reference)}
+
+                            </div>
+
+                            <div class="product-name">
+
+                                ${escapeHTML(product.name)}
+
+                            </div>
+
+                            <div class="price">
+
+                                ${Number(product.price).toFixed(2)} €
+
+                            </div>
+
+                            <div
+                                style="
+                                    font-size:12px;
+                                    color:#777;
+                                    margin-bottom:10px;
+                                "
+                            >
+
+                                ${product.images.length}
+                                imagen(es)
+
+                            </div>
+
+                            <div class="product-buttons">
+
+                                <button
+                                    style="
+                                        background:#111;
+                                        color:white;
+                                    "
+                                    onclick="selectProduct(${product.id})"
+                                >
+                                    Código
+                                </button>
+
+                                <button
+                                    style="
+                                        background:#eee;
+                                    "
+                                    onclick="deleteProduct(${product.id})"
+                                >
+                                    Eliminar
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                `;
+
+            }
+        ).join("");
+
+}
+
+
+/* ==============================================
+   GENERAR CÓDIGO
+============================================== */
+
+function generateCode(product){
+
+    const code =
+`{
+    id: ${product.id},
+    name: "${escapeJS(product.name)}",
+    reference: "${escapeJS(product.reference)}",
+    price: ${Number(product.price).toFixed(2)},
+    stock: ${product.stock},
+    category: "${escapeJS(product.category)}",
+    sizes: ${JSON.stringify(product.sizes)},
+    colors: ${JSON.stringify(product.colors)},
+    description: "${escapeJS(product.description)}",
+    images: ${JSON.stringify(product.images, null, 4)}
+},`;
+
+
+    document
+        .getElementById(
+            "generatedCode"
+        )
+        .value =
+            code;
+
+}
+
+
+function selectProduct(id){
+
+    const product =
+        products.find(
+            p => p.id === id
+        );
+
+
+    if(!product){
+
+        return;
+
+    }
+
+
+    generateCode(product);
+
+
+    document
+        .getElementById(
+            "generatedCode"
+        )
+        .scrollIntoView({
+            behavior:"smooth",
+            block:"center"
+        });
+
+
+    showToast(
+        "Código generado."
+    );
+
+}
+
+
+/* ==============================================
+   COPIAR CÓDIGO
+============================================== */
+
+async function copyCode(){
+
+    const textarea =
+        document.getElementById(
+            "generatedCode"
+        );
+
+
+    if(!textarea.value){
+
+        showToast(
+            "Primero selecciona un producto."
+        );
+
+        return;
+
+    }
+
+
+    try{
+
+        await navigator.clipboard.writeText(
+            textarea.value
+        );
+
+        showToast(
+            "Código copiado."
+        );
+
+    }catch(error){
+
+        textarea.select();
+
+        document.execCommand(
+            "copy"
+        );
+
+        showToast(
+            "Código copiado."
+        );
+
+    }
+
+}
+
+
+/* ==============================================
+   ELIMINAR
+============================================== */
+
+function deleteProduct(id){
+
+    const product =
+        products.find(
+            p => p.id === id
+        );
+
+
+    if(!product){
+
+        return;
+
+    }
+
+
+    const confirmDelete =
+        confirm(
+            '¿Eliminar "' +
+            product.name +
+            '"?'
+        );
+
+
+    if(!confirmDelete){
+
+        return;
+
+    }
+
+
+    products =
+        products.filter(
+            p => p.id !== id
+        );
+
+
+    saveStorage();
+
+    renderProducts();
+
+    document
+        .getElementById(
+            "generatedCode"
+        )
+        .value = "";
+
+
+    showToast(
+        "Producto eliminado."
+    );
+
+}
+
+
+/* ==============================================
+   LIMPIAR FORMULARIO
+============================================== */
+
+function clearForm(){
+
+    document
+        .getElementById("name")
+        .value = "";
+
+
+    document
+        .getElementById("reference")
+        .value = "";
+
+
+    document
+        .getElementById("price")
+        .value = "";
+
+
+    document
+        .getElementById("stock")
+        .value = "10";
+
+
+    document
+        .getElementById("category")
+        .value = "Camisetas";
+
+
+    document
+        .getElementById("sizes")
+        .value = "";
+
+
+    document
+        .getElementById("description")
+        .value = "";
+
+
+    document
+        .getElementById("colorInput")
+        .value = "";
+
+
+    colors = [];
+
+    renderColors();
+
+
+    document
+        .getElementById(
+            "imageInputs"
+        )
+        .innerHTML = "";
+
+
+    document
+        .getElementById(
+            "gallery"
+        )
+        .innerHTML = "";
+
+
+    document
+        .getElementById(
+            "generatedCode"
+        )
+        .value = "";
+
+
+    addImageInput();
+
+}
+
+
+/* ==============================================
+   UTILIDADES
+============================================== */
+
+function escapeHTML(value){
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        value ?? "";
+
+    return div.innerHTML;
+
+}
+
+
+function escapeAttribute(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/"/g,"&quot;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;");
+
+}
+
+
+function escapeJS(value){
+
+    return String(value ?? "")
+        .replace(/\\/g,"\\\\")
+        .replace(/"/g,'\\"')
+        .replace(/\n/g,"\\n")
+        .replace(/\r/g,"");
+
+}
+
+
+function showToast(message){
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    setTimeout(
+        () => {
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },
+        2500
+    );
+
+}
+
+
+/* ==============================================
+   INICIO
+============================================== */
+
+renderColors();
+
+renderProducts();
+
+addImageInput();
+
+</script>
+
+</body>
+  </html>
