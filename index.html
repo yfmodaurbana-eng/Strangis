@@ -4,9 +4,15 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-<meta name="theme-color" content="#111111">
+<meta
+    name="theme-color"
+    content="#111111"
+>
 
 <meta
     name="description"
@@ -16,6 +22,10 @@
 <title>Marcas & Moda</title>
 
 <style>
+
+/* =========================================================
+   RESET
+========================================================= */
 
 *{
     box-sizing:border-box;
@@ -28,9 +38,16 @@ html{
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
+    font-family:
+        Inter,
+        Arial,
+        Helvetica,
+        sans-serif;
+
     background:#fff;
     color:#111;
+
+    line-height:1.4;
 }
 
 button,
@@ -44,8 +61,28 @@ button{
     cursor:pointer;
 }
 
-body.no-scroll{
+img{
+    max-width:100%;
+}
+
+body.modal-open{
     overflow:hidden;
+}
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root{
+    --black:#111;
+    --white:#fff;
+    --gray:#777;
+    --light:#f5f5f5;
+    --border:#e8e8e8;
+    --green:#25d366;
+    --danger:#b00020;
+    --radius:12px;
 }
 
 
@@ -57,27 +94,35 @@ body.no-scroll{
     position:sticky;
     top:0;
     z-index:1000;
+
     background:#111;
     color:#fff;
-    box-shadow:0 2px 15px rgba(0,0,0,.18);
+
+    box-shadow:
+        0 3px 18px rgba(0,0,0,.16);
 }
 
 .header-inner{
     max-width:1250px;
     min-height:70px;
+
     margin:auto;
-    padding:0 20px;
+    padding:0 18px;
 
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     gap:20px;
 }
 
 .logo{
     color:#fff;
+    text-decoration:none;
+
     font-size:24px;
     font-weight:900;
+
     letter-spacing:-1px;
 }
 
@@ -87,6 +132,7 @@ body.no-scroll{
 
 .cart-btn{
     border:0;
+
     background:#fff;
     color:#111;
 
@@ -95,10 +141,31 @@ body.no-scroll{
     border-radius:9px;
 
     font-weight:900;
+
+    transition:.2s;
 }
 
 .cart-btn:hover{
-    background:#eee;
+    transform:translateY(-1px);
+}
+
+.cart-count{
+    display:inline-flex;
+
+    min-width:22px;
+    height:22px;
+
+    align-items:center;
+    justify-content:center;
+
+    margin-left:3px;
+
+    background:#111;
+    color:#fff;
+
+    border-radius:50%;
+
+    font-size:12px;
 }
 
 
@@ -107,7 +174,7 @@ body.no-scroll{
 ========================================================= */
 
 .hero{
-    min-height:430px;
+    min-height:450px;
 
     display:flex;
     align-items:center;
@@ -117,18 +184,18 @@ body.no-scroll{
 
     padding:70px 20px;
 
+    color:#fff;
+
     background:
         linear-gradient(
-            rgba(0,0,0,.55),
-            rgba(0,0,0,.55)
+            rgba(0,0,0,.52),
+            rgba(0,0,0,.52)
         ),
         linear-gradient(
             135deg,
             #111,
             #777
         );
-
-    color:#fff;
 }
 
 .hero-content{
@@ -136,53 +203,74 @@ body.no-scroll{
 }
 
 .hero h1{
-    font-size:clamp(42px,7vw,78px);
-    line-height:1;
-    margin-bottom:18px;
+    font-size:clamp(42px,8vw,82px);
+
+    line-height:.95;
+
+    margin-bottom:20px;
+
     font-weight:900;
+
     letter-spacing:-3px;
 }
 
 .hero p{
-    font-size:18px;
+    font-size:19px;
+
     margin-bottom:28px;
+
     color:#eee;
 }
 
 .hero-btn{
-    display:inline-block;
+    display:inline-flex;
+
+    align-items:center;
+    justify-content:center;
 
     background:#fff;
     color:#111;
 
     text-decoration:none;
 
-    border-radius:9px;
-
     padding:14px 26px;
 
+    border-radius:9px;
+
     font-weight:900;
+
+    transition:.2s;
 }
 
 .hero-btn:hover{
-    background:#eee;
+    transform:translateY(-2px);
 }
 
 
 /* =========================================================
-   CONTENIDO
+   CONTENEDOR
 ========================================================= */
 
 .container{
     max-width:1250px;
+
     margin:auto;
 
-    padding:50px 20px 90px;
+    padding:
+        55px
+        18px
+        90px;
 }
+
+
+/* =========================================================
+   CABECERA CATALOGO
+========================================================= */
 
 .section-head{
     display:flex;
-    align-items:end;
+
+    align-items:flex-end;
     justify-content:space-between;
 
     gap:20px;
@@ -192,11 +280,13 @@ body.no-scroll{
 
 .section-head h2{
     font-size:32px;
+
+    margin-bottom:5px;
 }
 
 .section-head p{
-    margin-top:6px;
-    color:#777;
+    color:var(--gray);
+
     font-size:14px;
 }
 
@@ -207,8 +297,10 @@ body.no-scroll{
 
 .filters{
     display:flex;
-    gap:8px;
+
     flex-wrap:wrap;
+
+    gap:8px;
 
     margin-bottom:28px;
 }
@@ -217,12 +309,15 @@ body.no-scroll{
     border:1px solid #ddd;
 
     background:#fff;
+    color:#111;
 
     padding:9px 15px;
 
     border-radius:30px;
 
     font-weight:700;
+
+    transition:.2s;
 }
 
 .filter:hover{
@@ -232,6 +327,7 @@ body.no-scroll{
 .filter.active{
     background:#111;
     color:#fff;
+
     border-color:#111;
 }
 
@@ -254,13 +350,13 @@ body.no-scroll{
 
     background:#fff;
 
-    border:1px solid #eee;
+    border:1px solid var(--border);
 
-    border-radius:13px;
+    border-radius:14px;
 
     transition:
-        transform .2s ease,
-        box-shadow .2s ease;
+        transform .2s,
+        box-shadow .2s;
 }
 
 .product:hover{
@@ -273,6 +369,9 @@ body.no-scroll{
 
 .product-image{
     position:relative;
+
+    overflow:hidden;
+
     background:#f4f4f4;
 }
 
@@ -284,6 +383,12 @@ body.no-scroll{
     aspect-ratio:3/4;
 
     object-fit:cover;
+
+    transition:transform .3s;
+}
+
+.product:hover .product-image img{
+    transform:scale(1.02);
 }
 
 .stock-badge{
@@ -292,24 +397,19 @@ body.no-scroll{
     top:10px;
     left:10px;
 
-    background:#fff;
-    color:#111;
-
     padding:6px 9px;
 
     border-radius:6px;
 
-    font-size:11px;
-
-    font-weight:900;
-
-    box-shadow:
-        0 2px 8px rgba(0,0,0,.12);
-}
-
-.out-stock{
     background:#111;
     color:#fff;
+
+    font-size:11px;
+    font-weight:800;
+}
+
+.stock-badge.out{
+    background:#b00020;
 }
 
 .product-info{
@@ -321,19 +421,21 @@ body.no-scroll{
 
     font-size:11px;
 
+    font-weight:800;
+
     text-transform:uppercase;
 
     letter-spacing:.5px;
 
-    margin-bottom:7px;
+    margin-bottom:6px;
 }
 
 .product-name{
     font-weight:900;
 
-    font-size:16px;
+    margin-bottom:6px;
 
-    margin-bottom:7px;
+    min-height:22px;
 }
 
 .price{
@@ -360,8 +462,19 @@ body.no-scroll{
 }
 
 .view-btn:hover{
-    background:#333;
+    background:#222;
 }
+
+.view-btn:disabled{
+    background:#bbb;
+
+    cursor:not-allowed;
+}
+
+
+/* =========================================================
+   SIN PRODUCTOS
+========================================================= */
 
 .empty{
     grid-column:1/-1;
@@ -371,6 +484,12 @@ body.no-scroll{
     padding:80px 20px;
 
     color:#777;
+}
+
+.empty h3{
+    color:#111;
+
+    margin-bottom:8px;
 }
 
 
@@ -385,14 +504,15 @@ body.no-scroll{
 
     z-index:2000;
 
-    background:rgba(0,0,0,.72);
-
     display:none;
 
-    align-items:center;
+    align-items:flex-end;
     justify-content:center;
 
-    padding:15px;
+    background:
+        rgba(0,0,0,.72);
+
+    padding:0;
 }
 
 .modal.active{
@@ -403,59 +523,72 @@ body.no-scroll{
     position:relative;
 
     width:100%;
-    max-width:1100px;
 
-    max-height:94vh;
+    max-width:1150px;
+
+    max-height:95vh;
 
     overflow:auto;
 
     background:#fff;
 
-    border-radius:18px;
+    border-radius:
+        20px
+        20px
+        0
+        0;
 
-    padding:22px;
+    padding:20px;
 }
 
 .close{
-    display:block;
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
 
     margin-left:auto;
 
-    margin-bottom:15px;
+    width:40px;
+    height:40px;
 
     border:0;
 
     background:#eee;
 
-    width:40px;
-    height:40px;
-
     border-radius:50%;
 
-    font-size:23px;
+    font-size:24px;
+
+    margin-bottom:15px;
 }
 
 .close:hover{
     background:#ddd;
 }
 
+
+/* =========================================================
+   PRODUCTO DETALLE
+========================================================= */
+
 .product-layout{
     display:grid;
 
     grid-template-columns:
-        minmax(0,1fr)
-        minmax(0,1fr);
+        minmax(0,1.05fr)
+        minmax(0,.95fr);
 
     gap:35px;
 }
 
 
 /* =========================================================
-   GALERÍA
+   GALERIA
 ========================================================= */
 
-.gallery{
-    position:relative;
+.gallery-wrapper{
+    min-width:0;
 }
 
 .gallery-track{
@@ -467,7 +600,11 @@ body.no-scroll{
 
     scrollbar-width:none;
 
-    border-radius:12px;
+    border-radius:14px;
+
+    background:#f4f4f4;
+
+    overscroll-behavior-x:contain;
 }
 
 .gallery-track::-webkit-scrollbar{
@@ -489,38 +626,27 @@ body.no-scroll{
 
     object-fit:cover;
 
-    border-radius:12px;
-
-    background:#f4f4f4;
-}
-
-.gallery-empty{
-    aspect-ratio:3/4;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:#f4f4f4;
-
-    border-radius:12px;
-
-    color:#888;
+    border-radius:14px;
 }
 
 .dots{
     display:flex;
 
+    align-items:center;
     justify-content:center;
 
     gap:7px;
 
-    margin-top:11px;
+    margin-top:12px;
 }
 
 .dot{
     width:7px;
     height:7px;
+
+    border:0;
+
+    padding:0;
 
     border-radius:50%;
 
@@ -531,17 +657,31 @@ body.no-scroll{
     background:#111;
 }
 
+.gallery-counter{
+    text-align:center;
+
+    color:#777;
+
+    font-size:12px;
+
+    margin-top:7px;
+}
+
 
 /* =========================================================
-   DETALLES PRODUCTO
+   DETALLES
 ========================================================= */
+
+.details{
+    padding:5px 0;
+}
 
 .details h2{
     font-size:34px;
 
     line-height:1.1;
 
-    margin-bottom:8px;
+    margin-bottom:7px;
 }
 
 .reference{
@@ -549,11 +689,11 @@ body.no-scroll{
 
     font-size:13px;
 
-    margin-bottom:15px;
+    margin-bottom:16px;
 }
 
 .details-price{
-    font-size:29px;
+    font-size:28px;
 
     font-weight:900;
 
@@ -563,41 +703,63 @@ body.no-scroll{
 .description{
     color:#555;
 
-    line-height:1.65;
-
-    margin-bottom:25px;
+    line-height:1.7;
 
     white-space:pre-line;
+
+    margin-bottom:24px;
 }
 
+
+/* =========================================================
+   OPCIONES
+========================================================= */
+
 .option-block{
-    margin-bottom:20px;
+    margin-bottom:21px;
 }
 
 .option-title{
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:10px;
+
     font-weight:900;
 
     margin-bottom:9px;
 }
 
+.selected-value{
+    color:#777;
+
+    font-size:13px;
+
+    font-weight:500;
+}
+
 .options{
     display:flex;
 
-    gap:8px;
-
     flex-wrap:wrap;
+
+    gap:8px;
 }
 
 .option{
     border:1px solid #ccc;
 
     background:#fff;
+    color:#111;
 
     padding:10px 15px;
 
     border-radius:8px;
 
     font-weight:700;
+
+    transition:.2s;
 }
 
 .option:hover{
@@ -606,42 +768,63 @@ body.no-scroll{
 
 .option.selected{
     background:#111;
-
     color:#fff;
 
     border-color:#111;
 }
 
-.color-option{
-    display:flex;
+.option:disabled{
+    opacity:.35;
 
-    align-items:center;
+    text-decoration:line-through;
 
-    gap:7px;
+    cursor:not-allowed;
 }
 
-.color-dot{
-    width:12px;
-    height:12px;
 
-    border-radius:50%;
+/* =========================================================
+   INFORMACION COLOR
+========================================================= */
 
-    background:#ddd;
-
-    border:1px solid rgba(0,0,0,.15);
+.color-images-info{
+    display:none;
 }
+
+
+/* =========================================================
+   STOCK
+========================================================= */
 
 .stock-info{
     margin-bottom:18px;
 
-    font-size:13px;
+    padding:11px 13px;
+
+    border-radius:8px;
+
+    background:#f5f5f5;
 
     color:#555;
+
+    font-size:13px;
 }
 
-.stock-info strong{
-    color:#111;
+.stock-info.low{
+    background:#fff5d6;
+
+    color:#735700;
 }
+
+.stock-info.out{
+    background:#ffe8ed;
+
+    color:#9d0020;
+}
+
+
+/* =========================================================
+   BOTON CARRITO
+========================================================= */
 
 .add-cart{
     width:100%;
@@ -661,11 +844,12 @@ body.no-scroll{
 }
 
 .add-cart:hover{
-    background:#333;
+    background:#222;
 }
 
 .add-cart:disabled{
-    background:#aaa;
+    background:#bbb;
+
     cursor:not-allowed;
 }
 
@@ -681,9 +865,10 @@ body.no-scroll{
 
     z-index:3000;
 
-    background:rgba(0,0,0,.65);
-
     display:none;
+
+    background:
+        rgba(0,0,0,.65);
 }
 
 .cart-modal.active{
@@ -691,12 +876,13 @@ body.no-scroll{
 }
 
 .cart{
-    margin-left:auto;
-
     width:100%;
-    max-width:520px;
+
+    max-width:530px;
 
     height:100%;
+
+    margin-left:auto;
 
     overflow:auto;
 
@@ -706,13 +892,24 @@ body.no-scroll{
 }
 
 .cart-head{
+    position:sticky;
+
+    top:0;
+
+    z-index:2;
+
     display:flex;
 
     align-items:center;
-
     justify-content:space-between;
 
-    margin-bottom:15px;
+    gap:15px;
+
+    padding-bottom:18px;
+
+    margin-bottom:5px;
+
+    background:#fff;
 }
 
 .cart-head h2{
@@ -720,40 +917,54 @@ body.no-scroll{
 }
 
 .cart-head button{
-    border:0;
+    display:flex;
 
-    background:#eee;
+    align-items:center;
+    justify-content:center;
 
     width:38px;
     height:38px;
 
+    border:0;
+
+    background:#eee;
+
     border-radius:50%;
 
-    font-size:20px;
+    font-size:21px;
 }
+
+
+/* =========================================================
+   ITEM CARRITO
+========================================================= */
 
 .cart-item{
     display:flex;
 
     gap:12px;
 
-    border-bottom:1px solid #eee;
+    padding:16px 0;
 
-    padding:15px 0;
+    border-bottom:1px solid #eee;
 }
 
 .cart-item img{
+    flex:none;
+
     width:72px;
     height:92px;
 
     object-fit:cover;
 
-    border-radius:7px;
+    border-radius:8px;
 
     background:#f4f4f4;
 }
 
 .cart-item-info{
+    min-width:0;
+
     flex:1;
 }
 
@@ -768,22 +979,26 @@ body.no-scroll{
 
     font-size:12px;
 
-    line-height:1.7;
+    line-height:1.6;
 
-    margin-bottom:6px;
+    margin-bottom:8px;
 }
 
-.quantity-controls{
+.cart-price{
+    font-weight:900;
+}
+
+.cart-actions{
     display:flex;
 
     align-items:center;
 
-    gap:8px;
+    gap:5px;
 
-    margin-top:8px;
+    margin-top:9px;
 }
 
-.quantity-controls button{
+.quantity-btn{
     width:28px;
     height:28px;
 
@@ -796,27 +1011,78 @@ body.no-scroll{
     font-weight:900;
 }
 
+.quantity-value{
+    min-width:28px;
+
+    text-align:center;
+
+    font-size:13px;
+
+    font-weight:800;
+}
+
 .remove{
-    flex-shrink:0;
+    flex:none;
+
+    width:31px;
+    height:31px;
 
     border:0;
 
-    background:#fee;
+    background:#fff0f2;
 
-    color:#a00;
-
-    width:30px;
-    height:30px;
+    color:#a00020;
 
     border-radius:50%;
+
+    font-size:18px;
+}
+
+.empty-cart{
+    padding:60px 10px;
+
+    text-align:center;
+
+    color:#777;
+}
+
+.empty-cart strong{
+    display:block;
+
+    color:#111;
+
+    font-size:18px;
+
+    margin-bottom:5px;
+}
+
+
+/* =========================================================
+   TOTAL
+========================================================= */
+
+.cart-footer{
+    padding-top:20px;
+
+    position:sticky;
+
+    bottom:0;
+
+    background:#fff;
 }
 
 .total{
-    font-size:24px;
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    font-size:23px;
 
     font-weight:900;
 
-    margin:25px 0;
+    margin-bottom:15px;
 }
 
 .checkout-btn{
@@ -832,10 +1098,18 @@ body.no-scroll{
     border-radius:9px;
 
     font-weight:900;
+
+    font-size:15px;
+}
+
+.checkout-btn:hover{
+    background:#1fbd5b;
 }
 
 .checkout-btn:disabled{
-    background:#aaa;
+    background:#bbb;
+
+    cursor:not-allowed;
 }
 
 
@@ -850,12 +1124,13 @@ body.no-scroll{
 
     z-index:4000;
 
-    background:rgba(0,0,0,.7);
-
     display:none;
 
     align-items:center;
     justify-content:center;
+
+    background:
+        rgba(0,0,0,.72);
 
     padding:15px;
 }
@@ -867,7 +1142,7 @@ body.no-scroll{
 .checkout-box{
     width:100%;
 
-    max-width:600px;
+    max-width:620px;
 
     max-height:95vh;
 
@@ -875,13 +1150,37 @@ body.no-scroll{
 
     background:#fff;
 
-    border-radius:15px;
+    border-radius:16px;
 
     padding:24px;
 }
 
-.checkout-box h2{
+.checkout-head{
+    display:flex;
+
+    align-items:center;
+    justify-content:space-between;
+
+    gap:15px;
+
     margin-bottom:20px;
+}
+
+.checkout-head h2{
+    font-size:24px;
+}
+
+.checkout-close{
+    width:36px;
+    height:36px;
+
+    border:0;
+
+    background:#eee;
+
+    border-radius:50%;
+
+    font-size:20px;
 }
 
 .form-group{
@@ -922,6 +1221,14 @@ body.no-scroll{
     resize:vertical;
 }
 
+.required-note{
+    color:#777;
+
+    font-size:12px;
+
+    margin-bottom:15px;
+}
+
 .confirm{
     width:100%;
 
@@ -932,7 +1239,7 @@ body.no-scroll{
 
     padding:15px;
 
-    border-radius:8px;
+    border-radius:9px;
 
     font-weight:900;
 }
@@ -943,6 +1250,7 @@ body.no-scroll{
     border:0;
 
     background:#eee;
+    color:#111;
 
     padding:13px;
 
@@ -984,10 +1292,52 @@ body.no-scroll{
 
 
 /* =========================================================
+   TOAST
+========================================================= */
+
+.toast{
+    position:fixed;
+
+    left:50%;
+
+    bottom:25px;
+
+    z-index:9999;
+
+    transform:
+        translate(-50%,20px);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    background:#111;
+    color:#fff;
+
+    padding:12px 18px;
+
+    border-radius:8px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    transition:.25s;
+}
+
+.toast.show{
+    transform:
+        translate(-50%,0);
+
+    opacity:1;
+}
+
+
+/* =========================================================
    RESPONSIVE
 ========================================================= */
 
-@media(max-width:950px){
+@media(max-width:1000px){
 
     .products{
         grid-template-columns:
@@ -996,21 +1346,27 @@ body.no-scroll{
 
 }
 
-@media(max-width:700px){
+@media(max-width:760px){
 
     .products{
         grid-template-columns:
             repeat(2,minmax(0,1fr));
 
-        gap:10px;
+        gap:11px;
     }
 
     .product-layout{
         grid-template-columns:1fr;
+
+        gap:22px;
     }
 
     .hero{
-        min-height:350px;
+        min-height:380px;
+    }
+
+    .hero h1{
+        letter-spacing:-2px;
     }
 
     .container{
@@ -1018,7 +1374,7 @@ body.no-scroll{
     }
 
     .section-head h2{
-        font-size:25px;
+        font-size:26px;
     }
 
     .details h2{
@@ -1027,18 +1383,38 @@ body.no-scroll{
 
 }
 
-@media(max-width:430px){
+@media(max-width:480px){
 
     .header-inner{
-        padding:0 13px;
+        min-height:62px;
+
+        padding:
+            0 12px;
     }
 
     .logo{
-        font-size:18px;
+        font-size:19px;
     }
 
     .cart-btn{
         padding:9px 11px;
+
+        font-size:12px;
+    }
+
+    .hero{
+        min-height:340px;
+
+        padding:50px 16px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    .container{
+        padding-left:12px;
+        padding-right:12px;
     }
 
     .product-info{
@@ -1053,6 +1429,39 @@ body.no-scroll{
         font-size:17px;
     }
 
+    .view-btn{
+        padding:10px;
+
+        font-size:12px;
+    }
+
+    .product-modal{
+        padding:13px;
+    }
+
+    .cart{
+        padding:17px;
+    }
+
+    .checkout-box{
+        padding:18px;
+    }
+
+}
+
+
+/* =========================================================
+   ACCESIBILIDAD
+========================================================= */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible{
+    outline:3px solid #777;
+
+    outline-offset:2px;
 }
 
 </style>
@@ -1061,24 +1470,31 @@ body.no-scroll{
 <body>
 
 
-<!-- =====================================================
-     HEADER
-===================================================== -->
+<!-- =======================================================
+     CABECERA
+======================================================= -->
 
 <header class="header">
 
     <div class="header-inner">
 
-        <div class="logo">
+        <a
+            href="#"
+            class="logo"
+        >
             Marcas <span>&</span> Moda
-        </div>
+        </a>
 
         <button
             class="cart-btn"
+            type="button"
             onclick="openCart()"
         >
             🛒 Carrito
-            (<span id="cartCount">0</span>)
+            <span
+                id="cartCount"
+                class="cart-count"
+            >0</span>
         </button>
 
     </div>
@@ -1086,9 +1502,9 @@ body.no-scroll{
 </header>
 
 
-<!-- =====================================================
+<!-- =======================================================
      HERO
-===================================================== -->
+======================================================= -->
 
 <section class="hero">
 
@@ -1112,20 +1528,22 @@ body.no-scroll{
 </section>
 
 
-<!-- =====================================================
-     CATÁLOGO
-===================================================== -->
+<!-- =======================================================
+     CATALOGO
+======================================================= -->
 
 <main
-    class="container"
     id="catalogo"
+    class="container"
 >
 
     <div class="section-head">
 
         <div>
 
-            <h2>Nuestra colección</h2>
+            <h2>
+                Nuestra colección
+            </h2>
 
             <p>
                 Moda seleccionada para tu estilo.
@@ -1136,11 +1554,15 @@ body.no-scroll{
     </div>
 
 
+    <!-- FILTROS -->
+
     <div
         id="filters"
         class="filters"
     ></div>
 
+
+    <!-- PRODUCTOS -->
 
     <div
         id="products"
@@ -1150,9 +1572,9 @@ body.no-scroll{
 </main>
 
 
-<!-- =====================================================
+<!-- =======================================================
      FOOTER
-===================================================== -->
+======================================================= -->
 
 <footer class="footer">
 
@@ -1167,20 +1589,23 @@ body.no-scroll{
 </footer>
 
 
-<!-- =====================================================
+<!-- =======================================================
      MODAL PRODUCTO
-===================================================== -->
+======================================================= -->
 
 <div
     id="productModal"
     class="modal"
+    aria-hidden="true"
 >
 
     <div class="product-modal">
 
         <button
             class="close"
+            type="button"
             onclick="closeProduct()"
+            aria-label="Cerrar"
         >
             ×
         </button>
@@ -1195,13 +1620,14 @@ body.no-scroll{
 </div>
 
 
-<!-- =====================================================
+<!-- =======================================================
      CARRITO
-===================================================== -->
+======================================================= -->
 
 <div
     id="cartModal"
     class="cart-modal"
+    aria-hidden="true"
 >
 
     <div class="cart">
@@ -1212,52 +1638,83 @@ body.no-scroll{
                 🛒 Tu carrito
             </h2>
 
-            <button onclick="closeCart()">
+            <button
+                type="button"
+                onclick="closeCart()"
+                aria-label="Cerrar carrito"
+            >
                 ×
             </button>
 
         </div>
 
+
         <div id="cartItems"></div>
 
-        <div
-            id="cartTotal"
-            class="total"
-        >
-            Total: 0,00 €
-        </div>
 
-        <button
-            id="checkoutButton"
-            class="checkout-btn"
-            onclick="openCheckout()"
-        >
-            Continuar con el pedido
-        </button>
+        <div class="cart-footer">
+
+            <div
+                id="cartTotal"
+                class="total"
+            >
+                <span>Total</span>
+                <span>0,00 €</span>
+            </div>
+
+            <button
+                id="checkoutButton"
+                class="checkout-btn"
+                type="button"
+                onclick="openCheckout()"
+            >
+                Continuar con el pedido
+            </button>
+
+        </div>
 
     </div>
 
 </div>
 
 
-<!-- =====================================================
+<!-- =======================================================
      CHECKOUT
-===================================================== -->
+======================================================= -->
 
 <div
     id="checkoutModal"
     class="checkout-modal"
+    aria-hidden="true"
 >
 
     <div class="checkout-box">
 
-        <h2>
-            📦 Datos de envío
-        </h2>
+        <div class="checkout-head">
+
+            <h2>
+                📦 Datos de envío
+            </h2>
+
+            <button
+                class="checkout-close"
+                type="button"
+                onclick="closeCheckout()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <p class="required-note">
+            Los campos marcados con * son obligatorios.
+        </p>
+
 
         <div class="form-group">
 
-            <label>
+            <label for="customerName">
                 Nombre y apellidos *
             </label>
 
@@ -1265,6 +1722,7 @@ body.no-scroll{
                 id="customerName"
                 type="text"
                 autocomplete="name"
+                maxlength="100"
             >
 
         </div>
@@ -1272,7 +1730,7 @@ body.no-scroll{
 
         <div class="form-group">
 
-            <label>
+            <label for="customerPhone">
                 Teléfono *
             </label>
 
@@ -1280,6 +1738,7 @@ body.no-scroll{
                 id="customerPhone"
                 type="tel"
                 autocomplete="tel"
+                maxlength="30"
             >
 
         </div>
@@ -1287,7 +1746,7 @@ body.no-scroll{
 
         <div class="form-group">
 
-            <label>
+            <label for="customerAddress">
                 Dirección *
             </label>
 
@@ -1295,6 +1754,7 @@ body.no-scroll{
                 id="customerAddress"
                 type="text"
                 autocomplete="street-address"
+                maxlength="150"
             >
 
         </div>
@@ -1302,7 +1762,7 @@ body.no-scroll{
 
         <div class="form-group">
 
-            <label>
+            <label for="customerPostal">
                 Código postal *
             </label>
 
@@ -1310,6 +1770,7 @@ body.no-scroll{
                 id="customerPostal"
                 type="text"
                 autocomplete="postal-code"
+                maxlength="15"
             >
 
         </div>
@@ -1317,7 +1778,7 @@ body.no-scroll{
 
         <div class="form-group">
 
-            <label>
+            <label for="customerCity">
                 Ciudad *
             </label>
 
@@ -1325,6 +1786,7 @@ body.no-scroll{
                 id="customerCity"
                 type="text"
                 autocomplete="address-level2"
+                maxlength="80"
             >
 
         </div>
@@ -1346,12 +1808,14 @@ body.no-scroll{
 
         <div class="form-group">
 
-            <label>
+            <label for="customerNotes">
                 Observaciones
             </label>
 
             <textarea
                 id="customerNotes"
+                maxlength="500"
+                placeholder="Indicaciones para la entrega..."
             ></textarea>
 
         </div>
@@ -1359,14 +1823,16 @@ body.no-scroll{
 
         <button
             class="confirm"
+            type="button"
             onclick="sendWhatsApp()"
         >
-            Confirmar pedido por WhatsApp
+            📲 Confirmar pedido por WhatsApp
         </button>
 
 
         <button
             class="back"
+            type="button"
             onclick="closeCheckout()"
         >
             Volver
@@ -1377,228 +1843,508 @@ body.no-scroll{
 </div>
 
 
+<!-- =======================================================
+     NOTIFICACIÓN
+======================================================= -->
+
+<div
+    id="toast"
+    class="toast"
+></div>
+
+
 <script>
-
-/* =========================================================
-   🟢 PRODUCTOS DE LA TIENDA
-   =========================================================
-
-   AQUÍ PEGARÁS LOS PRODUCTOS GENERADOS DESDE admin.html.
-
-   IMPORTANTE:
-
-   Cada producto tiene:
-
-   id
-   name
-   reference
-   price
-   category
-   description
-   variants
-
-   Cada variante puede tener:
-
-   color
-   stock
-   sizes
-   images
-
-   EJEMPLO:
-
-   {
-       id: "cam-001",
-       name: "Camiseta Premium",
-       reference: "CAM-001",
-       price: 29.99,
-       category: "Camisetas",
-
-       description: "Descripción...",
-
-       variants: [
-
-           {
-               color: "Blanco",
-               stock: 10,
-               sizes: ["S","M","L","XL"],
-               images: [
-                   "URL-FOTO-BLANCA-1",
-                   "URL-FOTO-BLANCA-2"
-               ]
-           },
-
-           {
-               color: "Negro",
-               stock: 5,
-               sizes: ["S","M","L"],
-               images: [
-                   "URL-FOTO-NEGRA-1",
-                   "URL-FOTO-NEGRA-2"
-               ]
-           }
-
-       ]
-   },
-
-   ========================================================= */
-
-
-/* 🟢 PEGA AQUÍ LOS PRODUCTOS GENERADOS DESDE ADMIN */
-
-const products = [
-
-    /*
-       EJEMPLO DE PRODUCTO
-
-       Puedes borrarlo cuando empieces.
-
-    */
-
-    {
-        id: "ejemplo-001",
-
-        name: "Camiseta de ejemplo",
-
-        reference: "EJ-001",
-
-        price: 29.99,
-
-        category: "Camisetas",
-
-        description:
-            "Producto de ejemplo. Puedes eliminarlo cuando empieces a añadir tus productos.",
-
-        variants: [
-
-            {
-                color: "Blanco",
-
-                stock: 10,
-
-                sizes: [
-                    "S",
-                    "M",
-                    "L",
-                    "XL"
-                ],
-
-                images: [
-                    "https://placehold.co/800x1067/f2f2f2/111111?text=Blanco+1",
-                    "https://placehold.co/800x1067/e9e9e9/111111?text=Blanco+2"
-                ]
-            },
-
-            {
-                color: "Negro",
-
-                stock: 5,
-
-                sizes: [
-                    "S",
-                    "M",
-                    "L"
-                ],
-
-                images: [
-                    "https://placehold.co/800x1067/222222/ffffff?text=Negro+1",
-                    "https://placehold.co/800x1067/111111/ffffff?text=Negro+2"
-                ]
-            }
-
-        ]
-    }
-
-    // 🟢 AQUÍ PUEDES PEGAR MÁS PRODUCTOS
-    // Cada producto debe terminar en una coma excepto el último.
-
-];
-
 
 /* =========================================================
    CONFIGURACIÓN
 ========================================================= */
 
+/*
+   📲 TU WHATSAPP
+
+   Escribir:
+   34 + número
+
+   Ejemplo:
+   34674559614
+*/
+
 const WHATSAPP_NUMBER = "34674559614";
 
-const CART_STORAGE_KEY =
-    "marcas_moda_cart_v2";
 
+/* =========================================================
+   🛍️ PRODUCTOS DE LA TIENDA
+=========================================================
+
+   🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴
+
+   AQUÍ PEGAS LOS PRODUCTOS QUE TE GENERE
+   EL admin.html
+
+   CADA PRODUCTO DEBE QUEDAR SEPARADO
+   POR UNA COMA.
+
+   NO BORRES:
+
+   const products = [
+
+   NI:
+
+   ];
+
+   EJEMPLO DE PRODUCTO:
+
+{
+    id: "cam-001",
+    name: "Camiseta Premium",
+    reference: "CAM-001",
+    price: 29.99,
+    stock: 10,
+    category: "Camisetas",
+    sizes: ["S","M","L","XL"],
+
+    colors: [
+        {
+            name: "Blanco",
+            stock: 5,
+            images: [
+                "https://....jpg",
+                "https://....jpg"
+            ]
+        },
+        {
+            name: "Negro",
+            stock: 5,
+            images: [
+                "https://....jpg",
+                "https://....jpg"
+            ]
+        }
+    ],
+
+    description: "Descripción del producto."
+},
+
+   🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴
+*/
+
+const products = [
+
+    /* =====================================================
+       🔴🔴🔴 PRODUCTOS AQUÍ 🔴🔴🔴
+
+       PEGA AQUÍ EL CÓDIGO GENERADO POR ADMIN.HTML
+
+       PRODUCTO 1
+       PRODUCTO 2
+       PRODUCTO 3
+       PRODUCTO 4
+       ETC.
+
+       ===================================================== */
+
+
+    /*
+    EJEMPLO:
+
+    {
+        id: "cam-001",
+
+        name: "Camiseta Premium",
+
+        reference: "CAM-001",
+
+        price: 29.99,
+
+        stock: 10,
+
+        category: "Camisetas",
+
+        sizes: [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+
+        colors: [
+
+            {
+                name: "Blanco",
+
+                stock: 5,
+
+                images: [
+                    "https://ejemplo.com/blanco-1.jpg",
+                    "https://ejemplo.com/blanco-2.jpg"
+                ]
+            },
+
+            {
+                name: "Negro",
+
+                stock: 5,
+
+                images: [
+                    "https://ejemplo.com/negro-1.jpg",
+                    "https://ejemplo.com/negro-2.jpg"
+                ]
+            }
+
+        ],
+
+        description:
+            "Camiseta premium de gran calidad."
+    },
+    */
+
+
+    /* =====================================================
+       🔴🔴🔴 FIN DE PRODUCTOS 🔴🔴🔴
+       ===================================================== */
+
+];
+
+
+/* =========================================================
+   ESTADO
+========================================================= */
 
 let cart = [];
 
 let currentProduct = null;
 
-let selectedVariant = null;
-
 let selectedSize = "";
+
+let selectedColor = "";
 
 let currentCategory = "Todos";
 
+let currentGalleryIndex = 0;
+
 
 /* =========================================================
-   INICIO
+   LOCAL STORAGE
 ========================================================= */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    init
-);
+function loadCart(){
+
+    try{
+
+        const saved =
+            localStorage.getItem(
+                "marcasModaCart"
+            );
+
+        if(saved){
+
+            const parsed =
+                JSON.parse(saved);
+
+            if(Array.isArray(parsed)){
+
+                cart = parsed;
+            }
+        }
+
+    }catch(error){
+
+        cart = [];
+    }
+
+}
 
 
-function init(){
+function saveCart(){
 
-    loadCart();
+    try{
 
-    renderFilters();
+        localStorage.setItem(
+            "marcasModaCart",
+            JSON.stringify(cart)
+        );
 
-    renderProducts();
+    }catch(error){
 
-    updateCartCount();
+        /* No hacer nada si el navegador bloquea storage */
 
-    setupKeyboard();
+    }
 
 }
 
 
 /* =========================================================
-   CATEGORÍAS
+   PRECIO
+========================================================= */
+
+function formatPrice(value){
+
+    const number =
+        Number(value);
+
+    if(!Number.isFinite(number)){
+        return "0,00 €";
+    }
+
+    return number.toLocaleString(
+        "es-ES",
+        {
+            style:"currency",
+            currency:"EUR"
+        }
+    );
+
+}
+
+
+/* =========================================================
+   STOCK
+========================================================= */
+
+function getProductStock(product){
+
+    if(!product){
+        return 0;
+    }
+
+    /*
+       Si el producto tiene colores con stock,
+       sumamos el stock de los colores.
+    */
+
+    if(
+        Array.isArray(product.colors) &&
+        product.colors.length
+    ){
+
+        const variantStocks =
+            product.colors
+                .map(color =>
+                    Number(color.stock)
+                )
+                .filter(Number.isFinite);
+
+        if(variantStocks.length){
+
+            return variantStocks.reduce(
+                (sum,stock) =>
+                    sum + Math.max(0,stock),
+                0
+            );
+
+        }
+
+    }
+
+    return Math.max(
+        0,
+        Number(product.stock) || 0
+    );
+
+}
+
+
+function getSelectedColorVariant(){
+
+    if(!currentProduct){
+        return null;
+    }
+
+    if(
+        !Array.isArray(currentProduct.colors)
+    ){
+        return null;
+    }
+
+    return currentProduct.colors.find(
+        color =>
+            String(color.name) ===
+            String(selectedColor)
+    ) || null;
+
+}
+
+
+function getSelectedStock(){
+
+    const variant =
+        getSelectedColorVariant();
+
+    if(variant){
+
+        const stock =
+            Number(variant.stock);
+
+        return Number.isFinite(stock)
+            ? Math.max(0,stock)
+            : 0;
+    }
+
+    return Math.max(
+        0,
+        Number(currentProduct?.stock) || 0
+    );
+
+}
+
+
+/* =========================================================
+   IMAGEN PRINCIPAL DEL PRODUCTO
+========================================================= */
+
+function getProductMainImage(product){
+
+    if(!product){
+        return "";
+    }
+
+    if(
+        Array.isArray(product.colors) &&
+        product.colors.length
+    ){
+
+        const firstColor =
+            product.colors[0];
+
+        if(
+            Array.isArray(firstColor.images) &&
+            firstColor.images.length
+        ){
+
+            return firstColor.images[0];
+        }
+
+    }
+
+    if(
+        Array.isArray(product.images) &&
+        product.images.length
+    ){
+
+        return product.images[0];
+    }
+
+    return "";
+
+}
+
+
+/* =========================================================
+   OBTENER IMAGENES SEGÚN COLOR
+========================================================= */
+
+function getProductImages(product){
+
+    if(!product){
+        return [];
+    }
+
+
+    /*
+       SISTEMA NUEVO:
+
+       colors: [
+           {
+               name:"Blanco",
+               images:[...]
+           }
+       ]
+    */
+
+    if(
+        Array.isArray(product.colors) &&
+        product.colors.length
+    ){
+
+        const selected =
+            product.colors.find(
+                color =>
+                    String(color.name) ===
+                    String(selectedColor)
+            );
+
+        if(
+            selected &&
+            Array.isArray(selected.images)
+        ){
+
+            return selected.images
+                .filter(Boolean);
+        }
+
+    }
+
+
+    /*
+       COMPATIBILIDAD CON PRODUCTOS ANTIGUOS
+    */
+
+    if(
+        Array.isArray(product.images)
+    ){
+
+        return product.images
+            .filter(Boolean);
+    }
+
+
+    return [];
+
+}
+
+
+/* =========================================================
+   CATEGORIAS
 ========================================================= */
 
 function renderFilters(){
 
     const box =
-        document.getElementById("filters");
+        document.getElementById(
+            "filters"
+        );
 
     const categories = [
         "Todos",
+
         ...new Set(
+
             products
-                .map(p => p.category)
+                .map(product =>
+                    product.category
+                )
                 .filter(Boolean)
+
         )
     ];
 
+
     box.innerHTML =
-        categories.map(category => `
+        categories
+            .map(category => `
 
-            <button
-                class="filter ${
-                    currentCategory === category
-                    ? "active"
-                    : ""
-                }"
-                onclick="selectCategory('${escapeJS(category)}')"
-            >
-                ${escapeHTML(category)}
-            </button>
+                <button
+                    type="button"
+                    class="filter ${
+                        currentCategory === category
+                            ? "active"
+                            : ""
+                    }"
+                    onclick="selectCategory(${JSON.stringify(category)})"
+                >
+                    ${escapeHTML(category)}
+                </button>
 
-        `).join("");
+            `)
+            .join("");
+
 }
 
 
 function selectCategory(category){
 
-    currentCategory = category;
+    currentCategory =
+        category;
 
     renderFilters();
 
@@ -1608,22 +2354,29 @@ function selectCategory(category){
 
 
 /* =========================================================
-   PRODUCTOS
+   RENDER PRODUCTOS
 ========================================================= */
 
 function renderProducts(){
 
     const container =
-        document.getElementById("products");
+        document.getElementById(
+            "products"
+        );
 
-    let filtered = products;
+
+    let filtered =
+        Array.isArray(products)
+            ? products
+            : [];
+
 
     if(currentCategory !== "Todos"){
 
         filtered =
-            products.filter(
-                p =>
-                    p.category ===
+            filtered.filter(
+                product =>
+                    product.category ===
                     currentCategory
             );
 
@@ -1641,8 +2394,8 @@ function renderProducts(){
                 </h3>
 
                 <p>
-                    Añade productos desde tu panel
-                    de administración.
+                    Añade productos desde tu
+                    panel de administración.
                 </p>
 
             </div>
@@ -1656,17 +2409,11 @@ function renderProducts(){
     container.innerHTML =
         filtered.map(product => {
 
-            const variant =
-                getFirstAvailableVariant(
-                    product
-                );
+            const stock =
+                getProductStock(product);
 
             const image =
-                variant?.images?.[0] || "";
-
-            const stock =
-                getTotalStock(product);
-
+                getProductMainImage(product);
 
             return `
 
@@ -1676,22 +2423,21 @@ function renderProducts(){
 
                         <img
                             src="${escapeAttribute(image)}"
-                            alt="${escapeHTML(product.name)}"
+                            alt="${escapeHTML(product.name || "Producto")}"
                             loading="lazy"
-                            onerror="this.style.opacity='.25'"
+                            onerror="imageError(this)"
                         >
 
                         <span
-                            class="stock-badge ${
-                                stock <= 0
-                                ? "out-stock"
-                                : ""
-                            }"
+                            class="
+                                stock-badge
+                                ${stock <= 0 ? "out" : ""}
+                            "
                         >
                             ${
                                 stock > 0
-                                ? "Disponible"
-                                : "Agotado"
+                                    ? "Disponible"
+                                    : "Agotado"
                             }
                         </span>
 
@@ -1701,32 +2447,61 @@ function renderProducts(){
                     <div class="product-info">
 
                         <div class="category">
-                            ${escapeHTML(
-                                product.category ||
-                                "Moda"
-                            )}
+
+                            ${
+                                escapeHTML(
+                                    product.category ||
+                                    "Moda"
+                                )
+                            }
+
                         </div>
 
 
                         <div class="product-name">
-                            ${escapeHTML(
-                                product.name
-                            )}
+
+                            ${
+                                escapeHTML(
+                                    product.name ||
+                                    "Producto"
+                                )
+                            }
+
                         </div>
 
 
                         <div class="price">
-                            ${formatPrice(
-                                product.price
-                            )}
+
+                            ${
+                                formatPrice(
+                                    product.price
+                                )
+                            }
+
                         </div>
 
 
                         <button
                             class="view-btn"
-                            onclick="openProduct('${escapeJS(product.id)}')"
+                            type="button"
+                            ${
+                                stock <= 0
+                                    ? "disabled"
+                                    : ""
+                            }
+                            onclick="
+                                openProduct(
+                                    ${JSON.stringify(
+                                        String(product.id)
+                                    )}
+                                )
+                            "
                         >
-                            Ver producto
+                            ${
+                                stock > 0
+                                    ? "Ver producto"
+                                    : "Agotado"
+                            }
                         </button>
 
                     </div>
@@ -1741,78 +2516,73 @@ function renderProducts(){
 
 
 /* =========================================================
-   STOCK
-========================================================= */
-
-function getTotalStock(product){
-
-    return (product.variants || [])
-        .reduce(
-            (total,variant) =>
-                total +
-                Math.max(
-                    0,
-                    Number(variant.stock) || 0
-                ),
-            0
-        );
-
-}
-
-
-function getFirstAvailableVariant(product){
-
-    return (
-        product.variants || []
-    ).find(
-        variant =>
-            Number(variant.stock) > 0
-    )
-    ||
-    product.variants?.[0]
-    ||
-    null;
-
-}
-
-
-/* =========================================================
-   PRODUCTO
+   ABRIR PRODUCTO
 ========================================================= */
 
 function openProduct(id){
 
     currentProduct =
         products.find(
-            p =>
-                String(p.id) ===
+            product =>
+                String(product.id) ===
                 String(id)
         );
 
 
-    if(!currentProduct) return;
-
-
-    selectedVariant =
-        getFirstAvailableVariant(
-            currentProduct
-        );
+    if(!currentProduct){
+        return;
+    }
 
 
     selectedSize =
-        selectedVariant?.sizes?.[0] || "";
+        Array.isArray(
+            currentProduct.sizes
+        )
+            ? (
+                currentProduct.sizes[0] ||
+                ""
+            )
+            : "";
+
+
+    selectedColor = "";
+
+
+    if(
+        Array.isArray(
+            currentProduct.colors
+        ) &&
+        currentProduct.colors.length
+    ){
+
+        selectedColor =
+            String(
+                currentProduct.colors[0].name
+            );
+
+    }
+
+
+    currentGalleryIndex = 0;
 
 
     renderProduct();
 
 
-    document
-        .getElementById("productModal")
-        .classList.add("active");
+    const modal =
+        document.getElementById(
+            "productModal"
+        );
 
+    modal.classList.add("active");
+
+    modal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
 
     document.body.classList.add(
-        "no-scroll"
+        "modal-open"
     );
 
 }
@@ -1820,60 +2590,88 @@ function openProduct(id){
 
 function closeProduct(){
 
-    document
-        .getElementById("productModal")
-        .classList.remove("active");
+    const modal =
+        document.getElementById(
+            "productModal"
+        );
 
+    modal.classList.remove(
+        "active"
+    );
+
+    modal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
 
     document.body.classList.remove(
-        "no-scroll"
+        "modal-open"
     );
 
 }
 
 
+/* =========================================================
+   RENDER PRODUCTO
+========================================================= */
+
 function renderProduct(){
 
-    const p =
+    if(!currentProduct){
+        return;
+    }
+
+
+    const product =
         currentProduct;
 
 
-    if(!p) return;
-
-
-    const variants =
-        p.variants || [];
-
-
     const images =
-        selectedVariant?.images || [];
+        getProductImages(product);
+
+
+    const stock =
+        getSelectedStock();
+
+
+    const colors =
+        Array.isArray(product.colors)
+            ? product.colors
+            : [];
 
 
     const sizes =
-        selectedVariant?.sizes || [];
+        Array.isArray(product.sizes)
+            ? product.sizes
+            : [];
+
+
+    const stockClass =
+        stock <= 0
+            ? "out"
+            : stock <= 3
+                ? "low"
+                : "";
 
 
     document.getElementById(
         "productContent"
     ).innerHTML = `
 
-        <div class="gallery">
+        <!-- GALERIA -->
 
-            ${
-                images.length
+        <div class="gallery-wrapper">
 
-                ?
+            <div
+                id="galleryTrack"
+                class="gallery-track"
+            >
 
-                `
+                ${
+                    images.length
 
-                <div
-                    id="galleryTrack"
-                    class="gallery-track"
-                >
-
-                    ${
-                        images.map(
-                            image => `
+                        ? images.map(
+                            (image,index) => `
 
                                 <div
                                     class="slide"
@@ -1881,246 +2679,345 @@ function renderProduct(){
 
                                     <img
                                         src="${escapeAttribute(image)}"
-                                        alt="${escapeHTML(p.name)}"
-                                        onerror="this.style.opacity='.25'"
+                                        alt="${escapeHTML(product.name || "Producto")} - imagen ${index + 1}"
+                                        onerror="imageError(this)"
                                     >
 
                                 </div>
 
                             `
                         ).join("")
-                    }
 
-                </div>
+                        : `
+
+                            <div
+                                class="slide"
+                            >
+
+                                <img
+                                    src=""
+                                    alt="Sin imagen"
+                                    onerror="imageError(this)"
+                                >
+
+                            </div>
+
+                        `
+                }
+
+            </div>
 
 
-                <div class="dots">
+            ${
+                images.length > 1
 
-                    ${
-                        images.map(
-                            (_,index) => `
+                    ? `
 
-                                <span
-                                    class="dot ${
-                                        index === 0
-                                        ? "active"
-                                        : ""
-                                    }"
-                                ></span>
+                        <div
+                            id="galleryDots"
+                            class="dots"
+                        >
 
-                            `
-                        ).join("")
-                    }
+                            ${
+                                images.map(
+                                    (_,index) => `
 
-                </div>
+                                        <button
+                                            type="button"
+                                            class="
+                                                dot
+                                                ${
+                                                    index === 0
+                                                        ? "active"
+                                                        : ""
+                                                }
+                                            "
+                                            onclick="
+                                                goToGallery(
+                                                    ${index}
+                                                )
+                                            "
+                                            aria-label="
+                                                Imagen ${index + 1}
+                                            "
+                                        ></button>
 
-                `
+                                    `
+                                ).join("")
+                            }
 
-                :
+                        </div>
 
-                `
+                        <div
+                            id="galleryCounter"
+                            class="gallery-counter"
+                        >
+                            1 / ${images.length}
+                        </div>
 
-                <div class="gallery-empty">
+                    `
 
-                    Sin imágenes
-
-                </div>
-
-                `
+                    : ""
             }
 
         </div>
 
 
+        <!-- DETALLES -->
+
         <div class="details">
 
             <h2>
-                ${escapeHTML(p.name)}
+                ${escapeHTML(
+                    product.name ||
+                    "Producto"
+                )}
             </h2>
 
 
             <div class="reference">
+
                 Ref:
                 ${escapeHTML(
-                    p.reference || ""
+                    product.reference ||
+                    product.id ||
+                    ""
                 )}
+
             </div>
 
 
             <div class="details-price">
-                ${formatPrice(p.price)}
+
+                ${formatPrice(
+                    product.price
+                )}
+
             </div>
 
 
             ${
-                p.description
+                product.description
 
-                ?
+                    ? `
 
-                `
+                        <div class="description">
 
-                <div class="description">
-                    ${escapeHTML(
-                        p.description
-                    )}
-                </div>
+                            ${escapeHTML(
+                                product.description
+                            )}
 
-                `
+                        </div>
 
-                :
+                    `
 
-                ""
-            }
-
-
-            ${
-                variants.length
-
-                ?
-
-                `
-
-                <div class="option-block">
-
-                    <div class="option-title">
-                        Color
-                    </div>
-
-                    <div class="options">
-
-                        ${
-                            variants.map(
-                                (variant,index) => `
-
-                                    <button
-                                        class="option color-option ${
-                                            selectedVariant === variant
-                                            ? "selected"
-                                            : ""
-                                        }"
-                                        onclick="selectVariant(${index})"
-                                        ${
-                                            Number(variant.stock) <= 0
-                                            ? "disabled"
-                                            : ""
-                                        }
-                                    >
-
-                                        <span
-                                            class="color-dot"
-                                        ></span>
-
-                                        ${escapeHTML(
-                                            variant.color
-                                        )}
-
-                                    </button>
-
-                                `
-                            ).join("")
-                        }
-
-                    </div>
-
-                </div>
-
-                `
-
-                :
-
-                ""
+                    : ""
             }
 
 
             ${
                 sizes.length
 
-                ?
+                    ? `
 
-                `
+                        <div class="option-block">
 
-                <div class="option-block">
+                            <div class="option-title">
 
-                    <div class="option-title">
-                        Talla
-                    </div>
+                                <span>
+                                    Talla
+                                </span>
 
-                    <div class="options">
+                                <span
+                                    class="selected-value"
+                                    id="selectedSizeText"
+                                >
+                                    ${
+                                        escapeHTML(
+                                            selectedSize ||
+                                            "Selecciona"
+                                        )
+                                    }
+                                </span>
 
-                        ${
-                            sizes.map(
-                                size => `
+                            </div>
 
-                                    <button
-                                        class="option ${
-                                            selectedSize === size
-                                            ? "selected"
-                                            : ""
-                                        }"
-                                        onclick="selectSize('${escapeJS(size)}')"
-                                    >
-                                        ${escapeHTML(size)}
-                                    </button>
 
-                                `
-                            ).join("")
-                        }
+                            <div class="options">
 
-                    </div>
+                                ${
+                                    sizes.map(
+                                        size => `
 
-                </div>
+                                            <button
+                                                type="button"
+                                                class="
+                                                    option
+                                                    ${
+                                                        selectedSize === size
+                                                            ? "selected"
+                                                            : ""
+                                                    }
+                                                "
+                                                onclick="
+                                                    selectSize(
+                                                        ${JSON.stringify(
+                                                            String(size)
+                                                        )}
+                                                    )
+                                                "
+                                            >
+                                                ${escapeHTML(size)}
+                                            </button>
 
-                `
+                                        `
+                                    ).join("")
+                                }
 
-                :
+                            </div>
 
-                ""
+                        </div>
+
+                    `
+
+                    : ""
             }
 
 
-            <div class="stock-info">
+            ${
+                colors.length
+
+                    ? `
+
+                        <div class="option-block">
+
+                            <div class="option-title">
+
+                                <span>
+                                    Color
+                                </span>
+
+                                <span
+                                    class="selected-value"
+                                    id="selectedColorText"
+                                >
+                                    ${
+                                        escapeHTML(
+                                            selectedColor ||
+                                            "Selecciona"
+                                        )
+                                    }
+                                </span>
+
+                            </div>
+
+
+                            <div class="options">
+
+                                ${
+                                    colors.map(
+                                        color => {
+
+                                            const colorStock =
+                                                Number(
+                                                    color.stock
+                                                ) || 0;
+
+                                            return `
+
+                                                <button
+                                                    type="button"
+                                                    class="
+                                                        option
+                                                        ${
+                                                            String(
+                                                                selectedColor
+                                                            ) ===
+                                                            String(
+                                                                color.name
+                                                            )
+                                                                ? "selected"
+                                                                : ""
+                                                        }
+                                                    "
+                                                    ${
+                                                        colorStock <= 0
+                                                            ? "disabled"
+                                                            : ""
+                                                    }
+                                                    onclick="
+                                                        selectColor(
+                                                            ${JSON.stringify(
+                                                                String(
+                                                                    color.name
+                                                                )
+                                                            )}
+                                                        )
+                                                    "
+                                                >
+
+                                                    ${
+                                                        escapeHTML(
+                                                            color.name
+                                                        )
+                                                    }
+
+                                                </button>
+
+                                            `;
+
+                                        }
+                                    ).join("")
+                                }
+
+                            </div>
+
+                        </div>
+
+                    `
+
+                    : ""
+            }
+
+
+            <div
+                id="stockInfo"
+                class="
+                    stock-info
+                    ${stockClass}
+                "
+            >
 
                 ${
-                    selectedVariant &&
-                    Number(
-                        selectedVariant.stock
-                    ) > 0
-
-                    ?
-
-                    `Stock disponible:
-                     <strong>
-                        ${Number(
-                            selectedVariant.stock
-                        )}
-                     </strong>`
-
-                    :
-
-                    `<strong>
-                        Agotado
-                     </strong>`
+                    stock > 0
+                        ? (
+                            stock <= 3
+                                ? `⚠️ Quedan ${stock} unidades`
+                                : `✓ Disponible`
+                        )
+                        : "✕ Producto agotado"
                 }
 
             </div>
 
 
             <button
+                id="addCartButton"
                 class="add-cart"
-                onclick="addToCart()"
+                type="button"
                 ${
-                    !selectedVariant ||
-                    Number(
-                        selectedVariant.stock
-                    ) <= 0
-
-                    ? "disabled"
-
-                    : ""
+                    stock <= 0
+                        ? "disabled"
+                        : ""
                 }
+                onclick="addToCart()"
             >
 
-                🛒 Añadir al carrito
+                ${
+                    stock > 0
+                        ? "🛒 Añadir al carrito"
+                        : "Producto agotado"
+                }
 
             </button>
 
@@ -2135,49 +3032,13 @@ function renderProduct(){
 
 
 /* =========================================================
-   CAMBIO DE COLOR
-========================================================= */
-
-function selectVariant(index){
-
-    if(!currentProduct) return;
-
-
-    const variant =
-        currentProduct.variants?.[index];
-
-
-    if(!variant) return;
-
-
-    if(Number(variant.stock) <= 0){
-
-        return;
-
-    }
-
-
-    selectedVariant =
-        variant;
-
-
-    selectedSize =
-        variant.sizes?.[0] || "";
-
-
-    renderProduct();
-
-}
-
-
-/* =========================================================
-   CAMBIO DE TALLA
+   SELECCIONAR TALLA
 ========================================================= */
 
 function selectSize(size){
 
     selectedSize =
-        size;
+        String(size);
 
     renderProduct();
 
@@ -2185,7 +3046,33 @@ function selectSize(size){
 
 
 /* =========================================================
-   GALERÍA
+   SELECCIONAR COLOR
+=========================================================
+
+   🔥 ESTA ES LA PARTE IMPORTANTE.
+
+   Al cambiar el color:
+
+   1. Se cambia selectedColor.
+   2. Se buscan las imágenes de ese color.
+   3. Se vuelve a pintar la galería.
+   4. Las fotografías cambian automáticamente.
+*/
+
+function selectColor(color){
+
+    selectedColor =
+        String(color);
+
+    currentGalleryIndex = 0;
+
+    renderProduct();
+
+}
+
+
+/* =========================================================
+   GALERIA
 ========================================================= */
 
 function setupGallery(){
@@ -2196,119 +3083,230 @@ function setupGallery(){
         );
 
 
-    if(!track) return;
-
-
-    const dots =
-        document.querySelectorAll(
-            ".dot"
-        );
+    if(!track){
+        return;
+    }
 
 
     track.addEventListener(
         "scroll",
-        () => {
-
-            const index =
-                Math.round(
-                    track.scrollLeft /
-                    track.clientWidth
-                );
+        updateGalleryPosition,
+        {
+            passive:true
+        }
+    );
 
 
-            dots.forEach(
-                (dot,i) => {
+    /*
+       Si el usuario desliza con el dedo,
+       actualizamos los puntos.
+    */
 
-                    dot.classList.toggle(
-                        "active",
-                        i === index
-                    );
+    updateGalleryPosition();
 
-                }
+}
+
+
+function updateGalleryPosition(){
+
+    const track =
+        document.getElementById(
+            "galleryTrack"
+        );
+
+
+    if(!track){
+        return;
+    }
+
+
+    if(!track.clientWidth){
+        return;
+    }
+
+
+    const index =
+        Math.round(
+            track.scrollLeft /
+            track.clientWidth
+        );
+
+
+    currentGalleryIndex =
+        Math.max(0,index);
+
+
+    const dots =
+        document.querySelectorAll(
+            "#galleryDots .dot"
+        );
+
+
+    dots.forEach(
+        (dot,i) => {
+
+            dot.classList.toggle(
+                "active",
+                i === currentGalleryIndex
             );
 
         }
     );
 
+
+    const counter =
+        document.getElementById(
+            "galleryCounter"
+        );
+
+
+    if(counter){
+
+        const total =
+            getProductImages(
+                currentProduct
+            ).length;
+
+
+        counter.textContent =
+            `${currentGalleryIndex + 1} / ${total}`;
+
+    }
+
+}
+
+
+function goToGallery(index){
+
+    const track =
+        document.getElementById(
+            "galleryTrack"
+        );
+
+
+    if(!track){
+        return;
+    }
+
+
+    const safeIndex =
+        Math.max(
+            0,
+            Number(index) || 0
+        );
+
+
+    track.scrollTo({
+
+        left:
+            safeIndex *
+            track.clientWidth,
+
+        behavior:"smooth"
+
+    });
+
 }
 
 
 /* =========================================================
-   CARRITO
+   AÑADIR AL CARRITO
 ========================================================= */
 
 function addToCart(){
 
-    if(!currentProduct ||
-       !selectedVariant){
-
+    if(!currentProduct){
         return;
-
     }
 
 
     const stock =
-        Number(
-            selectedVariant.stock
-        ) || 0;
+        getSelectedStock();
 
 
     if(stock <= 0){
 
-        alert(
-            "Este color está agotado."
+        showToast(
+            "Este producto está agotado."
         );
 
         return;
-
     }
 
 
+    /*
+       Si tiene tallas,
+       obligamos a tener talla.
+    */
+
     if(
-        selectedVariant.sizes?.length &&
+        Array.isArray(
+            currentProduct.sizes
+        ) &&
+        currentProduct.sizes.length &&
         !selectedSize
     ){
 
-        alert(
+        showToast(
             "Selecciona una talla."
         );
 
         return;
-
     }
 
 
-    const variantKey =
-        selectedVariant.color;
+    /*
+       Si tiene colores,
+       obligamos a seleccionar color.
+    */
+
+    if(
+        Array.isArray(
+            currentProduct.colors
+        ) &&
+        currentProduct.colors.length &&
+        !selectedColor
+    ){
+
+        showToast(
+            "Selecciona un color."
+        );
+
+        return;
+    }
 
 
     const existing =
-        cart.find(
-            item =>
-                item.id ===
-                    currentProduct.id &&
+        cart.find(item =>
 
-                item.color ===
-                    variantKey &&
+            String(item.id) ===
+            String(currentProduct.id)
 
-                item.size ===
-                    selectedSize
+            &&
+
+            String(item.size) ===
+            String(selectedSize)
+
+            &&
+
+            String(item.color) ===
+            String(selectedColor)
+
         );
 
 
     if(existing){
 
         if(
-            existing.quantity >=
+            existing.quantity + 1 >
             stock
         ){
 
-            alert(
+            showToast(
                 "No hay más unidades disponibles."
             );
 
             return;
-
         }
 
 
@@ -2319,31 +3317,37 @@ function addToCart(){
         cart.push({
 
             id:
-                currentProduct.id,
+                String(
+                    currentProduct.id
+                ),
 
             name:
                 currentProduct.name,
 
             reference:
-                currentProduct.reference,
+                currentProduct.reference ||
+                currentProduct.id,
 
             price:
                 Number(
                     currentProduct.price
-                ),
+                ) || 0,
 
             image:
-                selectedVariant.images?.[0]
-                || "",
-
-            color:
-                selectedVariant.color,
+                getProductImages(
+                    currentProduct
+                )[0] ||
+                getProductMainImage(
+                    currentProduct
+                ),
 
             size:
                 selectedSize,
 
-            quantity:
-                1
+            color:
+                selectedColor,
+
+            quantity:1
 
         });
 
@@ -2356,27 +3360,69 @@ function addToCart(){
 
     closeProduct();
 
-    alert(
-        "Producto añadido al carrito."
+    showToast(
+        "✓ Producto añadido al carrito"
     );
 
 }
 
 
 /* =========================================================
-   CARRITO - INTERFAZ
+   CONTADOR CARRITO
+========================================================= */
+
+function updateCartCount(){
+
+    const count =
+        cart.reduce(
+            (total,item) =>
+                total +
+                (
+                    Number(item.quantity) ||
+                    0
+                ),
+            0
+        );
+
+
+    const element =
+        document.getElementById(
+            "cartCount"
+        );
+
+
+    element.textContent =
+        count;
+
+}
+
+
+/* =========================================================
+   ABRIR CARRITO
 ========================================================= */
 
 function openCart(){
 
     renderCart();
 
-    document
-        .getElementById("cartModal")
-        .classList.add("active");
+
+    const modal =
+        document.getElementById(
+            "cartModal"
+        );
+
+
+    modal.classList.add(
+        "active"
+    );
+
+    modal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
 
     document.body.classList.add(
-        "no-scroll"
+        "modal-open"
     );
 
 }
@@ -2384,16 +3430,31 @@ function openCart(){
 
 function closeCart(){
 
-    document
-        .getElementById("cartModal")
-        .classList.remove("active");
+    const modal =
+        document.getElementById(
+            "cartModal"
+        );
+
+
+    modal.classList.remove(
+        "active"
+    );
+
+    modal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
 
     document.body.classList.remove(
-        "no-scroll"
+        "modal-open"
     );
 
 }
 
+
+/* =========================================================
+   RENDER CARRITO
+========================================================= */
 
 function renderCart(){
 
@@ -2413,28 +3474,27 @@ function renderCart(){
 
         box.innerHTML = `
 
-            <p style="
-                color:#777;
-                padding:20px 0;
-            ">
-                Tu carrito está vacío.
-            </p>
+            <div class="empty-cart">
+
+                <strong>
+                    Tu carrito está vacío
+                </strong>
+
+                <span>
+                    Añade productos para continuar.
+                </span>
+
+            </div>
 
         `;
 
 
-        document.getElementById(
-            "cartTotal"
-        ).textContent =
-            "Total: 0,00 €";
-
+        updateCartTotal();
 
         checkoutButton.disabled =
             true;
 
-
         return;
-
     }
 
 
@@ -2449,74 +3509,125 @@ function renderCart(){
                 <div class="cart-item">
 
                     <img
-                        src="${escapeAttribute(item.image)}"
-                        alt="${escapeHTML(item.name)}"
+                        src="${escapeAttribute(
+                            item.image
+                        )}"
+                        alt="${escapeHTML(
+                            item.name
+                        )}"
+                        onerror="imageError(this)"
                     >
 
 
-                    <div class="cart-item-info">
+                    <div
+                        class="cart-item-info"
+                    >
 
-                        <div class="cart-item-name">
-                            ${escapeHTML(item.name)}
+                        <div
+                            class="cart-item-name"
+                        >
+
+                            ${
+                                escapeHTML(
+                                    item.name
+                                )
+                            }
+
                         </div>
 
 
                         <div class="cart-meta">
 
                             Ref:
-                            ${escapeHTML(
-                                item.reference
-                            )}
-
                             ${
-                                item.color
-                                ?
-                                `<br>Color:
-                                 ${escapeHTML(
-                                     item.color
-                                 )}`
-                                :
-                                ""
+                                escapeHTML(
+                                    item.reference
+                                )
                             }
 
                             ${
                                 item.size
-                                ?
-                                `<br>Talla:
-                                 ${escapeHTML(
-                                     item.size
-                                 )}`
-                                :
-                                ""
+                                    ? `
+                                        <br>
+                                        Talla:
+                                        ${escapeHTML(
+                                            item.size
+                                        )}
+                                    `
+                                    : ""
+                            }
+
+                            ${
+                                item.color
+                                    ? `
+                                        <br>
+                                        Color:
+                                        ${escapeHTML(
+                                            item.color
+                                        )}
+                                    `
+                                    : ""
                             }
 
                         </div>
 
 
-                        <strong>
-                            ${formatPrice(
-                                item.price *
-                                item.quantity
-                            )}
-                        </strong>
+                        <div class="cart-price">
+
+                            ${
+                                formatPrice(
+                                    (
+                                        Number(
+                                            item.price
+                                        ) || 0
+                                    ) *
+                                    (
+                                        Number(
+                                            item.quantity
+                                        ) || 0
+                                    )
+                                )
+                            }
+
+                        </div>
 
 
-                        <div
-                            class="quantity-controls"
-                        >
+                        <div class="cart-actions">
 
                             <button
-                                onclick="changeQuantity(${index},-1)"
+                                type="button"
+                                class="quantity-btn"
+                                onclick="
+                                    changeQuantity(
+                                        ${index},
+                                        -1
+                                    )
+                                "
                             >
                                 −
                             </button>
 
-                            <strong>
-                                ${item.quantity}
-                            </strong>
+
+                            <span
+                                class="quantity-value"
+                            >
+                                ${
+                                    Number(
+                                        item.quantity
+                                    ) || 0
+                                }
+                            </span>
+
 
                             <button
-                                onclick="changeQuantity(${index},1)"
+                                type="button"
+                                class="quantity-btn"
+                                onclick="
+                                    changeQuantity(
+                                        ${index},
+                                        1
+                                    )
+                                "
                             >
                                 +
                             </button>
@@ -2527,8 +3638,14 @@ function renderCart(){
 
 
                     <button
+                        type="button"
                         class="remove"
-                        onclick="removeItem(${index})"
+                        onclick="
+                            removeItem(
+                                ${index}
+                            )
+                        "
+                        aria-label="Eliminar producto"
                     >
                         ×
                     </button>
@@ -2539,101 +3656,170 @@ function renderCart(){
         ).join("");
 
 
-    const total =
-        cart.reduce(
-            (sum,item) =>
-                sum +
-                (
-                    item.price *
-                    item.quantity
-                ),
-            0
-        );
-
-
-    document.getElementById(
-        "cartTotal"
-    ).textContent =
-        "Total: " +
-        formatPrice(total);
+    updateCartTotal();
 
 }
 
 
-function changeQuantity(index,change){
+/* =========================================================
+   TOTAL CARRITO
+========================================================= */
+
+function getCartTotal(){
+
+    return cart.reduce(
+
+        (total,item) =>
+
+            total +
+
+            (
+                (
+                    Number(
+                        item.price
+                    ) || 0
+                )
+
+                *
+
+                (
+                    Number(
+                        item.quantity
+                    ) || 0
+                )
+            ),
+
+        0
+
+    );
+
+}
+
+
+function updateCartTotal(){
+
+    const total =
+        getCartTotal();
+
+
+    document.getElementById(
+        "cartTotal"
+    ).innerHTML = `
+
+        <span>
+            Total
+        </span>
+
+        <span>
+            ${formatPrice(total)}
+        </span>
+
+    `;
+
+}
+
+
+/* =========================================================
+   CAMBIAR CANTIDAD
+========================================================= */
+
+function changeQuantity(
+    index,
+    amount
+){
 
     const item =
         cart[index];
 
 
-    if(!item) return;
+    if(!item){
+        return;
+    }
 
 
-    if(change > 0){
+    const product =
+        products.find(
+            product =>
+                String(product.id) ===
+                String(item.id)
+        );
 
-        const product =
-            products.find(
-                p =>
-                    p.id === item.id
-            );
 
+    if(!product){
+        return;
+    }
+
+
+    let maxStock =
+        Number(
+            product.stock
+        ) || 0;
+
+
+    /*
+       Si el producto tiene colores,
+       buscamos el stock del color
+       seleccionado en el carrito.
+    */
+
+    if(
+        item.color &&
+        Array.isArray(
+            product.colors
+        )
+    ){
 
         const variant =
-            product?.variants?.find(
-                v =>
-                    v.color ===
-                    item.color
+            product.colors.find(
+                color =>
+                    String(color.name) ===
+                    String(item.color)
             );
 
 
-        const stock =
-            Number(
-                variant?.stock
-            ) || 0;
+        if(variant){
 
-
-        if(
-            item.quantity >=
-            stock
-        ){
-
-            alert(
-                "Has alcanzado el stock disponible."
-            );
-
-            return;
+            maxStock =
+                Number(
+                    variant.stock
+                ) || 0;
 
         }
 
     }
 
 
-    item.quantity +=
-        change;
+    const newQuantity =
+        (
+            Number(
+                item.quantity
+            ) || 0
+        ) + amount;
 
 
-    if(item.quantity <= 0){
+    if(newQuantity <= 0){
 
-        cart.splice(index,1);
+        cart.splice(
+            index,
+            1
+        );
 
+    }else if(
+        newQuantity <= maxStock
+    ){
+
+        item.quantity =
+            newQuantity;
+
+    }else{
+
+        showToast(
+            "No hay más stock disponible."
+        );
+
+        return;
     }
 
-
-    saveCart();
-
-    updateCartCount();
-
-    renderCart();
-
-}
-
-
-function removeItem(index){
-
-    cart.splice(
-        index,
-        1
-    );
 
     saveCart();
 
@@ -2645,63 +3831,30 @@ function removeItem(index){
 
 
 /* =========================================================
-   LOCAL STORAGE CARRITO
+   ELIMINAR ITEM
 ========================================================= */
 
-function saveCart(){
+function removeItem(index){
 
-    localStorage.setItem(
-        CART_STORAGE_KEY,
-        JSON.stringify(cart)
-    );
-
-}
-
-
-function loadCart(){
-
-    try{
-
-        const saved =
-            localStorage.getItem(
-                CART_STORAGE_KEY
-            );
-
-
-        cart =
-            saved
-            ? JSON.parse(saved)
-            : [];
-
-
-        if(!Array.isArray(cart)){
-            cart = [];
-        }
-
-    }catch(error){
-
-        cart = [];
-
+    if(
+        index < 0 ||
+        index >= cart.length
+    ){
+        return;
     }
 
-}
+
+    cart.splice(
+        index,
+        1
+    );
 
 
-function updateCartCount(){
+    saveCart();
 
-    const count =
-        cart.reduce(
-            (sum,item) =>
-                sum +
-                Number(item.quantity || 0),
-            0
-        );
+    updateCartCount();
 
-
-    document.getElementById(
-        "cartCount"
-    ).textContent =
-        count;
+    renderCart();
 
 }
 
@@ -2714,27 +3867,34 @@ function openCheckout(){
 
     if(!cart.length){
 
-        alert(
+        showToast(
             "Tu carrito está vacío."
         );
 
         return;
-
     }
 
 
     closeCart();
 
 
-    document
-        .getElementById(
+    const modal =
+        document.getElementById(
             "checkoutModal"
-        )
-        .classList.add("active");
+        );
 
+
+    modal.classList.add(
+        "active"
+    );
+
+    modal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
 
     document.body.classList.add(
-        "no-scroll"
+        "modal-open"
     );
 
 }
@@ -2742,15 +3902,23 @@ function openCheckout(){
 
 function closeCheckout(){
 
-    document
-        .getElementById(
+    const modal =
+        document.getElementById(
             "checkoutModal"
-        )
-        .classList.remove("active");
+        );
 
+
+    modal.classList.remove(
+        "active"
+    );
+
+    modal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
 
     document.body.classList.remove(
-        "no-scroll"
+        "modal-open"
     );
 
 }
@@ -2761,6 +3929,16 @@ function closeCheckout(){
 ========================================================= */
 
 function sendWhatsApp(){
+
+    if(!cart.length){
+
+        showToast(
+            "El carrito está vacío."
+        );
+
+        return;
+    }
+
 
     const name =
         document
@@ -2824,21 +4002,20 @@ function sendWhatsApp(){
         !city
     ){
 
-        alert(
+        showToast(
             "Completa todos los campos obligatorios."
         );
 
         return;
-
     }
 
 
     let message =
-        "🛍️ *NUEVO PEDIDO - MARCAS & MODA*\n\n";
+        "🛍️ NUEVO PEDIDO - MARCAS & MODA\n\n";
 
 
     message +=
-        "👤 *DATOS DEL CLIENTE*\n";
+        "👤 DATOS DEL CLIENTE\n";
 
     message +=
         "Nombre: " +
@@ -2880,7 +4057,7 @@ function sendWhatsApp(){
 
 
     message +=
-        "\n🛒 *PRODUCTOS*\n";
+        "\n🛒 PRODUCTOS\n";
 
 
     cart.forEach(
@@ -2900,21 +4077,21 @@ function sendWhatsApp(){
                 "\n";
 
 
-            if(item.color){
-
-                message +=
-                    "Color: " +
-                    item.color +
-                    "\n";
-
-            }
-
-
             if(item.size){
 
                 message +=
                     "Talla: " +
                     item.size +
+                    "\n";
+
+            }
+
+
+            if(item.color){
+
+                message +=
+                    "Color: " +
+                    item.color +
                     "\n";
 
             }
@@ -2929,8 +4106,16 @@ function sendWhatsApp(){
             message +=
                 "Precio: " +
                 formatPrice(
-                    item.price *
-                    item.quantity
+                    (
+                        Number(
+                            item.price
+                        ) || 0
+                    ) *
+                    (
+                        Number(
+                            item.quantity
+                        ) || 0
+                    )
                 ) +
                 "\n";
 
@@ -2939,21 +4124,12 @@ function sendWhatsApp(){
 
 
     const total =
-        cart.reduce(
-            (sum,item) =>
-                sum +
-                (
-                    item.price *
-                    item.quantity
-                ),
-            0
-        );
+        getCartTotal();
 
 
     message +=
-        "\n💰 *TOTAL: " +
-        formatPrice(total) +
-        "*";
+        "\n💰 TOTAL: " +
+        formatPrice(total);
 
 
     const url =
@@ -2967,120 +4143,60 @@ function sendWhatsApp(){
 
     window.open(
         url,
-        "_blank"
+        "_blank",
+        "noopener,noreferrer"
     );
 
 }
 
 
 /* =========================================================
-   TECLADO / CIERRES
+   TOAST
 ========================================================= */
 
-function setupKeyboard(){
-
-    document.addEventListener(
-        "keydown",
-        event => {
-
-            if(event.key !== "Escape"){
-                return;
-            }
+let toastTimer = null;
 
 
-            closeProduct();
+function showToast(message){
 
-            closeCart();
+    const toast =
+        document.getElementById(
+            "toast"
+        );
 
-            closeCheckout();
 
-        }
+    toast.textContent =
+        message;
+
+
+    toast.classList.add(
+        "show"
     );
 
 
-    document
-        .getElementById(
-            "productModal"
-        )
-        .addEventListener(
-            "click",
-            event => {
-
-                if(
-                    event.target.id ===
-                    "productModal"
-                ){
-
-                    closeProduct();
-
-                }
-
-            }
-        );
+    clearTimeout(
+        toastTimer
+    );
 
 
-    document
-        .getElementById(
-            "cartModal"
-        )
-        .addEventListener(
-            "click",
-            event => {
+    toastTimer =
+        setTimeout(
+            () => {
 
-                if(
-                    event.target.id ===
-                    "cartModal"
-                ){
+                toast.classList.remove(
+                    "show"
+                );
 
-                    closeCart();
-
-                }
-
-            }
-        );
-
-
-    document
-        .getElementById(
-            "checkoutModal"
-        )
-        .addEventListener(
-            "click",
-            event => {
-
-                if(
-                    event.target.id ===
-                    "checkoutModal"
-                ){
-
-                    closeCheckout();
-
-                }
-
-            }
+            },
+            2500
         );
 
 }
 
 
 /* =========================================================
-   UTILIDADES
+   SEGURIDAD HTML
 ========================================================= */
-
-function formatPrice(price){
-
-    return Number(
-        price || 0
-    ).toLocaleString(
-        "es-ES",
-        {
-            style:"currency",
-            currency:"EUR"
-        }
-    );
-
-}
-
 
 function escapeHTML(value){
 
@@ -3089,36 +4205,178 @@ function escapeHTML(value){
             "div"
         );
 
+
     div.textContent =
         value ?? "";
+
 
     return div.innerHTML;
 
 }
 
 
+/* =========================================================
+   SEGURIDAD ATRIBUTOS
+========================================================= */
+
 function escapeAttribute(value){
 
     return String(
         value ?? ""
     )
-    .replace(/&/g,"&amp;")
-    .replace(/"/g,"&quot;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;");
-
-}
-
-
-function escapeJS(value){
-
-    return String(
-        value ?? ""
+    .replace(
+        /&/g,
+        "&amp;"
     )
-    .replace(/\\/g,"\\\\")
-    .replace(/'/g,"\\'");
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    );
 
 }
+
+
+/* =========================================================
+   ERROR DE IMAGEN
+========================================================= */
+
+function imageError(img){
+
+    if(!img){
+        return;
+    }
+
+
+    img.onerror =
+        null;
+
+
+    img.style.objectFit =
+        "contain";
+
+
+    img.style.padding =
+        "25px";
+
+
+    img.alt =
+        "Imagen no disponible";
+
+}
+
+
+/* =========================================================
+   CERRAR AL PULSAR FUERA
+========================================================= */
+
+document
+    .getElementById(
+        "productModal"
+    )
+    .addEventListener(
+        "click",
+        event => {
+
+            if(
+                event.target.id ===
+                "productModal"
+            ){
+
+                closeProduct();
+
+            }
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "cartModal"
+    )
+    .addEventListener(
+        "click",
+        event => {
+
+            if(
+                event.target.id ===
+                "cartModal"
+            ){
+
+                closeCart();
+
+            }
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "checkoutModal"
+    )
+    .addEventListener(
+        "click",
+        event => {
+
+            if(
+                event.target.id ===
+                "checkoutModal"
+            ){
+
+                closeCheckout();
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   TECLA ESC
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if(
+            event.key !==
+            "Escape"
+        ){
+            return;
+        }
+
+
+        closeProduct();
+
+        closeCart();
+
+        closeCheckout();
+
+    }
+);
+
+
+/* =========================================================
+   INICIO
+========================================================= */
+
+loadCart();
+
+updateCartCount();
+
+renderFilters();
+
+renderProducts();
 
 </script>
 
