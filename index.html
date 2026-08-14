@@ -39,15 +39,13 @@ html{
 
 body{
     font-family:
-        Inter,
         Arial,
         Helvetica,
         sans-serif;
 
     background:#fff;
     color:#111;
-
-    line-height:1.4;
+    min-height:100vh;
 }
 
 button,
@@ -61,28 +59,9 @@ button{
     cursor:pointer;
 }
 
-img{
-    max-width:100%;
-}
-
-body.modal-open{
-    overflow:hidden;
-}
-
-
-/* =========================================================
-   VARIABLES
-========================================================= */
-
-:root{
-    --black:#111;
-    --white:#fff;
-    --gray:#777;
-    --light:#f5f5f5;
-    --border:#e8e8e8;
-    --green:#25d366;
-    --danger:#b00020;
-    --radius:12px;
+button:disabled{
+    opacity:.55;
+    cursor:not-allowed;
 }
 
 
@@ -99,12 +78,12 @@ body.modal-open{
     color:#fff;
 
     box-shadow:
-        0 3px 18px rgba(0,0,0,.16);
+        0 2px 15px rgba(0,0,0,.16);
 }
 
 .header-inner{
-    max-width:1250px;
-    min-height:70px;
+    max-width:1200px;
+    min-height:68px;
 
     margin:auto;
     padding:0 18px;
@@ -117,12 +96,8 @@ body.modal-open{
 }
 
 .logo{
-    color:#fff;
-    text-decoration:none;
-
     font-size:24px;
     font-weight:900;
-
     letter-spacing:-1px;
 }
 
@@ -132,40 +107,17 @@ body.modal-open{
 
 .cart-btn{
     border:0;
-
     background:#fff;
     color:#111;
 
-    padding:11px 16px;
-
     border-radius:9px;
+    padding:11px 15px;
 
-    font-weight:900;
-
-    transition:.2s;
+    font-weight:800;
 }
 
 .cart-btn:hover{
-    transform:translateY(-1px);
-}
-
-.cart-count{
-    display:inline-flex;
-
-    min-width:22px;
-    height:22px;
-
-    align-items:center;
-    justify-content:center;
-
-    margin-left:3px;
-
-    background:#111;
-    color:#fff;
-
-    border-radius:50%;
-
-    font-size:12px;
+    background:#eee;
 }
 
 
@@ -174,7 +126,7 @@ body.modal-open{
 ========================================================= */
 
 .hero{
-    min-height:450px;
+    min-height:410px;
 
     display:flex;
     align-items:center;
@@ -182,9 +134,7 @@ body.modal-open{
 
     text-align:center;
 
-    padding:70px 20px;
-
-    color:#fff;
+    padding:60px 20px;
 
     background:
         linear-gradient(
@@ -193,51 +143,46 @@ body.modal-open{
         ),
         linear-gradient(
             135deg,
-            #111,
+            #222,
             #777
         );
+
+    color:#fff;
 }
 
 .hero-content{
-    max-width:800px;
+    max-width:760px;
 }
 
 .hero h1{
-    font-size:clamp(42px,8vw,82px);
+    font-size:
+        clamp(42px,7vw,78px);
 
-    line-height:.95;
-
-    margin-bottom:20px;
+    line-height:1;
+    margin-bottom:18px;
 
     font-weight:900;
-
-    letter-spacing:-3px;
+    letter-spacing:-2px;
 }
 
 .hero p{
-    font-size:19px;
-
+    font-size:18px;
     margin-bottom:28px;
-
-    color:#eee;
 }
 
 .hero-btn{
-    display:inline-flex;
-
-    align-items:center;
-    justify-content:center;
+    display:inline-block;
 
     background:#fff;
     color:#111;
 
     text-decoration:none;
 
-    padding:14px 26px;
+    border-radius:8px;
 
-    border-radius:9px;
+    padding:14px 25px;
 
-    font-weight:900;
+    font-weight:800;
 
     transition:.2s;
 }
@@ -252,41 +197,35 @@ body.modal-open{
 ========================================================= */
 
 .container{
-    max-width:1250px;
+    max-width:1200px;
 
     margin:auto;
 
     padding:
-        55px
-        18px
-        90px;
+        45px 18px 80px;
 }
 
 
 /* =========================================================
-   CABECERA CATALOGO
+   CABECERA DE SECCIÓN
 ========================================================= */
 
 .section-head{
     display:flex;
-
-    align-items:flex-end;
     justify-content:space-between;
+    align-items:end;
 
-    gap:20px;
+    gap:15px;
 
     margin-bottom:25px;
 }
 
 .section-head h2{
-    font-size:32px;
-
-    margin-bottom:5px;
+    font-size:30px;
 }
 
 .section-head p{
-    color:var(--gray);
-
+    color:#777;
     font-size:14px;
 }
 
@@ -298,9 +237,9 @@ body.modal-open{
 .filters{
     display:flex;
 
-    flex-wrap:wrap;
+    gap:9px;
 
-    gap:8px;
+    flex-wrap:wrap;
 
     margin-bottom:28px;
 }
@@ -309,13 +248,12 @@ body.modal-open{
     border:1px solid #ddd;
 
     background:#fff;
+
     color:#111;
 
-    padding:9px 15px;
+    padding:9px 14px;
 
-    border-radius:30px;
-
-    font-weight:700;
+    border-radius:20px;
 
     transition:.2s;
 }
@@ -327,7 +265,6 @@ body.modal-open{
 .filter.active{
     background:#111;
     color:#fff;
-
     border-color:#111;
 }
 
@@ -340,19 +277,19 @@ body.modal-open{
     display:grid;
 
     grid-template-columns:
-        repeat(4,minmax(0,1fr));
+        repeat(4,1fr);
 
     gap:20px;
 }
 
 .product{
+    border:1px solid #eee;
+
+    border-radius:12px;
+
     overflow:hidden;
 
     background:#fff;
-
-    border:1px solid var(--border);
-
-    border-radius:14px;
 
     transition:
         transform .2s,
@@ -360,60 +297,48 @@ body.modal-open{
 }
 
 .product:hover{
-    transform:translateY(-4px);
+    transform:translateY(-3px);
 
     box-shadow:
-        0 12px 30px
+        0 10px 30px
         rgba(0,0,0,.08);
 }
 
 .product-image{
     position:relative;
 
-    overflow:hidden;
-
     background:#f4f4f4;
 }
 
 .product-image img{
-    display:block;
-
     width:100%;
 
     aspect-ratio:3/4;
 
     object-fit:cover;
 
-    transition:transform .3s;
+    display:block;
 }
 
-.product:hover .product-image img{
-    transform:scale(1.02);
-}
-
-.stock-badge{
+.product-badge{
     position:absolute;
 
     top:10px;
     left:10px;
 
+    background:#111;
+    color:#fff;
+
     padding:6px 9px;
 
     border-radius:6px;
-
-    background:#111;
-    color:#fff;
 
     font-size:11px;
     font-weight:800;
 }
 
-.stock-badge.out{
-    background:#b00020;
-}
-
 .product-info{
-    padding:16px;
+    padding:15px;
 }
 
 .category{
@@ -421,29 +346,39 @@ body.modal-open{
 
     font-size:11px;
 
-    font-weight:800;
-
     text-transform:uppercase;
-
-    letter-spacing:.5px;
 
     margin-bottom:6px;
 }
 
 .product-name{
-    font-weight:900;
+    font-weight:800;
+
+    min-height:20px;
 
     margin-bottom:6px;
-
-    min-height:22px;
 }
 
 .price{
-    font-size:20px;
+    font-size:19px;
 
     font-weight:900;
 
-    margin-bottom:13px;
+    margin-bottom:12px;
+}
+
+.stock-info{
+    color:#777;
+
+    font-size:12px;
+
+    margin-bottom:11px;
+}
+
+.stock-out{
+    color:#b00020;
+
+    font-weight:800;
 }
 
 .view-btn{
@@ -458,22 +393,18 @@ body.modal-open{
 
     border-radius:8px;
 
-    font-weight:900;
+    font-weight:800;
+
+    transition:.2s;
 }
 
 .view-btn:hover{
-    background:#222;
-}
-
-.view-btn:disabled{
-    background:#bbb;
-
-    cursor:not-allowed;
+    background:#333;
 }
 
 
 /* =========================================================
-   SIN PRODUCTOS
+   VACÍO
 ========================================================= */
 
 .empty{
@@ -481,15 +412,9 @@ body.modal-open{
 
     text-align:center;
 
-    padding:80px 20px;
+    padding:70px 20px;
 
     color:#777;
-}
-
-.empty h3{
-    color:#111;
-
-    margin-bottom:8px;
 }
 
 
@@ -499,20 +424,17 @@ body.modal-open{
 
 .modal{
     position:fixed;
-
     inset:0;
 
     z-index:2000;
+
+    background:
+        rgba(0,0,0,.72);
 
     display:none;
 
     align-items:flex-end;
     justify-content:center;
-
-    background:
-        rgba(0,0,0,.72);
-
-    padding:0;
 }
 
 .modal.active{
@@ -520,45 +442,36 @@ body.modal-open{
 }
 
 .product-modal{
-    position:relative;
-
     width:100%;
+    max-width:1100px;
 
-    max-width:1150px;
-
-    max-height:95vh;
+    max-height:94vh;
 
     overflow:auto;
 
     background:#fff;
 
     border-radius:
-        20px
-        20px
-        0
-        0;
+        18px 18px 0 0;
 
     padding:20px;
 }
 
 .close{
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
+    display:block;
 
     margin-left:auto;
-
-    width:40px;
-    height:40px;
 
     border:0;
 
     background:#eee;
 
+    width:38px;
+    height:38px;
+
     border-radius:50%;
 
-    font-size:24px;
+    font-size:22px;
 
     margin-bottom:15px;
 }
@@ -567,42 +480,31 @@ body.modal-open{
     background:#ddd;
 }
 
-
-/* =========================================================
-   PRODUCTO DETALLE
-========================================================= */
-
 .product-layout{
     display:grid;
 
     grid-template-columns:
-        minmax(0,1.05fr)
-        minmax(0,.95fr);
+        1fr 1fr;
 
-    gap:35px;
+    gap:30px;
 }
 
 
 /* =========================================================
-   GALERIA
+   GALERÍA
 ========================================================= */
-
-.gallery-wrapper{
-    min-width:0;
-}
 
 .gallery-track{
     display:flex;
 
     overflow-x:auto;
 
-    scroll-snap-type:x mandatory;
+    scroll-snap-type:
+        x mandatory;
 
     scrollbar-width:none;
 
-    border-radius:14px;
-
-    background:#f4f4f4;
+    border-radius:12px;
 
     overscroll-behavior-x:contain;
 }
@@ -618,35 +520,32 @@ body.modal-open{
 }
 
 .slide img{
-    display:block;
-
     width:100%;
 
     aspect-ratio:3/4;
 
     object-fit:cover;
 
-    border-radius:14px;
+    display:block;
+
+    border-radius:12px;
+
+    background:#f4f4f4;
 }
 
 .dots{
     display:flex;
 
-    align-items:center;
     justify-content:center;
 
-    gap:7px;
+    gap:6px;
 
-    margin-top:12px;
+    margin-top:10px;
 }
 
 .dot{
     width:7px;
     height:7px;
-
-    border:0;
-
-    padding:0;
 
     border-radius:50%;
 
@@ -657,29 +556,13 @@ body.modal-open{
     background:#111;
 }
 
-.gallery-counter{
-    text-align:center;
-
-    color:#777;
-
-    font-size:12px;
-
-    margin-top:7px;
-}
-
 
 /* =========================================================
-   DETALLES
+   DETALLES PRODUCTO
 ========================================================= */
 
-.details{
-    padding:5px 0;
-}
-
 .details h2{
-    font-size:34px;
-
-    line-height:1.1;
+    font-size:32px;
 
     margin-bottom:7px;
 }
@@ -689,11 +572,11 @@ body.modal-open{
 
     font-size:13px;
 
-    margin-bottom:16px;
+    margin-bottom:15px;
 }
 
 .details-price{
-    font-size:28px;
+    font-size:27px;
 
     font-weight:900;
 
@@ -703,63 +586,39 @@ body.modal-open{
 .description{
     color:#555;
 
-    line-height:1.7;
+    line-height:1.6;
+
+    margin-bottom:22px;
 
     white-space:pre-line;
-
-    margin-bottom:24px;
-}
-
-
-/* =========================================================
-   OPCIONES
-========================================================= */
-
-.option-block{
-    margin-bottom:21px;
 }
 
 .option-title{
-    display:flex;
-
-    justify-content:space-between;
-
-    gap:10px;
-
-    font-weight:900;
+    font-weight:800;
 
     margin-bottom:9px;
-}
-
-.selected-value{
-    color:#777;
-
-    font-size:13px;
-
-    font-weight:500;
 }
 
 .options{
     display:flex;
 
+    gap:8px;
+
     flex-wrap:wrap;
 
-    gap:8px;
+    margin-bottom:20px;
 }
 
 .option{
     border:1px solid #ccc;
 
     background:#fff;
-    color:#111;
 
     padding:10px 15px;
 
-    border-radius:8px;
+    border-radius:7px;
 
-    font-weight:700;
-
-    transition:.2s;
+    transition:.15s;
 }
 
 .option:hover{
@@ -768,63 +627,44 @@ body.modal-open{
 
 .option.selected{
     background:#111;
+
     color:#fff;
 
     border-color:#111;
 }
 
-.option:disabled{
-    opacity:.35;
-
-    text-decoration:line-through;
-
-    cursor:not-allowed;
-}
-
 
 /* =========================================================
-   INFORMACION COLOR
+   COLORES CON IMAGEN
 ========================================================= */
 
-.color-images-info{
-    display:none;
+.color-option{
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
 }
 
+.color-image-dot{
+    width:24px;
+    height:30px;
 
-/* =========================================================
-   STOCK
-========================================================= */
+    border-radius:5px;
 
-.stock-info{
-    margin-bottom:18px;
+    object-fit:cover;
 
-    padding:11px 13px;
-
-    border-radius:8px;
-
-    background:#f5f5f5;
-
-    color:#555;
-
-    font-size:13px;
+    background:#eee;
 }
 
-.stock-info.low{
-    background:#fff5d6;
+.color-option.selected
+.color-image-dot{
+    outline:
+        2px solid #fff;
 
-    color:#735700;
+    box-shadow:
+        0 0 0 2px #111;
 }
-
-.stock-info.out{
-    background:#ffe8ed;
-
-    color:#9d0020;
-}
-
-
-/* =========================================================
-   BOTON CARRITO
-========================================================= */
 
 .add-cart{
     width:100%;
@@ -840,17 +680,15 @@ body.modal-open{
 
     font-weight:900;
 
-    font-size:15px;
+    transition:.2s;
 }
 
 .add-cart:hover{
-    background:#222;
+    background:#333;
 }
 
-.add-cart:disabled{
-    background:#bbb;
-
-    cursor:not-allowed;
+.add-cart.added{
+    background:#168a42;
 }
 
 
@@ -860,15 +698,14 @@ body.modal-open{
 
 .cart-modal{
     position:fixed;
-
     inset:0;
 
     z-index:3000;
 
-    display:none;
-
     background:
         rgba(0,0,0,.65);
+
+    display:none;
 }
 
 .cart-modal.active{
@@ -876,13 +713,12 @@ body.modal-open{
 }
 
 .cart{
-    width:100%;
+    margin-left:auto;
 
-    max-width:530px;
+    width:100%;
+    max-width:520px;
 
     height:100%;
-
-    margin-left:auto;
 
     overflow:auto;
 
@@ -892,84 +728,56 @@ body.modal-open{
 }
 
 .cart-head{
-    position:sticky;
-
-    top:0;
-
-    z-index:2;
-
     display:flex;
 
-    align-items:center;
     justify-content:space-between;
 
-    gap:15px;
+    align-items:center;
 
-    padding-bottom:18px;
-
-    margin-bottom:5px;
-
-    background:#fff;
-}
-
-.cart-head h2{
-    font-size:23px;
+    margin-bottom:20px;
 }
 
 .cart-head button{
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    width:38px;
-    height:38px;
-
     border:0;
 
     background:#eee;
 
+    width:36px;
+    height:36px;
+
     border-radius:50%;
 
-    font-size:21px;
+    font-size:20px;
 }
-
-
-/* =========================================================
-   ITEM CARRITO
-========================================================= */
 
 .cart-item{
     display:flex;
 
     gap:12px;
 
-    padding:16px 0;
+    border-bottom:
+        1px solid #eee;
 
-    border-bottom:1px solid #eee;
+    padding:15px 0;
 }
 
 .cart-item img{
-    flex:none;
-
-    width:72px;
-    height:92px;
+    width:70px;
+    height:90px;
 
     object-fit:cover;
 
-    border-radius:8px;
+    border-radius:7px;
 
-    background:#f4f4f4;
+    background:#eee;
 }
 
 .cart-item-info{
-    min-width:0;
-
     flex:1;
 }
 
 .cart-item-name{
-    font-weight:900;
+    font-weight:800;
 
     margin-bottom:5px;
 }
@@ -981,108 +789,57 @@ body.modal-open{
 
     line-height:1.6;
 
-    margin-bottom:8px;
+    margin-bottom:5px;
 }
 
-.cart-price{
-    font-weight:900;
-}
-
-.cart-actions{
+.quantity-control{
     display:flex;
 
     align-items:center;
 
-    gap:5px;
+    gap:7px;
 
-    margin-top:9px;
+    margin-top:8px;
 }
 
-.quantity-btn{
-    width:28px;
-    height:28px;
-
+.quantity-control button{
     border:1px solid #ddd;
 
     background:#fff;
 
-    border-radius:6px;
+    width:28px;
+    height:28px;
 
-    font-weight:900;
+    border-radius:6px;
 }
 
-.quantity-value{
-    min-width:28px;
+.quantity-number{
+    min-width:22px;
 
     text-align:center;
-
-    font-size:13px;
 
     font-weight:800;
 }
 
 .remove{
-    flex:none;
-
-    width:31px;
-    height:31px;
-
     border:0;
 
-    background:#fff0f2;
+    background:#fee;
 
-    color:#a00020;
+    color:#a00;
+
+    width:30px;
+    height:30px;
 
     border-radius:50%;
-
-    font-size:18px;
-}
-
-.empty-cart{
-    padding:60px 10px;
-
-    text-align:center;
-
-    color:#777;
-}
-
-.empty-cart strong{
-    display:block;
-
-    color:#111;
-
-    font-size:18px;
-
-    margin-bottom:5px;
-}
-
-
-/* =========================================================
-   TOTAL
-========================================================= */
-
-.cart-footer{
-    padding-top:20px;
-
-    position:sticky;
-
-    bottom:0;
-
-    background:#fff;
 }
 
 .total{
-    display:flex;
-
-    justify-content:space-between;
-
-    gap:15px;
-
     font-size:23px;
 
     font-weight:900;
 
-    margin-bottom:15px;
+    margin:25px 0;
 }
 
 .checkout-btn{
@@ -1091,6 +848,7 @@ body.modal-open{
     border:0;
 
     background:#25d366;
+
     color:#fff;
 
     padding:15px;
@@ -1098,18 +856,10 @@ body.modal-open{
     border-radius:9px;
 
     font-weight:900;
-
-    font-size:15px;
 }
 
 .checkout-btn:hover{
-    background:#1fbd5b;
-}
-
-.checkout-btn:disabled{
-    background:#bbb;
-
-    cursor:not-allowed;
+    background:#1fb956;
 }
 
 
@@ -1119,18 +869,17 @@ body.modal-open{
 
 .checkout-modal{
     position:fixed;
-
     inset:0;
 
     z-index:4000;
+
+    background:
+        rgba(0,0,0,.7);
 
     display:none;
 
     align-items:center;
     justify-content:center;
-
-    background:
-        rgba(0,0,0,.72);
 
     padding:15px;
 }
@@ -1140,51 +889,26 @@ body.modal-open{
 }
 
 .checkout-box{
-    width:100%;
+    background:#fff;
 
-    max-width:620px;
+    width:100%;
+    max-width:600px;
 
     max-height:95vh;
 
     overflow:auto;
 
-    background:#fff;
+    border-radius:15px;
 
-    border-radius:16px;
-
-    padding:24px;
+    padding:22px;
 }
 
-.checkout-head{
-    display:flex;
-
-    align-items:center;
-    justify-content:space-between;
-
-    gap:15px;
-
+.checkout-box h2{
     margin-bottom:20px;
 }
 
-.checkout-head h2{
-    font-size:24px;
-}
-
-.checkout-close{
-    width:36px;
-    height:36px;
-
-    border:0;
-
-    background:#eee;
-
-    border-radius:50%;
-
-    font-size:20px;
-}
-
 .form-group{
-    margin-bottom:14px;
+    margin-bottom:13px;
 }
 
 .form-group label{
@@ -1192,7 +916,7 @@ body.modal-open{
 
     font-size:13px;
 
-    font-weight:900;
+    font-weight:800;
 
     margin-bottom:6px;
 }
@@ -1216,17 +940,9 @@ body.modal-open{
 }
 
 .form-group textarea{
-    min-height:90px;
+    min-height:80px;
 
     resize:vertical;
-}
-
-.required-note{
-    color:#777;
-
-    font-size:12px;
-
-    margin-bottom:15px;
 }
 
 .confirm{
@@ -1235,11 +951,12 @@ body.modal-open{
     border:0;
 
     background:#25d366;
+
     color:#fff;
 
     padding:15px;
 
-    border-radius:9px;
+    border-radius:8px;
 
     font-weight:900;
 }
@@ -1250,15 +967,12 @@ body.modal-open{
     border:0;
 
     background:#eee;
-    color:#111;
 
     padding:13px;
 
     border-radius:8px;
 
     margin-top:8px;
-
-    font-weight:800;
 }
 
 
@@ -1273,13 +987,13 @@ body.modal-open{
 
     text-align:center;
 
-    padding:40px 20px;
+    padding:35px 20px;
 }
 
 .footer strong{
     display:block;
 
-    font-size:21px;
+    font-size:20px;
 
     margin-bottom:8px;
 }
@@ -1292,105 +1006,54 @@ body.modal-open{
 
 
 /* =========================================================
-   TOAST
-========================================================= */
-
-.toast{
-    position:fixed;
-
-    left:50%;
-
-    bottom:25px;
-
-    z-index:9999;
-
-    transform:
-        translate(-50%,20px);
-
-    opacity:0;
-
-    pointer-events:none;
-
-    background:#111;
-    color:#fff;
-
-    padding:12px 18px;
-
-    border-radius:8px;
-
-    font-size:13px;
-
-    font-weight:700;
-
-    transition:.25s;
-}
-
-.toast.show{
-    transform:
-        translate(-50%,0);
-
-    opacity:1;
-}
-
-
-/* =========================================================
    RESPONSIVE
 ========================================================= */
 
-@media(max-width:1000px){
+@media(max-width:950px){
 
     .products{
         grid-template-columns:
-            repeat(3,minmax(0,1fr));
+            repeat(3,1fr);
     }
 
 }
 
-@media(max-width:760px){
+@media(max-width:700px){
 
     .products{
         grid-template-columns:
-            repeat(2,minmax(0,1fr));
+            repeat(2,1fr);
 
-        gap:11px;
+        gap:10px;
     }
 
     .product-layout{
         grid-template-columns:1fr;
-
-        gap:22px;
     }
 
     .hero{
-        min-height:380px;
-    }
-
-    .hero h1{
-        letter-spacing:-2px;
+        min-height:330px;
     }
 
     .container{
-        padding-top:35px;
+        padding-top:30px;
     }
 
     .section-head h2{
-        font-size:26px;
+        font-size:24px;
     }
 
     .details h2{
-        font-size:28px;
+        font-size:26px;
+    }
+
+    .product-modal{
+        padding:15px;
     }
 
 }
 
-@media(max-width:480px){
-
-    .header-inner{
-        min-height:62px;
-
-        padding:
-            0 12px;
-    }
+@media(max-width:430px){
 
     .logo{
         font-size:19px;
@@ -1398,23 +1061,6 @@ body.modal-open{
 
     .cart-btn{
         padding:9px 11px;
-
-        font-size:12px;
-    }
-
-    .hero{
-        min-height:340px;
-
-        padding:50px 16px;
-    }
-
-    .hero p{
-        font-size:16px;
-    }
-
-    .container{
-        padding-left:12px;
-        padding-right:12px;
     }
 
     .product-info{
@@ -1429,24 +1075,6 @@ body.modal-open{
         font-size:17px;
     }
 
-    .view-btn{
-        padding:10px;
-
-        font-size:12px;
-    }
-
-    .product-modal{
-        padding:13px;
-    }
-
-    .cart{
-        padding:17px;
-    }
-
-    .checkout-box{
-        padding:18px;
-    }
-
 }
 
 
@@ -1457,44 +1085,40 @@ body.modal-open{
 button:focus-visible,
 a:focus-visible,
 input:focus-visible,
-textarea:focus-visible,
-select:focus-visible{
-    outline:3px solid #777;
+textarea:focus-visible{
+    outline:
+        3px solid #777;
 
     outline-offset:2px;
 }
 
 </style>
+
 </head>
+
 
 <body>
 
 
-<!-- =======================================================
-     CABECERA
-======================================================= -->
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
 <header class="header">
 
     <div class="header-inner">
 
-        <a
-            href="#"
-            class="logo"
-        >
+        <div class="logo">
             Marcas <span>&</span> Moda
-        </a>
+        </div>
 
         <button
             class="cart-btn"
-            type="button"
             onclick="openCart()"
+            aria-label="Abrir carrito"
         >
             🛒 Carrito
-            <span
-                id="cartCount"
-                class="cart-count"
-            >0</span>
+            (<span id="cartCount">0</span>)
         </button>
 
     </div>
@@ -1502,9 +1126,9 @@ select:focus-visible{
 </header>
 
 
-<!-- =======================================================
+<!-- =====================================================
      HERO
-======================================================= -->
+===================================================== -->
 
 <section class="hero">
 
@@ -1528,13 +1152,13 @@ select:focus-visible{
 </section>
 
 
-<!-- =======================================================
-     CATALOGO
-======================================================= -->
+<!-- =====================================================
+     CATÁLOGO
+===================================================== -->
 
 <main
-    id="catalogo"
     class="container"
+    id="catalogo"
 >
 
     <div class="section-head">
@@ -1554,15 +1178,11 @@ select:focus-visible{
     </div>
 
 
-    <!-- FILTROS -->
-
     <div
         id="filters"
         class="filters"
     ></div>
 
-
-    <!-- PRODUCTOS -->
 
     <div
         id="products"
@@ -1572,9 +1192,9 @@ select:focus-visible{
 </main>
 
 
-<!-- =======================================================
+<!-- =====================================================
      FOOTER
-======================================================= -->
+===================================================== -->
 
 <footer class="footer">
 
@@ -1589,23 +1209,21 @@ select:focus-visible{
 </footer>
 
 
-<!-- =======================================================
+<!-- =====================================================
      MODAL PRODUCTO
-======================================================= -->
+===================================================== -->
 
 <div
     id="productModal"
     class="modal"
-    aria-hidden="true"
 >
 
     <div class="product-modal">
 
         <button
             class="close"
-            type="button"
             onclick="closeProduct()"
-            aria-label="Cerrar"
+            aria-label="Cerrar producto"
         >
             ×
         </button>
@@ -1620,14 +1238,13 @@ select:focus-visible{
 </div>
 
 
-<!-- =======================================================
+<!-- =====================================================
      CARRITO
-======================================================= -->
+===================================================== -->
 
 <div
     id="cartModal"
     class="cart-modal"
-    aria-hidden="true"
 >
 
     <div class="cart">
@@ -1639,7 +1256,6 @@ select:focus-visible{
             </h2>
 
             <button
-                type="button"
                 onclick="closeCart()"
                 aria-label="Cerrar carrito"
             >
@@ -1648,69 +1264,42 @@ select:focus-visible{
 
         </div>
 
-
         <div id="cartItems"></div>
 
-
-        <div class="cart-footer">
-
-            <div
-                id="cartTotal"
-                class="total"
-            >
-                <span>Total</span>
-                <span>0,00 €</span>
-            </div>
-
-            <button
-                id="checkoutButton"
-                class="checkout-btn"
-                type="button"
-                onclick="openCheckout()"
-            >
-                Continuar con el pedido
-            </button>
-
+        <div
+            id="cartTotal"
+            class="total"
+        >
+            Total: 0,00 €
         </div>
+
+        <button
+            id="checkoutButton"
+            class="checkout-btn"
+            onclick="openCheckout()"
+        >
+            Continuar con el pedido
+        </button>
 
     </div>
 
 </div>
 
 
-<!-- =======================================================
+<!-- =====================================================
      CHECKOUT
-======================================================= -->
+===================================================== -->
 
 <div
     id="checkoutModal"
     class="checkout-modal"
-    aria-hidden="true"
 >
 
     <div class="checkout-box">
 
-        <div class="checkout-head">
-
-            <h2>
-                📦 Datos de envío
-            </h2>
-
-            <button
-                class="checkout-close"
-                type="button"
-                onclick="closeCheckout()"
-            >
-                ×
-            </button>
-
-        </div>
-
-
-        <p class="required-note">
-            Los campos marcados con * son obligatorios.
-        </p>
-
+        <h2>
+            📦 Datos de envío
+        </h2>
 
         <div class="form-group">
 
@@ -1722,7 +1311,6 @@ select:focus-visible{
                 id="customerName"
                 type="text"
                 autocomplete="name"
-                maxlength="100"
             >
 
         </div>
@@ -1738,7 +1326,6 @@ select:focus-visible{
                 id="customerPhone"
                 type="tel"
                 autocomplete="tel"
-                maxlength="30"
             >
 
         </div>
@@ -1754,7 +1341,6 @@ select:focus-visible{
                 id="customerAddress"
                 type="text"
                 autocomplete="street-address"
-                maxlength="150"
             >
 
         </div>
@@ -1770,7 +1356,6 @@ select:focus-visible{
                 id="customerPostal"
                 type="text"
                 autocomplete="postal-code"
-                maxlength="15"
             >
 
         </div>
@@ -1786,7 +1371,6 @@ select:focus-visible{
                 id="customerCity"
                 type="text"
                 autocomplete="address-level2"
-                maxlength="80"
             >
 
         </div>
@@ -1814,8 +1398,7 @@ select:focus-visible{
 
             <textarea
                 id="customerNotes"
-                maxlength="500"
-                placeholder="Indicaciones para la entrega..."
+                placeholder="Ej: Entregar por la tarde..."
             ></textarea>
 
         </div>
@@ -1823,16 +1406,14 @@ select:focus-visible{
 
         <button
             class="confirm"
-            type="button"
             onclick="sendWhatsApp()"
         >
-            📲 Confirmar pedido por WhatsApp
+            Confirmar pedido por WhatsApp
         </button>
 
 
         <button
             class="back"
-            type="button"
             onclick="closeCheckout()"
         >
             Volver
@@ -1843,121 +1424,80 @@ select:focus-visible{
 </div>
 
 
-<!-- =======================================================
-     NOTIFICACIÓN
-======================================================= -->
-
-<div
-    id="toast"
-    class="toast"
-></div>
-
-
 <script>
 
 /* =========================================================
-   CONFIGURACIÓN
-========================================================= */
-
-/*
-   📲 TU WHATSAPP
-
-   Escribir:
-   34 + número
-
-   Ejemplo:
-   34674559614
-*/
-
-const WHATSAPP_NUMBER = "34674559614";
-
-
-/* =========================================================
    🛍️ PRODUCTOS DE LA TIENDA
-=========================================================
+   =========================================================
 
-   🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴
+   =========================================================
+   ⚠️ IMPORTANTE
+   =========================================================
 
-   AQUÍ PEGAS LOS PRODUCTOS QUE TE GENERE
-   EL admin.html
-
-   CADA PRODUCTO DEBE QUEDAR SEPARADO
-   POR UNA COMA.
+   AQUÍ ES DONDE TIENES QUE PEGAR LOS PRODUCTOS
+   GENERADOS DESDE admin.html.
 
    NO BORRES:
 
-   const products = [
+       const products = [
 
-   NI:
+   NI EL:
 
-   ];
+       ];
 
-   EJEMPLO DE PRODUCTO:
+   =========================================================
 
-{
-    id: "cam-001",
-    name: "Camiseta Premium",
-    reference: "CAM-001",
-    price: 29.99,
-    stock: 10,
-    category: "Camisetas",
-    sizes: ["S","M","L","XL"],
+   CADA PRODUCTO GENERADO POR admin.html DEBE IR AQUÍ.
 
-    colors: [
-        {
-            name: "Blanco",
-            stock: 5,
-            images: [
-                "https://....jpg",
-                "https://....jpg"
-            ]
-        },
-        {
-            name: "Negro",
-            stock: 5,
-            images: [
-                "https://....jpg",
-                "https://....jpg"
-            ]
-        }
-    ],
+   EJEMPLO:
 
-    description: "Descripción del producto."
-},
+   {
+       id: "cam-001",
+       name: "Camiseta Premium",
+       reference: "CAM-001",
+       price: 29.99,
+       stock: 10,
+       category: "Camisetas",
 
-   🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴
-*/
+       sizes: ["S","M","L","XL"],
+
+       colors: [
+           {
+               name: "Negro",
+               image: "https://i.imgur.com/imagen-negra.jpg"
+           },
+           {
+               name: "Blanco",
+               image: "https://i.imgur.com/imagen-blanca.jpg"
+           }
+       ],
+
+       description: "Descripción del producto.",
+
+       images: [
+           "https://i.imgur.com/imagen-negra.jpg",
+           "https://i.imgur.com/imagen-blanca.jpg"
+       ]
+   },
+
+   =========================================================
+   PRODUCTOS
+========================================================= */
 
 const products = [
 
     /* =====================================================
-       🔴🔴🔴 PRODUCTOS AQUÍ 🔴🔴🔴
-
-       PEGA AQUÍ EL CÓDIGO GENERADO POR ADMIN.HTML
-
-       PRODUCTO 1
-       PRODUCTO 2
-       PRODUCTO 3
-       PRODUCTO 4
-       ETC.
-
+       👇 PEGA AQUÍ EL PRODUCTO GENERADO POR admin.html 👇
        ===================================================== */
 
 
     /*
-    EJEMPLO:
-
     {
-        id: "cam-001",
-
-        name: "Camiseta Premium",
-
-        reference: "CAM-001",
-
-        price: 29.99,
-
+        id: "ejemplo-001",
+        name: "Producto de ejemplo",
+        reference: "EJ-001",
+        price: 25,
         stock: 10,
-
         category: "Camisetas",
 
         sizes: [
@@ -1968,42 +1508,60 @@ const products = [
         ],
 
         colors: [
-
-            {
-                name: "Blanco",
-
-                stock: 5,
-
-                images: [
-                    "https://ejemplo.com/blanco-1.jpg",
-                    "https://ejemplo.com/blanco-2.jpg"
-                ]
-            },
-
             {
                 name: "Negro",
-
-                stock: 5,
-
-                images: [
-                    "https://ejemplo.com/negro-1.jpg",
-                    "https://ejemplo.com/negro-2.jpg"
-                ]
+                image: "https://i.imgur.com/ejemplo-negro.jpg"
+            },
+            {
+                name: "Blanco",
+                image: "https://i.imgur.com/ejemplo-blanco.jpg"
             }
-
         ],
 
-        description:
-            "Camiseta premium de gran calidad."
+        description: "Descripción del producto.",
+
+        images: [
+            "https://i.imgur.com/ejemplo-negro.jpg",
+            "https://i.imgur.com/ejemplo-blanco.jpg"
+        ]
     },
     */
 
 
     /* =====================================================
-       🔴🔴🔴 FIN DE PRODUCTOS 🔴🔴🔴
+       👆 FIN PRODUCTO DE EJEMPLO
        ===================================================== */
 
+
+    /* =====================================================
+       👇 PRODUCTO 1 AQUÍ
+       ===================================================== */
+
+
+    /* =====================================================
+       👆 FIN PRODUCTO 1
+       ===================================================== */
+
+
+    /* =====================================================
+       👇 PRODUCTO 2 AQUÍ
+       ===================================================== */
+
+
+    /* =====================================================
+       👆 FIN PRODUCTO 2
+       ===================================================== */
+
+
 ];
+
+
+/* =========================================================
+   CONFIGURACIÓN WHATSAPP
+========================================================= */
+
+const WHATSAPP_NUMBER =
+    "34674559614";
 
 
 /* =========================================================
@@ -2016,368 +1574,29 @@ let currentProduct = null;
 
 let selectedSize = "";
 
-let selectedColor = "";
+let selectedColor = null;
 
 let currentCategory = "Todos";
 
-let currentGalleryIndex = 0;
-
 
 /* =========================================================
-   LOCAL STORAGE
-========================================================= */
-
-function loadCart(){
-
-    try{
-
-        const saved =
-            localStorage.getItem(
-                "marcasModaCart"
-            );
-
-        if(saved){
-
-            const parsed =
-                JSON.parse(saved);
-
-            if(Array.isArray(parsed)){
-
-                cart = parsed;
-            }
-        }
-
-    }catch(error){
-
-        cart = [];
-    }
-
-}
-
-
-function saveCart(){
-
-    try{
-
-        localStorage.setItem(
-            "marcasModaCart",
-            JSON.stringify(cart)
-        );
-
-    }catch(error){
-
-        /* No hacer nada si el navegador bloquea storage */
-
-    }
-
-}
-
-
-/* =========================================================
-   PRECIO
-========================================================= */
-
-function formatPrice(value){
-
-    const number =
-        Number(value);
-
-    if(!Number.isFinite(number)){
-        return "0,00 €";
-    }
-
-    return number.toLocaleString(
-        "es-ES",
-        {
-            style:"currency",
-            currency:"EUR"
-        }
-    );
-
-}
-
-
-/* =========================================================
-   STOCK
-========================================================= */
-
-function getProductStock(product){
-
-    if(!product){
-        return 0;
-    }
-
-    /*
-       Si el producto tiene colores con stock,
-       sumamos el stock de los colores.
-    */
-
-    if(
-        Array.isArray(product.colors) &&
-        product.colors.length
-    ){
-
-        const variantStocks =
-            product.colors
-                .map(color =>
-                    Number(color.stock)
-                )
-                .filter(Number.isFinite);
-
-        if(variantStocks.length){
-
-            return variantStocks.reduce(
-                (sum,stock) =>
-                    sum + Math.max(0,stock),
-                0
-            );
-
-        }
-
-    }
-
-    return Math.max(
-        0,
-        Number(product.stock) || 0
-    );
-
-}
-
-
-function getSelectedColorVariant(){
-
-    if(!currentProduct){
-        return null;
-    }
-
-    if(
-        !Array.isArray(currentProduct.colors)
-    ){
-        return null;
-    }
-
-    return currentProduct.colors.find(
-        color =>
-            String(color.name) ===
-            String(selectedColor)
-    ) || null;
-
-}
-
-
-function getSelectedStock(){
-
-    const variant =
-        getSelectedColorVariant();
-
-    if(variant){
-
-        const stock =
-            Number(variant.stock);
-
-        return Number.isFinite(stock)
-            ? Math.max(0,stock)
-            : 0;
-    }
-
-    return Math.max(
-        0,
-        Number(currentProduct?.stock) || 0
-    );
-
-}
-
-
-/* =========================================================
-   IMAGEN PRINCIPAL DEL PRODUCTO
-========================================================= */
-
-function getProductMainImage(product){
-
-    if(!product){
-        return "";
-    }
-
-    if(
-        Array.isArray(product.colors) &&
-        product.colors.length
-    ){
-
-        const firstColor =
-            product.colors[0];
-
-        if(
-            Array.isArray(firstColor.images) &&
-            firstColor.images.length
-        ){
-
-            return firstColor.images[0];
-        }
-
-    }
-
-    if(
-        Array.isArray(product.images) &&
-        product.images.length
-    ){
-
-        return product.images[0];
-    }
-
-    return "";
-
-}
-
-
-/* =========================================================
-   OBTENER IMAGENES SEGÚN COLOR
-========================================================= */
-
-function getProductImages(product){
-
-    if(!product){
-        return [];
-    }
-
-
-    /*
-       SISTEMA NUEVO:
-
-       colors: [
-           {
-               name:"Blanco",
-               images:[...]
-           }
-       ]
-    */
-
-    if(
-        Array.isArray(product.colors) &&
-        product.colors.length
-    ){
-
-        const selected =
-            product.colors.find(
-                color =>
-                    String(color.name) ===
-                    String(selectedColor)
-            );
-
-        if(
-            selected &&
-            Array.isArray(selected.images)
-        ){
-
-            return selected.images
-                .filter(Boolean);
-        }
-
-    }
-
-
-    /*
-       COMPATIBILIDAD CON PRODUCTOS ANTIGUOS
-    */
-
-    if(
-        Array.isArray(product.images)
-    ){
-
-        return product.images
-            .filter(Boolean);
-    }
-
-
-    return [];
-
-}
-
-
-/* =========================================================
-   CATEGORIAS
-========================================================= */
-
-function renderFilters(){
-
-    const box =
-        document.getElementById(
-            "filters"
-        );
-
-    const categories = [
-        "Todos",
-
-        ...new Set(
-
-            products
-                .map(product =>
-                    product.category
-                )
-                .filter(Boolean)
-
-        )
-    ];
-
-
-    box.innerHTML =
-        categories
-            .map(category => `
-
-                <button
-                    type="button"
-                    class="filter ${
-                        currentCategory === category
-                            ? "active"
-                            : ""
-                    }"
-                    onclick="selectCategory(${JSON.stringify(category)})"
-                >
-                    ${escapeHTML(category)}
-                </button>
-
-            `)
-            .join("");
-
-}
-
-
-function selectCategory(category){
-
-    currentCategory =
-        category;
-
-    renderFilters();
-
-    renderProducts();
-
-}
-
-
-/* =========================================================
-   RENDER PRODUCTOS
+   PRODUCTOS
 ========================================================= */
 
 function renderProducts(){
 
     const container =
-        document.getElementById(
-            "products"
-        );
+        document.getElementById("products");
 
-
-    let filtered =
-        Array.isArray(products)
-            ? products
-            : [];
+    let filtered = products;
 
 
     if(currentCategory !== "Todos"){
 
         filtered =
-            filtered.filter(
-                product =>
-                    product.category ===
-                    currentCategory
+            products.filter(
+                p =>
+                    p.category === currentCategory
             );
 
     }
@@ -2409,11 +1628,12 @@ function renderProducts(){
     container.innerHTML =
         filtered.map(product => {
 
-            const stock =
-                getProductStock(product);
-
             const image =
                 getProductMainImage(product);
+
+            const stock =
+                Number(product.stock) || 0;
+
 
             return `
 
@@ -2423,23 +1643,22 @@ function renderProducts(){
 
                         <img
                             src="${escapeAttribute(image)}"
-                            alt="${escapeHTML(product.name || "Producto")}"
+                            alt="${escapeHTML(product.name)}"
                             loading="lazy"
-                            onerror="imageError(this)"
+                            onerror="this.style.opacity='.25'"
                         >
 
-                        <span
-                            class="
-                                stock-badge
-                                ${stock <= 0 ? "out" : ""}
-                            "
-                        >
-                            ${
-                                stock > 0
-                                    ? "Disponible"
-                                    : "Agotado"
-                            }
-                        </span>
+                        ${
+                            stock <= 0
+                            ?
+                            `
+                            <span class="product-badge">
+                                Agotado
+                            </span>
+                            `
+                            :
+                            ""
+                        }
 
                     </div>
 
@@ -2447,35 +1666,35 @@ function renderProducts(){
                     <div class="product-info">
 
                         <div class="category">
-
-                            ${
-                                escapeHTML(
-                                    product.category ||
-                                    "Moda"
-                                )
-                            }
-
+                            ${escapeHTML(
+                                product.category || "Moda"
+                            )}
                         </div>
 
 
                         <div class="product-name">
-
-                            ${
-                                escapeHTML(
-                                    product.name ||
-                                    "Producto"
-                                )
-                            }
-
+                            ${escapeHTML(product.name)}
                         </div>
 
 
                         <div class="price">
+                            ${formatPrice(product.price)}
+                        </div>
+
+
+                        <div
+                            class="
+                                stock-info
+                                ${stock <= 0
+                                    ? "stock-out"
+                                    : ""}
+                            "
+                        >
 
                             ${
-                                formatPrice(
-                                    product.price
-                                )
+                                stock <= 0
+                                ? "Agotado"
+                                : "Disponible"
                             }
 
                         </div>
@@ -2483,25 +1702,11 @@ function renderProducts(){
 
                         <button
                             class="view-btn"
-                            type="button"
-                            ${
-                                stock <= 0
-                                    ? "disabled"
-                                    : ""
-                            }
-                            onclick="
-                                openProduct(
-                                    ${JSON.stringify(
-                                        String(product.id)
-                                    )}
-                                )
-                            "
+                            onclick="openProduct(
+                                '${escapeJS(product.id)}'
+                            )"
                         >
-                            ${
-                                stock > 0
-                                    ? "Ver producto"
-                                    : "Agotado"
-                            }
+                            Ver producto
                         </button>
 
                     </div>
@@ -2516,6 +1721,95 @@ function renderProducts(){
 
 
 /* =========================================================
+   IMAGEN PRINCIPAL
+========================================================= */
+
+function getProductMainImage(product){
+
+    if(
+        product.colors &&
+        product.colors.length
+    ){
+
+        const firstColor =
+            product.colors[0];
+
+        if(
+            typeof firstColor === "object" &&
+            firstColor.image
+        ){
+
+            return firstColor.image;
+
+        }
+
+    }
+
+
+    return product.images?.[0] || "";
+
+}
+
+
+/* =========================================================
+   FILTROS
+========================================================= */
+
+function renderFilters(){
+
+    const box =
+        document.getElementById("filters");
+
+
+    const categories = [
+        "Todos",
+        ...new Set(
+            products
+                .map(p => p.category)
+                .filter(Boolean)
+        )
+    ];
+
+
+    box.innerHTML =
+        categories.map(category => `
+
+            <button
+                class="
+                    filter
+                    ${
+                        currentCategory === category
+                        ? "active"
+                        : ""
+                    }
+                "
+                onclick="
+                    selectCategory(
+                        '${escapeJS(category)}'
+                    )
+                "
+            >
+                ${escapeHTML(category)}
+            </button>
+
+        `).join("");
+
+}
+
+
+function selectCategory(category){
+
+    currentCategory =
+        category;
+
+    renderFilters();
+
+    renderProducts();
+
+}
+
+
+/* =========================================================
    ABRIR PRODUCTO
 ========================================================= */
 
@@ -2523,90 +1817,90 @@ function openProduct(id){
 
     currentProduct =
         products.find(
-            product =>
-                String(product.id) ===
+            p =>
+                String(p.id) ===
                 String(id)
         );
 
 
     if(!currentProduct){
+
         return;
     }
 
 
     selectedSize =
-        Array.isArray(
-            currentProduct.sizes
-        )
-            ? (
-                currentProduct.sizes[0] ||
-                ""
-            )
-            : "";
+        currentProduct.sizes?.[0] || "";
 
 
-    selectedColor = "";
-
-
-    if(
-        Array.isArray(
-            currentProduct.colors
-        ) &&
-        currentProduct.colors.length
-    ){
-
-        selectedColor =
-            String(
-                currentProduct.colors[0].name
-            );
-
-    }
-
-
-    currentGalleryIndex = 0;
+    selectedColor =
+        getColorObjects(
+            currentProduct
+        )[0] || null;
 
 
     renderProduct();
 
 
-    const modal =
-        document.getElementById(
-            "productModal"
-        );
+    document
+        .getElementById("productModal")
+        .classList.add("active");
 
-    modal.classList.add("active");
 
-    modal.setAttribute(
-        "aria-hidden",
-        "false"
-    );
-
-    document.body.classList.add(
-        "modal-open"
-    );
+    document.body.style.overflow =
+        "hidden";
 
 }
 
 
 function closeProduct(){
 
-    const modal =
-        document.getElementById(
-            "productModal"
-        );
+    document
+        .getElementById("productModal")
+        .classList.remove("active");
 
-    modal.classList.remove(
-        "active"
-    );
 
-    modal.setAttribute(
-        "aria-hidden",
-        "true"
-    );
+    document.body.style.overflow =
+        "";
 
-    document.body.classList.remove(
-        "modal-open"
-    );
+}
+
+
+/* =========================================================
+   NORMALIZAR COLORES
+========================================================= */
+
+function getColorObjects(product){
+
+    if(!Array.isArray(product.colors)){
+
+        return [];
+
+    }
+
+
+    return product.colors.map(color => {
+
+        if(
+            typeof color === "string"
+        ){
+
+            return {
+                name:color,
+                image:""
+            };
+
+        }
+
+
+        return {
+            name:
+                color.name || "",
+            image:
+                color.image || ""
+        };
+
+    });
 
 }
 
@@ -2617,50 +1911,28 @@ function closeProduct(){
 
 function renderProduct(){
 
-    if(!currentProduct){
-        return;
-    }
-
-
-    const product =
+    const p =
         currentProduct;
 
 
+    if(!p) return;
+
+
     const images =
-        getProductImages(product);
-
-
-    const stock =
-        getSelectedStock();
+        Array.isArray(p.images)
+        ? p.images
+        : [];
 
 
     const colors =
-        Array.isArray(product.colors)
-            ? product.colors
-            : [];
+        getColorObjects(p);
 
 
-    const sizes =
-        Array.isArray(product.sizes)
-            ? product.sizes
-            : [];
+    document
+        .getElementById("productContent")
+        .innerHTML = `
 
-
-    const stockClass =
-        stock <= 0
-            ? "out"
-            : stock <= 3
-                ? "low"
-                : "";
-
-
-    document.getElementById(
-        "productContent"
-    ).innerHTML = `
-
-        <!-- GALERIA -->
-
-        <div class="gallery-wrapper">
+        <div>
 
             <div
                 id="galleryTrack"
@@ -2669,109 +1941,68 @@ function renderProduct(){
 
                 ${
                     images.length
+                    ?
+                    images.map(image => `
 
-                        ? images.map(
-                            (image,index) => `
+                        <div class="slide">
 
-                                <div
-                                    class="slide"
-                                >
-
-                                    <img
-                                        src="${escapeAttribute(image)}"
-                                        alt="${escapeHTML(product.name || "Producto")} - imagen ${index + 1}"
-                                        onerror="imageError(this)"
-                                    >
-
-                                </div>
-
-                            `
-                        ).join("")
-
-                        : `
-
-                            <div
-                                class="slide"
+                            <img
+                                src="${escapeAttribute(image)}"
+                                alt="${escapeHTML(p.name)}"
+                                onerror="
+                                    this.style.opacity='.25'
+                                "
                             >
 
-                                <img
-                                    src=""
-                                    alt="Sin imagen"
-                                    onerror="imageError(this)"
-                                >
+                        </div>
 
-                            </div>
+                    `).join("")
+                    :
+                    `
+                    <div class="slide">
 
-                        `
+                        <img
+                            src=""
+                            alt=""
+                        >
+
+                    </div>
+                    `
                 }
 
             </div>
 
 
-            ${
-                images.length > 1
+            <div class="dots">
 
-                    ? `
+                ${
+                    images.map(
+                        (_,i) => `
 
-                        <div
-                            id="galleryDots"
-                            class="dots"
-                        >
-
-                            ${
-                                images.map(
-                                    (_,index) => `
-
-                                        <button
-                                            type="button"
-                                            class="
-                                                dot
-                                                ${
-                                                    index === 0
-                                                        ? "active"
-                                                        : ""
-                                                }
-                                            "
-                                            onclick="
-                                                goToGallery(
-                                                    ${index}
-                                                )
-                                            "
-                                            aria-label="
-                                                Imagen ${index + 1}
-                                            "
-                                        ></button>
-
-                                    `
-                                ).join("")
-                            }
-
-                        </div>
-
-                        <div
-                            id="galleryCounter"
-                            class="gallery-counter"
-                        >
-                            1 / ${images.length}
-                        </div>
+                        <span
+                            class="
+                                dot
+                                ${
+                                    i === 0
+                                    ? "active"
+                                    : ""
+                                }
+                            "
+                        ></span>
 
                     `
+                    ).join("")
+                }
 
-                    : ""
-            }
+            </div>
 
         </div>
 
 
-        <!-- DETALLES -->
-
         <div class="details">
 
             <h2>
-                ${escapeHTML(
-                    product.name ||
-                    "Producto"
-                )}
+                ${escapeHTML(p.name)}
             </h2>
 
 
@@ -2779,9 +2010,7 @@ function renderProduct(){
 
                 Ref:
                 ${escapeHTML(
-                    product.reference ||
-                    product.id ||
-                    ""
+                    p.reference || ""
                 )}
 
             </div>
@@ -2789,234 +2018,162 @@ function renderProduct(){
 
             <div class="details-price">
 
-                ${formatPrice(
-                    product.price
-                )}
+                ${formatPrice(p.price)}
 
             </div>
 
 
             ${
-                product.description
+                p.description
+                ?
+                `
+                <div class="description">
 
-                    ? `
+                    ${escapeHTML(
+                        p.description
+                    )}
 
-                        <div class="description">
-
-                            ${escapeHTML(
-                                product.description
-                            )}
-
-                        </div>
-
-                    `
-
-                    : ""
+                </div>
+                `
+                :
+                ""
             }
 
 
             ${
-                sizes.length
+                p.sizes?.length
+                ?
+                `
 
-                    ? `
+                <div class="option-title">
+                    Talla
+                </div>
 
-                        <div class="option-block">
+                <div class="options">
 
-                            <div class="option-title">
+                    ${
+                        p.sizes.map(
+                            size => `
 
-                                <span>
-                                    Talla
-                                </span>
-
-                                <span
-                                    class="selected-value"
-                                    id="selectedSizeText"
-                                >
+                            <button
+                                class="
+                                    option
                                     ${
-                                        escapeHTML(
-                                            selectedSize ||
-                                            "Selecciona"
-                                        )
+                                        selectedSize === size
+                                        ? "selected"
+                                        : ""
                                     }
-                                </span>
+                                "
+                                onclick="
+                                    selectSize(
+                                        '${escapeJS(size)}'
+                                    )
+                                "
+                            >
+                                ${escapeHTML(size)}
+                            </button>
 
-                            </div>
+                        `
+                        ).join("")
+                    }
 
+                </div>
 
-                            <div class="options">
-
-                                ${
-                                    sizes.map(
-                                        size => `
-
-                                            <button
-                                                type="button"
-                                                class="
-                                                    option
-                                                    ${
-                                                        selectedSize === size
-                                                            ? "selected"
-                                                            : ""
-                                                    }
-                                                "
-                                                onclick="
-                                                    selectSize(
-                                                        ${JSON.stringify(
-                                                            String(size)
-                                                        )}
-                                                    )
-                                                "
-                                            >
-                                                ${escapeHTML(size)}
-                                            </button>
-
-                                        `
-                                    ).join("")
-                                }
-
-                            </div>
-
-                        </div>
-
-                    `
-
-                    : ""
+                `
+                :
+                ""
             }
 
 
             ${
                 colors.length
+                ?
+                `
 
-                    ? `
+                <div class="option-title">
+                    Color
+                </div>
 
-                        <div class="option-block">
+                <div class="options">
 
-                            <div class="option-title">
+                    ${
+                        colors.map(
+                            (color,index) => `
 
-                                <span>
-                                    Color
-                                </span>
-
-                                <span
-                                    class="selected-value"
-                                    id="selectedColorText"
-                                >
+                            <button
+                                class="
+                                    option
+                                    color-option
                                     ${
-                                        escapeHTML(
-                                            selectedColor ||
-                                            "Selecciona"
-                                        )
+                                        selectedColor &&
+                                        selectedColor.name ===
+                                        color.name
+                                        ? "selected"
+                                        : ""
                                     }
-                                </span>
-
-                            </div>
-
-
-                            <div class="options">
+                                "
+                                onclick="
+                                    selectColor(
+                                        ${index}
+                                    )
+                                "
+                            >
 
                                 ${
-                                    colors.map(
-                                        color => {
-
-                                            const colorStock =
-                                                Number(
-                                                    color.stock
-                                                ) || 0;
-
-                                            return `
-
-                                                <button
-                                                    type="button"
-                                                    class="
-                                                        option
-                                                        ${
-                                                            String(
-                                                                selectedColor
-                                                            ) ===
-                                                            String(
-                                                                color.name
-                                                            )
-                                                                ? "selected"
-                                                                : ""
-                                                        }
-                                                    "
-                                                    ${
-                                                        colorStock <= 0
-                                                            ? "disabled"
-                                                            : ""
-                                                    }
-                                                    onclick="
-                                                        selectColor(
-                                                            ${JSON.stringify(
-                                                                String(
-                                                                    color.name
-                                                                )
-                                                            )}
-                                                        )
-                                                    "
-                                                >
-
-                                                    ${
-                                                        escapeHTML(
-                                                            color.name
-                                                        )
-                                                    }
-
-                                                </button>
-
-                                            `;
-
-                                        }
-                                    ).join("")
+                                    color.image
+                                    ?
+                                    `
+                                    <img
+                                        class="
+                                            color-image-dot
+                                        "
+                                        src="${escapeAttribute(
+                                            color.image
+                                        )}"
+                                        alt=""
+                                        onerror="
+                                            this.style.opacity='.3'
+                                        "
+                                    >
+                                    `
+                                    :
+                                    ""
                                 }
 
-                            </div>
+                                ${escapeHTML(
+                                    color.name
+                                )}
 
-                        </div>
+                            </button>
 
-                    `
+                        `
+                        ).join("")
+                    }
 
-                    : ""
+                </div>
+
+                `
+                :
+                ""
             }
 
 
-            <div
-                id="stockInfo"
-                class="
-                    stock-info
-                    ${stockClass}
-                "
-            >
-
-                ${
-                    stock > 0
-                        ? (
-                            stock <= 3
-                                ? `⚠️ Quedan ${stock} unidades`
-                                : `✓ Disponible`
-                        )
-                        : "✕ Producto agotado"
-                }
-
-            </div>
-
-
             <button
-                id="addCartButton"
                 class="add-cart"
-                type="button"
-                ${
-                    stock <= 0
-                        ? "disabled"
-                        : ""
-                }
                 onclick="addToCart()"
+                ${
+                    Number(p.stock) <= 0
+                    ? "disabled"
+                    : ""
+                }
             >
 
                 ${
-                    stock > 0
-                        ? "🛒 Añadir al carrito"
-                        : "Producto agotado"
+                    Number(p.stock) <= 0
+                    ?
+                    "Producto agotado"
+                    :
+                    "🛒 Añadir al carrito"
                 }
 
             </button>
@@ -3028,51 +2185,87 @@ function renderProduct(){
 
     setupGallery();
 
+
+    /* =====================================================
+       SI HAY COLOR SELECCIONADO, MOSTRAMOS SU IMAGEN
+       COMO PRIMERA IMAGEN DE LA GALERÍA
+    ===================================================== */
+
+    if(
+        selectedColor &&
+        selectedColor.image
+    ){
+
+        showColorImage(
+            selectedColor.image
+        );
+
+    }
+
 }
 
 
 /* =========================================================
-   SELECCIONAR TALLA
+   MOSTRAR IMAGEN DEL COLOR
 ========================================================= */
 
-function selectSize(size){
+function showColorImage(image){
 
-    selectedSize =
-        String(size);
+    const track =
+        document.getElementById(
+            "galleryTrack"
+        );
 
-    renderProduct();
+
+    if(!track) return;
+
+
+    const slides =
+        Array.from(
+            track.querySelectorAll(".slide")
+        );
+
+
+    const target =
+        slides.find(
+            slide => {
+
+                const img =
+                    slide.querySelector("img");
+
+                return img &&
+                    img.src === image;
+
+            }
+        );
+
+
+    if(!target){
+
+        return;
+
+    }
+
+
+    track.scrollTo({
+
+        left:
+            target.offsetLeft,
+
+        behavior:"smooth"
+
+    });
+
+
+    updateGalleryDots(
+        slides.indexOf(target)
+    );
 
 }
 
 
 /* =========================================================
-   SELECCIONAR COLOR
-=========================================================
-
-   🔥 ESTA ES LA PARTE IMPORTANTE.
-
-   Al cambiar el color:
-
-   1. Se cambia selectedColor.
-   2. Se buscan las imágenes de ese color.
-   3. Se vuelve a pintar la galería.
-   4. Las fotografías cambian automáticamente.
-*/
-
-function selectColor(color){
-
-    selectedColor =
-        String(color);
-
-    currentGalleryIndex = 0;
-
-    renderProduct();
-
-}
-
-
-/* =========================================================
-   GALERIA
+   GALERÍA
 ========================================================= */
 
 function setupGallery(){
@@ -3083,62 +2276,33 @@ function setupGallery(){
         );
 
 
-    if(!track){
-        return;
-    }
+    if(!track) return;
 
 
     track.addEventListener(
         "scroll",
-        updateGalleryPosition,
-        {
-            passive:true
+        () => {
+
+            const index =
+                Math.round(
+                    track.scrollLeft /
+                    track.clientWidth
+                );
+
+
+            updateGalleryDots(index);
+
         }
     );
-
-
-    /*
-       Si el usuario desliza con el dedo,
-       actualizamos los puntos.
-    */
-
-    updateGalleryPosition();
 
 }
 
 
-function updateGalleryPosition(){
-
-    const track =
-        document.getElementById(
-            "galleryTrack"
-        );
-
-
-    if(!track){
-        return;
-    }
-
-
-    if(!track.clientWidth){
-        return;
-    }
-
-
-    const index =
-        Math.round(
-            track.scrollLeft /
-            track.clientWidth
-        );
-
-
-    currentGalleryIndex =
-        Math.max(0,index);
-
+function updateGalleryDots(index){
 
     const dots =
         document.querySelectorAll(
-            "#galleryDots .dot"
+            ".dot"
         );
 
 
@@ -3147,64 +2311,46 @@ function updateGalleryPosition(){
 
             dot.classList.toggle(
                 "active",
-                i === currentGalleryIndex
+                i === index
             );
 
         }
     );
 
-
-    const counter =
-        document.getElementById(
-            "galleryCounter"
-        );
+}
 
 
-    if(counter){
+/* =========================================================
+   TALLA
+========================================================= */
 
-        const total =
-            getProductImages(
-                currentProduct
-            ).length;
+function selectSize(size){
 
+    selectedSize =
+        size;
 
-        counter.textContent =
-            `${currentGalleryIndex + 1} / ${total}`;
-
-    }
+    renderProduct();
 
 }
 
 
-function goToGallery(index){
+/* =========================================================
+   COLOR
+========================================================= */
 
-    const track =
-        document.getElementById(
-            "galleryTrack"
+function selectColor(index){
+
+    const colors =
+        getColorObjects(
+            currentProduct
         );
 
 
-    if(!track){
-        return;
-    }
+    selectedColor =
+        colors[index] || null;
 
 
-    const safeIndex =
-        Math.max(
-            0,
-            Number(index) || 0
-        );
-
-
-    track.scrollTo({
-
-        left:
-            safeIndex *
-            track.clientWidth,
-
-        behavior:"smooth"
-
-    });
+    renderProduct();
 
 }
 
@@ -3216,17 +2362,20 @@ function goToGallery(index){
 function addToCart(){
 
     if(!currentProduct){
+
         return;
     }
 
 
     const stock =
-        getSelectedStock();
+        Number(
+            currentProduct.stock
+        ) || 0;
 
 
     if(stock <= 0){
 
-        showToast(
+        alert(
             "Este producto está agotado."
         );
 
@@ -3234,76 +2383,31 @@ function addToCart(){
     }
 
 
-    /*
-       Si tiene tallas,
-       obligamos a tener talla.
-    */
-
-    if(
-        Array.isArray(
-            currentProduct.sizes
-        ) &&
-        currentProduct.sizes.length &&
-        !selectedSize
-    ){
-
-        showToast(
-            "Selecciona una talla."
-        );
-
-        return;
-    }
-
-
-    /*
-       Si tiene colores,
-       obligamos a seleccionar color.
-    */
-
-    if(
-        Array.isArray(
-            currentProduct.colors
-        ) &&
-        currentProduct.colors.length &&
-        !selectedColor
-    ){
-
-        showToast(
-            "Selecciona un color."
-        );
-
-        return;
-    }
-
-
     const existing =
-        cart.find(item =>
-
-            String(item.id) ===
-            String(currentProduct.id)
-
-            &&
-
-            String(item.size) ===
-            String(selectedSize)
-
-            &&
-
-            String(item.color) ===
-            String(selectedColor)
-
+        cart.find(
+            item =>
+                item.id ===
+                    currentProduct.id &&
+                item.size ===
+                    selectedSize &&
+                item.color ===
+                    (
+                        selectedColor
+                        ? selectedColor.name
+                        : ""
+                    )
         );
 
 
     if(existing){
 
         if(
-            existing.quantity + 1 >
+            existing.quantity >=
             stock
         ){
 
-            showToast(
-                "No hay más unidades disponibles."
+            alert(
+                "No puedes añadir más unidades de las disponibles."
             );
 
             return;
@@ -3317,51 +2421,51 @@ function addToCart(){
         cart.push({
 
             id:
-                String(
-                    currentProduct.id
-                ),
+                currentProduct.id,
 
             name:
                 currentProduct.name,
 
             reference:
-                currentProduct.reference ||
-                currentProduct.id,
+                currentProduct.reference,
 
             price:
                 Number(
                     currentProduct.price
-                ) || 0,
+                ),
 
             image:
-                getProductImages(
-                    currentProduct
-                )[0] ||
-                getProductMainImage(
-                    currentProduct
-                ),
+                selectedColor?.image ||
+                currentProduct.images?.[0] ||
+                "",
 
             size:
                 selectedSize,
 
             color:
-                selectedColor,
+                selectedColor?.name ||
+                "",
 
-            quantity:1
+            quantity:
+                1,
+
+            maxStock:
+                stock
 
         });
 
     }
 
 
-    saveCart();
-
     updateCartCount();
 
     closeProduct();
 
-    showToast(
-        "✓ Producto añadido al carrito"
+    renderCart();
+
+
+    alert(
+        "Producto añadido al carrito."
     );
 
 }
@@ -3375,79 +2479,52 @@ function updateCartCount(){
 
     const count =
         cart.reduce(
-            (total,item) =>
-                total +
-                (
-                    Number(item.quantity) ||
-                    0
-                ),
+            (sum,item) =>
+                sum + item.quantity,
             0
         );
 
 
-    const element =
-        document.getElementById(
+    document
+        .getElementById(
             "cartCount"
-        );
-
-
-    element.textContent =
+        )
+        .textContent =
         count;
 
 }
 
 
 /* =========================================================
-   ABRIR CARRITO
+   ABRIR / CERRAR CARRITO
 ========================================================= */
 
 function openCart(){
 
     renderCart();
 
-
-    const modal =
-        document.getElementById(
+    document
+        .getElementById(
             "cartModal"
-        );
+        )
+        .classList.add("active");
 
-
-    modal.classList.add(
-        "active"
-    );
-
-    modal.setAttribute(
-        "aria-hidden",
-        "false"
-    );
-
-    document.body.classList.add(
-        "modal-open"
-    );
+    document.body.style.overflow =
+        "hidden";
 
 }
 
 
 function closeCart(){
 
-    const modal =
-        document.getElementById(
+    document
+        .getElementById(
             "cartModal"
-        );
+        )
+        .classList.remove("active");
 
-
-    modal.classList.remove(
-        "active"
-    );
-
-    modal.setAttribute(
-        "aria-hidden",
-        "true"
-    );
-
-    document.body.classList.remove(
-        "modal-open"
-    );
+    document.body.style.overflow =
+        "";
 
 }
 
@@ -3474,27 +2551,34 @@ function renderCart(){
 
         box.innerHTML = `
 
-            <div class="empty-cart">
+            <div
+                style="
+                    color:#777;
+                    text-align:center;
+                    padding:30px 10px;
+                "
+            >
 
-                <strong>
-                    Tu carrito está vacío
-                </strong>
-
-                <span>
-                    Añade productos para continuar.
-                </span>
+                Tu carrito está vacío.
 
             </div>
 
         `;
 
 
-        updateCartTotal();
+        document
+            .getElementById(
+                "cartTotal"
+            )
+            .textContent =
+            "Total: 0,00 €";
+
 
         checkoutButton.disabled =
             true;
 
         return;
+
     }
 
 
@@ -3506,221 +2590,154 @@ function renderCart(){
         cart.map(
             (item,index) => `
 
-                <div class="cart-item">
+            <div class="cart-item">
 
-                    <img
-                        src="${escapeAttribute(
-                            item.image
-                        )}"
-                        alt="${escapeHTML(
+                <img
+                    src="${escapeAttribute(
+                        item.image
+                    )}"
+                    alt="${escapeHTML(
+                        item.name
+                    )}"
+                    onerror="
+                        this.style.opacity='.3'
+                    "
+                >
+
+
+                <div class="cart-item-info">
+
+                    <div class="cart-item-name">
+
+                        ${escapeHTML(
                             item.name
-                        )}"
-                        onerror="imageError(this)"
-                    >
-
-
-                    <div
-                        class="cart-item-info"
-                    >
-
-                        <div
-                            class="cart-item-name"
-                        >
-
-                            ${
-                                escapeHTML(
-                                    item.name
-                                )
-                            }
-
-                        </div>
-
-
-                        <div class="cart-meta">
-
-                            Ref:
-                            ${
-                                escapeHTML(
-                                    item.reference
-                                )
-                            }
-
-                            ${
-                                item.size
-                                    ? `
-                                        <br>
-                                        Talla:
-                                        ${escapeHTML(
-                                            item.size
-                                        )}
-                                    `
-                                    : ""
-                            }
-
-                            ${
-                                item.color
-                                    ? `
-                                        <br>
-                                        Color:
-                                        ${escapeHTML(
-                                            item.color
-                                        )}
-                                    `
-                                    : ""
-                            }
-
-                        </div>
-
-
-                        <div class="cart-price">
-
-                            ${
-                                formatPrice(
-                                    (
-                                        Number(
-                                            item.price
-                                        ) || 0
-                                    ) *
-                                    (
-                                        Number(
-                                            item.quantity
-                                        ) || 0
-                                    )
-                                )
-                            }
-
-                        </div>
-
-
-                        <div class="cart-actions">
-
-                            <button
-                                type="button"
-                                class="quantity-btn"
-                                onclick="
-                                    changeQuantity(
-                                        ${index},
-                                        -1
-                                    )
-                                "
-                            >
-                                −
-                            </button>
-
-
-                            <span
-                                class="quantity-value"
-                            >
-                                ${
-                                    Number(
-                                        item.quantity
-                                    ) || 0
-                                }
-                            </span>
-
-
-                            <button
-                                type="button"
-                                class="quantity-btn"
-                                onclick="
-                                    changeQuantity(
-                                        ${index},
-                                        1
-                                    )
-                                "
-                            >
-                                +
-                            </button>
-
-                        </div>
+                        )}
 
                     </div>
 
 
-                    <button
-                        type="button"
-                        class="remove"
-                        onclick="
-                            removeItem(
-                                ${index}
-                            )
-                        "
-                        aria-label="Eliminar producto"
+                    <div class="cart-meta">
+
+                        Ref:
+                        ${escapeHTML(
+                            item.reference
+                        )}
+
+                        ${
+                            item.size
+                            ?
+                            `<br>Talla:
+                            ${escapeHTML(
+                                item.size
+                            )}`
+                            :
+                            ""
+                        }
+
+                        ${
+                            item.color
+                            ?
+                            `<br>Color:
+                            ${escapeHTML(
+                                item.color
+                            )}`
+                            :
+                            ""
+                        }
+
+                    </div>
+
+
+                    <strong>
+
+                        ${formatPrice(
+                            item.price *
+                            item.quantity
+                        )}
+
+                    </strong>
+
+
+                    <div
+                        class="quantity-control"
                     >
-                        ×
-                    </button>
+
+                        <button
+                            onclick="
+                                changeQuantity(
+                                    ${index},
+                                    -1
+                                )
+                            "
+                        >
+                            −
+                        </button>
+
+
+                        <span
+                            class="quantity-number"
+                        >
+                            ${item.quantity}
+                        </span>
+
+
+                        <button
+                            onclick="
+                                changeQuantity(
+                                    ${index},
+                                    1
+                                )
+                            "
+                        >
+                            +
+                        </button>
+
+                    </div>
 
                 </div>
 
-            `
+
+                <button
+                    class="remove"
+                    onclick="
+                        removeItem(
+                            ${index}
+                        )
+                    "
+                    aria-label="Eliminar producto"
+                >
+                    ×
+                </button>
+
+            </div>
+
+        `
         ).join("");
 
 
-    updateCartTotal();
-
-}
-
-
-/* =========================================================
-   TOTAL CARRITO
-========================================================= */
-
-function getCartTotal(){
-
-    return cart.reduce(
-
-        (total,item) =>
-
-            total +
-
-            (
-                (
-                    Number(
-                        item.price
-                    ) || 0
-                )
-
-                *
-
-                (
-                    Number(
-                        item.quantity
-                    ) || 0
-                )
-            ),
-
-        0
-
-    );
-
-}
-
-
-function updateCartTotal(){
-
     const total =
-        getCartTotal();
+        cart.reduce(
+            (sum,item) =>
+                sum +
+                item.price *
+                item.quantity,
+            0
+        );
 
 
-    document.getElementById(
-        "cartTotal"
-    ).innerHTML = `
-
-        <span>
-            Total
-        </span>
-
-        <span>
-            ${formatPrice(total)}
-        </span>
-
-    `;
+    document
+        .getElementById(
+            "cartTotal"
+        )
+        .textContent =
+        "Total: " +
+        formatPrice(total);
 
 }
 
 
 /* =========================================================
-   CAMBIAR CANTIDAD
+   CANTIDAD
 ========================================================= */
 
 function changeQuantity(
@@ -3732,69 +2749,12 @@ function changeQuantity(
         cart[index];
 
 
-    if(!item){
-        return;
-    }
-
-
-    const product =
-        products.find(
-            product =>
-                String(product.id) ===
-                String(item.id)
-        );
-
-
-    if(!product){
-        return;
-    }
-
-
-    let maxStock =
-        Number(
-            product.stock
-        ) || 0;
-
-
-    /*
-       Si el producto tiene colores,
-       buscamos el stock del color
-       seleccionado en el carrito.
-    */
-
-    if(
-        item.color &&
-        Array.isArray(
-            product.colors
-        )
-    ){
-
-        const variant =
-            product.colors.find(
-                color =>
-                    String(color.name) ===
-                    String(item.color)
-            );
-
-
-        if(variant){
-
-            maxStock =
-                Number(
-                    variant.stock
-                ) || 0;
-
-        }
-
-    }
+    if(!item) return;
 
 
     const newQuantity =
-        (
-            Number(
-                item.quantity
-            ) || 0
-        ) + amount;
+        item.quantity +
+        amount;
 
 
     if(newQuantity <= 0){
@@ -3805,23 +2765,23 @@ function changeQuantity(
         );
 
     }else if(
-        newQuantity <= maxStock
+        newQuantity >
+        Number(item.maxStock || 999999)
     ){
+
+        alert(
+            "No hay más unidades disponibles."
+        );
+
+        return;
+
+    }else{
 
         item.quantity =
             newQuantity;
 
-    }else{
-
-        showToast(
-            "No hay más stock disponible."
-        );
-
-        return;
     }
 
-
-    saveCart();
 
     updateCartCount();
 
@@ -3831,26 +2791,15 @@ function changeQuantity(
 
 
 /* =========================================================
-   ELIMINAR ITEM
+   ELIMINAR
 ========================================================= */
 
 function removeItem(index){
-
-    if(
-        index < 0 ||
-        index >= cart.length
-    ){
-        return;
-    }
-
 
     cart.splice(
         index,
         1
     );
-
-
-    saveCart();
 
     updateCartCount();
 
@@ -3867,7 +2816,7 @@ function openCheckout(){
 
     if(!cart.length){
 
-        showToast(
+        alert(
             "Tu carrito está vacío."
         );
 
@@ -3878,48 +2827,30 @@ function openCheckout(){
     closeCart();
 
 
-    const modal =
-        document.getElementById(
+    document
+        .getElementById(
             "checkoutModal"
-        );
+        )
+        .classList.add("active");
 
 
-    modal.classList.add(
-        "active"
-    );
-
-    modal.setAttribute(
-        "aria-hidden",
-        "false"
-    );
-
-    document.body.classList.add(
-        "modal-open"
-    );
+    document.body.style.overflow =
+        "hidden";
 
 }
 
 
 function closeCheckout(){
 
-    const modal =
-        document.getElementById(
+    document
+        .getElementById(
             "checkoutModal"
-        );
+        )
+        .classList.remove("active");
 
 
-    modal.classList.remove(
-        "active"
-    );
-
-    modal.setAttribute(
-        "aria-hidden",
-        "true"
-    );
-
-    document.body.classList.remove(
-        "modal-open"
-    );
+    document.body.style.overflow =
+        "";
 
 }
 
@@ -3929,16 +2860,6 @@ function closeCheckout(){
 ========================================================= */
 
 function sendWhatsApp(){
-
-    if(!cart.length){
-
-        showToast(
-            "El carrito está vacío."
-        );
-
-        return;
-    }
-
 
     const name =
         document
@@ -4002,8 +2923,18 @@ function sendWhatsApp(){
         !city
     ){
 
-        showToast(
+        alert(
             "Completa todos los campos obligatorios."
+        );
+
+        return;
+    }
+
+
+    if(!cart.length){
+
+        alert(
+            "El carrito está vacío."
         );
 
         return;
@@ -4070,7 +3001,6 @@ function sendWhatsApp(){
                 item.name +
                 "\n";
 
-
             message +=
                 "Referencia: " +
                 item.reference +
@@ -4106,16 +3036,8 @@ function sendWhatsApp(){
             message +=
                 "Precio: " +
                 formatPrice(
-                    (
-                        Number(
-                            item.price
-                        ) || 0
-                    ) *
-                    (
-                        Number(
-                            item.quantity
-                        ) || 0
-                    )
+                    item.price *
+                    item.quantity
                 ) +
                 "\n";
 
@@ -4124,7 +3046,13 @@ function sendWhatsApp(){
 
 
     const total =
-        getCartTotal();
+        cart.reduce(
+            (sum,item) =>
+                sum +
+                item.price *
+                item.quantity,
+            0
+        );
 
 
     message +=
@@ -4144,58 +3072,14 @@ function sendWhatsApp(){
     window.open(
         url,
         "_blank",
-        "noopener,noreferrer"
+        "noopener"
     );
 
 }
 
 
 /* =========================================================
-   TOAST
-========================================================= */
-
-let toastTimer = null;
-
-
-function showToast(message){
-
-    const toast =
-        document.getElementById(
-            "toast"
-        );
-
-
-    toast.textContent =
-        message;
-
-
-    toast.classList.add(
-        "show"
-    );
-
-
-    clearTimeout(
-        toastTimer
-    );
-
-
-    toastTimer =
-        setTimeout(
-            () => {
-
-                toast.classList.remove(
-                    "show"
-                );
-
-            },
-            2500
-        );
-
-}
-
-
-/* =========================================================
-   SEGURIDAD HTML
+   ESCAPE HTML
 ========================================================= */
 
 function escapeHTML(value){
@@ -4216,7 +3100,7 @@ function escapeHTML(value){
 
 
 /* =========================================================
-   SEGURIDAD ATRIBUTOS
+   ESCAPE ATRIBUTO
 ========================================================= */
 
 function escapeAttribute(value){
@@ -4245,36 +3129,47 @@ function escapeAttribute(value){
 
 
 /* =========================================================
-   ERROR DE IMAGEN
+   ESCAPE JAVASCRIPT
 ========================================================= */
 
-function imageError(img){
+function escapeJS(value){
 
-    if(!img){
-        return;
-    }
-
-
-    img.onerror =
-        null;
-
-
-    img.style.objectFit =
-        "contain";
-
-
-    img.style.padding =
-        "25px";
-
-
-    img.alt =
-        "Imagen no disponible";
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /\\/g,
+        "\\\\"
+    )
+    .replace(
+        /'/g,
+        "\\'"
+    );
 
 }
 
 
 /* =========================================================
-   CERRAR AL PULSAR FUERA
+   PRECIO
+========================================================= */
+
+function formatPrice(price){
+
+    return Number(
+        price
+    ).toLocaleString(
+        "es-ES",
+        {
+            style:"currency",
+            currency:"EUR"
+        }
+    );
+
+}
+
+
+/* =========================================================
+   CERRAR MODALES AL HACER CLICK FUERA
 ========================================================= */
 
 document
@@ -4341,7 +3236,7 @@ document
 
 
 /* =========================================================
-   TECLA ESC
+   ESC PARA CERRAR
 ========================================================= */
 
 document.addEventListener(
@@ -4349,10 +3244,11 @@ document.addEventListener(
     event => {
 
         if(
-            event.key !==
-            "Escape"
+            event.key !== "Escape"
         ){
+
             return;
+
         }
 
 
@@ -4370,13 +3266,11 @@ document.addEventListener(
    INICIO
 ========================================================= */
 
-loadCart();
-
-updateCartCount();
-
 renderFilters();
 
 renderProducts();
+
+updateCartCount();
 
 </script>
 
