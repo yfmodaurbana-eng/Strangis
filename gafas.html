@@ -1,10 +1,10 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Gafas | MI MARCA</title>
@@ -19,7 +19,7 @@
 
 body{
     min-height:100vh;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
     color:#fff;
 
     background:
@@ -75,6 +75,7 @@ nav::-webkit-scrollbar{
 
 nav a{
     color:#999;
+
     text-decoration:none;
 
     font-size:9px;
@@ -88,6 +89,21 @@ nav a{
 nav a:hover,
 nav a.active{
     color:#fff;
+}
+
+.admin{
+    padding:10px 15px;
+
+    border:1px solid rgba(255,255,255,.25);
+
+    border-radius:4px;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    font-size:8px;
+    font-weight:bold;
 }
 
 .hero{
@@ -108,6 +124,7 @@ nav a.active{
     font-size:clamp(55px,10vw,110px);
 
     letter-spacing:-6px;
+
     line-height:.85;
 }
 
@@ -119,6 +136,7 @@ nav a.active{
     color:#aaa;
 
     font-size:12px;
+
     line-height:1.7;
 }
 
@@ -140,6 +158,7 @@ nav a.active{
     padding:15px;
 
     border:1px solid rgba(255,255,255,.12);
+
     border-radius:7px;
 
     background:rgba(255,255,255,.05);
@@ -179,6 +198,7 @@ nav a.active{
     color:#777;
 
     font-size:8px;
+
     letter-spacing:1px;
 }
 
@@ -188,6 +208,7 @@ nav a.active{
     color:#999;
 
     font-size:10px;
+
     line-height:1.5;
 }
 
@@ -206,6 +227,7 @@ nav a.active{
     font-size:8px;
 
     text-transform:uppercase;
+
     letter-spacing:1px;
 }
 
@@ -230,11 +252,13 @@ nav a.active{
     padding:0;
 
     background-size:cover;
+
     background-position:center;
 }
 
 .color.active{
     outline:2px solid white;
+
     outline-offset:2px;
 }
 
@@ -266,6 +290,7 @@ nav a.active{
 
 .size.active{
     background:#fff;
+
     color:#111;
 }
 
@@ -324,13 +349,17 @@ nav a.active{
     padding:14px;
 
     border:0;
+
     border-radius:3px;
 
     background:#fff;
+
     color:#111;
 
     font-size:8px;
+
     font-weight:bold;
+
     letter-spacing:1.5px;
 
     cursor:pointer;
@@ -432,16 +461,9 @@ footer{
         margin:-10px -10px 12px;
     }
 
-    .product-name{
-        font-size:10px;
-    }
-
+    .product-name,
     .product-price{
         font-size:10px;
-    }
-
-    .empty{
-        padding:80px 15px;
     }
 
 }
@@ -490,6 +512,10 @@ footer{
 
 </nav>
 
+<a class="admin" href="admin.html">
+    ADMIN
+</a>
+
 </header>
 
 <section class="hero">
@@ -503,8 +529,7 @@ footer{
 </h1>
 
 <p>
-    Descubre nuestra selección de gafas
-    para completar tu estilo urbano.
+    Gafas urbanas para completar tu estilo.
 </p>
 
 </section>
@@ -519,19 +544,30 @@ footer{
 </section>
 
 <footer>
-
-© 2026 MI MARCA · TODOS LOS DERECHOS RESERVADOS
-
+    © 2026 MI MARCA · TODOS LOS DERECHOS RESERVADOS
 </footer>
 
 <script>
 
+/* =========================================================
+   🟢🟢🟢 PRODUCTOS DE GAFAS 🟢🟢🟢
+
+   PEGA AQUÍ LOS PRODUCTOS GENERADOS POR admin.html.
+
+   NO BORRES LOS CORCHETES.
+
+========================================================= */
+
 const PRODUCTS = [
+
+    // PEGA AQUÍ TUS PRODUCTOS
 
 ];
 
+
 const WHATSAPP_NUMBER =
     "34674559614";
+
 
 function money(value){
 
@@ -544,6 +580,7 @@ function money(value){
     );
 
 }
+
 
 function renderProducts(){
 
@@ -563,8 +600,7 @@ function renderProducts(){
                 </div>
 
                 <div class="empty-text">
-                    Estamos preparando
-                    nuevos productos.
+                    Estamos preparando nuevos productos.
                 </div>
 
             </div>
@@ -588,6 +624,7 @@ function renderProducts(){
 
 }
 
+
 function createProductHTML(
     product,
     index
@@ -609,19 +646,29 @@ function createProductHTML(
     return `
 
     <article
+
         class="product"
+
         id="product-${index}"
+
         data-variant="0"
+
         data-size=""
+
         data-quantity="1"
+
     >
 
         <div class="product-image">
 
             <img
+
                 id="image-${index}"
+
                 src="${firstVariant.image}"
+
                 alt="${product.name}"
+
             >
 
         </div>
@@ -631,8 +678,7 @@ function createProductHTML(
         </div>
 
         <div class="product-code">
-            CÓDIGO:
-            ${product.id}
+            CÓDIGO: ${product.id}
         </div>
 
         ${
@@ -672,27 +718,27 @@ function createProductHTML(
                     ) => `
 
                     <button
-                        class="
-                            color
-                            ${
-                                variantIndex === 0
-                                ?
-                                "active"
-                                :
-                                ""
-                            }
-                        "
+
+                        class="color ${
+                            variantIndex === 0
+                            ? "active"
+                            : ""
+                        }"
+
                         style="
                             background-image:
                             url('${variant.image}');
                         "
+
                         title="${variant.name}"
+
                         onclick="
                             selectColor(
                                 ${index},
                                 ${variantIndex}
                             )
                         "
+
                     ></button>
 
                     `
@@ -719,13 +765,16 @@ function createProductHTML(
                         size => `
 
                         <button
+
                             class="size"
+
                             onclick="
                                 selectSize(
                                     ${index},
                                     '${size}'
                                 )
                             "
+
                         >
                             ${size}
                         </button>
@@ -745,12 +794,14 @@ function createProductHTML(
         <div class="quantity">
 
             <button
+
                 onclick="
                     changeQuantity(
                         ${index},
                         -1
                     )
                 "
+
             >
                 −
             </button>
@@ -760,12 +811,14 @@ function createProductHTML(
             </span>
 
             <button
+
                 onclick="
                     changeQuantity(
                         ${index},
                         1
                     )
                 "
+
             >
                 +
             </button>
@@ -776,9 +829,7 @@ function createProductHTML(
 
             🚚 Envío estimado:
 
-            ${shipping.min}
-            –
-            ${shipping.max}
+            ${shipping.min}–${shipping.max}
 
             días laborables
 
@@ -788,26 +839,27 @@ function createProductHTML(
             product.stock !== undefined
             ?
             `
-
             <div class="stock">
 
                 Stock disponible:
                 ${product.stock}
 
             </div>
-
             `
             :
             ""
         }
 
         <button
+
             class="buy"
+
             onclick="
                 buyProduct(
                     ${index}
                 )
             "
+
         >
             COMPRAR
         </button>
@@ -818,20 +870,17 @@ function createProductHTML(
 
 }
 
+
 function selectColor(
     productIndex,
     variantIndex
 ){
 
     const product =
-        PRODUCTS[
-            productIndex
-        ];
+        PRODUCTS[productIndex];
 
     const variant =
-        product.variants[
-            variantIndex
-        ];
+        product.variants[variantIndex];
 
     document.getElementById(
         `image-${productIndex}`
@@ -852,9 +901,7 @@ function selectColor(
         variantIndex;
 
     card
-        .querySelectorAll(
-            ".color"
-        )
+        .querySelectorAll(".color")
         .forEach(
             (
                 button,
@@ -871,6 +918,7 @@ function selectColor(
 
 }
 
+
 function selectSize(
     productIndex,
     size
@@ -885,9 +933,7 @@ function selectSize(
         size;
 
     card
-        .querySelectorAll(
-            ".size"
-        )
+        .querySelectorAll(".size")
         .forEach(
             button => {
 
@@ -904,6 +950,7 @@ function selectSize(
         );
 
 }
+
 
 function changeQuantity(
     productIndex,
@@ -936,14 +983,13 @@ function changeQuantity(
 
 }
 
+
 function buyProduct(
     productIndex
 ){
 
     const product =
-        PRODUCTS[
-            productIndex
-        ];
+        PRODUCTS[productIndex];
 
     const card =
         document.getElementById(
@@ -958,15 +1004,12 @@ function buyProduct(
         ];
 
     const size =
-        card.dataset.size
-        ||
+        card.dataset.size ||
         "No especificada";
 
     const quantity =
         Number(
-            card.dataset.quantity
-            ||
-            1
+            card.dataset.quantity || 1
         );
 
     const total =
@@ -998,7 +1041,6 @@ Talla: ${size}
 
 Cantidad: ${quantity}
 
-
 💰 PRECIO
 
 Precio unidad:
@@ -1007,12 +1049,10 @@ ${money(product.price)}
 Total:
 ${money(total)}
 
-
 🚚 ENTREGA
 
 ${shipping.min}–${shipping.max}
 días laborables
-
 
 ━━━━━━━━━━━━━━━━
 
@@ -1023,7 +1063,6 @@ Nombre y apellidos:
 Teléfono:
 
 Email:
-
 
 📍 DIRECCIÓN DE ENVÍO
 
@@ -1041,21 +1080,16 @@ Provincia:
 
 País:
 
-
 📝 OBSERVACIONES:
-
 
 ━━━━━━━━━━━━━━━━
 
 `;
 
     const whatsappURL =
-        "https://wa.me/"
-        +
-        WHATSAPP_NUMBER
-        +
-        "?text="
-        +
+        "https://wa.me/" +
+        WHATSAPP_NUMBER +
+        "?text=" +
         encodeURIComponent(
             message
         );
@@ -1067,6 +1101,7 @@ País:
 
 }
 
+
 renderProducts();
 
 </script>
@@ -1074,3 +1109,4 @@ renderProducts();
 </body>
 
 </html>
+```
