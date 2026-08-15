@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- 🟢 EDITAR AQUÍ: TÍTULO DE LA PESTAÑA -->
@@ -20,41 +22,61 @@ body{
     min-height:100vh;
     font-family:Arial,Helvetica,sans-serif;
     color:#fff;
-    background:linear-gradient(
-        135deg,
-        #181818 0%,
-        #303030 38%,
-        #555 65%,
-        #292929 100%
-    );
+
+    background:
+        linear-gradient(
+            135deg,
+            #181818 0%,
+            #303030 38%,
+            #555 65%,
+            #292929 100%
+        );
 }
 
 header{
+
     position:sticky;
     top:0;
     z-index:1000;
+
     padding:18px 4%;
+
     display:flex;
     align-items:center;
     gap:30px;
-    border-bottom:1px solid rgba(255,255,255,.12);
-    background:rgba(25,25,25,.88);
-    backdrop-filter:blur(15px);
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.12);
+
+    background:
+        rgba(25,25,25,.88);
+
+    backdrop-filter:
+        blur(15px);
 }
 
 .logo{
+
     flex-shrink:0;
+
     font-size:22px;
     font-weight:900;
     letter-spacing:4px;
 }
 
 nav{
+
     flex:1;
+
     display:flex;
+
     justify-content:center;
+
     gap:24px;
+
     overflow-x:auto;
+
     scrollbar-width:none;
 }
 
@@ -63,327 +85,548 @@ nav::-webkit-scrollbar{
 }
 
 nav a{
+
     color:#999;
+
     text-decoration:none;
+
     font-size:9px;
+
     font-weight:bold;
+
     letter-spacing:1.5px;
+
     text-transform:uppercase;
+
     white-space:nowrap;
+
+    transition:.2s;
 }
 
 nav a:hover,
 nav a.active{
+
     color:#fff;
 }
 
-.admin{
-    padding:10px 15px;
-    border:1px solid rgba(255,255,255,.25);
-    border-radius:4px;
-    color:#fff;
-    text-decoration:none;
-    font-size:8px;
-    font-weight:bold;
-}
+
+/* =====================================================
+   HERO
+===================================================== */
 
 .hero{
-    padding:90px 5% 60px;
+
+    padding:
+        90px 5%
+        60px;
 }
 
 .hero small{
+
     color:#999;
+
     font-size:9px;
+
     font-weight:bold;
+
     letter-spacing:4px;
 }
 
 .hero h1{
+
     margin-top:18px;
-    font-size:clamp(55px,10vw,110px);
+
+    font-size:
+        clamp(
+            55px,
+            10vw,
+            110px
+        );
+
     letter-spacing:-6px;
+
     line-height:.85;
 }
 
 .hero p{
+
     max-width:550px;
+
     margin-top:25px;
+
     color:#aaa;
+
     font-size:12px;
+
     line-height:1.7;
 }
 
+
+/* =====================================================
+   PRODUCTOS
+===================================================== */
+
 .products-section{
-    padding:20px 5% 100px;
+
+    padding:
+        20px 5%
+        100px;
 }
 
 .products{
+
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+
+    grid-template-columns:
+        repeat(4,1fr);
+
     gap:15px;
 }
 
 .product{
+
     overflow:hidden;
+
     padding:15px;
-    border:1px solid rgba(255,255,255,.12);
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
     border-radius:7px;
-    background:rgba(255,255,255,.05);
+
+    background:
+        rgba(255,255,255,.05);
 }
 
 .product-image{
+
     height:300px;
-    margin:-15px -15px 18px;
+
+    margin:
+        -15px -15px 18px;
+
     background:#222;
+
     overflow:hidden;
 }
 
 .product-image img{
+
     width:100%;
+
     height:100%;
+
     object-fit:cover;
+
     transition:.35s;
 }
 
-.product:hover .product-image img{
+.product:hover
+.product-image img{
+
     transform:scale(1.04);
 }
 
 .product-name{
+
     font-size:14px;
+
     font-weight:bold;
 }
 
 .product-code{
+
     margin-top:6px;
+
     color:#777;
+
     font-size:8px;
+
     letter-spacing:1px;
 }
 
 .product-description{
+
     margin-top:9px;
+
     color:#999;
+
     font-size:10px;
+
     line-height:1.5;
 }
 
 .product-price{
+
     margin-top:12px;
+
     font-size:14px;
 }
 
 .label{
+
     margin-top:15px;
+
     color:#999;
+
     font-size:8px;
+
     text-transform:uppercase;
+
     letter-spacing:1px;
 }
 
 .colors{
+
     display:flex;
+
     gap:9px;
+
     margin-top:9px;
 }
 
 .color{
+
     width:23px;
+
     height:23px;
-    border:2px solid rgba(255,255,255,.25);
+
+    border:
+        2px solid
+        rgba(255,255,255,.25);
+
     border-radius:50%;
+
     cursor:pointer;
+
     padding:0;
 }
 
 .color.active{
-    outline:2px solid white;
+
+    outline:
+        2px solid white;
+
     outline-offset:2px;
 }
 
 .sizes{
+
     display:flex;
+
     flex-wrap:wrap;
+
     gap:6px;
+
     margin-top:9px;
 }
 
 .size{
+
     padding:7px 9px;
-    border:1px solid rgba(255,255,255,.18);
+
+    border:
+        1px solid
+        rgba(255,255,255,.18);
+
     border-radius:3px;
+
     color:#aaa;
+
     font-size:8px;
+
     cursor:pointer;
+
     background:transparent;
 }
 
 .size.active{
+
     background:#fff;
+
     color:#111;
 }
 
 .quantity{
+
     display:flex;
+
     align-items:center;
+
     gap:12px;
+
     margin-top:15px;
 }
 
 .quantity button{
+
     width:27px;
+
     height:27px;
-    border:1px solid rgba(255,255,255,.2);
+
+    border:
+        1px solid
+        rgba(255,255,255,.2);
+
     background:#191919;
+
     color:#fff;
+
     cursor:pointer;
 }
 
 .quantity span{
+
     min-width:20px;
+
     text-align:center;
+
     font-size:11px;
 }
 
 .shipping{
+
     margin-top:14px;
+
     color:#aaa;
+
     font-size:9px;
 }
 
 .stock{
+
     margin-top:7px;
+
     color:#777;
+
     font-size:8px;
 }
 
 .buy{
+
     width:100%;
+
     margin-top:15px;
+
     padding:13px;
+
     border:0;
+
     border-radius:3px;
+
     background:#fff;
+
     color:#111;
+
     font-size:8px;
+
     font-weight:bold;
+
     letter-spacing:1.5px;
+
     cursor:pointer;
 }
 
 .buy:hover{
+
     background:#ddd;
 }
 
 .empty{
+
     grid-column:1/-1;
+
     padding:80px 20px;
+
     text-align:center;
+
     color:#888;
 }
 
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
 footer{
-    padding:30px 5%;
-    border-top:1px solid rgba(255,255,255,.1);
+
+    padding:
+        30px 5%;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.1);
+
     text-align:center;
+
     color:#777;
+
     font-size:8px;
 }
 
+
+/* =====================================================
+   TABLET
+===================================================== */
+
 @media(max-width:1000px){
+
     .products{
-        grid-template-columns:repeat(2,1fr);
+
+        grid-template-columns:
+            repeat(2,1fr);
     }
 }
+
+
+/* =====================================================
+   MÓVIL
+===================================================== */
 
 @media(max-width:650px){
 
     header{
+
         flex-wrap:wrap;
-        padding:16px 15px 9px;
+
+        padding:
+            16px 15px 9px;
     }
 
     .logo{
+
         font-size:17px;
     }
 
     nav{
+
         order:3;
+
         flex-basis:100%;
+
         justify-content:flex-start;
     }
 
     .hero{
-        padding:60px 15px 40px;
+
+        padding:
+            60px 15px
+            40px;
     }
 
     .hero h1{
+
         font-size:18vw;
+
         letter-spacing:-4px;
     }
 
     .products-section{
-        padding:20px 12px 70px;
+
+        padding:
+            20px 12px
+            70px;
     }
 
     .products{
+
         gap:9px;
     }
 
     .product{
+
         padding:10px;
     }
 
     .product-image{
+
         height:210px;
-        margin:-10px -10px 12px;
+
+        margin:
+            -10px -10px
+            12px;
     }
 
     .product-name{
+
         font-size:10px;
     }
 
     .product-price{
+
         font-size:10px;
     }
+
 }
 
 </style>
+
 </head>
 
+
 <body>
+
+
+<!-- =====================================================
+     CABECERA PÚBLICA
+     
+     🔴 SIN ADMIN
+===================================================== -->
 
 <header>
 
 <div class="logo">
+
     <!-- 🟢 EDITAR AQUÍ -->
+
     MI MARCA
+
 </div>
+
 
 <nav>
 
-<a href="index.html">Inicio</a>
+<a href="index.html">
+    Inicio
+</a>
 
-<a href="camisetas.html">Camisetas</a>
+<a href="camisetas.html">
+    Camisetas
+</a>
 
-<a class="active" href="pantalones.html">Pantalones</a>
+<a
+    class="active"
+    href="pantalones.html"
+>
+    Pantalones
+</a>
 
-<a href="chandals.html">Chandals</a>
+<a href="chandals.html">
+    Chandals
+</a>
 
-<a href="gorras.html">Gorras</a>
+<a href="gorras.html">
+    Gorras
+</a>
 
-<a href="gafas.html">Gafas</a>
+<a href="gafas.html">
+    Gafas
+</a>
 
-<a href="bisuteria.html">Bisutería</a>
+<a href="bisuteria.html">
+    Bisutería
+</a>
 
 </nav>
 
-<a class="admin" href="admin.html">
-    ADMIN
-</a>
-
 </header>
 
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
 
 <section class="hero">
 
@@ -391,26 +634,48 @@ footer{
     COLECCIÓN
 </small>
 
+
 <!-- 🟢 EDITAR AQUÍ -->
+
 <h1>
     PANTALONES
 </h1>
 
+
 <!-- 🟢 EDITAR AQUÍ -->
+
 <p>
+
     Pantalones urbanos seleccionados para completar
     tu estilo con comodidad y personalidad.
+
 </p>
 
 </section>
 
 
+
+<!-- =====================================================
+     PRODUCTOS
+     
+     🟢 PEGA AQUÍ LOS PRODUCTOS GENERADOS
+     POR admin.html
+===================================================== -->
+
 <section class="products-section">
 
-<div class="products" id="productsContainer"></div>
+<div
+    class="products"
+    id="productsContainer"
+></div>
 
 </section>
 
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer>
 
@@ -421,21 +686,28 @@ footer{
 </footer>
 
 
+
 <script>
 
-/* =========================================================
+/* =====================================================
    🟢 PEGAR PRODUCTOS AQUÍ
-========================================================= */
+===================================================== */
 
 const PRODUCTS = [
 
-    // PEGA AQUÍ LOS PRODUCTOS GENERADOS POR ADMIN.HTML
+    // PEGA AQUÍ LOS PRODUCTOS
+    // GENERADOS POR admin.html
 
 ];
 
 
-const WHATSAPP_NUMBER = "34674559614";
+const WHATSAPP_NUMBER =
+    "34674559614";
 
+
+/* =====================================================
+   PRECIO
+===================================================== */
 
 function money(value){
 
@@ -450,6 +722,10 @@ function money(value){
 }
 
 
+/* =====================================================
+   MOSTRAR PRODUCTOS
+===================================================== */
+
 function renderProducts(){
 
     const container =
@@ -457,41 +733,61 @@ function renderProducts(){
             "productsContainer"
         );
 
+
     if(!PRODUCTS.length){
 
         container.innerHTML = `
+
             <div class="empty">
+
                 Todavía no hay productos disponibles.
+
             </div>
+
         `;
 
         return;
+
     }
+
 
     container.innerHTML =
         PRODUCTS
         .map(
             (product,index)=>
-                productHTML(product,index)
+                productHTML(
+                    product,
+                    index
+                )
         )
         .join("");
 
 }
 
 
-function productHTML(product,index){
+/* =====================================================
+   HTML DEL PRODUCTO
+===================================================== */
+
+function productHTML(
+    product,
+    index
+){
 
     const variant =
         product.variants[0];
 
+
     const sizes =
         product.sizes || [];
+
 
     const shipping =
         product.shipping || {
             min:3,
             max:9
         };
+
 
     return `
 
@@ -503,6 +799,7 @@ function productHTML(product,index){
         data-quantity="1"
     >
 
+
         <div class="product-image">
 
             <img
@@ -513,36 +810,60 @@ function productHTML(product,index){
 
         </div>
 
+
         <div class="product-name">
+
             ${product.name}
+
         </div>
 
+
         <div class="product-code">
-            CÓDIGO: ${product.id}
+
+            CÓDIGO:
+            ${product.id}
+
         </div>
+
 
         ${
             product.description
             ?
             `
+
             <div class="product-description">
+
                 ${product.description}
+
             </div>
+
             `
             :
             ""
         }
 
+
         <div class="product-price">
+
             ${money(product.price)}
+
         </div>
 
+
         <div class="label">
+
             Color:
-            <span id="color-name-${index}">
+
+            <span
+                id="color-name-${index}"
+            >
+
                 ${variant.name}
+
             </span>
+
         </div>
+
 
         <div class="colors">
 
@@ -551,7 +872,11 @@ function productHTML(product,index){
                     (v,vIndex)=>`
 
                     <button
-                        class="color ${vIndex===0?"active":""}"
+                        class="color ${
+                            vIndex === 0
+                            ? "active"
+                            : ""
+                        }"
                         style="
                             background-image:url('${v.image}');
                             background-size:cover;
@@ -578,9 +903,13 @@ function productHTML(product,index){
             sizes.length
             ?
             `
+
             <div class="label">
+
                 Talla
+
             </div>
+
 
             <div class="sizes">
 
@@ -597,7 +926,9 @@ function productHTML(product,index){
                                 )
                             "
                         >
+
                             ${size}
+
                         </button>
 
                         `
@@ -606,6 +937,7 @@ function productHTML(product,index){
                 }
 
             </div>
+
             `
             :
             ""
@@ -615,17 +947,31 @@ function productHTML(product,index){
         <div class="quantity">
 
             <button
-                onclick="changeQuantity(${index},-1)"
+                onclick="
+                    changeQuantity(
+                        ${index},
+                        -1
+                    )
+                "
             >
                 −
             </button>
 
-            <span id="quantity-${index}">
+
+            <span
+                id="quantity-${index}"
+            >
                 1
             </span>
 
+
             <button
-                onclick="changeQuantity(${index},1)"
+                onclick="
+                    changeQuantity(
+                        ${index},
+                        1
+                    )
+                "
             >
                 +
             </button>
@@ -636,7 +982,9 @@ function productHTML(product,index){
         <div class="shipping">
 
             🚚 Envío estimado:
+
             ${shipping.min}–${shipping.max}
+
             días laborables
 
         </div>
@@ -646,9 +994,14 @@ function productHTML(product,index){
             product.stock !== undefined
             ?
             `
+
             <div class="stock">
-                Stock disponible: ${product.stock}
+
+                Stock disponible:
+                ${product.stock}
+
             </div>
+
             `
             :
             ""
@@ -657,10 +1010,17 @@ function productHTML(product,index){
 
         <button
             class="buy"
-            onclick="buyProduct(${index})"
+            onclick="
+                buyProduct(
+                    ${index}
+                )
+            "
         >
+
             COMPRAR
+
         </button>
+
 
     </article>
 
@@ -669,48 +1029,68 @@ function productHTML(product,index){
 }
 
 
+/* =====================================================
+   CAMBIAR COLOR
+===================================================== */
+
 function selectColor(
     productIndex,
     variantIndex
 ){
 
     const product =
-        PRODUCTS[productIndex];
+        PRODUCTS[
+            productIndex
+        ];
+
 
     const variant =
-        product.variants[variantIndex];
+        product.variants[
+            variantIndex
+        ];
+
 
     document.getElementById(
         `image-${productIndex}`
     ).src =
         variant.image;
 
+
     document.getElementById(
         `color-name-${productIndex}`
     ).textContent =
         variant.name;
+
 
     const card =
         document.getElementById(
             `product-${productIndex}`
         );
 
+
     card.dataset.variant =
         variantIndex;
+
 
     card
         .querySelectorAll(".color")
         .forEach(
             (button,index)=>{
+
                 button.classList.toggle(
                     "active",
                     index === variantIndex
                 );
+
             }
         );
 
 }
 
+
+/* =====================================================
+   CAMBIAR TALLA
+===================================================== */
 
 function selectSize(
     productIndex,
@@ -722,22 +1102,31 @@ function selectSize(
             `product-${productIndex}`
         );
 
+
     card.dataset.size =
         size;
+
 
     card
         .querySelectorAll(".size")
         .forEach(
             button=>{
+
                 button.classList.toggle(
                     "active",
-                    button.textContent.trim() === size
+                    button.textContent.trim()
+                    === size
                 );
+
             }
         );
 
 }
 
+
+/* =====================================================
+   CANTIDAD
+===================================================== */
 
 function changeQuantity(
     productIndex,
@@ -749,18 +1138,26 @@ function changeQuantity(
             `product-${productIndex}`
         );
 
+
     let quantity =
         Number(
             card.dataset.quantity
         );
 
+
     quantity += change;
 
-    if(quantity < 1)
+
+    if(quantity < 1){
+
         quantity = 1;
+
+    }
+
 
     card.dataset.quantity =
         quantity;
+
 
     document.getElementById(
         `quantity-${productIndex}`
@@ -770,32 +1167,49 @@ function changeQuantity(
 }
 
 
-function buyProduct(productIndex){
+/* =====================================================
+   COMPRAR → WHATSAPP
+===================================================== */
+
+function buyProduct(
+    productIndex
+){
 
     const product =
-        PRODUCTS[productIndex];
+        PRODUCTS[
+            productIndex
+        ];
+
 
     const card =
         document.getElementById(
             `product-${productIndex}`
         );
 
+
     const variant =
         product.variants[
-            Number(card.dataset.variant || 0)
+            Number(
+                card.dataset.variant || 0
+            )
         ];
+
 
     const size =
         card.dataset.size ||
         "No especificada";
+
 
     const quantity =
         Number(
             card.dataset.quantity || 1
         );
 
+
     const total =
-        product.price * quantity;
+        product.price *
+        quantity;
+
 
     const shipping =
         product.shipping || {
@@ -852,11 +1266,15 @@ País:
 
 `;
 
+
     const url =
         "https://wa.me/" +
         WHATSAPP_NUMBER +
         "?text=" +
-        encodeURIComponent(message);
+        encodeURIComponent(
+            message
+        );
+
 
     window.open(
         url,
@@ -866,9 +1284,15 @@ País:
 }
 
 
+/* =====================================================
+   INICIAR
+===================================================== */
+
 renderProducts();
 
 </script>
 
+
 </body>
+
 </html>
