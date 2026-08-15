@@ -17,8 +17,14 @@
 }
 
 body{
+
     min-height:100vh;
-    font-family:Arial, Helvetica, sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     color:#fff;
 
     background:
@@ -29,17 +35,28 @@ body{
             #555 65%,
             #292929 100%
         );
+
 }
 
+
+/* ==============================
+   CABECERA
+============================== */
+
 header{
+
     position:sticky;
+
     top:0;
+
     z-index:1000;
 
     padding:18px 4%;
 
     display:flex;
+
     align-items:center;
+
     gap:30px;
 
     border-bottom:
@@ -49,56 +66,102 @@ header{
     background:
         rgba(25,25,25,.90);
 
-    backdrop-filter:blur(15px);
+    backdrop-filter:
+        blur(15px);
+
 }
+
 
 .logo{
+
     flex-shrink:0;
+
     font-size:22px;
+
     font-weight:900;
+
     letter-spacing:4px;
+
 }
 
+
 nav{
+
     flex:1;
+
     display:flex;
+
     justify-content:center;
+
     gap:24px;
+
     overflow-x:auto;
+
     scrollbar-width:none;
+
 }
+
 
 nav::-webkit-scrollbar{
     display:none;
 }
 
+
 nav a{
+
     color:#999;
+
     text-decoration:none;
+
     font-size:9px;
+
     font-weight:bold;
+
     letter-spacing:1.5px;
+
     text-transform:uppercase;
+
     white-space:nowrap;
+
 }
+
 
 nav a:hover,
 nav a.active{
+
     color:#fff;
+
 }
+
+
+/* ==============================
+   HERO
+============================== */
 
 .hero{
-    padding:90px 5% 60px;
+
+    padding:
+        90px 5%
+        60px;
+
 }
+
 
 .hero small{
+
     color:#999;
+
     font-size:9px;
+
     font-weight:bold;
+
     letter-spacing:4px;
+
 }
 
+
 .hero h1{
+
     margin-top:18px;
 
     font-size:
@@ -109,29 +172,60 @@ nav a.active{
         );
 
     letter-spacing:-6px;
+
     line-height:.85;
+
 }
+
 
 .hero p{
+
     max-width:550px;
+
     margin-top:25px;
+
     color:#aaa;
+
     font-size:12px;
+
     line-height:1.7;
+
 }
+
+
+/* ==============================
+   PRODUCTOS
+============================== */
 
 .products-section{
-    padding:20px 5% 100px;
+
+    padding:
+        20px 5%
+        100px;
+
 }
+
 
 .products{
+
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+
+    grid-template-columns:
+        repeat(4,1fr);
+
     gap:15px;
+
 }
 
+
+/* ==============================
+   PRODUCTO
+============================== */
+
 .product{
+
     overflow:hidden;
+
     padding:15px;
 
     border:
@@ -142,9 +236,12 @@ nav a.active{
 
     background:
         rgba(255,255,255,.05);
+
 }
 
+
 .product-image{
+
     height:300px;
 
     margin:
@@ -153,61 +250,113 @@ nav a.active{
         18px;
 
     background:#222;
+
     overflow:hidden;
+
 }
+
 
 .product-image img{
+
     width:100%;
+
     height:100%;
+
     object-fit:cover;
+
     transition:.35s;
+
 }
 
-.product:hover .product-image img{
+
+.product:hover
+.product-image img{
+
     transform:scale(1.04);
+
 }
+
 
 .product-name{
+
     font-size:14px;
+
     font-weight:bold;
+
 }
+
 
 .product-code{
+
     margin-top:6px;
+
     color:#777;
+
     font-size:8px;
+
     letter-spacing:1px;
+
 }
+
 
 .product-description{
+
     margin-top:9px;
+
     color:#999;
+
     font-size:10px;
+
     line-height:1.5;
+
 }
+
 
 .product-price{
+
     margin-top:12px;
+
     font-size:14px;
+
     font-weight:bold;
+
 }
+
+
+/* ==============================
+   COLORES
+============================== */
 
 .label{
+
     margin-top:15px;
+
     color:#999;
+
     font-size:8px;
+
     text-transform:uppercase;
+
     letter-spacing:1px;
+
 }
+
 
 .colors{
+
     display:flex;
+
     gap:9px;
+
     margin-top:9px;
+
 }
 
+
 .color{
+
     width:25px;
+
     height:25px;
 
     border:
@@ -215,27 +364,50 @@ nav a.active{
         rgba(255,255,255,.25);
 
     border-radius:50%;
+
     cursor:pointer;
+
     padding:0;
 
     background-size:cover;
+
     background-position:center;
+
 }
+
 
 .color.active{
-    outline:2px solid white;
+
+    outline:
+        2px solid
+        white;
+
     outline-offset:2px;
+
 }
+
+
+/* ==============================
+   TALLAS
+============================== */
 
 .sizes{
+
     display:flex;
+
     flex-wrap:wrap;
+
     gap:6px;
+
     margin-top:9px;
+
 }
 
+
 .size{
-    padding:7px 10px;
+
+    padding:
+        7px 10px;
 
     border:
         1px solid
@@ -244,25 +416,46 @@ nav a.active{
     border-radius:3px;
 
     color:#aaa;
+
     background:transparent;
+
     cursor:pointer;
+
     font-size:8px;
+
 }
+
 
 .size.active{
+
     background:#fff;
+
     color:#111;
+
 }
+
+
+/* ==============================
+   CANTIDAD
+============================== */
 
 .quantity{
+
     display:flex;
+
     align-items:center;
+
     gap:12px;
+
     margin-top:15px;
+
 }
 
+
 .quantity button{
+
     width:28px;
+
     height:28px;
 
     border:
@@ -270,145 +463,273 @@ nav a.active{
         rgba(255,255,255,.2);
 
     background:#191919;
+
     color:#fff;
+
     cursor:pointer;
+
 }
+
 
 .quantity span{
+
     min-width:20px;
+
     text-align:center;
+
     font-size:11px;
+
 }
+
+
+/* ==============================
+   ENVÍO
+============================== */
 
 .shipping{
+
     margin-top:14px;
+
     color:#aaa;
+
     font-size:9px;
+
 }
+
 
 .stock{
+
     margin-top:7px;
+
     color:#777;
+
     font-size:8px;
+
 }
 
+
+/* ==============================
+   COMPRAR
+============================== */
+
 .buy{
+
     width:100%;
+
     margin-top:15px;
+
     padding:14px;
 
     border:0;
+
     border-radius:3px;
 
     background:#fff;
+
     color:#111;
 
     font-size:8px;
+
     font-weight:bold;
+
     letter-spacing:1.5px;
 
     cursor:pointer;
+
 }
+
 
 .buy:hover{
+
     background:#ddd;
+
 }
+
+
+/* ==============================
+   SIN PRODUCTOS
+============================== */
 
 .empty{
-    grid-column:1 / -1;
-    padding:100px 20px;
+
+    grid-column:
+        1 / -1;
+
+    padding:
+        100px 20px;
+
     text-align:center;
+
 }
+
 
 .empty-title{
+
     font-size:18px;
+
     font-weight:bold;
+
     letter-spacing:2px;
+
 }
+
 
 .empty-text{
+
     margin-top:12px;
+
     color:#888;
+
     font-size:10px;
+
 }
 
+
+/* ==============================
+   FOOTER
+============================== */
+
 footer{
-    padding:30px 5%;
+
+    padding:
+        30px 5%;
 
     border-top:
         1px solid
         rgba(255,255,255,.1);
 
     text-align:center;
+
     color:#777;
+
     font-size:8px;
+
 }
+
+
+/* ==============================
+   TABLET
+============================== */
 
 @media(max-width:1000px){
 
     .products{
-        grid-template-columns:repeat(2,1fr);
+
+        grid-template-columns:
+            repeat(2,1fr);
+
     }
 
 }
 
+
+/* ==============================
+   MÓVIL
+============================== */
+
 @media(max-width:650px){
 
     header{
+
         flex-wrap:wrap;
-        padding:16px 15px 9px;
+
+        padding:
+            16px 15px
+            9px;
+
     }
+
 
     .logo{
+
         font-size:17px;
+
     }
+
 
     nav{
+
         order:3;
+
         flex-basis:100%;
+
         justify-content:flex-start;
+
     }
+
 
     .hero{
-        padding:60px 15px 40px;
+
+        padding:
+            60px 15px
+            40px;
+
     }
+
 
     .hero h1{
+
         font-size:18vw;
+
         letter-spacing:-4px;
+
     }
+
 
     .products-section{
-        padding:20px 12px 70px;
+
+        padding:
+            20px 12px
+            70px;
+
     }
+
 
     .products{
+
         gap:9px;
+
     }
+
 
     .product{
+
         padding:10px;
+
     }
 
+
     .product-image{
+
         height:210px;
 
         margin:
             -10px
             -10px
             12px;
+
     }
+
 
     .product-name{
+
         font-size:10px;
+
     }
+
 
     .product-price{
+
         font-size:10px;
+
     }
 
+
     .empty{
-        padding:80px 15px;
+
+        padding:
+            80px 15px;
+
     }
 
 }
@@ -422,7 +743,6 @@ footer{
 
 
 <header>
-
 
 <div class="logo">
 
@@ -473,13 +793,10 @@ footer{
 
 </nav>
 
-
 </header>
 
 
-
 <section class="hero">
-
 
 <small>
     COLECCIÓN
@@ -496,22 +813,17 @@ footer{
     tu estilo urbano.
 </p>
 
-
 </section>
 
 
-
 <section class="products-section">
-
 
 <div
     class="products"
     id="productsContainer"
 ></div>
 
-
 </section>
-
 
 
 <footer>
@@ -521,17 +833,52 @@ footer{
 </footer>
 
 
-
 <script>
 
 
 /* =========================================================
    🟢🟢🟢 PRODUCTOS DE BISUTERÍA 🟢🟢🟢
 
-   PEGA AQUÍ LOS PRODUCTOS GENERADOS
-   POR admin.html.
+   PEGA AQUÍ LOS PRODUCTOS QUE GENERE admin.html.
 
-   NO BORRES LOS CORCHETES.
+   EJEMPLO:
+
+   {
+       id: "BIS-001",
+
+       name: "Pulsera Urban",
+
+       price: 29.90,
+
+       stock: 10,
+
+       description:
+           "Pulsera urbana premium.",
+
+       variants: [
+
+           {
+               name: "Plateado",
+               image: "URL-IMAGEN"
+           },
+
+           {
+               name: "Dorado",
+               image: "URL-IMAGEN"
+           }
+
+       ],
+
+       sizes: [
+           "Única"
+       ],
+
+       shipping:{
+           min:3,
+           max:9
+       }
+
+   }
 
 ========================================================= */
 
@@ -539,48 +886,9 @@ footer{
 const PRODUCTS = [
 
 
-    /*
-    
-    EJEMPLO:
 
-    {
-        id: "BIS-001",
+    /* 🟢 PEGA AQUÍ TUS PRODUCTOS 🟢 */
 
-        name: "Cadena Urban",
-
-        price: 24.90,
-
-        stock: 20,
-
-        description:
-            "Accesorio urbano premium.",
-
-        variants: [
-
-            {
-                name: "Dorado",
-                image: "URL-IMAGEN-DORADA"
-            },
-
-            {
-                name: "Plateado",
-                image: "URL-IMAGEN-PLATEADA"
-            }
-
-        ],
-
-        sizes: [
-            "Única"
-        ],
-
-        shipping: {
-            min: 3,
-            max: 9
-        }
-
-    }
-
-    */
 
 
 ];
@@ -588,7 +896,7 @@ const PRODUCTS = [
 
 
 /* =====================================================
-   🟢 WHATSAPP
+   WHATSAPP
 ===================================================== */
 
 const WHATSAPP_NUMBER =
@@ -660,10 +968,12 @@ function renderProducts(){
         PRODUCTS
         .map(
             (product,index) =>
+
                 createProductHTML(
                     product,
                     index
                 )
+
         )
         .join("");
 
@@ -728,11 +1038,13 @@ function createProductHTML(
         </div>
 
 
+
         <div class="product-name">
 
             ${product.name}
 
         </div>
+
 
 
         <div class="product-code">
@@ -743,10 +1055,10 @@ function createProductHTML(
         </div>
 
 
+
         ${
             product.description
             ?
-
             `
 
             <div class="product-description">
@@ -756,11 +1068,10 @@ function createProductHTML(
             </div>
 
             `
-
             :
-
             ""
         }
+
 
 
         <div class="product-price">
@@ -768,6 +1079,7 @@ function createProductHTML(
             ${money(product.price)}
 
         </div>
+
 
 
         <div class="label">
@@ -785,7 +1097,9 @@ function createProductHTML(
         </div>
 
 
+
         <div class="colors">
+
 
             ${
                 product.variants
@@ -829,13 +1143,14 @@ function createProductHTML(
                 .join("")
             }
 
+
         </div>
+
 
 
         ${
             sizes.length
             ?
-
             `
 
             <div class="label">
@@ -877,14 +1192,14 @@ function createProductHTML(
             </div>
 
             `
-
             :
-
             ""
         }
 
 
+
         <div class="quantity">
+
 
             <button
 
@@ -902,6 +1217,7 @@ function createProductHTML(
             </button>
 
 
+
             <span
                 id="quantity-${index}"
             >
@@ -909,6 +1225,7 @@ function createProductHTML(
                 1
 
             </span>
+
 
 
             <button
@@ -926,7 +1243,9 @@ function createProductHTML(
 
             </button>
 
+
         </div>
+
 
 
         <div class="shipping">
@@ -942,10 +1261,10 @@ function createProductHTML(
         </div>
 
 
+
         ${
             product.stock !== undefined
             ?
-
             `
 
             <div class="stock">
@@ -956,11 +1275,10 @@ function createProductHTML(
             </div>
 
             `
-
             :
-
             ""
         }
+
 
 
         <button
@@ -1296,7 +1614,7 @@ País:
 
 
 /* =====================================================
-   INICIAR PÁGINA
+   INICIAR
 ===================================================== */
 
 renderProducts();
