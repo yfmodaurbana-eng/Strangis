@@ -152,24 +152,12 @@ nav a.active{
     border-radius:7px;
 
     background:rgba(255,255,255,.05);
-
-    transition:.25s;
-}
-
-.product:hover{
-    transform:translateY(-3px);
-
-    border-color:
-        rgba(255,255,255,.25);
 }
 
 .product-image{
     height:300px;
 
-    margin:
-        -15px
-        -15px
-        18px;
+    margin:-15px -15px 18px;
 
     background:#222;
 
@@ -181,8 +169,6 @@ nav a.active{
     height:100%;
 
     object-fit:cover;
-
-    display:block;
 
     transition:.35s;
 }
@@ -233,7 +219,6 @@ nav a.active{
 
 .colors{
     display:flex;
-
     flex-wrap:wrap;
 
     gap:9px;
@@ -242,11 +227,10 @@ nav a.active{
 }
 
 .color{
-    width:29px;
-    height:29px;
+    width:32px;
+    height:32px;
 
-    border:2px solid
-        rgba(255,255,255,.25);
+    border:2px solid rgba(255,255,255,.25);
 
     border-radius:50%;
 
@@ -271,7 +255,6 @@ nav a.active{
 
 .sizes{
     display:flex;
-
     flex-wrap:wrap;
 
     gap:6px;
@@ -282,8 +265,7 @@ nav a.active{
 .size{
     padding:7px 10px;
 
-    border:1px solid
-        rgba(255,255,255,.18);
+    border:1px solid rgba(255,255,255,.18);
 
     border-radius:3px;
 
@@ -299,8 +281,7 @@ nav a.active{
 }
 
 .size:hover{
-    border-color:#fff;
-    color:#fff;
+    border-color:rgba(255,255,255,.5);
 }
 
 .size.active{
@@ -310,7 +291,6 @@ nav a.active{
 
 .quantity{
     display:flex;
-
     align-items:center;
 
     gap:12px;
@@ -322,20 +302,12 @@ nav a.active{
     width:28px;
     height:28px;
 
-    border:1px solid
-        rgba(255,255,255,.2);
+    border:1px solid rgba(255,255,255,.2);
 
     background:#191919;
-
     color:#fff;
 
     cursor:pointer;
-
-    border-radius:3px;
-}
-
-.quantity button:hover{
-    background:#333;
 }
 
 .quantity span{
@@ -362,14 +334,6 @@ nav a.active{
     font-size:8px;
 }
 
-.stock.available{
-    color:#aaa;
-}
-
-.stock.out{
-    color:#888;
-}
-
 .buy{
     width:100%;
 
@@ -378,17 +342,13 @@ nav a.active{
     padding:14px;
 
     border:0;
-
     border-radius:3px;
 
     background:#fff;
-
     color:#111;
 
     font-size:8px;
-
     font-weight:bold;
-
     letter-spacing:1.5px;
 
     cursor:pointer;
@@ -398,13 +358,6 @@ nav a.active{
 
 .buy:hover{
     background:#ddd;
-}
-
-.buy:disabled{
-    background:#444;
-    color:#888;
-
-    cursor:not-allowed;
 }
 
 .empty{
@@ -420,9 +373,7 @@ nav a.active{
 footer{
     padding:30px 5%;
 
-    border-top:
-        1px solid
-        rgba(255,255,255,.1);
+    border-top:1px solid rgba(255,255,255,.1);
 
     text-align:center;
 
@@ -434,8 +385,7 @@ footer{
 @media(max-width:1000px){
 
     .products{
-        grid-template-columns:
-            repeat(2,1fr);
+        grid-template-columns:repeat(2,1fr);
     }
 
 }
@@ -461,9 +411,7 @@ footer{
     }
 
     .hero{
-        padding:
-            60px 15px
-            40px;
+        padding:60px 15px 40px;
     }
 
     .hero h1{
@@ -473,9 +421,7 @@ footer{
     }
 
     .products-section{
-        padding:
-            20px 12px
-            70px;
+        padding:20px 12px 70px;
     }
 
     .products{
@@ -489,10 +435,7 @@ footer{
     .product-image{
         height:210px;
 
-        margin:
-            -10px
-            -10px
-            12px;
+        margin:-10px -10px 12px;
     }
 
     .product-name{
@@ -501,11 +444,6 @@ footer{
 
     .product-price{
         font-size:10px;
-    }
-
-    .color{
-        width:25px;
-        height:25px;
     }
 
 }
@@ -517,15 +455,12 @@ footer{
 <body>
 
 
-<!-- =====================================================
-     CABECERA
-===================================================== -->
-
 <header>
 
 <div class="logo">
     MI MARCA
 </div>
+
 
 <nav>
 
@@ -565,10 +500,6 @@ footer{
 </header>
 
 
-<!-- =====================================================
-     CABECERA DE CATEGORÍA
-===================================================== -->
-
 <section class="hero">
 
 <small>
@@ -587,10 +518,6 @@ footer{
 </section>
 
 
-<!-- =====================================================
-     PRODUCTOS
-===================================================== -->
-
 <section class="products-section">
 
 <div
@@ -601,13 +528,9 @@ footer{
 </section>
 
 
-<!-- =====================================================
-     PIE
-===================================================== -->
-
 <footer>
 
-    © 2026 MI MARCA · TODOS LOS DERECHOS RESERVADOS
+© 2026 MI MARCA · TODOS LOS DERECHOS RESERVADOS
 
 </footer>
 
@@ -615,148 +538,25 @@ footer{
 <script>
 
 
-/* =========================================================
-   🟢🟢🟢 ZONA DE PRODUCTOS
-=========================================================
+/* =====================================================
+   ------------------ CÓDIGOS DE PRODUCTO ------------------
+   ===================================================== */
 
-   AQUÍ DEBES PEGAR LOS PRODUCTOS GENERADOS
-   DESDE admin.html.
-
-   NO BORRES:
-
-   const PRODUCTS = [
-
-   ];
-
-   EJEMPLO:
-
-   const PRODUCTS = [
-
-       // 🟢 PEGA AQUÍ EL CÓDIGO GENERADO POR ADMIN
-
-       {
-           id: "CAM-001",
-           ref: "CAM-001",
-           name: "Camiseta Negra",
-           category: "camisetas",
-           price: 29.90,
-           stock: 10,
-           description: "Camiseta urbana.",
-           whatsapp: "34600000000",
-
-           variants: [
-               {
-                   name: "Negro",
-                   image: "https://ejemplo.com/negra.jpg"
-               },
-               {
-                   name: "Blanco",
-                   image: "https://ejemplo.com/blanca.jpg"
-               }
-           ],
-
-           sizes: [
-               "S",
-               "M",
-               "L",
-               "XL"
-           ],
-
-           shipping: {
-               min: 3,
-               max: 9
-           }
-       },
-
-       // 🟢 AQUÍ PUEDES AÑADIR MÁS PRODUCTOS
-
-   ];
-
-========================================================= */
 
 const PRODUCTS = [
 
-    /* =====================================================
-       🟢🟢🟢 PEGAR AQUÍ LOS PRODUCTOS GENERADOS 🟢🟢🟢
-{
-    id: "000001",
-    ref: "000001",
-    name: "Camiseta lacoste varios colores",
-    category: "camisetas",
-    price: 40,
-    stock: 9999,
-    description: "",
-    whatsapp: "34674559614",
-
-    variants: [
-        {
-            name: "Negro",
-            image: "https://imgur.com/05aVIdy"
-        },
-        {
-            name: "Blanco",
-            image: "https://imgur.com/GFWq2Pk"
-        },
-        {
-            name: "Rojo",
-            image: "https://imgur.com/rgHCEWj"
-        },
-        {
-            name: "Morado",
-            image: "https://imgur.com/FIiz38t"
-        },
-        {
-            name: "Marrón",
-            image: "https://imgur.com/kWzmzj8"
-        },
-        {
-            name: "Amarillo",
-            image: "https://imgur.com/vBWs12d"
-        },
-        {
-            name: "Verde",
-            image: "https://imgur.com/b2mzD9q"
-        }
-    ],
-
-    sizes: [
-        "S",
-        "M",
-        "L.XL"
-    ],
-
-    shipping: {
-        min: 20,
-        max: 30
-    }
-},
-    ===================================================== */
 
 
-    /* 🟢🟢🟢 FIN DE LA ZONA DE PRODUCTOS 🟢🟢🟢 */
+
+/* =====================================================
+   ------------------ PEGAR PRODUCTO AQUÍ ------------------
+   ===================================================== */
+
+
 
 ];
 
 
-/* =========================================================
-   NÚMERO DE WHATSAPP DE RESERVA
-=========================================================
-
-   El administrador guarda el WhatsApp dentro de cada
-   producto.
-
-   Si por algún motivo un producto antiguo no tiene
-   whatsapp, se utilizará este número.
-
-========================================================= */
-
-const DEFAULT_WHATSAPP_NUMBER =
-    "34674559614";
-
-
-/* =========================================================
-   FORMATO DE PRECIO
-========================================================= */
 
 function money(value){
 
@@ -771,25 +571,6 @@ function money(value){
 }
 
 
-/* =========================================================
-   ESCAPAR HTML
-========================================================= */
-
-function escapeHTML(value){
-
-    return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-
-}
-
-
-/* =========================================================
-   MOSTRAR PRODUCTOS
-========================================================= */
 
 function renderProducts(){
 
@@ -807,11 +588,6 @@ function renderProducts(){
 
                 Todavía no hay productos
                 disponibles en esta categoría.
-
-                <br><br>
-
-                Añade un producto desde
-                <strong>admin.html</strong>.
 
             </div>
 
@@ -836,9 +612,6 @@ function renderProducts(){
 }
 
 
-/* =========================================================
-   CREAR TARJETA DE PRODUCTO
-========================================================= */
 
 function createProductHTML(
     product,
@@ -847,21 +620,21 @@ function createProductHTML(
 
     const variants =
         Array.isArray(product.variants)
-        &&
-        product.variants.length
         ?
         product.variants
         :
-        [
-            {
-                name:"Principal",
-                image:""
-            }
-        ];
+        [];
 
 
     const firstVariant =
         variants[0];
+
+
+    if(!firstVariant){
+
+        return "";
+
+    }
 
 
     const sizes =
@@ -873,22 +646,12 @@ function createProductHTML(
 
 
     const shipping =
-        product.shipping
-        ||
-        {
+        product.shipping || {
+
             min:3,
             max:9
+
         };
-
-
-    const stock =
-        Number(product.stock || 0);
-
-
-    const whatsapp =
-        product.whatsapp
-        ||
-        DEFAULT_WHATSAPP_NUMBER;
 
 
     return `
@@ -908,8 +671,6 @@ function createProductHTML(
     >
 
 
-        <!-- IMAGEN PRINCIPAL -->
-
         <div class="product-image">
 
             <img
@@ -922,16 +683,12 @@ function createProductHTML(
 
                 loading="lazy"
 
-                onerror="
-                    this.style.display='none';
-                "
+                onerror="this.style.display='none'"
 
             >
 
         </div>
 
-
-        <!-- NOMBRE -->
 
         <div class="product-name">
 
@@ -940,17 +697,14 @@ function createProductHTML(
         </div>
 
 
-        <!-- REFERENCIA -->
-
         <div class="product-code">
 
             REF:
+
             ${escapeHTML(product.ref || product.id || "")}
 
         </div>
 
-
-        <!-- DESCRIPCIÓN -->
 
         ${
             product.description
@@ -969,16 +723,12 @@ function createProductHTML(
         }
 
 
-        <!-- PRECIO -->
-
         <div class="product-price">
 
             ${money(product.price)}
 
         </div>
 
-
-        <!-- COLOR SELECCIONADO -->
 
         <div class="label">
 
@@ -987,15 +737,11 @@ function createProductHTML(
             <span
                 id="color-name-${index}"
             >
-
                 ${escapeHTML(firstVariant.name)}
-
             </span>
 
         </div>
 
-
-        <!-- COLORES -->
 
         <div class="colors">
 
@@ -1021,19 +767,10 @@ function createProductHTML(
 
                         style="
                             background-image:
-                            url('${String(
-                                variant.image || ""
-                            )
-                            .replace(/'/g,"%27")}');
+                            url('${escapeAttribute(variant.image)}');
                         "
 
-                        title="${escapeHTML(
-                            variant.name
-                        )}"
-
-                        aria-label="${escapeHTML(
-                            variant.name
-                        )}"
+                        title="${escapeAttribute(variant.name)}"
 
                         onclick="
                             selectColor(
@@ -1052,8 +789,6 @@ function createProductHTML(
         </div>
 
 
-        <!-- TALLAS -->
-
         ${
             sizes.length
             ?
@@ -1071,7 +806,7 @@ function createProductHTML(
                 ${
                     sizes
                     .map(
-                        size => `
+                        (size,sizeIndex) => `
 
                         <button
 
@@ -1082,7 +817,7 @@ function createProductHTML(
                             onclick="
                                 selectSize(
                                     ${index},
-                                    ${JSON.stringify(size)}
+                                    ${sizeIndex}
                                 )
                             "
 
@@ -1105,8 +840,6 @@ function createProductHTML(
         }
 
 
-        <!-- CANTIDAD -->
-
         <div class="quantity">
 
             <button
@@ -1118,14 +851,18 @@ function createProductHTML(
                     )
                 "
             >
+
                 −
+
             </button>
 
 
             <span
                 id="quantity-${index}"
             >
+
                 1
+
             </span>
 
 
@@ -1138,62 +875,50 @@ function createProductHTML(
                     )
                 "
             >
+
                 +
+
             </button>
 
         </div>
 
 
-        <!-- ENVÍO -->
-
         <div class="shipping">
 
             🚚 Envío estimado:
 
-            ${escapeHTML(shipping.min)}
+            ${shipping.min}
             –
-            ${escapeHTML(shipping.max)}
+            ${shipping.max}
 
             días laborables
 
         </div>
 
 
-        <!-- STOCK -->
+        ${
+            product.stock !== undefined
+            ?
+            `
 
-        <div
-            class="
-                stock
-                ${stock > 0 ? "available" : "out"}
-            "
-        >
+            <div class="stock">
 
-            ${
-                stock > 0
-                ?
-                `Stock disponible: ${stock}`
-                :
-                "Producto agotado"
-            }
+                Stock disponible:
+                ${product.stock}
 
-        </div>
+            </div>
 
+            `
+            :
+            ""
+        }
 
-        <!-- BOTÓN COMPRAR -->
 
         <button
 
             type="button"
 
             class="buy"
-
-            ${
-                stock <= 0
-                ?
-                "disabled"
-                :
-                ""
-            }
 
             onclick="
                 buyProduct(
@@ -1203,13 +928,7 @@ function createProductHTML(
 
         >
 
-            ${
-                stock > 0
-                ?
-                "COMPRAR POR WHATSAPP"
-                :
-                "AGOTADO"
-            }
+            COMPRAR
 
         </button>
 
@@ -1221,9 +940,6 @@ function createProductHTML(
 }
 
 
-/* =========================================================
-   CAMBIAR COLOR / IMAGEN
-========================================================= */
 
 function selectColor(
     productIndex,
@@ -1234,19 +950,6 @@ function selectColor(
         PRODUCTS[
             productIndex
         ];
-
-
-    if(
-        !product ||
-        !product.variants ||
-        !product.variants[
-            variantIndex
-        ]
-    ){
-
-        return;
-
-    }
 
 
     const variant =
@@ -1261,42 +964,24 @@ function selectColor(
         );
 
 
-    const colorName =
-        document.getElementById(
-            `color-name-${productIndex}`
-        );
+    image.style.display =
+        "block";
 
 
-    if(image){
-
-        image.style.display =
-            "block";
-
-        image.src =
-            variant.image;
-
-    }
+    image.src =
+        variant.image;
 
 
-    if(colorName){
-
-        colorName.textContent =
-            variant.name;
-
-    }
+    document.getElementById(
+        `color-name-${productIndex}`
+    ).textContent =
+        variant.name;
 
 
     const card =
         document.getElementById(
             `product-${productIndex}`
         );
-
-
-    if(!card){
-
-        return;
-
-    }
 
 
     card.dataset.variant =
@@ -1324,26 +1009,28 @@ function selectColor(
 }
 
 
-/* =========================================================
-   CAMBIAR TALLA
-========================================================= */
 
 function selectSize(
     productIndex,
-    size
+    sizeIndex
 ){
+
+    const product =
+        PRODUCTS[
+            productIndex
+        ];
+
+
+    const size =
+        product.sizes[
+            sizeIndex
+        ];
+
 
     const card =
         document.getElementById(
             `product-${productIndex}`
         );
-
-
-    if(!card){
-
-        return;
-
-    }
 
 
     card.dataset.size =
@@ -1355,16 +1042,14 @@ function selectSize(
             ".size"
         )
         .forEach(
-            button => {
+            (
+                button,
+                buttonIndex
+            ) => {
 
                 button.classList.toggle(
                     "active",
-
-                    button
-                    .textContent
-                    .trim()
-                    ===
-                    String(size)
+                    buttonIndex === sizeIndex
                 );
 
             }
@@ -1373,9 +1058,6 @@ function selectSize(
 }
 
 
-/* =========================================================
-   CANTIDAD
-========================================================= */
 
 function changeQuantity(
     productIndex,
@@ -1388,9 +1070,18 @@ function changeQuantity(
         );
 
 
-    if(!card){
+    let quantity =
+        Number(
+            card.dataset.quantity
+        );
 
-        return;
+
+    quantity += change;
+
+
+    if(quantity < 1){
+
+        quantity = 1;
 
     }
 
@@ -1401,40 +1092,18 @@ function changeQuantity(
         ];
 
 
-    let quantity =
-        Number(
-            card.dataset.quantity
-            ||
-            1
-        );
-
-
-    quantity +=
-        Number(change);
-
-
-    if(quantity < 1){
-
-        quantity = 1;
-
-    }
-
-
-    const stock =
-        Number(
-            product.stock
-            ||
-            0
-        );
-
-
     if(
-        stock > 0 &&
-        quantity > stock
+        Number.isFinite(
+            Number(product.stock)
+        )
+        &&
+        Number(product.stock) > 0
+        &&
+        quantity > Number(product.stock)
     ){
 
         quantity =
-            stock;
+            Number(product.stock);
 
     }
 
@@ -1443,25 +1112,14 @@ function changeQuantity(
         quantity;
 
 
-    const quantityElement =
-        document.getElementById(
-            `quantity-${productIndex}`
-        );
-
-
-    if(quantityElement){
-
-        quantityElement.textContent =
-            quantity;
-
-    }
+    document.getElementById(
+        `quantity-${productIndex}`
+    ).textContent =
+        quantity;
 
 }
 
 
-/* =========================================================
-   COMPRAR
-========================================================= */
 
 function buyProduct(
     productIndex
@@ -1473,51 +1131,16 @@ function buyProduct(
         ];
 
 
-    if(!product){
-
-        return;
-
-    }
-
-
     const card =
         document.getElementById(
             `product-${productIndex}`
         );
 
 
-    if(!card){
-
-        return;
-
-    }
-
-
-    const stock =
-        Number(
-            product.stock
-            ||
-            0
-        );
-
-
-    if(stock <= 0){
-
-        alert(
-            "Este producto está agotado."
-        );
-
-        return;
-
-    }
-
-
     const variant =
         product.variants[
             Number(
-                card.dataset.variant
-                ||
-                0
+                card.dataset.variant || 0
             )
         ];
 
@@ -1555,17 +1178,27 @@ function buyProduct(
         String(
             product.whatsapp
             ||
-            DEFAULT_WHATSAPP_NUMBER
-        )
-        .replace(
+            ""
+        ).replace(
             /\D/g,
             ""
         );
 
 
-    const message =
+    if(!whatsapp){
 
-`🛍️ NUEVO PEDIDO
+        alert(
+            "Este producto no tiene un número de WhatsApp configurado."
+        );
+
+        return;
+
+    }
+
+
+    const message = `
+
+🛍️ NUEVO PEDIDO
 
 ━━━━━━━━━━━━━━━━
 
@@ -1575,9 +1208,7 @@ Producto: ${product.name}
 
 REF: ${product.ref || product.id || ""}
 
-Categoría: Camisetas
-
-Color: ${variant ? variant.name : "No especificado"}
+Color: ${variant.name}
 
 Talla: ${size}
 
@@ -1625,23 +1256,17 @@ País:
 📝 OBSERVACIONES:
 
 ━━━━━━━━━━━━━━━━
+
 `;
 
 
     const whatsappURL =
-
         "https://wa.me/"
-
         +
-
         whatsapp
-
         +
-
         "?text="
-
         +
-
         encodeURIComponent(
             message
         );
@@ -1649,18 +1274,41 @@ País:
 
     window.open(
         whatsappURL,
-        "_blank",
-        "noopener,noreferrer"
+        "_blank"
     );
 
 }
 
 
-/* =========================================================
-   INICIAR WEB
-========================================================= */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+
+function escapeAttribute(value){
+
+    return String(value ?? "")
+        .replace(/\\/g,"\\\\")
+        .replace(/'/g,"\\'")
+        .replace(/"/g,"&quot;")
+        .replace(/</g,"%3C")
+        .replace(/>/g,"%3E");
+
+}
+
+
 
 renderProducts();
+
 
 </script>
 
