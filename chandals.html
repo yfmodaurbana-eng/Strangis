@@ -10,18 +10,10 @@
     content="width=device-width, initial-scale=1.0"
 >
 
-<!-- =====================================================
-     🟢 EDITAR AQUÍ: TÍTULO DE LA PESTAÑA
-===================================================== -->
-
 <title>Chandals | MI MARCA</title>
 
 
 <style>
-
-/* =====================================================
-   CONFIGURACIÓN GENERAL
-===================================================== */
 
 *{
     margin:0;
@@ -52,10 +44,6 @@ body{
 
 }
 
-
-/* =====================================================
-   CABECERA
-===================================================== */
 
 header{
 
@@ -150,31 +138,6 @@ nav a.active{
 }
 
 
-.admin{
-
-    padding:10px 15px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.25);
-
-    border-radius:4px;
-
-    color:#fff;
-
-    text-decoration:none;
-
-    font-size:8px;
-
-    font-weight:bold;
-
-}
-
-
-/* =====================================================
-   CABECERA DE CATEGORÍA
-===================================================== */
-
 .hero{
 
     padding:
@@ -230,10 +193,6 @@ nav a.active{
 }
 
 
-/* =====================================================
-   PRODUCTOS
-===================================================== */
-
 .products-section{
 
     padding:
@@ -254,10 +213,6 @@ nav a.active{
 
 }
 
-
-/* =====================================================
-   TARJETA PRODUCTO
-===================================================== */
 
 .product{
 
@@ -360,10 +315,6 @@ nav a.active{
 }
 
 
-/* =====================================================
-   COLORES
-===================================================== */
-
 .label{
 
     margin-top:15px;
@@ -424,10 +375,6 @@ nav a.active{
 }
 
 
-/* =====================================================
-   TALLAS
-===================================================== */
-
 .sizes{
 
     display:flex;
@@ -472,10 +419,6 @@ nav a.active{
 }
 
 
-/* =====================================================
-   CANTIDAD
-===================================================== */
-
 .quantity{
 
     display:flex;
@@ -519,10 +462,6 @@ nav a.active{
 }
 
 
-/* =====================================================
-   ENVÍO
-===================================================== */
-
 .shipping{
 
     margin-top:14px;
@@ -544,10 +483,6 @@ nav a.active{
 
 }
 
-
-/* =====================================================
-   BOTÓN COMPRAR
-===================================================== */
 
 .buy{
 
@@ -582,10 +517,6 @@ nav a.active{
 
 }
 
-
-/* =====================================================
-   CATEGORÍA VACÍA
-===================================================== */
 
 .empty{
 
@@ -622,10 +553,6 @@ nav a.active{
 }
 
 
-/* =====================================================
-   FOOTER
-===================================================== */
-
 footer{
 
     padding:
@@ -644,10 +571,6 @@ footer{
 }
 
 
-/* =====================================================
-   TABLET
-===================================================== */
-
 @media(max-width:1000px){
 
     .products{
@@ -659,10 +582,6 @@ footer{
 
 }
 
-
-/* =====================================================
-   MÓVIL
-===================================================== */
 
 @media(max-width:650px){
 
@@ -779,21 +698,14 @@ footer{
 <body>
 
 
-<!-- =====================================================
-     CABECERA
-===================================================== -->
-
 <header>
 
 
 <div class="logo">
 
-    <!-- 🟢 EDITAR AQUÍ: NOMBRE DE TU MARCA -->
-
     MI MARCA
 
 </div>
-
 
 
 <nav>
@@ -840,22 +752,9 @@ footer{
 </nav>
 
 
-
-<a
-    class="admin"
-    href="admin.html"
->
-    ADMIN
-</a>
-
-
 </header>
 
 
-
-<!-- =====================================================
-     PRESENTACIÓN DE CATEGORÍA
-===================================================== -->
 
 <section class="hero">
 
@@ -865,14 +764,10 @@ footer{
 </small>
 
 
-<!-- 🟢 EDITAR AQUÍ SI QUIERES -->
-
 <h1>
     CHANDALS
 </h1>
 
-
-<!-- 🟢 EDITAR AQUÍ SI QUIERES -->
 
 <p>
     Descubre nuestra selección de chandals
@@ -883,10 +778,6 @@ footer{
 </section>
 
 
-
-<!-- =====================================================
-     CONTENEDOR DE PRODUCTOS
-===================================================== -->
 
 <section class="products-section">
 
@@ -903,8 +794,6 @@ footer{
 
 <footer>
 
-<!-- 🟢 EDITAR AQUÍ -->
-
 © 2026 MI MARCA · TODOS LOS DERECHOS RESERVADOS
 
 </footer>
@@ -914,27 +803,13 @@ footer{
 <script>
 
 
-/* =========================================================
-   🟢🟢🟢 PRODUCTOS DE CHANDALS 🟢🟢🟢
-
-   IMPORTANTE:
-
-   AQUÍ PEGARÁS LOS CÓDIGOS QUE GENERE
-   TU ARCHIVO admin.html.
-
-   NO TIENES QUE MODIFICAR EL RESTO
-   DEL CÓDIGO.
-
-========================================================= */
-
-
 const PRODUCTS = [
 
 
 
     /*
     
-    EJEMPLO DE CÓMO QUEDARÁ UN PRODUCTO:
+    EJEMPLO:
 
     {
         id: "CHA-001",
@@ -982,19 +857,9 @@ const PRODUCTS = [
 ];
 
 
-
-/* =====================================================
-   🟢 WHATSAPP
-===================================================== */
-
 const WHATSAPP_NUMBER =
     "34674559614";
 
-
-
-/* =====================================================
-   FORMATO DE PRECIO
-===================================================== */
 
 function money(value){
 
@@ -1009,22 +874,12 @@ function money(value){
 }
 
 
-
-/* =====================================================
-   MOSTRAR PRODUCTOS
-===================================================== */
-
 function renderProducts(){
 
     const container =
         document.getElementById(
             "productsContainer"
         );
-
-
-    /* =============================================
-       SI NO HAY PRODUCTOS
-    ============================================= */
 
 
     if(!PRODUCTS.length){
@@ -1056,12 +911,6 @@ function renderProducts(){
     }
 
 
-
-    /* =============================================
-       SI HAY PRODUCTOS
-    ============================================= */
-
-
     container.innerHTML =
 
         PRODUCTS
@@ -1078,11 +927,6 @@ function renderProducts(){
 
 }
 
-
-
-/* =====================================================
-   CREAR TARJETA DEL PRODUCTO
-===================================================== */
 
 function createProductHTML(
     product,
@@ -1185,11 +1029,6 @@ function createProductHTML(
 
 
 
-        <!-- ==========================
-             COLORES
-        =========================== -->
-
-
         <div class="label">
 
             Color:
@@ -1260,11 +1099,6 @@ function createProductHTML(
 
 
 
-        <!-- ==========================
-             TALLAS
-        =========================== -->
-
-
         ${
             sizes.length
 
@@ -1325,11 +1159,6 @@ function createProductHTML(
 
 
 
-        <!-- ==========================
-             CANTIDAD
-        =========================== -->
-
-
         <div class="quantity">
 
 
@@ -1380,11 +1209,6 @@ function createProductHTML(
 
 
 
-        <!-- ==========================
-             ENVÍO
-        =========================== -->
-
-
         <div class="shipping">
 
             🚚 Envío estimado:
@@ -1423,11 +1247,6 @@ function createProductHTML(
 
 
 
-        <!-- ==========================
-             COMPRAR
-        =========================== -->
-
-
         <button
 
             class="buy"
@@ -1452,11 +1271,6 @@ function createProductHTML(
 }
 
 
-
-/* =====================================================
-   COLOR → IMAGEN
-===================================================== */
-
 function selectColor(
     productIndex,
     variantIndex
@@ -1472,19 +1286,6 @@ function selectColor(
         product.variants[
             variantIndex
         ];
-
-
-    /*
-
-       🟢 ESTA ES LA PARTE IMPORTANTE:
-
-       COLOR SELECCIONADO
-              ↓
-       BUSCA SU IMAGEN
-              ↓
-       CAMBIA LA FOTO
-
-    */
 
 
     document.getElementById(
@@ -1530,11 +1331,6 @@ function selectColor(
 }
 
 
-
-/* =====================================================
-   TALLA
-===================================================== */
-
 function selectSize(
     productIndex,
     size
@@ -1575,11 +1371,6 @@ function selectSize(
 }
 
 
-
-/* =====================================================
-   CANTIDAD
-===================================================== */
-
 function changeQuantity(
     productIndex,
     change
@@ -1618,11 +1409,6 @@ function changeQuantity(
 
 }
 
-
-
-/* =====================================================
-   COMPRAR
-===================================================== */
 
 function buyProduct(
     productIndex
@@ -1674,11 +1460,6 @@ function buyProduct(
             min:3,
             max:9
         };
-
-
-    /* ==========================================
-       MENSAJE PARA WHATSAPP
-    ========================================== */
 
 
     const message = `
@@ -1777,11 +1558,6 @@ País:
 
 }
 
-
-
-/* =====================================================
-   INICIAR PÁGINA
-===================================================== */
 
 renderProducts();
 
