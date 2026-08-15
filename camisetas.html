@@ -10,6 +10,10 @@
 
 <style>
 
+/* =====================================================
+   CONFIGURACIÓN GENERAL
+===================================================== */
+
 *{
     margin:0;
     padding:0;
@@ -22,7 +26,12 @@ html{
 
 body{
     min-height:100vh;
-    font-family:Arial,Helvetica,sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     color:#fff;
 
     background:
@@ -35,6 +44,11 @@ body{
         );
 }
 
+
+/* =====================================================
+   CABECERA
+===================================================== */
+
 header{
     position:sticky;
     top:0;
@@ -46,11 +60,15 @@ header{
     align-items:center;
     gap:30px;
 
-    border-bottom:1px solid rgba(255,255,255,.12);
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.12);
 
-    background:rgba(25,25,25,.90);
+    background:
+        rgba(25,25,25,.90);
 
-    backdrop-filter:blur(15px);
+    backdrop-filter:
+        blur(15px);
 }
 
 .logo{
@@ -96,6 +114,11 @@ nav a.active{
     color:#fff;
 }
 
+
+/* =====================================================
+   HERO
+===================================================== */
+
 .hero{
     padding:90px 5% 60px;
 }
@@ -111,7 +134,12 @@ nav a.active{
 .hero h1{
     margin-top:18px;
 
-    font-size:clamp(55px,10vw,110px);
+    font-size:
+        clamp(
+            55px,
+            10vw,
+            110px
+        );
 
     letter-spacing:-6px;
     line-height:.85;
@@ -127,6 +155,11 @@ nav a.active{
     font-size:12px;
     line-height:1.7;
 }
+
+
+/* =====================================================
+   PRODUCTOS
+===================================================== */
 
 .products-section{
     padding:20px 5% 100px;
@@ -146,41 +179,78 @@ nav a.active{
 
     padding:15px;
 
-    border:1px solid rgba(255,255,255,.12);
+    border:
+        1px solid
+        rgba(255,255,255,.12);
 
     border-radius:7px;
 
-    background:rgba(255,255,255,.05);
+    background:
+        rgba(255,255,255,.05);
 }
 
-.product-image{
-    height:300px;
 
-    margin:-15px -15px 18px;
+/* =====================================================
+   🟢 CONFIGURACIÓN DE IMÁGENES
+=====================================================
+
+   CAMBIA ESTOS VALORES SI ALGÚN DÍA QUIERES
+   HACER LAS IMÁGENES MÁS GRANDES O MÁS PEQUEÑAS.
+
+   height:
+   Altura de la zona de imagen.
+
+   scale:
+   Zoom de la fotografía.
+
+===================================================== */
+
+.product-image{
+
+    height:360px;
+
+    margin:
+        -15px
+        -15px
+        18px;
 
     background:#222;
 
     overflow:hidden;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 }
 
 .product-image img{
+
     width:100%;
     height:100%;
 
     object-fit:cover;
 
-    display:block;
+    transform:
+        scale(1.08);
 
-    transition:.35s;
+    transition:
+        transform .35s ease,
+        opacity .2s ease;
 }
 
-.product:hover .product-image img{
-    transform:scale(1.04);
+.product:hover
+.product-image img{
+
+    transform:
+        scale(1.13);
 }
+
+
+/* =====================================================
+   INFORMACIÓN DEL PRODUCTO
+===================================================== */
 
 .product-name{
     font-size:14px;
@@ -188,6 +258,7 @@ nav a.active{
 }
 
 .product-code{
+
     margin-top:6px;
 
     color:#777;
@@ -197,6 +268,7 @@ nav a.active{
 }
 
 .product-description{
+
     margin-top:9px;
 
     color:#999;
@@ -206,24 +278,35 @@ nav a.active{
 }
 
 .product-price{
+
     margin-top:12px;
 
     font-size:14px;
     font-weight:bold;
 }
 
+
+/* =====================================================
+   COLOR
+===================================================== */
+
 .label{
+
     margin-top:15px;
 
     color:#999;
 
     font-size:8px;
+
     text-transform:uppercase;
+
     letter-spacing:1px;
 }
 
 .colors{
+
     display:flex;
+
     flex-wrap:wrap;
 
     gap:9px;
@@ -232,12 +315,13 @@ nav a.active{
 }
 
 .color{
-    position:relative;
 
-    width:32px;
-    height:32px;
+    width:34px;
+    height:34px;
 
-    border:2px solid rgba(255,255,255,.25);
+    border:
+        2px solid
+        rgba(255,255,255,.25);
 
     border-radius:50%;
 
@@ -248,25 +332,43 @@ nav a.active{
     background-color:#222;
 
     background-repeat:no-repeat;
+
     background-size:cover;
+
     background-position:center;
 
-    transition:.2s;
-
-    overflow:hidden;
+    transition:
+        transform .2s ease,
+        border-color .2s ease;
 }
 
 .color:hover{
-    transform:scale(1.08);
+
+    transform:
+        scale(1.10);
+
+    border-color:
+        rgba(255,255,255,.7);
 }
 
 .color.active{
-    outline:2px solid white;
+
+    outline:
+        2px solid
+        white;
+
     outline-offset:2px;
 }
 
+
+/* =====================================================
+   TALLAS
+===================================================== */
+
 .sizes{
+
     display:flex;
+
     flex-wrap:wrap;
 
     gap:6px;
@@ -275,9 +377,13 @@ nav a.active{
 }
 
 .size{
-    padding:7px 10px;
 
-    border:1px solid rgba(255,255,255,.18);
+    padding:
+        7px 10px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.18);
 
     border-radius:3px;
 
@@ -293,16 +399,27 @@ nav a.active{
 }
 
 .size:hover{
-    border-color:rgba(255,255,255,.5);
+
+    border-color:
+        rgba(255,255,255,.5);
 }
 
 .size.active{
+
     background:#fff;
+
     color:#111;
 }
 
+
+/* =====================================================
+   CANTIDAD
+===================================================== */
+
 .quantity{
+
     display:flex;
+
     align-items:center;
 
     gap:12px;
@@ -311,18 +428,23 @@ nav a.active{
 }
 
 .quantity button{
+
     width:28px;
     height:28px;
 
-    border:1px solid rgba(255,255,255,.2);
+    border:
+        1px solid
+        rgba(255,255,255,.2);
 
     background:#191919;
+
     color:#fff;
 
     cursor:pointer;
 }
 
 .quantity span{
+
     min-width:20px;
 
     text-align:center;
@@ -330,7 +452,13 @@ nav a.active{
     font-size:11px;
 }
 
+
+/* =====================================================
+   ENVÍO / STOCK
+===================================================== */
+
 .shipping{
+
     margin-top:14px;
 
     color:#aaa;
@@ -339,6 +467,7 @@ nav a.active{
 }
 
 .stock{
+
     margin-top:7px;
 
     color:#777;
@@ -346,7 +475,13 @@ nav a.active{
     font-size:8px;
 }
 
+
+/* =====================================================
+   BOTÓN COMPRAR
+===================================================== */
+
 .buy{
+
     width:100%;
 
     margin-top:15px;
@@ -354,13 +489,17 @@ nav a.active{
     padding:14px;
 
     border:0;
+
     border-radius:3px;
 
     background:#fff;
+
     color:#111;
 
     font-size:8px;
+
     font-weight:bold;
+
     letter-spacing:1.5px;
 
     cursor:pointer;
@@ -369,11 +508,20 @@ nav a.active{
 }
 
 .buy:hover{
+
     background:#ddd;
+
 }
 
+
+/* =====================================================
+   SIN PRODUCTOS
+===================================================== */
+
 .empty{
-    grid-column:1 / -1;
+
+    grid-column:
+        1 / -1;
 
     padding:80px 20px;
 
@@ -382,10 +530,19 @@ nav a.active{
     color:#888;
 }
 
-footer{
-    padding:30px 5%;
 
-    border-top:1px solid rgba(255,255,255,.1);
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+
+    padding:
+        30px 5%;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.1);
 
     text-align:center;
 
@@ -394,68 +551,151 @@ footer{
     font-size:8px;
 }
 
+
+/* =====================================================
+   TABLET
+===================================================== */
+
 @media(max-width:1000px){
 
     .products{
-        grid-template-columns:repeat(2,1fr);
+
+        grid-template-columns:
+            repeat(2,1fr);
+
     }
 
 }
 
+
+/* =====================================================
+   MÓVIL
+===================================================== */
+
 @media(max-width:650px){
 
     header{
+
         flex-wrap:wrap;
 
-        padding:16px 15px 9px;
+        padding:
+            16px 15px
+            9px;
+
     }
 
     .logo{
+
         font-size:17px;
+
     }
 
     nav{
+
         order:3;
 
         flex-basis:100%;
 
         justify-content:flex-start;
+
     }
 
     .hero{
-        padding:60px 15px 40px;
+
+        padding:
+            60px 15px
+            40px;
+
     }
 
     .hero h1{
+
         font-size:18vw;
 
         letter-spacing:-4px;
+
     }
 
     .products-section{
-        padding:20px 12px 70px;
+
+        padding:
+            20px 12px
+            70px;
+
     }
 
     .products{
+
         gap:9px;
+
     }
 
     .product{
+
         padding:10px;
+
     }
 
-    .product-image{
-        height:210px;
+    /* IMAGEN EN MÓVIL */
 
-        margin:-10px -10px 12px;
+    .product-image{
+
+        height:260px;
+
+        margin:
+            -10px
+            -10px
+            12px;
+
+    }
+
+    .product-image img{
+
+        transform:
+            scale(1.06);
+
+    }
+
+    .product:hover
+    .product-image img{
+
+        transform:
+            scale(1.08);
+
     }
 
     .product-name{
+
         font-size:10px;
+
     }
 
     .product-price{
+
         font-size:10px;
+
+    }
+
+}
+
+
+/* =====================================================
+   MÓVIL MUY PEQUEÑO
+===================================================== */
+
+@media(max-width:380px){
+
+    .products{
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+    .product-image{
+
+        height:330px;
+
     }
 
 }
@@ -464,13 +704,20 @@ footer{
 
 </head>
 
+
 <body>
 
+
+<!-- =====================================================
+     CABECERA
+===================================================== -->
 
 <header>
 
 <div class="logo">
+
     MI MARCA
+
 </div>
 
 
@@ -512,6 +759,10 @@ footer{
 </header>
 
 
+<!-- =====================================================
+     HERO
+===================================================== -->
+
 <section class="hero">
 
 <small>
@@ -529,6 +780,10 @@ footer{
 
 </section>
 
+
+<!-- =====================================================
+     PRODUCTOS
+===================================================== -->
 
 <section class="products-section">
 
@@ -551,8 +806,8 @@ footer{
 
 
 /* =====================================================
-   ------------------ CÓDIGOS DE PRODUCTO ------------------
-   ===================================================== */
+   PRODUCTOS
+===================================================== */
 
 const PRODUCTS = [
 
@@ -614,36 +869,46 @@ const PRODUCTS = [
     }
 },
 
-/* =====================================================
-   ------------------ PRÓXIMO PRODUCTO ------------------
-   ===================================================== */
 
-
-    /* =====================================================
-   ------------------ PEGAR PRODUCTO AQUÍ ------------------
-   ===================================================== */
 
 
 /* =====================================================
    ------------------ PRÓXIMO PRODUCTO ------------------
    ===================================================== */
 
-    /* =====================================================
-   ------------------ PEGAR PRODUCTO AQUÍ ------------------
-   ===================================================== */
+
+
 
 
 /* =====================================================
    ------------------ PRÓXIMO PRODUCTO ------------------
    ===================================================== */
+
+
+
+
+
+/* =====================================================
+   ------------------ PRÓXIMO PRODUCTO ------------------
+   ===================================================== */
+
+
+
+
+
+/* =====================================================
+   ------------------ PRÓXIMO PRODUCTO ------------------
+   ===================================================== */
+
+
+
 
 
 ];
 
 
-
 /* =====================================================
-   SISTEMA DE PRECIOS
+   FORMATO DE PRECIO
 ===================================================== */
 
 function money(value){
@@ -659,49 +924,6 @@ function money(value){
 }
 
 
-
-/* =====================================================
-   ESCAPAR HTML
-===================================================== */
-
-function escapeHTML(value){
-
-    return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-
-}
-
-
-
-/* =====================================================
-   ESCAPAR URL
-===================================================== */
-
-function safeImageURL(value){
-
-    const url =
-        String(value || "").trim();
-
-    if(!url){
-        return "";
-    }
-
-    return url
-        .replace(/\\/g,"")
-        .replace(/"/g,"%22")
-        .replace(/'/g,"%27")
-        .replace(/</g,"%3C")
-        .replace(/>/g,"%3E")
-        .replace(/\s/g,"%20");
-
-}
-
-
-
 /* =====================================================
    MOSTRAR PRODUCTOS
 ===================================================== */
@@ -714,7 +936,8 @@ function renderProducts(){
         );
 
 
-    if(!PRODUCTS.length){
+    if(!Array.isArray(PRODUCTS)
+        || !PRODUCTS.length){
 
         container.innerHTML = `
 
@@ -744,7 +967,6 @@ function renderProducts(){
         .join("");
 
 }
-
 
 
 /* =====================================================
@@ -792,12 +1014,6 @@ function createProductHTML(
         };
 
 
-    const firstImage =
-        safeImageURL(
-            firstVariant.image
-        );
-
-
     return `
 
     <article
@@ -821,7 +1037,7 @@ function createProductHTML(
 
                 id="image-${index}"
 
-                src="${firstImage}"
+                src="${escapeAttribute(firstVariant.image)}"
 
                 alt="${escapeHTML(product.name)}"
 
@@ -899,64 +1115,59 @@ function createProductHTML(
 
         <div class="colors">
 
+
             ${
                 variants
                 .map(
                     (
                         variant,
                         variantIndex
-                    ) => {
+                    ) => `
 
-                        const image =
-                            safeImageURL(
+                    <button
+
+                        type="button"
+
+                        class="
+                            color
+                            ${
+                                variantIndex === 0
+                                ?
+                                "active"
+                                :
+                                ""
+                            }
+                        "
+
+                        style="
+                            background-image:
+                            url('${escapeAttribute(
                                 variant.image
-                            );
+                            )}');
+                        "
 
-                        return `
+                        title="${escapeAttribute(
+                            variant.name
+                        )}"
 
-                        <button
+                        aria-label="${escapeAttribute(
+                            variant.name
+                        )}"
 
-                            type="button"
+                        onclick="
+                            selectColor(
+                                ${index},
+                                ${variantIndex}
+                            )
+                        "
 
-                            class="
-                                color
-                                ${
-                                    variantIndex === 0
-                                    ?
-                                    "active"
-                                    :
-                                    ""
-                                }
-                            "
+                    ></button>
 
-                            style="
-                                background-image:
-                                url('${image}');
-                            "
-
-                            title="${escapeHTML(
-                                variant.name
-                            )}"
-
-                            aria-label="${escapeHTML(
-                                variant.name
-                            )}"
-
-                            onclick="
-                                selectColor(
-                                    ${index},
-                                    ${variantIndex}
-                                )
-                            "
-
-                        ></button>
-
-                        `;
-
-                    }
+                    `
                 )
                 .join("")
             }
+
 
         </div>
 
@@ -974,6 +1185,7 @@ function createProductHTML(
 
 
             <div class="sizes">
+
 
                 ${
                     sizes
@@ -1009,6 +1221,7 @@ function createProductHTML(
                     .join("")
                 }
 
+
             </div>
 
             `
@@ -1018,6 +1231,7 @@ function createProductHTML(
 
 
         <div class="quantity">
+
 
             <button
 
@@ -1063,6 +1277,7 @@ function createProductHTML(
 
             </button>
 
+
         </div>
 
 
@@ -1087,7 +1302,10 @@ function createProductHTML(
             <div class="stock">
 
                 Stock disponible:
-                ${product.stock}
+
+                ${escapeHTML(
+                    product.stock
+                )}
 
             </div>
 
@@ -1123,22 +1341,8 @@ function createProductHTML(
 }
 
 
-
 /* =====================================================
-   ERROR DE IMAGEN
-===================================================== */
-
-function imageError(image){
-
-    image.style.display =
-        "none";
-
-}
-
-
-
-/* =====================================================
-   CAMBIAR COLOR
+   CAMBIAR COLOR / IMAGEN
 ===================================================== */
 
 function selectColor(
@@ -1154,8 +1358,9 @@ function selectColor(
 
     if(
         !product ||
-        !product.variants ||
-        !product.variants[variantIndex]
+        !Array.isArray(
+            product.variants
+        )
     ){
 
         return;
@@ -1169,15 +1374,16 @@ function selectColor(
         ];
 
 
+    if(!variant){
+
+        return;
+
+    }
+
+
     const image =
         document.getElementById(
             `image-${productIndex}`
-        );
-
-
-    const imageURL =
-        safeImageURL(
-            variant.image
         );
 
 
@@ -1186,28 +1392,40 @@ function selectColor(
 
 
     image.src =
-        imageURL;
+        variant.image;
 
 
-    image.onerror =
-        function(){
-
-            image.style.display =
-                "none";
-
-        };
-
-
-    document.getElementById(
-        `color-name-${productIndex}`
-    ).textContent =
+    image.alt =
+        product.name +
+        " - " +
         variant.name;
+
+
+    const colorName =
+        document.getElementById(
+            `color-name-${productIndex}`
+        );
+
+
+    if(colorName){
+
+        colorName.textContent =
+            variant.name;
+
+    }
 
 
     const card =
         document.getElementById(
             `product-${productIndex}`
         );
+
+
+    if(!card){
+
+        return;
+
+    }
 
 
     card.dataset.variant =
@@ -1226,14 +1444,14 @@ function selectColor(
 
                 button.classList.toggle(
                     "active",
-                    buttonIndex === variantIndex
+                    buttonIndex ===
+                    variantIndex
                 );
 
             }
         );
 
 }
-
 
 
 /* =====================================================
@@ -1253,8 +1471,9 @@ function selectSize(
 
     if(
         !product ||
-        !product.sizes ||
-        !product.sizes[sizeIndex]
+        !Array.isArray(
+            product.sizes
+        )
     ){
 
         return;
@@ -1268,10 +1487,24 @@ function selectSize(
         ];
 
 
+    if(size === undefined){
+
+        return;
+
+    }
+
+
     const card =
         document.getElementById(
             `product-${productIndex}`
         );
+
+
+    if(!card){
+
+        return;
+
+    }
 
 
     card.dataset.size =
@@ -1290,14 +1523,14 @@ function selectSize(
 
                 button.classList.toggle(
                     "active",
-                    buttonIndex === sizeIndex
+                    buttonIndex ===
+                    sizeIndex
                 );
 
             }
         );
 
 }
-
 
 
 /* =====================================================
@@ -1316,7 +1549,9 @@ function changeQuantity(
 
 
     if(!card){
+
         return;
+
     }
 
 
@@ -1349,7 +1584,8 @@ function changeQuantity(
         &&
         Number(product.stock) > 0
         &&
-        quantity > Number(product.stock)
+        quantity >
+        Number(product.stock)
     ){
 
         quantity =
@@ -1362,13 +1598,20 @@ function changeQuantity(
         quantity;
 
 
-    document.getElementById(
-        `quantity-${productIndex}`
-    ).textContent =
-        quantity;
+    const quantityElement =
+        document.getElementById(
+            `quantity-${productIndex}`
+        );
+
+
+    if(quantityElement){
+
+        quantityElement.textContent =
+            quantity;
+
+    }
 
 }
-
 
 
 /* =====================================================
@@ -1385,15 +1628,17 @@ function buyProduct(
         ];
 
 
-    if(!product){
-        return;
-    }
-
-
     const card =
         document.getElementById(
             `product-${productIndex}`
         );
+
+
+    if(!product || !card){
+
+        return;
+
+    }
 
 
     const variant =
@@ -1540,9 +1785,82 @@ País:
 }
 
 
+/* =====================================================
+   ERROR DE IMAGEN
+===================================================== */
+
+function imageError(image){
+
+    image.style.display =
+        "none";
+
+}
+
 
 /* =====================================================
-   INICIAR
+   SEGURIDAD HTML
+===================================================== */
+
+function escapeHTML(value){
+
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+function escapeAttribute(value){
+
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /\\/g,
+        "\\\\"
+    )
+    .replace(
+        /'/g,
+        "\\'"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /</g,
+        "%3C"
+    )
+    .replace(
+        />/g,
+        "%3E"
+    );
+
+}
+
+
+/* =====================================================
+   INICIAR CATÁLOGO
 ===================================================== */
 
 renderProducts();
