@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -18,45 +17,81 @@
 }
 
 body{
+
     min-height:100vh;
-    font-family:Arial,Helvetica,sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     color:#fff;
-    background:linear-gradient(
-        135deg,
-        #181818 0%,
-        #303030 38%,
-        #555 65%,
-        #292929 100%
-    );
+
+    background:
+        linear-gradient(
+            135deg,
+            #181818 0%,
+            #303030 38%,
+            #555 65%,
+            #292929 100%
+        );
+
 }
 
 header{
+
     position:sticky;
+
     top:0;
+
     z-index:1000;
+
     padding:18px 4%;
+
     display:flex;
+
     align-items:center;
+
     gap:30px;
-    border-bottom:1px solid rgba(255,255,255,.12);
-    background:rgba(25,25,25,.90);
-    backdrop-filter:blur(15px);
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.12);
+
+    background:
+        rgba(25,25,25,.90);
+
+    backdrop-filter:
+        blur(15px);
+
 }
 
 .logo{
+
     flex-shrink:0;
+
     font-size:22px;
+
     font-weight:900;
+
     letter-spacing:4px;
+
 }
 
 nav{
+
     flex:1;
+
     display:flex;
+
     justify-content:center;
+
     gap:24px;
+
     overflow-x:auto;
+
     scrollbar-width:none;
+
 }
 
 nav::-webkit-scrollbar{
@@ -64,251 +99,458 @@ nav::-webkit-scrollbar{
 }
 
 nav a{
+
     color:#999;
+
     text-decoration:none;
+
     font-size:9px;
+
     font-weight:bold;
+
     letter-spacing:1.5px;
+
     text-transform:uppercase;
+
     white-space:nowrap;
+
 }
 
 nav a:hover,
 nav a.active{
+
     color:#fff;
+
 }
 
 .admin{
+
     padding:10px 15px;
-    border:1px solid rgba(255,255,255,.25);
+
+    border:
+        1px solid
+        rgba(255,255,255,.25);
+
     border-radius:4px;
+
     color:#fff;
+
     text-decoration:none;
+
     font-size:8px;
+
     font-weight:bold;
+
 }
 
 .hero{
-    padding:90px 5% 60px;
+
+    padding:
+        90px 5%
+        60px;
+
 }
 
 .hero small{
+
     color:#999;
+
     font-size:9px;
+
     font-weight:bold;
+
     letter-spacing:4px;
+
 }
 
 .hero h1{
+
     margin-top:18px;
-    font-size:clamp(55px,10vw,110px);
+
+    font-size:
+        clamp(
+            55px,
+            10vw,
+            110px
+        );
+
     letter-spacing:-6px;
+
     line-height:.85;
+
 }
 
 .hero p{
+
     max-width:550px;
+
     margin-top:25px;
+
     color:#aaa;
+
     font-size:12px;
+
     line-height:1.7;
+
 }
 
 .products-section{
-    padding:20px 5% 100px;
+
+    padding:
+        20px 5%
+        100px;
+
 }
 
 .products{
+
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+
+    grid-template-columns:
+        repeat(4,1fr);
+
     gap:15px;
+
 }
 
 .product{
+
     overflow:hidden;
+
     padding:15px;
-    border:1px solid rgba(255,255,255,.12);
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
     border-radius:7px;
-    background:rgba(255,255,255,.05);
+
+    background:
+        rgba(255,255,255,.05);
+
 }
 
 .product-image{
+
     height:300px;
-    margin:-15px -15px 18px;
+
+    margin:
+        -15px
+        -15px
+        18px;
+
     background:#222;
+
     overflow:hidden;
+
 }
 
 .product-image img{
+
     width:100%;
+
     height:100%;
+
     object-fit:cover;
+
     transition:.35s;
+
 }
 
-.product:hover .product-image img{
+.product:hover
+.product-image img{
+
     transform:scale(1.04);
+
 }
 
 .product-name{
+
     font-size:14px;
+
     font-weight:bold;
+
 }
 
 .product-code{
+
     margin-top:6px;
+
     color:#777;
+
     font-size:8px;
+
     letter-spacing:1px;
+
 }
 
 .product-description{
+
     margin-top:9px;
+
     color:#999;
+
     font-size:10px;
+
     line-height:1.5;
+
 }
 
 .product-price{
+
     margin-top:12px;
+
     font-size:14px;
+
     font-weight:bold;
+
 }
 
 .label{
+
     margin-top:15px;
+
     color:#999;
+
     font-size:8px;
+
     text-transform:uppercase;
+
     letter-spacing:1px;
+
 }
 
 .colors{
+
     display:flex;
+
     gap:9px;
+
     margin-top:9px;
+
 }
 
 .color{
+
     width:25px;
+
     height:25px;
-    border:2px solid rgba(255,255,255,.25);
+
+    border:
+        2px solid
+        rgba(255,255,255,.25);
+
     border-radius:50%;
+
     cursor:pointer;
+
     padding:0;
+
     background-size:cover;
+
     background-position:center;
+
 }
 
 .color.active{
-    outline:2px solid white;
+
+    outline:
+        2px solid
+        white;
+
     outline-offset:2px;
+
 }
 
 .sizes{
+
     display:flex;
+
     flex-wrap:wrap;
+
     gap:6px;
+
     margin-top:9px;
+
 }
 
 .size{
-    padding:7px 10px;
-    border:1px solid rgba(255,255,255,.18);
+
+    padding:
+        7px 10px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.18);
+
     border-radius:3px;
+
     color:#aaa;
+
     background:transparent;
+
     cursor:pointer;
+
     font-size:8px;
+
 }
 
 .size.active{
+
     background:#fff;
+
     color:#111;
+
 }
 
 .quantity{
+
     display:flex;
+
     align-items:center;
+
     gap:12px;
+
     margin-top:15px;
+
 }
 
 .quantity button{
+
     width:28px;
+
     height:28px;
-    border:1px solid rgba(255,255,255,.2);
+
+    border:
+        1px solid
+        rgba(255,255,255,.2);
+
     background:#191919;
+
     color:#fff;
+
     cursor:pointer;
+
 }
 
 .quantity span{
+
     min-width:20px;
+
     text-align:center;
+
     font-size:11px;
+
 }
 
 .shipping{
+
     margin-top:14px;
+
     color:#aaa;
+
     font-size:9px;
+
 }
 
 .stock{
+
     margin-top:7px;
+
     color:#777;
+
     font-size:8px;
+
 }
 
 .buy{
+
     width:100%;
+
     margin-top:15px;
+
     padding:14px;
+
     border:0;
+
     border-radius:3px;
+
     background:#fff;
+
     color:#111;
+
     font-size:8px;
+
     font-weight:bold;
+
     letter-spacing:1.5px;
+
     cursor:pointer;
+
 }
 
 .buy:hover{
+
     background:#ddd;
+
 }
 
 .empty{
-    grid-column:1 / -1;
-    padding:100px 20px;
+
+    grid-column:
+        1 / -1;
+
+    padding:
+        100px 20px;
+
     text-align:center;
+
 }
 
 .empty-title{
+
     font-size:18px;
+
     font-weight:bold;
+
     letter-spacing:2px;
+
 }
 
 .empty-text{
+
     margin-top:12px;
+
     color:#888;
+
     font-size:10px;
+
 }
 
 footer{
-    padding:30px 5%;
-    border-top:1px solid rgba(255,255,255,.1);
+
+    padding:
+        30px 5%;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.1);
+
     text-align:center;
+
     color:#777;
+
     font-size:8px;
+
 }
 
 @media(max-width:1000px){
 
     .products{
-        grid-template-columns:repeat(2,1fr);
+
+        grid-template-columns:
+            repeat(2,1fr);
+
     }
 
 }
@@ -316,49 +558,95 @@ footer{
 @media(max-width:650px){
 
     header{
+
         flex-wrap:wrap;
-        padding:16px 15px 9px;
+
+        padding:
+            16px 15px
+            9px;
+
     }
 
     .logo{
+
         font-size:17px;
+
     }
 
     nav{
+
         order:3;
+
         flex-basis:100%;
+
         justify-content:flex-start;
+
     }
 
     .hero{
-        padding:60px 15px 40px;
+
+        padding:
+            60px 15px
+            40px;
+
     }
 
     .hero h1{
+
         font-size:18vw;
+
         letter-spacing:-4px;
+
     }
 
     .products-section{
-        padding:20px 12px 70px;
+
+        padding:
+            20px 12px
+            70px;
+
     }
 
     .products{
+
         gap:9px;
+
     }
 
     .product{
+
         padding:10px;
+
     }
 
     .product-image{
+
         height:210px;
-        margin:-10px -10px 12px;
+
+        margin:
+            -10px
+            -10px
+            12px;
+
     }
 
-    .product-name,
-    .product-price{
+    .product-name{
+
         font-size:10px;
+
+    }
+
+    .product-price{
+
+        font-size:10px;
+
+    }
+
+    .empty{
+
+        padding:
+            80px 15px;
+
     }
 
 }
@@ -367,13 +655,19 @@ footer{
 
 </head>
 
+
 <body>
+
 
 <header>
 
+
 <div class="logo">
+
     MI MARCA
+
 </div>
+
 
 <nav>
 
@@ -381,110 +675,172 @@ footer{
     Inicio
 </a>
 
+
 <a href="camisetas.html">
     Camisetas
 </a>
+
 
 <a href="pantalones.html">
     Pantalones
 </a>
 
+
 <a href="chandals.html">
     Chandals
 </a>
+
 
 <a href="gorras.html">
     Gorras
 </a>
 
+
 <a href="gafas.html">
     Gafas
 </a>
 
-<a class="active" href="bisuteria.html">
+
+<a
+    class="active"
+    href="bisuteria.html"
+>
     Bisutería
 </a>
 
+
 </nav>
 
-<a class="admin" href="admin.html">
+
+<a
+    class="admin"
+    href="admin.html"
+>
     ADMIN
 </a>
 
+
 </header>
 
+
 <section class="hero">
+
 
 <small>
     COLECCIÓN
 </small>
 
+
 <h1>
     BISUTERÍA
 </h1>
 
+
 <p>
-    Detalles y accesorios para completar tu estilo urbano.
+    Detalles y accesorios para completar
+    tu estilo urbano.
 </p>
 
+
 </section>
+
 
 <section class="products-section">
 
-<div class="products" id="productsContainer"></div>
+
+<div
+    class="products"
+    id="productsContainer"
+></div>
+
 
 </section>
 
+
 <footer>
-    © 2026 MI MARCA · TODOS LOS DERECHOS RESERVADOS
+
+© 2026 MI MARCA · TODOS LOS DERECHOS RESERVADOS
+
 </footer>
 
+
 <script>
+
 
 /* =========================================================
    🟢🟢🟢 PRODUCTOS DE BISUTERÍA 🟢🟢🟢
 
-   PEGA AQUÍ LOS PRODUCTOS GENERADOS POR admin.html.
+   PEGA AQUÍ LOS PRODUCTOS GENERADOS
+   POR admin.html.
 
-   EJEMPLO:
-
-   {
-       id: "BIS-001",
-       name: "Pulsera Urban",
-       price: 19.90,
-       stock: 10,
-       description: "Pulsera urbana premium.",
-
-       variants: [
-           {
-               name: "Negro",
-               image: "URL-IMAGEN"
-           },
-           {
-               name: "Plata",
-               image: "URL-IMAGEN"
-           }
-       ],
-
-       sizes: [],
-
-       shipping:{
-           min:3,
-           max:9
-       }
-   }
+   NO BORRES LOS CORCHETES.
 
 ========================================================= */
 
+
 const PRODUCTS = [
 
-    // PEGA AQUÍ TUS PRODUCTOS
+
+    /*
+
+    EJEMPLO:
+
+    {
+        id: "BIS-001",
+
+        name: "Cadena Urban",
+
+        price: 24.90,
+
+        stock: 20,
+
+        description:
+            "Accesorio urbano premium.",
+
+        variants: [
+
+            {
+                name: "Dorado",
+                image: "URL-IMAGEN-DORADA"
+            },
+
+            {
+                name: "Plateado",
+                image: "URL-IMAGEN-PLATEADA"
+            }
+
+        ],
+
+        sizes: [
+            "Única"
+        ],
+
+        shipping: {
+            min: 3,
+            max: 9
+        }
+
+    }
+
+    */
+
 
 ];
 
 
-const WHATSAPP_NUMBER = "34674559614";
 
+/* =====================================================
+   🟢 WHATSAPP
+===================================================== */
+
+const WHATSAPP_NUMBER =
+    "34674559614";
+
+
+
+/* =====================================================
+   PRECIO
+===================================================== */
 
 function money(value){
 
@@ -499,10 +855,18 @@ function money(value){
 }
 
 
+
+/* =====================================================
+   MOSTRAR PRODUCTOS
+===================================================== */
+
 function renderProducts(){
 
     const container =
-        document.getElementById("productsContainer");
+        document.getElementById(
+            "productsContainer"
+        );
+
 
     if(!PRODUCTS.length){
 
@@ -511,11 +875,17 @@ function renderProducts(){
             <div class="empty">
 
                 <div class="empty-title">
+
                     PRÓXIMAMENTE
+
                 </div>
 
+
                 <div class="empty-text">
-                    Estamos preparando nuevos productos.
+
+                    Estamos preparando
+                    nuevos productos.
+
                 </div>
 
             </div>
@@ -526,22 +896,39 @@ function renderProducts(){
 
     }
 
+
     container.innerHTML =
+
         PRODUCTS
         .map(
             (product,index) =>
-                createProductHTML(product,index)
+                createProductHTML(
+                    product,
+                    index
+                )
         )
         .join("");
 
 }
 
 
-function createProductHTML(product,index){
 
-    const firstVariant = product.variants[0];
+/* =====================================================
+   CREAR PRODUCTO
+===================================================== */
 
-    const sizes = product.sizes || [];
+function createProductHTML(
+    product,
+    index
+){
+
+    const firstVariant =
+        product.variants[0];
+
+
+    const sizes =
+        product.sizes || [];
+
 
     const shipping =
         product.shipping ||
@@ -550,84 +937,133 @@ function createProductHTML(product,index){
             max:9
         };
 
+
     return `
 
     <article
+
         class="product"
+
         id="product-${index}"
+
         data-variant="0"
+
         data-size=""
+
         data-quantity="1"
+
     >
+
 
         <div class="product-image">
 
             <img
+
                 id="image-${index}"
+
                 src="${firstVariant.image}"
+
                 alt="${product.name}"
+
             >
 
         </div>
 
+
         <div class="product-name">
+
             ${product.name}
+
         </div>
 
+
         <div class="product-code">
-            CÓDIGO: ${product.id}
+
+            CÓDIGO:
+            ${product.id}
+
         </div>
+
 
         ${
             product.description
             ?
+
             `
+
             <div class="product-description">
+
                 ${product.description}
+
             </div>
+
             `
+
             :
+
             ""
         }
 
+
         <div class="product-price">
+
             ${money(product.price)}
+
         </div>
+
 
         <div class="label">
 
             Color:
 
-            <span id="color-name-${index}">
+            <span
+                id="color-name-${index}"
+            >
+
                 ${firstVariant.name}
+
             </span>
 
         </div>
+
 
         <div class="colors">
 
             ${
                 product.variants
                 .map(
-                    (variant,variantIndex) => `
+                    (
+                        variant,
+                        variantIndex
+                    ) => `
 
                     <button
-                        class="color ${
-                            variantIndex === 0
-                            ? "active"
-                            : ""
-                        }"
+
+                        class="
+                            color
+                            ${
+                                variantIndex === 0
+                                ?
+                                "active"
+                                :
+                                ""
+                            }
+                        "
+
                         style="
                             background-image:
                             url('${variant.image}');
                         "
+
                         title="${variant.name}"
+
                         onclick="
                             selectColor(
                                 ${index},
                                 ${variantIndex}
                             )
                         "
+
                     ></button>
 
                     `
@@ -637,14 +1073,19 @@ function createProductHTML(product,index){
 
         </div>
 
+
         ${
             sizes.length
             ?
+
             `
 
             <div class="label">
+
                 Talla
+
             </div>
+
 
             <div class="sizes">
 
@@ -654,15 +1095,20 @@ function createProductHTML(product,index){
                         size => `
 
                         <button
+
                             class="size"
+
                             onclick="
                                 selectSize(
                                     ${index},
                                     '${size}'
                                 )
                             "
+
                         >
+
                             ${size}
+
                         </button>
 
                         `
@@ -673,56 +1119,108 @@ function createProductHTML(product,index){
             </div>
 
             `
+
             :
+
             ""
         }
 
+
         <div class="quantity">
 
-            <button onclick="
-                changeQuantity(${index},-1)
-            ">
+            <button
+
+                onclick="
+                    changeQuantity(
+                        ${index},
+                        -1
+                    )
+                "
+
+            >
+
                 −
+
             </button>
 
-            <span id="quantity-${index}">
+
+            <span
+                id="quantity-${index}"
+            >
+
                 1
+
             </span>
 
-            <button onclick="
-                changeQuantity(${index},1)
-            ">
+
+            <button
+
+                onclick="
+                    changeQuantity(
+                        ${index},
+                        1
+                    )
+                "
+
+            >
+
                 +
+
             </button>
 
         </div>
+
 
         <div class="shipping">
 
             🚚 Envío estimado:
-            ${shipping.min}–${shipping.max}
+
+            ${shipping.min}
+            –
+            ${shipping.max}
+
             días laborables
 
         </div>
 
+
         ${
             product.stock !== undefined
             ?
+
             `
+
             <div class="stock">
-                Stock disponible: ${product.stock}
+
+                Stock disponible:
+                ${product.stock}
+
             </div>
+
             `
+
             :
+
             ""
         }
 
+
         <button
+
             class="buy"
-            onclick="buyProduct(${index})"
+
+            onclick="
+                buyProduct(
+                    ${index}
+                )
+            "
+
         >
+
             COMPRAR
+
         </button>
+
 
     </article>
 
@@ -731,31 +1229,59 @@ function createProductHTML(product,index){
 }
 
 
-function selectColor(productIndex,variantIndex){
 
-    const product = PRODUCTS[productIndex];
+/* =====================================================
+   COLOR → IMAGEN
+===================================================== */
 
-    const variant = product.variants[variantIndex];
+function selectColor(
+    productIndex,
+    variantIndex
+){
+
+    const product =
+        PRODUCTS[
+            productIndex
+        ];
+
+
+    const variant =
+        product.variants[
+            variantIndex
+        ];
+
 
     document.getElementById(
         `image-${productIndex}`
-    ).src = variant.image;
+    ).src =
+        variant.image;
+
 
     document.getElementById(
         `color-name-${productIndex}`
-    ).textContent = variant.name;
+    ).textContent =
+        variant.name;
+
 
     const card =
         document.getElementById(
             `product-${productIndex}`
         );
 
-    card.dataset.variant = variantIndex;
+
+    card.dataset.variant =
+        variantIndex;
+
 
     card
-        .querySelectorAll(".color")
+        .querySelectorAll(
+            ".color"
+        )
         .forEach(
-            (button,index) => {
+            (
+                button,
+                index
+            ) => {
 
                 button.classList.toggle(
                     "active",
@@ -768,76 +1294,142 @@ function selectColor(productIndex,variantIndex){
 }
 
 
-function selectSize(productIndex,size){
+
+/* =====================================================
+   TALLA
+===================================================== */
+
+function selectSize(
+    productIndex,
+    size
+){
 
     const card =
         document.getElementById(
             `product-${productIndex}`
         );
 
-    card.dataset.size = size;
+
+    card.dataset.size =
+        size;
+
 
     card
-        .querySelectorAll(".size")
-        .forEach(button => {
+        .querySelectorAll(
+            ".size"
+        )
+        .forEach(
+            button => {
 
-            button.classList.toggle(
-                "active",
-                button.textContent.trim() === size
-            );
+                button.classList.toggle(
 
-        });
+                    "active",
+
+                    button
+                        .textContent
+                        .trim()
+                    ===
+                    size
+
+                );
+
+            }
+        );
 
 }
 
 
-function changeQuantity(productIndex,change){
+
+/* =====================================================
+   CANTIDAD
+===================================================== */
+
+function changeQuantity(
+    productIndex,
+    change
+){
 
     const card =
         document.getElementById(
             `product-${productIndex}`
         );
 
+
     let quantity =
-        Number(card.dataset.quantity);
+        Number(
+            card.dataset.quantity
+        );
+
 
     quantity += change;
 
+
     if(quantity < 1){
+
         quantity = 1;
+
     }
 
-    card.dataset.quantity = quantity;
+
+    card.dataset.quantity =
+        quantity;
+
 
     document.getElementById(
         `quantity-${productIndex}`
-    ).textContent = quantity;
+    ).textContent =
+        quantity;
 
 }
 
 
-function buyProduct(productIndex){
 
-    const product = PRODUCTS[productIndex];
+/* =====================================================
+   COMPRAR → WHATSAPP
+===================================================== */
+
+function buyProduct(
+    productIndex
+){
+
+    const product =
+        PRODUCTS[
+            productIndex
+        ];
+
 
     const card =
         document.getElementById(
             `product-${productIndex}`
         );
 
+
     const variant =
         product.variants[
-            Number(card.dataset.variant || 0)
+            Number(
+                card.dataset.variant || 0
+            )
         ];
 
+
     const size =
-        card.dataset.size || "No especificada";
+        card.dataset.size
+        ||
+        "No especificada";
+
 
     const quantity =
-        Number(card.dataset.quantity || 1);
+        Number(
+            card.dataset.quantity
+            ||
+            1
+        );
+
 
     const total =
-        product.price * quantity;
+        product.price *
+        quantity;
+
 
     const shipping =
         product.shipping ||
@@ -845,6 +1437,7 @@ function buyProduct(productIndex){
             min:3,
             max:9
         };
+
 
     const message = `
 
@@ -864,6 +1457,7 @@ Talla: ${size}
 
 Cantidad: ${quantity}
 
+
 💰 PRECIO
 
 Precio unidad:
@@ -872,10 +1466,12 @@ ${money(product.price)}
 Total:
 ${money(total)}
 
+
 🚚 ENTREGA
 
 ${shipping.min}–${shipping.max}
 días laborables
+
 
 ━━━━━━━━━━━━━━━━
 
@@ -886,6 +1482,7 @@ Nombre y apellidos:
 Teléfono:
 
 Email:
+
 
 📍 DIRECCIÓN DE ENVÍO
 
@@ -903,16 +1500,33 @@ Provincia:
 
 País:
 
+
 📝 OBSERVACIONES:
 
+
 ━━━━━━━━━━━━━━━━
+
 `;
 
+
     const whatsappURL =
-        "https://wa.me/" +
-        WHATSAPP_NUMBER +
-        "?text=" +
-        encodeURIComponent(message);
+
+        "https://wa.me/"
+
+        +
+
+        WHATSAPP_NUMBER
+
+        +
+
+        "?text="
+
+        +
+
+        encodeURIComponent(
+            message
+        );
+
 
     window.open(
         whatsappURL,
@@ -922,10 +1536,16 @@ País:
 }
 
 
+
+/* =====================================================
+   INICIAR PÁGINA
+===================================================== */
+
 renderProducts();
 
 </script>
 
+
 </body>
+
 </html>
-```
