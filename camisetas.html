@@ -435,11 +435,17 @@ footer{
 
 <body>
 
+
+<!-- =====================================================
+     CABECERA
+===================================================== -->
+
 <header>
 
 <div class="logo">
     MI MARCA
 </div>
+
 
 <nav>
 
@@ -478,6 +484,11 @@ footer{
 
 </header>
 
+
+<!-- =====================================================
+     CABECERA DE CATEGORÍA
+===================================================== -->
+
 <section class="hero">
 
 <small>
@@ -495,6 +506,11 @@ footer{
 
 </section>
 
+
+<!-- =====================================================
+     PRODUCTOS
+===================================================== -->
+
 <section class="products-section">
 
 <div
@@ -503,6 +519,11 @@ footer{
 ></div>
 
 </section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer>
 
@@ -513,86 +534,49 @@ footer{
 
 <script>
 
+
 /* =========================================================
-   🟢🟢🟢 PRODUCTOS
-=========================================================
+   🟢🟢🟢 PRODUCTOS DE CAMISETAS 🟢🟢🟢
 
-   AQUÍ TIENES QUE PEGAR EL CÓDIGO
-   QUE TE GENERA admin.html.
+   ESTE ES EL ÚNICO SITIO QUE NECESITAS USAR.
 
-   EJEMPLO:
+   PEGA AQUÍ LOS PRODUCTOS QUE TE GENERE admin.html.
 
-const PRODUCTS = [
+   NO BORRES:
 
-    {
-        ref: "CAM-001",
+   const PRODUCTS = [
 
-        name: "Camiseta Oversize",
+   NI:
 
-        category: "camisetas",
-
-        price: 29.90,
-
-        stock: 10,
-
-        description: "Camiseta urbana oversize.",
-
-        whatsapp: "34674559614",
-
-        variants: [
-            {
-                name: "Negra",
-                image: "https://TU-IMAGEN.jpg"
-            }
-        ],
-
-        sizes: [
-            "S",
-            "M",
-            "L",
-            "XL"
-        ],
-
-        shipping: {
-            min: 3,
-            max: 9
-        }
-    }
-
-];
-
-=========================================================
-
-   🔴 IMPORTANTE:
-   NO PONGAS "const PRODUCTS = [" DOS VECES.
-
-   SI COPIAS EL PRODUCTO DEL ADMINISTRADOR,
-   PÉGALO ENTRE LOS CORCHETES DE ABAJO.
-
-========================================================= */
+   ];
 
 
-const PRODUCTS = [
+   EJEMPLO DE CÓMO QUEDARÁ:
 
-    /* =================================================
-       🟢🟢🟢 PEGA AQUÍ EL PRODUCTO DEL ADMIN 🟢🟢🟢
-
-       EJEMPLO:
+   const PRODUCTS = [
 
        {
            ref: "CAM-001",
+
            name: "Camiseta Negra",
+
            category: "camisetas",
+
            price: 29.90,
+
            stock: 10,
+
            description: "Camiseta urbana.",
+
            whatsapp: "34674559614",
 
            variants: [
+
                {
                    name: "Negra",
-                   image: "https://ejemplo.com/imagen.jpg"
+                   image: "https://ejemplo.com/foto.jpg"
                }
+
            ],
 
            sizes: [
@@ -606,11 +590,38 @@ const PRODUCTS = [
                min: 3,
                max: 9
            }
+       }
+
+   ];
+
+========================================================= */
+
+
+const PRODUCTS = [
+
+    /* =================================================
+       🟢🟢🟢 PEGA AQUÍ EL PRODUCTO DEL ADMIN 🟢🟢🟢
+
+       NO PEGUES "const PRODUCTS = ["
+
+       SOLO PEGA EL BLOQUE:
+
+       {
+           ref: "...",
+           name: "...",
+           ...
        },
 
        ================================================= */
 
+
 ];
+
+
+</script>
+
+
+<script>
 
 
 /* =========================================================
@@ -622,7 +633,7 @@ const WHATSAPP_NUMBER =
 
 
 /* =========================================================
-   PRECIO
+   FORMATO DE PRECIO
 ========================================================= */
 
 function money(value){
@@ -722,6 +733,7 @@ function createProductHTML(
 
     >
 
+
         <div class="product-image">
 
             <img
@@ -731,12 +743,6 @@ function createProductHTML(
                 src="${firstVariant.image}"
 
                 alt="${product.name}"
-
-                onerror="
-                    this.style.display='none';
-                    this.parentElement.innerHTML +=
-                    '<div style=\\'padding:40px;text-align:center;color:#777;font-size:10px;\\'>IMAGEN NO DISPONIBLE</div>';
-                "
 
             >
 
@@ -850,11 +856,8 @@ function createProductHTML(
             `
 
             <div class="label">
-
                 Talla
-
             </div>
-
 
             <div class="sizes">
 
@@ -895,6 +898,7 @@ function createProductHTML(
 
         <div class="quantity">
 
+
             <button
 
                 onclick="
@@ -934,6 +938,7 @@ function createProductHTML(
                 +
 
             </button>
+
 
         </div>
 
@@ -985,6 +990,7 @@ function createProductHTML(
 
         </button>
 
+
     </article>
 
     `;
@@ -993,7 +999,7 @@ function createProductHTML(
 
 
 /* =========================================================
-   COLOR
+   CAMBIAR COLOR
 ========================================================= */
 
 function selectColor(
@@ -1057,7 +1063,7 @@ function selectColor(
 
 
 /* =========================================================
-   TALLA
+   CAMBIAR TALLA
 ========================================================= */
 
 function selectSize(
@@ -1087,8 +1093,8 @@ function selectSize(
                     "active",
 
                     button
-                    .textContent
-                    .trim()
+                        .textContent
+                        .trim()
                     ===
                     size
 
@@ -1144,7 +1150,7 @@ function changeQuantity(
 
 
 /* =========================================================
-   COMPRAR → WHATSAPP
+   COMPRAR
 ========================================================= */
 
 function buyProduct(
@@ -1303,7 +1309,7 @@ País:
 
 
 /* =========================================================
-   INICIAR
+   INICIAR PÁGINA
 ========================================================= */
 
 renderProducts();
