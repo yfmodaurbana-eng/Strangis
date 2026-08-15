@@ -517,9 +517,9 @@ footer{
 
 
 /* =========================================================
-   🟢🟢🟢 PRODUCTOS DE CAMISETAS 🟢🟢🟢
+   🟢🟢🟢 ZONA PARA PEGAR PRODUCTOS 🟢🟢🟢
 
-   PEGA AQUÍ LOS CÓDIGOS QUE TE GENERE admin.html
+   PEGA AQUÍ EXACTAMENTE EL CÓDIGO QUE TE DA admin.html.
 
    EJEMPLO:
 
@@ -541,11 +541,7 @@ footer{
        variants: [
            {
                name: "Negro",
-               image: "https://tu-imagen.com/camiseta.jpg"
-           },
-           {
-               name: "Blanco",
-               image: "https://tu-imagen.com/camiseta-blanca.jpg"
+               image: "https://ejemplo.com/camiseta-negra.jpg"
            }
        ],
 
@@ -567,16 +563,35 @@ footer{
 
 const PRODUCTS = [
 
-    // =====================================================
-    // 🟢 PEGA AQUÍ EL CÓDIGO DEL PRODUCTO
-    // 🟢 PUEDES PEGAR VARIOS PRODUCTOS, UNO DESPUÉS DE OTRO
-    // =====================================================
+
+    /* =====================================================
+       🟢🟢 PEGA EL PRODUCTO AQUÍ 🟢🟢
+
+       Puedes pegar varios productos:
+
+       {
+           ...
+       },
+
+       {
+           ...
+       },
+
+       {
+           ...
+       },
+
+       ===================================================== */
+
+
+    
+    // 👇 PEGA AQUÍ EL CÓDIGO GENERADO POR ADMIN.HTML 👇
 
 
 
-    // =====================================================
-    // 🔴 NO BORRES ESTAS LLAVES
-    // =====================================================
+    // 👆 PEGA AQUÍ EL CÓDIGO GENERADO POR ADMIN.HTML 👆
+
+
 
 ];
 
@@ -644,15 +659,7 @@ function createProductHTML(
 ){
 
     const firstVariant =
-        product.variants &&
-        product.variants.length
-        ?
-        product.variants[0]
-        :
-        {
-            name:"Único",
-            image:""
-        };
+        product.variants[0];
 
 
     const sizes =
@@ -665,17 +672,6 @@ function createProductHTML(
             min:3,
             max:9
         };
-
-
-    const productCode =
-        product.ref ||
-        product.id ||
-        "";
-
-
-    const whatsapp =
-        product.whatsapp ||
-        WHATSAPP_NUMBER;
 
 
     return `
@@ -694,7 +690,6 @@ function createProductHTML(
 
     >
 
-
         <div class="product-image">
 
             <img
@@ -704,10 +699,6 @@ function createProductHTML(
                 src="${firstVariant.image}"
 
                 alt="${product.name}"
-
-                onerror="
-                    this.style.display='none';
-                "
 
             >
 
@@ -724,7 +715,7 @@ function createProductHTML(
         <div class="product-code">
 
             CÓDIGO:
-            ${productCode}
+            ${product.ref || product.id}
 
         </div>
 
@@ -771,7 +762,7 @@ function createProductHTML(
         <div class="colors">
 
             ${
-                (product.variants || [])
+                product.variants
                 .map(
                     (
                         variant,
@@ -821,9 +812,7 @@ function createProductHTML(
             `
 
             <div class="label">
-
                 Talla
-
             </div>
 
 
@@ -841,9 +830,7 @@ function createProductHTML(
                             onclick="
                                 selectSize(
                                     ${index},
-                                    '${String(size)
-                                        .replace(/'/g,"\\'")
-                                    }'
+                                    '${size}'
                                 )
                             "
 
@@ -1051,12 +1038,15 @@ function selectSize(
             button => {
 
                 button.classList.toggle(
+
                     "active",
+
                     button
                     .textContent
                     .trim()
                     ===
                     size
+
                 );
 
             }
@@ -1088,23 +1078,6 @@ function changeQuantity(
     if(quantity < 1){
 
         quantity = 1;
-
-    }
-
-
-    const product =
-        PRODUCTS[
-            productIndex
-        ];
-
-
-    if(
-        product.stock !== undefined &&
-        quantity > Number(product.stock)
-    ){
-
-        quantity =
-            Number(product.stock);
 
     }
 
@@ -1160,32 +1133,21 @@ function buyProduct(
 
 
     const total =
-        product.price
-        *
+        product.price *
         quantity;
 
 
     const shipping =
-        product.shipping
-        ||
+        product.shipping ||
         {
             min:3,
             max:9
         };
 
 
-    const productCode =
-        product.ref ||
-        product.id ||
-        "";
-
-
     const whatsapp =
-        String(
-            product.whatsapp ||
-            WHATSAPP_NUMBER
-        )
-        .replace(/\D/g,"");
+        product.whatsapp ||
+        WHATSAPP_NUMBER;
 
 
     const message = `
@@ -1198,7 +1160,7 @@ function buyProduct(
 
 Producto: ${product.name}
 
-Código: ${productCode}
+Código: ${product.ref || product.id}
 
 Color: ${variant.name}
 
@@ -1264,7 +1226,8 @@ País:
 
         +
 
-        whatsapp
+        String(whatsapp)
+        .replace(/\D/g,"")
 
         +
 
