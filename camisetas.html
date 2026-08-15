@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -161,6 +162,10 @@ nav a.active{
     background:#222;
 
     overflow:hidden;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
 .product-image img{
@@ -168,6 +173,8 @@ nav a.active{
     height:100%;
 
     object-fit:cover;
+
+    display:block;
 
     transition:.35s;
 }
@@ -226,6 +233,8 @@ nav a.active{
 }
 
 .color{
+    position:relative;
+
     width:32px;
     height:32px;
 
@@ -237,10 +246,15 @@ nav a.active{
 
     padding:0;
 
+    background-color:#222;
+
+    background-repeat:no-repeat;
     background-size:cover;
     background-position:center;
 
     transition:.2s;
+
+    overflow:hidden;
 }
 
 .color:hover{
@@ -541,81 +555,26 @@ footer{
    ------------------ CÓDIGOS DE PRODUCTO ------------------
    ===================================================== */
 
-
 const PRODUCTS = [
-
-
 
 
 /* =====================================================
    ------------------ PEGAR PRODUCTO AQUÍ ------------------
    ===================================================== */
-{
-    id: "000001",
-    ref: "000001",
-    name: "Camiseta lacoste (Polo) Varios colores",
-    category: "camisetas",
-    price: 40,
-    stock: 999,
-    description: "",
-    whatsapp: "34674559614",
 
-    variants: [
-        {
-            name: "Negro",
-            image: "https://i.imgur.com/05aVIdy.jpeg"
-        },
-        {
-            name: "Blanco",
-            image: "https://i.imgur.com/GFWq2Pk.jpeg"
-        },
-        {
-            name: "Rojo",
-            image: "https://i.imgur.com/rgHCEWj.jpeg"
-        },
-        {
-            name: "Verde",
-            image: "https://i.imgur.com/b2mzD9q.jpeg"
-        },
-        {
-            name: "Amarillo",
-            image: "https://i.imgur.com/vBWs12d.jpeg"
-        },
-        {
-            name: "Morado",
-            image: "https://i.imgur.com/FIiz38t.jpeg"
-        },
-        {
-            name: "Marrón",
-            image: "https://i.imgur.com/kWzmzj8.jpeg"
-        }
-=====================================================
-        =====================================================
-        =====================================================
-        =====================================================
-        =====================================================
-        =====================================================
-        =====================================================
-        
-    ],
 
-    sizes: [
-        "S",
-        "M",
-        "L",
-        "XL"
-    ],
-
-    shipping: {
-        min: 20,
-        max: 30
-    }
-},
+/* =====================================================
+   ------------------ PRÓXIMO PRODUCTO ------------------
+   ===================================================== */
 
 
 ];
 
 
+
+/* =====================================================
+   SISTEMA DE PRECIOS
+===================================================== */
 
 function money(value){
 
@@ -630,6 +589,52 @@ function money(value){
 }
 
 
+
+/* =====================================================
+   ESCAPAR HTML
+===================================================== */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+
+/* =====================================================
+   ESCAPAR URL
+===================================================== */
+
+function safeImageURL(value){
+
+    const url =
+        String(value || "").trim();
+
+    if(!url){
+        return "";
+    }
+
+    return url
+        .replace(/\\/g,"")
+        .replace(/"/g,"%22")
+        .replace(/'/g,"%27")
+        .replace(/</g,"%3C")
+        .replace(/>/g,"%3E")
+        .replace(/\s/g,"%20");
+
+}
+
+
+
+/* =====================================================
+   MOSTRAR PRODUCTOS
+===================================================== */
 
 function renderProducts(){
 
@@ -672,6 +677,10 @@ function renderProducts(){
 
 
 
+/* =====================================================
+   CREAR TARJETA
+===================================================== */
+
 function createProductHTML(
     product,
     index
@@ -713,6 +722,12 @@ function createProductHTML(
         };
 
 
+    const firstImage =
+        safeImageURL(
+            firstVariant.image
+        );
+
+
     return `
 
     <article
@@ -736,13 +751,13 @@ function createProductHTML(
 
                 id="image-${index}"
 
-                src="${escapeHTML(firstVariant.image)}"
+                src="${firstImage}"
 
                 alt="${escapeHTML(product.name)}"
 
                 loading="lazy"
 
-                onerror="this.style.display='none'"
+                onerror="imageError(this)"
 
             >
 
@@ -760,7 +775,11 @@ function createProductHTML(
 
             REF:
 
-            ${escapeHTML(product.ref || product.id || "")}
+            ${escapeHTML(
+                product.ref ||
+                product.id ||
+                ""
+            )}
 
         </div>
 
@@ -772,7 +791,9 @@ function createProductHTML(
 
             <div class="product-description">
 
-                ${escapeHTML(product.description)}
+                ${escapeHTML(
+                    product.description
+                )}
 
             </div>
 
@@ -796,7 +817,11 @@ function createProductHTML(
             <span
                 id="color-name-${index}"
             >
-                ${escapeHTML(firstVariant.name)}
+
+                ${escapeHTML(
+                    firstVariant.name
+                )}
+
             </span>
 
         </div>
@@ -807,40 +832,58 @@ function createProductHTML(
             ${
                 variants
                 .map(
-                    (variant,variantIndex) => `
+                    (
+                        variant,
+                        variantIndex
+                    ) => {
 
-                    <button
+                        const image =
+                            safeImageURL(
+                                variant.image
+                            );
 
-                        type="button"
+                        return `
 
-                        class="
-                            color
-                            ${
-                                variantIndex === 0
-                                ?
-                                "active"
-                                :
-                                ""
-                            }
-                        "
+                        <button
 
-                        style="
-                            background-image:
-                            url('${escapeAttribute(variant.image)}');
-                        "
+                            type="button"
 
-                        title="${escapeAttribute(variant.name)}"
+                            class="
+                                color
+                                ${
+                                    variantIndex === 0
+                                    ?
+                                    "active"
+                                    :
+                                    ""
+                                }
+                            "
 
-                        onclick="
-                            selectColor(
-                                ${index},
-                                ${variantIndex}
-                            )
-                        "
+                            style="
+                                background-image:
+                                url('${image}');
+                            "
 
-                    ></button>
+                            title="${escapeHTML(
+                                variant.name
+                            )}"
 
-                    `
+                            aria-label="${escapeHTML(
+                                variant.name
+                            )}"
+
+                            onclick="
+                                selectColor(
+                                    ${index},
+                                    ${variantIndex}
+                                )
+                            "
+
+                        ></button>
+
+                        `;
+
+                    }
                 )
                 .join("")
             }
@@ -865,7 +908,10 @@ function createProductHTML(
                 ${
                     sizes
                     .map(
-                        (size,sizeIndex) => `
+                        (
+                            size,
+                            sizeIndex
+                        ) => `
 
                         <button
 
@@ -882,7 +928,9 @@ function createProductHTML(
 
                         >
 
-                            ${escapeHTML(size)}
+                            ${escapeHTML(
+                                size
+                            )}
 
                         </button>
 
@@ -902,13 +950,16 @@ function createProductHTML(
         <div class="quantity">
 
             <button
+
                 type="button"
+
                 onclick="
                     changeQuantity(
                         ${index},
                         -1
                     )
                 "
+
             >
 
                 −
@@ -926,13 +977,16 @@ function createProductHTML(
 
 
             <button
+
                 type="button"
+
                 onclick="
                     changeQuantity(
                         ${index},
                         1
                     )
                 "
+
             >
 
                 +
@@ -1000,6 +1054,23 @@ function createProductHTML(
 
 
 
+/* =====================================================
+   ERROR DE IMAGEN
+===================================================== */
+
+function imageError(image){
+
+    image.style.display =
+        "none";
+
+}
+
+
+
+/* =====================================================
+   CAMBIAR COLOR
+===================================================== */
+
 function selectColor(
     productIndex,
     variantIndex
@@ -1009,6 +1080,17 @@ function selectColor(
         PRODUCTS[
             productIndex
         ];
+
+
+    if(
+        !product ||
+        !product.variants ||
+        !product.variants[variantIndex]
+    ){
+
+        return;
+
+    }
 
 
     const variant =
@@ -1023,12 +1105,27 @@ function selectColor(
         );
 
 
+    const imageURL =
+        safeImageURL(
+            variant.image
+        );
+
+
     image.style.display =
         "block";
 
 
     image.src =
-        variant.image;
+        imageURL;
+
+
+    image.onerror =
+        function(){
+
+            image.style.display =
+                "none";
+
+        };
 
 
     document.getElementById(
@@ -1069,6 +1166,10 @@ function selectColor(
 
 
 
+/* =====================================================
+   CAMBIAR TALLA
+===================================================== */
+
 function selectSize(
     productIndex,
     sizeIndex
@@ -1078,6 +1179,17 @@ function selectSize(
         PRODUCTS[
             productIndex
         ];
+
+
+    if(
+        !product ||
+        !product.sizes ||
+        !product.sizes[sizeIndex]
+    ){
+
+        return;
+
+    }
 
 
     const size =
@@ -1118,6 +1230,10 @@ function selectSize(
 
 
 
+/* =====================================================
+   CANTIDAD
+===================================================== */
+
 function changeQuantity(
     productIndex,
     change
@@ -1127,6 +1243,11 @@ function changeQuantity(
         document.getElementById(
             `product-${productIndex}`
         );
+
+
+    if(!card){
+        return;
+    }
 
 
     let quantity =
@@ -1180,6 +1301,10 @@ function changeQuantity(
 
 
 
+/* =====================================================
+   COMPRAR POR WHATSAPP
+===================================================== */
+
 function buyProduct(
     productIndex
 ){
@@ -1188,6 +1313,11 @@ function buyProduct(
         PRODUCTS[
             productIndex
         ];
+
+
+    if(!product){
+        return;
+    }
 
 
     const card =
@@ -1199,7 +1329,8 @@ function buyProduct(
     const variant =
         product.variants[
             Number(
-                card.dataset.variant || 0
+                card.dataset.variant ||
+                0
             )
         ];
 
@@ -1340,31 +1471,9 @@ País:
 
 
 
-function escapeHTML(value){
-
-    return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-
-}
-
-
-
-function escapeAttribute(value){
-
-    return String(value ?? "")
-        .replace(/\\/g,"\\\\")
-        .replace(/'/g,"\\'")
-        .replace(/"/g,"&quot;")
-        .replace(/</g,"%3C")
-        .replace(/>/g,"%3E");
-
-}
-
-
+/* =====================================================
+   INICIAR
+===================================================== */
 
 renderProducts();
 
@@ -1374,3 +1483,4 @@ renderProducts();
 </body>
 
 </html>
+```
