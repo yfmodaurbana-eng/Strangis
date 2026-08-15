@@ -7,17 +7,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- =====================================================
-     🟢 EDITAR AQUÍ: TÍTULO DE LA PESTAÑA
-===================================================== -->
-
 <title>Gafas | MI MARCA</title>
 
 <style>
-
-/* =====================================================
-   CONFIGURACIÓN GENERAL
-===================================================== */
 
 *{
     margin:0;
@@ -40,11 +32,6 @@ body{
         );
 }
 
-
-/* =====================================================
-   CABECERA
-===================================================== */
-
 header{
     position:sticky;
     top:0;
@@ -63,7 +50,6 @@ header{
     backdrop-filter:blur(15px);
 }
 
-
 .logo{
     flex-shrink:0;
 
@@ -71,7 +57,6 @@ header{
     font-weight:900;
     letter-spacing:4px;
 }
-
 
 nav{
     flex:1;
@@ -88,7 +73,6 @@ nav::-webkit-scrollbar{
     display:none;
 }
 
-
 nav a{
     color:#999;
     text-decoration:none;
@@ -101,35 +85,14 @@ nav a{
     white-space:nowrap;
 }
 
-
 nav a:hover,
 nav a.active{
     color:#fff;
 }
 
-
-.admin{
-    padding:10px 15px;
-
-    border:1px solid rgba(255,255,255,.25);
-    border-radius:4px;
-
-    color:#fff;
-    text-decoration:none;
-
-    font-size:8px;
-    font-weight:bold;
-}
-
-
-/* =====================================================
-   CABECERA DE CATEGORÍA
-===================================================== */
-
 .hero{
     padding:90px 5% 60px;
 }
-
 
 .hero small{
     color:#999;
@@ -139,7 +102,6 @@ nav a.active{
     letter-spacing:4px;
 }
 
-
 .hero h1{
     margin-top:18px;
 
@@ -148,7 +110,6 @@ nav a.active{
     letter-spacing:-6px;
     line-height:.85;
 }
-
 
 .hero p{
     max-width:550px;
@@ -161,15 +122,9 @@ nav a.active{
     line-height:1.7;
 }
 
-
-/* =====================================================
-   PRODUCTOS
-===================================================== */
-
 .products-section{
     padding:20px 5% 100px;
 }
-
 
 .products{
     display:grid;
@@ -178,11 +133,6 @@ nav a.active{
 
     gap:15px;
 }
-
-
-/* =====================================================
-   TARJETA DEL PRODUCTO
-===================================================== */
 
 .product{
     overflow:hidden;
@@ -195,7 +145,6 @@ nav a.active{
     background:rgba(255,255,255,.05);
 }
 
-
 .product-image{
     height:300px;
 
@@ -206,7 +155,6 @@ nav a.active{
     overflow:hidden;
 }
 
-
 .product-image img{
     width:100%;
     height:100%;
@@ -216,17 +164,14 @@ nav a.active{
     transition:.35s;
 }
 
-
 .product:hover .product-image img{
     transform:scale(1.04);
 }
-
 
 .product-name{
     font-size:14px;
     font-weight:bold;
 }
-
 
 .product-code{
     margin-top:6px;
@@ -237,7 +182,6 @@ nav a.active{
     letter-spacing:1px;
 }
 
-
 .product-description{
     margin-top:9px;
 
@@ -247,18 +191,12 @@ nav a.active{
     line-height:1.5;
 }
 
-
 .product-price{
     margin-top:12px;
 
     font-size:14px;
     font-weight:bold;
 }
-
-
-/* =====================================================
-   COLORES
-===================================================== */
 
 .label{
     margin-top:15px;
@@ -271,7 +209,6 @@ nav a.active{
     letter-spacing:1px;
 }
 
-
 .colors{
     display:flex;
 
@@ -279,7 +216,6 @@ nav a.active{
 
     margin-top:9px;
 }
-
 
 .color{
     width:25px;
@@ -297,16 +233,10 @@ nav a.active{
     background-position:center;
 }
 
-
 .color.active{
     outline:2px solid white;
     outline-offset:2px;
 }
-
-
-/* =====================================================
-   TALLAS
-===================================================== */
 
 .sizes{
     display:flex;
@@ -317,7 +247,6 @@ nav a.active{
 
     margin-top:9px;
 }
-
 
 .size{
     padding:7px 10px;
@@ -335,16 +264,10 @@ nav a.active{
     font-size:8px;
 }
 
-
 .size.active{
     background:#fff;
     color:#111;
 }
-
-
-/* =====================================================
-   CANTIDAD
-===================================================== */
 
 .quantity{
     display:flex;
@@ -355,7 +278,6 @@ nav a.active{
 
     margin-top:15px;
 }
-
 
 .quantity button{
     width:28px;
@@ -370,7 +292,6 @@ nav a.active{
     cursor:pointer;
 }
 
-
 .quantity span{
     min-width:20px;
 
@@ -378,11 +299,6 @@ nav a.active{
 
     font-size:11px;
 }
-
-
-/* =====================================================
-   ENVÍO
-===================================================== */
 
 .shipping{
     margin-top:14px;
@@ -392,7 +308,6 @@ nav a.active{
     font-size:9px;
 }
 
-
 .stock{
     margin-top:7px;
 
@@ -400,11 +315,6 @@ nav a.active{
 
     font-size:8px;
 }
-
-
-/* =====================================================
-   BOTÓN COMPRAR
-===================================================== */
 
 .buy{
     width:100%;
@@ -426,15 +336,9 @@ nav a.active{
     cursor:pointer;
 }
 
-
 .buy:hover{
     background:#ddd;
 }
-
-
-/* =====================================================
-   CATEGORÍA VACÍA
-===================================================== */
 
 .empty{
     grid-column:1 / -1;
@@ -444,7 +348,6 @@ nav a.active{
     text-align:center;
 }
 
-
 .empty-title{
     font-size:18px;
 
@@ -453,7 +356,6 @@ nav a.active{
     letter-spacing:2px;
 }
 
-
 .empty-text{
     margin-top:12px;
 
@@ -461,11 +363,6 @@ nav a.active{
 
     font-size:10px;
 }
-
-
-/* =====================================================
-   FOOTER
-===================================================== */
 
 footer{
     padding:30px 5%;
@@ -479,11 +376,6 @@ footer{
     font-size:8px;
 }
 
-
-/* =====================================================
-   TABLET
-===================================================== */
-
 @media(max-width:1000px){
 
     .products{
@@ -491,11 +383,6 @@ footer{
     }
 
 }
-
-
-/* =====================================================
-   MÓVIL
-===================================================== */
 
 @media(max-width:650px){
 
@@ -505,11 +392,9 @@ footer{
         padding:16px 15px 9px;
     }
 
-
     .logo{
         font-size:17px;
     }
-
 
     nav{
         order:3;
@@ -519,11 +404,9 @@ footer{
         justify-content:flex-start;
     }
 
-
     .hero{
         padding:60px 15px 40px;
     }
-
 
     .hero h1{
         font-size:18vw;
@@ -531,21 +414,17 @@ footer{
         letter-spacing:-4px;
     }
 
-
     .products-section{
         padding:20px 12px 70px;
     }
-
 
     .products{
         gap:9px;
     }
 
-
     .product{
         padding:10px;
     }
-
 
     .product-image{
         height:210px;
@@ -553,16 +432,13 @@ footer{
         margin:-10px -10px 12px;
     }
 
-
     .product-name{
         font-size:10px;
     }
 
-
     .product-price{
         font-size:10px;
     }
-
 
     .empty{
         padding:80px 15px;
@@ -574,172 +450,88 @@ footer{
 
 </head>
 
-
 <body>
-
-
-<!-- =====================================================
-     CABECERA
-===================================================== -->
 
 <header>
 
-
 <div class="logo">
-
-    <!-- 🟢 EDITAR AQUÍ: NOMBRE DE TU MARCA -->
-
     MI MARCA
-
 </div>
 
-
 <nav>
-
 
 <a href="index.html">
     Inicio
 </a>
 
-
 <a href="camisetas.html">
     Camisetas
 </a>
-
 
 <a href="pantalones.html">
     Pantalones
 </a>
 
-
 <a href="chandals.html">
     Chandals
 </a>
-
 
 <a href="gorras.html">
     Gorras
 </a>
 
-
-<a
-    class="active"
-    href="gafas.html"
->
+<a class="active" href="gafas.html">
     Gafas
 </a>
-
 
 <a href="bisuteria.html">
     Bisutería
 </a>
 
-
 </nav>
-
-
-<a
-    class="admin"
-    href="admin.html"
->
-    ADMIN
-</a>
-
 
 </header>
 
-
-
-<!-- =====================================================
-     PRESENTACIÓN DE CATEGORÍA
-===================================================== -->
-
 <section class="hero">
-
 
 <small>
     COLECCIÓN
 </small>
 
-
-<!-- 🟢 EDITAR AQUÍ SI QUIERES -->
-
 <h1>
     GAFAS
 </h1>
-
-
-<!-- 🟢 EDITAR AQUÍ SI QUIERES -->
 
 <p>
     Descubre nuestra selección de gafas
     para completar tu estilo urbano.
 </p>
 
-
 </section>
 
-
-
-<!-- =====================================================
-     CONTENEDOR DE PRODUCTOS
-===================================================== -->
-
 <section class="products-section">
-
 
 <div
     class="products"
     id="productsContainer"
 ></div>
 
-
 </section>
 
-
-
 <footer>
-
-<!-- 🟢 EDITAR AQUÍ -->
 
 © 2026 MI MARCA · TODOS LOS DERECHOS RESERVADOS
 
 </footer>
 
-
-
 <script>
-
-
-/* =========================================================
-   🟢🟢🟢 PRODUCTOS DE GAFAS 🟢🟢🟢
-
-   AQUÍ PEGARÁS LOS CÓDIGOS GENERADOS
-   POR admin.html.
-
-   DE MOMENTO ESTÁ VACÍO.
-
-========================================================= */
-
 
 const PRODUCTS = [
 
 ];
 
-
-
-/* =====================================================
-   WHATSAPP
-===================================================== */
-
 const WHATSAPP_NUMBER =
     "34674559614";
-
-
-
-/* =====================================================
-   FORMATO DE PRECIO
-===================================================== */
 
 function money(value){
 
@@ -753,19 +545,12 @@ function money(value){
 
 }
 
-
-
-/* =====================================================
-   MOSTRAR PRODUCTOS
-===================================================== */
-
 function renderProducts(){
 
     const container =
         document.getElementById(
             "productsContainer"
         );
-
 
     if(!PRODUCTS.length){
 
@@ -774,17 +559,12 @@ function renderProducts(){
             <div class="empty">
 
                 <div class="empty-title">
-
                     PRÓXIMAMENTE
-
                 </div>
 
-
                 <div class="empty-text">
-
                     Estamos preparando
                     nuevos productos.
-
                 </div>
 
             </div>
@@ -795,28 +575,18 @@ function renderProducts(){
 
     }
 
-
     container.innerHTML =
-
         PRODUCTS
         .map(
             (product,index) =>
-
                 createProductHTML(
                     product,
                     index
                 )
-
         )
         .join("");
 
 }
-
-
-
-/* =====================================================
-   CREAR TARJETA DEL PRODUCTO
-===================================================== */
 
 function createProductHTML(
     product,
@@ -826,10 +596,8 @@ function createProductHTML(
     const firstVariant =
         product.variants[0];
 
-
     const sizes =
         product.sizes || [];
-
 
     const shipping =
         product.shipping ||
@@ -838,124 +606,72 @@ function createProductHTML(
             max:9
         };
 
-
     return `
 
     <article
-
         class="product"
-
         id="product-${index}"
-
         data-variant="0"
-
         data-size=""
-
         data-quantity="1"
-
     >
-
 
         <div class="product-image">
 
             <img
-
                 id="image-${index}"
-
                 src="${firstVariant.image}"
-
                 alt="${product.name}"
-
             >
 
         </div>
 
-
-
         <div class="product-name">
-
             ${product.name}
-
         </div>
-
-
 
         <div class="product-code">
-
             CÓDIGO:
-
             ${product.id}
-
         </div>
-
-
 
         ${
             product.description
             ?
-
             `
-
             <div class="product-description">
-
                 ${product.description}
-
             </div>
-
             `
-
             :
-
             ""
         }
 
-
-
         <div class="product-price">
-
             ${money(product.price)}
-
         </div>
-
-
-
-        <!-- ==========================
-             COLORES
-        =========================== -->
-
 
         <div class="label">
 
             Color:
 
-            <span
-                id="color-name-${index}"
-            >
-
+            <span id="color-name-${index}">
                 ${firstVariant.name}
-
             </span>
 
         </div>
 
-
-
         <div class="colors">
-
 
             ${
                 product.variants
-
                 .map(
                     (
                         variant,
                         variantIndex
-                    ) =>
-
-                    `
+                    ) => `
 
                     <button
-
                         class="
                             color
                             ${
@@ -966,158 +682,95 @@ function createProductHTML(
                                 ""
                             }
                         "
-
                         style="
                             background-image:
                             url('${variant.image}');
                         "
-
                         title="${variant.name}"
-
                         onclick="
                             selectColor(
                                 ${index},
                                 ${variantIndex}
                             )
                         "
-
                     ></button>
 
                     `
-
                 )
                 .join("")
             }
 
-
         </div>
-
-
-
-        <!-- ==========================
-             TALLAS
-        =========================== -->
-
 
         ${
             sizes.length
-
             ?
-
             `
 
             <div class="label">
-
                 Talla
-
             </div>
-
 
             <div class="sizes">
 
-
                 ${
                     sizes
-
                     .map(
-                        size =>
-
-                        `
+                        size => `
 
                         <button
-
                             class="size"
-
                             onclick="
                                 selectSize(
                                     ${index},
                                     '${size}'
                                 )
                             "
-
                         >
-
                             ${size}
-
                         </button>
 
                         `
-
                     )
                     .join("")
                 }
 
-
             </div>
 
             `
-
             :
-
             ""
         }
 
-
-
-        <!-- ==========================
-             CANTIDAD
-        =========================== -->
-
-
         <div class="quantity">
 
-
             <button
-
                 onclick="
                     changeQuantity(
                         ${index},
                         -1
                     )
                 "
-
             >
-
                 −
-
             </button>
 
-
-
-            <span
-                id="quantity-${index}"
-            >
-
+            <span id="quantity-${index}">
                 1
-
             </span>
 
-
-
             <button
-
                 onclick="
                     changeQuantity(
                         ${index},
                         1
                     )
                 "
-
             >
-
                 +
-
             </button>
 
-
         </div>
-
-
-
-        <!-- ==========================
-             ENVÍO
-        =========================== -->
-
 
         <div class="shipping">
 
@@ -1131,65 +784,39 @@ function createProductHTML(
 
         </div>
 
-
-
         ${
             product.stock !== undefined
-
             ?
-
             `
 
             <div class="stock">
 
                 Stock disponible:
-
                 ${product.stock}
 
             </div>
 
             `
-
             :
-
             ""
         }
 
-
-
-        <!-- ==========================
-             COMPRAR
-        =========================== -->
-
-
         <button
-
             class="buy"
-
             onclick="
                 buyProduct(
                     ${index}
                 )
             "
-
         >
-
             COMPRAR
-
         </button>
-
 
     </article>
 
     `;
 
 }
-
-
-
-/* =====================================================
-   COLOR → IMAGEN
-===================================================== */
 
 function selectColor(
     productIndex,
@@ -1201,34 +828,28 @@ function selectColor(
             productIndex
         ];
 
-
     const variant =
         product.variants[
             variantIndex
         ];
-
 
     document.getElementById(
         `image-${productIndex}`
     ).src =
         variant.image;
 
-
     document.getElementById(
         `color-name-${productIndex}`
     ).textContent =
         variant.name;
-
 
     const card =
         document.getElementById(
             `product-${productIndex}`
         );
 
-
     card.dataset.variant =
         variantIndex;
-
 
     card
         .querySelectorAll(
@@ -1250,12 +871,6 @@ function selectColor(
 
 }
 
-
-
-/* =====================================================
-   TALLA
-===================================================== */
-
 function selectSize(
     productIndex,
     size
@@ -1266,10 +881,8 @@ function selectSize(
             `product-${productIndex}`
         );
 
-
     card.dataset.size =
         size;
-
 
     card
         .querySelectorAll(
@@ -1279,27 +892,18 @@ function selectSize(
             button => {
 
                 button.classList.toggle(
-
                     "active",
-
                     button
                         .textContent
                         .trim()
                     ===
                     size
-
                 );
 
             }
         );
 
 }
-
-
-
-/* =====================================================
-   CANTIDAD
-===================================================== */
 
 function changeQuantity(
     productIndex,
@@ -1311,26 +915,19 @@ function changeQuantity(
             `product-${productIndex}`
         );
 
-
     let quantity =
         Number(
             card.dataset.quantity
         );
 
-
     quantity += change;
 
-
     if(quantity < 1){
-
         quantity = 1;
-
     }
-
 
     card.dataset.quantity =
         quantity;
-
 
     document.getElementById(
         `quantity-${productIndex}`
@@ -1338,12 +935,6 @@ function changeQuantity(
         quantity;
 
 }
-
-
-
-/* =====================================================
-   COMPRAR → WHATSAPP
-===================================================== */
 
 function buyProduct(
     productIndex
@@ -1354,12 +945,10 @@ function buyProduct(
             productIndex
         ];
 
-
     const card =
         document.getElementById(
             `product-${productIndex}`
         );
-
 
     const variant =
         product.variants[
@@ -1368,12 +957,10 @@ function buyProduct(
             )
         ];
 
-
     const size =
         card.dataset.size
         ||
         "No especificada";
-
 
     const quantity =
         Number(
@@ -1382,11 +969,9 @@ function buyProduct(
             1
         );
 
-
     const total =
         product.price *
         quantity;
-
 
     const shipping =
         product.shipping ||
@@ -1394,7 +979,6 @@ function buyProduct(
             min:3,
             max:9
         };
-
 
     const message = `
 
@@ -1465,25 +1049,16 @@ País:
 
 `;
 
-
     const whatsappURL =
-
         "https://wa.me/"
-
         +
-
         WHATSAPP_NUMBER
-
         +
-
         "?text="
-
         +
-
         encodeURIComponent(
             message
         );
-
 
     window.open(
         whatsappURL,
@@ -1492,16 +1067,9 @@ País:
 
 }
 
-
-
-/* =====================================================
-   INICIAR PÁGINA
-===================================================== */
-
 renderProducts();
 
 </script>
-
 
 </body>
 
