@@ -7,18 +7,18 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- =========================================================
-     🟢 EDITAR AQUÍ: TÍTULO DE LA PESTAÑA
-========================================================= -->
+<!-- =====================================================
+     🟢 EDITAR AQUÍ: NOMBRE DE LA PÁGINA
+===================================================== -->
 
 <title>MI MARCA | Moda Urbana</title>
 
 
 <style>
 
-/* =========================================================
-   🔴 NO TOCAR: CONFIGURACIÓN GENERAL
-========================================================= */
+/* =====================================================
+   CONFIGURACIÓN GENERAL
+===================================================== */
 
 *{
     margin:0;
@@ -45,17 +45,17 @@ body{
         linear-gradient(
             135deg,
             #181818 0%,
-            #303030 38%,
-            #555555 65%,
+            #303030 35%,
+            #555 65%,
             #292929 100%
         );
 
 }
 
 
-/* =========================================================
-   🔴 CABECERA
-========================================================= */
+/* =====================================================
+   CABECERA
+===================================================== */
 
 header{
 
@@ -65,10 +65,8 @@ header{
 
     z-index:1000;
 
-    width:100%;
-
     padding:
-        18px 4%;
+        18px 5%;
 
     display:flex;
 
@@ -81,7 +79,7 @@ header{
         rgba(255,255,255,.12);
 
     background:
-        rgba(25,25,25,.88);
+        rgba(25,25,25,.90);
 
     backdrop-filter:
         blur(15px);
@@ -89,17 +87,13 @@ header{
 }
 
 
-/* =========================================================
-   🟢 EDITAR AQUÍ: NOMBRE DE LA MARCA
-========================================================= */
-
 .logo{
 
     flex-shrink:0;
 
     color:#fff;
 
-    font-size:22px;
+    font-size:21px;
 
     font-weight:900;
 
@@ -108,17 +102,11 @@ header{
 }
 
 
-/* =========================================================
-   MENÚ
-========================================================= */
-
-.categories{
+nav{
 
     flex:1;
 
     display:flex;
-
-    align-items:center;
 
     justify-content:center;
 
@@ -130,22 +118,17 @@ header{
 
 }
 
-.categories::-webkit-scrollbar{
+
+nav::-webkit-scrollbar{
     display:none;
 }
 
 
-.category{
-
-    flex-shrink:0;
-
-    padding:7px 0;
-
-    border:0;
-
-    background:none;
+nav a{
 
     color:#999;
+
+    text-decoration:none;
 
     font-size:9px;
 
@@ -155,58 +138,28 @@ header{
 
     text-transform:uppercase;
 
-    cursor:pointer;
+    white-space:nowrap;
 
-    transition:.25s;
+    transition:.2s;
 
 }
 
 
-.category:hover{
+nav a:hover{
 
     color:#fff;
 
 }
 
 
-/* =========================================================
-   ADMIN
-========================================================= */
-
-.admin-link{
-
-    flex-shrink:0;
-
-    padding:
-        10px 15px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.25);
-
-    border-radius:4px;
-
-    color:#fff;
-
-    text-decoration:none;
-
-    font-size:8px;
-
-    font-weight:bold;
-
-    letter-spacing:1.5px;
-
-}
-
-
-/* =========================================================
+/* =====================================================
    HERO
-========================================================= */
+===================================================== */
 
 .hero{
 
     min-height:
-        620px;
+        calc(100vh - 70px);
 
     display:flex;
 
@@ -215,7 +168,7 @@ header{
     justify-content:center;
 
     padding:
-        80px 20px;
+        70px 5%;
 
     text-align:center;
 
@@ -224,18 +177,16 @@ header{
 
 .hero-content{
 
-    width:100%;
-
-    max-width:950px;
+    max-width:900px;
 
 }
 
 
-.hero-label{
+.hero small{
 
-    margin-bottom:25px;
+    display:block;
 
-    color:#aaa;
+    color:#999;
 
     font-size:9px;
 
@@ -246,74 +197,68 @@ header{
 }
 
 
-/* =========================================================
-   🟢 EDITAR AQUÍ: TÍTULO PRINCIPAL
-========================================================= */
-
 .hero h1{
+
+    margin-top:22px;
 
     font-size:
         clamp(
-            60px,
-            12vw,
-            145px
+            65px,
+            13vw,
+            160px
         );
 
     line-height:.82;
 
-    letter-spacing:-8px;
+    letter-spacing:-9px;
 
-    text-transform:uppercase;
+    font-weight:900;
 
 }
 
 
-/* =========================================================
-   🟢 EDITAR AQUÍ: TEXTO PRINCIPAL
-========================================================= */
-
-.hero-description{
+.hero p{
 
     max-width:560px;
 
     margin:
         35px auto 0;
 
-    color:#bdbdbd;
+    color:#aaa;
 
-    font-size:13px;
+    font-size:12px;
 
     line-height:1.8;
 
 }
 
 
-/* =========================================================
-   BOTÓN
-========================================================= */
-
 .hero-button{
+
+    display:inline-block;
 
     margin-top:35px;
 
     padding:
-        16px 32px;
+        15px 30px;
 
-    border:0;
+    border:
+        1px solid
+        rgba(255,255,255,.25);
 
     border-radius:3px;
 
+    color:#111;
+
     background:#fff;
 
-    color:#111;
+    text-decoration:none;
 
     font-size:9px;
 
-    font-weight:900;
+    font-weight:bold;
 
-    letter-spacing:2px;
-
-    cursor:pointer;
+    letter-spacing:1.5px;
 
     transition:.25s;
 
@@ -324,114 +269,29 @@ header{
 
     background:#ddd;
 
-    transform:
-        translateY(-2px);
+    transform:translateY(-2px);
 
 }
 
 
-/* =========================================================
-   INFORMACIÓN
-========================================================= */
+/* =====================================================
+   CATEGORÍAS
+===================================================== */
 
-.info-section{
+.categories{
 
     padding:
-        40px 5%;
+        80px 5%
+        110px;
 
 }
 
 
-.info-grid{
+.section-label{
 
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:15px;
-
-}
-
-
-.info-card{
-
-    padding:30px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.10);
-
-    border-radius:7px;
-
-    background:
-        rgba(255,255,255,.045);
-
-}
-
-
-.info-number{
-
-    margin-bottom:18px;
-
-    color:#777;
-
-    font-size:10px;
-
-    font-weight:bold;
-
-    letter-spacing:2px;
-
-}
-
-
-/* =========================================================
-   🟢 EDITAR AQUÍ: TÍTULOS
-========================================================= */
-
-.info-card h3{
-
-    margin-bottom:10px;
-
-    font-size:15px;
-
-}
-
-
-/* =========================================================
-   🟢 EDITAR AQUÍ: TEXTOS
-========================================================= */
-
-.info-card p{
+    margin-bottom:35px;
 
     color:#999;
-
-    font-size:11px;
-
-    line-height:1.7;
-
-}
-
-
-/* =========================================================
-   COLECCIÓN
-========================================================= */
-
-.collection{
-
-    padding:
-        100px 5%;
-
-    text-align:center;
-
-}
-
-
-.collection-label{
-
-    margin-bottom:15px;
-
-    color:#888;
 
     font-size:9px;
 
@@ -442,30 +302,7 @@ header{
 }
 
 
-/* =========================================================
-   🟢 EDITAR AQUÍ: TÍTULO COLECCIÓN
-========================================================= */
-
-.collection h2{
-
-    font-size:
-        clamp(
-            40px,
-            7vw,
-            80px
-        );
-
-    letter-spacing:-4px;
-
-}
-
-
 .category-grid{
-
-    max-width:1200px;
-
-    margin:
-        55px auto 0;
 
     display:grid;
 
@@ -477,17 +314,19 @@ header{
 }
 
 
-.category-box{
+.category{
 
-    min-height:190px;
+    position:relative;
 
-    padding:25px;
+    min-height:220px;
 
     display:flex;
 
     align-items:flex-end;
 
-    justify-content:space-between;
+    padding:25px;
+
+    overflow:hidden;
 
     border:
         1px solid
@@ -498,47 +337,150 @@ header{
     background:
         linear-gradient(
             145deg,
-            rgba(255,255,255,.10),
-            rgba(0,0,0,.18)
+            #444,
+            #202020
         );
 
-    cursor:pointer;
+    text-decoration:none;
+
+    color:#fff;
 
     transition:.3s;
 
 }
 
 
-.category-box:hover{
+.category::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,.55),
+            transparent
+        );
+
+}
+
+
+.category:hover{
 
     transform:
         translateY(-5px);
 
     border-color:
-        rgba(255,255,255,.35);
+        rgba(255,255,255,.3);
 
 }
 
 
-.category-box h3{
+.category-content{
 
-    font-size:20px;
+    position:relative;
+
+    z-index:2;
 
 }
 
 
-.category-arrow{
+.category-number{
+
+    color:#888;
+
+    font-size:8px;
+
+    letter-spacing:2px;
+
+}
+
+
+.category h2{
+
+    margin-top:8px;
+
+    font-size:25px;
+
+    letter-spacing:-1px;
+
+}
+
+
+/* =====================================================
+   BLOQUE FINAL
+===================================================== */
+
+.about{
+
+    padding:
+        80px 5%
+        110px;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.1);
+
+}
+
+
+.about-inner{
+
+    max-width:850px;
+
+}
+
+
+.about small{
 
     color:#999;
 
-    font-size:20px;
+    font-size:9px;
+
+    letter-spacing:4px;
+
+    font-weight:bold;
 
 }
 
 
-/* =========================================================
+.about h2{
+
+    margin-top:20px;
+
+    font-size:
+        clamp(
+            35px,
+            6vw,
+            70px
+        );
+
+    letter-spacing:-4px;
+
+}
+
+
+.about p{
+
+    margin-top:25px;
+
+    max-width:600px;
+
+    color:#999;
+
+    font-size:12px;
+
+    line-height:1.8;
+
+}
+
+
+/* =====================================================
    FOOTER
-========================================================= */
+===================================================== */
 
 footer{
 
@@ -547,97 +489,24 @@ footer{
 
     border-top:
         1px solid
-        rgba(255,255,255,.10);
+        rgba(255,255,255,.1);
 
     text-align:center;
 
-    color:#777;
+    color:#666;
 
     font-size:8px;
 
-    letter-spacing:1.5px;
+    letter-spacing:1px;
 
 }
 
 
-/* =========================================================
-   RESPONSIVE
-========================================================= */
+/* =====================================================
+   TABLET
+===================================================== */
 
-@media(max-width:800px){
-
-    header{
-
-        flex-wrap:wrap;
-
-        padding:
-            16px 15px
-            8px;
-
-        gap:12px;
-
-    }
-
-
-    .logo{
-
-        font-size:17px;
-
-    }
-
-
-    .admin-link{
-
-        margin-left:auto;
-
-    }
-
-
-    .categories{
-
-        order:3;
-
-        flex-basis:100%;
-
-        justify-content:flex-start;
-
-        gap:22px;
-
-    }
-
-
-    .hero{
-
-        min-height:520px;
-
-        padding:
-            60px 20px;
-
-    }
-
-
-    .hero h1{
-
-        font-size:18vw;
-
-        letter-spacing:-4px;
-
-    }
-
-
-    .hero-description{
-
-        font-size:11px;
-
-    }
-
-
-    .info-grid{
-
-        grid-template-columns:1fr;
-
-    }
-
+@media(max-width:900px){
 
     .category-grid{
 
@@ -646,35 +515,129 @@ footer{
 
     }
 
-
-    .category-box{
-
-        min-height:150px;
-
-    }
-
 }
 
 
-@media(max-width:480px){
+/* =====================================================
+   MÓVIL
+===================================================== */
+
+@media(max-width:650px){
+
+    header{
+
+        padding:
+            15px;
+
+        gap:15px;
+
+        flex-wrap:wrap;
+
+    }
+
+
+    .logo{
+
+        font-size:17px;
+
+        letter-spacing:3px;
+
+    }
+
+
+    nav{
+
+        order:3;
+
+        flex-basis:100%;
+
+        justify-content:flex-start;
+
+        gap:20px;
+
+    }
+
+
+    nav a{
+
+        font-size:8px;
+
+    }
+
+
+    .hero{
+
+        min-height:
+            calc(100vh - 110px);
+
+        padding:
+            60px 15px;
+
+    }
+
+
+    .hero h1{
+
+        font-size:
+            22vw;
+
+        letter-spacing:-5px;
+
+    }
+
+
+    .hero p{
+
+        font-size:11px;
+
+    }
+
+
+    .categories{
+
+        padding:
+            60px 12px
+            80px;
+
+    }
+
 
     .category-grid{
 
-        grid-template-columns:1fr;
+        grid-template-columns:
+            1fr;
+
+        gap:9px;
 
     }
 
 
-    .category-box{
+    .category{
 
-        min-height:130px;
+        min-height:170px;
 
     }
 
 
-    .hero-button{
+    .category h2{
 
-        width:100%;
+        font-size:21px;
+
+    }
+
+
+    .about{
+
+        padding:
+            60px 15px
+            80px;
+
+    }
+
+
+    .about h2{
+
+        letter-spacing:-2px;
 
     }
 
@@ -688,9 +651,13 @@ footer{
 <body>
 
 
-<!-- =========================================================
+<!-- =====================================================
      CABECERA
-========================================================= -->
+     
+     🟢 AQUÍ SOLO ESTÁN LAS CATEGORÍAS PÚBLICAS.
+     
+     NO HAY NINGÚN ENLACE A ADMIN.
+===================================================== -->
 
 <header>
 
@@ -704,85 +671,55 @@ footer{
 </div>
 
 
-<nav class="categories">
+
+<nav>
 
 
-<button
-    class="category"
-    onclick="location.href='index.html'"
->
+<a href="index.html">
     Inicio
-</button>
+</a>
 
 
-<button
-    class="category"
-    onclick="location.href='camisetas.html'"
->
+<a href="camisetas.html">
     Camisetas
-</button>
+</a>
 
 
-<button
-    class="category"
-    onclick="location.href='pantalones.html'"
->
+<a href="pantalones.html">
     Pantalones
-</button>
+</a>
 
 
-<button
-    class="category"
-    onclick="location.href='chandals.html'"
->
+<a href="chandals.html">
     Chandals
-</button>
+</a>
 
 
-<button
-    class="category"
-    onclick="location.href='gorras.html'"
->
+<a href="gorras.html">
     Gorras
-</button>
+</a>
 
 
-<button
-    class="category"
-    onclick="location.href='gafas.html'"
->
+<a href="gafas.html">
     Gafas
-</button>
+</a>
 
 
-<button
-    class="category"
-    onclick="location.href='bisuteria.html'"
->
+<a href="bisuteria.html">
     Bisutería
-</button>
+</a>
 
 
 </nav>
-
-
-<a
-    href="admin.html"
-    class="admin-link"
->
-
-    ADMIN
-
-</a>
 
 
 </header>
 
 
 
-<!-- =========================================================
-     HERO
-========================================================= -->
+<!-- =====================================================
+     PRESENTACIÓN PRINCIPAL
+===================================================== -->
 
 <section class="hero">
 
@@ -790,265 +727,258 @@ footer{
 <div class="hero-content">
 
 
-<div class="hero-label">
+<small>
+    MODA URBANA
+</small>
 
-    <!-- 🟢 EDITAR AQUÍ -->
 
-    NUEVA COLECCIÓN · 2026
-
-</div>
-
+<!-- =====================================================
+     🟢 EDITAR AQUÍ: TÍTULO PRINCIPAL
+===================================================== -->
 
 <h1>
-
-    <!-- 🟢 EDITAR AQUÍ -->
-
-    TU ESTILO
-
+    MI MARCA
 </h1>
 
 
-<p class="hero-description">
+<!-- =====================================================
+     🟢 EDITAR AQUÍ: TEXTO
+===================================================== -->
 
-    <!-- 🟢 EDITAR AQUÍ -->
+<p>
 
-    Moda urbana creada para quienes
-    no siguen las tendencias.
-    Las crean.
+    Descubre nuestra selección de moda urbana,
+    diseñada para quienes buscan estilo,
+    personalidad y calidad.
 
 </p>
 
 
-<button
+<a
+    href="#categorias"
     class="hero-button"
-    onclick="scrollToCollection()"
 >
 
-    DESCUBRIR COLECCIÓN
+    VER COLECCIÓN
 
-</button>
+</a>
 
 
 </div>
+
 
 </section>
 
 
 
-<!-- =========================================================
-     INFORMACIÓN
-========================================================= -->
-
-<section class="info-section">
-
-
-<div class="info-grid">
-
-
-<div class="info-card">
-
-    <div class="info-number">
-        01
-    </div>
-
-    <!-- 🟢 EDITAR AQUÍ -->
-
-    <h3>
-        Estilo urbano
-    </h3>
-
-    <!-- 🟢 EDITAR AQUÍ -->
-
-    <p>
-        Prendas seleccionadas para
-        crear looks con personalidad.
-    </p>
-
-</div>
-
-
-<div class="info-card">
-
-    <div class="info-number">
-        02
-    </div>
-
-    <!-- 🟢 EDITAR AQUÍ -->
-
-    <h3>
-        Compra sencilla
-    </h3>
-
-    <!-- 🟢 EDITAR AQUÍ -->
-
-    <p>
-        Elige tu producto, color y talla
-        y realiza tu pedido directamente.
-    </p>
-
-</div>
-
-
-<div class="info-card">
-
-    <div class="info-number">
-        03
-    </div>
-
-    <!-- 🟢 EDITAR AQUÍ -->
-
-    <h3>
-        Envío seguro
-    </h3>
-
-    <!-- 🟢 EDITAR AQUÍ -->
-
-    <p>
-        Recibe tus productos cómodamente
-        en la dirección indicada.
-    </p>
-
-</div>
-
-
-</div>
-
-</section>
-
-
-
-<!-- =========================================================
-     COLECCIÓN
-========================================================= -->
+<!-- =====================================================
+     CATEGORÍAS
+===================================================== -->
 
 <section
-    class="collection"
-    id="coleccion"
+    class="categories"
+    id="categorias"
 >
 
 
-<div class="collection-label">
+<div class="section-label">
 
-    EXPLORA
+    CATEGORÍAS
 
 </div>
-
-
-<!-- 🟢 EDITAR AQUÍ -->
-
-<h2>
-    COLECCIÓN
-</h2>
 
 
 <div class="category-grid">
 
 
-<div
-    class="category-box"
-    onclick="location.href='camisetas.html'"
+<!-- CAMISETAS -->
+
+<a
+    href="camisetas.html"
+    class="category"
 >
 
-    <h3>
-        Camisetas
-    </h3>
+<div class="category-content">
 
-    <span class="category-arrow">
-        →
-    </span>
+<div class="category-number">
+    01
+</div>
+
+<h2>
+    Camisetas
+</h2>
 
 </div>
 
+</a>
 
-<div
-    class="category-box"
-    onclick="location.href='pantalones.html'"
+
+
+<!-- PANTALONES -->
+
+<a
+    href="pantalones.html"
+    class="category"
 >
 
-    <h3>
-        Pantalones
-    </h3>
+<div class="category-content">
 
-    <span class="category-arrow">
-        →
-    </span>
+<div class="category-number">
+    02
+</div>
+
+<h2>
+    Pantalones
+</h2>
 
 </div>
 
+</a>
 
-<div
-    class="category-box"
-    onclick="location.href='chandals.html'"
+
+
+<!-- CHANDALS -->
+
+<a
+    href="chandals.html"
+    class="category"
 >
 
-    <h3>
-        Chandals
-    </h3>
+<div class="category-content">
 
-    <span class="category-arrow">
-        →
-    </span>
+<div class="category-number">
+    03
+</div>
+
+<h2>
+    Chandals
+</h2>
 
 </div>
 
+</a>
 
-<div
-    class="category-box"
-    onclick="location.href='gorras.html'"
+
+
+<!-- GORRAS -->
+
+<a
+    href="gorras.html"
+    class="category"
 >
 
-    <h3>
-        Gorras
-    </h3>
+<div class="category-content">
 
-    <span class="category-arrow">
-        →
-    </span>
+<div class="category-number">
+    04
+</div>
+
+<h2>
+    Gorras
+</h2>
 
 </div>
 
+</a>
 
-<div
-    class="category-box"
-    onclick="location.href='gafas.html'"
+
+
+<!-- GAFAS -->
+
+<a
+    href="gafas.html"
+    class="category"
 >
 
-    <h3>
-        Gafas
-    </h3>
+<div class="category-content">
 
-    <span class="category-arrow">
-        →
-    </span>
+<div class="category-number">
+    05
+</div>
+
+<h2>
+    Gafas
+</h2>
 
 </div>
 
+</a>
 
-<div
-    class="category-box"
-    onclick="location.href='bisuteria.html'"
+
+
+<!-- BISUTERÍA -->
+
+<a
+    href="bisuteria.html"
+    class="category"
 >
 
-    <h3>
-        Bisutería
-    </h3>
+<div class="category-content">
 
-    <span class="category-arrow">
-        →
-    </span>
+<div class="category-number">
+    06
+</div>
+
+<h2>
+    Bisutería
+</h2>
 
 </div>
 
+</a>
+
 
 </div>
+
 
 </section>
 
 
 
-<!-- =========================================================
+<!-- =====================================================
+     INFORMACIÓN
+===================================================== -->
+
+<section class="about">
+
+
+<div class="about-inner">
+
+
+<small>
+    NUESTRA ESENCIA
+</small>
+
+
+<!-- 🟢 EDITAR AQUÍ -->
+
+<h2>
+    ESTILO SIN LÍMITES.
+</h2>
+
+
+<!-- 🟢 EDITAR AQUÍ -->
+
+<p>
+
+    Una colección creada para acompañarte
+    todos los días. Explora nuestras categorías
+    y encuentra las prendas y accesorios que
+    encajen contigo.
+
+</p>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
      FOOTER
-========================================================= -->
+===================================================== -->
 
 <footer>
 
@@ -1057,26 +987,6 @@ footer{
 © 2026 MI MARCA · TODOS LOS DERECHOS RESERVADOS
 
 </footer>
-
-
-
-<script>
-
-/* =========================================================
-   🔴 NO TOCAR
-========================================================= */
-
-function scrollToCollection(){
-
-    document
-        .getElementById("coleccion")
-        .scrollIntoView({
-            behavior:"smooth"
-        });
-
-}
-
-</script>
 
 
 </body>
