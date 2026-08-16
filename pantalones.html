@@ -10,10 +10,6 @@
 
 <style>
 
-/* =====================================================
-   CONFIGURACIÓN GENERAL
-===================================================== */
-
 *{
     margin:0;
     padding:0;
@@ -26,12 +22,7 @@ html{
 
 body{
     min-height:100vh;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
+    font-family:Arial,Helvetica,sans-serif;
     color:#fff;
 
     background:
@@ -66,15 +57,11 @@ header{
     align-items:center;
     gap:30px;
 
-    border-bottom:
-        1px solid
-        rgba(255,255,255,.12);
+    border-bottom:1px solid rgba(255,255,255,.12);
 
-    background:
-        rgba(20,20,20,.92);
+    background:rgba(20,20,20,.92);
 
-    backdrop-filter:
-        blur(18px);
+    backdrop-filter:blur(18px);
 }
 
 .logo{
@@ -108,9 +95,10 @@ nav a{
 
     font-size:11px;
     font-weight:bold;
-    letter-spacing:1.5px;
 
+    letter-spacing:1.5px;
     text-transform:uppercase;
+
     white-space:nowrap;
 
     transition:.2s;
@@ -142,18 +130,14 @@ nav a.active{
 
     font-size:11px;
     font-weight:bold;
+
     letter-spacing:5px;
 }
 
 .hero h1{
     margin-top:18px;
 
-    font-size:
-        clamp(
-            58px,
-            10vw,
-            125px
-        );
+    font-size:clamp(58px,10vw,125px);
 
     letter-spacing:-7px;
     line-height:.85;
@@ -202,14 +186,11 @@ nav a.active{
 
     padding:16px;
 
-    border:
-        1px solid
-        rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.12);
 
     border-radius:12px;
 
-    background:
-        rgba(255,255,255,.055);
+    background:rgba(255,255,255,.055);
 
     box-shadow:
         0 15px 45px
@@ -224,19 +205,19 @@ nav a.active{
 .product:hover{
     transform:translateY(-4px);
 
-    border-color:
-        rgba(255,255,255,.25);
+    border-color:rgba(255,255,255,.25);
 
-    background:
-        rgba(255,255,255,.075);
+    background:rgba(255,255,255,.075);
 }
 
 
 /* =====================================================
-   IMAGEN
+   GALERÍA
 ===================================================== */
 
 .product-image{
+    position:relative;
+
     height:390px;
 
     margin:
@@ -251,6 +232,10 @@ nav a.active{
     justify-content:center;
 
     background:#171717;
+
+    touch-action:pan-y;
+
+    cursor:zoom-in;
 }
 
 .product-image img{
@@ -261,14 +246,96 @@ nav a.active{
 
     transform:scale(1.04);
 
+    user-select:none;
+    -webkit-user-drag:none;
+
     transition:
-        transform .4s ease,
+        transform .35s ease,
         opacity .2s ease;
 }
 
-.product:hover
-.product-image img{
+.product-image:hover img{
     transform:scale(1.09);
+}
+
+.product-image.zoomed{
+    cursor:zoom-out;
+}
+
+.product-image.zoomed img{
+    transform:scale(1.8);
+}
+
+
+/* =====================================================
+   INDICADORES
+===================================================== */
+
+.image-counter{
+    position:absolute;
+
+    right:12px;
+    bottom:12px;
+
+    z-index:5;
+
+    padding:6px 9px;
+
+    border-radius:20px;
+
+    background:rgba(0,0,0,.65);
+
+    color:#fff;
+
+    font-size:10px;
+    font-weight:bold;
+
+    pointer-events:none;
+}
+
+.image-arrow{
+    position:absolute;
+
+    top:50%;
+
+    z-index:5;
+
+    width:38px;
+    height:38px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:1px solid rgba(255,255,255,.25);
+
+    border-radius:50%;
+
+    background:rgba(0,0,0,.55);
+
+    color:#fff;
+
+    cursor:pointer;
+
+    transform:translateY(-50%);
+
+    opacity:.8;
+
+    transition:.2s;
+}
+
+.image-arrow:hover{
+    background:rgba(0,0,0,.85);
+
+    opacity:1;
+}
+
+.image-arrow.left{
+    left:10px;
+}
+
+.image-arrow.right{
+    right:10px;
 }
 
 
@@ -289,6 +356,7 @@ nav a.active{
     color:#777;
 
     font-size:10px;
+
     letter-spacing:1.2px;
 }
 
@@ -351,9 +419,7 @@ nav a.active{
 
     flex:0 0 42px;
 
-    border:
-        2px solid
-        rgba(255,255,255,.25);
+    border:2px solid rgba(255,255,255,.25);
 
     border-radius:50%;
 
@@ -377,9 +443,7 @@ nav a.active{
 }
 
 .color.active{
-    outline:
-        2px solid
-        #fff;
+    outline:2px solid #fff;
 
     outline-offset:3px;
 }
@@ -402,12 +466,9 @@ nav a.active{
 .size{
     min-width:43px;
 
-    padding:
-        9px 12px;
+    padding:9px 12px;
 
-    border:
-        1px solid
-        rgba(255,255,255,.20);
+    border:1px solid rgba(255,255,255,.20);
 
     border-radius:5px;
 
@@ -454,9 +515,7 @@ nav a.active{
     width:36px;
     height:36px;
 
-    border:
-        1px solid
-        rgba(255,255,255,.20);
+    border:1px solid rgba(255,255,255,.20);
 
     border-radius:5px;
 
@@ -484,16 +543,30 @@ nav a.active{
 
 
 /* =====================================================
-   ENVÍO / STOCK
+   ENVÍO
 ===================================================== */
 
 .shipping{
     margin-top:17px;
 
-    color:#aaa;
+    padding:10px 12px;
+
+    border:1px solid rgba(255,180,70,.35);
+
+    border-radius:6px;
+
+    background:rgba(255,160,40,.08);
+
+    color:#e4b66e;
 
     font-size:11px;
+    font-weight:bold;
 }
+
+
+/* =====================================================
+   STOCK
+===================================================== */
 
 .stock{
     margin-top:8px;
@@ -505,7 +578,7 @@ nav a.active{
 
 
 /* =====================================================
-   BOTÓN COMPRAR
+   COMPRAR
 ===================================================== */
 
 .buy{
@@ -568,12 +641,9 @@ nav a.active{
 ===================================================== */
 
 footer{
-    padding:
-        35px 5%;
+    padding:35px 5%;
 
-    border-top:
-        1px solid
-        rgba(255,255,255,.1);
+    border-top:1px solid rgba(255,255,255,.1);
 
     text-align:center;
 
@@ -584,7 +654,7 @@ footer{
 
 
 /* =====================================================
-   VENTANA DATOS CLIENTE
+   MODAL
 ===================================================== */
 
 .modal{
@@ -601,11 +671,9 @@ footer{
 
     padding:25px;
 
-    background:
-        rgba(0,0,0,.78);
+    background:rgba(0,0,0,.78);
 
-    backdrop-filter:
-        blur(10px);
+    backdrop-filter:blur(10px);
 }
 
 .modal.show{
@@ -615,16 +683,13 @@ footer{
 .modal-box{
     width:min(700px,100%);
 
-    max-height:
-        calc(100vh - 40px);
+    max-height:calc(100vh - 40px);
 
     overflow-y:auto;
 
     padding:30px;
 
-    border:
-        1px solid
-        rgba(255,255,255,.16);
+    border:1px solid rgba(255,255,255,.16);
 
     border-radius:15px;
 
@@ -664,6 +729,7 @@ footer{
     margin-top:8px;
 
     font-size:28px;
+
     letter-spacing:-1px;
 }
 
@@ -673,9 +739,7 @@ footer{
     width:40px;
     height:40px;
 
-    border:
-        1px solid
-        rgba(255,255,255,.15);
+    border:1px solid rgba(255,255,255,.15);
 
     border-radius:6px;
 
@@ -694,7 +758,7 @@ footer{
 
 
 /* =====================================================
-   RESUMEN PEDIDO
+   RESUMEN
 ===================================================== */
 
 .order-summary{
@@ -702,14 +766,11 @@ footer{
 
     padding:16px;
 
-    border:
-        1px solid
-        rgba(255,255,255,.10);
+    border:1px solid rgba(255,255,255,.10);
 
     border-radius:8px;
 
-    background:
-        rgba(255,255,255,.045);
+    background:rgba(255,255,255,.045);
 
     color:#aaa;
 
@@ -728,9 +789,7 @@ footer{
 ===================================================== */
 
 .form-title{
-    margin:
-        25px 0
-        15px;
+    margin:25px 0 15px;
 
     color:#fff;
 
@@ -743,8 +802,7 @@ footer{
 .form-grid{
     display:grid;
 
-    grid-template-columns:
-        1fr 1fr;
+    grid-template-columns:1fr 1fr;
 
     gap:14px;
 }
@@ -754,8 +812,7 @@ footer{
 }
 
 .form-field.full{
-    grid-column:
-        1 / -1;
+    grid-column:1 / -1;
 }
 
 .form-field label{
@@ -779,24 +836,17 @@ footer{
 
     padding:14px;
 
-    border:
-        1px solid
-        rgba(255,255,255,.16);
+    border:1px solid rgba(255,255,255,.16);
 
     border-radius:6px;
 
     outline:none;
 
-    background:
-        rgba(0,0,0,.35);
+    background:rgba(0,0,0,.35);
 
     color:#fff;
 
     font-size:14px;
-
-    transition:
-        border-color .2s,
-        background .2s;
 }
 
 .form-field input{
@@ -813,8 +863,7 @@ footer{
 .form-field textarea:focus{
     border-color:#fff;
 
-    background:
-        rgba(0,0,0,.5);
+    background:rgba(0,0,0,.5);
 }
 
 .form-field input::placeholder,
@@ -822,13 +871,9 @@ footer{
     color:#666;
 }
 
-.required{
-    color:#aaa;
-}
-
 
 /* =====================================================
-   BOTÓN WHATSAPP
+   BOTONES MODAL
 ===================================================== */
 
 .send-order{
@@ -852,14 +897,6 @@ footer{
     font-weight:900;
 
     letter-spacing:1.2px;
-
-    transition:.2s;
-}
-
-.send-order:hover{
-    background:#ddd;
-
-    transform:translateY(-1px);
 }
 
 .cancel-order{
@@ -869,9 +906,7 @@ footer{
 
     padding:13px;
 
-    border:
-        1px solid
-        rgba(255,255,255,.15);
+    border:1px solid rgba(255,255,255,.15);
 
     border-radius:6px;
 
@@ -883,11 +918,6 @@ footer{
 
     font-size:10px;
     font-weight:bold;
-}
-
-.cancel-order:hover{
-    color:#fff;
-    border-color:#fff;
 }
 
 
@@ -902,14 +932,11 @@ footer{
 
     padding:12px;
 
-    border:
-        1px solid
-        rgba(255,255,255,.20);
+    border:1px solid rgba(255,255,255,.20);
 
     border-radius:6px;
 
-    background:
-        rgba(255,255,255,.06);
+    background:rgba(255,255,255,.06);
 
     color:#fff;
 
@@ -952,10 +979,7 @@ footer{
             repeat(2,minmax(0,1fr));
     }
 
-    .hero{
-        width:92%;
-    }
-
+    .hero,
     .products-section{
         width:92%;
     }
@@ -970,8 +994,7 @@ footer{
 @media(max-width:600px){
 
     header{
-        padding:
-            15px;
+        padding:15px;
 
         flex-wrap:wrap;
 
@@ -1015,8 +1038,7 @@ footer{
     .hero h1{
         margin-top:15px;
 
-        font-size:
-            clamp(48px,16vw,76px);
+        font-size:clamp(48px,16vw,76px);
 
         letter-spacing:-5px;
     }
@@ -1034,102 +1056,65 @@ footer{
     }
 
     .products{
-        gap:10px;
+        grid-template-columns:1fr;
+
+        gap:16px;
     }
 
     .product{
-        padding:11px;
+        padding:12px;
 
-        border-radius:9px;
+        border-radius:10px;
     }
 
     .product-image{
-        height:250px;
+        height:390px;
 
         margin:
-            -11px
-            -11px
-            14px;
+            -12px
+            -12px
+            15px;
     }
 
     .product-name{
-        font-size:12px;
+        font-size:14px;
     }
 
     .product-code{
-        font-size:8px;
+        font-size:9px;
     }
 
     .product-description{
-        font-size:10px;
-    }
-
-    .product-price{
-        font-size:13px;
-    }
-
-    .label{
-        margin-top:14px;
-
-        font-size:8px;
-    }
-
-    .colors{
-        gap:8px;
-    }
-
-    .color{
-        width:34px;
-        height:34px;
-
-        flex-basis:34px;
-    }
-
-    .sizes{
-        gap:5px;
-    }
-
-    .size{
-        min-width:34px;
-
-        padding:
-            7px 8px;
-
-        font-size:9px;
-    }
-
-    .quantity{
-        gap:9px;
-
-        margin-top:13px;
-    }
-
-    .quantity button{
-        width:32px;
-        height:32px;
-
-        font-size:16px;
-    }
-
-    .quantity span{
         font-size:11px;
     }
 
-    .shipping{
-        font-size:8px;
+    .product-price{
+        font-size:15px;
     }
 
-    .stock{
-        font-size:8px;
+    .color{
+        width:38px;
+        height:38px;
+
+        flex-basis:38px;
+    }
+
+    .shipping{
+        font-size:10px;
+
+        padding:10px;
     }
 
     .buy{
-        padding:13px;
+        padding:15px;
 
-        font-size:9px;
+        font-size:10px;
     }
 
-    /* MODAL MÓVIL */
+    .image-arrow{
+        width:36px;
+        height:36px;
+    }
 
     .modal{
         padding:0;
@@ -1140,8 +1125,7 @@ footer{
     .modal-box{
         width:100%;
 
-        max-height:
-            96vh;
+        max-height:96vh;
 
         padding:
             22px
@@ -1169,25 +1153,9 @@ footer{
         grid-column:auto;
     }
 
-    .form-field{
-        margin-bottom:13px;
-    }
-
-    .form-field label{
-        font-size:9px;
-    }
-
     .form-field input,
     .form-field textarea{
-        padding:14px;
-
         font-size:16px;
-    }
-
-    .send-order{
-        padding:17px;
-
-        font-size:11px;
     }
 
 }
@@ -1199,12 +1167,8 @@ footer{
 
 @media(max-width:380px){
 
-    .products{
-        grid-template-columns:1fr;
-    }
-
     .product-image{
-        height:330px;
+        height:340px;
     }
 
     .hero h1{
@@ -1247,7 +1211,6 @@ footer{
 <div class="logo">
     Strangis
 </div>
-
 
 <nav>
 
@@ -1299,7 +1262,7 @@ footer{
 </h1>
 
 <p>
-    Pantalones seleccionados para crear tus looks con personalidad.
+    Pantalones seleccionados para completar tus looks con personalidad.
 </p>
 
 </section>
@@ -1337,7 +1300,6 @@ footer{
 
 <div class="modal-box">
 
-
 <div class="modal-header">
 
 <div>
@@ -1352,12 +1314,10 @@ footer{
 
 </div>
 
-
 <button
     type="button"
     class="close-modal"
     onclick="closeCustomerModal()"
-    aria-label="Cerrar"
 >
     ×
 </button>
@@ -1385,7 +1345,6 @@ footer{
 
 
 <div class="form-grid">
-
 
 <div class="form-field full">
 
@@ -1434,7 +1393,6 @@ footer{
 
 </div>
 
-
 </div>
 
 
@@ -1444,7 +1402,6 @@ footer{
 
 
 <div class="form-grid">
-
 
 <div class="form-field full">
 
@@ -1465,12 +1422,12 @@ footer{
 <div class="form-field">
 
 <label>
-    Número *</label>
+    Número *
+</label>
 
 <input
     id="customerNumber"
     type="text"
-    autocomplete="address-line2"
     placeholder="Ej: 25"
 >
 
@@ -1552,7 +1509,6 @@ footer{
     type="text"
     autocomplete="country-name"
     value="España"
-    placeholder="Ej: España"
 >
 
 </div>
@@ -1571,7 +1527,6 @@ footer{
 
 </div>
 
-
 </div>
 
 
@@ -1580,9 +1535,7 @@ footer{
     class="send-order"
     onclick="sendOrderToWhatsApp()"
 >
-
     ENVIAR PEDIDO POR WHATSAPP
-
 </button>
 
 
@@ -1591,11 +1544,8 @@ footer{
     class="cancel-order"
     onclick="closeCustomerModal()"
 >
-
     CANCELAR
-
 </button>
-
 
 </div>
 
@@ -1607,39 +1557,91 @@ footer{
 
 /* =====================================================
    PRODUCTOS
+   🟢 PRODUCTO 1 — PANTALONES
+   PEGA AQUÍ TU CÓDIGO DE PRODUCTO
 ===================================================== */
 
 const PRODUCTS = [
 
 /* =====================================================
-   🟢 PRÓXIMO PRODUCTO
+   🟢 PRODUCTO 1 — PANTALONES
+   PEGA AQUÍ TU CÓDIGO DE PRODUCTO
+===================================================== */
+
+{
+    id:"000001",
+    ref:"000001",
+
+    name:"Pantalón ejemplo",
+
+    category:"pantalones",
+
+    price:35,
+
+    stock:999,
+
+    description:"Descripción del pantalón",
+
+    whatsapp:"34674559614",
+
+    variants:[
+        {
+            name:"Negro",
+            image:"https://i.imgur.com/fto6uGS.jpeg"
+        },
+        {
+            name:"Blanco",
+            image:"https://i.imgur.com/Y6rehRJ.jpeg"
+        }
+    ],
+
+    sizes:[
+        "S",
+        "M",
+        "L",
+        "XL"
+    ],
+
+    shipping:{
+        min:7,
+        max:15
+    }
+},
+
 
 /* =====================================================
-   🟢 PRÓXIMO PRODUCTO
+   🟢 SIGUIENTE PRODUCTO
+   PEGA AQUÍ TU CÓDIGO DE PRODUCTO
+===================================================== */
 
-   
-   ===================================================== */
-   🟢 PRÓXIMO PRODUCTO
-
-
-   
-   /* =====================================================
-   🟢 PRÓXIMO PRODUCTO
 
 /* =====================================================
-   🟢 PRÓXIMO PRODUCTO
+   🟢 SIGUIENTE PRODUCTO
+   PEGA AQUÍ TU CÓDIGO DE PRODUCTO
+===================================================== */
 
-   
-   ===================================================== */
+
+/* =====================================================
+   🟢 SIGUIENTE PRODUCTO
+   PEGA AQUÍ TU CÓDIGO DE PRODUCTO
+===================================================== */
+
+
+/* =====================================================
+   🟢 SIGUIENTE PRODUCTO
+   PEGA AQUÍ TU CÓDIGO DE PRODUCTO
+===================================================== */
+
+
+/* =====================================================
+   🟢 SIGUIENTE PRODUCTO
+   PEGA AQUÍ TU CÓDIGO DE PRODUCTO
+===================================================== */
 
 ];
 
 
-/* =====================================================
-   VARIABLE PEDIDO ACTUAL
-===================================================== */
-
-let currentOrder = null;
+let currentOrder=null;
 
 
 /* =====================================================
@@ -1660,7 +1662,7 @@ function money(value){
 
 
 /* =====================================================
-   ESCAPAR HTML
+   ESCAPE HTML
 ===================================================== */
 
 function escapeHTML(value){
@@ -1676,7 +1678,7 @@ function escapeHTML(value){
 
 
 /* =====================================================
-   ESCAPAR ATRIBUTO
+   ATRIBUTO
 ===================================================== */
 
 function escapeAttribute(value){
@@ -1708,7 +1710,7 @@ function renderProducts(){
         !PRODUCTS.length
     ){
 
-        container.innerHTML = `
+        container.innerHTML=`
 
             <div class="empty">
 
@@ -1726,13 +1728,20 @@ function renderProducts(){
     container.innerHTML =
         PRODUCTS
         .map(
-            (product,index) =>
+            (product,index)=>
                 createProductHTML(
                     product,
                     index
                 )
         )
         .join("");
+
+
+    PRODUCTS.forEach(
+        (_,index)=>{
+            setupSwipe(index);
+        }
+    );
 
 }
 
@@ -1748,10 +1757,8 @@ function createProductHTML(
 
     const variants =
         Array.isArray(product.variants)
-        ?
-        product.variants
-        :
-        [];
+        ? product.variants
+        : [];
 
 
     const firstVariant =
@@ -1767,10 +1774,8 @@ function createProductHTML(
 
     const sizes =
         Array.isArray(product.sizes)
-        ?
-        product.sizes
-        :
-        [];
+        ? product.sizes
+        : [];
 
 
     const shipping =
@@ -1784,43 +1789,69 @@ function createProductHTML(
     return `
 
     <article
-
         class="product"
-
         id="product-${index}"
-
         data-variant="0"
-
         data-size=""
-
         data-quantity="1"
-
     >
 
 
-        <div class="product-image">
+        <div
+            class="product-image"
+            id="gallery-${index}"
+        >
 
             <img
-
                 id="image-${index}"
-
                 src="${escapeAttribute(firstVariant.image)}"
-
                 alt="${escapeHTML(product.name)}"
-
                 loading="lazy"
-
+                draggable="false"
                 onerror="imageError(this)"
-
             >
+
+
+            <button
+                type="button"
+                class="image-arrow left"
+                onclick="previousImage(${index})"
+                aria-label="Imagen anterior"
+            >
+                ‹
+            </button>
+
+
+            <button
+                type="button"
+                class="image-arrow right"
+                onclick="nextImage(${index})"
+                aria-label="Imagen siguiente"
+            >
+                ›
+            </button>
+
+
+            ${
+                variants.length > 1
+                ?
+                `
+                <div
+                    class="image-counter"
+                    id="counter-${index}"
+                >
+                    1 / ${variants.length}
+                </div>
+                `
+                :
+                ""
+            }
 
         </div>
 
 
         <div class="product-name">
-
             ${escapeHTML(product.name)}
-
         </div>
 
 
@@ -1840,15 +1871,9 @@ function createProductHTML(
             product.description
             ?
             `
-
             <div class="product-description">
-
-                ${escapeHTML(
-                    product.description
-                )}
-
+                ${escapeHTML(product.description)}
             </div>
-
             `
             :
             ""
@@ -1856,9 +1881,7 @@ function createProductHTML(
 
 
         <div class="product-price">
-
             ${money(product.price)}
-
         </div>
 
 
@@ -1866,14 +1889,8 @@ function createProductHTML(
 
             Color:
 
-            <span
-                id="color-name-${index}"
-            >
-
-                ${escapeHTML(
-                    firstVariant.name
-                )}
-
+            <span id="color-name-${index}">
+                ${escapeHTML(firstVariant.name)}
             </span>
 
         </div>
@@ -1882,55 +1899,46 @@ function createProductHTML(
         <div class="colors">
 
             ${
-                variants
-                .map(
+                variants.map(
                     (
                         variant,
                         variantIndex
-                    ) => `
+                    )=>`
 
                     <button
-
                         type="button"
-
                         class="
                             color
                             ${
-                                variantIndex === 0
+                                variantIndex===0
                                 ?
                                 "active"
                                 :
                                 ""
                             }
                         "
-
                         style="
                             background-image:
                             url('${escapeAttribute(
                                 variant.image
                             )}');
                         "
-
                         title="${escapeAttribute(
                             variant.name
                         )}"
-
                         aria-label="${escapeAttribute(
                             variant.name
                         )}"
-
                         onclick="
                             selectColor(
                                 ${index},
                                 ${variantIndex}
                             )
                         "
-
                     ></button>
 
                     `
-                )
-                .join("")
+                ).join("")
             }
 
         </div>
@@ -1945,39 +1953,30 @@ function createProductHTML(
                 Talla
             </div>
 
-
             <div class="sizes">
 
                 ${
-                    sizes
-                    .map(
+                    sizes.map(
                         (
                             size,
                             sizeIndex
-                        ) => `
+                        )=>`
 
                         <button
-
                             type="button"
-
                             class="size"
-
                             onclick="
                                 selectSize(
                                     ${index},
                                     ${sizeIndex}
                                 )
                             "
-
                         >
-
                             ${escapeHTML(size)}
-
                         </button>
 
                         `
-                    )
-                    .join("")
+                    ).join("")
                 }
 
             </div>
@@ -1991,39 +1990,31 @@ function createProductHTML(
         <div class="quantity">
 
             <button
-
                 type="button"
-
                 onclick="
                     changeQuantity(
                         ${index},
                         -1
                     )
                 "
-
             >
                 −
             </button>
 
 
-            <span
-                id="quantity-${index}"
-            >
+            <span id="quantity-${index}">
                 1
             </span>
 
 
             <button
-
                 type="button"
-
                 onclick="
                     changeQuantity(
                         ${index},
                         1
                     )
                 "
-
             >
                 +
             </button>
@@ -2035,9 +2026,9 @@ function createProductHTML(
 
             🚚 Envío estimado:
 
-            ${shipping.min}
+            ${escapeHTML(shipping.min)}
             –
-            ${shipping.max}
+            ${escapeHTML(shipping.max)}
 
             días laborables
 
@@ -2045,17 +2036,15 @@ function createProductHTML(
 
 
         ${
-            product.stock !== undefined
+            product.stock!==undefined
             ?
             `
-
             <div class="stock">
 
                 Stock disponible:
                 ${escapeHTML(product.stock)}
 
             </div>
-
             `
             :
             ""
@@ -2063,21 +2052,13 @@ function createProductHTML(
 
 
         <button
-
             type="button"
-
             class="buy"
-
             onclick="
-                buyProduct(
-                    ${index}
-                )
+                buyProduct(${index})
             "
-
         >
-
             COMPRAR
-
         </button>
 
 
@@ -2089,7 +2070,7 @@ function createProductHTML(
 
 
 /* =====================================================
-   COLOR
+   CAMBIAR COLOR
 ===================================================== */
 
 function selectColor(
@@ -2124,10 +2105,6 @@ function selectColor(
         document.getElementById(
             `image-${productIndex}`
         );
-
-
-    image.style.display =
-        "block";
 
 
     image.src =
@@ -2177,18 +2154,317 @@ function selectColor(
         (
             button,
             buttonIndex
-        ) => {
+        )=>{
 
             button.classList.toggle(
                 "active",
-                buttonIndex ===
-                variantIndex
+                buttonIndex===variantIndex
             );
 
         }
     );
 
+
+    updateImageCounter(
+        productIndex
+    );
+
 }
+
+
+/* =====================================================
+   SIGUIENTE IMAGEN
+===================================================== */
+
+function nextImage(productIndex){
+
+    const product =
+        PRODUCTS[productIndex];
+
+
+    if(
+        !product ||
+        !product.variants ||
+        product.variants.length < 2
+    ){
+
+        return;
+    }
+
+
+    const card =
+        document.getElementById(
+            `product-${productIndex}`
+        );
+
+
+    let current =
+        Number(
+            card.dataset.variant || 0
+        );
+
+
+    current++;
+
+
+    if(
+        current >=
+        product.variants.length
+    ){
+
+        current=0;
+
+    }
+
+
+    selectColor(
+        productIndex,
+        current
+    );
+
+}
+
+
+/* =====================================================
+   IMAGEN ANTERIOR
+===================================================== */
+
+function previousImage(productIndex){
+
+    const product =
+        PRODUCTS[productIndex];
+
+
+    if(
+        !product ||
+        !product.variants ||
+        product.variants.length < 2
+    ){
+
+        return;
+    }
+
+
+    const card =
+        document.getElementById(
+            `product-${productIndex}`
+        );
+
+
+    let current =
+        Number(
+            card.dataset.variant || 0
+        );
+
+
+    current--;
+
+
+    if(current<0){
+
+        current =
+            product.variants.length-1;
+
+    }
+
+
+    selectColor(
+        productIndex,
+        current
+    );
+
+}
+
+
+/* =====================================================
+   CONTADOR IMAGEN
+===================================================== */
+
+function updateImageCounter(productIndex){
+
+    const product =
+        PRODUCTS[productIndex];
+
+
+    const card =
+        document.getElementById(
+            `product-${productIndex}`
+        );
+
+
+    const counter =
+        document.getElementById(
+            `counter-${productIndex}`
+        );
+
+
+    if(
+        !product ||
+        !card ||
+        !counter
+    ){
+
+        return;
+    }
+
+
+    counter.textContent =
+        (
+            Number(
+                card.dataset.variant || 0
+            ) + 1
+        )
+        +
+        " / "
+        +
+        product.variants.length;
+
+}
+
+
+/* =====================================================
+   DESLIZAR CON EL DEDO
+===================================================== */
+
+function setupSwipe(productIndex){
+
+    const gallery =
+        document.getElementById(
+            `gallery-${productIndex}`
+        );
+
+
+    if(!gallery){
+
+        return;
+    }
+
+
+    let startX=0;
+    let startY=0;
+
+
+    gallery.addEventListener(
+        "touchstart",
+        function(event){
+
+            if(
+                !event.touches ||
+                !event.touches.length
+            ){
+
+                return;
+            }
+
+
+            startX =
+                event.touches[0].clientX;
+
+
+            startY =
+                event.touches[0].clientY;
+
+        },
+        {
+            passive:true
+        }
+    );
+
+
+    gallery.addEventListener(
+        "touchend",
+        function(event){
+
+            if(
+                !event.changedTouches ||
+                !event.changedTouches.length
+            ){
+
+                return;
+            }
+
+
+            const endX =
+                event.changedTouches[0].clientX;
+
+
+            const endY =
+                event.changedTouches[0].clientY;
+
+
+            const differenceX =
+                endX-startX;
+
+
+            const differenceY =
+                endY-startY;
+
+
+            if(
+                Math.abs(differenceX) < 45 ||
+                Math.abs(differenceX) <=
+                Math.abs(differenceY)
+            ){
+
+                return;
+            }
+
+
+            if(differenceX<0){
+
+                nextImage(productIndex);
+
+            }else{
+
+                previousImage(productIndex);
+
+            }
+
+        },
+        {
+            passive:true
+        }
+    );
+
+}
+
+
+/* =====================================================
+   ZOOM
+===================================================== */
+
+document.addEventListener(
+    "click",
+    function(event){
+
+        const gallery =
+            event.target.closest(
+                ".product-image"
+            );
+
+
+        if(!gallery){
+
+            return;
+        }
+
+
+        if(
+            event.target.closest(
+                ".image-arrow"
+            )
+        ){
+
+            return;
+        }
+
+
+        gallery.classList.toggle(
+            "zoomed"
+        );
+
+    }
+);
 
 
 /* =====================================================
@@ -2217,7 +2493,7 @@ function selectSize(
         product.sizes[sizeIndex];
 
 
-    if(size === undefined){
+    if(size===undefined){
 
         return;
     }
@@ -2246,12 +2522,11 @@ function selectSize(
         (
             button,
             buttonIndex
-        ) => {
+        )=>{
 
             button.classList.toggle(
                 "active",
-                buttonIndex ===
-                sizeIndex
+                buttonIndex===sizeIndex
             );
 
         }
@@ -2287,12 +2562,12 @@ function changeQuantity(
         );
 
 
-    quantity += change;
+    quantity+=change;
 
 
-    if(quantity < 1){
+    if(quantity<1){
 
-        quantity = 1;
+        quantity=1;
 
     }
 
@@ -2306,8 +2581,8 @@ function changeQuantity(
         Number.isFinite(
             Number(product.stock)
         ) &&
-        Number(product.stock) > 0 &&
-        quantity >
+        Number(product.stock)>0 &&
+        quantity>
         Number(product.stock)
     ){
 
@@ -2364,8 +2639,7 @@ function buyProduct(
     const variant =
         product.variants[
             Number(
-                card.dataset.variant ||
-                0
+                card.dataset.variant || 0
             )
         ];
 
@@ -2377,8 +2651,7 @@ function buyProduct(
 
     const quantity =
         Number(
-            card.dataset.quantity ||
-            1
+            card.dataset.quantity || 1
         );
 
 
@@ -2405,11 +2678,6 @@ function buyProduct(
     }
 
 
-    /*
-       Si el producto tiene tallas,
-       obligamos a elegir una.
-    */
-
     if(
         Array.isArray(product.sizes) &&
         product.sizes.length &&
@@ -2424,19 +2692,14 @@ function buyProduct(
     }
 
 
-    currentOrder = {
+    currentOrder={
 
-        product:product,
-
-        variant:variant,
-
-        size:size,
-
-        quantity:quantity,
-
-        total:total,
-
-        shipping:shipping
+        product,
+        variant,
+        size,
+        quantity,
+        total,
+        shipping
 
     };
 
@@ -2458,14 +2721,12 @@ function buyProduct(
 
 
     setTimeout(
-        () => {
-
+        ()=>{
             document
                 .getElementById(
                     "customerName"
                 )
                 .focus();
-
         },
         150
     );
@@ -2474,7 +2735,7 @@ function buyProduct(
 
 
 /* =====================================================
-   RESUMEN DEL PEDIDO
+   RESUMEN
 ===================================================== */
 
 function showOrderSummary(){
@@ -2493,7 +2754,7 @@ function showOrderSummary(){
         .getElementById(
             "orderSummary"
         )
-        .innerHTML = `
+        .innerHTML=`
 
         <strong>
             ${escapeHTML(
@@ -2562,8 +2823,7 @@ function closeCustomerModal(){
         );
 
 
-    document.body.style.overflow =
-        "";
+    document.body.style.overflow="";
 
 
     document
@@ -2578,7 +2838,7 @@ function closeCustomerModal(){
 
 
 /* =====================================================
-   VALOR CAMPO
+   CAMPO
 ===================================================== */
 
 function fieldValue(id){
@@ -2592,7 +2852,7 @@ function fieldValue(id){
 
 
 /* =====================================================
-   ENVIAR PEDIDO WHATSAPP
+   WHATSAPP
 ===================================================== */
 
 function sendOrderToWhatsApp(){
@@ -2603,81 +2863,50 @@ function sendOrderToWhatsApp(){
     }
 
 
-    const name =
-        fieldValue(
-            "customerName"
-        );
+    const name=fieldValue(
+        "customerName"
+    );
 
+    const phone=fieldValue(
+        "customerPhone"
+    );
 
-    const phone =
-        fieldValue(
-            "customerPhone"
-        );
+    const email=fieldValue(
+        "customerEmail"
+    );
 
+    const address=fieldValue(
+        "customerAddress"
+    );
 
-    const email =
-        fieldValue(
-            "customerEmail"
-        );
+    const number=fieldValue(
+        "customerNumber"
+    );
 
+    const floor=fieldValue(
+        "customerFloor"
+    );
 
-    const address =
-        fieldValue(
-            "customerAddress"
-        );
+    const postal=fieldValue(
+        "customerPostal"
+    );
 
+    const city=fieldValue(
+        "customerCity"
+    );
 
-    const number =
-        fieldValue(
-            "customerNumber"
-        );
+    const province=fieldValue(
+        "customerProvince"
+    );
 
+    const country=fieldValue(
+        "customerCountry"
+    );
 
-    const floor =
-        fieldValue(
-            "customerFloor"
-        );
+    const notes=fieldValue(
+        "customerNotes"
+    );
 
-
-    const postal =
-        fieldValue(
-            "customerPostal"
-        );
-
-
-    const city =
-        fieldValue(
-            "customerCity"
-        );
-
-
-    const province =
-        fieldValue(
-            "customerProvince"
-        );
-
-
-    const country =
-        fieldValue(
-            "customerCountry"
-        );
-
-
-    const notes =
-        fieldValue(
-            "customerNotes"
-        );
-
-
-    const error =
-        document.getElementById(
-            "formError"
-        );
-
-
-    /*
-       DATOS OBLIGATORIOS
-    */
 
     if(!name){
 
@@ -2759,15 +2988,10 @@ function sendOrderToWhatsApp(){
     }
 
 
-    /*
-       EMAIL OPCIONAL PERO SI SE RELLENA,
-       COMPROBAMOS QUE TENGA FORMATO BÁSICO.
-    */
-
     if(
         email &&
         !/^[^\s@]+@[^\s@]+\.[^\s@]+$/
-            .test(email)
+        .test(email)
     ){
 
         showFormError(
@@ -2784,8 +3008,7 @@ function sendOrderToWhatsApp(){
 
     const whatsapp =
         String(
-            order.product.whatsapp ||
-            ""
+            order.product.whatsapp || ""
         )
         .replace(
             /\D/g,
@@ -2803,11 +3026,7 @@ function sendOrderToWhatsApp(){
     }
 
 
-    /*
-       CONSTRUIR MENSAJE
-    */
-
-    let message =
+    const message=
 
 `🛍️ NUEVO PEDIDO
 
@@ -2881,7 +3100,7 @@ ${notes || "Ninguna"}
 ━━━━━━━━━━━━━━━━`;
 
 
-    const whatsappURL =
+    const whatsappURL=
         "https://wa.me/" +
         whatsapp +
         "?text=" +
@@ -2890,16 +3109,8 @@ ${notes || "Ninguna"}
         );
 
 
-    /*
-       CERRAMOS MODAL
-    */
-
     closeCustomerModal();
 
-
-    /*
-       ABRIMOS WHATSAPP
-    */
 
     window.open(
         whatsappURL,
@@ -2910,7 +3121,7 @@ ${notes || "Ninguna"}
 
 
 /* =====================================================
-   ERROR FORMULARIO
+   ERROR
 ===================================================== */
 
 function showFormError(message){
@@ -2939,7 +3150,7 @@ function showFormError(message){
 
 
 /* =====================================================
-   CERRAR MODAL AL PULSAR FUERA
+   CERRAR AL PULSAR FUERA
 ===================================================== */
 
 document
@@ -2951,8 +3162,7 @@ document
         function(event){
 
             if(
-                event.target ===
-                this
+                event.target===this
             ){
 
                 closeCustomerModal();
@@ -2964,7 +3174,7 @@ document
 
 
 /* =====================================================
-   ESCAPE PARA CERRAR
+   ESCAPE
 ===================================================== */
 
 document.addEventListener(
@@ -2972,7 +3182,7 @@ document.addEventListener(
     function(event){
 
         if(
-            event.key === "Escape"
+            event.key==="Escape"
         ){
 
             closeCustomerModal();
@@ -2989,8 +3199,7 @@ document.addEventListener(
 
 function imageError(image){
 
-    image.style.display =
-        "none";
+    image.style.display="none";
 
 }
 
@@ -3001,9 +3210,8 @@ function imageError(image){
 
 renderProducts();
 
-
 </script>
 
 </body>
 
-</html>
+   </html>
