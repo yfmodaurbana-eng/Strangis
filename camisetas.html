@@ -4,14 +4,16 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>Camisetas | Strangis</title>
 
 <style>
 
 /* =====================================================
-   CONFIGURACIÓN GENERAL
+   RESET / BASE
 ===================================================== */
 
 *{
@@ -73,8 +75,7 @@ header{
     background:
         rgba(20,20,20,.92);
 
-    backdrop-filter:
-        blur(18px);
+    backdrop-filter:blur(18px);
 }
 
 .logo{
@@ -142,6 +143,7 @@ nav a.active{
 
     font-size:11px;
     font-weight:bold;
+
     letter-spacing:5px;
 }
 
@@ -156,6 +158,7 @@ nav a.active{
         );
 
     letter-spacing:-7px;
+
     line-height:.85;
 }
 
@@ -167,6 +170,7 @@ nav a.active{
     color:#aaa;
 
     font-size:15px;
+
     line-height:1.7;
 }
 
@@ -181,9 +185,7 @@ nav a.active{
     margin:auto;
 
     padding:
-        10px
-        0
-        100px;
+        10px 0 100px;
 }
 
 .products{
@@ -194,6 +196,11 @@ nav a.active{
 
     gap:20px;
 }
+
+
+/* =====================================================
+   CARTA PRODUCTO
+===================================================== */
 
 .product{
     min-width:0;
@@ -233,10 +240,12 @@ nav a.active{
 
 
 /* =====================================================
-   IMAGEN
+   GALERÍA DEL PRODUCTO
 ===================================================== */
 
-.product-image{
+.product-gallery{
+    position:relative;
+
     height:390px;
 
     margin:
@@ -246,11 +255,22 @@ nav a.active{
 
     overflow:hidden;
 
+    background:#171717;
+
+    touch-action:pan-y;
+}
+
+.product-image{
+    width:100%;
+    height:100%;
+
     display:flex;
     align-items:center;
     justify-content:center;
 
-    background:#171717;
+    cursor:zoom-in;
+
+    user-select:none;
 }
 
 .product-image img{
@@ -262,13 +282,138 @@ nav a.active{
     transform:scale(1.04);
 
     transition:
-        transform .4s ease,
+        transform .35s ease,
         opacity .2s ease;
 }
 
 .product:hover
 .product-image img{
-    transform:scale(1.09);
+    transform:scale(1.08);
+}
+
+
+/* =====================================================
+   FLECHAS GALERÍA
+===================================================== */
+
+.gallery-arrow{
+    position:absolute;
+
+    top:50%;
+
+    z-index:5;
+
+    width:38px;
+    height:38px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:
+        1px solid
+        rgba(255,255,255,.25);
+
+    border-radius:50%;
+
+    background:
+        rgba(0,0,0,.48);
+
+    color:#fff;
+
+    cursor:pointer;
+
+    transform:
+        translateY(-50%);
+
+    opacity:.75;
+
+    transition:
+        opacity .2s,
+        background .2s,
+        transform .2s;
+}
+
+.gallery-arrow:hover{
+    opacity:1;
+
+    background:
+        rgba(0,0,0,.75);
+}
+
+.gallery-arrow.prev{
+    left:12px;
+}
+
+.gallery-arrow.next{
+    right:12px;
+}
+
+
+/* =====================================================
+   INDICADOR DE GALERÍA
+===================================================== */
+
+.gallery-counter{
+    position:absolute;
+
+    left:50%;
+    bottom:12px;
+
+    z-index:5;
+
+    padding:
+        6px 10px;
+
+    border-radius:20px;
+
+    background:
+        rgba(0,0,0,.55);
+
+    color:#fff;
+
+    font-size:10px;
+    font-weight:bold;
+
+    transform:
+        translateX(-50%);
+
+    pointer-events:none;
+
+    backdrop-filter:blur(5px);
+}
+
+
+/* =====================================================
+   INDICADOR DE DESLIZAMIENTO
+===================================================== */
+
+.swipe-hint{
+    position:absolute;
+
+    left:50%;
+    bottom:42px;
+
+    z-index:4;
+
+    padding:
+        5px 9px;
+
+    border-radius:15px;
+
+    background:
+        rgba(0,0,0,.42);
+
+    color:#ddd;
+
+    font-size:9px;
+
+    transform:
+        translateX(-50%);
+
+    opacity:.8;
+
+    pointer-events:none;
 }
 
 
@@ -289,6 +434,7 @@ nav a.active{
     color:#777;
 
     font-size:10px;
+
     letter-spacing:1.2px;
 }
 
@@ -298,6 +444,7 @@ nav a.active{
     color:#999;
 
     font-size:12px;
+
     line-height:1.55;
 }
 
@@ -362,7 +509,9 @@ nav a.active{
     background-color:#222;
 
     background-repeat:no-repeat;
+
     background-size:cover;
+
     background-position:center;
 
     transition:
@@ -484,16 +633,44 @@ nav a.active{
 
 
 /* =====================================================
-   ENVÍO / STOCK
+   ENVÍO ESTIMADO
 ===================================================== */
 
 .shipping{
     margin-top:17px;
 
-    color:#aaa;
+    padding:
+        11px 12px;
+
+    border:
+        1px solid
+        rgba(255,177,72,.28);
+
+    border-left:
+        3px solid
+        #f0a44b;
+
+    border-radius:7px;
+
+    background:
+        rgba(240,164,75,.10);
+
+    color:#f2c58f;
 
     font-size:11px;
+    font-weight:bold;
+
+    line-height:1.45;
 }
+
+.shipping strong{
+    color:#fff;
+}
+
+
+/* =====================================================
+   STOCK
+===================================================== */
 
 .stock{
     margin-top:8px;
@@ -584,7 +761,152 @@ footer{
 
 
 /* =====================================================
-   VENTANA DATOS CLIENTE
+   ZOOM / LIGHTBOX
+===================================================== */
+
+.image-lightbox{
+    position:fixed;
+
+    inset:0;
+
+    z-index:10000;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:25px;
+
+    background:
+        rgba(0,0,0,.92);
+
+    backdrop-filter:
+        blur(12px);
+}
+
+.image-lightbox.show{
+    display:flex;
+}
+
+.lightbox-content{
+    position:relative;
+
+    width:min(1100px,100%);
+
+    height:min(90vh,900px);
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+}
+
+.lightbox-image{
+    max-width:100%;
+    max-height:90vh;
+
+    width:auto;
+    height:auto;
+
+    object-fit:contain;
+
+    border-radius:8px;
+
+    user-select:none;
+
+    cursor:zoom-out;
+}
+
+.lightbox-close{
+    position:absolute;
+
+    top:-10px;
+    right:-10px;
+
+    z-index:10;
+
+    width:44px;
+    height:44px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.25);
+
+    border-radius:50%;
+
+    background:
+        rgba(0,0,0,.7);
+
+    color:#fff;
+
+    cursor:pointer;
+
+    font-size:24px;
+}
+
+.lightbox-arrow{
+    position:absolute;
+
+    top:50%;
+
+    z-index:10;
+
+    width:48px;
+    height:48px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.25);
+
+    border-radius:50%;
+
+    background:
+        rgba(0,0,0,.65);
+
+    color:#fff;
+
+    cursor:pointer;
+
+    font-size:22px;
+
+    transform:
+        translateY(-50%);
+}
+
+.lightbox-arrow.prev{
+    left:10px;
+}
+
+.lightbox-arrow.next{
+    right:10px;
+}
+
+.lightbox-counter{
+    position:absolute;
+
+    left:50%;
+    bottom:10px;
+
+    padding:
+        7px 12px;
+
+    border-radius:20px;
+
+    background:
+        rgba(0,0,0,.65);
+
+    color:#fff;
+
+    font-size:11px;
+
+    transform:
+        translateX(-50%);
+}
+
+
+/* =====================================================
+   MODAL DATOS CLIENTE
 ===================================================== */
 
 .modal{
@@ -664,6 +986,7 @@ footer{
     margin-top:8px;
 
     font-size:28px;
+
     letter-spacing:-1px;
 }
 
@@ -729,8 +1052,7 @@ footer{
 
 .form-title{
     margin:
-        25px 0
-        15px;
+        25px 0 15px;
 
     color:#fff;
 
@@ -822,13 +1144,9 @@ footer{
     color:#666;
 }
 
-.required{
-    color:#aaa;
-}
-
 
 /* =====================================================
-   BOTÓN WHATSAPP
+   BOTONES PEDIDO
 ===================================================== */
 
 .send-order{
@@ -887,6 +1205,7 @@ footer{
 
 .cancel-order:hover{
     color:#fff;
+
     border-color:#fff;
 }
 
@@ -934,7 +1253,7 @@ footer{
             repeat(3,minmax(0,1fr));
     }
 
-    .product-image{
+    .product-gallery{
         height:330px;
     }
 
@@ -970,8 +1289,7 @@ footer{
 @media(max-width:600px){
 
     header{
-        padding:
-            15px;
+        padding:15px;
 
         flex-wrap:wrap;
 
@@ -998,12 +1316,12 @@ footer{
         font-size:10px;
     }
 
+
     .hero{
         width:94%;
 
         padding:
-            50px 0
-            38px;
+            50px 0 38px;
     }
 
     .hero small{
@@ -1016,7 +1334,11 @@ footer{
         margin-top:15px;
 
         font-size:
-            clamp(48px,16vw,76px);
+            clamp(
+                48px,
+                16vw,
+                76px
+            );
 
         letter-spacing:-5px;
     }
@@ -1027,33 +1349,80 @@ footer{
         font-size:13px;
     }
 
+
     .products-section{
         width:94%;
 
         padding-bottom:70px;
     }
 
+
+    /*
+       EN MÓVIL:
+       UN PRODUCTO DEBAJO DEL OTRO
+    */
+
     .products{
-        gap:10px;
+        display:flex;
+
+        flex-direction:column;
+
+        gap:18px;
     }
+
 
     .product{
-        padding:11px;
+        width:100%;
 
-        border-radius:9px;
+        padding:12px;
+
+        border-radius:10px;
     }
 
-    .product-image{
-        height:250px;
+
+    .product:hover{
+        transform:none;
+    }
+
+
+    .product-gallery{
+        height:
+            min(
+                115vw,
+                430px
+            );
 
         margin:
-            -11px
-            -11px
-            14px;
+            -12px
+            -12px
+            15px;
     }
 
+
+    .product-image img{
+        transform:none;
+    }
+
+
+    .product:hover
+    .product-image img{
+        transform:none;
+    }
+
+
+    .gallery-arrow{
+        width:38px;
+        height:38px;
+    }
+
+
+    .swipe-hint{
+        display:block;
+    }
+
+
     .product-name{
-        font-size:12px;
+        font-size:14px;
     }
 
     .product-code{
@@ -1061,76 +1430,124 @@ footer{
     }
 
     .product-description{
-        font-size:10px;
+        font-size:11px;
     }
 
     .product-price{
-        font-size:13px;
+        font-size:15px;
     }
+
 
     .label{
-        margin-top:14px;
+        margin-top:15px;
 
-        font-size:8px;
+        font-size:9px;
     }
+
 
     .colors{
         gap:8px;
     }
 
     .color{
-        width:34px;
-        height:34px;
+        width:38px;
+        height:38px;
 
-        flex-basis:34px;
+        flex-basis:38px;
     }
+
 
     .sizes{
         gap:5px;
     }
 
     .size{
-        min-width:34px;
+        min-width:36px;
 
         padding:
-            7px 8px;
+            8px 9px;
 
-        font-size:9px;
+        font-size:10px;
     }
 
-    .quantity{
-        gap:9px;
 
-        margin-top:13px;
+    .quantity{
+        gap:10px;
+
+        margin-top:14px;
     }
 
     .quantity button{
-        width:32px;
-        height:32px;
+        width:34px;
+        height:34px;
 
         font-size:16px;
     }
 
     .quantity span{
-        font-size:11px;
+        font-size:12px;
     }
 
+
     .shipping{
-        font-size:8px;
+        font-size:10px;
+
+        padding:
+            10px 11px;
     }
 
     .stock{
-        font-size:8px;
-    }
-
-    .buy{
-        padding:13px;
-
         font-size:9px;
     }
 
 
-    /* MODAL MÓVIL */
+    .buy{
+        padding:15px;
+
+        font-size:10px;
+    }
+
+
+    /* =================================================
+       LIGHTBOX MÓVIL
+    ================================================= */
+
+    .image-lightbox{
+        padding:10px;
+    }
+
+    .lightbox-content{
+        width:100%;
+        height:100%;
+    }
+
+    .lightbox-image{
+        max-width:100%;
+        max-height:85vh;
+    }
+
+    .lightbox-close{
+        top:8px;
+        right:8px;
+    }
+
+    .lightbox-arrow{
+        width:42px;
+        height:42px;
+    }
+
+    .lightbox-arrow.prev{
+        left:5px;
+    }
+
+    .lightbox-arrow.next{
+        right:5px;
+    }
+
+
+    /* =================================================
+       MODAL MÓVIL
+    ================================================= */
 
     .modal{
         padding:0;
@@ -1141,8 +1558,7 @@ footer{
     .modal-box{
         width:100%;
 
-        max-height:
-            96vh;
+        max-height:96vh;
 
         padding:
             22px
@@ -1200,11 +1616,7 @@ footer{
 
 @media(max-width:380px){
 
-    .products{
-        grid-template-columns:1fr;
-    }
-
-    .product-image{
+    .product-gallery{
         height:330px;
     }
 
@@ -1248,7 +1660,6 @@ footer{
 <div class="logo">
     Strangis
 </div>
-
 
 <nav>
 
@@ -1325,6 +1736,67 @@ footer{
 © 2026 Strangis · TODOS LOS DERECHOS RESERVADOS
 
 </footer>
+
+
+<!-- =====================================================
+     LIGHTBOX / ZOOM DE IMAGEN
+===================================================== -->
+
+<div
+    class="image-lightbox"
+    id="imageLightbox"
+>
+
+<div class="lightbox-content">
+
+<button
+    type="button"
+    class="lightbox-close"
+    onclick="closeLightbox()"
+    aria-label="Cerrar imagen"
+>
+    ×
+</button>
+
+
+<button
+    type="button"
+    class="lightbox-arrow prev"
+    onclick="changeLightboxImage(-1)"
+    aria-label="Imagen anterior"
+>
+    ‹
+</button>
+
+
+<img
+    class="lightbox-image"
+    id="lightboxImage"
+    src=""
+    alt=""
+>
+
+
+<button
+    type="button"
+    class="lightbox-arrow next"
+    onclick="changeLightboxImage(1)"
+    aria-label="Imagen siguiente"
+>
+    ›
+</button>
+
+
+<div
+    class="lightbox-counter"
+    id="lightboxCounter"
+>
+    1 / 1
+</div>
+
+</div>
+
+</div>
 
 
 <!-- =====================================================
@@ -1582,9 +2054,7 @@ footer{
     class="send-order"
     onclick="sendOrderToWhatsApp()"
 >
-
     ENVIAR PEDIDO POR WHATSAPP
-
 </button>
 
 
@@ -1593,9 +2063,7 @@ footer{
     class="cancel-order"
     onclick="closeCustomerModal()"
 >
-
     CANCELAR
-
 </button>
 
 
@@ -1608,171 +2076,208 @@ footer{
 
 
 /* =====================================================
+   =====================================================
    PRODUCTOS
+   =====================================================
+
+   ⚠️ IMPORTANTE
+
+   AQUÍ ES DONDE EL ADMINISTRADOR PODRÁ GENERAR
+   LOS PRODUCTOS EN EL FUTURO.
+
+   CADA PRODUCTO TIENE SUS IMÁGENES / COLORES
+   ENLAZADOS ENTRE SÍ.
+
 ===================================================== */
 
 const PRODUCTS = [
 
-
 /* =====================================================
-   🟢 PRODUCTO 1 — CAMISETAS
-   ===================================================== */
-{
-    id: "000001",
-    ref: "000001",
-    name: "Camiseta Lacoste productos 100% algodón (Varios colores)",
-    category: "camisetas",
-    price: 35,
-    stock: 999,
-    description: "",
-    whatsapp: "34674559614",
+   🟢 PRODUCTO 1
+   PEGA AQUÍ TU CÓDIGO DE PRODUCTO 1
+===================================================== */
 
-    variants: [
+{
+    id:"000001",
+
+    ref:"000001",
+
+    name:
+        "Camiseta Lacoste productos 100% algodón (Varios colores)",
+
+    category:"camisetas",
+
+    price:35,
+
+    stock:999,
+
+    description:"",
+
+    whatsapp:"34674559614",
+
+    variants:[
         {
-            name: "Azul",
-            image: "https://i.imgur.com/WHgKPQj.jpeg"
+            name:"Azul",
+            image:"https://i.imgur.com/WHgKPQj.jpeg"
         },
         {
-            name: "Rojo",
-            image: "https://i.imgur.com/lTOzFSz.jpeg"
+            name:"Rojo",
+            image:"https://i.imgur.com/lTOzFSz.jpeg"
         },
         {
-            name: "Verde",
-            image: "https://i.imgur.com/6sffeFn.jpeg"
+            name:"Verde",
+            image:"https://i.imgur.com/6sffeFn.jpeg"
         },
         {
-            name: "Amarillo",
-            image: "https://i.imgur.com/q5FPpeg.jpeg"
+            name:"Amarillo",
+            image:"https://i.imgur.com/q5FPpeg.jpeg"
         },
         {
-            name: "Crema",
-            image: "https://i.imgur.com/QOUo2Ee.jpeg"
+            name:"Crema",
+            image:"https://i.imgur.com/QOUo2Ee.jpeg"
         },
         {
-            name: "Morado",
-            image: "https://i.imgur.com/DydB2tW.jpeg"
+            name:"Morado",
+            image:"https://i.imgur.com/DydB2tW.jpeg"
         },
         {
-            name: "Gris",
-            image: "https://i.imgur.com/J0TNoUp.jpeg"
+            name:"Gris",
+            image:"https://i.imgur.com/J0TNoUp.jpeg"
         },
         {
-            name: "Negro",
-            image: "https://i.imgur.com/tfQYsmI.jpeg"
+            name:"Negro",
+            image:"https://i.imgur.com/tfQYsmI.jpeg"
         },
         {
-            name: "Blanco",
-            image: "https://i.imgur.com/kSvm9eM.jpeg"
+            name:"Blanco",
+            image:"https://i.imgur.com/kSvm9eM.jpeg"
         }
     ],
 
-    sizes: [
+    sizes:[
         "S",
         "M",
         "L",
         "XL"
     ],
 
-    shipping: {
-        min: 20,
-        max: 30
+    shipping:{
+        min:20,
+        max:30
     }
 },
 
 
 /* =====================================================
-   🟢 PRODUCTO 2 — CAMISETAS
-   COPIA EL BLOQUE ANTERIOR Y CAMBIA LOS DATOS
-   ===================================================== */
+   🟢 PRODUCTO 2
+   PEGA AQUÍ TU SIGUIENTE CÓDIGO DE PRODUCTO
+===================================================== */
+
 {
-    name: "Camiseta GUCCI (varios colores)",
-    ref: "00001",
+    id:"000002",
 
-    price: 36,
+    ref:"000002",
 
-    stock: 999,
+    name:
+        "Camiseta GUCCI (varios colores)",
 
-    description: "100% algodón cómoda y de calidad",
+    category:"camisetas",
 
-    whatsapp: "34674559614",
+    price:36,
 
-    variants: [
+    stock:999,
+
+    description:
+        "100% algodón cómoda y de calidad",
+
+    whatsapp:"34674559614",
+
+    variants:[
         {
-            name: "Prenda",
-            image: "https://i.imgur.com/fto6uGS.jpeg",
-            color: "#545447"
+            name:"Prenda",
+            image:"https://i.imgur.com/fto6uGS.jpeg",
+            color:"#545447"
         },
         {
-            name: "Azul oscuro",
-            image: "https://i.imgur.com/Y6rehRJ.jpeg",
-            color: "#0d0f82"
+            name:"Azul oscuro",
+            image:"https://i.imgur.com/Y6rehRJ.jpeg",
+            color:"#0d0f82"
         },
         {
-            name: "Negro",
-            image: "https://i.imgur.com/Fr5UbYC.jpeg",
-            color: "#000000"
+            name:"Negro",
+            image:"https://i.imgur.com/Fr5UbYC.jpeg",
+            color:"#000000"
         },
         {
-            name: "Amarillo",
-            image: "https://i.imgur.com/OiDEkOs.jpeg",
-            color: "#bbbd3e"
+            name:"Amarillo",
+            image:"https://i.imgur.com/OiDEkOs.jpeg",
+            color:"#bbbd3e"
         },
         {
-            name: "Verde",
-            image: "https://i.imgur.com/RJCAqPP.jpeg",
-            color: "#64b55b"
+            name:"Verde",
+            image:"https://i.imgur.com/RJCAqPP.jpeg",
+            color:"#64b55b"
         }
     ],
 
-    sizes: [
+    sizes:[
         "L",
         "XL"
     ],
 
-    shipping: {
-        min: "7",
-        max: "15"
+    shipping:{
+        min:7,
+        max:15
     }
 },
 
-/* =====================================================
-   🟢 PRODUCTO 3 — CAMISETAS
-   ===================================================== */
-
-
 
 /* =====================================================
-   🟢 PRODUCTO 4 — CAMISETAS
-   ===================================================== */
+   🟢 PRODUCTO 3
+   PEGA AQUÍ TU SIGUIENTE CÓDIGO DE PRODUCTO
+===================================================== */
 
 
 /* =====================================================
-   🟢 PRODUCTO 5 — CAMISETAS
-   ===================================================== */
+   🟢 PRODUCTO 4
+   PEGA AQUÍ TU SIGUIENTE CÓDIGO DE PRODUCTO
+===================================================== */
 
 
 /* =====================================================
-   🟢 PRODUCTO 6 — CAMISETAS
-   ===================================================== */
+   🟢 PRODUCTO 5
+   PEGA AQUÍ TU SIGUIENTE CÓDIGO DE PRODUCTO
+===================================================== */
 
 
 /* =====================================================
-   🟢 PRÓXIMO PRODUCTO
-   COPIA CUALQUIER BLOQUE ANTERIOR
+   🟢 PRODUCTO 6
+   PEGA AQUÍ TU SIGUIENTE CÓDIGO DE PRODUCTO
+===================================================== */
 
-   STR-000007
-   STR-000008
-   STR-000009
-   STR-000010
-   ...
 
-   MARCADORES PARA NUEVOS PRODUCTOS
+/* =====================================================
+   🟢 SIGUIENTE PRODUCTO
+   PEGA AQUÍ TU SIGUIENTE CÓDIGO DE PRODUCTO
 ===================================================== */
 
 ];
 
 
 let currentOrder = null;
+
+
+/* =====================================================
+   ESTADO DEL ZOOM
+===================================================== */
+
+let lightboxProductIndex = 0;
+
+let lightboxVariantIndex = 0;
+
+let lightboxTouchStartX = 0;
+
+let lightboxTouchEndX = 0;
 
 
 /* =====================================================
@@ -1931,31 +2436,166 @@ function createProductHTML(
     >
 
 
-        <div class="product-image">
+        <!-- =========================================
+             GALERÍA
+        ========================================== -->
 
-            <img
+        <div
 
-                id="image-${index}"
+            class="product-gallery"
 
-                src="${escapeAttribute(firstVariant.image)}"
+            id="gallery-${index}"
 
-                alt="${escapeHTML(product.name)}"
+        >
 
-                loading="lazy"
 
-                onerror="imageError(this)"
+            <div
+
+                class="product-image"
+
+                onclick="
+                    openLightbox(
+                        ${index}
+                    )
+                "
+
+                ontouchstart="
+                    galleryTouchStart(
+                        event
+                    )
+                "
+
+                ontouchend="
+                    galleryTouchEnd(
+                        event,
+                        ${index}
+                    )
+                "
 
             >
 
+                <img
+
+                    id="image-${index}"
+
+                    src="${escapeAttribute(
+                        firstVariant.image
+                    )}"
+
+                    alt="${escapeHTML(
+                        product.name
+                    )}"
+
+                    loading="lazy"
+
+                    draggable="false"
+
+                    onerror="
+                        imageError(this)
+                    "
+
+                >
+
+            </div>
+
+
+            ${
+                variants.length > 1
+                ?
+                `
+
+                <button
+
+                    type="button"
+
+                    class="
+                        gallery-arrow
+                        prev
+                    "
+
+                    onclick="
+                        event.stopPropagation();
+
+                        selectPreviousVariant(
+                            ${index}
+                        )
+                    "
+
+                    aria-label="Imagen anterior"
+
+                >
+                    ‹
+                </button>
+
+
+                <button
+
+                    type="button"
+
+                    class="
+                        gallery-arrow
+                        next
+                    "
+
+                    onclick="
+                        event.stopPropagation();
+
+                        selectNextVariant(
+                            ${index}
+                        )
+                    "
+
+                    aria-label="Imagen siguiente"
+
+                >
+                    ›
+                </button>
+
+
+                <div
+
+                    class="gallery-counter"
+
+                    id="gallery-counter-${index}"
+
+                >
+
+                    1 / ${variants.length}
+
+                </div>
+
+
+                <div class="swipe-hint">
+
+                    ← desliza →
+
+                </div>
+
+                `
+                :
+                ""
+            }
+
+
         </div>
 
+
+        <!-- =========================================
+             NOMBRE
+        ========================================== -->
 
         <div class="product-name">
 
-            ${escapeHTML(product.name)}
+            ${escapeHTML(
+                product.name
+            )}
 
         </div>
 
+
+        <!-- =========================================
+             REFERENCIA
+        ========================================== -->
 
         <div class="product-code">
 
@@ -1968,6 +2608,10 @@ function createProductHTML(
 
         </div>
 
+
+        <!-- =========================================
+             DESCRIPCIÓN
+        ========================================== -->
 
         ${
             product.description
@@ -1988,12 +2632,20 @@ function createProductHTML(
         }
 
 
+        <!-- =========================================
+             PRECIO
+        ========================================== -->
+
         <div class="product-price">
 
             ${money(product.price)}
 
         </div>
 
+
+        <!-- =========================================
+             COLOR
+        ========================================== -->
 
         <div class="label">
 
@@ -2069,13 +2721,19 @@ function createProductHTML(
         </div>
 
 
+        <!-- =========================================
+             TALLAS
+        ========================================== -->
+
         ${
             sizes.length
             ?
             `
 
             <div class="label">
+
                 Talla
+
             </div>
 
 
@@ -2104,7 +2762,9 @@ function createProductHTML(
 
                         >
 
-                            ${escapeHTML(size)}
+                            ${escapeHTML(
+                                size
+                            )}
 
                         </button>
 
@@ -2121,6 +2781,10 @@ function createProductHTML(
         }
 
 
+        <!-- =========================================
+             CANTIDAD
+        ========================================== -->
+
         <div class="quantity">
 
             <button
@@ -2135,18 +2799,14 @@ function createProductHTML(
                 "
 
             >
-
                 −
-
             </button>
 
 
             <span
                 id="quantity-${index}"
             >
-
                 1
-
             </span>
 
 
@@ -2162,26 +2822,40 @@ function createProductHTML(
                 "
 
             >
-
                 +
-
             </button>
 
         </div>
 
 
+        <!-- =========================================
+             ENVÍO
+        ========================================== -->
+
         <div class="shipping">
 
-            🚚 Envío estimado:
+            🚚
 
-            ${shipping.min}
+            <strong>
+                Envío estimado:
+            </strong>
+
+            ${escapeHTML(
+                shipping.min
+            )}
             –
-            ${shipping.max}
+            ${escapeHTML(
+                shipping.max
+            )}
 
             días laborables
 
         </div>
 
+
+        <!-- =========================================
+             STOCK
+        ========================================== -->
 
         ${
             product.stock !== undefined
@@ -2191,7 +2865,9 @@ function createProductHTML(
             <div class="stock">
 
                 Stock disponible:
-                ${escapeHTML(product.stock)}
+                ${escapeHTML(
+                    product.stock
+                )}
 
             </div>
 
@@ -2200,6 +2876,10 @@ function createProductHTML(
             ""
         }
 
+
+        <!-- =========================================
+             COMPRAR
+        ========================================== -->
 
         <button
 
@@ -2228,12 +2908,13 @@ function createProductHTML(
 
 
 /* =====================================================
-   COLOR
+   CAMBIAR VARIANTE / IMAGEN
 ===================================================== */
 
-function selectColor(
+function setVariant(
     productIndex,
-    variantIndex
+    variantIndex,
+    openZoom = false
 ){
 
     const product =
@@ -2249,14 +2930,21 @@ function selectColor(
     }
 
 
-    const variant =
-        product.variants[variantIndex];
+    const variants =
+        product.variants;
 
 
-    if(!variant){
+    if(
+        variantIndex < 0 ||
+        variantIndex >= variants.length
+    ){
 
         return;
     }
+
+
+    const variant =
+        variants[variantIndex];
 
 
     const image =
@@ -2265,8 +2953,10 @@ function selectColor(
         );
 
 
-    image.style.display =
-        "block";
+    if(!image){
+
+        return;
+    }
 
 
     image.src =
@@ -2277,20 +2967,6 @@ function selectColor(
         product.name +
         " - " +
         variant.name;
-
-
-    const colorName =
-        document.getElementById(
-            `color-name-${productIndex}`
-        );
-
-
-    if(colorName){
-
-        colorName.textContent =
-            variant.name;
-
-    }
 
 
     const card =
@@ -2309,6 +2985,10 @@ function selectColor(
         variantIndex;
 
 
+    /*
+       ENLACE IMAGEN ↔ COLOR
+    */
+
     card.querySelectorAll(
         ".color"
     )
@@ -2326,6 +3006,281 @@ function selectColor(
 
         }
     );
+
+
+    const colorName =
+        document.getElementById(
+            `color-name-${productIndex}`
+        );
+
+
+    if(colorName){
+
+        colorName.textContent =
+            variant.name;
+
+    }
+
+
+    /*
+       CONTADOR
+    */
+
+    const counter =
+        document.getElementById(
+            `gallery-counter-${productIndex}`
+        );
+
+
+    if(counter){
+
+        counter.textContent =
+            `${variantIndex + 1} / ${variants.length}`;
+
+    }
+
+
+    /*
+       SI SE ESTÁ VISUALIZANDO EL ZOOM,
+       ACTUALIZAMOS TAMBIÉN EL ZOOM.
+    */
+
+    if(openZoom){
+
+        updateLightbox();
+
+    }
+
+}
+
+
+/* =====================================================
+   COLOR
+===================================================== */
+
+function selectColor(
+    productIndex,
+    variantIndex
+){
+
+    setVariant(
+        productIndex,
+        variantIndex,
+        false
+    );
+
+}
+
+
+/* =====================================================
+   SIGUIENTE IMAGEN
+===================================================== */
+
+function selectNextVariant(
+    productIndex
+){
+
+    const product =
+        PRODUCTS[productIndex];
+
+
+    if(
+        !product ||
+        !Array.isArray(product.variants) ||
+        product.variants.length < 2
+    ){
+
+        return;
+    }
+
+
+    const card =
+        document.getElementById(
+            `product-${productIndex}`
+        );
+
+
+    if(!card){
+
+        return;
+    }
+
+
+    let current =
+        Number(
+            card.dataset.variant || 0
+        );
+
+
+    current++;
+
+
+    if(
+        current >=
+        product.variants.length
+    ){
+
+        current = 0;
+
+    }
+
+
+    setVariant(
+        productIndex,
+        current
+    );
+
+}
+
+
+/* =====================================================
+   IMAGEN ANTERIOR
+===================================================== */
+
+function selectPreviousVariant(
+    productIndex
+){
+
+    const product =
+        PRODUCTS[productIndex];
+
+
+    if(
+        !product ||
+        !Array.isArray(product.variants) ||
+        product.variants.length < 2
+    ){
+
+        return;
+    }
+
+
+    const card =
+        document.getElementById(
+            `product-${productIndex}`
+        );
+
+
+    if(!card){
+
+        return;
+    }
+
+
+    let current =
+        Number(
+            card.dataset.variant || 0
+        );
+
+
+    current--;
+
+
+    if(current < 0){
+
+        current =
+            product.variants.length - 1;
+
+    }
+
+
+    setVariant(
+        productIndex,
+        current
+    );
+
+}
+
+
+/* =====================================================
+   SWIPE GALERÍA
+===================================================== */
+
+let galleryStartX = 0;
+
+let galleryStartY = 0;
+
+
+function galleryTouchStart(event){
+
+    if(
+        !event.touches ||
+        !event.touches.length
+    ){
+
+        return;
+    }
+
+
+    galleryStartX =
+        event.touches[0].clientX;
+
+
+    galleryStartY =
+        event.touches[0].clientY;
+
+}
+
+
+function galleryTouchEnd(
+    event,
+    productIndex
+){
+
+    if(
+        !event.changedTouches ||
+        !event.changedTouches.length
+    ){
+
+        return;
+    }
+
+
+    const endX =
+        event.changedTouches[0].clientX;
+
+
+    const endY =
+        event.changedTouches[0].clientY;
+
+
+    const diffX =
+        endX -
+        galleryStartX;
+
+
+    const diffY =
+        endY -
+        galleryStartY;
+
+
+    /*
+       Evitamos interpretar como swipe
+       un movimiento principalmente vertical.
+    */
+
+    if(
+        Math.abs(diffX) < 45 ||
+        Math.abs(diffX) < Math.abs(diffY)
+    ){
+
+        return;
+    }
+
+
+    if(diffX < 0){
+
+        selectNextVariant(
+            productIndex
+        );
+
+    }else{
+
+        selectPreviousVariant(
+            productIndex
+        );
+
+    }
 
 }
 
@@ -2544,11 +3499,6 @@ function buyProduct(
     }
 
 
-    /*
-       Si el producto tiene tallas,
-       obligamos a elegir una.
-    */
-
     if(
         Array.isArray(product.sizes) &&
         product.sizes.length &&
@@ -2599,11 +3549,16 @@ function buyProduct(
     setTimeout(
         () => {
 
-            document
-                .getElementById(
+            const nameField =
+                document.getElementById(
                     "customerName"
-                )
-                .focus();
+                );
+
+            if(nameField){
+
+                nameField.focus();
+
+            }
 
         },
         150
@@ -2613,7 +3568,7 @@ function buyProduct(
 
 
 /* =====================================================
-   RESUMEN DEL PEDIDO
+   RESUMEN PEDIDO
 ===================================================== */
 
 function showOrderSummary(){
@@ -2722,16 +3677,21 @@ function closeCustomerModal(){
 
 function fieldValue(id){
 
-    return document
-        .getElementById(id)
-        .value
-        .trim();
+    const element =
+        document.getElementById(id);
+
+
+    return element
+        ?
+        element.value.trim()
+        :
+        "";
 
 }
 
 
 /* =====================================================
-   ENVIAR PEDIDO WHATSAPP
+   ENVIAR WHATSAPP
 ===================================================== */
 
 function sendOrderToWhatsApp(){
@@ -2807,10 +3767,6 @@ function sendOrderToWhatsApp(){
             "customerNotes"
         );
 
-
-    /*
-       DATOS OBLIGATORIOS
-    */
 
     if(!name){
 
@@ -2892,11 +3848,6 @@ function sendOrderToWhatsApp(){
     }
 
 
-    /*
-       EMAIL OPCIONAL PERO SI SE RELLENA,
-       COMPROBAMOS QUE TENGA FORMATO BÁSICO.
-    */
-
     if(
         email &&
         !/^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -2936,11 +3887,7 @@ function sendOrderToWhatsApp(){
     }
 
 
-    /*
-       CONSTRUIR MENSAJE
-    */
-
-    let message =
+    const message =
 
 `🛍️ NUEVO PEDIDO
 
@@ -2948,15 +3895,20 @@ function sendOrderToWhatsApp(){
 
 📦 PRODUCTO
 
-Producto: ${order.product.name}
+Producto:
+${order.product.name}
 
-REF: ${order.product.ref || order.product.id || ""}
+REF:
+${order.product.ref || order.product.id || ""}
 
-Color: ${order.variant.name}
+Color:
+${order.variant.name}
 
-Talla: ${order.size}
+Talla:
+${order.size}
 
-Cantidad: ${order.quantity}
+Cantidad:
+${order.quantity}
 
 💰 PRECIO
 
@@ -3023,16 +3975,8 @@ ${notes || "Ninguna"}
         );
 
 
-    /*
-       CERRAMOS MODAL
-    */
-
     closeCustomerModal();
 
-
-    /*
-       ABRIMOS WHATSAPP
-    */
 
     window.open(
         whatsappURL,
@@ -3072,40 +4016,395 @@ function showFormError(message){
 
 
 /* =====================================================
-   CERRAR MODAL AL PULSAR FUERA
+   LIGHTBOX / ZOOM
 ===================================================== */
 
-document
-    .getElementById(
-        "customerModal"
-    )
-    .addEventListener(
-        "click",
-        function(event){
+function openLightbox(
+    productIndex
+){
 
-            if(
-                event.target ===
-                this
-            ){
+    const product =
+        PRODUCTS[productIndex];
 
-                closeCustomerModal();
 
-            }
+    if(
+        !product ||
+        !Array.isArray(product.variants) ||
+        !product.variants.length
+    ){
 
-        }
-    );
+        return;
+    }
+
+
+    const card =
+        document.getElementById(
+            `product-${productIndex}`
+        );
+
+
+    lightboxProductIndex =
+        productIndex;
+
+
+    lightboxVariantIndex =
+        card
+        ?
+        Number(
+            card.dataset.variant || 0
+        )
+        :
+        0;
+
+
+    updateLightbox();
+
+
+    document
+        .getElementById(
+            "imageLightbox"
+        )
+        .classList.add(
+            "show"
+        );
+
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+function updateLightbox(){
+
+    const product =
+        PRODUCTS[
+            lightboxProductIndex
+        ];
+
+
+    if(!product){
+
+        return;
+    }
+
+
+    const variants =
+        product.variants || [];
+
+
+    if(!variants.length){
+
+        return;
+    }
+
+
+    if(
+        lightboxVariantIndex < 0
+    ){
+
+        lightboxVariantIndex =
+            variants.length - 1;
+
+    }
+
+
+    if(
+        lightboxVariantIndex >=
+        variants.length
+    ){
+
+        lightboxVariantIndex = 0;
+
+    }
+
+
+    const variant =
+        variants[
+            lightboxVariantIndex
+        ];
+
+
+    const image =
+        document.getElementById(
+            "lightboxImage"
+        );
+
+
+    image.src =
+        variant.image;
+
+
+    image.alt =
+        product.name +
+        " - " +
+        variant.name;
+
+
+    document
+        .getElementById(
+            "lightboxCounter"
+        )
+        .textContent =
+        `${lightboxVariantIndex + 1} / ${variants.length}`;
+
+}
+
+
+function closeLightbox(){
+
+    document
+        .getElementById(
+            "imageLightbox"
+        )
+        .classList.remove(
+            "show"
+        );
+
+
+    /*
+       Si el modal de pedido no está abierto,
+       devolvemos el scroll.
+    */
+
+    if(
+        !document
+            .getElementById(
+                "customerModal"
+            )
+            .classList.contains(
+                "show"
+            )
+    ){
+
+        document.body.style.overflow =
+            "";
+
+    }
+
+}
 
 
 /* =====================================================
-   ESCAPE PARA CERRAR
+   CAMBIAR IMAGEN DEL ZOOM
+===================================================== */
+
+function changeLightboxImage(
+    direction
+){
+
+    const product =
+        PRODUCTS[
+            lightboxProductIndex
+        ];
+
+
+    if(
+        !product ||
+        !product.variants ||
+        product.variants.length < 2
+    ){
+
+        return;
+    }
+
+
+    lightboxVariantIndex +=
+        direction;
+
+
+    if(
+        lightboxVariantIndex >=
+        product.variants.length
+    ){
+
+        lightboxVariantIndex = 0;
+
+    }
+
+
+    if(
+        lightboxVariantIndex < 0
+    ){
+
+        lightboxVariantIndex =
+            product.variants.length - 1;
+
+    }
+
+
+    /*
+       CAMBIAMOS TAMBIÉN EL PRODUCTO
+       PARA MANTENER COLOR E IMAGEN ENLAZADOS.
+    */
+
+    setVariant(
+        lightboxProductIndex,
+        lightboxVariantIndex
+    );
+
+
+    updateLightbox();
+
+}
+
+
+/* =====================================================
+   SWIPE EN ZOOM
+===================================================== */
+
+const lightbox =
+    document.getElementById(
+        "imageLightbox"
+    );
+
+
+lightbox.addEventListener(
+    "touchstart",
+    function(event){
+
+        if(
+            !event.touches ||
+            !event.touches.length
+        ){
+
+            return;
+        }
+
+
+        lightboxTouchStartX =
+            event.touches[0].clientX;
+
+    },
+    {
+        passive:true
+    }
+);
+
+
+lightbox.addEventListener(
+    "touchend",
+    function(event){
+
+        if(
+            !event.changedTouches ||
+            !event.changedTouches.length
+        ){
+
+            return;
+        }
+
+
+        lightboxTouchEndX =
+            event.changedTouches[0].clientX;
+
+
+        const difference =
+            lightboxTouchEndX -
+            lightboxTouchStartX;
+
+
+        if(
+            Math.abs(difference) < 50
+        ){
+
+            return;
+        }
+
+
+        if(difference < 0){
+
+            changeLightboxImage(1);
+
+        }else{
+
+            changeLightboxImage(-1);
+
+        }
+
+    },
+    {
+        passive:true
+    }
+);
+
+
+/* =====================================================
+   CERRAR ZOOM AL PULSAR FONDO
+===================================================== */
+
+lightbox.addEventListener(
+    "click",
+    function(event){
+
+        if(
+            event.target === this
+        ){
+
+            closeLightbox();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   TECLADO ZOOM
 ===================================================== */
 
 document.addEventListener(
     "keydown",
     function(event){
 
+        const zoomOpen =
+            document
+                .getElementById(
+                    "imageLightbox"
+                )
+                .classList.contains(
+                    "show"
+                );
+
+
+        if(zoomOpen){
+
+            if(
+                event.key ===
+                "ArrowRight"
+            ){
+
+                changeLightboxImage(1);
+
+            }
+
+
+            if(
+                event.key ===
+                "ArrowLeft"
+            ){
+
+                changeLightboxImage(-1);
+
+            }
+
+
+            if(
+                event.key ===
+                "Escape"
+            ){
+
+                closeLightbox();
+
+            }
+
+            return;
+        }
+
+
         if(
-            event.key === "Escape"
+            event.key ===
+            "Escape"
         ){
 
             closeCustomerModal();
@@ -3134,9 +4433,8 @@ function imageError(image){
 
 renderProducts();
 
-
 </script>
 
 </body>
 
-</html>
+   </html>
