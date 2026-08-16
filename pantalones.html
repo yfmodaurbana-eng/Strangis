@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pantalones | MI MARCA</title>
+<title>Pantalones | Stranjis</title>
 
 <style>
 
@@ -822,9 +822,13 @@ footer{
     color:#666;
 }
 
+.required{
+    color:#aaa;
+}
+
 
 /* =====================================================
-   BOTONES MODAL
+   BOTÓN WHATSAPP
 ===================================================== */
 
 .send-order{
@@ -1125,7 +1129,6 @@ footer{
         font-size:9px;
     }
 
-
     /* MODAL MÓVIL */
 
     .modal{
@@ -1242,7 +1245,7 @@ footer{
 <header>
 
 <div class="logo">
-    MI MARCA
+    Strangis
 </div>
 
 
@@ -1263,7 +1266,7 @@ footer{
     Pantalones
 </a>
 
-<a href="conjuntos.html">
+<a href="chandals.html">
     Conjuntos
 </a>
 
@@ -1299,8 +1302,8 @@ footer{
 </h1>
 
 <p>
-    Pantalones seleccionados para completar
-    tus looks con estilo y personalidad.
+    Pantalones urbanos seleccionados para
+    crear tus looks con personalidad.
 </p>
 
 </section>
@@ -1322,7 +1325,7 @@ footer{
 
 <footer>
 
-© 2026 MI MARCA · TODOS LOS DERECHOS RESERVADOS
+© 2026 STRANJIS · TODOS LOS DERECHOS RESERVADOS
 
 </footer>
 
@@ -1466,8 +1469,7 @@ footer{
 <div class="form-field">
 
 <label>
-    Número *
-</label>
+    Número *</label>
 
 <input
     id="customerNumber"
@@ -1616,31 +1618,45 @@ const PRODUCTS = [
 
 /* =====================================================
    ------------------ PEGAR PRODUCTO AQUÍ ------------------
-===================================================== */
-
-
-/*
-    EJEMPLO DE PRODUCTO
-
-    Copia cada producto generado por tu panel
-    dentro de este bloque.
-
-*/
-
+   ===================================================== */
 {
-    id: "PANT-001",
-    ref: "PANT-001",
-    name: "Pantalón ejemplo",
-    category: "pantalones",
-    price: 49.90,
+    id: "000001",
+    ref: "000001",
+    name: "Camiseta lacoste (Polo) Varios colores",
+    category: "camisetas",
+    price: 40,
     stock: 999,
-    description: "Descripción del pantalón.",
+    description: "",
     whatsapp: "34674559614",
 
     variants: [
         {
             name: "Negro",
-            image: "https://i.imgur.com/ejemplo.jpg"
+            image: "https://i.imgur.com/05aVIdy.jpeg"
+        },
+        {
+            name: "Blanco",
+            image: "https://i.imgur.com/GFWq2Pk.jpeg"
+        },
+        {
+            name: "Rojo",
+            image: "https://i.imgur.com/rgHCEWj.jpeg"
+        },
+        {
+            name: "Verde",
+            image: "https://i.imgur.com/b2mzD9q.jpeg"
+        },
+        {
+            name: "Amarillo",
+            image: "https://i.imgur.com/vBWs12d.jpeg"
+        },
+        {
+            name: "Morado",
+            image: "https://i.imgur.com/FIiz38t.jpeg"
+        },
+        {
+            name: "Marrón",
+            image: "https://i.imgur.com/kWzmzj8.jpeg"
         }
     ],
 
@@ -1660,22 +1676,23 @@ const PRODUCTS = [
 
 /* =====================================================
    ------------------ PRÓXIMO PRODUCTO ------------------
-===================================================== */
+   ===================================================== */
 
 
 /* =====================================================
    ------------------ PRÓXIMO PRODUCTO ------------------
-===================================================== */
+   ===================================================== */
 
 
 /* =====================================================
    ------------------ PRÓXIMO PRODUCTO ------------------
-===================================================== */
+   ===================================================== */
 
 
 /* =====================================================
    ------------------ PRÓXIMO PRODUCTO ------------------
-===================================================== */
+   ===================================================== */
+
 
 ];
 
@@ -2036,13 +2053,16 @@ function createProductHTML(
         <div class="quantity">
 
             <button
+
                 type="button"
+
                 onclick="
                     changeQuantity(
                         ${index},
                         -1
                     )
                 "
+
             >
                 −
             </button>
@@ -2056,13 +2076,16 @@ function createProductHTML(
 
 
             <button
+
                 type="button"
+
                 onclick="
                     changeQuantity(
                         ${index},
                         1
                     )
                 "
+
             >
                 +
             </button>
@@ -2444,6 +2467,11 @@ function buyProduct(
     }
 
 
+    /*
+       Si el producto tiene tallas,
+       obligamos a elegir una.
+    */
+
     if(
         Array.isArray(product.sizes) &&
         product.sizes.length &&
@@ -2508,7 +2536,7 @@ function buyProduct(
 
 
 /* =====================================================
-   RESUMEN PEDIDO
+   RESUMEN DEL PEDIDO
 ===================================================== */
 
 function showOrderSummary(){
@@ -2703,6 +2731,16 @@ function sendOrderToWhatsApp(){
         );
 
 
+    const error =
+        document.getElementById(
+            "formError"
+        );
+
+
+    /*
+       DATOS OBLIGATORIOS
+    */
+
     if(!name){
 
         showFormError(
@@ -2783,9 +2821,15 @@ function sendOrderToWhatsApp(){
     }
 
 
+    /*
+       EMAIL OPCIONAL PERO SI SE RELLENA,
+       COMPROBAMOS QUE TENGA FORMATO BÁSICO.
+    */
+
     if(
         email &&
-        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/
+            .test(email)
     ){
 
         showFormError(
@@ -2821,7 +2865,11 @@ function sendOrderToWhatsApp(){
     }
 
 
-    const message =
+    /*
+       CONSTRUIR MENSAJE
+    */
+
+    let message =
 
 `🛍️ NUEVO PEDIDO
 
@@ -2904,8 +2952,16 @@ ${notes || "Ninguna"}
         );
 
 
+    /*
+       CERRAMOS MODAL
+    */
+
     closeCustomerModal();
 
+
+    /*
+       ABRIMOS WHATSAPP
+    */
 
     window.open(
         whatsappURL,
@@ -2945,7 +3001,7 @@ function showFormError(message){
 
 
 /* =====================================================
-   CERRAR AL PULSAR FUERA
+   CERRAR MODAL AL PULSAR FUERA
 ===================================================== */
 
 document
@@ -2957,7 +3013,8 @@ document
         function(event){
 
             if(
-                event.target === this
+                event.target ===
+                this
             ){
 
                 closeCustomerModal();
@@ -2969,7 +3026,7 @@ document
 
 
 /* =====================================================
-   ESCAPE
+   ESCAPE PARA CERRAR
 ===================================================== */
 
 document.addEventListener(
@@ -3005,6 +3062,7 @@ function imageError(image){
 ===================================================== */
 
 renderProducts();
+
 
 </script>
 
