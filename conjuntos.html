@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Conjuntos | MI MARCA</title>
+<title>Conjuntos | Strangis</title>
 
 <style>
 
@@ -822,6 +822,10 @@ footer{
     color:#666;
 }
 
+.required{
+    color:#aaa;
+}
+
 
 /* =====================================================
    BOTÓN WHATSAPP
@@ -1241,7 +1245,7 @@ footer{
 <header>
 
 <div class="logo">
-    MI MARCA
+    Strangis
 </div>
 
 
@@ -1259,10 +1263,7 @@ footer{
     Pantalones
 </a>
 
-<a
-    class="active"
-    href="conjuntos.html"
->
+<a class="active" href="chandals.html">
     Conjuntos
 </a>
 
@@ -1298,8 +1299,7 @@ footer{
 </h1>
 
 <p>
-    Conjuntos seleccionados para crear
-    looks completos con estilo y personalidad.
+    Conjuntos seleccionados para crear tus looks con personalidad.
 </p>
 
 </section>
@@ -1321,7 +1321,7 @@ footer{
 
 <footer>
 
-© 2026 MI MARCA · TODOS LOS DERECHOS RESERVADOS
+© 2026 Strangis · TODOS LOS DERECHOS RESERVADOS
 
 </footer>
 
@@ -1465,8 +1465,7 @@ footer{
 <div class="form-field">
 
 <label>
-    Número *
-</label>
+    Número *</label>
 
 <input
     id="customerNumber"
@@ -1612,39 +1611,34 @@ footer{
 
 const PRODUCTS = [
 
-
 /* =====================================================
-   ------------------ PEGAR PRODUCTO AQUÍ ------------------
-===================================================== */
-
-
-/*
-    EJEMPLO DE PRODUCTO
-
-    Puedes borrar este ejemplo cuando quieras.
-
-    IMPORTANTE:
-    Cada producto debe estar separado por una coma.
+   🟢 PRODUCTO 1 — CONJUNTOS
+   CAMBIA SOLO LOS DATOS DE ESTE BLOQUE
+   ===================================================== */
 
 {
-    id: "CONJ-001",
-    ref: "CONJ-001",
-    name: "Conjunto deportivo premium",
+    id: "STR-000001",
+    ref: "STR-000001",
+
+    name: "NOMBRE DEL CONJUNTO",
+
     category: "conjuntos",
-    price: 59.90,
-    stock: 50,
-    description: "Conjunto deportivo de dos piezas.",
+
+    price: 00,
+
+    stock: 999,
+
+    description: "",
+
     whatsapp: "34674559614",
 
     variants: [
+
         {
             name: "Negro",
-            image: "https://ejemplo.com/conjunto-negro.jpg"
-        },
-        {
-            name: "Blanco",
-            image: "https://ejemplo.com/conjunto-blanco.jpg"
+            image: "URL-DE-LA-IMAGEN"
         }
+
     ],
 
     sizes: [
@@ -1655,33 +1649,22 @@ const PRODUCTS = [
     ],
 
     shipping: {
-        min: 3,
-        max: 9
+        min: 20,
+        max: 30
     }
+
 },
 
-*/
-
 
 /* =====================================================
-   ------------------ PRÓXIMO PRODUCTO ------------------
-===================================================== */
+   🟢 PRÓXIMO PRODUCTO
+   COPIA EL BLOQUE ANTERIOR Y CAMBIA EL CÓDIGO:
 
-
-/* =====================================================
-   ------------------ PRÓXIMO PRODUCTO ------------------
-===================================================== */
-
-
-/* =====================================================
-   ------------------ PRÓXIMO PRODUCTO ------------------
-===================================================== */
-
-
-/* =====================================================
-   ------------------ PRÓXIMO PRODUCTO ------------------
-===================================================== */
-
+   STR-000002
+   STR-000003
+   STR-000004
+   ...
+   ===================================================== */
 
 ];
 
@@ -2456,6 +2439,11 @@ function buyProduct(
     }
 
 
+    /*
+       Si el producto tiene tallas,
+       obligamos a elegir una.
+    */
+
     if(
         Array.isArray(product.sizes) &&
         product.sizes.length &&
@@ -2520,7 +2508,7 @@ function buyProduct(
 
 
 /* =====================================================
-   RESUMEN PEDIDO
+   RESUMEN DEL PEDIDO
 ===================================================== */
 
 function showOrderSummary(){
@@ -2715,6 +2703,16 @@ function sendOrderToWhatsApp(){
         );
 
 
+    const error =
+        document.getElementById(
+            "formError"
+        );
+
+
+    /*
+       DATOS OBLIGATORIOS
+    */
+
     if(!name){
 
         showFormError(
@@ -2795,6 +2793,11 @@ function sendOrderToWhatsApp(){
     }
 
 
+    /*
+       EMAIL OPCIONAL PERO SI SE RELLENA,
+       COMPROBAMOS QUE TENGA FORMATO BÁSICO.
+    */
+
     if(
         email &&
         !/^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -2833,6 +2836,10 @@ function sendOrderToWhatsApp(){
         return;
     }
 
+
+    /*
+       CONSTRUIR MENSAJE
+    */
 
     let message =
 
@@ -2917,8 +2924,16 @@ ${notes || "Ninguna"}
         );
 
 
+    /*
+       CERRAMOS MODAL
+    */
+
     closeCustomerModal();
 
+
+    /*
+       ABRIMOS WHATSAPP
+    */
 
     window.open(
         whatsappURL,
@@ -2958,7 +2973,7 @@ function showFormError(message){
 
 
 /* =====================================================
-   CERRAR AL PULSAR FUERA
+   CERRAR MODAL AL PULSAR FUERA
 ===================================================== */
 
 document
@@ -2983,7 +2998,7 @@ document
 
 
 /* =====================================================
-   ESCAPE
+   ESCAPE PARA CERRAR
 ===================================================== */
 
 document.addEventListener(
@@ -3019,6 +3034,7 @@ function imageError(image){
 ===================================================== */
 
 renderProducts();
+
 
 </script>
 
