@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Camisetas | Strangis</title>
+<title>Strangis | Inicio</title>
 
 <style>
 
@@ -1230,6 +1230,81 @@ footer{
 
 }
 
+
+/* BOTÓN PRINCIPAL DEL INICIO */
+.hero-button{
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    min-width:250px;
+    margin-top:26px;
+    padding:17px 20px 17px 25px;
+    border:0;
+    border-radius:14px;
+    background:#111;
+    color:#fff;
+    font:inherit;
+    font-weight:800;
+    letter-spacing:.08em;
+    cursor:pointer;
+    box-shadow:0 12px 28px rgba(0,0,0,.22);
+    overflow:hidden;
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.hero-button::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(110deg, transparent 25%, rgba(255,255,255,.18) 50%, transparent 75%);
+    transform:translateX(-120%);
+    transition:transform .55s ease;
+}
+
+.hero-button span,
+.hero-button b{
+    position:relative;
+    z-index:1;
+}
+
+.hero-button b{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    background:#fff;
+    color:#111;
+    font-size:19px;
+    transition:transform .2s ease;
+}
+
+.hero-button:hover{
+    background:#000;
+    transform:translateY(-3px);
+    box-shadow:0 17px 36px rgba(0,0,0,.28);
+}
+
+.hero-button:hover::before{
+    transform:translateX(120%);
+}
+
+.hero-button:hover b{
+    transform:translateX(4px);
+}
+
+.hero-button:active{
+    transform:translateY(-1px);
+    box-shadow:0 9px 20px rgba(0,0,0,.2);
+}
+
+.hero-button:focus-visible{
+    outline:3px solid rgba(0,0,0,.25);
+    outline-offset:4px;
+}
 </style>
 
 </head>
@@ -1290,18 +1365,31 @@ footer{
 
 <section class="hero">
 
+<div class="hero-content">
+
 <small>
-    COLECCIÓN
+    BIENVENIDO A STRANGIS
 </small>
 
 <h1>
-    CAMISETAS
+    Strangis
 </h1>
 
 <p>
-    Camisetas urbanas seleccionadas para
-    crear tus looks con personalidad.
+    Descubre nuestra colección y todos los productos disponibles.
+    Aquí podrás ver las novedades que vayamos publicando en las diferentes categorías.
 </p>
+
+<button
+    type="button"
+    class="hero-button"
+    onclick="document.getElementById('todos-productos').scrollIntoView({behavior:'smooth'})"
+>
+    <span>VER TODOS LOS PRODUCTOS</span>
+    <b aria-hidden="true">→</b>
+</button>
+
+</div>
 
 </section>
 
@@ -1310,12 +1398,17 @@ footer{
      PRODUCTOS
 ===================================================== -->
 
-<section class="products-section">
+<section class="products-section" id="todos-productos">
 
-<div
-    class="products"
-    id="productsContainer"
-></div>
+<div class="section-label">
+    TODOS LOS PRODUCTOS
+</div>
+
+<p style="text-align:center; margin:0 auto 28px; max-width:700px;">
+    Aquí aparecerán automáticamente los productos publicados en nuestras categorías.
+</p>
+
+<div class="products" id="productsContainer"></div>
 
 </section>
 
@@ -1606,92 +1699,12 @@ footer{
 <script>
 
 
+
 /* =====================================================
    PRODUCTOS
 ===================================================== */
 
-const PRODUCTS = [
-
-
-/* =====================================================
-   ------------------ PEGAR PRODUCTO AQUÍ ------------------
-   ===================================================== */
-{
-    id: "STR-000001",
-    ref: "STR-000001",
-    name: "Camiseta lacoste (Polo) Varios colores",
-    category: "camisetas",
-    price: 40,
-    stock: 999,
-    description: "",
-    whatsapp: "34674559614",
-
-    variants: [
-        {
-            name: "Negro",
-            image: "https://i.imgur.com/05aVIdy.jpeg"
-        },
-        {
-            name: "Blanco",
-            image: "https://i.imgur.com/GFWq2Pk.jpeg"
-        },
-        {
-            name: "Rojo",
-            image: "https://i.imgur.com/rgHCEWj.jpeg"
-        },
-        {
-            name: "Verde",
-            image: "https://i.imgur.com/b2mzD9q.jpeg"
-        },
-        {
-            name: "Amarillo",
-            image: "https://i.imgur.com/vBWs12d.jpeg"
-        },
-        {
-            name: "Morado",
-            image: "https://i.imgur.com/FIiz38t.jpeg"
-        },
-        {
-            name: "Marrón",
-            image: "https://i.imgur.com/kWzmzj8.jpeg"
-        }
-    ],
-
-    sizes: [
-        "S",
-        "M",
-        "L",
-        "XL"
-    ],
-
-    shipping: {
-        min: 20,
-        max: 30
-    }
-},
-
-
-/* =====================================================
-   ------------------ PRÓXIMO PRODUCTO ------------------
-   ===================================================== */
-
-
-/* =====================================================
-   ------------------ PRÓXIMO PRODUCTO ------------------
-   ===================================================== */
-
-
-/* =====================================================
-   ------------------ PRÓXIMO PRODUCTO ------------------
-   ===================================================== */
-
-
-/* =====================================================
-   ------------------ PRÓXIMO PRODUCTO ------------------
-   ===================================================== */
-
-
-];
+const PRODUCTS = [];
 
 
 /* =====================================================
@@ -1757,42 +1770,21 @@ function escapeAttribute(value){
 function renderProducts(){
 
     const container =
-        document.getElementById(
-            "productsContainer"
-        );
+        document.getElementById("productsContainer");
 
-
-    if(
-        !Array.isArray(PRODUCTS) ||
-        !PRODUCTS.length
-    ){
-
+    if(!Array.isArray(PRODUCTS) || !PRODUCTS.length){
         container.innerHTML = `
-
             <div class="empty">
-
-                Todavía no hay productos
-                disponibles en esta categoría.
-
+                Todavía no hay productos publicados.
             </div>
-
         `;
-
         return;
     }
 
-
     container.innerHTML =
         PRODUCTS
-        .map(
-            (product,index) =>
-                createProductHTML(
-                    product,
-                    index
-                )
-        )
+        .map((product,index) => createProductHTML(product,index))
         .join("");
-
 }
 
 
@@ -3060,6 +3052,98 @@ function imageError(image){
 
 renderProducts();
 
+
+
+
+/* =====================================================
+   ESCAPAR PRODUCTOS DE LAS PÁGINAS DE CATEGORÍA
+   ===================================================== */
+
+const CATEGORY_PAGES = [
+    "camisetas.html",
+    "pantalones.html",
+    "chandals.html",
+    "gorras.html",
+    "gafas.html",
+    "bisuteria.html"
+];
+
+async function loadAllProducts(){
+
+    const allProducts = [];
+
+    for(const page of CATEGORY_PAGES){
+
+        try{
+
+            const response = await fetch(page, {
+                cache: "no-store"
+            });
+
+            if(!response.ok){
+                continue;
+            }
+
+            const source = await response.text();
+
+            const match =
+                source.match(
+                    /const\s+PRODUCTS\s*=\s*(\[[\s\S]*?\]);/
+                );
+
+            if(!match){
+                continue;
+            }
+
+            const products =
+                Function(
+                    '"use strict"; return (' +
+                    match[1] +
+                    ');'
+                )();
+
+            if(Array.isArray(products)){
+                allProducts.push(...products);
+            }
+
+        }catch(error){
+
+            console.warn(
+                "No se pudieron cargar los productos de " + page,
+                error
+            );
+
+        }
+
+    }
+
+    // Evita duplicados si por algún motivo una referencia se repite.
+    const seen = new Set();
+
+    PRODUCTS.length = 0;
+
+    for(const product of allProducts){
+
+        const key =
+            product.ref ||
+            product.id ||
+            product.name;
+
+        if(seen.has(key)){
+            continue;
+        }
+
+        seen.add(key);
+        PRODUCTS.push(product);
+    }
+
+    renderProducts();
+}
+
+document.addEventListener(
+    "DOMContentLoaded",
+    loadAllProducts
+);
 
 </script>
 
