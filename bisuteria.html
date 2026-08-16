@@ -233,10 +233,12 @@ nav a.active{
 
 
 /* =====================================================
-   IMAGEN
+   GALERÍA / IMAGEN
 ===================================================== */
 
 .product-image{
+    position:relative;
+
     height:390px;
 
     margin:
@@ -251,6 +253,10 @@ nav a.active{
     justify-content:center;
 
     background:#171717;
+
+    cursor:zoom-in;
+
+    touch-action:pan-y;
 }
 
 .product-image img{
@@ -261,6 +267,9 @@ nav a.active{
 
     transform:scale(1.04);
 
+    user-select:none;
+    -webkit-user-drag:none;
+
     transition:
         transform .4s ease,
         opacity .2s ease;
@@ -269,6 +278,189 @@ nav a.active{
 .product:hover
 .product-image img{
     transform:scale(1.09);
+}
+
+
+/* =====================================================
+   INDICADORES DE GALERÍA
+===================================================== */
+
+.gallery-dots{
+    position:absolute;
+
+    left:50%;
+    bottom:12px;
+
+    transform:translateX(-50%);
+
+    display:flex;
+
+    gap:6px;
+
+    z-index:5;
+
+    pointer-events:none;
+}
+
+.gallery-dot{
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:
+        rgba(255,255,255,.45);
+
+    box-shadow:
+        0 1px 5px
+        rgba(0,0,0,.5);
+
+    transition:.2s;
+}
+
+.gallery-dot.active{
+    width:18px;
+
+    border-radius:5px;
+
+    background:#fff;
+}
+
+
+/* =====================================================
+   FLECHAS GALERÍA
+===================================================== */
+
+.gallery-arrow{
+    position:absolute;
+
+    top:50%;
+
+    width:38px;
+    height:38px;
+
+    transform:
+        translateY(-50%);
+
+    z-index:6;
+
+    border:
+        1px solid
+        rgba(255,255,255,.25);
+
+    border-radius:50%;
+
+    background:
+        rgba(0,0,0,.45);
+
+    color:#fff;
+
+    cursor:pointer;
+
+    opacity:0;
+
+    transition:.2s;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:20px;
+
+    backdrop-filter:
+        blur(8px);
+}
+
+.product-image:hover
+.gallery-arrow{
+    opacity:1;
+}
+
+.gallery-arrow.left{
+    left:10px;
+}
+
+.gallery-arrow.right{
+    right:10px;
+}
+
+.gallery-arrow:hover{
+    background:
+        rgba(255,255,255,.20);
+}
+
+
+/* =====================================================
+   ZOOM
+===================================================== */
+
+.zoom-overlay{
+    position:fixed;
+
+    inset:0;
+
+    z-index:10000;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    background:
+        rgba(0,0,0,.92);
+
+    backdrop-filter:
+        blur(10px);
+
+    cursor:zoom-out;
+}
+
+.zoom-overlay.show{
+    display:flex;
+}
+
+.zoom-image{
+    max-width:95vw;
+    max-height:90vh;
+
+    object-fit:contain;
+
+    border-radius:8px;
+
+    box-shadow:
+        0 30px 100px
+        rgba(0,0,0,.7);
+
+    user-select:none;
+}
+
+.zoom-close{
+    position:absolute;
+
+    top:20px;
+    right:20px;
+
+    width:44px;
+    height:44px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.25);
+
+    border-radius:50%;
+
+    background:
+        rgba(0,0,0,.55);
+
+    color:#fff;
+
+    font-size:25px;
+
+    cursor:pointer;
+
+    z-index:10;
 }
 
 
@@ -332,7 +524,7 @@ nav a.active{
 
 
 /* =====================================================
-   COLORES / VARIANTES
+   COLORES
 ===================================================== */
 
 .colors{
@@ -484,15 +676,35 @@ nav a.active{
 
 
 /* =====================================================
-   ENVÍO / STOCK
+   ENVÍO ESTIMADO
 ===================================================== */
 
 .shipping{
     margin-top:17px;
 
-    color:#aaa;
+    padding:
+        11px
+        12px;
+
+    border:
+        1px solid
+        rgba(255,185,70,.45);
+
+    border-radius:7px;
+
+    background:
+        rgba(255,165,50,.10);
+
+    color:#ffd18a;
 
     font-size:11px;
+    font-weight:bold;
+
+    line-height:1.4;
+
+    box-shadow:
+        0 5px 18px
+        rgba(0,0,0,.12);
 }
 
 .stock{
@@ -584,7 +796,7 @@ footer{
 
 
 /* =====================================================
-   VENTANA DATOS CLIENTE
+   MODAL CLIENTE
 ===================================================== */
 
 .modal{
@@ -694,7 +906,7 @@ footer{
 
 
 /* =====================================================
-   RESUMEN PEDIDO
+   RESUMEN
 ===================================================== */
 
 .order-summary{
@@ -824,7 +1036,7 @@ footer{
 
 
 /* =====================================================
-   BOTÓN WHATSAPP
+   BOTONES PEDIDO
 ===================================================== */
 
 .send-order{
@@ -883,6 +1095,7 @@ footer{
 
 .cancel-order:hover{
     color:#fff;
+
     border-color:#fff;
 }
 
@@ -1029,8 +1242,15 @@ footer{
         padding-bottom:70px;
     }
 
+
+    /* UN PRODUCTO DEBAJO DE OTRO */
+
     .products{
-        gap:10px;
+        display:grid;
+
+        grid-template-columns:1fr;
+
+        gap:18px;
     }
 
     .product{
@@ -1040,16 +1260,43 @@ footer{
     }
 
     .product-image{
-        height:250px;
+        height:380px;
 
         margin:
             -11px
             -11px
             14px;
+
+        cursor:grab;
+    }
+
+    .product-image:active{
+        cursor:grabbing;
+    }
+
+    .product-image img{
+        transform:scale(1.02);
+    }
+
+    .product:hover
+    .product-image img{
+        transform:scale(1.02);
+    }
+
+
+    /* FLECHAS VISIBLES EN MÓVIL */
+
+    .gallery-arrow{
+        opacity:.9;
+
+        width:34px;
+        height:34px;
+
+        font-size:17px;
     }
 
     .product-name{
-        font-size:12px;
+        font-size:13px;
     }
 
     .product-code{
@@ -1061,7 +1308,7 @@ footer{
     }
 
     .product-price{
-        font-size:13px;
+        font-size:14px;
     }
 
     .label{
@@ -1075,10 +1322,10 @@ footer{
     }
 
     .color{
-        width:34px;
-        height:34px;
+        width:36px;
+        height:36px;
 
-        flex-basis:34px;
+        flex-basis:36px;
     }
 
     .sizes{
@@ -1112,7 +1359,9 @@ footer{
     }
 
     .shipping{
-        font-size:8px;
+        padding:10px;
+
+        font-size:9px;
     }
 
     .stock{
@@ -1126,7 +1375,7 @@ footer{
     }
 
 
-    /* MODAL MÓVIL */
+    /* MODAL */
 
     .modal{
         padding:0;
@@ -1196,16 +1445,8 @@ footer{
 
 @media(max-width:380px){
 
-    .products{
-        grid-template-columns:1fr;
-    }
-
     .product-image{
         height:330px;
-    }
-
-    .hero h1{
-        font-size:18vw;
     }
 
 }
@@ -1244,7 +1485,6 @@ footer{
 <div class="logo">
     Strangis
 </div>
-
 
 <nav>
 
@@ -1296,7 +1536,8 @@ footer{
 </h1>
 
 <p>
-    Detalles seleccionados para completar tus looks con personalidad.
+    Descubre nuestra selección de bisutería para completar
+    tus looks con personalidad.
 </p>
 
 </section>
@@ -1334,7 +1575,6 @@ footer{
 
 <div class="modal-box">
 
-
 <div class="modal-header">
 
 <div>
@@ -1348,7 +1588,6 @@ footer{
 </h2>
 
 </div>
-
 
 <button
     type="button"
@@ -1365,15 +1604,13 @@ footer{
 <div
     class="order-summary"
     id="orderSummary"
->
-</div>
+></div>
 
 
 <div
     class="form-error"
     id="formError"
->
-</div>
+></div>
 
 
 <div class="form-title">
@@ -1578,9 +1815,7 @@ footer{
     class="send-order"
     onclick="sendOrderToWhatsApp()"
 >
-
     ENVIAR PEDIDO POR WHATSAPP
-
 </button>
 
 
@@ -1589,9 +1824,7 @@ footer{
     class="cancel-order"
     onclick="closeCustomerModal()"
 >
-
     CANCELAR
-
 </button>
 
 
@@ -1600,55 +1833,126 @@ footer{
 </div>
 
 
+<!-- =====================================================
+     ZOOM DE IMAGEN
+===================================================== -->
+
+<div
+    class="zoom-overlay"
+    id="zoomOverlay"
+    onclick="closeZoom(event)"
+>
+
+<button
+    type="button"
+    class="zoom-close"
+    onclick="closeZoom()"
+    aria-label="Cerrar imagen"
+>
+    ×
+</button>
+
+<img
+    class="zoom-image"
+    id="zoomImage"
+    src=""
+    alt=""
+>
+
+</div>
+
+
 <script>
 
 
 /* =====================================================
-   PRODUCTOS
+   PRODUCTOS DE BISUTERÍA
+
+   🟢 PEGA AQUÍ TU PRODUCTO 1
 ===================================================== */
 
 const PRODUCTS = [
 
-
 /* =====================================================
    🟢 PRODUCTO 1 — BISUTERÍA
-  
-   ===================================================== */
+   PEGA AQUÍ EL BLOQUE DEL PRODUCTO
+===================================================== */
+
+{
+    id:"BIS-000001",
+    ref:"BIS-000001",
+
+    name:"Ejemplo producto de bisutería",
+
+    category:"bisuteria",
+
+    price:25,
+
+    stock:999,
+
+    description:"Descripción del producto.",
+
+    whatsapp:"34674559614",
+
+    variants:[
+        {
+            name:"Dorado",
+            image:"https://i.imgur.com/COLOCA-AQUI-LA-IMAGEN.jpeg",
+            color:"#d4af37"
+        },
+        {
+            name:"Plateado",
+            image:"https://i.imgur.com/COLOCA-AQUI-LA-IMAGEN.jpeg",
+            color:"#c0c0c0"
+        }
+    ],
+
+    sizes:[],
+
+    shipping:{
+        min:7,
+        max:15
+    }
+},
 
 
 /* =====================================================
-   🟢 PRODUCTO 2
-
-   ===================================================== */
-
-
-/* =====================================================
-   🟢 PRODUCTO 3
-
- 
-   ===================================================== */
+   🟢 SIGUIENTE CÓDIGO DE PRODUCTO
+   PEGA AQUÍ EL PRODUCTO 2
+===================================================== */
 
 
 /* =====================================================
-   🟢 PRODUCTO 4
-
-
-   ===================================================== */
+   🟢 SIGUIENTE CÓDIGO DE PRODUCTO
+   PEGA AQUÍ EL PRODUCTO 3
+===================================================== */
 
 
 /* =====================================================
-   🟢 PRODUCTO 5
+   🟢 SIGUIENTE CÓDIGO DE PRODUCTO
+   PEGA AQUÍ EL PRODUCTO 4
+===================================================== */
 
 
-   ===================================================== */
+/* =====================================================
+   🟢 SIGUIENTE CÓDIGO DE PRODUCTO
+   PEGA AQUÍ EL PRODUCTO 5
+===================================================== */
 
+
+/* =====================================================
+   🟢 SIGUIENTE CÓDIGO DE PRODUCTO
+   PEGA AQUÍ EL PRODUCTO 6
+===================================================== */
+
+
+/* =====================================================
+   🟢 SIGUIENTE CÓDIGO DE PRODUCTO
+   PEGA AQUÍ LOS SIGUIENTES PRODUCTOS
+===================================================== */
 
 ];
 
-
-/* =====================================================
-   VARIABLE PEDIDO ACTUAL
-===================================================== */
 
 let currentOrder = null;
 
@@ -1712,7 +2016,6 @@ function renderProducts(){
         document.getElementById(
             "productsContainer"
         );
-
 
     if(
         !Array.isArray(PRODUCTS) ||
@@ -1806,18 +2109,37 @@ function createProductHTML(
 
         data-quantity="1"
 
+        data-gallery-index="0"
+
     >
 
 
-        <div class="product-image">
+        <div
+
+            class="product-image"
+
+            id="gallery-${index}"
+
+            ontouchstart="touchStart(event,${index})"
+
+            ontouchend="touchEnd(event,${index})"
+
+            onclick="openZoom(${index})"
+
+        >
+
 
             <img
 
                 id="image-${index}"
 
-                src="${escapeAttribute(firstVariant.image)}"
+                src="${escapeAttribute(
+                    firstVariant.image
+                )}"
 
-                alt="${escapeHTML(product.name)}"
+                alt="${escapeHTML(
+                    product.name
+                )}"
 
                 loading="lazy"
 
@@ -1825,12 +2147,100 @@ function createProductHTML(
 
             >
 
+
+            ${
+                variants.length > 1
+                ?
+                `
+
+                <button
+
+                    type="button"
+
+                    class="gallery-arrow left"
+
+                    onclick="
+                        event.stopPropagation();
+                        previousImage(${index});
+                    "
+
+                    aria-label="Imagen anterior"
+
+                >
+
+                    ‹
+
+                </button>
+
+
+                <button
+
+                    type="button"
+
+                    class="gallery-arrow right"
+
+                    onclick="
+                        event.stopPropagation();
+                        nextImage(${index});
+                    "
+
+                    aria-label="Imagen siguiente"
+
+                >
+
+                    ›
+
+                </button>
+
+
+                <div
+                    class="gallery-dots"
+                    id="dots-${index}"
+                >
+
+                    ${
+                        variants
+                        .map(
+                            (
+                                variant,
+                                variantIndex
+                            ) => `
+
+                            <span
+
+                                class="
+                                    gallery-dot
+                                    ${
+                                        variantIndex === 0
+                                        ?
+                                        "active"
+                                        :
+                                        ""
+                                    }
+                                "
+
+                            ></span>
+
+                            `
+                        )
+                        .join("")
+                    }
+
+                </div>
+
+                `
+                :
+                ""
+            }
+
         </div>
 
 
         <div class="product-name">
 
-            ${escapeHTML(product.name)}
+            ${escapeHTML(
+                product.name
+            )}
 
         </div>
 
@@ -1875,7 +2285,7 @@ function createProductHTML(
 
         <div class="label">
 
-            Variante:
+            Color:
 
             <span
                 id="color-name-${index}"
@@ -1890,61 +2300,72 @@ function createProductHTML(
         </div>
 
 
-        <div class="colors">
+        ${
+            variants.length
+            ?
+            `
 
-            ${
-                variants
-                .map(
-                    (
-                        variant,
-                        variantIndex
-                    ) => `
+            <div class="colors">
 
-                    <button
+                ${
+                    variants
+                    .map(
+                        (
+                            variant,
+                            variantIndex
+                        ) => `
 
-                        type="button"
+                        <button
 
-                        class="
-                            color
-                            ${
-                                variantIndex === 0
-                                ?
-                                "active"
-                                :
-                                ""
-                            }
-                        "
+                            type="button"
 
-                        style="
-                            background-image:
-                            url('${escapeAttribute(
-                                variant.image
-                            )}');
-                        "
+                            class="
+                                color
+                                ${
+                                    variantIndex === 0
+                                    ?
+                                    "active"
+                                    :
+                                    ""
+                                }
+                            "
 
-                        title="${escapeAttribute(
-                            variant.name
-                        )}"
+                            style="
+                                background-image:
+                                url('${escapeAttribute(
+                                    variant.image
+                                )}');
+                            "
 
-                        aria-label="${escapeAttribute(
-                            variant.name
-                        )}"
+                            title="${escapeAttribute(
+                                variant.name
+                            )}"
 
-                        onclick="
-                            selectColor(
-                                ${index},
-                                ${variantIndex}
-                            )
-                        "
+                            aria-label="${escapeAttribute(
+                                variant.name
+                            )}"
 
-                    ></button>
+                            onclick="
+                                event.stopPropagation();
+                                selectColor(
+                                    ${index},
+                                    ${variantIndex}
+                                )
+                            "
 
-                    `
-                )
-                .join("")
-            }
+                        ></button>
 
-        </div>
+                        `
+                    )
+                    .join("")
+                }
+
+            </div>
+
+            `
+            :
+            ""
+        }
 
 
         ${
@@ -2002,16 +2423,13 @@ function createProductHTML(
         <div class="quantity">
 
             <button
-
                 type="button"
-
                 onclick="
                     changeQuantity(
                         ${index},
                         -1
                     )
                 "
-
             >
                 −
             </button>
@@ -2025,16 +2443,13 @@ function createProductHTML(
 
 
             <button
-
                 type="button"
-
                 onclick="
                     changeQuantity(
                         ${index},
                         1
                     )
                 "
-
             >
                 +
             </button>
@@ -2044,13 +2459,17 @@ function createProductHTML(
 
         <div class="shipping">
 
-            🚚 Envío estimado:
+            🚚 &nbsp; ENVÍO ESTIMADO:
 
-            ${shipping.min}
-            –
-            ${shipping.max}
+            <strong>
 
-            días laborables
+                ${shipping.min}
+                –
+                ${shipping.max}
+
+                días laborables
+
+            </strong>
 
         </div>
 
@@ -2063,7 +2482,9 @@ function createProductHTML(
             <div class="stock">
 
                 Stock disponible:
-                ${escapeHTML(product.stock)}
+                ${escapeHTML(
+                    product.stock
+                )}
 
             </div>
 
@@ -2100,10 +2521,10 @@ function createProductHTML(
 
 
 /* =====================================================
-   COLOR / VARIANTE
+   CAMBIAR IMAGEN
 ===================================================== */
 
-function selectColor(
+function changeGalleryImage(
     productIndex,
     variantIndex
 ){
@@ -2137,8 +2558,10 @@ function selectColor(
         );
 
 
-    image.style.display =
-        "block";
+    if(!image){
+
+        return;
+    }
 
 
     image.src =
@@ -2149,20 +2572,6 @@ function selectColor(
         product.name +
         " - " +
         variant.name;
-
-
-    const colorName =
-        document.getElementById(
-            `color-name-${productIndex}`
-        );
-
-
-    if(colorName){
-
-        colorName.textContent =
-            variant.name;
-
-    }
 
 
     const card =
@@ -2179,6 +2588,23 @@ function selectColor(
 
     card.dataset.variant =
         variantIndex;
+
+    card.dataset.galleryIndex =
+        variantIndex;
+
+
+    const colorName =
+        document.getElementById(
+            `color-name-${productIndex}`
+        );
+
+
+    if(colorName){
+
+        colorName.textContent =
+            variant.name;
+
+    }
 
 
     card.querySelectorAll(
@@ -2198,6 +2624,347 @@ function selectColor(
 
         }
     );
+
+
+    card.querySelectorAll(
+        ".gallery-dot"
+    )
+    .forEach(
+        (
+            dot,
+            dotIndex
+        ) => {
+
+            dot.classList.toggle(
+                "active",
+                dotIndex ===
+                variantIndex
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   COLOR
+===================================================== */
+
+function selectColor(
+    productIndex,
+    variantIndex
+){
+
+    changeGalleryImage(
+        productIndex,
+        variantIndex
+    );
+
+}
+
+
+/* =====================================================
+   SIGUIENTE IMAGEN
+===================================================== */
+
+function nextImage(
+    productIndex
+){
+
+    const product =
+        PRODUCTS[productIndex];
+
+
+    if(
+        !product ||
+        !Array.isArray(product.variants) ||
+        product.variants.length < 2
+    ){
+
+        return;
+    }
+
+
+    const card =
+        document.getElementById(
+            `product-${productIndex}`
+        );
+
+
+    let current =
+        Number(
+            card.dataset.galleryIndex ||
+            0
+        );
+
+
+    current++;
+
+
+    if(
+        current >=
+        product.variants.length
+    ){
+
+        current = 0;
+
+    }
+
+
+    changeGalleryImage(
+        productIndex,
+        current
+    );
+
+}
+
+
+/* =====================================================
+   IMAGEN ANTERIOR
+===================================================== */
+
+function previousImage(
+    productIndex
+){
+
+    const product =
+        PRODUCTS[productIndex];
+
+
+    if(
+        !product ||
+        !Array.isArray(product.variants) ||
+        product.variants.length < 2
+    ){
+
+        return;
+    }
+
+
+    const card =
+        document.getElementById(
+            `product-${productIndex}`
+        );
+
+
+    let current =
+        Number(
+            card.dataset.galleryIndex ||
+            0
+        );
+
+
+    current--;
+
+
+    if(current < 0){
+
+        current =
+            product.variants.length - 1;
+
+    }
+
+
+    changeGalleryImage(
+        productIndex,
+        current
+    );
+
+}
+
+
+/* =====================================================
+   DESLIZAR CON EL DEDO
+===================================================== */
+
+const touchPositions = {};
+
+
+function touchStart(
+    event,
+    productIndex
+){
+
+    if(
+        !event.touches ||
+        !event.touches.length
+    ){
+
+        return;
+    }
+
+
+    touchPositions[productIndex] =
+        event.touches[0].clientX;
+
+}
+
+
+function touchEnd(
+    event,
+    productIndex
+){
+
+    if(
+        touchPositions[productIndex] ===
+        undefined
+    ){
+
+        return;
+    }
+
+
+    const endX =
+        event.changedTouches[0].clientX;
+
+
+    const startX =
+        touchPositions[productIndex];
+
+
+    const difference =
+        endX - startX;
+
+
+    delete touchPositions[
+        productIndex
+    ];
+
+
+    if(
+        Math.abs(difference) < 45
+    ){
+
+        return;
+
+    }
+
+
+    if(difference < 0){
+
+        nextImage(
+            productIndex
+        );
+
+    }
+    else{
+
+        previousImage(
+            productIndex
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   ZOOM
+===================================================== */
+
+function openZoom(
+    productIndex
+){
+
+    const product =
+        PRODUCTS[productIndex];
+
+
+    const card =
+        document.getElementById(
+            `product-${productIndex}`
+        );
+
+
+    if(
+        !product ||
+        !card
+    ){
+
+        return;
+    }
+
+
+    const variantIndex =
+        Number(
+            card.dataset.galleryIndex ||
+            0
+        );
+
+
+    const variant =
+        product.variants[
+            variantIndex
+        ];
+
+
+    if(!variant){
+
+        return;
+    }
+
+
+    const zoomOverlay =
+        document.getElementById(
+            "zoomOverlay"
+        );
+
+
+    const zoomImage =
+        document.getElementById(
+            "zoomImage"
+        );
+
+
+    zoomImage.src =
+        variant.image;
+
+
+    zoomImage.alt =
+        product.name +
+        " - " +
+        variant.name;
+
+
+    zoomOverlay.classList.add(
+        "show"
+    );
+
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+function closeZoom(event){
+
+    if(
+        event &&
+        event.target &&
+        event.target.id !==
+        "zoomOverlay" &&
+        !event.target.classList.contains(
+            "zoom-close"
+        )
+    ){
+
+        return;
+    }
+
+
+    document
+        .getElementById(
+            "zoomOverlay"
+        )
+        .classList.remove(
+            "show"
+        );
+
+
+    document.body.style.overflow =
+        "";
 
 }
 
@@ -2409,7 +3176,7 @@ function buyProduct(
     if(!variant){
 
         alert(
-            "Selecciona una variante."
+            "Selecciona un color."
         );
 
         return;
@@ -2518,7 +3285,7 @@ function showOrderSummary(){
 
         <br>
 
-        Variante:
+        Color:
         <strong>
             ${escapeHTML(
                 order.variant.name
@@ -2806,7 +3573,7 @@ Producto: ${order.product.name}
 
 REF: ${order.product.ref || order.product.id || ""}
 
-Variante: ${order.variant.name}
+Color: ${order.variant.name}
 
 Talla: ${order.size}
 
@@ -2918,7 +3685,7 @@ function showFormError(message){
 
 
 /* =====================================================
-   CERRAR MODAL AL PULSAR FUERA
+   CERRAR MODAL FUERA
 ===================================================== */
 
 document
@@ -2943,7 +3710,7 @@ document
 
 
 /* =====================================================
-   ESCAPE PARA CERRAR
+   ESCAPE
 ===================================================== */
 
 document.addEventListener(
@@ -2955,6 +3722,33 @@ document.addEventListener(
         ){
 
             closeCustomerModal();
+
+            closeZoom();
+
+        }
+
+
+        if(
+            event.key === "ArrowRight"
+        ){
+
+            const zoom =
+                document.getElementById(
+                    "zoomOverlay"
+                );
+
+            if(
+                zoom.classList.contains(
+                    "show"
+                )
+            ){
+
+                /*
+                   El cambio de imagen se
+                   hace desde las cartas.
+                */
+
+            }
 
         }
 
