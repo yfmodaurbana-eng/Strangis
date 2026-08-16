@@ -6,9 +6,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Gorras | MI MARCA</title>
+<title>Gorras | Strangis</title>
 
 <style>
+
+/* =====================================================
+   CONFIGURACIÓN GENERAL
+===================================================== */
 
 *{
     margin:0;
@@ -22,7 +26,12 @@ html{
 
 body{
     min-height:100vh;
-    font-family:Arial,Helvetica,sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     color:#fff;
 
     background:
@@ -41,6 +50,7 @@ textarea{
     font:inherit;
 }
 
+
 /* =====================================================
    CABECERA
 ===================================================== */
@@ -56,11 +66,15 @@ header{
     align-items:center;
     gap:30px;
 
-    border-bottom:1px solid rgba(255,255,255,.12);
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.12);
 
-    background:rgba(20,20,20,.92);
+    background:
+        rgba(20,20,20,.92);
 
-    backdrop-filter:blur(18px);
+    backdrop-filter:
+        blur(18px);
 }
 
 .logo{
@@ -79,6 +93,7 @@ nav{
     gap:28px;
 
     overflow-x:auto;
+
     scrollbar-width:none;
 }
 
@@ -106,12 +121,14 @@ nav a.active{
     color:#fff;
 }
 
+
 /* =====================================================
    HERO
 ===================================================== */
 
 .hero{
     width:min(1400px,90%);
+
     margin:auto;
 
     padding:
@@ -131,7 +148,12 @@ nav a.active{
 .hero h1{
     margin-top:18px;
 
-    font-size:clamp(58px,10vw,125px);
+    font-size:
+        clamp(
+            58px,
+            10vw,
+            125px
+        );
 
     letter-spacing:-7px;
     line-height:.85;
@@ -148,15 +170,20 @@ nav a.active{
     line-height:1.7;
 }
 
+
 /* =====================================================
    PRODUCTOS
 ===================================================== */
 
 .products-section{
     width:min(1400px,90%);
+
     margin:auto;
 
-    padding:10px 0 100px;
+    padding:
+        10px
+        0
+        100px;
 }
 
 .products{
@@ -175,13 +202,18 @@ nav a.active{
 
     padding:16px;
 
-    border:1px solid rgba(255,255,255,.12);
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
     border-radius:12px;
 
-    background:rgba(255,255,255,.055);
+    background:
+        rgba(255,255,255,.055);
 
     box-shadow:
-        0 15px 45px rgba(0,0,0,.15);
+        0 15px 45px
+        rgba(0,0,0,.15);
 
     transition:
         transform .25s ease,
@@ -192,10 +224,13 @@ nav a.active{
 .product:hover{
     transform:translateY(-4px);
 
-    border-color:rgba(255,255,255,.25);
+    border-color:
+        rgba(255,255,255,.25);
 
-    background:rgba(255,255,255,.075);
+    background:
+        rgba(255,255,255,.075);
 }
+
 
 /* =====================================================
    IMAGEN
@@ -231,9 +266,11 @@ nav a.active{
         opacity .2s ease;
 }
 
-.product:hover .product-image img{
+.product:hover
+.product-image img{
     transform:scale(1.09);
 }
+
 
 /* =====================================================
    INFORMACIÓN
@@ -242,6 +279,7 @@ nav a.active{
 .product-name{
     font-size:16px;
     font-weight:800;
+
     line-height:1.35;
 }
 
@@ -270,6 +308,7 @@ nav a.active{
     font-weight:800;
 }
 
+
 /* =====================================================
    ETIQUETAS
 ===================================================== */
@@ -283,6 +322,7 @@ nav a.active{
     font-weight:bold;
 
     text-transform:uppercase;
+
     letter-spacing:1.2px;
 }
 
@@ -290,12 +330,14 @@ nav a.active{
     color:#fff;
 }
 
+
 /* =====================================================
    COLORES
 ===================================================== */
 
 .colors{
     display:flex;
+
     flex-wrap:wrap;
 
     gap:10px;
@@ -330,13 +372,18 @@ nav a.active{
 
 .color:hover{
     transform:scale(1.08);
+
     border-color:#fff;
 }
 
 .color.active{
-    outline:2px solid #fff;
+    outline:
+        2px solid
+        #fff;
+
     outline-offset:3px;
 }
+
 
 /* =====================================================
    TALLAS
@@ -344,6 +391,7 @@ nav a.active{
 
 .sizes{
     display:flex;
+
     flex-wrap:wrap;
 
     gap:7px;
@@ -354,7 +402,8 @@ nav a.active{
 .size{
     min-width:43px;
 
-    padding:9px 12px;
+    padding:
+        9px 12px;
 
     border:
         1px solid
@@ -386,12 +435,14 @@ nav a.active{
     border-color:#fff;
 }
 
+
 /* =====================================================
    CANTIDAD
 ===================================================== */
 
 .quantity{
     display:flex;
+
     align-items:center;
 
     gap:14px;
@@ -431,6 +482,7 @@ nav a.active{
     font-weight:bold;
 }
 
+
 /* =====================================================
    ENVÍO / STOCK
 ===================================================== */
@@ -451,8 +503,9 @@ nav a.active{
     font-size:10px;
 }
 
+
 /* =====================================================
-   COMPRAR
+   BOTÓN COMPRAR
 ===================================================== */
 
 .buy{
@@ -463,9 +516,11 @@ nav a.active{
     padding:16px;
 
     border:0;
+
     border-radius:6px;
 
     background:#fff;
+
     color:#111;
 
     font-size:11px;
@@ -482,12 +537,14 @@ nav a.active{
 
 .buy:hover{
     background:#ddd;
+
     transform:translateY(-1px);
 }
 
 .buy:active{
     transform:scale(.98);
 }
+
 
 /* =====================================================
    SIN PRODUCTOS
@@ -505,12 +562,14 @@ nav a.active{
     font-size:14px;
 }
 
+
 /* =====================================================
    FOOTER
 ===================================================== */
 
 footer{
-    padding:35px 5%;
+    padding:
+        35px 5%;
 
     border-top:
         1px solid
@@ -523,8 +582,9 @@ footer{
     font-size:10px;
 }
 
+
 /* =====================================================
-   MODAL
+   VENTANA DATOS CLIENTE
 ===================================================== */
 
 .modal{
@@ -541,9 +601,11 @@ footer{
 
     padding:25px;
 
-    background:rgba(0,0,0,.78);
+    background:
+        rgba(0,0,0,.78);
 
-    backdrop-filter:blur(10px);
+    backdrop-filter:
+        blur(10px);
 }
 
 .modal.show{
@@ -553,7 +615,8 @@ footer{
 .modal-box{
     width:min(700px,100%);
 
-    max-height:calc(100vh - 40px);
+    max-height:
+        calc(100vh - 40px);
 
     overflow-y:auto;
 
@@ -629,8 +692,9 @@ footer{
     background:#333;
 }
 
+
 /* =====================================================
-   RESUMEN
+   RESUMEN PEDIDO
 ===================================================== */
 
 .order-summary{
@@ -657,6 +721,7 @@ footer{
 .order-summary strong{
     color:#fff;
 }
+
 
 /* =====================================================
    FORMULARIO
@@ -689,7 +754,8 @@ footer{
 }
 
 .form-field.full{
-    grid-column:1 / -1;
+    grid-column:
+        1 / -1;
 }
 
 .form-field label{
@@ -756,8 +822,9 @@ footer{
     color:#666;
 }
 
+
 /* =====================================================
-   BOTONES MODAL
+   BOTÓN WHATSAPP
 ===================================================== */
 
 .send-order{
@@ -768,9 +835,11 @@ footer{
     padding:17px;
 
     border:0;
+
     border-radius:7px;
 
     background:#fff;
+
     color:#111;
 
     cursor:pointer;
@@ -785,6 +854,7 @@ footer{
 
 .send-order:hover{
     background:#ddd;
+
     transform:translateY(-1px);
 }
 
@@ -815,6 +885,7 @@ footer{
     color:#fff;
     border-color:#fff;
 }
+
 
 /* =====================================================
    ERROR
@@ -847,6 +918,7 @@ footer{
     display:block;
 }
 
+
 /* =====================================================
    TABLET
 ===================================================== */
@@ -863,6 +935,7 @@ footer{
     }
 
 }
+
 
 /* =====================================================
    TABLET PEQUEÑA
@@ -885,6 +958,7 @@ footer{
 
 }
 
+
 /* =====================================================
    MÓVIL
 ===================================================== */
@@ -892,7 +966,8 @@ footer{
 @media(max-width:600px){
 
     header{
-        padding:15px;
+        padding:
+            15px;
 
         flex-wrap:wrap;
 
@@ -901,6 +976,7 @@ footer{
 
     .logo{
         font-size:17px;
+
         letter-spacing:2.5px;
     }
 
@@ -928,6 +1004,7 @@ footer{
 
     .hero small{
         font-size:9px;
+
         letter-spacing:3px;
     }
 
@@ -1011,7 +1088,8 @@ footer{
     .size{
         min-width:34px;
 
-        padding:7px 8px;
+        padding:
+            7px 8px;
 
         font-size:9px;
     }
@@ -1047,7 +1125,8 @@ footer{
         font-size:9px;
     }
 
-    /* MODAL */
+
+    /* MODAL MÓVIL */
 
     .modal{
         padding:0;
@@ -1058,7 +1137,8 @@ footer{
     .modal-box{
         width:100%;
 
-        max-height:96vh;
+        max-height:
+            96vh;
 
         padding:
             22px
@@ -1109,6 +1189,7 @@ footer{
 
 }
 
+
 /* =====================================================
    MÓVIL MUY PEQUEÑO
 ===================================================== */
@@ -1128,6 +1209,7 @@ footer{
     }
 
 }
+
 
 /* =====================================================
    REDUCE MOTION
@@ -1149,6 +1231,7 @@ footer{
 
 </head>
 
+
 <body>
 
 
@@ -1159,8 +1242,9 @@ footer{
 <header>
 
 <div class="logo">
-    MI MARCA
+    Strangis
 </div>
+
 
 <nav>
 
@@ -1176,7 +1260,7 @@ footer{
     Pantalones
 </a>
 
-<a href="conjuntos.html">
+<a href="chandals.html">
     Conjuntos
 </a>
 
@@ -1212,8 +1296,7 @@ footer{
 </h1>
 
 <p>
-    Gorras y accesorios urbanos seleccionados
-    para completar tus looks con personalidad.
+    Gorras seleccionadas para completar tus looks con personalidad.
 </p>
 
 </section>
@@ -1235,7 +1318,7 @@ footer{
 
 <footer>
 
-© 2026 MI MARCA · TODOS LOS DERECHOS RESERVADOS
+© 2026 Strangis · TODOS LOS DERECHOS RESERVADOS
 
 </footer>
 
@@ -1265,6 +1348,7 @@ footer{
 </h2>
 
 </div>
+
 
 <button
     type="button"
@@ -1298,6 +1382,7 @@ footer{
 
 
 <div class="form-grid">
+
 
 <div class="form-field full">
 
@@ -1346,6 +1431,7 @@ footer{
 
 </div>
 
+
 </div>
 
 
@@ -1355,6 +1441,7 @@ footer{
 
 
 <div class="form-grid">
+
 
 <div class="form-field full">
 
@@ -1482,6 +1569,7 @@ footer{
 
 </div>
 
+
 </div>
 
 
@@ -1490,7 +1578,9 @@ footer{
     class="send-order"
     onclick="sendOrderToWhatsApp()"
 >
+
     ENVIAR PEDIDO POR WHATSAPP
+
 </button>
 
 
@@ -1499,7 +1589,9 @@ footer{
     class="cancel-order"
     onclick="closeCustomerModal()"
 >
+
     CANCELAR
+
 </button>
 
 
@@ -1510,78 +1602,216 @@ footer{
 
 <script>
 
+
 /* =====================================================
    PRODUCTOS
 ===================================================== */
 
 const PRODUCTS = [
 
-
 /* =====================================================
-   ------------------ PEGAR PRODUCTO AQUÍ ------------------
+   🟢 PRODUCTO 1 — GORRAS
+   =====================================================
+   
+   MARCADORES:
+   id       → código interno
+   ref      → referencia que verá el cliente
+   name     → nombre de la gorra
+   price    → precio
+   stock    → unidades disponibles
+   image    → imagen principal
+   whatsapp → número para recibir pedidos
+   
+   CAMBIA SOLO LOS DATOS DE ESTE BLOQUE.
 ===================================================== */
 
-
-/*
-EJEMPLO:
-
 {
-    id: "GOR-001",
-    ref: "GOR-001",
-    name: "Gorra Premium Negra",
+    id: "STR-GOR-000001",
+    ref: "STR-GOR-000001",
+
+    name: "NOMBRE DE LA GORRA",
+
     category: "gorras",
-    price: 29.90,
-    stock: 50,
-    description: "Gorra urbana premium.",
+
+    price: 00,
+
+    stock: 999,
+
+    description: "",
+
     whatsapp: "34674559614",
 
     variants: [
+
         {
             name: "Negro",
-            image: "https://ejemplo.com/gorra-negra.jpg"
-        },
-        {
-            name: "Blanco",
-            image: "https://ejemplo.com/gorra-blanca.jpg"
+            image: "URL-DE-LA-IMAGEN"
         }
+
     ],
 
-    sizes: [],
+    sizes: [
+        "Única"
+    ],
 
     shipping: {
-        min: 3,
-        max: 9
+        min: 20,
+        max: 30
     }
+
 },
 
-*/
+
+/* =====================================================
+   🟢 PRODUCTO 2 — GORRAS
+   COPIA EL BLOQUE ANTERIOR.
+   
+   MARCADOR:
+   STR-GOR-000002
+===================================================== */
+
+{
+    id: "STR-GOR-000002",
+    ref: "STR-GOR-000002",
+
+    name: "NOMBRE DE LA GORRA",
+
+    category: "gorras",
+
+    price: 00,
+
+    stock: 999,
+
+    description: "",
+
+    whatsapp: "34674559614",
+
+    variants: [
+
+        {
+            name: "Negro",
+            image: "URL-DE-LA-IMAGEN"
+        }
+
+    ],
+
+    sizes: [
+        "Única"
+    ],
+
+    shipping: {
+        min: 20,
+        max: 30
+    }
+
+},
 
 
 /* =====================================================
-   ------------------ PRÓXIMO PRODUCTO ------------------
+   🟢 PRODUCTO 3 — GORRAS
+   MARCADOR:
+   STR-GOR-000003
 ===================================================== */
+
+{
+    id: "STR-GOR-000003",
+    ref: "STR-GOR-000003",
+
+    name: "NOMBRE DE LA GORRA",
+
+    category: "gorras",
+
+    price: 00,
+
+    stock: 999,
+
+    description: "",
+
+    whatsapp: "34674559614",
+
+    variants: [
+
+        {
+            name: "Negro",
+            image: "URL-DE-LA-IMAGEN"
+        }
+
+    ],
+
+    sizes: [
+        "Única"
+    ],
+
+    shipping: {
+        min: 20,
+        max: 30
+    }
+
+},
 
 
 /* =====================================================
-   ------------------ PRÓXIMO PRODUCTO ------------------
+   🟢 PRODUCTO 4 — GORRAS
+   MARCADOR:
+   STR-GOR-000004
 ===================================================== */
+
+{
+    id: "STR-GOR-000004",
+    ref: "STR-GOR-000004",
+
+    name: "NOMBRE DE LA GORRA",
+
+    category: "gorras",
+
+    price: 00,
+
+    stock: 999,
+
+    description: "",
+
+    whatsapp: "34674559614",
+
+    variants: [
+
+        {
+            name: "Negro",
+            image: "URL-DE-LA-IMAGEN"
+        }
+
+    ],
+
+    sizes: [
+        "Única"
+    ],
+
+    shipping: {
+        min: 20,
+        max: 30
+    }
+
+},
 
 
 /* =====================================================
-   ------------------ PRÓXIMO PRODUCTO ------------------
-===================================================== */
-
-
-/* =====================================================
-   ------------------ PRÓXIMO PRODUCTO ------------------
-===================================================== */
-
+   🟢 PRÓXIMO PRODUCTO
+   
+   SIGUIENTE MARCADOR:
+   STR-GOR-000005
+   
+   DESPUÉS:
+   STR-GOR-000006
+   STR-GOR-000007
+   STR-GOR-000008
+   ...
+   
+   ===================================================== */
 
 ];
 
 
 /* =====================================================
-   PEDIDO ACTUAL
+   VARIABLE PEDIDO ACTUAL
 ===================================================== */
 
 let currentOrder = null;
@@ -1742,6 +1972,7 @@ function createProductHTML(
 
     >
 
+
         <div class="product-image">
 
             <img
@@ -1810,7 +2041,9 @@ function createProductHTML(
 
             Color:
 
-            <span id="color-name-${index}">
+            <span
+                id="color-name-${index}"
+            >
 
                 ${escapeHTML(
                     firstVariant.name
@@ -1887,6 +2120,7 @@ function createProductHTML(
                 Talla
             </div>
 
+
             <div class="sizes">
 
                 ${
@@ -1932,13 +2166,16 @@ function createProductHTML(
         <div class="quantity">
 
             <button
+
                 type="button"
+
                 onclick="
                     changeQuantity(
                         ${index},
                         -1
                     )
                 "
+
             >
                 −
             </button>
@@ -1952,13 +2189,16 @@ function createProductHTML(
 
 
             <button
+
                 type="button"
+
                 onclick="
                     changeQuantity(
                         ${index},
                         1
                     )
                 "
+
             >
                 +
             </button>
@@ -2522,7 +2762,7 @@ function fieldValue(id){
 
 
 /* =====================================================
-   WHATSAPP
+   ENVIAR PEDIDO WHATSAPP
 ===================================================== */
 
 function sendOrderToWhatsApp(){
@@ -2534,37 +2774,69 @@ function sendOrderToWhatsApp(){
 
 
     const name =
-        fieldValue("customerName");
+        fieldValue(
+            "customerName"
+        );
+
 
     const phone =
-        fieldValue("customerPhone");
+        fieldValue(
+            "customerPhone"
+        );
+
 
     const email =
-        fieldValue("customerEmail");
+        fieldValue(
+            "customerEmail"
+        );
+
 
     const address =
-        fieldValue("customerAddress");
+        fieldValue(
+            "customerAddress"
+        );
+
 
     const number =
-        fieldValue("customerNumber");
+        fieldValue(
+            "customerNumber"
+        );
+
 
     const floor =
-        fieldValue("customerFloor");
+        fieldValue(
+            "customerFloor"
+        );
+
 
     const postal =
-        fieldValue("customerPostal");
+        fieldValue(
+            "customerPostal"
+        );
+
 
     const city =
-        fieldValue("customerCity");
+        fieldValue(
+            "customerCity"
+        );
+
 
     const province =
-        fieldValue("customerProvince");
+        fieldValue(
+            "customerProvince"
+        );
+
 
     const country =
-        fieldValue("customerCountry");
+        fieldValue(
+            "customerCountry"
+        );
+
 
     const notes =
-        fieldValue("customerNotes");
+        fieldValue(
+            "customerNotes"
+        );
 
 
     if(!name){
@@ -2649,7 +2921,8 @@ function sendOrderToWhatsApp(){
 
     if(
         email &&
-        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/
+            .test(email)
     ){
 
         showFormError(
@@ -2685,7 +2958,7 @@ function sendOrderToWhatsApp(){
     }
 
 
-    const message =
+    let message =
 
 `🛍️ NUEVO PEDIDO
 
@@ -2780,7 +3053,7 @@ ${notes || "Ninguna"}
 
 
 /* =====================================================
-   ERROR
+   ERROR FORMULARIO
 ===================================================== */
 
 function showFormError(message){
@@ -2809,7 +3082,7 @@ function showFormError(message){
 
 
 /* =====================================================
-   CERRAR FUERA
+   CERRAR MODAL AL PULSAR FUERA
 ===================================================== */
 
 document
@@ -2834,7 +3107,7 @@ document
 
 
 /* =====================================================
-   ESCAPE
+   ESCAPE PARA CERRAR
 ===================================================== */
 
 document.addEventListener(
@@ -2870,6 +3143,7 @@ function imageError(image){
 ===================================================== */
 
 renderProducts();
+
 
 </script>
 
