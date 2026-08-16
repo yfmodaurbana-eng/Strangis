@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Gorras | Strangis</title>
+<title>Gafas | Strangis</title>
 
 <style>
 
@@ -267,7 +267,9 @@ nav a.active{
 }
 
 
-/* INDICADORES */
+/* =====================================================
+   INDICADORES
+===================================================== */
 
 .image-counter{
     position:absolute;
@@ -1228,11 +1230,11 @@ footer{
     Conjuntos
 </a>
 
-<a class="active" href="gorras.html">
+<a href="gorras.html">
     Gorras
 </a>
 
-<a href="gafas.html">
+<a class="active" href="gafas.html">
     Gafas
 </a>
 
@@ -1256,11 +1258,11 @@ footer{
 </small>
 
 <h1>
-    GORRAS
+    GAFAS
 </h1>
 
 <p>
-    Gorras seleccionadas para completar tus looks con personalidad.
+    Gafas seleccionadas para completar tus looks con personalidad.
 </p>
 
 </section>
@@ -1556,14 +1558,14 @@ footer{
 /* =====================================================
    PRODUCTOS
    =====================================================
-   🟢 PRODUCTO 1 — GORRAS
+   🟢 PRODUCTO 1 — GAFAS
    PEGA AQUÍ TU CÓDIGO DE PRODUCTO
 ===================================================== */
 
 const PRODUCTS = [
 
 /* =====================================================
-   🟢 PRODUCTO 1 — GORRAS
+   🟢 PRODUCTO 1 — GAFAS
    PEGA AQUÍ TU CÓDIGO DE PRODUCTO
 ===================================================== */
 
@@ -1571,15 +1573,15 @@ const PRODUCTS = [
     id:"000001",
     ref:"000001",
 
-    name:"Gorra ejemplo",
+    name:"Gafas ejemplo",
 
-    category:"gorras",
+    category:"gafas",
 
     price:25,
 
     stock:999,
 
-    description:"Descripción de la gorra",
+    description:"Descripción de las gafas",
 
     whatsapp:"34674559614",
 
@@ -2159,6 +2161,21 @@ function selectColor(
 
         }
     );
+
+
+    const gallery =
+        document.getElementById(
+            `gallery-${productIndex}`
+        );
+
+
+    if(gallery){
+
+        gallery.classList.remove(
+            "zoomed"
+        );
+
+    }
 
 
     updateImageCounter(
@@ -3024,7 +3041,7 @@ function sendOrderToWhatsApp(){
 
     const message=
 
-`🛍️ NUEVO PEDIDO
+`🕶️ NUEVO PEDIDO - GAFAS
 
 ━━━━━━━━━━━━━━━━
 
