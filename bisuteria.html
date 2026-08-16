@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Bisutería | MI MARCA</title>
+<title>Bisutería | Strangis</title>
 
 <style>
 
@@ -332,7 +332,7 @@ nav a.active{
 
 
 /* =====================================================
-   COLORES
+   COLORES / VARIANTES
 ===================================================== */
 
 .colors{
@@ -1126,7 +1126,7 @@ footer{
     }
 
 
-    /* MODAL */
+    /* MODAL MÓVIL */
 
     .modal{
         padding:0;
@@ -1242,7 +1242,7 @@ footer{
 <header>
 
 <div class="logo">
-    MI MARCA
+    Strangis
 </div>
 
 
@@ -1260,7 +1260,7 @@ footer{
     Pantalones
 </a>
 
-<a href="conjuntos.html">
+<a href="chandals.html">
     Conjuntos
 </a>
 
@@ -1272,10 +1272,7 @@ footer{
     Gafas
 </a>
 
-<a
-    class="active"
-    href="bisuteria.html"
->
+<a class="active" href="bisuteria.html">
     Bisutería
 </a>
 
@@ -1299,8 +1296,7 @@ footer{
 </h1>
 
 <p>
-    Accesorios y piezas seleccionadas para
-    completar tus looks con personalidad.
+    Detalles seleccionados para completar tus looks con personalidad.
 </p>
 
 </section>
@@ -1322,7 +1318,7 @@ footer{
 
 <footer>
 
-© 2026 MI MARCA · TODOS LOS DERECHOS RESERVADOS
+© 2026 Strangis · TODOS LOS DERECHOS RESERVADOS
 
 </footer>
 
@@ -1615,32 +1611,23 @@ const PRODUCTS = [
 
 
 /* =====================================================
-   ------------------ PEGAR PRODUCTO AQUÍ ------------------
+   🟢 PRODUCTO 1 — BISUTERÍA
+   CAMBIA SOLO LOS DATOS DE ESTE BLOQUE
    ===================================================== */
 
-
-/*
-    EJEMPLO DE PRODUCTO DE BISUTERÍA
-
-    Puedes borrarlo cuando vayas a poner
-    tu primer producto real.
-
-*/
-
 {
-    id: "BIS-001",
-    ref: "BIS-001",
+    id: "STR-000001",
+    ref: "STR-000001",
 
-    name: "Pulsera Premium",
+    name: "NOMBRE DEL PRODUCTO",
 
     category: "bisuteria",
 
-    price: 19.90,
+    price: 00,
 
     stock: 999,
 
-    description:
-        "Pulsera elegante disponible en varios acabados.",
+    description: "",
 
     whatsapp: "34674559614",
 
@@ -1648,23 +1635,10 @@ const PRODUCTS = [
 
         {
             name: "Dorado",
-            image:
-                "https://i.imgur.com/REEMPLAZAR.jpg"
-        },
-
-        {
-            name: "Plateado",
-            image:
-                "https://i.imgur.com/REEMPLAZAR.jpg"
+            image: "URL-DE-LA-IMAGEN"
         }
 
     ],
-
-    /*
-       Si el producto NO tiene tallas,
-       deja el array vacío:
-       sizes: []
-    */
 
     sizes: [],
 
@@ -1677,22 +1651,31 @@ const PRODUCTS = [
 
 
 /* =====================================================
-   ------------------ PRÓXIMO PRODUCTO ------------------
+   🟢 PRODUCTO 2
+   COPIA EL BLOQUE ANTERIOR Y CAMBIA:
+
+   STR-000002
    ===================================================== */
 
 
 /* =====================================================
-   ------------------ PRÓXIMO PRODUCTO ------------------
+   🟢 PRODUCTO 3
+
+   STR-000003
    ===================================================== */
 
 
 /* =====================================================
-   ------------------ PRÓXIMO PRODUCTO ------------------
+   🟢 PRODUCTO 4
+
+   STR-000004
    ===================================================== */
 
 
 /* =====================================================
-   ------------------ PRÓXIMO PRODUCTO ------------------
+   🟢 PRODUCTO 5
+
+   STR-000005
    ===================================================== */
 
 
@@ -1928,7 +1911,7 @@ function createProductHTML(
 
         <div class="label">
 
-            Color:
+            Variante:
 
             <span
                 id="color-name-${index}"
@@ -2153,7 +2136,7 @@ function createProductHTML(
 
 
 /* =====================================================
-   COLOR
+   COLOR / VARIANTE
 ===================================================== */
 
 function selectColor(
@@ -2462,7 +2445,7 @@ function buyProduct(
     if(!variant){
 
         alert(
-            "Selecciona un color."
+            "Selecciona una variante."
         );
 
         return;
@@ -2533,7 +2516,7 @@ function buyProduct(
 
 
 /* =====================================================
-   RESUMEN
+   RESUMEN PEDIDO
 ===================================================== */
 
 function showOrderSummary(){
@@ -2571,7 +2554,7 @@ function showOrderSummary(){
 
         <br>
 
-        Color:
+        Variante:
         <strong>
             ${escapeHTML(
                 order.variant.name
@@ -2859,7 +2842,7 @@ Producto: ${order.product.name}
 
 REF: ${order.product.ref || order.product.id || ""}
 
-Color: ${order.variant.name}
+Variante: ${order.variant.name}
 
 Talla: ${order.size}
 
@@ -2942,7 +2925,7 @@ ${notes || "Ninguna"}
 
 
 /* =====================================================
-   ERROR
+   ERROR FORMULARIO
 ===================================================== */
 
 function showFormError(message){
@@ -2971,7 +2954,7 @@ function showFormError(message){
 
 
 /* =====================================================
-   CERRAR FUERA
+   CERRAR MODAL AL PULSAR FUERA
 ===================================================== */
 
 document
@@ -2996,7 +2979,7 @@ document
 
 
 /* =====================================================
-   ESCAPE
+   ESCAPE PARA CERRAR
 ===================================================== */
 
 document.addEventListener(
