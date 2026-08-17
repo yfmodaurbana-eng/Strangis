@@ -4,14 +4,24 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+    name="description"
+    content="Strangis — Moda y accesorios seleccionados."
+>
 
 <title>Strangis</title>
+
 
 <style>
 
 /* =====================================================
-   BASE
+   RESET
 ===================================================== */
 
 *{
@@ -25,6 +35,7 @@ html{
 }
 
 body{
+
     min-height:100vh;
 
     font-family:
@@ -44,7 +55,8 @@ body{
         );
 }
 
-button{
+button,
+input{
     font:inherit;
 }
 
@@ -54,13 +66,17 @@ button{
 ===================================================== */
 
 header{
+
     position:sticky;
+
     top:0;
+
     z-index:1000;
 
     padding:18px 5%;
 
     display:flex;
+
     align-items:center;
 
     gap:30px;
@@ -72,19 +88,27 @@ header{
     background:
         rgba(20,20,20,.92);
 
-    backdrop-filter:blur(18px);
+    backdrop-filter:
+        blur(18px);
+
 }
 
 .logo{
+
     flex-shrink:0;
 
+    color:#fff;
+
     font-size:22px;
+
     font-weight:900;
 
     letter-spacing:4px;
+
 }
 
 nav{
+
     flex:1;
 
     display:flex;
@@ -96,6 +120,7 @@ nav{
     overflow-x:auto;
 
     scrollbar-width:none;
+
 }
 
 nav::-webkit-scrollbar{
@@ -103,11 +128,13 @@ nav::-webkit-scrollbar{
 }
 
 nav a{
+
     color:#999;
 
     text-decoration:none;
 
     font-size:11px;
+
     font-weight:bold;
 
     letter-spacing:1.5px;
@@ -117,11 +144,14 @@ nav a{
     white-space:nowrap;
 
     transition:.2s;
+
 }
 
 nav a:hover,
 nav a.active{
+
     color:#fff;
+
 }
 
 
@@ -130,41 +160,51 @@ nav a.active{
 ===================================================== */
 
 .hero{
+
     width:min(1400px,90%);
 
     margin:auto;
 
     padding:
-        clamp(75px,11vw,145px)
+        clamp(70px,11vw,140px)
         0
-        clamp(55px,7vw,90px);
+        clamp(50px,7vw,90px);
+
 }
 
 .hero small{
+
     color:#aaa;
 
     font-size:11px;
+
     font-weight:bold;
 
     letter-spacing:5px;
+
 }
 
 .hero h1{
+
     margin-top:18px;
 
     font-size:
         clamp(
-            72px,
+            70px,
             15vw,
-            190px
+            180px
         );
 
     line-height:.8;
 
-    letter-spacing:-10px;
+    letter-spacing:-9px;
+
+    font-weight:900;
+
 }
 
 .hero p{
+
     max-width:650px;
 
     margin-top:35px;
@@ -174,72 +214,81 @@ nav a.active{
     font-size:15px;
 
     line-height:1.8;
+
 }
 
-.hero-notice{
-    max-width:760px;
+.hero-note{
 
-    margin-top:28px;
+    max-width:700px;
+
+    margin-top:20px;
 
     padding:16px 18px;
 
     border-left:
         2px solid
-        rgba(255,255,255,.5);
+        rgba(255,255,255,.45);
 
-    background:
-        rgba(255,255,255,.045);
+    color:#888;
 
-    color:#aaa;
-
-    font-size:12px;
+    font-size:11px;
 
     line-height:1.7;
-}
 
-.hero-notice strong{
-    color:#fff;
 }
 
 
 /* =====================================================
-   CATÁLOGO
+   SECCIÓN PRODUCTOS
 ===================================================== */
 
-.catalog{
+.products-section{
+
     width:min(1400px,90%);
 
     margin:auto;
 
-    padding-bottom:110px;
+    padding:
+        10px
+        0
+        110px;
+
 }
 
-.catalog-header{
+.section-heading{
+
     display:flex;
 
     align-items:end;
+
     justify-content:space-between;
 
     gap:20px;
 
     margin-bottom:25px;
+
 }
 
-.catalog-header small{
+.section-heading h2{
+
+    font-size:14px;
+
+    font-weight:900;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+}
+
+.section-heading span{
+
     color:#777;
 
     font-size:10px;
-    font-weight:bold;
 
-    letter-spacing:3px;
-}
+    letter-spacing:1px;
 
-.catalog-header h2{
-    margin-top:8px;
-
-    font-size:28px;
-
-    letter-spacing:-1px;
 }
 
 
@@ -248,23 +297,26 @@ nav a.active{
 ===================================================== */
 
 .products{
+
     display:grid;
 
     grid-template-columns:
         repeat(
-            5,
+            6,
             minmax(0,1fr)
         );
 
-    gap:14px;
+    gap:12px;
+
 }
 
 
 /* =====================================================
-   PRODUCTO
+   TARJETA
 ===================================================== */
 
 .product{
+
     min-width:0;
 
     overflow:hidden;
@@ -279,162 +331,71 @@ nav a.active{
         rgba(255,255,255,.045);
 
     box-shadow:
-        0 10px 30px
-        rgba(0,0,0,.12);
-
-    cursor:pointer;
+        0 12px 35px
+        rgba(0,0,0,.18);
 
     transition:
+
         transform .25s ease,
+
         border-color .25s ease,
+
         background .25s ease;
+
 }
 
 .product:hover{
-    transform:translateY(-4px);
+
+    transform:
+        translateY(-4px);
 
     border-color:
         rgba(255,255,255,.25);
 
     background:
-        rgba(255,255,255,.065);
+        rgba(255,255,255,.07);
+
 }
 
 
 /* =====================================================
-   GALERÍA
+   IMAGEN
 ===================================================== */
 
 .product-image{
+
     position:relative;
 
-    height:260px;
+    width:100%;
+
+    aspect-ratio:1 / 1.15;
 
     overflow:hidden;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    background:#181818;
 
-    background:#171717;
-
-    touch-action:pan-y;
-
-    cursor:zoom-in;
 }
 
 .product-image img{
+
     width:100%;
+
     height:100%;
+
+    display:block;
 
     object-fit:cover;
 
-    transform:scale(1.02);
-
-    user-select:none;
-
-    -webkit-user-drag:none;
-
     transition:
-        transform .35s ease,
-        opacity .2s ease;
+        transform .35s ease;
+
 }
 
 .product:hover
 .product-image img{
-    transform:scale(1.06);
-}
 
-.product-image.zoomed{
-    cursor:zoom-out;
-}
+    transform:scale(1.045);
 
-.product-image.zoomed img{
-    transform:scale(1.75);
-}
-
-
-/* =====================================================
-   FLECHAS
-===================================================== */
-
-.image-arrow{
-    position:absolute;
-
-    top:50%;
-
-    z-index:5;
-
-    width:32px;
-    height:32px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border:
-        1px solid
-        rgba(255,255,255,.25);
-
-    border-radius:50%;
-
-    background:
-        rgba(0,0,0,.55);
-
-    color:#fff;
-
-    cursor:pointer;
-
-    transform:translateY(-50%);
-
-    opacity:.8;
-
-    font-size:18px;
-
-    transition:.2s;
-}
-
-.image-arrow:hover{
-    background:
-        rgba(0,0,0,.85);
-
-    opacity:1;
-}
-
-.image-arrow.left{
-    left:8px;
-}
-
-.image-arrow.right{
-    right:8px;
-}
-
-
-/* =====================================================
-   CONTADOR
-===================================================== */
-
-.image-counter{
-    position:absolute;
-
-    right:8px;
-    bottom:8px;
-
-    z-index:5;
-
-    padding:5px 7px;
-
-    border-radius:20px;
-
-    background:
-        rgba(0,0,0,.65);
-
-    color:#fff;
-
-    font-size:9px;
-    font-weight:bold;
-
-    pointer-events:none;
 }
 
 
@@ -443,46 +404,183 @@ nav a.active{
 ===================================================== */
 
 .product-info{
-    padding:11px 12px 13px;
+
+    padding:
+        12px 11px 14px;
+
 }
 
 .product-name{
-    font-size:13px;
+
+    color:#fff;
+
+    font-size:12px;
 
     font-weight:800;
 
-    line-height:1.3;
+    line-height:1.35;
+
 }
 
 .product-category{
+
     margin-top:5px;
 
     color:#777;
 
-    font-size:8px;
+    font-size:9px;
 
     font-weight:bold;
 
-    letter-spacing:1.2px;
+    letter-spacing:1px;
 
     text-transform:uppercase;
+
 }
 
 
 /* =====================================================
-   SIN PRODUCTOS
+   ENLACE
+===================================================== */
+
+.product-link{
+
+    display:block;
+
+    color:inherit;
+
+    text-decoration:none;
+
+}
+
+
+/* =====================================================
+   ESTADO VACÍO
 ===================================================== */
 
 .empty{
+
     grid-column:1 / -1;
 
-    padding:100px 20px;
+    padding:
+        100px 20px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    border-radius:10px;
 
     text-align:center;
 
+    background:
+        rgba(255,255,255,.025);
+
+}
+
+.empty-title{
+
+    color:#aaa;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+}
+
+.empty-text{
+
+    max-width:500px;
+
+    margin:
+        15px auto 0;
+
+    color:#666;
+
+    font-size:11px;
+
+    line-height:1.7;
+
+}
+
+
+/* =====================================================
+   INFORMACIÓN
+===================================================== */
+
+.info-section{
+
+    width:min(1000px,90%);
+
+    margin:auto;
+
+    padding:
+        0
+        0
+        110px;
+
+}
+
+.info-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,minmax(0,1fr));
+
+    gap:15px;
+
+}
+
+.info-card{
+
+    padding:25px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.09);
+
+    border-radius:9px;
+
+    background:
+        rgba(255,255,255,.035);
+
+}
+
+.info-card small{
+
     color:#777;
 
-    font-size:13px;
+    font-size:9px;
+
+    font-weight:bold;
+
+    letter-spacing:2px;
+
+}
+
+.info-card h3{
+
+    margin-top:12px;
+
+    font-size:14px;
+
+}
+
+.info-card p{
+
+    margin-top:10px;
+
+    color:#888;
+
+    font-size:11px;
+
+    line-height:1.7;
+
 }
 
 
@@ -491,19 +589,22 @@ nav a.active{
 ===================================================== */
 
 footer{
-    padding:35px 5%;
+
+    padding:
+        35px 5%;
 
     border-top:
         1px solid
-        rgba(255,255,255,.1);
+        rgba(255,255,255,.10);
 
     text-align:center;
 
-    color:#777;
+    color:#666;
 
-    font-size:10px;
+    font-size:9px;
 
-    line-height:1.8;
+    letter-spacing:1px;
+
 }
 
 
@@ -514,17 +615,13 @@ footer{
 @media(max-width:1100px){
 
     .products{
+
         grid-template-columns:
             repeat(
                 4,
                 minmax(0,1fr)
             );
 
-        gap:13px;
-    }
-
-    .product-image{
-        height:230px;
     }
 
 }
@@ -534,25 +631,23 @@ footer{
    TABLET PEQUEÑA
 ===================================================== */
 
-@media(max-width:850px){
+@media(max-width:800px){
 
     .products{
+
         grid-template-columns:
             repeat(
                 3,
                 minmax(0,1fr)
             );
 
-        gap:12px;
     }
 
-    .hero,
-    .catalog{
-        width:92%;
-    }
+    .info-grid{
 
-    .product-image{
-        height:220px;
+        grid-template-columns:
+            1fr;
+
     }
 
 }
@@ -565,20 +660,25 @@ footer{
 @media(max-width:600px){
 
     header{
+
         padding:15px;
 
         flex-wrap:wrap;
 
         gap:14px;
+
     }
 
     .logo{
+
         font-size:17px;
 
         letter-spacing:2.5px;
+
     }
 
     nav{
+
         order:3;
 
         flex-basis:100%;
@@ -586,109 +686,114 @@ footer{
         justify-content:flex-start;
 
         gap:22px;
+
     }
 
     nav a{
+
         font-size:10px;
+
     }
 
 
     .hero{
+
         width:94%;
 
         padding:
-            65px 0
+            55px 0
             45px;
+
     }
 
     .hero small{
+
         font-size:9px;
 
         letter-spacing:3px;
+
     }
 
     .hero h1{
+
         margin-top:15px;
 
         font-size:
             clamp(
-                58px,
-                20vw,
-                90px
+                65px,
+                21vw,
+                100px
             );
 
         letter-spacing:-6px;
+
     }
 
     .hero p{
+
         margin-top:25px;
 
         font-size:13px;
-    }
 
-    .hero-notice{
-        margin-top:22px;
-
-        padding:14px;
-
-        font-size:11px;
     }
 
 
-    .catalog{
+    .products-section{
+
         width:94%;
 
-        padding-bottom:70px;
-    }
+        padding-bottom:80px;
 
-    .catalog-header{
-        margin-bottom:18px;
-    }
-
-    .catalog-header h2{
-        font-size:23px;
     }
 
 
     /*
-       DOS PRODUCTOS POR FILA
+       MOSAICO MÓVIL
+
+       2 PRODUCTOS POR FILA
     */
 
     .products{
+
         grid-template-columns:
             repeat(
                 2,
                 minmax(0,1fr)
             );
 
-        gap:10px;
+        gap:9px;
+
     }
 
     .product{
-        border-radius:7px;
-    }
 
-    .product-image{
-        height:220px;
+        border-radius:7px;
+
     }
 
     .product-info{
-        padding:9px 10px 11px;
+
+        padding:
+            9px 8px 11px;
+
     }
 
     .product-name{
-        font-size:12px;
+
+        font-size:10px;
+
     }
 
     .product-category{
-        font-size:7px;
+
+        font-size:8px;
+
     }
 
-    .image-arrow{
-        width:30px;
-        height:30px;
+    .info-section{
 
-        font-size:16px;
+        width:94%;
+
     }
 
 }
@@ -701,15 +806,15 @@ footer{
 @media(max-width:380px){
 
     .products{
-        gap:8px;
-    }
 
-    .product-image{
-        height:190px;
+        gap:7px;
+
     }
 
     .product-name{
-        font-size:11px;
+
+        font-size:9px;
+
     }
 
 }
@@ -721,9 +826,7 @@ footer{
 
 @media(prefers-reduced-motion:reduce){
 
-    *,
-    *::before,
-    *::after{
+    *{
 
         scroll-behavior:auto !important;
 
@@ -790,6 +893,7 @@ footer{
 </header>
 
 
+
 <!-- =====================================================
      HERO
 ===================================================== -->
@@ -797,67 +901,58 @@ footer{
 <section class="hero">
 
 <small>
-    BIENVENIDO A STRANGIS
+    STRANGIS
 </small>
 
 
 <h1>
-    Strangis
+    STRANGIS
 </h1>
 
 
 <p>
-    Descubre nuestra selección de artículos
-    y encuentra piezas pensadas para darle
-    personalidad a tu estilo.
+
+Descubre nuestra selección de moda y accesorios.
+Productos seleccionados para crear tu propio estilo
+sin seguir las reglas de siempre.
+
 </p>
 
 
-<div class="hero-notice">
+<div class="hero-note">
 
-<strong>
-    Información sobre los envíos:
-</strong>
-
-Algunos de nuestros artículos proceden
-de proveedores situados fuera de España.
-Por este motivo, determinados pedidos
-pueden tardar algo más de lo habitual
-en llegar.
-
-<br><br>
-
-Trabajamos para que cada pedido llegue
-correctamente y dentro del plazo estimado.
-Gracias por tu paciencia y por confiar
-en Strangis.
+Los artículos pueden proceder de proveedores
+internacionales, por lo que algunos pedidos pueden
+tardar algo más de lo habitual en llegar.
+Te recomendamos tenerlo en cuenta antes de realizar
+tu compra.
 
 </div>
 
 </section>
 
 
+
 <!-- =====================================================
-     CATÁLOGO
+     PRODUCTOS
 ===================================================== -->
 
-<section class="catalog">
+<section class="products-section">
 
-<div class="catalog-header">
 
-<div>
-
-<small>
-    NUESTRA SELECCIÓN
-</small>
+<div class="section-heading">
 
 <h2>
-    Todos los artículos
+    Últimos artículos
 </h2>
 
-</div>
+
+<span id="productCount">
+    0 artículos
+</span>
 
 </div>
+
 
 
 <div
@@ -865,7 +960,90 @@ en Strangis.
     id="productsContainer"
 ></div>
 
+
 </section>
+
+
+
+<!-- =====================================================
+     INFORMACIÓN
+===================================================== -->
+
+<section class="info-section">
+
+
+<div class="info-grid">
+
+
+<div class="info-card">
+
+<small>
+    ENVÍOS
+</small>
+
+<h3>
+    Envíos internacionales
+</h3>
+
+<p>
+
+Algunos artículos pueden tener
+un plazo de entrega superior al habitual
+debido a su procedencia.
+
+</p>
+
+</div>
+
+
+
+<div class="info-card">
+
+<small>
+    COLECCIÓN
+</small>
+
+<h3>
+    Selección Strangis
+</h3>
+
+<p>
+
+Añadimos nuevos artículos
+progresivamente a nuestras diferentes
+categorías.
+
+</p>
+
+</div>
+
+
+
+<div class="info-card">
+
+<small>
+    COMPRA
+</small>
+
+<h3>
+    Compra sencilla
+</h3>
+
+<p>
+
+Selecciona el artículo que quieras,
+elige las opciones disponibles y
+realiza tu pedido.
+
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
 
 
 <!-- =====================================================
@@ -874,176 +1052,50 @@ en Strangis.
 
 <footer>
 
-© 2026 Strangis · TODOS LOS DERECHOS RESERVADOS
-
-<br>
-
-Los plazos de entrega pueden variar
-según el origen y disponibilidad
-de cada artículo.
+© 2026 STRANGIS · TODOS LOS DERECHOS RESERVADOS
 
 </footer>
 
 
+
 <script>
 
-
 /* =====================================================
-   PRODUCTOS
-=====================================================
+   PRODUCTOS DE INICIO
 
-   AÑADE AQUÍ LOS PRODUCTOS QUE QUIERAS
-   MOSTRAR EN LA PÁGINA DE INICIO.
+   IMPORTANTE:
+   NO HAY PRODUCTOS DE EJEMPLO.
 
-   SOLO APARECERÁ:
-   - IMAGEN
-   - NOMBRE
-   - CATEGORÍA
+   Añade aquí únicamente productos REALES.
 
-   AL PULSAR EL PRODUCTO:
-   → abre su página de categoría.
+   Ejemplo de estructura:
 
+   {
+       name:"Nombre del producto",
+       category:"Camisetas",
+       image:"URL-DE-TU-IMAGEN",
+       link:"camisetas.html"
+   }
+
+   Mientras este array esté vacío,
+   la página NO mostrará ninguna imagen.
 ===================================================== */
 
 const PRODUCTS = [
 
-/* =====================================================
-   CONJUNTOS
-===================================================== */
+    /*
+    
+    {
+        name:"Nombre del producto",
+        category:"Camisetas",
+        image:"https://TU-IMAGEN-REAL.jpg",
+        link:"camisetas.html"
+    },
 
-{
-    id:"000001",
-
-    name:"Conjunto ejemplo",
-
-    category:"Conjuntos",
-
-    page:"conjuntos.html",
-
-    images:[
-        "https://i.imgur.com/fto6uGS.jpeg",
-        "https://i.imgur.com/Y6rehRJ.jpeg"
-    ]
-},
-
-
-/* =====================================================
-   CAMISETAS
-===================================================== */
-
-{
-    id:"000002",
-
-    name:"Camiseta ejemplo",
-
-    category:"Camisetas",
-
-    page:"camisetas.html",
-
-    images:[
-        "https://via.placeholder.com/900x1200?text=Camiseta"
-    ]
-},
-
-
-/* =====================================================
-   PANTALONES
-===================================================== */
-
-{
-    id:"000003",
-
-    name:"Pantalón ejemplo",
-
-    category:"Pantalones",
-
-    page:"pantalones.html",
-
-    images:[
-        "https://via.placeholder.com/900x1200?text=Pantalon"
-    ]
-},
-
-
-/* =====================================================
-   GORRAS
-===================================================== */
-
-{
-    id:"000004",
-
-    name:"Gorra ejemplo",
-
-    category:"Gorras",
-
-    page:"gorras.html",
-
-    images:[
-        "https://via.placeholder.com/900x1200?text=Gorra"
-    ]
-},
-
-
-/* =====================================================
-   GAFAS
-===================================================== */
-
-{
-    id:"000005",
-
-    name:"Gafas ejemplo",
-
-    category:"Gafas",
-
-    page:"gafas.html",
-
-    images:[
-        "https://via.placeholder.com/900x1200?text=Gafas"
-    ]
-},
-
-
-/* =====================================================
-   BISUTERÍA
-===================================================== */
-
-{
-    id:"000006",
-
-    name:"Bisutería ejemplo",
-
-    category:"Bisutería",
-
-    page:"bisuteria.html",
-
-    images:[
-        "https://via.placeholder.com/900x1200?text=Bisuteria"
-    ]
-}
-
-
-/* =====================================================
-   EJEMPLO PARA AÑADIR OTRO PRODUCTO
-
-{
-    id:"000007",
-
-    name:"Nombre del producto",
-
-    category:"Camisetas",
-
-    page:"camisetas.html",
-
-    images:[
-        "URL-IMAGEN-1",
-        "URL-IMAGEN-2",
-        "URL-IMAGEN-3"
-    ]
-}
-
-===================================================== */
+    */
 
 ];
+
 
 
 /* =====================================================
@@ -1053,13 +1105,34 @@ const PRODUCTS = [
 function escapeHTML(value){
 
     return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
+
 
 
 /* =====================================================
@@ -1069,12 +1142,69 @@ function escapeHTML(value){
 function escapeAttribute(value){
 
     return String(value ?? "")
-        .replace(/\\/g,"\\\\")
-        .replace(/"/g,"&quot;")
-        .replace(/</g,"%3C")
-        .replace(/>/g,"%3E");
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        );
 
 }
+
+
+
+/* =====================================================
+   CONTADOR
+===================================================== */
+
+function updateProductCount(){
+
+    const counter =
+        document.getElementById(
+            "productCount"
+        );
+
+
+    if(!counter){
+
+        return;
+
+    }
+
+
+    const total =
+        PRODUCTS.length;
+
+
+    counter.textContent =
+
+        total === 1
+
+        ? "1 artículo"
+
+        : `${total} artículos`;
+
+}
+
 
 
 /* =====================================================
@@ -1089,21 +1219,46 @@ function renderProducts(){
         );
 
 
+    if(!container){
+
+        return;
+
+    }
+
+
+    /*
+       Si no hay productos,
+       no se muestra ninguna imagen.
+    */
+
     if(
         !Array.isArray(PRODUCTS) ||
-        !PRODUCTS.length
+        PRODUCTS.length === 0
     ){
 
-        container.innerHTML=`
+        container.innerHTML = `
 
             <div class="empty">
 
-                Todavía no hay productos
-                disponibles.
+                <div class="empty-title">
+
+                    Próximamente
+
+                </div>
+
+
+                <div class="empty-text">
+
+                    Estamos preparando nuevos artículos
+                    para la colección Strangis.
+
+                </div>
 
             </div>
 
         `;
+
+        updateProductCount();
 
         return;
 
@@ -1111,620 +1266,96 @@ function renderProducts(){
 
 
     container.innerHTML =
+
         PRODUCTS
-        .map(
-            (product,index)=>
-                createProductHTML(
-                    product,
-                    index
-                )
+
+        .filter(
+            product =>
+
+                product &&
+
+                product.name &&
+
+                product.image
         )
+
+        .map(
+
+            product => {
+
+                const link =
+                    product.link ||
+                    "#";
+
+
+                return `
+
+                <article class="product">
+
+                    <a
+                        class="product-link"
+                        href="${escapeAttribute(link)}"
+                    >
+
+                        <div class="product-image">
+
+                            <img
+                                src="${escapeAttribute(product.image)}"
+                                alt="${escapeHTML(product.name)}"
+                                loading="lazy"
+                                draggable="false"
+                                onerror="this.closest('.product').style.display='none';"
+                            >
+
+                        </div>
+
+
+                        <div class="product-info">
+
+                            <div class="product-name">
+
+                                ${escapeHTML(product.name)}
+
+                            </div>
+
+
+                            ${
+                                product.category
+                                ?
+                                `
+
+                                <div class="product-category">
+
+                                    ${escapeHTML(
+                                        product.category
+                                    )}
+
+                                </div>
+
+                                `
+                                :
+                                ""
+                            }
+
+                        </div>
+
+                    </a>
+
+                </article>
+
+                `;
+
+            }
+
+        )
+
         .join("");
 
 
-    PRODUCTS.forEach(
-        (_,index)=>{
-
-            setupSwipe(index);
-
-        }
-    );
+    updateProductCount();
 
 }
 
-
-/* =====================================================
-   CREAR PRODUCTO
-===================================================== */
-
-function createProductHTML(
-    product,
-    index
-){
-
-    const images =
-        Array.isArray(product.images)
-        ?
-        product.images
-        :
-        [];
-
-
-    if(!images.length){
-
-        return "";
-
-    }
-
-
-    return `
-
-    <article
-        class="product"
-        id="product-${index}"
-        onclick="
-            openProduct(
-                ${index},
-                event
-            )
-        "
-    >
-
-
-        <div
-            class="product-image"
-            id="gallery-${index}"
-        >
-
-            <img
-                id="image-${index}"
-                src="${escapeAttribute(
-                    images[0]
-                )}"
-                alt="${escapeHTML(
-                    product.name
-                )}"
-                loading="lazy"
-                draggable="false"
-                onerror="imageError(this)"
-            >
-
-
-            ${
-                images.length > 1
-                ?
-                `
-
-                <button
-                    type="button"
-                    class="image-arrow left"
-                    onclick="
-                        previousImage(
-                            ${index},
-                            event
-                        )
-                    "
-                    aria-label="Imagen anterior"
-                >
-                    ‹
-                </button>
-
-
-                <button
-                    type="button"
-                    class="image-arrow right"
-                    onclick="
-                        nextImage(
-                            ${index},
-                            event
-                        )
-                    "
-                    aria-label="Imagen siguiente"
-                >
-                    ›
-                </button>
-
-
-                <div
-                    class="image-counter"
-                    id="counter-${index}"
-                >
-                    1 / ${images.length}
-                </div>
-
-                `
-                :
-                ""
-            }
-
-        </div>
-
-
-        <div class="product-info">
-
-            <div class="product-name">
-
-                ${escapeHTML(
-                    product.name
-                )}
-
-            </div>
-
-
-            <div class="product-category">
-
-                ${escapeHTML(
-                    product.category || ""
-                )}
-
-            </div>
-
-        </div>
-
-
-    </article>
-
-    `;
-
-}
-
-
-/* =====================================================
-   CAMBIAR IMAGEN
-===================================================== */
-
-function changeImage(
-    productIndex,
-    imageIndex
-){
-
-    const product =
-        PRODUCTS[productIndex];
-
-
-    if(
-        !product ||
-        !Array.isArray(product.images) ||
-        !product.images.length
-    ){
-
-        return;
-
-    }
-
-
-    const card =
-        document.getElementById(
-            `product-${productIndex}`
-        );
-
-
-    const image =
-        document.getElementById(
-            `image-${productIndex}`
-        );
-
-
-    if(!card || !image){
-
-        return;
-
-    }
-
-
-    if(imageIndex < 0){
-
-        imageIndex =
-            product.images.length - 1;
-
-    }
-
-
-    if(
-        imageIndex >=
-        product.images.length
-    ){
-
-        imageIndex=0;
-
-    }
-
-
-    card.dataset.image =
-        imageIndex;
-
-
-    image.style.opacity="0";
-
-
-    setTimeout(
-        ()=>{
-
-            image.src =
-                product.images[
-                    imageIndex
-                ];
-
-            image.style.opacity="1";
-
-        },
-        100
-    );
-
-
-    const counter =
-        document.getElementById(
-            `counter-${productIndex}`
-        );
-
-
-    if(counter){
-
-        counter.textContent =
-            (
-                imageIndex + 1
-            )
-            +
-            " / "
-            +
-            product.images.length;
-
-    }
-
-}
-
-
-/* =====================================================
-   SIGUIENTE IMAGEN
-===================================================== */
-
-function nextImage(
-    productIndex,
-    event
-){
-
-    if(event){
-
-        event.stopPropagation();
-
-    }
-
-
-    const product =
-        PRODUCTS[productIndex];
-
-
-    if(
-        !product ||
-        !product.images ||
-        product.images.length < 2
-    ){
-
-        return;
-
-    }
-
-
-    const card =
-        document.getElementById(
-            `product-${productIndex}`
-        );
-
-
-    let current =
-        Number(
-            card.dataset.image || 0
-        );
-
-
-    current++;
-
-
-    if(
-        current >=
-        product.images.length
-    ){
-
-        current=0;
-
-    }
-
-
-    changeImage(
-        productIndex,
-        current
-    );
-
-}
-
-
-/* =====================================================
-   IMAGEN ANTERIOR
-===================================================== */
-
-function previousImage(
-    productIndex,
-    event
-){
-
-    if(event){
-
-        event.stopPropagation();
-
-    }
-
-
-    const product =
-        PRODUCTS[productIndex];
-
-
-    if(
-        !product ||
-        !product.images ||
-        product.images.length < 2
-    ){
-
-        return;
-
-    }
-
-
-    const card =
-        document.getElementById(
-            `product-${productIndex}`
-        );
-
-
-    let current =
-        Number(
-            card.dataset.image || 0
-        );
-
-
-    current--;
-
-
-    if(current<0){
-
-        current =
-            product.images.length - 1;
-
-    }
-
-
-    changeImage(
-        productIndex,
-        current
-    );
-
-}
-
-
-/* =====================================================
-   SWIPE
-===================================================== */
-
-function setupSwipe(productIndex){
-
-    const gallery =
-        document.getElementById(
-            `gallery-${productIndex}`
-        );
-
-
-    if(!gallery){
-
-        return;
-
-    }
-
-
-    let startX=0;
-    let startY=0;
-
-
-    gallery.addEventListener(
-        "touchstart",
-        function(event){
-
-            if(
-                !event.touches ||
-                !event.touches.length
-            ){
-
-                return;
-
-            }
-
-
-            startX =
-                event.touches[0].clientX;
-
-            startY =
-                event.touches[0].clientY;
-
-        },
-        {
-            passive:true
-        }
-    );
-
-
-    gallery.addEventListener(
-        "touchend",
-        function(event){
-
-            if(
-                !event.changedTouches ||
-                !event.changedTouches.length
-            ){
-
-                return;
-
-            }
-
-
-            const endX =
-                event.changedTouches[0].clientX;
-
-            const endY =
-                event.changedTouches[0].clientY;
-
-
-            const differenceX =
-                endX - startX;
-
-            const differenceY =
-                endY - startY;
-
-
-            if(
-                Math.abs(differenceX) < 45 ||
-                Math.abs(differenceX) <=
-                Math.abs(differenceY)
-            ){
-
-                return;
-
-            }
-
-
-            if(differenceX < 0){
-
-                nextImage(
-                    productIndex
-                );
-
-            }else{
-
-                previousImage(
-                    productIndex
-                );
-
-            }
-
-        },
-        {
-            passive:true
-        }
-    );
-
-}
-
-
-/* =====================================================
-   ZOOM
-===================================================== */
-
-document.addEventListener(
-    "click",
-    function(event){
-
-        const gallery =
-            event.target.closest(
-                ".product-image"
-            );
-
-
-        if(!gallery){
-
-            return;
-
-        }
-
-
-        if(
-            event.target.closest(
-                ".image-arrow"
-            )
-        ){
-
-            return;
-
-        }
-
-
-        gallery.classList.toggle(
-            "zoomed"
-        );
-
-    }
-);
-
-
-/* =====================================================
-   ABRIR CATEGORÍA
-===================================================== */
-
-function openProduct(
-    productIndex,
-    event
-){
-
-    if(
-        event &&
-        event.target.closest(
-            ".image-arrow"
-        )
-    ){
-
-        return;
-
-    }
-
-
-    const product =
-        PRODUCTS[productIndex];
-
-
-    if(
-        !product ||
-        !product.page
-    ){
-
-        return;
-
-    }
-
-
-    const gallery =
-        document.getElementById(
-            `gallery-${productIndex}`
-        );
-
-
-    /*
-       Si está ampliada,
-       no abrimos la categoría.
-    */
-
-    if(
-        gallery &&
-        gallery.classList.contains(
-            "zoomed"
-        )
-    ){
-
-        return;
-
-    }
-
-
-    window.location.href =
-        product.page;
-
-}
-
-
-/* =====================================================
-   ERROR DE IMAGEN
-===================================================== */
-
-function imageError(image){
-
-    image.style.opacity="0";
-
-}
 
 
 /* =====================================================
@@ -1734,6 +1365,7 @@ function imageError(image){
 renderProducts();
 
 </script>
+
 
 </body>
 
