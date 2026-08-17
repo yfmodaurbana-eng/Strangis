@@ -212,3 +212,184 @@ window.getProductByReference =
 
 window.getCategoryName =
     getCategoryName;
+async function saveProductToSupabase(){
+
+    const name =
+        document.getElementById("productName")
+            .value.trim();
+
+    const ref =
+        document.getElementById("productRef")
+            .value.trim();
+
+    const price =
+        Number(
+            document.getElementById("productPrice")
+                .value
+        ) || 0;
+
+    const stock =
+        Number(
+            document.getElementById("productStock")
+                .value
+        ) || 0;
+
+    const description =
+        document.getElementById("productDescription")
+            .value.trim();
+
+    const whatsapp =
+        document.getElementById("productWhatsapp")
+            .value
+            .replace(/\D/g, "");
+
+    const shippingMin =
+        document.getElementById("shippingMin")
+            .value.trim();
+
+    const shippingMax =
+        document.getElementById("shippingMax")
+            .value.trim();
+
+    if(!name){
+
+        alert("Introduce el nombre del producto.");
+
+        return;
+    }
+
+    if(!ref){
+
+        alert("Introduce la referencia / ID.");
+
+        return;
+    }
+
+    const validVariants =
+        variants.filter(
+            variant =>
+                variant.name.trim() ||
+                variant.image.trim()
+        );
+
+    if(!validVariants.length){
+
+        alert("Añade al menos un color.");
+
+        return;
+    }
+
+    for(const variant of validVariants){
+
+        if(!variant.name.trim()){
+
+            alert(
+                "Todos los colores deben tener nombre."
+            );
+
+            return;
+        }
+
+        if(!variant.image.trim()){
+
+            alert(
+                "Todos los colores deben tener una URL de imagen."
+            );
+
+            return;
+        }
+
+    }
+
+    const validSizes =
+        sizes
+            .map(size => String(size).trim())
+            .filter(Boolean);
+
+    const product = {
+
+        name: name,
+
+        ref: ref,
+
+        price: price,
+
+        stock: stock,
+
+        description: description,
+
+        whatsapp: whatsapp,
+
+        variants: validVariants,
+
+        sizes: validSizes,
+
+        shipping: {
+
+            min: shippingMin,
+
+            max: shippingMax
+
+        }
+
+    };
+
+    try{
+
+        const {
+            data: sessionData
+        } =
+            await supabaseClient
+                .auth
+                .getSession();
+
+        const session =
+            sessionData.session;
+
+        if(!session){
+
+            alert(
+                "Debes iniciar sesión como administrador antes de guardar."
+            );
+
+            return;
+        }
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .from("Products")
+                .insert(product);
+
+        if(error){
+
+            console.error(error);
+
+            alert(
+                "Error al guardar el producto:\n\n" +
+                error.message
+            );
+
+            return;
+        }
+
+        alert(
+            "✅ Producto guardado correctamente en Supabase."
+        );
+
+        generateCode();
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert(
+            "No se pudo conectar con Supabase."
+        );
+
+    }
+
+}
