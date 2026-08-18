@@ -3,2197 +3,2157 @@
 
 <head>
 
-<meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Strangis</title>
+
+    <meta
+        name="description"
+        content="Strangis — Moda y accesorios seleccionados. Descubre la colección Strangis."
+    >
+
+    <!-- =====================================================
+         VISTA PREVIA AL COMPARTIR
+         WHATSAPP / FACEBOOK / REDES
+    ====================================================== -->
+
+    <meta property="og:title" content="Strangis">
+
+    <meta
+        property="og:description"
+        content="Moda y accesorios seleccionados. Descubre la colección Strangis."
+    >
+
+    <meta
+        property="og:type"
+        content="website"
+    >
+
+    <meta
+        property="og:url"
+        content="https://yfmodaurbana-eng.github.io/TiendaOnline/"
+    >
+
+    <meta
+        property="og:site_name"
+        content="Strangis"
+    >
+
+    <meta
+        property="og:image"
+        content="https://yfmodaurbana-eng.github.io/TiendaOnline/preview.jpg"
+    >
+
+    <meta
+        property="og:image:secure_url"
+        content="https://yfmodaurbana-eng.github.io/TiendaOnline/preview.jpg"
+    >
+
+    <meta
+        property="og:image:type"
+        content="image/jpeg"
+    >
 
-<title>Strangis</title>
+    <meta
+        property="og:image:width"
+        content="1280"
+    >
 
-<meta
-    name="description"
-    content="Strangis — Moda y accesorios seleccionados. Descubre la colección Strangis."
->
+    <meta
+        property="og:image:height"
+        content="640"
+    >
 
+    <!-- =====================================================
+         TWITTER / X
+    ====================================================== -->
 
-<!-- =====================================================
-     VISTA PREVIA AL COMPARTIR — WHATSAPP / FACEBOOK
-===================================================== -->
+    <meta
+        name="twitter:card"
+        content="summary_large_image"
+    >
 
-<meta property="og:title" content="Strangis">
+    <meta
+        name="twitter:title"
+        content="Strangis"
+    >
 
-<meta
-    property="og:description"
-    content="Moda y accesorios seleccionados. Descubre la colección Strangis."
->
-
-<meta
-    property="og:type"
-    content="website"
->
-
-<meta
-    property="og:url"
-    content="https://yfmodaurbana-eng.github.io/TiendaOnline/"
->
+    <meta
+        name="twitter:description"
+        content="Moda y accesorios seleccionados. Descubre la colección Strangis."
+    >
 
-<meta
-    property="og:site_name"
-    content="Strangis"
->
+    <meta
+        name="twitter:image"
+        content="https://yfmodaurbana-eng.github.io/TiendaOnline/preview.jpg"
+    >
 
-<meta
-    property="og:image"
-    content="https://yfmodaurbana-eng.github.io/TiendaOnline/preview.jpg"
->
+    <!-- =====================================================
+         CSS
+    ====================================================== -->
 
-<meta
-    property="og:image:type"
-    content="image/jpeg"
->
+    <style>
 
-<meta
-    property="og:image:width"
-    content="1280"
->
+        /* =====================================================
+           RESET
+        ===================================================== */
 
-<meta
-    property="og:image:height"
-    content="640"
->
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
 
+        html{
+            scroll-behavior:smooth;
+        }
 
-<!-- =====================================================
-     TWITTER / X
-===================================================== -->
+        body{
 
-<meta
-    name="twitter:card"
-    content="summary_large_image"
->
+            min-height:100vh;
 
-<meta
-    name="twitter:title"
-    content="Strangis"
->
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
 
-<meta
-    name="twitter:description"
-    content="Moda y accesorios seleccionados. Descubre la colección Strangis."
->
+            color:#fff;
 
-<meta
-    name="twitter:image"
-    content="https://yfmodaurbana-eng.github.io/TiendaOnline/preview.jpg"
->
+            background:
+                linear-gradient(
+                    135deg,
+                    #151515 0%,
+                    #292929 38%,
+                    #4d4d4d 65%,
+                    #222 100%
+                );
 
+            overflow-x:hidden;
+        }
 
-<style>
+        button,
+        input{
+            font:inherit;
+        }
 
-/* =====================================================
-   RESET
-===================================================== */
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+        /* =====================================================
+           CABECERA
+        ===================================================== */
 
-html{
-    scroll-behavior:smooth;
-}
+        header{
 
-body{
+            position:sticky;
 
-    min-height:100vh;
+            top:0;
 
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+            z-index:1000;
 
-    color:#fff;
+            padding:18px 5%;
 
-    background:
-        linear-gradient(
-            135deg,
-            #151515 0%,
-            #292929 38%,
-            #4d4d4d 65%,
-            #222 100%
-        );
+            display:flex;
 
-    overflow-x:hidden;
-}
+            align-items:center;
 
-button,
-input{
-    font:inherit;
-}
+            gap:30px;
 
+            border-bottom:
+                1px solid
+                rgba(255,255,255,.12);
 
-/* =====================================================
-   CABECERA
-===================================================== */
+            background:
+                rgba(20,20,20,.92);
 
-header{
+            backdrop-filter:
+                blur(18px);
 
-    position:sticky;
+        }
 
-    top:0;
+        .logo{
 
-    z-index:1000;
+            flex-shrink:0;
 
-    padding:18px 5%;
+            color:#fff;
 
-    display:flex;
+            font-size:22px;
 
-    align-items:center;
+            font-weight:900;
 
-    gap:30px;
+            letter-spacing:4px;
 
-    border-bottom:
-        1px solid
-        rgba(255,255,255,.12);
+        }
 
-    background:
-        rgba(20,20,20,.92);
+        nav{
 
-    backdrop-filter:
-        blur(18px);
+            flex:1;
 
-}
+            display:flex;
 
-.logo{
+            justify-content:center;
 
-    flex-shrink:0;
+            gap:28px;
 
-    color:#fff;
+            overflow-x:auto;
 
-    font-size:22px;
+            scrollbar-width:none;
 
-    font-weight:900;
+        }
 
-    letter-spacing:4px;
+        nav::-webkit-scrollbar{
+            display:none;
+        }
 
-}
+        nav a{
 
-nav{
+            color:#999;
 
-    flex:1;
+            text-decoration:none;
 
-    display:flex;
+            font-size:11px;
 
-    justify-content:center;
+            font-weight:bold;
 
-    gap:28px;
+            letter-spacing:1.5px;
 
-    overflow-x:auto;
+            text-transform:uppercase;
 
-    scrollbar-width:none;
+            white-space:nowrap;
 
-}
+            transition:
+                color .2s ease;
 
-nav::-webkit-scrollbar{
-    display:none;
-}
+        }
 
-nav a{
+        nav a:hover,
+        nav a.active{
 
-    color:#999;
+            color:#fff;
 
-    text-decoration:none;
+        }
 
-    font-size:11px;
 
-    font-weight:bold;
+        /* =====================================================
+           HERO
+        ===================================================== */
 
-    letter-spacing:1.5px;
+        .hero{
 
-    text-transform:uppercase;
+            width:min(1400px,90%);
 
-    white-space:nowrap;
+            margin:auto;
 
-    transition:
-        color .2s ease;
+            padding:
+                clamp(70px,11vw,140px)
+                0
+                clamp(50px,7vw,90px);
 
-}
+        }
 
-nav a:hover,
-nav a.active{
+        .hero small{
 
-    color:#fff;
+            color:#aaa;
 
-}
+            font-size:11px;
 
+            font-weight:bold;
 
-/* =====================================================
-   HERO
-===================================================== */
+            letter-spacing:5px;
 
-.hero{
+        }
 
-    width:min(1400px,90%);
+        .hero h1{
 
-    margin:auto;
+            position:relative;
 
-    padding:
-        clamp(70px,11vw,140px)
-        0
-        clamp(50px,7vw,90px);
+            display:inline-block;
 
-}
+            margin-top:18px;
 
-.hero small{
+            font-size:
+                clamp(
+                    70px,
+                    15vw,
+                    180px
+                );
 
-    color:#aaa;
+            line-height:.8;
 
-    font-size:11px;
+            letter-spacing:-9px;
 
-    font-weight:bold;
+            font-weight:900;
 
-    letter-spacing:5px;
+            color:#fff;
 
-}
+            text-shadow:
 
-.hero h1{
+                0 0 4px rgba(255,255,255,.9),
 
-    position:relative;
+                0 0 10px rgba(255,255,255,.8),
 
-    display:inline-block;
+                0 0 22px rgba(255,255,255,.65),
 
-    margin-top:18px;
+                0 0 45px rgba(255,255,255,.45),
 
-    font-size:
-        clamp(
-            70px,
-            15vw,
-            180px
-        );
+                0 0 80px rgba(255,255,255,.25);
 
-    line-height:.8;
+            animation:
+                neonPulse 2.8s ease-in-out infinite;
 
-    letter-spacing:-9px;
+        }
 
-    font-weight:900;
+        .hero h1::after{
 
-    color:#fff;
+            content:"STRANGIS";
 
-    text-shadow:
+            position:absolute;
 
-        0 0 4px rgba(255,255,255,.9),
+            inset:0;
 
-        0 0 10px rgba(255,255,255,.8),
+            z-index:-1;
 
-        0 0 22px rgba(255,255,255,.65),
+            color:transparent;
 
-        0 0 45px rgba(255,255,255,.45),
+            text-shadow:
 
-        0 0 80px rgba(255,255,255,.25);
+                0 0 15px rgba(255,255,255,.9),
 
-    animation:
-        neonPulse 2.8s ease-in-out infinite;
+                0 0 35px rgba(255,255,255,.75),
 
-}
+                0 0 70px rgba(255,255,255,.45),
 
-.hero h1::after{
+                0 0 120px rgba(255,255,255,.25);
 
-    content:"STRANGIS";
+            filter:blur(3px);
 
-    position:absolute;
+            opacity:.9;
 
-    inset:0;
+        }
 
-    z-index:-1;
 
-    color:transparent;
+        @keyframes neonPulse{
 
-    text-shadow:
+            0%,
+            100%{
 
-        0 0 15px rgba(255,255,255,.9),
+                text-shadow:
 
-        0 0 35px rgba(255,255,255,.75),
+                    0 0 4px rgba(255,255,255,.9),
 
-        0 0 70px rgba(255,255,255,.45),
+                    0 0 10px rgba(255,255,255,.8),
 
-        0 0 120px rgba(255,255,255,.25);
+                    0 0 22px rgba(255,255,255,.65),
 
-    filter:blur(3px);
+                    0 0 45px rgba(255,255,255,.45),
 
-    opacity:.9;
+                    0 0 80px rgba(255,255,255,.25);
 
-}
+            }
 
+            50%{
 
-@keyframes neonPulse{
+                text-shadow:
 
-    0%,
-    100%{
+                    0 0 5px rgba(255,255,255,1),
 
-        text-shadow:
+                    0 0 14px rgba(255,255,255,.95),
 
-            0 0 4px rgba(255,255,255,.9),
+                    0 0 30px rgba(255,255,255,.85),
 
-            0 0 10px rgba(255,255,255,.8),
+                    0 0 60px rgba(255,255,255,.65),
 
-            0 0 22px rgba(255,255,255,.65),
+                    0 0 105px rgba(255,255,255,.4);
 
-            0 0 45px rgba(255,255,255,.45),
+            }
 
-            0 0 80px rgba(255,255,255,.25);
+        }
 
-    }
 
-    50%{
+        .hero p{
 
-        text-shadow:
+            max-width:650px;
 
-            0 0 5px rgba(255,255,255,1),
+            margin-top:35px;
 
-            0 0 14px rgba(255,255,255,.95),
+            color:#aaa;
 
-            0 0 30px rgba(255,255,255,.85),
+            font-size:15px;
 
-            0 0 60px rgba(255,255,255,.65),
+            line-height:1.8;
 
-            0 0 105px rgba(255,255,255,.4);
+        }
 
-    }
+        .hero-note{
 
-}
+            max-width:700px;
 
+            margin-top:20px;
 
-.hero p{
+            padding:16px 18px;
 
-    max-width:650px;
+            border-left:
+                2px solid
+                rgba(255,255,255,.45);
 
-    margin-top:35px;
+            color:#888;
 
-    color:#aaa;
+            font-size:11px;
 
-    font-size:15px;
+            line-height:1.7;
 
-    line-height:1.8;
+        }
 
-}
 
-.hero-note{
+        /* =====================================================
+           SECCIÓN PRODUCTOS
+        ===================================================== */
 
-    max-width:700px;
+        .products-section{
 
-    margin-top:20px;
+            width:min(1400px,90%);
 
-    padding:16px 18px;
+            margin:auto;
 
-    border-left:
-        2px solid
-        rgba(255,255,255,.45);
+            padding:
+                10px
+                0
+                110px;
 
-    color:#888;
+            overflow:hidden;
 
-    font-size:11px;
+        }
 
-    line-height:1.7;
+        .section-heading{
 
-}
+            display:flex;
 
+            align-items:end;
 
-/* =====================================================
-   SECCIÓN PRODUCTOS
-===================================================== */
+            justify-content:space-between;
 
-.products-section{
+            gap:20px;
 
-    width:min(1400px,90%);
+            margin-bottom:25px;
 
-    margin:auto;
+        }
 
-    padding:
-        10px
-        0
-        110px;
+        .section-heading h2{
 
-    overflow:hidden;
+            font-size:14px;
 
-}
+            font-weight:900;
 
-.section-heading{
+            letter-spacing:2px;
 
-    display:flex;
+            text-transform:uppercase;
 
-    align-items:end;
+        }
 
-    justify-content:space-between;
+        .section-heading span{
 
-    gap:20px;
+            color:#777;
 
-    margin-bottom:25px;
+            font-size:10px;
 
-}
+            letter-spacing:1px;
 
-.section-heading h2{
+        }
 
-    font-size:14px;
 
-    font-weight:900;
+        /* =====================================================
+           CARRUSEL
+        ===================================================== */
 
-    letter-spacing:2px;
+        .carousel-window{
 
-    text-transform:uppercase;
+            width:100%;
 
-}
+            overflow:hidden;
 
-.section-heading span{
+            position:relative;
 
-    color:#777;
+            padding:
+                5px 0
+                15px;
 
-    font-size:10px;
+        }
 
-    letter-spacing:1px;
+        .carousel-window::before,
+        .carousel-window::after{
 
-}
+            content:"";
 
+            position:absolute;
 
-/* =====================================================
-   CARRUSEL
-===================================================== */
+            top:0;
 
-.carousel-window{
+            bottom:0;
 
-    width:100%;
+            width:70px;
 
-    overflow:hidden;
+            z-index:5;
 
-    position:relative;
+            pointer-events:none;
 
-    padding:
-        5px 0
-        15px;
+        }
 
-}
+        .carousel-window::before{
 
-.carousel-window::before,
-.carousel-window::after{
+            left:0;
 
-    content:"";
+            background:
+                linear-gradient(
+                    to right,
+                    rgba(30,30,30,.75),
+                    transparent
+                );
 
-    position:absolute;
+        }
 
-    top:0;
+        .carousel-window::after{
 
-    bottom:0;
+            right:0;
 
-    width:70px;
+            background:
+                linear-gradient(
+                    to left,
+                    rgba(30,30,30,.75),
+                    transparent
+                );
 
-    z-index:5;
+        }
 
-    pointer-events:none;
 
-}
+        /* =====================================================
+           PISTA
+        ===================================================== */
 
-.carousel-window::before{
+        .products{
 
-    left:0;
+            display:flex;
 
-    background:
-        linear-gradient(
-            to right,
-            rgba(30,30,30,.75),
-            transparent
-        );
+            width:max-content;
 
-}
+            gap:12px;
 
-.carousel-window::after{
+            will-change:
+                transform;
 
-    right:0;
+            animation:
+                carouselMove
+                30s
+                linear
+                infinite;
 
-    background:
-        linear-gradient(
-            to left,
-            rgba(30,30,30,.75),
-            transparent
-        );
+        }
 
-}
+        @keyframes carouselMove{
 
+            from{
 
-/* =====================================================
-   PISTA
-===================================================== */
+                transform:
+                    translateX(0);
 
-.products{
+            }
 
-    display:flex;
+            to{
 
-    width:max-content;
+                transform:
+                    translateX(
+                        calc(
+                            -50% - 6px
+                        )
+                    );
 
-    gap:12px;
+            }
 
-    will-change:
-        transform;
+        }
 
-    animation:
-        carouselMove
-        30s
-        linear
-        infinite;
 
-}
+        /* =====================================================
+           TARJETA
+        ===================================================== */
 
-@keyframes carouselMove{
+        .product{
 
-    from{
+            flex:0 0 205px;
 
-        transform:
-            translateX(0);
+            width:205px;
 
-    }
+            overflow:hidden;
 
-    to{
+            border:
+                1px solid
+                rgba(255,255,255,.10);
 
-        transform:
-            translateX(
-                calc(
-                    -50% - 6px
-                )
-            );
+            border-radius:9px;
 
-    }
+            background:
+                rgba(255,255,255,.045);
 
-}
+            box-shadow:
+                0 12px 35px
+                rgba(0,0,0,.18);
 
+            transition:
 
-/* =====================================================
-   TARJETA
-===================================================== */
+                transform .25s ease,
 
-.product{
+                border-color .25s ease,
 
-    flex:0 0 205px;
+                background .25s ease;
 
-    width:205px;
+        }
 
-    overflow:hidden;
+        .product:hover{
 
-    border:
-        1px solid
-        rgba(255,255,255,.10);
+            transform:
+                translateY(-5px);
 
-    border-radius:9px;
+            border-color:
+                rgba(255,255,255,.25);
 
-    background:
-        rgba(255,255,255,.045);
+            background:
+                rgba(255,255,255,.07);
 
-    box-shadow:
-        0 12px 35px
-        rgba(0,0,0,.18);
+        }
 
-    transition:
+        .product-image{
 
-        transform .25s ease,
+            position:relative;
 
-        border-color .25s ease,
+            width:100%;
 
-        background .25s ease;
+            aspect-ratio:1 / 1.15;
 
-}
+            overflow:hidden;
 
-.product:hover{
+            background:#181818;
 
-    transform:
-        translateY(-5px);
+        }
 
-    border-color:
-        rgba(255,255,255,.25);
+        .product-image img{
 
-    background:
-        rgba(255,255,255,.07);
+            width:100%;
 
-}
+            height:100%;
 
-.product-image{
+            display:block;
 
-    position:relative;
+            object-fit:cover;
 
-    width:100%;
+            transition:
+                transform .4s ease;
 
-    aspect-ratio:1 / 1.15;
+        }
 
-    overflow:hidden;
+        .product:hover
+        .product-image img{
 
-    background:#181818;
+            transform:
+                scale(1.045);
 
-}
+        }
 
-.product-image img{
+        .product-info{
 
-    width:100%;
+            padding:
+                12px 11px 14px;
 
-    height:100%;
+        }
 
-    display:block;
+        .product-name{
 
-    object-fit:cover;
+            color:#fff;
 
-    transition:
-        transform .4s ease;
+            font-size:12px;
 
-}
+            font-weight:800;
 
-.product:hover
-.product-image img{
+            line-height:1.35;
 
-    transform:
-        scale(1.045);
+        }
 
-}
+        .product-category{
 
-.product-info{
+            margin-top:5px;
 
-    padding:
-        12px 11px 14px;
+            color:#777;
 
-}
+            font-size:9px;
 
-.product-name{
+            font-weight:bold;
 
-    color:#fff;
+            letter-spacing:1px;
 
-    font-size:12px;
+            text-transform:uppercase;
 
-    font-weight:800;
+        }
 
-    line-height:1.35;
+        .product-link{
 
-}
+            display:block;
 
-.product-category{
+            color:inherit;
 
-    margin-top:5px;
+            text-decoration:none;
 
-    color:#777;
+        }
 
-    font-size:9px;
 
-    font-weight:bold;
+        /* =====================================================
+           ESTADO VACÍO / ERROR
+        ===================================================== */
 
-    letter-spacing:1px;
+        .empty{
 
-    text-transform:uppercase;
+            width:min(700px,100%);
 
-}
+            margin:auto;
 
-.product-link{
+            padding:
+                80px 20px;
 
-    display:block;
+            border:
+                1px solid
+                rgba(255,255,255,.08);
 
-    color:inherit;
+            border-radius:10px;
 
-    text-decoration:none;
+            text-align:center;
 
-}
+            background:
+                rgba(255,255,255,.025);
 
+        }
 
-/* =====================================================
-   ESTADO VACÍO / ERROR
-===================================================== */
+        .empty-title{
 
-.empty{
+            color:#aaa;
 
-    width:min(700px,100%);
+            font-size:12px;
 
-    margin:auto;
+            font-weight:bold;
 
-    padding:
-        80px 20px;
+            letter-spacing:2px;
 
-    border:
-        1px solid
-        rgba(255,255,255,.08);
+            text-transform:uppercase;
 
-    border-radius:10px;
+        }
 
-    text-align:center;
+        .empty-text{
 
-    background:
-        rgba(255,255,255,.025);
+            max-width:500px;
 
-}
+            margin:
+                15px auto 0;
 
-.empty-title{
+            color:#666;
 
-    color:#aaa;
+            font-size:11px;
 
-    font-size:12px;
+            line-height:1.7;
 
-    font-weight:bold;
+        }
 
-    letter-spacing:2px;
 
-    text-transform:uppercase;
+        /* =====================================================
+           INFORMACIÓN
+        ===================================================== */
 
-}
+        .info-section{
 
-.empty-text{
+            width:min(1000px,90%);
 
-    max-width:500px;
+            margin:auto;
 
-    margin:
-        15px auto 0;
+            padding:
+                0
+                0
+                110px;
 
-    color:#666;
+        }
 
-    font-size:11px;
+        .info-grid{
 
-    line-height:1.7;
+            display:grid;
 
-}
+            grid-template-columns:
+                repeat(3,minmax(0,1fr));
 
+            gap:15px;
 
-/* =====================================================
-   INFORMACIÓN
-===================================================== */
+        }
 
-.info-section{
+        .info-card{
 
-    width:min(1000px,90%);
+            padding:25px;
 
-    margin:auto;
+            border:
+                1px solid
+                rgba(255,255,255,.09);
 
-    padding:
-        0
-        0
-        110px;
+            border-radius:9px;
 
-}
+            background:
+                rgba(255,255,255,.035);
 
-.info-grid{
+        }
 
-    display:grid;
+        .info-card small{
 
-    grid-template-columns:
-        repeat(3,minmax(0,1fr));
+            color:#777;
 
-    gap:15px;
+            font-size:9px;
 
-}
+            font-weight:bold;
 
-.info-card{
+            letter-spacing:2px;
 
-    padding:25px;
+        }
 
-    border:
-        1px solid
-        rgba(255,255,255,.09);
+        .info-card h3{
 
-    border-radius:9px;
+            margin-top:12px;
 
-    background:
-        rgba(255,255,255,.035);
+            font-size:14px;
 
-}
+        }
 
-.info-card small{
+        .info-card p{
 
-    color:#777;
+            margin-top:10px;
 
-    font-size:9px;
+            color:#888;
 
-    font-weight:bold;
+            font-size:11px;
 
-    letter-spacing:2px;
+            line-height:1.7;
 
-}
+        }
 
-.info-card h3{
 
-    margin-top:12px;
+        /* =====================================================
+           FOOTER
+        ===================================================== */
 
-    font-size:14px;
+        footer{
 
-}
+            padding:
+                35px 5%;
 
-.info-card p{
+            border-top:
+                1px solid
+                rgba(255,255,255,.10);
 
-    margin-top:10px;
+            text-align:center;
 
-    color:#888;
+            color:#666;
 
-    font-size:11px;
+            font-size:9px;
 
-    line-height:1.7;
+            letter-spacing:1px;
 
-}
+        }
 
 
-/* =====================================================
-   FOOTER
-===================================================== */
+        /* =====================================================
+           TABLET
+        ===================================================== */
 
-footer{
+        @media(max-width:1100px){
 
-    padding:
-        35px 5%;
+            .product{
 
-    border-top:
-        1px solid
-        rgba(255,255,255,.10);
+                flex-basis:190px;
 
-    text-align:center;
+                width:190px;
 
-    color:#666;
+            }
 
-    font-size:9px;
+        }
 
-    letter-spacing:1px;
 
-}
+        /* =====================================================
+           TABLET PEQUEÑA
+        ===================================================== */
 
+        @media(max-width:800px){
 
-/* =====================================================
-   TABLET
-===================================================== */
+            .info-grid{
 
-@media(max-width:1100px){
+                grid-template-columns:
+                    1fr;
 
-    .product{
+            }
 
-        flex-basis:190px;
+            .product{
 
-        width:190px;
+                flex-basis:175px;
 
-    }
+                width:175px;
 
-}
+            }
 
+        }
 
-/* =====================================================
-   TABLET PEQUEÑA
-===================================================== */
 
-@media(max-width:800px){
+        /* =====================================================
+           MÓVIL
+        ===================================================== */
 
-    .info-grid{
+        @media(max-width:600px){
 
-        grid-template-columns:
-            1fr;
+            header{
 
-    }
+                padding:15px;
 
-    .product{
+                flex-wrap:wrap;
 
-        flex-basis:175px;
+                gap:14px;
 
-        width:175px;
+            }
 
-    }
+            .logo{
 
-}
+                font-size:17px;
 
+                letter-spacing:2.5px;
 
-/* =====================================================
-   MÓVIL
-===================================================== */
+            }
 
-@media(max-width:600px){
+            nav{
 
-    header{
+                order:3;
 
-        padding:15px;
+                flex-basis:100%;
 
-        flex-wrap:wrap;
+                justify-content:flex-start;
 
-        gap:14px;
+                gap:22px;
 
-    }
+            }
 
-    .logo{
+            nav a{
 
-        font-size:17px;
+                font-size:10px;
 
-        letter-spacing:2.5px;
+            }
 
-    }
+            .hero{
 
-    nav{
+                width:94%;
 
-        order:3;
+                padding:
+                    55px 0
+                    45px;
 
-        flex-basis:100%;
+            }
 
-        justify-content:flex-start;
+            .hero small{
 
-        gap:22px;
+                font-size:9px;
 
-    }
+                letter-spacing:3px;
 
-    nav a{
+            }
 
-        font-size:10px;
+            .hero h1{
 
-    }
+                margin-top:15px;
 
-    .hero{
+                font-size:
+                    clamp(
+                        65px,
+                        21vw,
+                        100px
+                    );
 
-        width:94%;
+                letter-spacing:-6px;
 
-        padding:
-            55px 0
-            45px;
+            }
 
-    }
+            .hero p{
 
-    .hero small{
+                margin-top:25px;
 
-        font-size:9px;
+                font-size:13px;
 
-        letter-spacing:3px;
+            }
 
-    }
+            .products-section{
 
-    .hero h1{
+                width:94%;
 
-        margin-top:15px;
+                padding-bottom:80px;
 
-        font-size:
-            clamp(
-                65px,
-                21vw,
-                100px
-            );
+            }
 
-        letter-spacing:-6px;
+            .product{
 
-    }
+                flex-basis:155px;
 
-    .hero p{
+                width:155px;
 
-        margin-top:25px;
+                border-radius:7px;
 
-        font-size:13px;
+            }
 
-    }
+            .product-info{
 
-    .products-section{
+                padding:
+                    9px 8px 11px;
 
-        width:94%;
+            }
 
-        padding-bottom:80px;
+            .product-name{
 
-    }
+                font-size:10px;
 
-    .product{
+            }
 
-        flex-basis:155px;
+            .product-category{
 
-        width:155px;
+                font-size:8px;
 
-        border-radius:7px;
+            }
 
-    }
+            .products{
 
-    .product-info{
+                gap:9px;
 
-        padding:
-            9px 8px 11px;
+                animation-duration:
+                    24s;
 
-    }
+            }
 
-    .product-name{
+            .carousel-window::before,
+            .carousel-window::after{
 
-        font-size:10px;
+                width:35px;
 
-    }
+            }
 
-    .product-category{
+            .info-section{
 
-        font-size:8px;
+                width:94%;
 
-    }
+            }
 
-    .products{
+        }
 
-        gap:9px;
 
-        animation-duration:
-            24s;
+        /* =====================================================
+           MÓVIL MUY PEQUEÑO
+        ===================================================== */
 
-    }
+        @media(max-width:380px){
 
-    .carousel-window::before,
-    .carousel-window::after{
+            .product{
 
-        width:35px;
+                flex-basis:145px;
 
-    }
+                width:145px;
 
-    .info-section{
+            }
 
-        width:94%;
+            .products{
 
-    }
+                gap:7px;
 
-}
+            }
 
+            .product-name{
 
-/* =====================================================
-   MÓVIL MUY PEQUEÑO
-===================================================== */
+                font-size:9px;
 
-@media(max-width:380px){
+            }
 
-    .product{
+        }
 
-        flex-basis:145px;
 
-        width:145px;
+        /* =====================================================
+           REDUCE MOTION
+        ===================================================== */
 
-    }
+        @media(prefers-reduced-motion:reduce){
 
-    .products{
+            html{
 
-        gap:7px;
+                scroll-behavior:auto !important;
 
-    }
+            }
 
-    .product-name{
+            .hero h1{
 
-        font-size:9px;
+                animation:none !important;
 
-    }
+            }
 
-}
+            .products{
 
+                animation:none !important;
 
-/* =====================================================
-   REDUCE MOTION
-===================================================== */
+            }
 
-@media(prefers-reduced-motion:reduce){
+            *{
 
-    html{
+                transition:none !important;
 
-        scroll-behavior:auto !important;
+            }
 
-    }
+        }
 
-    .hero h1{
 
-        animation:none !important;
+        /* =====================================================
+           WHATSAPP
+        ===================================================== */
 
-    }
+        .whatsapp-button{
 
-    .products{
+            position:fixed;
 
-        animation:none !important;
+            right:20px;
 
-    }
+            bottom:20px;
 
-    *{
+            z-index:99999;
 
-        transition:none !important;
+            width:58px;
 
-    }
+            height:58px;
 
-}
+            display:flex;
 
-.whatsapp-button{
-    position:fixed;
-    right:20px;
-    bottom:20px;
-    z-index:99999;
+            align-items:center;
 
-    width:58px;
-    height:58px;
+            justify-content:center;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+            border-radius:50%;
 
-    border-radius:50%;
+            background:#25D366 !important;
 
-    background:#25D366 !important;
-    color:#fff;
+            color:#fff;
 
-    text-decoration:none;
+            text-decoration:none;
 
-    box-shadow:0 5px 18px rgba(0,0,0,.35);
+            box-shadow:
+                0 5px 18px
+                rgba(0,0,0,.35);
 
-    transition:transform .2s ease;
-}
+            transition:
+                transform .2s ease;
 
-.whatsapp-button:hover{
-    transform:scale(1.08);
-}
+        }
 
-.whatsapp-button svg{
-    width:30px;
-    height:30px;
-    display:block;
-    fill:#fff;
-}
+        .whatsapp-button:hover{
 
-@media(max-width:600px){
-    .whatsapp-button{
-        width:54px;
-        height:54px;
-        right:16px;
-        bottom:16px;
-    }
+            transform:
+                scale(1.08);
 
-    .whatsapp-button svg{
-        width:28px;
-        height:28px;
-    }
-}
+        }
 
+        .whatsapp-button svg{
 
-</style>
+            width:30px;
+
+            height:30px;
+
+            display:block;
+
+            fill:#fff;
+
+        }
+
+        @media(max-width:600px){
+
+            .whatsapp-button{
+
+                width:54px;
+
+                height:54px;
+
+                right:16px;
+
+                bottom:16px;
+
+            }
+
+            .whatsapp-button svg{
+
+                width:28px;
+
+                height:28px;
+
+            }
+
+        }
+
+    </style>
 
 </head>
 
 
 <body>
 
+
+    <!-- =====================================================
+         WHATSAPP
+    ====================================================== -->
+
     <a
-    href="https://wa.me/34674559614"
-    class="whatsapp-button"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="WhatsApp"
->
-    <svg viewBox="0 0 24 24">
-        <path d="M20.52 3.48A11.86 11.86 0 0 0 12.08 0C5.53 0 .2 5.33.2 11.88c0 2.09.55 4.13 1.59 5.93L.1 24l6.34-1.66a11.9 11.9 0 0 0 5.64 1.43h.01c6.55 0 11.88-5.33 11.88-11.88 0-3.18-1.24-6.17-3.45-8.41ZM12.09 21.75h-.01a9.86 9.86 0 0 1-5.03-1.38l-.36-.21-3.76.99 1-3.67-.23-.38a9.84 9.84 0 0 1-1.51-5.22C2.19 6.44 6.62 2 12.08 2a9.83 9.83 0 0 1 6.99 2.9 9.88 9.88 0 0 1 2.91 7c0 5.46-4.43 9.89-9.89 9.89Zm5.42-7.41c-.3-.15-1.77-.87-2.05-.97-.28-.1-.48-.15-.68.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.68-1.64-.93-2.25-.24-.59-.49-.51-.68-.52h-.58c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.5s1.07 2.9 1.22 3.1c.15.2 2.1 3.21 5.09 4.5.71.31 1.27.5 1.7.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.27-.2-.57-.35Z"/>
-    </svg>
-</a>
+        href="https://wa.me/34674559614"
+        class="whatsapp-button"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="WhatsApp"
+    >
 
+        <svg viewBox="0 0 24 24">
 
-<!-- =====================================================
-     CABECERA
-===================================================== -->
+            <path d="M20.52 3.48A11.86 11.86 0 0 0 12.08 0C5.53 0 .2 5.33.2 11.88c0 2.09.55 4.13 1.59 5.93L.1 24l6.34-1.66a11.9 11.9 0 0 0 5.64 1.43h.01c6.55 0 11.88-5.33 11.88-11.88 0-3.18-1.24-6.17-3.45-8.41ZM12.09 21.75h-.01a9.86 9.86 0 0 1-5.03-1.38l-.36-.21-3.76.99 1-3.67-.23-.38a9.84 9.84 0 0 1-1.51-5.22C2.19 6.44 6.62 2 12.08 2a9.83 9.83 0 0 1 6.99 2.9 9.88 9.88 0 0 1 2.91 7c0 5.46-4.43 9.89-9.89 9.89Zm5.42-7.41c-.3-.15-1.77-.87-2.05-.97-.28-.1-.48-.15-.68.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.68-1.64-.93-2.25-.24-.59-.49-.51-.68-.52h-.58c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.5s1.07 2.9 1.22 3.1c.15.2 2.1 3.21 5.09 4.5.71.31 1.27.5 1.7.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.27-.2-.57-.35Z"/>
 
-<header>
+        </svg>
 
-<div class="logo">
-    Strangis
-</div>
+    </a>
 
 
-<nav>
+    <!-- =====================================================
+         CABECERA
+    ====================================================== -->
 
-<a
-    class="active"
-    href="inicio.html"
->
-    Inicio
-</a>
+    <header>
 
-<a href="camisetas.html">
-    Camisetas
-</a>
+        <div class="logo">
+            Strangis
+        </div>
 
-<a href="pantalones.html">
-    Pantalones
-</a>
+        <nav>
 
-<a href="conjuntos.html">
-    Conjuntos
-</a>
+            <a
+                class="active"
+                href="index.html"
+            >
+                Inicio
+            </a>
 
-<a href="gorras.html">
-    Gorras
-</a>
+            <a href="camisetas.html">
+                Camisetas
+            </a>
 
-<a href="gafas.html">
-    Gafas
-</a>
+            <a href="pantalones.html">
+                Pantalones
+            </a>
 
-<a href="bisuteria.html">
-    Bisutería
-</a>
+            <a href="conjuntos.html">
+                Conjuntos
+            </a>
 
-</nav>
+            <a href="gorras.html">
+                Gorras
+            </a>
 
-</header>
+            <a href="gafas.html">
+                Gafas
+            </a>
 
+            <a href="bisuteria.html">
+                Bisutería
+            </a>
 
+        </nav>
 
-<!-- =====================================================
-     HERO
-===================================================== -->
+    </header>
 
-<section class="hero">
 
-<small>
-    STRANGIS
-</small>
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
 
+    <section class="hero">
 
-<h1>
-    STRANGIS
-</h1>
+        <small>
+            STRANGIS
+        </small>
 
+        <h1>
+            STRANGIS
+        </h1>
 
-<p>
+        <p>
 
-Descubre nuestra selección de moda y accesorios.
-Productos seleccionados para crear tu propio estilo
-sin seguir las reglas de siempre.
+            Descubre nuestra selección de moda y accesorios.
+            Productos seleccionados para crear tu propio estilo
+            sin seguir las reglas de siempre.
 
-</p>
+        </p>
 
+        <div class="hero-note">
 
-<div class="hero-note">
+            Los artículos pueden proceder de proveedores
+            internacionales, por lo que algunos pedidos pueden
+            tardar algo más de lo habitual en llegar.
+            Te recomendamos tenerlo en cuenta antes de realizar
+            tu compra.
 
-Los artículos pueden proceder de proveedores
-internacionales, por lo que algunos pedidos pueden
-tardar algo más de lo habitual en llegar.
-Te recomendamos tenerlo en cuenta antes de realizar
-tu compra.
+        </div>
 
-</div>
+    </section>
 
-</section>
 
+    <!-- =====================================================
+         PRODUCTOS
+    ====================================================== -->
 
+    <section class="products-section">
 
-<!-- =====================================================
-     PRODUCTOS
-===================================================== -->
+        <div class="section-heading">
 
-<section class="products-section">
+            <h2>
+                Últimos artículos
+            </h2>
 
+            <span id="productCount">
+                Cargando...
+            </span>
 
-<div class="section-heading">
+        </div>
 
-<h2>
-    Últimos artículos
-</h2>
+        <div
+            class="carousel-window"
+            id="carouselWindow"
+        >
 
+            <div
+                class="products"
+                id="productsContainer"
+            ></div>
 
-<span id="productCount">
-    Cargando...
-</span>
+        </div>
 
-</div>
+    </section>
 
 
-<div
-    class="carousel-window"
-    id="carouselWindow"
->
+    <!-- =====================================================
+         INFORMACIÓN
+    ====================================================== -->
 
-    <div
-        class="products"
-        id="productsContainer"
-    ></div>
+    <section class="info-section">
 
-</div>
+        <div class="info-grid">
 
+            <div class="info-card">
 
-</section>
+                <small>
+                    ENVÍOS
+                </small>
 
+                <h3>
+                    Envíos internacionales
+                </h3>
 
+                <p>
 
-<!-- =====================================================
-     INFORMACIÓN
-===================================================== -->
+                    Algunos artículos pueden tener
+                    un plazo de entrega superior al habitual
+                    debido a su procedencia.
 
-<section class="info-section">
+                </p>
 
+            </div>
 
-<div class="info-grid">
 
+            <div class="info-card">
 
-<div class="info-card">
+                <small>
+                    COLECCIÓN
+                </small>
 
-<small>
-    ENVÍOS
-</small>
+                <h3>
+                    Selección Strangis
+                </h3>
 
-<h3>
-    Envíos internacionales
-</h3>
+                <p>
 
-<p>
+                    Añadimos nuevos artículos
+                    progresivamente a nuestras diferentes
+                    categorías.
 
-Algunos artículos pueden tener
-un plazo de entrega superior al habitual
-debido a su procedencia.
+                </p>
 
-</p>
+            </div>
 
-</div>
 
+            <div class="info-card">
 
+                <small>
+                    COMPRA
+                </small>
 
-<div class="info-card">
+                <h3>
+                    Compra sencilla
+                </h3>
 
-<small>
-    COLECCIÓN
-</small>
+                <p>
 
-<h3>
-    Selección Strangis
-</h3>
+                    Selecciona el artículo que quieras,
+                    elige las opciones disponibles y
+                    realiza tu pedido.
 
-<p>
+                </p>
 
-Añadimos nuevos artículos
-progresivamente a nuestras diferentes
-categorías.
+            </div>
 
-</p>
+        </div>
 
-</div>
+    </section>
 
 
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
 
-<div class="info-card">
+    <footer>
 
-<small>
-    COMPRA
-</small>
+        © 2026 STRANGIS · TODOS LOS DERECHOS RESERVADOS
 
-<h3>
-    Compra sencilla
-</h3>
+    </footer>
 
-<p>
 
-Selecciona el artículo que quieras,
-elige las opciones disponibles y
-realiza tu pedido.
+    <!-- =====================================================
+         SUPABASE
+    ====================================================== -->
 
-</p>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-</div>
 
+    <script>
 
-</div>
+        /* =====================================================
+           SUPABASE
+        ===================================================== */
 
-</section>
+        const SUPABASE_URL =
+            "https://xbbjfatmdbxbuoqdrgoj.supabase.co";
 
+        const SUPABASE_PUBLISHABLE_KEY =
+            "sb_publishable_M7ETdIWvj4nCQZ55i24Vpw_5Yc5Islk";
 
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
+        const supabaseClient =
+            window.supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_PUBLISHABLE_KEY
+            );
 
-<footer>
 
-© 2026 STRANGIS · TODOS LOS DERECHOS RESERVADOS
+        /* =====================================================
+           CATEGORÍAS
+        ===================================================== */
 
-</footer>
+        const CATEGORY_LINKS = {
 
+            camisetas:
+                "camisetas.html",
 
+            pantalones:
+                "pantalones.html",
 
-<!-- =====================================================
-     SUPABASE
-===================================================== -->
+            conjuntos:
+                "conjuntos.html",
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+            gorras:
+                "gorras.html",
 
+            gafas:
+                "gafas.html",
 
-<script>
+            bisuteria:
+                "bisuteria.html"
 
-/* =====================================================
-   SUPABASE
-===================================================== */
+        };
 
-const SUPABASE_URL =
-    "https://xbbjfatmdbxbuoqdrgoj.supabase.co";
 
-const SUPABASE_PUBLISHABLE_KEY =
-    "sb_publishable_M7ETdIWvj4nCQZ55i24Vpw_5Yc5Islk";
+        const CATEGORY_NAMES = {
 
+            camisetas:
+                "Camisetas",
 
-const supabaseClient =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_PUBLISHABLE_KEY
-    );
+            pantalones:
+                "Pantalones",
 
+            conjuntos:
+                "Conjuntos",
 
-/* =====================================================
-   CATEGORÍAS
-===================================================== */
+            gorras:
+                "Gorras",
 
-const CATEGORY_LINKS = {
+            gafas:
+                "Gafas",
 
-    camisetas:
-        "camisetas.html",
+            bisuteria:
+                "Bisutería"
 
-    pantalones:
-        "pantalones.html",
+        };
 
-    conjuntos:
-        "conjuntos.html",
 
-    gorras:
-        "gorras.html",
+        /* =====================================================
+           ESCAPE HTML
+        ===================================================== */
 
-    gafas:
-        "gafas.html",
+        function escapeHTML(value){
 
-    bisuteria:
-        "bisuteria.html"
+            return String(value ?? "")
 
-};
+                .replace(/&/g,"&amp;")
 
+                .replace(/</g,"&lt;")
 
-const CATEGORY_NAMES = {
+                .replace(/>/g,"&gt;")
 
-    camisetas:
-        "Camisetas",
+                .replace(/"/g,"&quot;")
 
-    pantalones:
-        "Pantalones",
-
-    conjuntos:
-        "Conjuntos",
-
-    gorras:
-        "Gorras",
-
-    gafas:
-        "Gafas",
-
-    bisuteria:
-        "Bisutería"
-
-};
-
-
-/* =====================================================
-   ESCAPE HTML
-===================================================== */
-
-function escapeHTML(value){
-
-    return String(value ?? "")
-
-        .replace(/&/g,"&amp;")
-
-        .replace(/</g,"&lt;")
-
-        .replace(/>/g,"&gt;")
-
-        .replace(/"/g,"&quot;")
-
-        .replace(/'/g,"&#039;");
-
-}
-
-
-/* =====================================================
-   ESCAPE ATRIBUTO
-===================================================== */
-
-function escapeAttribute(value){
-
-    return String(value ?? "")
-
-        .replace(/&/g,"&amp;")
-
-        .replace(/"/g,"&quot;")
-
-        .replace(/'/g,"&#039;")
-
-        .replace(/</g,"&lt;")
-
-        .replace(/>/g,"&gt;");
-
-}
-
-
-/* =====================================================
-   OBTENER TODAS LAS IMÁGENES
-===================================================== */
-
-function getProductImages(product){
-
-    if(!product){
-
-        return [];
-
-    }
-
-
-    let raw =
-        product.images;
-
-
-    /*
-     * Por si Supabase devuelve JSON
-     * como texto.
-     */
-
-    if(typeof raw === "string"){
-
-        try{
-
-            raw =
-                JSON.parse(raw);
+                .replace(/'/g,"&#039;");
 
         }
-        catch(error){
 
-            /*
-             * Si por alguna razón es
-             * directamente una URL.
-             */
 
-            if(raw.startsWith("http")){
+        /* =====================================================
+           ESCAPE ATRIBUTO
+        ===================================================== */
 
-                return [raw];
+        function escapeAttribute(value){
+
+            return String(value ?? "")
+
+                .replace(/&/g,"&amp;")
+
+                .replace(/"/g,"&quot;")
+
+                .replace(/'/g,"&#039;")
+
+                .replace(/</g,"&lt;")
+
+                .replace(/>/g,"&gt;");
+
+        }
+
+
+        /* =====================================================
+           OBTENER TODAS LAS IMÁGENES
+        ===================================================== */
+
+        function getProductImages(product){
+
+            if(!product){
+
+                return [];
 
             }
 
-            return [];
 
-        }
-
-    }
+            let raw =
+                product.images;
 
 
-    if(!Array.isArray(raw)){
+            if(typeof raw === "string"){
 
-        return [];
+                try{
 
-    }
+                    raw =
+                        JSON.parse(raw);
 
+                }
 
-    const result = [];
+                catch(error){
 
+                    if(raw.startsWith("http")){
 
-    /*
-     * FORMATO QUE GUARDA TU ADMIN:
-     *
-     * [
-     *   {
-     *      name:"Negro",
-     *      color:"#000",
-     *      images:[
-     *          "foto1.jpg",
-     *          "foto2.jpg"
-     *      ]
-     *   }
-     * ]
-     */
+                        return [raw];
 
-    raw.forEach(item=>{
+                    }
 
-        if(typeof item === "string"){
+                    return [];
 
-            if(item.trim()){
-
-                result.push(
-                    item.trim()
-                );
+                }
 
             }
 
-            return;
 
-        }
+            if(!Array.isArray(raw)){
 
+                return [];
 
-        if(!item || typeof item !== "object"){
-
-            return;
-
-        }
+            }
 
 
-        /*
-         * Formato correcto del administrador:
-         * item.images[]
-         */
+            const result = [];
 
-        if(Array.isArray(item.images)){
 
-            item.images.forEach(image=>{
+            raw.forEach(item=>{
+
+                if(typeof item === "string"){
+
+                    if(item.trim()){
+
+                        result.push(
+                            item.trim()
+                        );
+
+                    }
+
+                    return;
+
+                }
+
+
+                if(!item || typeof item !== "object"){
+
+                    return;
+
+                }
+
+
+                if(Array.isArray(item.images)){
+
+                    item.images.forEach(image=>{
+
+                        if(
+                            typeof image === "string" &&
+                            image.trim()
+                        ){
+
+                            result.push(
+                                image.trim()
+                            );
+
+                        }
+
+                    });
+
+                }
+
 
                 if(
-                    typeof image === "string" &&
-                    image.trim()
+                    typeof item.image === "string" &&
+                    item.image.trim()
                 ){
 
                     result.push(
-                        image.trim()
+                        item.image.trim()
+                    );
+
+                }
+
+
+                if(
+                    typeof item.url === "string" &&
+                    item.url.trim()
+                ){
+
+                    result.push(
+                        item.url.trim()
+                    );
+
+                }
+
+
+                if(
+                    typeof item.src === "string" &&
+                    item.src.trim()
+                ){
+
+                    result.push(
+                        item.src.trim()
                     );
 
                 }
 
             });
 
-        }
 
-
-        /*
-         * Compatibilidad con formatos antiguos.
-         */
-
-        if(
-            typeof item.image === "string" &&
-            item.image.trim()
-        ){
-
-            result.push(
-                item.image.trim()
-            );
+            return [
+                ...new Set(result)
+            ];
 
         }
 
 
-        if(
-            typeof item.url === "string" &&
-            item.url.trim()
-        ){
+        /* =====================================================
+           IMAGEN PRINCIPAL
+        ===================================================== */
 
-            result.push(
-                item.url.trim()
-            );
+        function getProductImage(product){
 
-        }
+            const images =
+                getProductImages(product);
 
-
-        if(
-            typeof item.src === "string" &&
-            item.src.trim()
-        ){
-
-            result.push(
-                item.src.trim()
-            );
+            return images[0] || "";
 
         }
 
-    });
 
+        /* =====================================================
+           NOMBRE CATEGORÍA
+        ===================================================== */
 
-    /*
-     * Eliminamos duplicados.
-     */
+        function getCategoryName(category){
 
-    return [
-        ...new Set(result)
-    ];
-
-}
-
-
-/* =====================================================
-   IMAGEN PRINCIPAL
-===================================================== */
-
-function getProductImage(product){
-
-    const images =
-        getProductImages(product);
-
-
-    return images[0] || "";
-
-}
-
-
-/* =====================================================
-   NOMBRE CATEGORÍA
-===================================================== */
-
-function getCategoryName(category){
-
-    const key =
-        String(
-            category || ""
-        )
-        .trim()
-        .toLowerCase();
-
-
-    return CATEGORY_NAMES[key]
-        || category
-        || "Strangis";
-
-}
-
-
-/* =====================================================
-   ENLACE DEL PRODUCTO
-===================================================== */
-
-function getProductLink(product){
-
-    const category =
-        String(
-            product?.category || ""
-        )
-        .trim()
-        .toLowerCase();
-
-
-    return CATEGORY_LINKS[category]
-        || "#";
-
-}
-
-
-/* =====================================================
-   CREAR TARJETA
-===================================================== */
-
-function createProductCard(product){
-
-    const image =
-        getProductImage(product);
-
-
-    /*
-     * Si no tiene imagen,
-     * no mostramos la tarjeta.
-     */
-
-    if(!image){
-
-        return "";
-
-    }
-
-
-    const name =
-        String(
-            product?.name ||
-            "Producto Strangis"
-        );
-
-
-    const category =
-        String(
-            product?.category ||
-            ""
-        )
-        .trim()
-        .toLowerCase();
-
-
-    const categoryName =
-        getCategoryName(category);
-
-
-    const link =
-        getProductLink(product);
-
-
-    return `
-
-        <article
-            class="product"
-        >
-
-            <a
-                class="product-link"
-                href="${escapeAttribute(link)}"
-            >
-
-                <div
-                    class="product-image"
-                >
-
-                    <img
-                        src="${escapeAttribute(image)}"
-                        alt="${escapeHTML(name)}"
-                        loading="lazy"
-                        draggable="false"
-                        onerror="this.closest('.product').style.display='none';"
-                    >
-
-                </div>
-
-
-                <div
-                    class="product-info"
-                >
-
-                    <div
-                        class="product-name"
-                    >
-                        ${escapeHTML(name)}
-                    </div>
-
-
-                    <div
-                        class="product-category"
-                    >
-                        ${escapeHTML(categoryName)}
-                    </div>
-
-                </div>
-
-            </a>
-
-        </article>
-
-    `;
-
-}
-
-
-/* =====================================================
-   RENDERIZAR PRODUCTOS
-===================================================== */
-
-function renderProducts(products){
-
-    const container =
-        document.getElementById(
-            "productsContainer"
-        );
-
-
-    const counter =
-        document.getElementById(
-            "productCount"
-        );
-
-
-    if(!container){
-
-        return;
-
-    }
-
-
-    /*
-     * Solo productos activos.
-     */
-
-    const activeProducts =
-        Array.isArray(products)
-
-        ?
-        products.filter(
-            product =>
-                product &&
-                product.active !== false
-        )
-
-        :
-        [];
-
-
-    /*
-     * Solo productos con
-     * alguna imagen.
-     */
-
-    const validProducts =
-        activeProducts.filter(
-            product =>
-                Boolean(
-                    getProductImage(product)
+            const key =
+                String(
+                    category || ""
                 )
-        );
+                .trim()
+                .toLowerCase();
 
 
-    counter.textContent =
-        validProducts.length === 1
+            return CATEGORY_NAMES[key]
+                || category
+                || "Strangis";
 
-        ?
-        "1 artículo"
-
-        :
-        `${validProducts.length} artículos`;
+        }
 
 
-    /*
-     * Sin productos.
-     */
+        /* =====================================================
+           ENLACE DEL PRODUCTO
+        ===================================================== */
 
-    if(!validProducts.length){
+        function getProductLink(product){
 
-        container.style.animation =
-            "none";
-
-        container.innerHTML = `
-
-            <div class="empty">
-
-                <div class="empty-title">
-                    Próximamente
-                </div>
-
-                <div class="empty-text">
-
-                    Estamos preparando nuevos artículos
-                    para la colección Strangis.
-
-                </div>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
+            const category =
+                String(
+                    product?.category || ""
+                )
+                .trim()
+                .toLowerCase();
 
 
-    /*
-     * Generamos las tarjetas.
-     */
+            return CATEGORY_LINKS[category]
+                || "#";
 
-    const cards =
-        validProducts
-            .map(createProductCard)
-            .join("");
+        }
 
 
-    /*
-     * DOS COPIAS para el carrusel
-     * infinito.
-     */
+        /* =====================================================
+           CREAR TARJETA
+        ===================================================== */
 
-    container.innerHTML =
-        cards + cards;
+        function createProductCard(product){
 
-
-    /*
-     * Un único producto:
-     * no tiene sentido moverlo.
-     */
-
-    if(validProducts.length === 1){
-
-        container.style.animation =
-            "none";
-
-    }
-    else{
-
-        container.style.animation = "";
-
-    }
-
-}
+            const image =
+                getProductImage(product);
 
 
-/* =====================================================
-   CARGAR DIRECTAMENTE DESDE SUPABASE
-===================================================== */
+            if(!image){
 
-async function loadInicioProducts(){
+                return "";
 
-    const container =
-        document.getElementById(
-            "productsContainer"
-        );
+            }
 
 
-    const counter =
-        document.getElementById(
-            "productCount"
-        );
-
-
-    try{
-
-        counter.textContent =
-            "Cargando...";
-
-
-        container.innerHTML = `
-
-            <div class="empty">
-
-                <div class="empty-title">
-                    Cargando productos
-                </div>
-
-                <div class="empty-text">
-                    Un momento...
-                </div>
-
-            </div>
-
-        `;
-
-
-        /*
-         * CONSULTA DIRECTA A SUPABASE
-         *
-         * No necesita products.js
-         */
-
-        const {data,error} =
-            await supabaseClient
-
-                .from("Products")
-
-                .select("*")
-
-                .eq("active",true)
-
-                .order(
-                    "id",
-                    {
-                        ascending:false
-                    }
+            const name =
+                String(
+                    product?.name ||
+                    "Producto Strangis"
                 );
 
 
-        if(error){
+            const category =
+                String(
+                    product?.category ||
+                    ""
+                )
+                .trim()
+                .toLowerCase();
 
-            throw error;
+
+            const categoryName =
+                getCategoryName(category);
+
+
+            const link =
+                getProductLink(product);
+
+
+            return `
+
+                <article
+                    class="product"
+                >
+
+                    <a
+                        class="product-link"
+                        href="${escapeAttribute(link)}"
+                    >
+
+                        <div
+                            class="product-image"
+                        >
+
+                            <img
+                                src="${escapeAttribute(image)}"
+                                alt="${escapeHTML(name)}"
+                                loading="lazy"
+                                draggable="false"
+                                onerror="this.closest('.product').style.display='none';"
+                            >
+
+                        </div>
+
+
+                        <div
+                            class="product-info"
+                        >
+
+                            <div
+                                class="product-name"
+                            >
+                                ${escapeHTML(name)}
+                            </div>
+
+
+                            <div
+                                class="product-category"
+                            >
+                                ${escapeHTML(categoryName)}
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </article>
+
+            `;
 
         }
+
+
+        /* =====================================================
+           RENDERIZAR PRODUCTOS
+        ===================================================== */
+
+        function renderProducts(products){
+
+            const container =
+                document.getElementById(
+                    "productsContainer"
+                );
+
+
+            const counter =
+                document.getElementById(
+                    "productCount"
+                );
+
+
+            if(!container){
+
+                return;
+
+            }
+
+
+            const activeProducts =
+                Array.isArray(products)
+
+                ?
+
+                products.filter(
+                    product =>
+                        product &&
+                        product.active !== false
+                )
+
+                :
+
+                [];
+
+
+            const validProducts =
+                activeProducts.filter(
+                    product =>
+                        Boolean(
+                            getProductImage(product)
+                        )
+                );
+
+
+            counter.textContent =
+                validProducts.length === 1
+
+                ?
+
+                "1 artículo"
+
+                :
+
+                `${validProducts.length} artículos`;
+
+
+            if(!validProducts.length){
+
+                container.style.animation =
+                    "none";
+
+                container.innerHTML = `
+
+                    <div class="empty">
+
+                        <div class="empty-title">
+                            Próximamente
+                        </div>
+
+                        <div class="empty-text">
+
+                            Estamos preparando nuevos artículos
+                            para la colección Strangis.
+
+                        </div>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            const cards =
+                validProducts
+                    .map(createProductCard)
+                    .join("");
+
+
+            container.innerHTML =
+                cards + cards;
+
+
+            if(validProducts.length === 1){
+
+                container.style.animation =
+                    "none";
+
+            }
+
+            else{
+
+                container.style.animation = "";
+
+            }
+
+        }
+
+
+        /* =====================================================
+           CARGAR DESDE SUPABASE
+        ===================================================== */
+
+        async function loadInicioProducts(){
+
+            const container =
+                document.getElementById(
+                    "productsContainer"
+                );
+
+
+            const counter =
+                document.getElementById(
+                    "productCount"
+                );
+
+
+            try{
+
+                counter.textContent =
+                    "Cargando...";
+
+
+                container.innerHTML = `
+
+                    <div class="empty">
+
+                        <div class="empty-title">
+                            Cargando productos
+                        </div>
+
+                        <div class="empty-text">
+                            Un momento...
+                        </div>
+
+                    </div>
+
+                `;
+
+
+                const {data,error} =
+                    await supabaseClient
+
+                        .from("Products")
+
+                        .select("*")
+
+                        .eq("active",true)
+
+                        .order(
+                            "id",
+                            {
+                                ascending:false
+                            }
+                        );
+
+
+                if(error){
+
+                    throw error;
+
+                }
+
+
+                console.log(
+                    "STRANGIS — productos recibidos:",
+                    data
+                );
+
+
+                renderProducts(
+                    Array.isArray(data)
+                        ? data
+                        : []
+                );
+
+
+            }
+
+            catch(error){
+
+                console.error(
+                    "STRANGIS — error Supabase:",
+                    error
+                );
+
+
+                counter.textContent =
+                    "Error";
+
+
+                container.innerHTML = `
+
+                    <div class="empty">
+
+                        <div class="empty-title">
+                            No se pudieron cargar
+                            los productos
+                        </div>
+
+                        <div class="empty-text">
+
+                            ${escapeHTML(
+                                error?.message ||
+                                "Error desconocido."
+                            )}
+
+                            <br><br>
+
+                            Comprueba las políticas
+                            <strong>RLS</strong>
+                            de la tabla
+                            <strong>Products</strong>.
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           PAUSAR CARRUSEL
+        ===================================================== */
+
+        const carouselWindow =
+            document.getElementById(
+                "carouselWindow"
+            );
+
+
+        if(carouselWindow){
+
+            carouselWindow.addEventListener(
+                "mouseenter",
+                ()=>{
+
+                    const track =
+                        document.getElementById(
+                            "productsContainer"
+                        );
+
+
+                    if(track){
+
+                        track.style.animationPlayState =
+                            "paused";
+
+                    }
+
+                }
+            );
+
+
+            carouselWindow.addEventListener(
+                "mouseleave",
+                ()=>{
+
+                    const track =
+                        document.getElementById(
+                            "productsContainer"
+                        );
+
+
+                    if(track){
+
+                        track.style.animationPlayState =
+                            "running";
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           INICIAR
+        ===================================================== */
+
+        loadInicioProducts();
+
+
+        /* =====================================================
+           ACTUALIZACIÓN AUTOMÁTICA
+        ===================================================== */
+
+        setInterval(
+            loadInicioProducts,
+            30000
+        );
 
 
         console.log(
-            "STRANGIS — productos recibidos:",
-            data
+            "STRANGIS — inicio conectado directamente a Supabase"
         );
 
-
-        renderProducts(
-            Array.isArray(data)
-                ? data
-                : []
-        );
-
-
-    }
-    catch(error){
-
-        console.error(
-            "STRANGIS — error Supabase:",
-            error
-        );
-
-
-        counter.textContent =
-            "Error";
-
-
-        container.innerHTML = `
-
-            <div class="empty">
-
-                <div class="empty-title">
-                    No se pudieron cargar
-                    los productos
-                </div>
-
-                <div class="empty-text">
-
-                    ${escapeHTML(
-                        error?.message ||
-                        "Error desconocido."
-                    )}
-
-                    <br><br>
-
-                    Comprueba las políticas
-                    <strong>RLS</strong>
-                    de la tabla
-                    <strong>Products</strong>.
-
-                </div>
-
-            </div>
-
-        `;
-
-    }
-
-}
-
-
-/* =====================================================
-   PAUSAR CARRUSEL
-===================================================== */
-
-const carouselWindow =
-    document.getElementById(
-        "carouselWindow"
-    );
-
-
-if(carouselWindow){
-
-    carouselWindow.addEventListener(
-        "mouseenter",
-        ()=>{
-
-            const track =
-                document.getElementById(
-                    "productsContainer"
-                );
-
-
-            if(track){
-
-                track.style.animationPlayState =
-                    "paused";
-
-            }
-
-        }
-    );
-
-
-    carouselWindow.addEventListener(
-        "mouseleave",
-        ()=>{
-
-            const track =
-                document.getElementById(
-                    "productsContainer"
-                );
-
-
-            if(track){
-
-                track.style.animationPlayState =
-                    "running";
-
-            }
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   INICIAR
-===================================================== */
-
-loadInicioProducts();
-
-
-/* =====================================================
-   ACTUALIZAR AUTOMÁTICAMENTE
-   Cada 30 segundos comprueba si hay productos nuevos.
-===================================================== */
-
-setInterval(
-    loadInicioProducts,
-    30000
-);
-
-
-console.log(
-    "STRANGIS — inicio conectado directamente a Supabase"
-);
-
-</script>
-
+    </script>
 
 </body>
 
