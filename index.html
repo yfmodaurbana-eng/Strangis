@@ -201,7 +201,74 @@ nav a.active{
 
     font-weight:900;
 
+    color:#fff;
+
+    text-shadow:
+
+        0 0 5px rgba(255,255,255,.9),
+
+        0 0 12px rgba(255,255,255,.85),
+
+        0 0 25px rgba(255,255,255,.65),
+
+        0 0 45px rgba(180,180,180,.55),
+
+        0 0 80px rgba(255,255,255,.35);
+
+    animation:
+        strangisNeon
+        3s
+        ease-in-out
+        infinite;
+
 }
+
+
+/* =====================================================
+   EFECTO NEÓN
+===================================================== */
+
+@keyframes strangisNeon{
+
+    0%,
+    100%{
+
+        opacity:1;
+
+        text-shadow:
+
+            0 0 5px rgba(255,255,255,.9),
+
+            0 0 12px rgba(255,255,255,.85),
+
+            0 0 25px rgba(255,255,255,.65),
+
+            0 0 45px rgba(180,180,180,.55),
+
+            0 0 80px rgba(255,255,255,.35);
+
+    }
+
+    50%{
+
+        opacity:.92;
+
+        text-shadow:
+
+            0 0 3px rgba(255,255,255,.8),
+
+            0 0 8px rgba(255,255,255,.65),
+
+            0 0 17px rgba(255,255,255,.45),
+
+            0 0 30px rgba(180,180,180,.35),
+
+            0 0 55px rgba(255,255,255,.2);
+
+    }
+
+}
+
 
 .hero p{
 
@@ -244,7 +311,7 @@ nav a.active{
 
 .products-section{
 
-    width:min(1400px,90%);
+    width:100%;
 
     margin:auto;
 
@@ -257,6 +324,11 @@ nav a.active{
 
 .section-heading{
 
+    width:min(1400px,90%);
+
+    margin:
+        0 auto 25px;
+
     display:flex;
 
     align-items:end;
@@ -264,8 +336,6 @@ nav a.active{
     justify-content:space-between;
 
     gap:20px;
-
-    margin-bottom:25px;
 
 }
 
@@ -293,20 +363,127 @@ nav a.active{
 
 
 /* =====================================================
-   MOSAICO
+   CONTENEDOR DEL CARRUSEL
+===================================================== */
+
+.carousel-wrapper{
+
+    position:relative;
+
+    width:100%;
+
+    overflow:hidden;
+
+}
+
+
+/* =====================================================
+   DEGRADADOS LATERALES
+===================================================== */
+
+.carousel-wrapper::before,
+.carousel-wrapper::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    bottom:0;
+
+    width:100px;
+
+    z-index:5;
+
+    pointer-events:none;
+
+}
+
+.carousel-wrapper::before{
+
+    left:0;
+
+    background:
+        linear-gradient(
+            to right,
+            #252525,
+            transparent
+        );
+
+}
+
+.carousel-wrapper::after{
+
+    right:0;
+
+    background:
+        linear-gradient(
+            to left,
+            #252525,
+            transparent
+        );
+
+}
+
+
+/* =====================================================
+   PISTA DEL CARRUSEL
 ===================================================== */
 
 .products{
 
-    display:grid;
+    display:flex;
 
-    grid-template-columns:
-        repeat(
-            6,
-            minmax(0,1fr)
-        );
+    width:max-content;
 
     gap:12px;
+
+    /*
+       32 segundos:
+       más rápido que antes, pero todavía suave.
+    */
+
+    animation:
+        productsScroll
+        32s
+        linear
+        infinite;
+
+}
+
+
+/* =====================================================
+   ANIMACIÓN CARRUSEL
+===================================================== */
+
+@keyframes productsScroll{
+
+    from{
+
+        transform:
+            translate3d(0,0,0);
+
+    }
+
+    to{
+
+        transform:
+            translate3d(-50%,0,0);
+
+    }
+
+}
+
+
+/* =====================================================
+   PAUSAR AL PASAR EL RATÓN
+===================================================== */
+
+.carousel-wrapper:hover .products{
+
+    animation-play-state:
+        paused;
 
 }
 
@@ -317,7 +494,9 @@ nav a.active{
 
 .product{
 
-    min-width:0;
+    flex:0 0 220px;
+
+    width:220px;
 
     overflow:hidden;
 
@@ -347,10 +526,10 @@ nav a.active{
 .product:hover{
 
     transform:
-        translateY(-4px);
+        translateY(-5px);
 
     border-color:
-        rgba(255,255,255,.25);
+        rgba(255,255,255,.28);
 
     background:
         rgba(255,255,255,.07);
@@ -391,16 +570,16 @@ nav a.active{
 
 }
 
-.product:hover
-.product-image img{
+.product:hover .product-image img{
 
-    transform:scale(1.045);
+    transform:
+        scale(1.045);
 
 }
 
 
 /* =====================================================
-   INFORMACIÓN
+   INFORMACIÓN PRODUCTO
 ===================================================== */
 
 .product-info{
@@ -460,7 +639,9 @@ nav a.active{
 
 .empty{
 
-    grid-column:1 / -1;
+    width:min(1400px,90%);
+
+    margin:auto;
 
     padding:
         100px 20px;
@@ -614,13 +795,11 @@ footer{
 
 @media(max-width:1100px){
 
-    .products{
+    .product{
 
-        grid-template-columns:
-            repeat(
-                4,
-                minmax(0,1fr)
-            );
+        flex-basis:200px;
+
+        width:200px;
 
     }
 
@@ -633,13 +812,11 @@ footer{
 
 @media(max-width:800px){
 
-    .products{
+    .product{
 
-        grid-template-columns:
-            repeat(
-                3,
-                minmax(0,1fr)
-            );
+        flex-basis:190px;
+
+        width:190px;
 
     }
 
@@ -740,32 +917,45 @@ footer{
 
     .products-section{
 
-        width:94%;
-
         padding-bottom:80px;
 
     }
 
 
-    /*
-       MOSAICO MÓVIL
+    .section-heading{
 
-       2 PRODUCTOS POR FILA
+        width:94%;
+
+    }
+
+
+    .carousel-wrapper::before,
+    .carousel-wrapper::after{
+
+        width:40px;
+
+    }
+
+
+    /*
+       Carrusel móvil más rápido.
     */
 
     .products{
 
-        grid-template-columns:
-            repeat(
-                2,
-                minmax(0,1fr)
-            );
-
         gap:9px;
+
+        animation-duration:
+            26s;
 
     }
 
+
     .product{
+
+        flex-basis:155px;
+
+        width:155px;
 
         border-radius:7px;
 
@@ -811,6 +1001,14 @@ footer{
 
     }
 
+    .product{
+
+        flex-basis:145px;
+
+        width:145px;
+
+    }
+
     .product-name{
 
         font-size:9px;
@@ -826,9 +1024,25 @@ footer{
 
 @media(prefers-reduced-motion:reduce){
 
-    *{
+    html{
 
         scroll-behavior:auto !important;
+
+    }
+
+    .hero h1{
+
+        animation:none !important;
+
+    }
+
+    .products{
+
+        animation:none !important;
+
+    }
+
+    *{
 
         transition:none !important;
 
@@ -955,10 +1169,14 @@ tu compra.
 
 
 
-<div
-    class="products"
-    id="productsContainer"
-></div>
+<div class="carousel-wrapper">
+
+    <div
+        class="products"
+        id="productsContainer"
+    ></div>
+
+</div>
 
 
 </section>
@@ -1063,22 +1281,17 @@ realiza tu pedido.
 /* =====================================================
    PRODUCTOS DE INICIO
 
-   IMPORTANTE:
-   NO HAY PRODUCTOS DE EJEMPLO.
-
    Añade aquí únicamente productos REALES.
 
-   Ejemplo de estructura:
+   Ejemplo:
 
    {
-       name:"Nombre del producto",
+       name:"Camiseta Strangis",
        category:"Camisetas",
-       image:"URL-DE-TU-IMAGEN",
+       image:"https://TU-IMAGEN-REAL.jpg",
        link:"camisetas.html"
    }
 
-   Mientras este array esté vacío,
-   la página NO mostrará ninguna imagen.
 ===================================================== */
 
 const PRODUCTS = [
@@ -1208,6 +1421,83 @@ function updateProductCount(){
 
 
 /* =====================================================
+   CREAR TARJETA
+===================================================== */
+
+function createProductCard(product){
+
+    const link =
+        product.link || "#";
+
+
+    return `
+
+        <article class="product">
+
+            <a
+                class="product-link"
+                href="${escapeAttribute(link)}"
+            >
+
+                <div class="product-image">
+
+                    <img
+                        src="${escapeAttribute(product.image)}"
+                        alt="${escapeHTML(product.name)}"
+                        loading="lazy"
+                        draggable="false"
+                        onerror="
+                            this.closest('.product').style.display='none';
+                        "
+                    >
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <div class="product-name">
+
+                        ${escapeHTML(product.name)}
+
+                    </div>
+
+
+                    ${
+                        product.category
+
+                        ?
+
+                        `
+
+                        <div class="product-category">
+
+                            ${escapeHTML(
+                                product.category
+                            )}
+
+                        </div>
+
+                        `
+
+                        :
+
+                        ""
+                    }
+
+                </div>
+
+            </a>
+
+        </article>
+
+    `;
+
+}
+
+
+
+/* =====================================================
    MOSTRAR PRODUCTOS
 ===================================================== */
 
@@ -1226,15 +1516,35 @@ function renderProducts(){
     }
 
 
+    const validProducts =
+
+        Array.isArray(PRODUCTS)
+
+        ?
+
+        PRODUCTS.filter(
+
+            product =>
+
+                product &&
+
+                product.name &&
+
+                product.image
+
+        )
+
+        :
+
+        [];
+
+
     /*
        Si no hay productos,
-       no se muestra ninguna imagen.
+       mostramos estado vacío.
     */
 
-    if(
-        !Array.isArray(PRODUCTS) ||
-        PRODUCTS.length === 0
-    ){
+    if(validProducts.length === 0){
 
         container.innerHTML = `
 
@@ -1265,91 +1575,33 @@ function renderProducts(){
     }
 
 
-    container.innerHTML =
+    /*
+       Primera copia de productos.
+    */
 
-        PRODUCTS
+    const firstSet =
 
-        .filter(
-            product =>
+        validProducts
 
-                product &&
-
-                product.name &&
-
-                product.image
-        )
-
-        .map(
-
-            product => {
-
-                const link =
-                    product.link ||
-                    "#";
-
-
-                return `
-
-                <article class="product">
-
-                    <a
-                        class="product-link"
-                        href="${escapeAttribute(link)}"
-                    >
-
-                        <div class="product-image">
-
-                            <img
-                                src="${escapeAttribute(product.image)}"
-                                alt="${escapeHTML(product.name)}"
-                                loading="lazy"
-                                draggable="false"
-                                onerror="this.closest('.product').style.display='none';"
-                            >
-
-                        </div>
-
-
-                        <div class="product-info">
-
-                            <div class="product-name">
-
-                                ${escapeHTML(product.name)}
-
-                            </div>
-
-
-                            ${
-                                product.category
-                                ?
-                                `
-
-                                <div class="product-category">
-
-                                    ${escapeHTML(
-                                        product.category
-                                    )}
-
-                                </div>
-
-                                `
-                                :
-                                ""
-                            }
-
-                        </div>
-
-                    </a>
-
-                </article>
-
-                `;
-
-            }
-
-        )
+        .map(createProductCard)
 
         .join("");
+
+
+    /*
+       Segunda copia idéntica.
+       La animación recorre el 50%
+       y vuelve al principio sin salto.
+    */
+
+    const secondSet =
+        firstSet;
+
+
+    container.innerHTML =
+
+        firstSet +
+        secondSet;
 
 
     updateProductCount();
