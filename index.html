@@ -18,15 +18,6 @@
 <title>Strangis</title>
 
 
-<!-- =====================================================
-     PRODUCTS.JS
-     
-     Aquí se cargan los productos reales de la web.
-===================================================== -->
-
-<script src="products.js"></script>
-
-
 <style>
 
 /* =====================================================
@@ -154,8 +145,7 @@ nav a{
 
     white-space:nowrap;
 
-    transition:
-        color .2s ease;
+    transition:.2s;
 
 }
 
@@ -205,8 +195,6 @@ nav a.active{
 
     position:relative;
 
-    display:inline-block;
-
     margin-top:18px;
 
     font-size:
@@ -226,18 +214,21 @@ nav a.active{
 
     text-shadow:
 
-        0 0 4px rgba(255,255,255,.95),
+        0 0 4px #fff,
 
-        0 0 10px rgba(255,255,255,.85),
+        0 0 10px rgba(255,255,255,.95),
 
-        0 0 22px rgba(255,255,255,.75),
+        0 0 22px rgba(255,255,255,.8),
 
-        0 0 45px rgba(255,255,255,.55),
+        0 0 45px rgba(190,190,190,.65),
 
-        0 0 80px rgba(255,255,255,.30);
+        0 0 80px rgba(255,255,255,.4);
 
     animation:
-        neonPulse 2.8s ease-in-out infinite;
+        neonPulse
+        2.8s
+        ease-in-out
+        infinite;
 
 }
 
@@ -250,33 +241,33 @@ nav a.active{
 
         text-shadow:
 
-            0 0 4px rgba(255,255,255,.95),
+            0 0 4px #fff,
 
-            0 0 10px rgba(255,255,255,.85),
+            0 0 10px rgba(255,255,255,.95),
 
-            0 0 22px rgba(255,255,255,.75),
+            0 0 22px rgba(255,255,255,.8),
 
-            0 0 45px rgba(255,255,255,.55),
+            0 0 45px rgba(190,190,190,.65),
 
-            0 0 80px rgba(255,255,255,.30);
+            0 0 80px rgba(255,255,255,.4);
 
     }
 
     50%{
 
-        opacity:.94;
+        opacity:.92;
 
         text-shadow:
 
-            0 0 3px rgba(255,255,255,.9),
+            0 0 3px #fff,
 
-            0 0 7px rgba(255,255,255,.75),
+            0 0 7px rgba(255,255,255,.8),
 
-            0 0 16px rgba(255,255,255,.55),
+            0 0 15px rgba(255,255,255,.65),
 
-            0 0 32px rgba(255,255,255,.40),
+            0 0 30px rgba(190,190,190,.45),
 
-            0 0 60px rgba(255,255,255,.20);
+            0 0 55px rgba(255,255,255,.25);
 
     }
 
@@ -324,7 +315,7 @@ nav a.active{
 
 .products-section{
 
-    width:min(1400px,90%);
+    width:100%;
 
     margin:auto;
 
@@ -333,9 +324,18 @@ nav a.active{
         0
         110px;
 
+    overflow:hidden;
+
 }
 
 .section-heading{
+
+    width:min(1400px,90%);
+
+    margin:
+        0
+        auto
+        25px;
 
     display:flex;
 
@@ -344,8 +344,6 @@ nav a.active{
     justify-content:space-between;
 
     gap:20px;
-
-    margin-bottom:25px;
 
 }
 
@@ -384,16 +382,12 @@ nav a.active{
 
     overflow:hidden;
 
-    padding:
-        5px 0
-        15px;
-
 }
 
 
 /*
-   Máscaras laterales para que el carrusel
-   desaparezca suavemente en los extremos.
+   Degradados laterales para que
+   las tarjetas entren y salgan suavemente.
 */
 
 .carousel::before,
@@ -421,8 +415,8 @@ nav a.active{
 
     background:
         linear-gradient(
-            90deg,
-            rgba(30,30,30,.95),
+            to right,
+            #202020,
             transparent
         );
 
@@ -434,8 +428,8 @@ nav a.active{
 
     background:
         linear-gradient(
-            270deg,
-            rgba(30,30,30,.95),
+            to left,
+            #292929,
             transparent
         );
 
@@ -443,7 +437,7 @@ nav a.active{
 
 
 /* =====================================================
-   PISTA DEL CARRUSEL
+   PISTA
 ===================================================== */
 
 .products-track{
@@ -452,10 +446,14 @@ nav a.active{
 
     width:max-content;
 
-    gap:12px;
+    gap:14px;
 
-    will-change:
-        transform;
+    padding:
+        10px
+        5vw
+        20px;
+
+    will-change:transform;
 
     animation:
         carouselMove
@@ -467,12 +465,13 @@ nav a.active{
 
 
 /*
-   La mitad de la pista es una copia exacta.
+   Velocidad del carrusel.
 
-   Cuando termina la primera mitad,
-   la segunda queda exactamente en la misma
-   posición y el movimiento puede continuar
-   sin salto visible.
+   28 segundos = movimiento rápido
+   pero todavía suave.
+
+   Si posteriormente quieres aún más
+   velocidad puedes bajar este valor.
 */
 
 @keyframes carouselMove{
@@ -487,13 +486,21 @@ nav a.active{
     to{
 
         transform:
-            translateX(
-                calc(
-                    -50% - 6px
-                )
-            );
+            translateX(-50%);
 
     }
+
+}
+
+
+/* =====================================================
+   PAUSA AL PASAR EL RATÓN
+===================================================== */
+
+.carousel:hover
+.products-track{
+
+    animation-play-state:paused;
 
 }
 
@@ -507,8 +514,8 @@ nav a.active{
     flex:
         0 0
         clamp(
-            180px,
-            18vw,
+            190px,
+            17vw,
             245px
         );
 
@@ -540,13 +547,13 @@ nav a.active{
 .product:hover{
 
     transform:
-        translateY(-4px);
+        translateY(-5px);
 
     border-color:
-        rgba(255,255,255,.25);
+        rgba(255,255,255,.28);
 
     background:
-        rgba(255,255,255,.07);
+        rgba(255,255,255,.075);
 
 }
 
@@ -580,7 +587,7 @@ nav a.active{
     object-fit:cover;
 
     transition:
-        transform .35s ease;
+        transform .4s ease;
 
 }
 
@@ -588,7 +595,7 @@ nav a.active{
 .product-image img{
 
     transform:
-        scale(1.045);
+        scale(1.06);
 
 }
 
@@ -600,7 +607,9 @@ nav a.active{
 .product-info{
 
     padding:
-        12px 11px 14px;
+        12px
+        11px
+        14px;
 
 }
 
@@ -649,12 +658,14 @@ nav a.active{
 
 
 /* =====================================================
-   ESTADO VACÍO
+   ESTADOS
 ===================================================== */
 
 .empty{
 
-    width:100%;
+    width:min(1400px,90%);
+
+    margin:auto;
 
     padding:
         100px 20px;
@@ -809,35 +820,26 @@ footer{
    TABLET
 ===================================================== */
 
-@media(max-width:1100px){
-
-    .product{
-
-        flex-basis:
-            210px;
-
-    }
-
-}
-
-
-/* =====================================================
-   TABLET PEQUEÑA
-===================================================== */
-
 @media(max-width:800px){
-
-    .product{
-
-        flex-basis:
-            190px;
-
-    }
 
     .info-grid{
 
         grid-template-columns:
             1fr;
+
+    }
+
+    .products-track{
+
+        gap:10px;
+
+        padding-left:5vw;
+
+    }
+
+    .product{
+
+        flex-basis:200px;
 
     }
 
@@ -931,20 +933,20 @@ footer{
 
     .products-section{
 
-        width:94%;
-
         padding-bottom:80px;
 
     }
 
+    .section-heading{
 
-    .carousel{
+        width:94%;
 
-        margin-left:
-            -3vw;
+    }
 
-        width:
-            106vw;
+    .carousel::before,
+    .carousel::after{
+
+        width:45px;
 
     }
 
@@ -952,15 +954,16 @@ footer{
 
         gap:9px;
 
-        animation-duration:
-            24s;
+        padding-left:3vw;
+
+        animation-duration:24s;
 
     }
 
     .product{
 
         flex-basis:
-            170px;
+            175px;
 
         border-radius:7px;
 
@@ -969,7 +972,9 @@ footer{
     .product-info{
 
         padding:
-            9px 8px 11px;
+            9px
+            8px
+            11px;
 
     }
 
@@ -982,13 +987,6 @@ footer{
     .product-category{
 
         font-size:8px;
-
-    }
-
-    .carousel::before,
-    .carousel::after{
-
-        width:45px;
 
     }
 
@@ -1007,10 +1005,22 @@ footer{
 
 @media(max-width:380px){
 
+    .products-track{
+
+        gap:7px;
+
+    }
+
     .product{
 
         flex-basis:
-            155px;
+            160px;
+
+    }
+
+    .product-name{
+
+        font-size:9px;
 
     }
 
@@ -1027,9 +1037,9 @@ footer{
 
         scroll-behavior:auto !important;
 
-        animation:none !important;
-
         transition:none !important;
+
+        animation:none !important;
 
     }
 
@@ -1147,21 +1157,22 @@ tu compra.
 
 
 <span id="productCount">
-    0 artículos
+    Cargando...
 </span>
 
 </div>
 
 
+
 <div
     class="carousel"
-    id="carousel"
+    id="productsCarousel"
 >
 
-    <div
-        class="products-track"
-        id="productsTrack"
-    ></div>
+<div
+    class="products-track"
+    id="productsTrack"
+></div>
 
 </div>
 
@@ -1263,50 +1274,44 @@ realiza tu pedido.
 
 
 
+<!-- =====================================================
+     MOTOR DE PRODUCTOS
+
+     IMPORTANTE:
+     Este archivo debe estar en la misma carpeta
+     que inicio.html.
+
+     products.js contiene:
+     - Supabase
+     - Products
+     - funciones del sistema
+===================================================== -->
+
+<script src="products.js"></script>
+
+
+
 <script>
 
 /* =====================================================
-   OBTENER PRODUCTOS DESDE PRODUCTS.JS
+   STRANGIS — INICIO
+   CARGA PRODUCTOS DIRECTAMENTE DESDE SUPABASE
 ===================================================== */
 
 
-/*
-   products.js debe tener:
+/* =====================================================
+   ELEMENTOS
+===================================================== */
 
-   const PRODUCTS = [
-       {
-           name: "...",
-           category: "...",
-           image: "...",
-           link: "..."
-       }
-   ];
+const productsTrack =
+    document.getElementById(
+        "productsTrack"
+    );
 
-   También aceptamos que PRODUCTS esté disponible
-   como window.PRODUCTS.
-*/
-
-let products = [];
-
-
-try{
-
-    if(
-        typeof PRODUCTS !== "undefined" &&
-        Array.isArray(PRODUCTS)
-    ){
-
-        products = PRODUCTS;
-
-    }
-
-}
-catch(error){
-
-    products = [];
-
-}
-
+const productCount =
+    document.getElementById(
+        "productCount"
+    );
 
 
 /* =====================================================
@@ -1345,7 +1350,6 @@ function escapeHTML(value){
 }
 
 
-
 /* =====================================================
    ESCAPE ATRIBUTO
 ===================================================== */
@@ -1382,77 +1386,426 @@ function escapeAttribute(value){
 }
 
 
-
 /* =====================================================
-   FILTRAR PRODUCTOS VÁLIDOS
+   CATEGORÍAS
 ===================================================== */
 
-function getValidProducts(){
+function getCategoryLabel(category){
 
-    if(
-        !Array.isArray(products)
-    ){
+    const categories = {
 
-        return [];
+        camisetas:
+            "Camisetas",
 
-    }
+        pantalones:
+            "Pantalones",
+
+        conjuntos:
+            "Conjuntos",
+
+        gorras:
+            "Gorras",
+
+        gafas:
+            "Gafas",
+
+        bisuteria:
+            "Bisutería"
+
+    };
 
 
-    return products.filter(
+    const key =
+        String(category || "")
+            .trim()
+            .toLowerCase();
 
-        product =>
 
-            product &&
-
-            product.name &&
-
-            product.image
-
+    return (
+        categories[key]
+        ||
+        category
+        ||
+        "Strangis"
     );
 
 }
 
 
-
 /* =====================================================
-   CONTADOR
+   OBTENER IMAGEN DEL PRODUCTO
+=====================================================
+
+   Tu products.js guarda:
+
+       images: [
+           {
+               name: "...",
+               image: "URL"
+           }
+       ]
+
+   Aquí soportamos además varios formatos
+   por seguridad.
 ===================================================== */
 
-function updateProductCount(total){
+function getProductImage(product){
 
-    const counter =
-        document.getElementById(
-            "productCount"
-        );
+    if(!product){
 
-
-    if(!counter){
-
-        return;
+        return "";
 
     }
 
 
-    counter.textContent =
+    /* ---------------------------------------------
+       Formato principal de Strangis
+    --------------------------------------------- */
 
-        total === 1
+    if(
+        Array.isArray(product.images)
+        &&
+        product.images.length
+    ){
 
-        ? "1 artículo"
+        for(
+            const variant
+            of product.images
+        ){
 
-        : `${total} artículos`;
+            if(
+                variant
+                &&
+                typeof variant === "object"
+                &&
+                variant.image
+            ){
+
+                return String(
+                    variant.image
+                ).trim();
+
+            }
+
+
+            if(
+                typeof variant === "string"
+                &&
+                variant.trim()
+            ){
+
+                return variant.trim();
+
+            }
+
+        }
+
+    }
+
+
+    /* ---------------------------------------------
+       Otros formatos posibles
+    --------------------------------------------- */
+
+    const possibleImages = [
+
+        product.image,
+
+        product.image_url,
+
+        product.imageUrl,
+
+        product.thumbnail,
+
+        product.photo,
+
+        product.url
+
+    ];
+
+
+    for(
+        const image
+        of possibleImages
+    ){
+
+        if(
+            typeof image === "string"
+            &&
+            image.trim()
+        ){
+
+            return image.trim();
+
+        }
+
+    }
+
+
+    return "";
 
 }
 
+
+/* =====================================================
+   OBTENER PRODUCTOS
+===================================================== */
+
+async function loadProducts(){
+
+    try{
+
+        /*
+           Comprobamos que products.js
+           realmente se haya cargado.
+        */
+
+        if(
+            typeof supabaseClient ===
+            "undefined"
+        ){
+
+            throw new Error(
+                "No se ha encontrado products.js"
+            );
+
+        }
+
+
+        /*
+           Leemos directamente:
+
+               Supabase
+                    ↓
+               Products
+                    ↓
+               productos
+        */
+
+        const result =
+            await supabaseClient
+                .from(
+                    STRANGIS_PRODUCTS_TABLE
+                )
+                .select();
+
+
+        if(result.error){
+
+            throw result.error;
+
+        }
+
+
+        let products =
+            Array.isArray(result.data)
+                ? result.data
+                : [];
+
+
+        /* -----------------------------------------
+           SOLO PRODUCTOS ACTIVOS
+        ----------------------------------------- */
+
+        products =
+            products.filter(
+                product =>
+                    product
+                    &&
+                    product.active !== false
+            );
+
+
+        /* -----------------------------------------
+           ORDENAR POR FECHA / ID
+        ----------------------------------------- */
+
+        products.sort(
+            (a,b) => {
+
+                const dateA =
+                    a.created_at
+                    ?
+                    new Date(
+                        a.created_at
+                    ).getTime()
+                    :
+                    0;
+
+                const dateB =
+                    b.created_at
+                    ?
+                    new Date(
+                        b.created_at
+                    ).getTime()
+                    :
+                    0;
+
+
+                if(
+                    dateA
+                    &&
+                    dateB
+                ){
+
+                    return dateB - dateA;
+
+                }
+
+
+                const idA =
+                    Number(a.id) || 0;
+
+                const idB =
+                    Number(b.id) || 0;
+
+
+                return idB - idA;
+
+            }
+        );
+
+
+        /*
+           Solo mostramos productos
+           que realmente tengan una imagen.
+        */
+
+        products =
+            products
+                .map(
+                    product => ({
+
+                        product,
+
+                        image:
+                            getProductImage(
+                                product
+                            )
+
+                    })
+                )
+                .filter(
+                    item =>
+                        item.image
+                );
+
+
+        renderProducts(
+            products
+        );
+
+    }
+
+    catch(error){
+
+        console.error(
+            "STRANGIS — Error cargando productos:",
+            error
+        );
+
+
+        productCount.textContent =
+            "Error";
+
+
+        productsTrack.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-title">
+
+                    No se pudieron cargar los artículos
+
+                </div>
+
+                <div class="empty-text">
+
+                    Comprueba que products.js esté
+                    enlazado correctamente y que la tabla
+                    Products de Supabase tenga permisos
+                    de lectura.
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+}
 
 
 /* =====================================================
    CREAR TARJETA
 ===================================================== */
 
-function createProductCard(product){
+function createProductCard(item){
+
+    const product =
+        item.product;
+
+    const image =
+        item.image;
+
+
+    const name =
+        product.name
+        ||
+        "Producto";
+
+
+    const category =
+        getCategoryLabel(
+            product.category
+        );
+
+
+    /*
+       Si existe una página específica
+       podemos dirigir según categoría.
+    */
+
+    const categoryKey =
+        String(
+            product.category || ""
+        )
+        .trim()
+        .toLowerCase();
+
+
+    const categoryPages = {
+
+        camisetas:
+            "camisetas.html",
+
+        pantalones:
+            "pantalones.html",
+
+        conjuntos:
+            "conjuntos.html",
+
+        gorras:
+            "gorras.html",
+
+        gafas:
+            "gafas.html",
+
+        bisuteria:
+            "bisuteria.html"
+
+    };
+
 
     const link =
-        product.link || "#";
+        product.link
+        ||
+        categoryPages[
+            categoryKey
+        ]
+        ||
+        "#";
 
 
     return `
@@ -1467,11 +1820,13 @@ function createProductCard(product){
                 <div class="product-image">
 
                     <img
-                        src="${escapeAttribute(product.image)}"
-                        alt="${escapeHTML(product.name)}"
+                        src="${escapeAttribute(image)}"
+                        alt="${escapeAttribute(name)}"
                         loading="lazy"
                         draggable="false"
-                        onerror="this.closest('.product').style.display='none';"
+                        onerror="
+                            this.closest('.product').remove();
+                        "
                     >
 
                 </div>
@@ -1481,33 +1836,16 @@ function createProductCard(product){
 
                     <div class="product-name">
 
-                        ${escapeHTML(product.name)}
+                        ${escapeHTML(name)}
 
                     </div>
 
 
-                    ${
-                        product.category
+                    <div class="product-category">
 
-                        ?
+                        ${escapeHTML(category)}
 
-                        `
-
-                        <div class="product-category">
-
-                            ${escapeHTML(
-                                product.category
-                            )}
-
-                        </div>
-
-                        `
-
-                        :
-
-                        ""
-
-                    }
+                    </div>
 
                 </div>
 
@@ -1520,54 +1858,23 @@ function createProductCard(product){
 }
 
 
-
 /* =====================================================
    MOSTRAR PRODUCTOS
 ===================================================== */
 
-function renderProducts(){
-
-    const track =
-        document.getElementById(
-            "productsTrack"
-        );
-
-
-    const carousel =
-        document.getElementById(
-            "carousel"
-        );
-
+function renderProducts(items){
 
     if(
-        !track ||
-        !carousel
+        !Array.isArray(items)
+        ||
+        !items.length
     ){
 
-        return;
-
-    }
-
-
-    const validProducts =
-        getValidProducts();
+        productCount.textContent =
+            "0 artículos";
 
 
-    updateProductCount(
-        validProducts.length
-    );
-
-
-    /*
-       Si no hay productos,
-       mostramos el estado vacío.
-    */
-
-    if(
-        validProducts.length === 0
-    ){
-
-        carousel.innerHTML = `
+        productsTrack.innerHTML = `
 
             <div class="empty">
 
@@ -1576,7 +1883,6 @@ function renderProducts(){
                     Próximamente
 
                 </div>
-
 
                 <div class="empty-text">
 
@@ -1594,67 +1900,62 @@ function renderProducts(){
     }
 
 
-    /*
-       Primera copia.
-    */
+    productCount.textContent =
 
-    const firstSet =
-        validProducts
-            .map(createProductCard)
-            .join("");
+        items.length === 1
 
+        ? "1 artículo"
 
-    /*
-       Segunda copia.
-
-       Es necesaria para crear
-       el efecto infinito.
-    */
-
-    const secondSet =
-        validProducts
-            .map(createProductCard)
-            .join("");
-
-
-    track.innerHTML =
-        firstSet +
-        secondSet;
+        : `${items.length} artículos`;
 
 
     /*
-       Ajustamos la velocidad según
-       la cantidad de productos.
-
-       Con pocos productos el carrusel
-       no debe ir demasiado rápido.
-
-       Con muchos productos aumentamos
-       ligeramente la duración.
+       Primer grupo
     */
 
-    const duration =
-        Math.max(
-            20,
-            Math.min(
-                38,
-                validProducts.length * 2.2
+    const cards =
+        items
+            .map(
+                item =>
+                    createProductCard(item)
             )
-        );
+            .join("");
 
 
-    track.style.animationDuration =
-        `${duration}s`;
+    /*
+       DUPLICAMOS EL GRUPO.
+
+       Esto es lo que permite que el carrusel
+       pueda desplazarse continuamente hacia
+       la izquierda sin quedarse vacío.
+    */
+
+    productsTrack.innerHTML =
+        cards +
+        cards;
+
+
+    /*
+       Si solo hay un producto, dos copias
+       no son suficientes visualmente.
+       Repetimos varias veces.
+    */
+
+    if(items.length === 1){
+
+        productsTrack.innerHTML =
+            cards.repeat(6);
+
+    }
 
 }
-
 
 
 /* =====================================================
    INICIAR
 ===================================================== */
 
-renderProducts();
+loadProducts();
 
 </script>
 
