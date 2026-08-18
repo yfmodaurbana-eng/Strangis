@@ -1,6 +1,7 @@
 /* =====================================================
    STRANGIS — PRODUCTS.JS
    MOTOR DE PRODUCTOS + SUPABASE
+   VERSIÓN REVISADA Y MEJORADA
    ===================================================== */
 
 
@@ -19,10 +20,185 @@ const STRANGIS_PRODUCTS_TABLE =
 
 
 /* =====================================================
+   CONFIGURACIÓN GENERAL
+===================================================== */
+
+const STRANGIS_ALLOWED_CATEGORIES = [
+
+    "camisetas",
+
+    "pantalones",
+
+    "conjuntos",
+
+    "gorras",
+
+    "gafas",
+
+    "bisuteria"
+
+];
+
+
+const STRANGIS_CATEGORY_NAMES = {
+
+    camisetas:
+        "Camisetas",
+
+    pantalones:
+        "Pantalones",
+
+    conjuntos:
+        "Conjuntos",
+
+    gorras:
+        "Gorras",
+
+    gafas:
+        "Gafas",
+
+    bisuteria:
+        "Bisutería"
+
+};
+
+
+/* =====================================================
    PRODUCTOS EN MEMORIA
 ===================================================== */
 
 const STRANGIS_PRODUCTS = [];
+
+
+/* =====================================================
+   UTILIDADES
+===================================================== */
+
+/**
+ * Convierte cualquier valor a string limpio.
+ */
+function strangisString(value) {
+
+    return String(
+        value ?? ""
+    ).trim();
+
+}
+
+
+/**
+ * Convierte una categoría a formato normalizado.
+ */
+function strangisNormalizeCategory(category) {
+
+    return strangisString(category)
+        .toLowerCase();
+
+}
+
+
+/**
+ * Convierte un valor numérico de forma segura.
+ *
+ * A diferencia de:
+ *
+ *     Number(value) || 0
+ *
+ * esta función permite controlar explícitamente
+ * los valores inválidos.
+ */
+function strangisNumber(
+    value,
+    fallback = 0
+) {
+
+    if (
+        value ===
+        null ||
+        value ===
+        undefined ||
+        value === ""
+    ) {
+
+        return fallback;
+
+    }
+
+
+    const number =
+        Number(value);
+
+
+    return Number.isFinite(number)
+        ? number
+        : fallback;
+
+}
+
+
+/**
+ * Convierte un valor a entero positivo.
+ */
+function strangisPositiveInteger(
+    value,
+    fallback = 0
+) {
+
+    const number =
+        strangisNumber(
+            value,
+            fallback
+        );
+
+
+    return Math.max(
+        0,
+        Math.floor(number)
+    );
+
+}
+
+
+/**
+ * Intenta convertir un valor JSON.
+ *
+ * Si ya es un array/objeto, lo devuelve directamente.
+ */
+function strangisParseJSON(value) {
+
+    if (
+        typeof value !==
+        "string"
+    ) {
+
+        return value;
+
+    }
+
+
+    const text =
+        value.trim();
+
+
+    if (!text) {
+
+        return value;
+
+    }
+
+
+    try {
+
+        return JSON.parse(text);
+
+    }
+    catch {
+
+        return value;
+
+    }
+
+}
 
 
 /* =====================================================
@@ -31,31 +207,62 @@ const STRANGIS_PRODUCTS = [];
 
 const supabaseClient = {
 
-    async request(path, options = {}) {
+    /**
+     * Realiza una petición REST a Supabase.
+     */
+    async request(
+        path,
+        options = {}
+    ) {
 
-        const response = await fetch(
-            STRANGIS_SUPABASE_URL + path,
-            {
-                ...options,
+        const url =
+            STRANGIS_SUPABASE_URL +
+            path;
 
-                headers: {
 
-                    "apikey":
-                        STRANGIS_SUPABASE_KEY,
+        const headers = {
 
-                    "Authorization":
-                        "Bearer " +
-                        STRANGIS_SUPABASE_KEY,
+            "apikey":
+                STRANGIS_SUPABASE_KEY,
 
-                    "Content-Type":
-                        "application/json",
+            "Authorization":
+                "Bearer " +
+                STRANGIS_SUPABASE_KEY,
 
-                    ...(options.headers || {})
+            "Content-Type":
+                "application/json",
 
-                }
+            ...(options.headers || {})
 
-            }
-        );
+        };
+
+
+        let response;
+
+
+        try {
+
+            response =
+                await fetch(
+                    url,
+                    {
+                        ...options,
+                        headers
+                    }
+                );
+
+        }
+        catch(error) {
+
+            throw new Error(
+                "No se pudo conectar con Supabase. " +
+                (
+                    error?.message ||
+                    "Comprueba tu conexión a Internet."
+                )
+            );
+
+        }
 
 
         const text =
@@ -65,32 +272,69 @@ const supabaseClient = {
         let data = null;
 
 
-        try {
+        if (text) {
 
-            data =
-                text
-                    ? JSON.parse(text)
-                    : null;
+            try {
 
-        }
-        catch {
+                data =
+                    JSON.parse(text);
 
-            data = text;
+            }
+            catch {
+
+                data =
+                    text;
+
+            }
 
         }
 
 
         if (!response.ok) {
 
-            throw new Error(
+            const errorMessage =
 
                 data?.message ||
-                data?.error_description ||
-                data?.hint ||
-                text ||
-                `Error HTTP ${response.status}`
 
-            );
+                data?.error_description ||
+
+                data?.details ||
+
+                data?.hint ||
+
+                (
+                    typeof data ===
+                    "string"
+                        ? data
+                        : ""
+                ) ||
+
+                `Error HTTP ${response.status}`;
+
+
+            const error =
+                new Error(
+                    errorMessage
+                );
+
+
+            error.status =
+                response.status;
+
+
+            error.code =
+                data?.code || null;
+
+
+            error.details =
+                data?.details || null;
+
+
+            error.hint =
+                data?.hint || null;
+
+
+            throw error;
 
         }
 
@@ -100,10 +344,23 @@ const supabaseClient = {
     },
 
 
+    /**
+     * API simplificada compatible
+     * con el uso actual del proyecto.
+     */
     from(table) {
+
+        const encodedTable =
+            encodeURIComponent(
+                table
+            );
+
 
         return {
 
+            /**
+             * INSERT
+             */
             async insert(product) {
 
                 try {
@@ -111,11 +368,12 @@ const supabaseClient = {
                     const data =
                         await supabaseClient.request(
 
-                            `/rest/v1/${encodeURIComponent(table)}`,
+                            `/rest/v1/${encodedTable}`,
 
                             {
 
-                                method: "POST",
+                                method:
+                                    "POST",
 
                                 headers: {
 
@@ -125,7 +383,9 @@ const supabaseClient = {
                                 },
 
                                 body:
-                                    JSON.stringify(product)
+                                    JSON.stringify(
+                                        product
+                                    )
 
                             }
 
@@ -136,7 +396,8 @@ const supabaseClient = {
 
                         data,
 
-                        error: null
+                        error:
+                            null
 
                     };
 
@@ -145,7 +406,8 @@ const supabaseClient = {
 
                     return {
 
-                        data: null,
+                        data:
+                            null,
 
                         error
 
@@ -156,6 +418,9 @@ const supabaseClient = {
             },
 
 
+            /**
+             * SELECT *
+             */
             async select() {
 
                 try {
@@ -163,7 +428,7 @@ const supabaseClient = {
                     const data =
                         await supabaseClient.request(
 
-                            `/rest/v1/${encodeURIComponent(table)}?select=*`
+                            `/rest/v1/${encodedTable}?select=*`
 
                         );
 
@@ -172,7 +437,8 @@ const supabaseClient = {
 
                         data,
 
-                        error: null
+                        error:
+                            null
 
                     };
 
@@ -181,7 +447,72 @@ const supabaseClient = {
 
                     return {
 
-                        data: null,
+                        data:
+                            null,
+
+                        error
+
+                    };
+
+                }
+
+            },
+
+
+            /**
+             * SELECT con filtro opcional.
+             *
+             * Ejemplo:
+             *
+             * .selectWhere("ref", "eq", "ABC123")
+             */
+            async selectWhere(
+                column,
+                operator,
+                value
+            ) {
+
+                try {
+
+                    const encodedColumn =
+                        encodeURIComponent(
+                            column
+                        );
+
+
+                    const encodedValue =
+                        encodeURIComponent(
+                            value
+                        );
+
+
+                    const data =
+                        await supabaseClient.request(
+
+                            `/rest/v1/${encodedTable}` +
+                            `?select=*` +
+                            `&${encodedColumn}=` +
+                            `${operator}.${encodedValue}`
+
+                        );
+
+
+                    return {
+
+                        data,
+
+                        error:
+                            null
+
+                    };
+
+                }
+                catch(error) {
+
+                    return {
+
+                        data:
+                            null,
 
                         error
 
@@ -196,6 +527,198 @@ const supabaseClient = {
     }
 
 };
+
+
+/* =====================================================
+   NORMALIZAR PRODUCTO
+===================================================== */
+
+/**
+ * Normaliza un producto recibido de Supabase.
+ *
+ * No modifica el objeto original.
+ */
+function normalizeProduct(product) {
+
+    if (
+        !product ||
+        typeof product !==
+        "object"
+    ) {
+
+        return null;
+
+    }
+
+
+    const normalized = {
+
+        ...product
+
+    };
+
+
+    normalized.name =
+        strangisString(
+            product.name
+        );
+
+
+    normalized.category =
+        strangisNormalizeCategory(
+            product.category
+        );
+
+
+    normalized.ref =
+        strangisString(
+            product.ref
+        );
+
+
+    normalized.price =
+        strangisNumber(
+            product.price,
+            0
+        );
+
+
+    normalized.stock =
+        strangisPositiveInteger(
+            product.stock,
+            0
+        );
+
+
+    normalized.description =
+        strangisString(
+            product.description
+        );
+
+
+    normalized.whatsapp =
+        strangisString(
+            product.whatsapp
+        );
+
+
+    normalized.shipping_min =
+        strangisNumber(
+            product.shipping_min,
+            3
+        );
+
+
+    normalized.shipping_max =
+        strangisNumber(
+            product.shipping_max,
+            9
+        );
+
+
+    normalized.active =
+        product.active !== false;
+
+
+    /*
+       Normalizar imágenes.
+    */
+    const rawImages =
+        strangisParseJSON(
+            product.images
+        );
+
+
+    if (
+        Array.isArray(
+            rawImages
+        )
+    ) {
+
+        normalized.images =
+            rawImages;
+
+    }
+    else if (
+        typeof rawImages ===
+        "string" &&
+        rawImages.trim()
+    ) {
+
+        normalized.images = [
+
+            rawImages.trim()
+
+        ];
+
+    }
+    else {
+
+        normalized.images = [];
+
+    }
+
+
+    /*
+       Normalizar tallas.
+    */
+    const rawSizes =
+        strangisParseJSON(
+            product.sizes
+        );
+
+
+    if (
+        Array.isArray(
+            rawSizes
+        )
+    ) {
+
+        normalized.sizes =
+            rawSizes
+                .map(
+                    size =>
+                        strangisString(
+                            size
+                        )
+                )
+                .filter(Boolean);
+
+    }
+    else if (
+        typeof rawSizes ===
+        "string" &&
+        rawSizes.trim()
+    ) {
+
+        /*
+           Compatibilidad con una columna
+           que contenga:
+
+           "S,M,L,XL"
+        */
+        normalized.sizes =
+            rawSizes
+                .split(",")
+                .map(
+                    size =>
+                        strangisString(
+                            size
+                        )
+                )
+                .filter(Boolean);
+
+    }
+    else {
+
+        normalized.sizes = [];
+
+    }
+
+
+    return normalized;
+
+}
 
 
 /* =====================================================
@@ -230,36 +753,49 @@ async function loadProductsFromSupabase() {
 
 
     const products =
-        Array.isArray(result.data)
+        Array.isArray(
+            result.data
+        )
             ? result.data
             : [];
 
 
     /*
-       Vaciar el array local
-       sin romper las referencias
-       que puedan estar usando otras páginas.
+       Vaciar el array sin cambiar
+       su referencia.
     */
-
     STRANGIS_PRODUCTS.length = 0;
 
 
-    products.forEach(product => {
+    products.forEach(
+        product => {
 
-        if (product) {
+            const normalized =
+                normalizeProduct(
+                    product
+                );
 
-            STRANGIS_PRODUCTS.push(
-                product
-            );
+
+            if (normalized) {
+
+                STRANGIS_PRODUCTS.push(
+                    normalized
+                );
+
+            }
 
         }
-
-    });
+    );
 
 
     console.log(
-        `STRANGIS — ${STRANGIS_PRODUCTS.length} productos cargados.`,
+
+        `STRANGIS — ` +
+        `${STRANGIS_PRODUCTS.length} ` +
+        `productos cargados.`,
+
         STRANGIS_PRODUCTS
+
     );
 
 
@@ -280,33 +816,89 @@ function getProducts() {
 
 
 /* =====================================================
+   OBTENER PRODUCTOS ACTIVOS
+===================================================== */
+
+function getActiveProducts() {
+
+    return STRANGIS_PRODUCTS.filter(
+        product =>
+            product?.active !== false
+    );
+
+}
+
+
+/* =====================================================
    PRODUCTOS POR CATEGORÍA
 ===================================================== */
 
-function getProductsByCategory(category) {
+function getProductsByCategory(
+    category
+) {
 
     const wantedCategory =
-        String(
-            category || ""
-        )
-        .trim()
-        .toLowerCase();
+        strangisNormalizeCategory(
+            category
+        );
 
 
     return STRANGIS_PRODUCTS.filter(
         product => {
 
             const productCategory =
-                String(
-                    product?.category || ""
-                )
-                .trim()
-                .toLowerCase();
+                strangisNormalizeCategory(
+                    product?.category
+                );
 
 
             return (
+
                 productCategory ===
                 wantedCategory
+
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   PRODUCTOS ACTIVOS POR CATEGORÍA
+===================================================== */
+
+function getActiveProductsByCategory(
+    category
+) {
+
+    const wantedCategory =
+        strangisNormalizeCategory(
+            category
+        );
+
+
+    return STRANGIS_PRODUCTS.filter(
+        product => {
+
+            if (
+                product?.active ===
+                false
+            ) {
+
+                return false;
+
+            }
+
+
+            return (
+
+                strangisNormalizeCategory(
+                    product?.category
+                ) ===
+                wantedCategory
+
             );
 
         }
@@ -321,11 +913,29 @@ function getProductsByCategory(category) {
 
 function getProductById(id) {
 
+    if (
+        id ===
+        null ||
+        id ===
+        undefined
+    ) {
+
+        return undefined;
+
+    }
+
+
+    const wantedId =
+        String(id);
+
+
     return STRANGIS_PRODUCTS.find(
         product =>
 
-            String(product?.id) ===
-            String(id)
+            String(
+                product?.id
+            ) ===
+            wantedId
 
     );
 
@@ -336,27 +946,50 @@ function getProductById(id) {
    PRODUCTO POR REFERENCIA
 ===================================================== */
 
-function getProductByReference(ref) {
+function getProductByReference(
+    ref
+) {
 
     const wantedRef =
-        String(
-            ref || ""
+        strangisString(
+            ref
         )
-        .trim()
         .toLowerCase();
+
+
+    if (!wantedRef) {
+
+        return undefined;
+
+    }
 
 
     return STRANGIS_PRODUCTS.find(
         product =>
 
-            String(
-                product?.ref || ""
+            strangisString(
+                product?.ref
             )
-            .trim()
-            .toLowerCase()
-            ===
+            .toLowerCase() ===
             wantedRef
 
+    );
+
+}
+
+
+/* =====================================================
+   COMPROBAR REFERENCIA
+===================================================== */
+
+function productReferenceExists(
+    ref
+) {
+
+    return Boolean(
+        getProductByReference(
+            ref
+        )
     );
 
 }
@@ -366,43 +999,26 @@ function getProductByReference(ref) {
    NOMBRE DE CATEGORÍA
 ===================================================== */
 
-function getCategoryName(category) {
-
-    const names = {
-
-        camisetas:
-            "Camisetas",
-
-        pantalones:
-            "Pantalones",
-
-        conjuntos:
-            "Conjuntos",
-
-        gorras:
-            "Gorras",
-
-        gafas:
-            "Gafas",
-
-        bisuteria:
-            "Bisutería"
-
-    };
-
+function getCategoryName(
+    category
+) {
 
     const key =
-        String(
-            category || ""
-        )
-        .trim()
-        .toLowerCase();
+        strangisNormalizeCategory(
+            category
+        );
 
 
     return (
-        names[key] ||
-        category ||
-        ""
+
+        STRANGIS_CATEGORY_NAMES[
+            key
+        ] ||
+
+        strangisString(
+            category
+        )
+
     );
 
 }
@@ -412,61 +1028,57 @@ function getCategoryName(category) {
    OBTENER IMÁGENES DE PRODUCTO
 ===================================================== */
 
-function getProductImages(product) {
+function getProductImages(
+    product
+) {
 
-    if (!product) {
+    if (
+        !product
+    ) {
 
         return [];
 
     }
 
 
+    /*
+       Supabase puede devolver JSONB
+       como array o como string.
+    */
     let images =
-        product.images;
+        strangisParseJSON(
+            product.images
+        );
 
 
     /*
-       Supabase puede devolver
-       JSONB como array o como texto.
+       Caso:
+       images = "https://..."
     */
-
     if (
         typeof images ===
         "string"
     ) {
 
-        try {
-
-            images =
-                JSON.parse(images);
-
-        }
-        catch {
-
-            /*
-               Si no es JSON, podría
-               ser directamente una URL.
-            */
-
-            if (
-                images.trim()
-            ) {
-
-                return [
-                    images.trim()
-                ];
-
-            }
+        const url =
+            images.trim();
 
 
-            return [];
-
-        }
+        return url
+            ? [url]
+            : [];
 
     }
 
 
-    if (!Array.isArray(images)) {
+    /*
+       Debe ser un array.
+    */
+    if (
+        !Array.isArray(
+            images
+        )
+    ) {
 
         return [];
 
@@ -475,52 +1087,57 @@ function getProductImages(product) {
 
     return images
 
-        .map(item => {
+        .map(
+            item => {
 
-            /*
-               Formato:
-               "https://..."
-            */
+                /*
+                   Formato:
 
-            if (
-                typeof item ===
-                "string"
-            ) {
+                   "https://..."
+                */
+                if (
+                    typeof item ===
+                    "string"
+                ) {
 
-                return item.trim();
+                    return item.trim();
+
+                }
+
+
+                /*
+                   Formato:
+
+                   {
+                       name: "...",
+                       image: "..."
+                   }
+
+                   También admite:
+                       url
+                       src
+                */
+                if (
+                    item &&
+                    typeof item ===
+                    "object"
+                ) {
+
+                    return strangisString(
+
+                        item.image ||
+                        item.url ||
+                        item.src
+
+                    );
+
+                }
+
+
+                return "";
 
             }
-
-
-            /*
-               Formato:
-               {
-                   name: "...",
-                   image: "..."
-               }
-            */
-
-            if (
-                item &&
-                typeof item ===
-                "object"
-            ) {
-
-                return String(
-
-                    item.image ||
-                    item.url ||
-                    item.src ||
-                    ""
-
-                ).trim();
-
-            }
-
-
-            return "";
-
-        })
+        )
 
         .filter(Boolean);
 
@@ -531,7 +1148,9 @@ function getProductImages(product) {
    OBTENER PRIMERA IMAGEN
 ===================================================== */
 
-function getProductImage(product) {
+function getProductImage(
+    product
+) {
 
     const images =
         getProductImages(
@@ -548,6 +1167,734 @@ function getProductImage(product) {
 
 
 /* =====================================================
+   OBTENER VARIANTES
+===================================================== */
+
+function getProductVariants(
+    product
+) {
+
+    if (
+        !product
+    ) {
+
+        return [];
+
+    }
+
+
+    let variants =
+        strangisParseJSON(
+            product.images
+        );
+
+
+    if (
+        !Array.isArray(
+            variants
+        )
+    ) {
+
+        return [];
+
+    }
+
+
+    return variants
+
+        .map(
+            variant => {
+
+                /*
+                   Variante antigua:
+                   "URL"
+                */
+                if (
+                    typeof variant ===
+                    "string"
+                ) {
+
+                    return {
+
+                        name:
+                            "",
+
+                        image:
+                            variant.trim()
+
+                    };
+
+                }
+
+
+                /*
+                   Variante nueva:
+                   {
+                       name,
+                       image
+                   }
+                */
+                if (
+                    variant &&
+                    typeof variant ===
+                    "object"
+                ) {
+
+                    return {
+
+                        name:
+                            strangisString(
+                                variant.name
+                            ),
+
+                        image:
+                            strangisString(
+
+                                variant.image ||
+                                variant.url ||
+                                variant.src
+
+                            )
+
+                    };
+
+                }
+
+
+                return {
+
+                    name:
+                        "",
+
+                    image:
+                        ""
+
+                };
+
+            }
+        )
+
+        .filter(
+            variant =>
+                variant.name ||
+                variant.image
+        );
+
+}
+
+
+/* =====================================================
+   OBTENER TALLAS
+===================================================== */
+
+function getProductSizes(
+    product
+) {
+
+    if (
+        !product
+    ) {
+
+        return [];
+
+    }
+
+
+    let sizes =
+        strangisParseJSON(
+            product.sizes
+        );
+
+
+    if (
+        Array.isArray(
+            sizes
+        )
+    ) {
+
+        return sizes
+
+            .map(
+                size =>
+                    strangisString(
+                        size
+                    )
+            )
+
+            .filter(Boolean);
+
+    }
+
+
+    /*
+       Compatibilidad con:
+       "S,M,L,XL"
+    */
+    if (
+        typeof sizes ===
+        "string"
+    ) {
+
+        return sizes
+
+            .split(",")
+
+            .map(
+                size =>
+                    strangisString(
+                        size
+                    )
+            )
+
+            .filter(Boolean);
+
+    }
+
+
+    return [];
+
+}
+
+
+/* =====================================================
+   VALIDAR CATEGORÍA
+===================================================== */
+
+function isValidProductCategory(
+    category
+) {
+
+    return STRANGIS_ALLOWED_CATEGORIES
+        .includes(
+            strangisNormalizeCategory(
+                category
+            )
+        );
+
+}
+
+
+/* =====================================================
+   OBTENER VALORES DEL FORMULARIO
+===================================================== */
+
+function getProductFormValues() {
+
+    const getValue = (
+        id
+    ) => {
+
+        const element =
+            document.getElementById(
+                id
+            );
+
+
+        return element
+            ? element.value
+            : "";
+
+    };
+
+
+    return {
+
+        name:
+            strangisString(
+                getValue(
+                    "productName"
+                )
+            ),
+
+        ref:
+            strangisString(
+                getValue(
+                    "productRef"
+                )
+            ),
+
+        price:
+            strangisNumber(
+                getValue(
+                    "productPrice"
+                ),
+                0
+            ),
+
+        stock:
+            strangisPositiveInteger(
+                getValue(
+                    "productStock"
+                ),
+                0
+            ),
+
+        description:
+            strangisString(
+                getValue(
+                    "productDescription"
+                )
+            ),
+
+        whatsapp:
+            strangisString(
+                getValue(
+                    "productWhatsapp"
+                )
+            )
+            .replace(
+                /\D/g,
+                ""
+            ),
+
+        shippingMin:
+            strangisNumber(
+                getValue(
+                    "shippingMin"
+                ),
+                3
+            ),
+
+        shippingMax:
+            strangisNumber(
+                getValue(
+                    "shippingMax"
+                ),
+                9
+            ),
+
+        category:
+            strangisNormalizeCategory(
+                getValue(
+                    "productCategory"
+                ) ||
+                "camisetas"
+            )
+
+    };
+
+}
+
+
+/* =====================================================
+   OBTENER VARIANTES DEL FORMULARIO
+===================================================== */
+
+function getFormVariants() {
+
+    const sourceVariants =
+        Array.isArray(
+            window.variants
+        )
+            ? window.variants
+            : [];
+
+
+    return sourceVariants
+
+        .map(
+            variant => {
+
+                return {
+
+                    name:
+                        strangisString(
+                            variant?.name
+                        ),
+
+                    image:
+                        strangisString(
+
+                            variant?.image ||
+                            variant?.url ||
+                            variant?.src
+
+                        )
+
+                };
+
+            }
+        )
+
+        .filter(
+            variant =>
+                variant.name ||
+                variant.image
+        );
+
+}
+
+
+/* =====================================================
+   OBTENER TALLAS DEL FORMULARIO
+===================================================== */
+
+function getFormSizes() {
+
+    const sourceSizes =
+        Array.isArray(
+            window.sizes
+        )
+            ? window.sizes
+            : [];
+
+
+    return sourceSizes
+
+        .map(
+            size =>
+                strangisString(
+                    size
+                )
+        )
+
+        .filter(Boolean);
+
+}
+
+
+/* =====================================================
+   VALIDAR VARIANTES
+===================================================== */
+
+function validateProductVariants(
+    variants
+) {
+
+    if (
+        !Array.isArray(
+            variants
+        ) ||
+        !variants.length
+    ) {
+
+        return {
+
+            valid:
+                false,
+
+            message:
+                "Añade al menos un color con su imagen."
+
+        };
+
+    }
+
+
+    for (
+        const variant
+        of variants
+    ) {
+
+        if (
+            !variant.name
+        ) {
+
+            return {
+
+                valid:
+                    false,
+
+                message:
+                    "Todos los colores deben tener nombre."
+
+            };
+
+        }
+
+
+        if (
+            !variant.image
+        ) {
+
+            return {
+
+                valid:
+                    false,
+
+                message:
+                    "Todos los colores deben tener una URL de imagen."
+
+            };
+
+        }
+
+    }
+
+
+    return {
+
+        valid:
+            true,
+
+        message:
+            ""
+
+    };
+
+}
+
+
+/* =====================================================
+   VALIDAR PRODUCTO
+===================================================== */
+
+function validateProductData(
+    data,
+    variants
+) {
+
+    if (
+        !data.name
+    ) {
+
+        return {
+
+            valid:
+                false,
+
+            message:
+                "Introduce el nombre del producto."
+
+        };
+
+    }
+
+
+    if (
+        !data.ref
+    ) {
+
+        return {
+
+            valid:
+                false,
+
+            message:
+                "Introduce la referencia / ID."
+
+        };
+
+    }
+
+
+    if (
+        !isValidProductCategory(
+            data.category
+        )
+    ) {
+
+        return {
+
+            valid:
+                false,
+
+            message:
+                "Selecciona una categoría válida."
+
+        };
+
+    }
+
+
+    if (
+        data.price <
+        0
+    ) {
+
+        return {
+
+            valid:
+                false,
+
+            message:
+                "El precio no puede ser negativo."
+
+        };
+
+    }
+
+
+    if (
+        data.stock <
+        0
+    ) {
+
+        return {
+
+            valid:
+                false,
+
+            message:
+                "El stock no puede ser negativo."
+
+        };
+
+    }
+
+
+    if (
+        data.shippingMin <
+        0 ||
+        data.shippingMax <
+        0
+    ) {
+
+        return {
+
+            valid:
+                false,
+
+            message:
+                "Los gastos de envío no pueden ser negativos."
+
+        };
+
+    }
+
+
+    if (
+        data.shippingMin >
+        data.shippingMax
+    ) {
+
+        return {
+
+            valid:
+                false,
+
+            message:
+                "El envío mínimo no puede ser superior al máximo."
+
+        };
+
+    }
+
+
+    const variantsResult =
+        validateProductVariants(
+            variants
+        );
+
+
+    if (
+        !variantsResult.valid
+    ) {
+
+        return variantsResult;
+
+    }
+
+
+    return {
+
+        valid:
+            true,
+
+        message:
+            ""
+
+    };
+
+}
+
+
+/* =====================================================
+   CREAR OBJETO PRODUCTO
+===================================================== */
+
+function buildProductFromForm() {
+
+    const data =
+        getProductFormValues();
+
+
+    const variants =
+        getFormVariants();
+
+
+    const sizes =
+        getFormSizes();
+
+
+    const validation =
+        validateProductData(
+            data,
+            variants
+        );
+
+
+    if (
+        !validation.valid
+    ) {
+
+        return {
+
+            product:
+                null,
+
+            error:
+                validation.message
+
+        };
+
+    }
+
+
+    const product = {
+
+        name:
+            data.name,
+
+        category:
+            data.category,
+
+        ref:
+            data.ref,
+
+        price:
+            data.price,
+
+        stock:
+            data.stock,
+
+        description:
+            data.description,
+
+        whatsapp:
+            data.whatsapp,
+
+        images:
+            variants,
+
+        sizes:
+            sizes,
+
+        shipping_min:
+            data.shippingMin,
+
+        shipping_max:
+            data.shippingMax,
+
+        active:
+            true
+
+    };
+
+
+    return {
+
+        product,
+
+        error:
+            null
+
+    };
+
+}
+
+
+/* =====================================================
    GUARDAR PRODUCTO EN SUPABASE
 ===================================================== */
 
@@ -556,7 +1903,7 @@ async function saveProductToSupabase() {
     try {
 
         /* =============================================
-           CAMPOS
+           COMPROBAR CAMPO NOMBRE
         ============================================= */
 
         const nameElement =
@@ -565,295 +1912,73 @@ async function saveProductToSupabase() {
             );
 
 
-        const refElement =
-            document.getElementById(
-                "productRef"
-            );
-
-
-        const priceElement =
-            document.getElementById(
-                "productPrice"
-            );
-
-
-        const stockElement =
-            document.getElementById(
-                "productStock"
-            );
-
-
-        const descriptionElement =
-            document.getElementById(
-                "productDescription"
-            );
-
-
-        const whatsappElement =
-            document.getElementById(
-                "productWhatsapp"
-            );
-
-
-        const shippingMinElement =
-            document.getElementById(
-                "shippingMin"
-            );
-
-
-        const shippingMaxElement =
-            document.getElementById(
-                "shippingMax"
-            );
-
-
-        const categoryElement =
-            document.getElementById(
-                "productCategory"
-            );
-
-
-        /* =============================================
-           COMPROBAR NOMBRE
-        ============================================= */
-
-        if (!nameElement) {
+        if (
+            !nameElement
+        ) {
 
             alert(
                 "No se encontró el campo del nombre del producto."
             );
 
-            return;
+            return null;
 
         }
 
 
         /* =============================================
-           VALORES
+           CONSTRUIR PRODUCTO
         ============================================= */
 
-        const name =
-            String(
-                nameElement.value || ""
-            ).trim();
-
-
-        const ref =
-            refElement
-                ? String(
-                    refElement.value || ""
-                  ).trim()
-                : "";
-
-
-        const price =
-            priceElement
-                ? Number(
-                    priceElement.value
-                  ) || 0
-                : 0;
-
-
-        const stock =
-            stockElement
-                ? Number(
-                    stockElement.value
-                  ) || 0
-                : 0;
-
-
-        const description =
-            descriptionElement
-                ? String(
-                    descriptionElement.value || ""
-                  ).trim()
-                : "";
-
-
-        const whatsapp =
-            whatsappElement
-                ? String(
-                    whatsappElement.value || ""
-                  )
-                  .replace(/\D/g, "")
-                : "";
-
-
-        const shippingMin =
-            shippingMinElement
-                ? Number(
-                    shippingMinElement.value
-                  ) || 3
-                : 3;
-
-
-        const shippingMax =
-            shippingMaxElement
-                ? Number(
-                    shippingMaxElement.value
-                  ) || 9
-                : 9;
-
-
-        const category =
-            categoryElement
-                ? String(
-                    categoryElement.value || ""
-                  )
-                  .trim()
-                  .toLowerCase()
-                : "camisetas";
-
-
-        /* =============================================
-           CATEGORÍAS PERMITIDAS
-        ============================================= */
-
-        const allowedCategories = [
-
-            "camisetas",
-
-            "pantalones",
-
-            "conjuntos",
-
-            "gorras",
-
-            "gafas",
-
-            "bisuteria"
-
-        ];
+        const built =
+            buildProductFromForm();
 
 
         if (
-            !allowedCategories.includes(
-                category
-            )
+            built.error
         ) {
 
             alert(
-                "Selecciona una categoría válida."
+                built.error
             );
 
-            return;
+            return null;
 
         }
 
 
+        const product =
+            built.product;
+
+
         /* =============================================
-           VALIDAR NOMBRE
+           COMPROBAR REFERENCIA LOCAL
         ============================================= */
 
-        if (!name) {
-
-            alert(
-                "Introduce el nombre del producto."
+        const existingProduct =
+            getProductByReference(
+                product.ref
             );
-
-            return;
-
-        }
-
-
-        /* =============================================
-           VALIDAR REFERENCIA
-        ============================================= */
-
-        if (!ref) {
-
-            alert(
-                "Introduce la referencia / ID."
-            );
-
-            return;
-
-        }
-
-
-        /* =============================================
-           VARIANTES
-        ============================================= */
-
-        const sourceVariants =
-            Array.isArray(
-                window.variants
-            )
-                ? window.variants
-                : [];
-
-
-        const validVariants =
-            sourceVariants
-
-                .map(
-                    variant => ({
-
-                        name:
-                            String(
-                                variant?.name ||
-                                ""
-                            ).trim(),
-
-                        image:
-                            String(
-                                variant?.image ||
-                                variant?.url ||
-                                ""
-                            ).trim()
-
-                    })
-                )
-
-                .filter(
-                    variant =>
-
-                        variant.name ||
-                        variant.image
-
-                );
 
 
         if (
-            !validVariants.length
+            existingProduct
         ) {
 
-            alert(
-                "Añade al menos un color con su imagen."
-            );
+            const shouldContinue =
+                window.confirm(
 
-            return;
+                    "Ya existe un producto en memoria " +
+                    `con la referencia "${product.ref}".\n\n` +
+                    "¿Quieres continuar de todos modos?"
 
-        }
-
-
-        /* =============================================
-           COMPROBAR VARIANTES
-        ============================================= */
-
-        for (
-            const variant
-            of validVariants
-        ) {
-
-            if (!variant.name) {
-
-                alert(
-                    "Todos los colores deben tener nombre."
                 );
 
-                return;
 
-            }
+            if (
+                !shouldContinue
+            ) {
 
-
-            if (!variant.image) {
-
-                alert(
-                    "Todos los colores deben tener una URL de imagen."
-                );
-
-                return;
+                return null;
 
             }
 
@@ -861,67 +1986,8 @@ async function saveProductToSupabase() {
 
 
         /* =============================================
-           TALLAS
+           LOG
         ============================================= */
-
-        const sourceSizes =
-            Array.isArray(
-                window.sizes
-            )
-                ? window.sizes
-                : [];
-
-
-        const validSizes =
-            sourceSizes
-
-                .map(
-                    size =>
-                        String(
-                            size || ""
-                        ).trim()
-                )
-
-                .filter(Boolean);
-
-
-        /* =============================================
-           PRODUCTO
-        ============================================= */
-
-        const product = {
-
-            name,
-
-            category,
-
-            ref,
-
-            price,
-
-            stock,
-
-            description,
-
-            whatsapp,
-
-            images:
-                validVariants,
-
-            sizes:
-                validSizes,
-
-            shipping_min:
-                shippingMin,
-
-            shipping_max:
-                shippingMax,
-
-            active:
-                true
-
-        };
-
 
         console.log(
             "STRANGIS — producto a guardar:",
@@ -947,7 +2013,9 @@ async function saveProductToSupabase() {
            ERROR
         ============================================= */
 
-        if (result.error) {
+        if (
+            result.error
+        ) {
 
             console.error(
                 "STRANGIS — error guardando:",
@@ -955,16 +2023,35 @@ async function saveProductToSupabase() {
             );
 
 
+            let message =
+                result.error.message ||
+                "Error desconocido.";
+
+
+            /*
+               Mensaje más comprensible
+               para conflictos de unicidad.
+            */
+            if (
+                result.error.code ===
+                "23505"
+            ) {
+
+                message =
+                    "La referencia del producto ya existe.";
+
+            }
+
+
             alert(
 
                 "❌ No se pudo guardar el producto:\n\n" +
-
-                result.error.message
+                message
 
             );
 
 
-            return;
+            return null;
 
         }
 
@@ -973,23 +2060,77 @@ async function saveProductToSupabase() {
            ACTUALIZAR MEMORIA
         ============================================= */
 
-        if (
+        const savedProducts =
             Array.isArray(
                 result.data
             )
-        ) {
+                ? result.data
+                : [];
 
-            result.data.forEach(
-                savedProduct => {
 
-                    STRANGIS_PRODUCTS.push(
+        savedProducts.forEach(
+            savedProduct => {
+
+                const normalized =
+                    normalizeProduct(
                         savedProduct
                     );
 
-                }
-            );
 
-        }
+                if (
+                    !normalized
+                ) {
+
+                    return;
+
+                }
+
+
+                /*
+                   Si Supabase devuelve un ID,
+                   intentamos evitar duplicados
+                   en memoria.
+                */
+                const existingIndex =
+                    normalized.id !==
+                    undefined &&
+                    normalized.id !==
+                    null
+
+                        ? STRANGIS_PRODUCTS.findIndex(
+                            item =>
+                                String(
+                                    item?.id
+                                ) ===
+                                String(
+                                    normalized.id
+                                )
+                          )
+
+                        : -1;
+
+
+                if (
+                    existingIndex >=
+                    0
+                ) {
+
+                    STRANGIS_PRODUCTS[
+                        existingIndex
+                    ] =
+                        normalized;
+
+                }
+                else {
+
+                    STRANGIS_PRODUCTS.push(
+                        normalized
+                    );
+
+                }
+
+            }
+        );
 
 
         /* =============================================
@@ -1006,19 +2147,42 @@ async function saveProductToSupabase() {
         ============================================= */
 
         if (
-            typeof generateCode ===
+            typeof window.generateCode ===
             "function"
         ) {
 
-            generateCode();
+            try {
+
+                window.generateCode();
+
+            }
+            catch(error) {
+
+                console.error(
+                    "STRANGIS — error generando código:",
+                    error
+                );
+
+            }
 
         }
+
+
+        /*
+           Devolvemos el producto guardado
+           para que otras funciones puedan
+           utilizarlo si lo necesitan.
+        */
+        return (
+            savedProducts[0] ||
+            product
+        );
 
     }
     catch(error) {
 
         console.error(
-            "STRANGIS — error guardando producto:",
+            "STRANGIS — error inesperado guardando producto:",
             error
         );
 
@@ -1029,10 +2193,13 @@ async function saveProductToSupabase() {
 
             (
                 error?.message ||
-                error
+                String(error)
             )
 
         );
+
+
+        return null;
 
     }
 
@@ -1040,7 +2207,21 @@ async function saveProductToSupabase() {
 
 
 /* =====================================================
-   CARGA AUTOMÁTICA OPCIONAL
+   RECARGAR PRODUCTOS
+===================================================== */
+
+/**
+ * Alias cómodo para volver a cargar productos.
+ */
+async function refreshProducts() {
+
+    return await loadProductsFromSupabase();
+
+}
+
+
+/* =====================================================
+   INICIALIZACIÓN
 ===================================================== */
 
 async function initStrangisProducts() {
@@ -1049,19 +2230,27 @@ async function initStrangisProducts() {
 
         await loadProductsFromSupabase();
 
+        return STRANGIS_PRODUCTS;
+
     }
     catch(error) {
 
         /*
-           No lanzamos error aquí para no romper
-           páginas que solamente necesitan
+           No lanzamos el error para no romper
+           las páginas que solamente necesitan
            las funciones del archivo.
         */
 
         console.error(
+
             "STRANGIS — no se pudieron cargar productos:",
+
             error
+
         );
+
+
+        return [];
 
     }
 
@@ -1076,20 +2265,44 @@ window.STRANGIS_PRODUCTS =
     STRANGIS_PRODUCTS;
 
 
+window.STRANGIS_ALLOWED_CATEGORIES =
+    STRANGIS_ALLOWED_CATEGORIES;
+
+
 window.supabaseClient =
     supabaseClient;
+
+
+window.normalizeProduct =
+    normalizeProduct;
 
 
 window.loadProductsFromSupabase =
     loadProductsFromSupabase;
 
 
+window.refreshProducts =
+    refreshProducts;
+
+
+window.initStrangisProducts =
+    initStrangisProducts;
+
+
 window.getProducts =
     getProducts;
 
 
+window.getActiveProducts =
+    getActiveProducts;
+
+
 window.getProductsByCategory =
     getProductsByCategory;
+
+
+window.getActiveProductsByCategory =
+    getActiveProductsByCategory;
 
 
 window.getProductById =
@@ -1098,6 +2311,10 @@ window.getProductById =
 
 window.getProductByReference =
     getProductByReference;
+
+
+window.productReferenceExists =
+    productReferenceExists;
 
 
 window.getCategoryName =
@@ -1110,6 +2327,42 @@ window.getProductImages =
 
 window.getProductImage =
     getProductImage;
+
+
+window.getProductVariants =
+    getProductVariants;
+
+
+window.getProductSizes =
+    getProductSizes;
+
+
+window.isValidProductCategory =
+    isValidProductCategory;
+
+
+window.getProductFormValues =
+    getProductFormValues;
+
+
+window.getFormVariants =
+    getFormVariants;
+
+
+window.getFormSizes =
+    getFormSizes;
+
+
+window.validateProductVariants =
+    validateProductVariants;
+
+
+window.validateProductData =
+    validateProductData;
+
+
+window.buildProductFromForm =
+    buildProductFromForm;
 
 
 window.saveProductToSupabase =
