@@ -1,1 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Strangis Preview</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background: #111;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.preview {
+    width: 1280px;
+    height: 640px;
+    max-width: 100vw;
+    max-height: 100vh;
+
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 100px;
+
+    background:
+        radial-gradient(
+            circle at 75% 35%,
+            rgba(255,255,255,0.13),
+            transparent 28%
+        ),
+        linear-gradient(
+            135deg,
+            #111111 0%,
+            #242424 40%,
+            #505050 68%,
+            #171717 100%
+        );
+}
+
+.preview::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 0%,
+            rgba(255,255,255,0.04) 45%,
+            transparent 70%
+        );
+}
+
+.small {
+    position: relative;
+    z-index: 2;
+
+    color: #aaa;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 7px;
+
+    margin-bottom: 25px;
+}
+
+h1 {
+    position: relative;
+    z-index: 2;
+
+    color: #fff;
+
+    font-size: 150px;
+    line-height: 0.8;
+
+    letter-spacing: -8px;
+
+    font-weight: 900;
+
+    text-shadow:
+        0 0 5px rgba(255,255,255,0.95),
+        0 0 15px rgba(255,255,255,0.8),
+        0 0 35px rgba(255,255,255,0.6),
+        0 0 70px rgba(255,255,255,0.35);
+}
+
+.description {
+    position: relative;
+    z-index: 2;
+
+    margin-top: 35px;
+
+    color: #aaa;
+
+    font-size: 18px;
+
+    letter-spacing: 2px;
+}
+
+.line {
+    position: absolute;
+
+    left: 100px;
+    right: 100px;
+    bottom: 60px;
+
+    height: 1px;
+
+    background: rgba(255,255,255,0.2);
+}
+
+.brand {
+    position: absolute;
+
+    right: 100px;
+    bottom: 80px;
+
+    color: #777;
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    font-weight: bold;
+}
+
+@media (max-width: 700px) {
+
+    .preview {
+        width: 100vw;
+        height: 50vw;
+        min-height: 320px;
+
+        padding: 8vw;
+    }
+
+    .small {
+        font-size: 8px;
+        letter-spacing: 3px;
+        margin-bottom: 15px;
+    }
+
+    h1 {
+        font-size: 12vw;
+        letter-spacing: -4px;
+    }
+
+    .description {
+        margin-top: 20px;
+        font-size: 11px;
+    }
+
+    .line {
+        left: 8vw;
+        right: 8vw;
+        bottom: 8vw;
+    }
+
+    .brand {
+        right: 8vw;
+        bottom: 10vw;
+        font-size: 8px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="preview">
+
+    <div class="small">
+        MODA · ACCESORIOS · ESTILO
+    </div>
+
+    <h1>
+        STRANGIS
+    </h1>
+
+    <div class="description">
+        Tu tienda online
+    </div>
+
+    <div class="line"></div>
+
+    <div class="brand">
+        STRANGIS · 2026
+    </div>
+
+</div>
+
+</body>
+</html>
