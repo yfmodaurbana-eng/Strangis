@@ -1,0 +1,1169 @@
+/* =====================================================
+   STRANGIS — PRODUCTS.JS
+   MOTOR DE PRODUCTOS + SUPABASE
+   ===================================================== */
+
+
+/* =====================================================
+   CONFIGURACIÓN SUPABASE
+===================================================== */
+
+const STRANGIS_SUPABASE_URL =
+    "https://xbbjfatmdbxbuoqdrgoj.supabase.co";
+
+const STRANGIS_SUPABASE_KEY =
+    "sb_publishable_M7ETdIWvj4nCQZ55i24Vpw_5Yc5Islk";
+
+const STRANGIS_PRODUCTS_TABLE =
+    "Products";
+
+
+/* =====================================================
+   CLIENTE SUPABASE
+===================================================== */
+
+const supabaseClient = {
+
+    async request(path, options = {}) {
+
+        const response = await fetch(
+            STRANGIS_SUPABASE_URL + path,
+            {
+                ...options,
+
+                headers: {
+
+                    "apikey":
+                        STRANGIS_SUPABASE_KEY,
+
+                    "Authorization":
+                        "Bearer " +
+                        STRANGIS_SUPABASE_KEY,
+
+                    "Content-Type":
+                        "application/json",
+
+                    ...(options.headers || {})
+                }
+            }
+        );
+
+
+        const text =
+            await response.text();
+
+
+        let data = null;
+
+
+        try {
+
+            data =
+                text
+                    ? JSON.parse(text)
+                    : null;
+
+        }
+        catch(error) {
+
+            data = text;
+
+        }
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                data?.message ||
+                data?.error_description ||
+                data?.hint ||
+                text ||
+                `Error HTTP ${response.status}`
+            );
+
+        }
+
+
+        return data;
+
+    },
+
+
+    from(table) {
+
+        return {
+
+            /* =========================================
+               INSERTAR PRODUCTO
+            ========================================= */
+
+            async insert(product) {
+
+                try {
+
+                    const data =
+                        await supabaseClient.request(
+                            `/rest/v1/${encodeURIComponent(table)}`,
+                            {
+
+                                method:
+                                    "POST",
+
+                                headers: {
+
+                                    "Prefer":
+                                        "return=representation"
+
+                                },
+
+                                body:
+                                    JSON.stringify(product)
+
+                            }
+                        );
+
+
+                    return {
+
+                        data,
+
+                        error:
+                            null
+
+                    };
+
+                }
+                catch(error) {
+
+                    return {
+
+                        data:
+                            null,
+
+                        error
+
+                    };
+
+                }
+
+            },
+
+
+            /* =========================================
+               LEER PRODUCTOS
+            ========================================= */
+
+            async select() {
+
+                try {
+
+                    const data =
+                        await supabaseClient.request(
+                            `/rest/v1/${encodeURIComponent(table)}?select=*`
+                        );
+
+
+                    return {
+
+                        data,
+
+                        error:
+                            null
+
+                    };
+
+                }
+                catch(error) {
+
+                    return {
+
+                        data:
+                            null,
+
+                        error
+
+                    };
+
+                }
+
+            }
+
+        };
+
+    }
+
+};
+
+
+/* =====================================================
+   PRODUCTOS EN MEMORIA
+===================================================== */
+
+const STRANGIS_PRODUCTS = [];
+
+
+/* =====================================================
+   NORMALIZAR IMÁGENES
+===================================================== */
+
+function normalizeProductImages(images) {
+
+    if (!images) {
+
+        return [];
+
+    }
+
+
+    /*
+       Supabase puede devolver JSON
+       directamente o como texto.
+    */
+
+    if (typeof images === "string") {
+
+        try {
+
+            images =
+                JSON.parse(images);
+
+        }
+        catch(error) {
+
+            /*
+               Si fuera una única URL
+               guardada como texto.
+            */
+
+            if (
+                images.startsWith("http://") ||
+                images.startsWith("https://")
+            ) {
+
+                return [
+                    images.trim()
+                ];
+
+            }
+
+
+            return [];
+
+        }
+
+    }
+
+
+    if (!Array.isArray(images)) {
+
+        return [];
+
+    }
+
+
+    return images
+
+        .map(item => {
+
+            /*
+               Caso:
+
+               "https://imagen.jpg"
+            */
+
+            if (
+                typeof item ===
+                "string"
+            ) {
+
+                return {
+
+                    name: "",
+
+                    image:
+                        item.trim()
+
+                };
+
+            }
+
+
+            /*
+               Caso:
+
+               {
+                   name:"Negro",
+                   image:"https://..."
+               }
+            */
+
+            if (
+                item &&
+                typeof item ===
+                "object"
+            ) {
+
+                return {
+
+                    name:
+                        String(
+                            item.name ||
+                            ""
+                        ).trim(),
+
+                    image:
+                        String(
+                            item.image ||
+                            item.url ||
+                            item.src ||
+                            ""
+                        ).trim()
+
+                };
+
+            }
+
+
+            return null;
+
+        })
+
+        .filter(
+            item =>
+                item &&
+                item.image
+        );
+
+}
+
+
+/* =====================================================
+   NORMALIZAR PRODUCTO
+===================================================== */
+
+function normalizeProduct(product) {
+
+    if (
+        !product ||
+        typeof product !== "object"
+    ) {
+
+        return null;
+
+    }
+
+
+    const normalized = {
+
+        ...product,
+
+        id:
+            product.id ?? "",
+
+        name:
+            String(
+                product.name ||
+                "Producto Strangis"
+            ).trim(),
+
+        category:
+            String(
+                product.category ||
+                ""
+            ).trim().toLowerCase(),
+
+        ref:
+            String(
+                product.ref ||
+                ""
+            ).trim(),
+
+        price:
+            product.price ?? 0,
+
+        stock:
+            product.stock ?? 0,
+
+        description:
+            String(
+                product.description ||
+                ""
+            ),
+
+        whatsapp:
+            String(
+                product.whatsapp ||
+                ""
+            ),
+
+        images:
+            normalizeProductImages(
+                product.images
+            ),
+
+        sizes:
+            normalizeSizes(
+                product.sizes
+            ),
+
+        shipping_min:
+            product.shipping_min ?? 3,
+
+        shipping_max:
+            product.shipping_max ?? 9,
+
+        active:
+            product.active !== false
+
+    };
+
+
+    return normalized;
+
+}
+
+
+/* =====================================================
+   NORMALIZAR TALLAS
+===================================================== */
+
+function normalizeSizes(sizes) {
+
+    if (!sizes) {
+
+        return [];
+
+    }
+
+
+    if (typeof sizes === "string") {
+
+        try {
+
+            sizes =
+                JSON.parse(sizes);
+
+        }
+        catch(error) {
+
+            return sizes
+                .split(",")
+                .map(
+                    size =>
+                        String(size).trim()
+                )
+                .filter(Boolean);
+
+        }
+
+    }
+
+
+    if (!Array.isArray(sizes)) {
+
+        return [];
+
+    }
+
+
+    return sizes
+
+        .map(
+            size =>
+                String(size).trim()
+        )
+
+        .filter(Boolean);
+
+}
+
+
+/* =====================================================
+   CARGAR PRODUCTOS DESDE SUPABASE
+===================================================== */
+
+async function loadProductsFromSupabase() {
+
+    console.log(
+        "STRANGIS — conectando con Supabase..."
+    );
+
+
+    const result =
+        await supabaseClient
+            .from(
+                STRANGIS_PRODUCTS_TABLE
+            )
+            .select();
+
+
+    if (result.error) {
+
+        console.error(
+            "STRANGIS — error Supabase:",
+            result.error
+        );
+
+
+        throw result.error;
+
+    }
+
+
+    if (!Array.isArray(result.data)) {
+
+        throw new Error(
+            "Supabase no devolvió una lista de productos."
+        );
+
+    }
+
+
+    /*
+       Convertimos todos los productos
+       al formato que utiliza Strangis.
+    */
+
+    const products =
+        result.data
+
+            .map(
+                normalizeProduct
+            )
+
+            .filter(Boolean);
+
+
+    /*
+       Actualizamos la memoria local.
+    */
+
+    STRANGIS_PRODUCTS.length = 0;
+
+
+    STRANGIS_PRODUCTS.push(
+        ...products
+    );
+
+
+    console.log(
+        `STRANGIS — ${products.length} productos cargados.`,
+        products
+    );
+
+
+    return products;
+
+}
+
+
+/* =====================================================
+   OBTENER PRODUCTOS
+===================================================== */
+
+function getProducts() {
+
+    return STRANGIS_PRODUCTS;
+
+}
+
+
+/* =====================================================
+   OBTENER PRODUCTOS POR CATEGORÍA
+===================================================== */
+
+function getProductsByCategory(
+    category
+) {
+
+    const target =
+        String(
+            category || ""
+        )
+        .trim()
+        .toLowerCase();
+
+
+    return STRANGIS_PRODUCTS.filter(
+        product =>
+            String(
+                product.category || ""
+            )
+            .toLowerCase()
+            ===
+            target
+    );
+
+}
+
+
+/* =====================================================
+   OBTENER PRODUCTO POR ID
+===================================================== */
+
+function getProductById(id) {
+
+    return STRANGIS_PRODUCTS.find(
+        product =>
+            String(product.id)
+            ===
+            String(id)
+    );
+
+}
+
+
+/* =====================================================
+   OBTENER PRODUCTO POR REFERENCIA
+===================================================== */
+
+function getProductByReference(ref) {
+
+    return STRANGIS_PRODUCTS.find(
+        product =>
+            String(product.ref)
+            .toLowerCase()
+            ===
+            String(ref)
+                .toLowerCase()
+    );
+
+}
+
+
+/* =====================================================
+   NOMBRES DE CATEGORÍAS
+===================================================== */
+
+function getCategoryName(category) {
+
+    const names = {
+
+        camisetas:
+            "Camisetas",
+
+        pantalones:
+            "Pantalones",
+
+        conjuntos:
+            "Conjuntos",
+
+        gorras:
+            "Gorras",
+
+        gafas:
+            "Gafas",
+
+        bisuteria:
+            "Bisutería"
+
+    };
+
+
+    const key =
+        String(
+            category || ""
+        )
+        .trim()
+        .toLowerCase();
+
+
+    return (
+        names[key] ||
+        category ||
+        "Strangis"
+    );
+
+}
+
+
+/* =====================================================
+   OBTENER IMAGEN PRINCIPAL
+===================================================== */
+
+function getProductMainImage(product) {
+
+    if (!product) {
+
+        return "";
+
+    }
+
+
+    const images =
+        normalizeProductImages(
+            product.images
+        );
+
+
+    if (!images.length) {
+
+        return "";
+
+    }
+
+
+    return images[0].image || "";
+
+}
+
+
+/* =====================================================
+   GUARDAR PRODUCTO EN SUPABASE
+===================================================== */
+
+async function saveProductToSupabase() {
+
+    try {
+
+        const nameElement =
+            document.getElementById(
+                "productName"
+            );
+
+
+        const refElement =
+            document.getElementById(
+                "productRef"
+            );
+
+
+        const priceElement =
+            document.getElementById(
+                "productPrice"
+            );
+
+
+        const stockElement =
+            document.getElementById(
+                "productStock"
+            );
+
+
+        const descriptionElement =
+            document.getElementById(
+                "productDescription"
+            );
+
+
+        const whatsappElement =
+            document.getElementById(
+                "productWhatsapp"
+            );
+
+
+        const shippingMinElement =
+            document.getElementById(
+                "shippingMin"
+            );
+
+
+        const shippingMaxElement =
+            document.getElementById(
+                "shippingMax"
+            );
+
+
+        if (!nameElement) {
+
+            alert(
+                "No se encontró el campo del nombre del producto."
+            );
+
+            return;
+
+        }
+
+
+        const name =
+            nameElement.value.trim();
+
+
+        const ref =
+            refElement
+                ? refElement.value.trim()
+                : "";
+
+
+        const price =
+            priceElement
+                ? Number(
+                    priceElement.value
+                  ) || 0
+                : 0;
+
+
+        const stock =
+            stockElement
+                ? Number(
+                    stockElement.value
+                  ) || 0
+                : 0;
+
+
+        const description =
+            descriptionElement
+                ? descriptionElement.value.trim()
+                : "";
+
+
+        const whatsapp =
+            whatsappElement
+                ? whatsappElement.value
+                    .replace(/\D/g, "")
+                : "";
+
+
+        const shippingMin =
+            shippingMinElement
+                ? Number(
+                    shippingMinElement.value
+                  ) || 3
+                : 3;
+
+
+        const shippingMax =
+            shippingMaxElement
+                ? Number(
+                    shippingMaxElement.value
+                  ) || 9
+                : 9;
+
+
+        /* =========================================
+           CATEGORÍA
+        ========================================= */
+
+        const categoryElement =
+            document.getElementById(
+                "productCategory"
+            );
+
+
+        const category =
+            categoryElement
+                ? categoryElement.value
+                    .trim()
+                    .toLowerCase()
+                : "camisetas";
+
+
+        const allowedCategories = [
+
+            "camisetas",
+            "pantalones",
+            "conjuntos",
+            "gorras",
+            "gafas",
+            "bisuteria"
+
+        ];
+
+
+        if (
+            !allowedCategories.includes(
+                category
+            )
+        ) {
+
+            alert(
+                "Selecciona una categoría válida."
+            );
+
+            return;
+
+        }
+
+
+        /* =========================================
+           VALIDACIONES
+        ========================================= */
+
+        if (!name) {
+
+            alert(
+                "Introduce el nombre del producto."
+            );
+
+            return;
+
+        }
+
+
+        if (!ref) {
+
+            alert(
+                "Introduce la referencia / ID."
+            );
+
+            return;
+
+        }
+
+
+        /* =========================================
+           VARIANTES
+        ========================================= */
+
+        const sourceVariants =
+            Array.isArray(
+                window.variants
+            )
+                ? window.variants
+                : [];
+
+
+        const validVariants =
+            sourceVariants
+
+                .map(
+                    variant => ({
+
+                        name:
+                            String(
+                                variant?.name ||
+                                ""
+                            ).trim(),
+
+                        image:
+                            String(
+                                variant?.image ||
+                                ""
+                            ).trim()
+
+                    })
+                )
+
+                .filter(
+                    variant =>
+                        variant.name ||
+                        variant.image
+                );
+
+
+        if (!validVariants.length) {
+
+            alert(
+                "Añade al menos un color con su imagen."
+            );
+
+            return;
+
+        }
+
+
+        for (
+            const variant
+            of validVariants
+        ) {
+
+            if (!variant.name) {
+
+                alert(
+                    "Todos los colores deben tener nombre."
+                );
+
+                return;
+
+            }
+
+
+            if (!variant.image) {
+
+                alert(
+                    "Todos los colores deben tener una URL de imagen."
+                );
+
+                return;
+
+            }
+
+        }
+
+
+        /* =========================================
+           TALLAS
+        ========================================= */
+
+        const sourceSizes =
+            Array.isArray(
+                window.sizes
+            )
+                ? window.sizes
+                : [];
+
+
+        const validSizes =
+            sourceSizes
+
+                .map(
+                    size =>
+                        String(size).trim()
+                )
+
+                .filter(Boolean);
+
+
+        /* =========================================
+           OBJETO PRODUCTO
+        ========================================= */
+
+        const product = {
+
+            name,
+
+            category,
+
+            ref,
+
+            price,
+
+            stock,
+
+            description,
+
+            whatsapp,
+
+            images:
+                validVariants,
+
+            sizes:
+                validSizes,
+
+            shipping_min:
+                shippingMin,
+
+            shipping_max:
+                shippingMax,
+
+            active:
+                true
+
+        };
+
+
+        console.log(
+            "STRANGIS — producto a guardar:",
+            product
+        );
+
+
+        /* =========================================
+           INSERTAR
+        ========================================= */
+
+        const result =
+            await supabaseClient
+                .from(
+                    STRANGIS_PRODUCTS_TABLE
+                )
+                .insert(product);
+
+
+        if (result.error) {
+
+            console.error(
+                "STRANGIS — error guardando:",
+                result.error
+            );
+
+
+            alert(
+                "Error al guardar el producto:\n\n" +
+                result.error.message
+            );
+
+            return;
+
+        }
+
+
+        alert(
+            "✅ Producto guardado correctamente en Supabase."
+        );
+
+
+        /*
+           Si existe generateCode()
+           la ejecutamos.
+        */
+
+        if (
+            typeof generateCode ===
+            "function"
+        ) {
+
+            generateCode();
+
+        }
+
+    }
+    catch(error) {
+
+        console.error(
+            "STRANGIS — error guardando producto:",
+            error
+        );
+
+
+        alert(
+            "❌ No se pudo guardar el producto:\n\n" +
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   EXPONER FUNCIONES GLOBALMENTE
+===================================================== */
+
+window.STRANGIS_PRODUCTS =
+    STRANGIS_PRODUCTS;
+
+
+window.supabaseClient =
+    supabaseClient;
+
+
+window.loadProductsFromSupabase =
+    loadProductsFromSupabase;
+
+
+window.getProducts =
+    getProducts;
+
+
+window.getProductsByCategory =
+    getProductsByCategory;
+
+
+window.getProductById =
+    getProductById;
+
+
+window.getProductByReference =
+    getProductByReference;
+
+
+window.getCategoryName =
+    getCategoryName;
+
+
+window.getProductMainImage =
+    getProductMainImage;
+
+
+window.saveProductToSupabase =
+    saveProductToSupabase;
+
+
+/* =====================================================
+   FINAL
+===================================================== */
+
+console.log(
+    "STRANGIS — products.js cargado correctamente."
+);
