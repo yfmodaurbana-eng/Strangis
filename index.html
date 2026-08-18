@@ -187,11 +187,6 @@ nav a.active{
 
 }
 
-
-/* =====================================================
-   TÍTULO NEÓN
-===================================================== */
-
 .hero h1{
 
     position:relative;
@@ -231,11 +226,6 @@ nav a.active{
         neonPulse 2.8s ease-in-out infinite;
 
 }
-
-
-/*
-   Brillo adicional
-*/
 
 .hero h1::after{
 
@@ -413,11 +403,6 @@ nav a.active{
 
 }
 
-
-/*
-   Degradados laterales
-*/
-
 .carousel-window::before,
 .carousel-window::after{
 
@@ -465,7 +450,7 @@ nav a.active{
 
 
 /* =====================================================
-   PISTA DEL CARRUSEL
+   PISTA
 ===================================================== */
 
 .products{
@@ -486,15 +471,6 @@ nav a.active{
         infinite;
 
 }
-
-
-/*
-   La pista contiene dos copias.
-
-   Al llegar al final de la primera,
-   la segunda ocupa exactamente
-   la misma posición.
-*/
 
 @keyframes carouselMove{
 
@@ -567,11 +543,6 @@ nav a.active{
 
 }
 
-
-/* =====================================================
-   IMAGEN
-===================================================== */
-
 .product-image{
 
     position:relative;
@@ -609,11 +580,6 @@ nav a.active{
 
 }
 
-
-/* =====================================================
-   INFORMACIÓN
-===================================================== */
-
 .product-info{
 
     padding:
@@ -648,11 +614,6 @@ nav a.active{
     text-transform:uppercase;
 
 }
-
-
-/* =====================================================
-   ENLACE
-===================================================== */
 
 .product-link{
 
@@ -904,7 +865,6 @@ footer{
 
     }
 
-
     .hero{
 
         width:94%;
@@ -946,7 +906,6 @@ footer{
 
     }
 
-
     .products-section{
 
         width:94%;
@@ -954,7 +913,6 @@ footer{
         padding-bottom:80px;
 
     }
-
 
     .product{
 
@@ -985,7 +943,6 @@ footer{
 
     }
 
-
     .products{
 
         gap:9px;
@@ -995,14 +952,12 @@ footer{
 
     }
 
-
     .carousel-window::before,
     .carousel-window::after{
 
         width:35px;
 
     }
-
 
     .info-section{
 
@@ -1303,21 +1258,34 @@ realiza tu pedido.
 
 
 <!-- =====================================================
-     MOTOR DE PRODUCTOS
-     
-     IMPORTANTE:
-     products.js debe estar en la misma carpeta
-     que este inicio.html
+     SUPABASE
 ===================================================== -->
 
-<script src="products.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
 <script>
 
 /* =====================================================
-   CONFIGURACIÓN DE CATEGORÍAS
+   SUPABASE
+===================================================== */
+
+const SUPABASE_URL =
+    "https://xbbjfatmdbxbuoqdrgoj.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_M7ETdIWvj4nCQZ55i24Vpw_5Yc5Islk";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+    );
+
+
+/* =====================================================
+   CATEGORÍAS
 ===================================================== */
 
 const CATEGORY_LINKS = {
@@ -1343,6 +1311,29 @@ const CATEGORY_LINKS = {
 };
 
 
+const CATEGORY_NAMES = {
+
+    camisetas:
+        "Camisetas",
+
+    pantalones:
+        "Pantalones",
+
+    conjuntos:
+        "Conjuntos",
+
+    gorras:
+        "Gorras",
+
+    gafas:
+        "Gafas",
+
+    bisuteria:
+        "Bisutería"
+
+};
+
+
 /* =====================================================
    ESCAPE HTML
 ===================================================== */
@@ -1351,30 +1342,15 @@ function escapeHTML(value){
 
     return String(value ?? "")
 
-        .replace(
-            /&/g,
-            "&amp;"
-        )
+        .replace(/&/g,"&amp;")
 
-        .replace(
-            /</g,
-            "&lt;"
-        )
+        .replace(/</g,"&lt;")
 
-        .replace(
-            />/g,
-            "&gt;"
-        )
+        .replace(/>/g,"&gt;")
 
-        .replace(
-            /"/g,
-            "&quot;"
-        )
+        .replace(/"/g,"&quot;")
 
-        .replace(
-            /'/g,
-            "&#039;"
-        );
+        .replace(/'/g,"&#039;");
 
 }
 
@@ -1387,36 +1363,21 @@ function escapeAttribute(value){
 
     return String(value ?? "")
 
-        .replace(
-            /&/g,
-            "&amp;"
-        )
+        .replace(/&/g,"&amp;")
 
-        .replace(
-            /"/g,
-            "&quot;"
-        )
+        .replace(/"/g,"&quot;")
 
-        .replace(
-            /'/g,
-            "&#039;"
-        )
+        .replace(/'/g,"&#039;")
 
-        .replace(
-            /</g,
-            "&lt;"
-        )
+        .replace(/</g,"&lt;")
 
-        .replace(
-            />/g,
-            "&gt;"
-        );
+        .replace(/>/g,"&gt;");
 
 }
 
 
 /* =====================================================
-   OBTENER IMÁGENES DEL PRODUCTO
+   OBTENER TODAS LAS IMÁGENES
 ===================================================== */
 
 function getProductImages(product){
@@ -1428,76 +1389,172 @@ function getProductImages(product){
     }
 
 
-    let images =
+    let raw =
         product.images;
 
 
     /*
-       Si Supabase devuelve JSON
-       como texto, lo convertimos.
-    */
+     * Por si Supabase devuelve JSON
+     * como texto.
+     */
 
-    if(typeof images === "string"){
+    if(typeof raw === "string"){
 
         try{
 
-            images =
-                JSON.parse(images);
+            raw =
+                JSON.parse(raw);
 
         }
         catch(error){
 
-            images = [];
+            /*
+             * Si por alguna razón es
+             * directamente una URL.
+             */
+
+            if(raw.startsWith("http")){
+
+                return [raw];
+
+            }
+
+            return [];
 
         }
 
     }
 
 
-    if(!Array.isArray(images)){
+    if(!Array.isArray(raw)){
 
         return [];
 
     }
 
 
-    return images
+    const result = [];
 
-        .map(item => {
 
-            if(typeof item === "string"){
+    /*
+     * FORMATO QUE GUARDA TU ADMIN:
+     *
+     * [
+     *   {
+     *      name:"Negro",
+     *      color:"#000",
+     *      images:[
+     *          "foto1.jpg",
+     *          "foto2.jpg"
+     *      ]
+     *   }
+     * ]
+     */
 
-                return item.trim();
+    raw.forEach(item=>{
+
+        if(typeof item === "string"){
+
+            if(item.trim()){
+
+                result.push(
+                    item.trim()
+                );
 
             }
 
+            return;
 
-            if(
-                item &&
-                typeof item === "object"
-            ){
-
-                return String(
-                    item.image ||
-                    item.url ||
-                    item.src ||
-                    ""
-                ).trim();
-
-            }
+        }
 
 
-            return "";
+        if(!item || typeof item !== "object"){
 
-        })
+            return;
 
-        .filter(Boolean);
+        }
+
+
+        /*
+         * Formato correcto del administrador:
+         * item.images[]
+         */
+
+        if(Array.isArray(item.images)){
+
+            item.images.forEach(image=>{
+
+                if(
+                    typeof image === "string" &&
+                    image.trim()
+                ){
+
+                    result.push(
+                        image.trim()
+                    );
+
+                }
+
+            });
+
+        }
+
+
+        /*
+         * Compatibilidad con formatos antiguos.
+         */
+
+        if(
+            typeof item.image === "string" &&
+            item.image.trim()
+        ){
+
+            result.push(
+                item.image.trim()
+            );
+
+        }
+
+
+        if(
+            typeof item.url === "string" &&
+            item.url.trim()
+        ){
+
+            result.push(
+                item.url.trim()
+            );
+
+        }
+
+
+        if(
+            typeof item.src === "string" &&
+            item.src.trim()
+        ){
+
+            result.push(
+                item.src.trim()
+            );
+
+        }
+
+    });
+
+
+    /*
+     * Eliminamos duplicados.
+     */
+
+    return [
+        ...new Set(result)
+    ];
 
 }
 
 
 /* =====================================================
-   OBTENER IMAGEN PRINCIPAL
+   IMAGEN PRINCIPAL
 ===================================================== */
 
 function getProductImage(product){
@@ -1507,6 +1564,47 @@ function getProductImage(product){
 
 
     return images[0] || "";
+
+}
+
+
+/* =====================================================
+   NOMBRE CATEGORÍA
+===================================================== */
+
+function getCategoryName(category){
+
+    const key =
+        String(
+            category || ""
+        )
+        .trim()
+        .toLowerCase();
+
+
+    return CATEGORY_NAMES[key]
+        || category
+        || "Strangis";
+
+}
+
+
+/* =====================================================
+   ENLACE DEL PRODUCTO
+===================================================== */
+
+function getProductLink(product){
+
+    const category =
+        String(
+            product?.category || ""
+        )
+        .trim()
+        .toLowerCase();
+
+
+    return CATEGORY_LINKS[category]
+        || "#";
 
 }
 
@@ -1522,9 +1620,9 @@ function createProductCard(product){
 
 
     /*
-       No mostramos productos
-       que no tengan imagen válida.
-    */
+     * Si no tiene imagen,
+     * no mostramos la tarjeta.
+     */
 
     if(!image){
 
@@ -1535,31 +1633,26 @@ function createProductCard(product){
 
     const name =
         String(
-            product.name ||
+            product?.name ||
             "Producto Strangis"
         );
 
 
     const category =
         String(
-            product.category ||
+            product?.category ||
             ""
-        ).toLowerCase();
+        )
+        .trim()
+        .toLowerCase();
 
 
     const categoryName =
-        typeof getCategoryName ===
-        "function"
-
-        ? getCategoryName(category)
-
-        : category;
+        getCategoryName(category);
 
 
     const link =
-        CATEGORY_LINKS[category]
-        ||
-        "#";
+        getProductLink(product);
 
 
     return `
@@ -1582,6 +1675,7 @@ function createProductCard(product){
                         alt="${escapeHTML(name)}"
                         loading="lazy"
                         draggable="false"
+                        onerror="this.closest('.product').style.display='none';"
                     >
 
                 </div>
@@ -1601,9 +1695,7 @@ function createProductCard(product){
                     <div
                         class="product-category"
                     >
-                        ${escapeHTML(
-                            categoryName || "Strangis"
-                        )}
+                        ${escapeHTML(categoryName)}
                     </div>
 
                 </div>
@@ -1618,10 +1710,10 @@ function createProductCard(product){
 
 
 /* =====================================================
-   RENDERIZAR CARRUSEL
+   RENDERIZAR PRODUCTOS
 ===================================================== */
 
-function renderCarousel(products){
+function renderProducts(products){
 
     const container =
         document.getElementById(
@@ -1643,32 +1735,55 @@ function renderCarousel(products){
 
 
     /*
-       Solo productos activos
-       y con imagen.
-    */
+     * Solo productos activos.
+     */
 
-    const validProducts =
+    const activeProducts =
+        Array.isArray(products)
+
+        ?
         products.filter(
             product =>
                 product &&
-                product.active !== false &&
-                getProductImage(product)
+                product.active !== false
+        )
+
+        :
+        [];
+
+
+    /*
+     * Solo productos con
+     * alguna imagen.
+     */
+
+    const validProducts =
+        activeProducts.filter(
+            product =>
+                Boolean(
+                    getProductImage(product)
+                )
         );
 
 
     counter.textContent =
         validProducts.length === 1
-            ? "1 artículo"
-            : `${validProducts.length} artículos`;
+
+        ?
+        "1 artículo"
+
+        :
+        `${validProducts.length} artículos`;
 
 
     /*
-       Si no hay productos.
-    */
+     * Sin productos.
+     */
 
     if(!validProducts.length){
 
-        container.style.animation = "none";
+        container.style.animation =
+            "none";
 
         container.innerHTML = `
 
@@ -1695,10 +1810,8 @@ function renderCarousel(products){
 
 
     /*
-       Creamos DOS COPIAS EXACTAS.
-
-       Esto permite que el carrusel sea continuo.
-    */
+     * Generamos las tarjetas.
+     */
 
     const cards =
         validProducts
@@ -1706,14 +1819,19 @@ function renderCarousel(products){
             .join("");
 
 
+    /*
+     * DOS COPIAS para el carrusel
+     * infinito.
+     */
+
     container.innerHTML =
         cards + cards;
 
 
     /*
-       Si solo hay un producto,
-       evitamos que el carrusel quede raro.
-    */
+     * Un único producto:
+     * no tiene sentido moverlo.
+     */
 
     if(validProducts.length === 1){
 
@@ -1721,12 +1839,17 @@ function renderCarousel(products){
             "none";
 
     }
+    else{
+
+        container.style.animation = "";
+
+    }
 
 }
 
 
 /* =====================================================
-   CARGAR PRODUCTOS
+   CARGAR DIRECTAMENTE DESDE SUPABASE
 ===================================================== */
 
 async function loadInicioProducts(){
@@ -1749,35 +1872,62 @@ async function loadInicioProducts(){
             "Cargando...";
 
 
+        container.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-title">
+                    Cargando productos
+                </div>
+
+                <div class="empty-text">
+                    Un momento...
+                </div>
+
+            </div>
+
+        `;
+
+
         /*
-           Esta función viene de products.js.
-        */
+         * CONSULTA DIRECTA A SUPABASE
+         *
+         * No necesita products.js
+         */
 
-        if(
-            typeof loadProductsFromSupabase !==
-            "function"
-        ){
+        const {data,error} =
+            await supabaseClient
 
-            throw new Error(
-                "No se encontró loadProductsFromSupabase(). Comprueba que products.js está cargado correctamente."
-            );
+                .from("Products")
+
+                .select("*")
+
+                .eq("active",true)
+
+                .order(
+                    "id",
+                    {
+                        ascending:false
+                    }
+                );
+
+
+        if(error){
+
+            throw error;
 
         }
 
 
-        const products =
-            await loadProductsFromSupabase();
-
-
         console.log(
             "STRANGIS — productos recibidos:",
-            products
+            data
         );
 
 
-        renderCarousel(
-            Array.isArray(products)
-                ? products
+        renderProducts(
+            Array.isArray(data)
+                ? data
                 : []
         );
 
@@ -1786,7 +1936,7 @@ async function loadInicioProducts(){
     catch(error){
 
         console.error(
-            "STRANGIS — error cargando productos:",
+            "STRANGIS — error Supabase:",
             error
         );
 
@@ -1800,20 +1950,23 @@ async function loadInicioProducts(){
             <div class="empty">
 
                 <div class="empty-title">
-
-                    No se pudieron cargar los productos
-
+                    No se pudieron cargar
+                    los productos
                 </div>
-
 
                 <div class="empty-text">
 
-                    Comprueba que
-                    <strong>products.js</strong>
-                    está correctamente conectado
-                    y que la tabla
-                    <strong>Products</strong>
-                    de Supabase permite la lectura pública.
+                    ${escapeHTML(
+                        error?.message ||
+                        "Error desconocido."
+                    )}
+
+                    <br><br>
+
+                    Comprueba las políticas
+                    <strong>RLS</strong>
+                    de la tabla
+                    <strong>Products</strong>.
 
                 </div>
 
@@ -1827,7 +1980,7 @@ async function loadInicioProducts(){
 
 
 /* =====================================================
-   PAUSAR CARRUSEL AL PASAR EL RATÓN
+   PAUSAR CARRUSEL
 ===================================================== */
 
 const carouselWindow =
@@ -1840,7 +1993,7 @@ if(carouselWindow){
 
     carouselWindow.addEventListener(
         "mouseenter",
-        () => {
+        ()=>{
 
             const track =
                 document.getElementById(
@@ -1861,7 +2014,7 @@ if(carouselWindow){
 
     carouselWindow.addEventListener(
         "mouseleave",
-        () => {
+        ()=>{
 
             const track =
                 document.getElementById(
@@ -1887,6 +2040,22 @@ if(carouselWindow){
 ===================================================== */
 
 loadInicioProducts();
+
+
+/* =====================================================
+   ACTUALIZAR AUTOMÁTICAMENTE
+   Cada 30 segundos comprueba si hay productos nuevos.
+===================================================== */
+
+setInterval(
+    loadInicioProducts,
+    30000
+);
+
+
+console.log(
+    "STRANGIS — inicio conectado directamente a Supabase"
+);
 
 </script>
 
