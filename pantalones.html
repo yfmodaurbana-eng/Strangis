@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -1189,14 +1190,18 @@ footer{
 const STRANGIS_SUPABASE_URL =
     "https://xbbjfatmdbxbuoqdrgoj.supabase.co";
 
-
 const STRANGIS_SUPABASE_KEY =
     "sb_publishable_M7ETdIWvj4nCQZ55i24Vpw_5Yc5Islk";
-
 
 const STRANGIS_PRODUCTS_TABLE =
     "Products";
 
+
+/*
+    IMPORTANTE:
+    Esta página solo muestra productos cuya
+    categoría sea "pantalones".
+*/
 
 const CATEGORY =
     "pantalones";
@@ -1212,12 +1217,12 @@ let lightboxVariantIndex = 0;
 
 
 /* =====================================================
-   CLIENTE SUPABASE
+   SUPABASE
 ===================================================== */
 
 const supabaseClient = {
 
-    async request(path, options = {}) {
+    async request(path, options = {}){
 
         const response =
             await fetch(
@@ -1300,7 +1305,9 @@ const supabaseClient = {
 
 
         return this.request(
-            `/rest/v1/${encodeURIComponent(STRANGIS_PRODUCTS_TABLE)}?${params.toString()}`
+            `/rest/v1/${encodeURIComponent(
+                STRANGIS_PRODUCTS_TABLE
+            )}?${params.toString()}`
         );
 
     }
@@ -1337,10 +1344,12 @@ function escapeHTML(value){
 }
 
 
-function parseJSON(value,fallback=[]){
+function parseJSON(value,fallback = []){
 
     if(Array.isArray(value)){
+
         return value;
+
     }
 
 
@@ -1370,58 +1379,172 @@ function parseJSON(value,fallback=[]){
 
 
 /* =====================================================
-   VARIANTES
+   IMÁGENES / VARIANTES
 ===================================================== */
+
+/*
+    El administrador guarda normalmente:
+
+    [
+        {
+            "name":"Principal",
+            "color":"#888888",
+            "images":[
+                "https://..."
+            ]
+        }
+    ]
+
+    Esta función convierte ese formato
+    en uno que entiende la tienda.
+
+    También acepta formatos anteriores:
+    image / url / src
+*/
 
 function getVariants(product){
 
-    const variants =
+    const raw =
         parseJSON(
             product.images,
             []
         );
 
 
-    return variants
-        .map(
-            (variant,index)=>{
+    const variants = [];
 
-                if(
-                    typeof variant === "string"
-                ){
 
-                    return {
+    raw.forEach(
+        (variant,index)=>{
+
+            /* Si el administrador guarda
+               directamente una URL */
+            if(typeof variant === "string"){
+
+                if(variant.trim()){
+
+                    variants.push({
+
                         name:
                             `Color ${index + 1}`,
 
+                        color:
+                            "",
+
                         image:
-                            variant
-                    };
+                            variant.trim()
+
+                    });
 
                 }
 
-
-                return {
-
-                    name:
-                        variant.name ||
-                        variant.color ||
-                        `Color ${index + 1}`,
-
-                    image:
-                        variant.image ||
-                        variant.url ||
-                        variant.src ||
-                        ""
-
-                };
+                return;
 
             }
-        )
-        .filter(
-            variant =>
-                variant.image
-        );
+
+
+            if(!variant || typeof variant !== "object"){
+
+                return;
+
+            }
+
+
+            const name =
+                variant.name ||
+                variant.colorName ||
+                variant.color ||
+                `Color ${index + 1}`;
+
+
+            let images = [];
+
+
+            /*
+                FORMATO PRINCIPAL DEL ADMIN
+                images: ["url1","url2"]
+            */
+
+            if(Array.isArray(variant.images)){
+
+                images =
+                    variant.images
+                        .filter(
+                            image =>
+                                typeof image === "string" &&
+                                image.trim()
+                        )
+                        .map(
+                            image =>
+                                image.trim()
+                        );
+
+            }
+
+
+            /*
+                FORMATOS ALTERNATIVOS
+            */
+
+            if(!images.length && variant.image){
+
+                images = [
+                    variant.image
+                ];
+
+            }
+
+
+            if(!images.length && variant.url){
+
+                images = [
+                    variant.url
+                ];
+
+            }
+
+
+            if(!images.length && variant.src){
+
+                images = [
+                    variant.src
+                ];
+
+            }
+
+
+            /*
+                Cada variante puede tener varias
+                imágenes.
+
+                La primera se utiliza como imagen
+                principal de la tarjeta.
+            */
+
+            images.forEach(
+                image=>{
+
+                    variants.push({
+
+                        name:
+                            name,
+
+                        color:
+                            variant.color || "",
+
+                        image:
+                            image
+
+                    });
+
+                }
+            );
+
+        }
+    );
+
+
+    return variants;
 
 }
 
@@ -1437,7 +1560,7 @@ function getSizes(product){
 
 
 /* =====================================================
-   CARGAR DESDE SUPABASE
+   CARGAR PRODUCTOS
 ===================================================== */
 
 async function loadProducts(){
@@ -1449,18 +1572,15 @@ async function loadProducts(){
 
 
     container.innerHTML = `
+
         <div class="loading">
             Cargando productos...
         </div>
+
     `;
 
 
     try{
-
-        console.log(
-            "Conectando con Supabase..."
-        );
-
 
         PRODUCTS =
             await supabaseClient
@@ -1468,7 +1588,7 @@ async function loadProducts(){
 
 
         console.log(
-            "Productos recibidos:",
+            "PANTALONES:",
             PRODUCTS
         );
 
@@ -1500,10 +1620,9 @@ async function loadProducts(){
 
                 <br><br>
 
-                Comprueba en Supabase que
-                la tabla <strong>Products</strong>
-                permita SELECT público
-                mediante RLS/policies.
+                Comprueba que la tabla
+                <strong>Products</strong>
+                permita SELECT público.
 
             </div>
 
@@ -1559,7 +1678,7 @@ function renderProducts(){
 
 
 /* =====================================================
-   TARJETA PRODUCTO
+   PRODUCTO
 ===================================================== */
 
 function createProductHTML(
@@ -1590,59 +1709,110 @@ function createProductHTML(
             : null;
 
 
-    if(!firstVariant){
-
-        return `
-
-            <article
-                class="product"
-                id="product-${index}"
-                data-variant="0"
-                data-size=""
-                data-quantity="1"
-            >
-
-                <div
-                    class="product-gallery"
-                    style="
-                        display:flex;
-                        align-items:center;
-                        justify-content:center;
-                        color:#555;
-                    "
-                >
-                    SIN IMAGEN
-                </div>
-
-
-                <div class="product-name">
-                    ${escapeHTML(product.name)}
-                </div>
-
-
-                <div class="product-code">
-                    REF:
-                    ${escapeHTML(
-                        product.ref ||
-                        product.id
-                    )}
-                </div>
-
-
-                <div class="product-price">
-                    ${money(product.price)}
-                </div>
-
-            </article>
-
-        `;
-
-    }
-
-
     const outOfStock =
         stockDefined &&
         stock <= 0;
+
+
+    /*
+        Si no hay imagen, igualmente mostramos
+        toda la información del producto.
+    */
+
+    const gallery =
+        firstVariant
+        ?
+        `
+
+        <div
+            class="product-gallery"
+            id="gallery-${index}"
+        >
+
+            <div
+                class="product-image"
+                onclick="openLightbox(${index})"
+                ontouchstart="galleryTouchStart(event)"
+                ontouchend="galleryTouchEnd(event,${index})"
+            >
+
+                <img
+                    id="image-${index}"
+                    src="${escapeHTML(firstVariant.image)}"
+                    alt="${escapeHTML(product.name || "Pantalón")}"
+                    loading="lazy"
+                    draggable="false"
+                    onerror="imageError(this)"
+                >
+
+            </div>
+
+
+            ${
+                variants.length > 1
+                ?
+                `
+
+                <button
+                    class="gallery-arrow prev"
+                    type="button"
+                    onclick="
+                        event.stopPropagation();
+                        selectPreviousVariant(${index})
+                    "
+                >
+                    ‹
+                </button>
+
+
+                <button
+                    class="gallery-arrow next"
+                    type="button"
+                    onclick="
+                        event.stopPropagation();
+                        selectNextVariant(${index})
+                    "
+                >
+                    ›
+                </button>
+
+
+                <div
+                    class="gallery-counter"
+                    id="gallery-counter-${index}"
+                >
+                    1 / ${variants.length}
+                </div>
+
+
+                <div class="swipe-hint">
+                    ← desliza →
+                </div>
+
+                `
+                :
+                ""
+            }
+
+        </div>
+
+        `
+        :
+        `
+
+        <div
+            class="product-gallery"
+            style="
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                color:#555;
+            "
+        >
+            SIN IMAGEN
+        </div>
+
+        `;
 
 
     return `
@@ -1655,77 +1825,7 @@ function createProductHTML(
             data-quantity="1"
         >
 
-            <div
-                class="product-gallery"
-                id="gallery-${index}"
-            >
-
-                <div
-                    class="product-image"
-                    onclick="openLightbox(${index})"
-                    ontouchstart="galleryTouchStart(event)"
-                    ontouchend="galleryTouchEnd(event,${index})"
-                >
-
-                    <img
-                        id="image-${index}"
-                        src="${escapeHTML(firstVariant.image)}"
-                        alt="${escapeHTML(product.name || "Pantalón")}"
-                        loading="lazy"
-                        draggable="false"
-                        onerror="imageError(this)"
-                    >
-
-                </div>
-
-
-                ${
-                    variants.length > 1
-                    ?
-                    `
-
-                    <button
-                        class="gallery-arrow prev"
-                        type="button"
-                        onclick="
-                            event.stopPropagation();
-                            selectPreviousVariant(${index})
-                        "
-                    >
-                        ‹
-                    </button>
-
-
-                    <button
-                        class="gallery-arrow next"
-                        type="button"
-                        onclick="
-                            event.stopPropagation();
-                            selectNextVariant(${index})
-                        "
-                    >
-                        ›
-                    </button>
-
-
-                    <div
-                        class="gallery-counter"
-                        id="gallery-counter-${index}"
-                    >
-                        1 / ${variants.length}
-                    </div>
-
-
-                    <div class="swipe-hint">
-                        ← desliza →
-                    </div>
-
-                    `
-                    :
-                    ""
-                }
-
-            </div>
+            ${gallery}
 
 
             <div class="product-name">
@@ -1775,56 +1875,76 @@ function createProductHTML(
             </div>
 
 
-            <div class="label">
+            ${
+                variants.length
+                ?
+                `
 
-                Color:
+                <div class="label">
 
-                <span
-                    id="color-name-${index}"
-                >
-                    ${escapeHTML(
-                        firstVariant.name
-                    )}
-                </span>
+                    Color:
 
-            </div>
+                    <span
+                        id="color-name-${index}"
+                    >
+                        ${escapeHTML(
+                            firstVariant.name
+                        )}
+                    </span>
+
+                </div>
 
 
-            <div class="colors">
+                <div class="colors">
 
-                ${
-                    variants
-                        .map(
-                            (
-                                variant,
-                                variantIndex
-                            ) => `
+                    ${
+                        variants
+                            .map(
+                                (
+                                    variant,
+                                    variantIndex
+                                )=>`
 
-                                <button
-                                    type="button"
-                                    class="color ${
-                                        variantIndex === 0
-                                            ? "active"
-                                            : ""
-                                    }"
-                                    style="
-                                        background-image:url('${escapeHTML(variant.image)}');
-                                    "
-                                    title="${escapeHTML(variant.name)}"
-                                    onclick="
-                                        selectColor(
-                                            ${index},
-                                            ${variantIndex}
-                                        )
-                                    "
-                                ></button>
+                                    <button
+                                        type="button"
+                                        class="color ${
+                                            variantIndex === 0
+                                                ? "active"
+                                                : ""
+                                        }"
+                                        style="
+                                            background-color:${
+                                                escapeHTML(
+                                                    variant.color ||
+                                                    "#222"
+                                                )
+                                            };
+                                            background-image:url('${escapeHTML(
+                                                variant.image
+                                            )}');
+                                        "
+                                        title="${escapeHTML(
+                                            variant.name
+                                        )}"
+                                        onclick="
+                                            selectColor(
+                                                ${index},
+                                                ${variantIndex}
+                                            )
+                                        "
+                                    ></button>
 
-                            `
-                        )
-                        .join("")
-                }
+                                `
+                            )
+                            .join("")
+                    }
 
-            </div>
+                </div>
+
+                `
+                :
+                ""
+            }
 
 
             ${
@@ -1845,7 +1965,7 @@ function createProductHTML(
                                 (
                                     size,
                                     sizeIndex
-                                ) => `
+                                )=>`
 
                                     <button
                                         type="button"
@@ -1930,12 +2050,20 @@ function createProductHTML(
                 ?
                 `
 
-                <div class="stock ${outOfStock ? "out" : ""}">
+                <div
+                    class="stock ${
+                        outOfStock
+                            ? "out"
+                            : ""
+                    }"
+                >
 
                     ${
                         outOfStock
-                        ? "AGOTADO"
-                        : `Stock disponible: ${escapeHTML(stock)}`
+                        ?
+                        "AGOTADO"
+                        :
+                        `Stock disponible: ${escapeHTML(stock)}`
                     }
 
                 </div>
@@ -1955,8 +2083,10 @@ function createProductHTML(
 
                 ${
                     outOfStock
-                    ? "AGOTADO"
-                    : "COMPRAR"
+                    ?
+                    "AGOTADO"
+                    :
+                    "COMPRAR"
                 }
 
             </button>
@@ -2011,7 +2141,7 @@ function setVariant(
         );
 
 
-    if(!card || !image){
+    if(!card){
         return;
     }
 
@@ -2020,12 +2150,18 @@ function setVariant(
         variantIndex;
 
 
-    image.src =
-        variant.image;
+    if(image){
 
+        image.src =
+            variant.image;
 
-    image.alt =
-        `${product.name || "Producto"} - ${variant.name}`;
+        image.alt =
+            `${product.name || "Pantalón"} - ${variant.name}`;
+
+        image.style.display =
+            "";
+
+    }
 
 
     card
@@ -2093,6 +2229,11 @@ function selectNextVariant(
         PRODUCTS[productIndex];
 
 
+    if(!product){
+        return;
+    }
+
+
     const variants =
         getVariants(product);
 
@@ -2118,7 +2259,9 @@ function selectNextVariant(
 
 
     if(current >= variants.length){
+
         current = 0;
+
     }
 
 
@@ -2136,6 +2279,11 @@ function selectPreviousVariant(
 
     const product =
         PRODUCTS[productIndex];
+
+
+    if(!product){
+        return;
+    }
 
 
     const variants =
@@ -2163,7 +2311,10 @@ function selectPreviousVariant(
 
 
     if(current < 0){
-        current = variants.length - 1;
+
+        current =
+            variants.length - 1;
+
     }
 
 
@@ -2237,14 +2388,24 @@ function galleryTouchEnd(
         Math.abs(diffX) < 45 ||
         Math.abs(diffX) < Math.abs(diffY)
     ){
+
         return;
+
     }
 
 
     if(diffX < 0){
-        selectNextVariant(productIndex);
+
+        selectNextVariant(
+            productIndex
+        );
+
     }else{
-        selectPreviousVariant(productIndex);
+
+        selectPreviousVariant(
+            productIndex
+        );
+
     }
 
 }
@@ -2261,6 +2422,11 @@ function selectSize(
 
     const product =
         PRODUCTS[productIndex];
+
+
+    if(!product){
+        return;
+    }
 
 
     const sizes =
@@ -2336,7 +2502,9 @@ function changeQuantity(
 
 
     if(quantity < 1){
+
         quantity = 1;
+
     }
 
 
@@ -2443,17 +2611,6 @@ function buyProduct(productIndex){
     }
 
 
-    if(!variant){
-
-        alert(
-            "Este producto no tiene una imagen/color configurado."
-        );
-
-        return;
-
-    }
-
-
     if(
         product.stock !== null &&
         product.stock !== undefined &&
@@ -2516,12 +2673,19 @@ function buyProduct(productIndex){
         );
 
 
-    error.classList.remove("show");
+    error.classList.remove(
+        "show"
+    );
 
-    error.textContent = "";
+
+    error.textContent =
+        "";
 
 
-    modal.classList.add("show");
+    modal.classList.add(
+        "show"
+    );
+
 
     document.body.style.overflow =
         "hidden";
@@ -2565,7 +2729,8 @@ function showOrderSummary(){
 
             <strong>
                 ${escapeHTML(
-                    order.variant.name
+                    order.variant?.name ||
+                    "No especificado"
                 )}
             </strong>
 
@@ -2622,7 +2787,9 @@ function closeCustomerModal(){
         .getElementById(
             "customerModal"
         )
-        .classList.remove("show");
+        .classList.remove(
+            "show"
+        );
 
 
     document.body.style.overflow =
@@ -2656,7 +2823,9 @@ function showFormError(message){
         message;
 
 
-    error.classList.add("show");
+    error.classList.add(
+        "show"
+    );
 
 }
 
@@ -2758,9 +2927,13 @@ function sendOrderToWhatsApp(){
 
     const whatsapp =
         String(
-            currentOrder.product.whatsapp || ""
+            currentOrder.product.whatsapp ||
+            ""
         )
-        .replace(/\D/g,"");
+        .replace(
+            /\D/g,
+            ""
+        );
 
 
     if(!whatsapp){
@@ -2792,7 +2965,7 @@ Categoría:
 ${currentOrder.product.category || "pantalones"}
 
 Color:
-${currentOrder.variant.name}
+${currentOrder.variant?.name || "No especificado"}
 
 Talla:
 ${currentOrder.size}
@@ -2855,7 +3028,9 @@ ${notes || "Ninguna"}
         "https://wa.me/" +
         whatsapp +
         "?text=" +
-        encodeURIComponent(message);
+        encodeURIComponent(
+            message
+        );
 
 
     closeCustomerModal();
@@ -2873,7 +3048,9 @@ ${notes || "Ninguna"}
    LIGHTBOX
 ===================================================== */
 
-function openLightbox(productIndex){
+function openLightbox(
+    productIndex
+){
 
     const product =
         PRODUCTS[productIndex];
@@ -2916,7 +3093,9 @@ function openLightbox(productIndex){
         .getElementById(
             "imageLightbox"
         )
-        .classList.add("show");
+        .classList.add(
+            "show"
+        );
 
 
     document.body.style.overflow =
@@ -2966,7 +3145,8 @@ function updateLightbox(){
             "lightboxImage"
         )
         .alt =
-        product.name || "Producto";
+        product.name ||
+        "Pantalón";
 
 
     document
@@ -2979,7 +3159,9 @@ function updateLightbox(){
 }
 
 
-function changeLightboxImage(direction){
+function changeLightboxImage(
+    direction
+){
 
     const product =
         PRODUCTS[
@@ -3015,7 +3197,9 @@ function changeLightboxImage(direction){
     }
 
 
-    if(lightboxVariantIndex < 0){
+    if(
+        lightboxVariantIndex < 0
+    ){
 
         lightboxVariantIndex =
             variants.length - 1;
@@ -3040,7 +3224,9 @@ function closeLightbox(){
         .getElementById(
             "imageLightbox"
         )
-        .classList.remove("show");
+        .classList.remove(
+            "show"
+        );
 
 
     if(
@@ -3048,7 +3234,9 @@ function closeLightbox(){
             .getElementById(
                 "customerModal"
             )
-            .classList.contains("show")
+            .classList.contains(
+                "show"
+            )
     ){
 
         document.body.style.overflow =
@@ -3090,7 +3278,9 @@ document.addEventListener(
                 .getElementById(
                     "imageLightbox"
                 )
-                .classList.contains("show")
+                .classList.contains(
+                    "show"
+                )
         ){
 
             changeLightboxImage(1);
@@ -3104,7 +3294,9 @@ document.addEventListener(
                 .getElementById(
                     "imageLightbox"
                 )
-                .classList.contains("show")
+                .classList.contains(
+                    "show"
+                )
         ){
 
             changeLightboxImage(-1);
@@ -3161,3 +3353,4 @@ loadProducts();
 
 </body>
 </html>
+```
