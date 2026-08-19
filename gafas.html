@@ -9,325 +9,1118 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
+
 body{
     min-height:100vh;
     font-family:Arial,Helvetica,sans-serif;
     color:#fff;
-    background:linear-gradient(135deg,#151515 0%,#292929 38%,#4d4d4d 65%,#222 100%);
+    background:linear-gradient(
+        135deg,
+        #151515 0%,
+        #292929 38%,
+        #4d4d4d 65%,
+        #222 100%
+    );
 }
+
 button,input,textarea{font:inherit}
 
+/* =========================
+   HEADER
+========================= */
+
 header{
-    position:sticky;top:0;z-index:1000;
-    padding:18px 5%;
-    display:flex;align-items:center;gap:30px;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    padding:16px 5%;
+    display:flex;
+    align-items:center;
+    gap:30px;
     border-bottom:1px solid rgba(255,255,255,.12);
     background:rgba(20,20,20,.92);
     backdrop-filter:blur(18px);
 }
+
 .logo{
-    flex-shrink:0;font-size:22px;font-weight:900;
+    flex-shrink:0;
+    font-size:22px;
+    font-weight:900;
     letter-spacing:4px;
 }
+
 nav{
-    flex:1;display:flex;justify-content:center;gap:28px;
-    overflow-x:auto;scrollbar-width:none;
+    flex:1;
+    display:flex;
+    justify-content:center;
+    gap:28px;
+    overflow-x:auto;
+    scrollbar-width:none;
 }
-nav::-webkit-scrollbar{display:none}
+
+nav::-webkit-scrollbar{
+    display:none;
+}
+
 nav a{
-    color:#999;text-decoration:none;font-size:11px;font-weight:bold;
-    letter-spacing:1.5px;text-transform:uppercase;
-    white-space:nowrap;transition:.2s;
+    color:#999;
+    text-decoration:none;
+    font-size:11px;
+    font-weight:bold;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    white-space:nowrap;
+    transition:.2s;
 }
-nav a:hover,nav a.active{color:#fff}
+
+nav a:hover,
+nav a.active{
+    color:#fff;
+}
+
+/* =========================
+   HERO
+========================= */
 
 .hero{
-    width:min(1400px,90%);margin:auto;
-    padding:clamp(65px,9vw,110px) 0 clamp(45px,6vw,75px);
-}
-.hero small{
-    color:#aaa;font-size:11px;font-weight:bold;letter-spacing:5px;
-}
-.hero h1{
-    margin-top:18px;font-size:clamp(58px,10vw,125px);
-    letter-spacing:-7px;line-height:.85;
-}
-.hero p{
-    max-width:600px;margin-top:28px;color:#aaa;
-    font-size:15px;line-height:1.7;
+    width:min(1400px,90%);
+    margin:auto;
+    padding:75px 0 50px;
 }
 
-.products-section{
-    width:min(1400px,90%);margin:auto;padding:10px 0 100px;
+.hero small{
+    color:#aaa;
+    font-size:11px;
+    font-weight:bold;
+    letter-spacing:5px;
 }
+
+.hero h1{
+    margin-top:18px;
+    font-size:clamp(58px,10vw,125px);
+    letter-spacing:-7px;
+    line-height:.85;
+}
+
+.hero p{
+    max-width:600px;
+    margin-top:25px;
+    color:#aaa;
+    font-size:14px;
+    line-height:1.6;
+}
+
+/* =========================
+   PRODUCT GRID
+========================= */
+
+.products-section{
+    width:min(1400px,90%);
+    margin:auto;
+    padding:10px 0 90px;
+}
+
 .products{
     display:grid;
     grid-template-columns:repeat(4,minmax(0,1fr));
-    gap:20px;
+    gap:18px;
 }
+
+/* =========================
+   PRODUCT CARD
+========================= */
+
 .product{
-    min-width:0;overflow:hidden;padding:16px;
+    min-width:0;
+    overflow:hidden;
+
+    /*
+     * TARJETA MÁS COMPACTA
+     */
+    padding:13px;
+
     border:1px solid rgba(255,255,255,.12);
-    border-radius:12px;background:rgba(255,255,255,.055);
-    box-shadow:0 15px 45px rgba(0,0,0,.15);
+    border-radius:10px;
+
+    background:rgba(255,255,255,.055);
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,.15);
+
     transition:.25s;
 }
+
 .product:hover{
-    transform:translateY(-4px);
+    transform:translateY(-3px);
     border-color:rgba(255,255,255,.25);
     background:rgba(255,255,255,.075);
 }
 
+/* =========================
+   PRODUCT IMAGE
+========================= */
+
 .product-gallery{
-    position:relative;height:390px;
-    margin:-16px -16px 20px;overflow:hidden;
-    background:#171717;touch-action:pan-y;
+    position:relative;
+
+    /*
+     * ANTES: 390px
+     * AHORA: 270px
+     */
+    height:270px;
+
+    margin:-13px -13px 14px;
+
+    overflow:hidden;
+
+    background:#171717;
+
+    touch-action:pan-y;
 }
+
 .product-image{
-    width:100%;height:100%;
-    display:flex;align-items:center;justify-content:center;
-    cursor:zoom-in;user-select:none;
+    width:100%;
+    height:100%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    cursor:zoom-in;
+    user-select:none;
 }
+
 .product-image img{
-    width:100%;height:100%;object-fit:cover;
-    transform:scale(1.04);transition:.35s;
-}
-.product:hover .product-image img{transform:scale(1.08)}
+    width:100%;
+    height:100%;
 
-.gallery-arrow,.lightbox-arrow{
-    position:absolute;z-index:5;
-    display:flex;align-items:center;justify-content:center;
-    border:1px solid rgba(255,255,255,.25);
-    border-radius:50%;background:rgba(0,0,0,.55);
-    color:#fff;cursor:pointer;
-}
-.gallery-arrow{top:50%;width:38px;height:38px;transform:translateY(-50%)}
-.gallery-arrow.prev{left:12px}
-.gallery-arrow.next{right:12px}
+    object-fit:cover;
 
-.gallery-counter,.lightbox-counter{
-    position:absolute;left:50%;bottom:12px;z-index:5;
-    padding:6px 10px;border-radius:20px;
-    background:rgba(0,0,0,.55);color:#fff;
-    font-size:10px;font-weight:bold;transform:translateX(-50%);
-}
-.swipe-hint{
-    position:absolute;left:50%;bottom:42px;z-index:4;
-    padding:5px 9px;border-radius:15px;
-    background:rgba(0,0,0,.42);color:#ddd;font-size:9px;
-    transform:translateX(-50%);opacity:.8;pointer-events:none;
+    transform:scale(1.02);
+
+    transition:.35s;
 }
 
-.product-name{font-size:16px;font-weight:800;line-height:1.35}
-.product-code{
-    margin-top:7px;color:#777;font-size:10px;letter-spacing:1.2px;
-}
-.product-description{
-    margin-top:10px;color:#999;font-size:12px;line-height:1.55;
-}
-.product-price{margin-top:14px;font-size:17px;font-weight:800}
-
-.label{
-    margin-top:18px;color:#aaa;font-size:10px;font-weight:bold;
-    text-transform:uppercase;letter-spacing:1.2px;
-}
-.label span{color:#fff}
-
-.colors{
-    display:flex;flex-wrap:wrap;gap:10px;margin-top:11px;
-}
-.color{
-    width:42px;height:42px;flex:0 0 42px;
-    border:2px solid rgba(255,255,255,.25);
-    border-radius:50%;cursor:pointer;background-color:#222;
-    background-repeat:no-repeat;background-size:cover;
-    background-position:center;transition:.2s;
-}
-.color:hover{transform:scale(1.08);border-color:#fff}
-.color.active{outline:2px solid #fff;outline-offset:3px}
-
-.sizes{
-    display:flex;flex-wrap:wrap;gap:7px;margin-top:11px;
-}
-.size{
-    min-width:43px;padding:9px 12px;
-    border:1px solid rgba(255,255,255,.20);
-    border-radius:5px;color:#bbb;background:transparent;
-    cursor:pointer;font-size:11px;font-weight:bold;
-}
-.size:hover{border-color:#fff}
-.size.active{background:#fff;color:#111;border-color:#fff}
-
-.quantity{
-    display:flex;align-items:center;gap:14px;margin-top:18px;
-}
-.quantity button{
-    width:36px;height:36px;
-    border:1px solid rgba(255,255,255,.20);
-    border-radius:5px;background:#181818;color:#fff;
-    cursor:pointer;font-size:18px;
-}
-.quantity span{
-    min-width:25px;text-align:center;font-size:14px;font-weight:bold;
+.product:hover .product-image img{
+    transform:scale(1.05);
 }
 
-.shipping{
-    margin-top:17px;padding:11px 12px;
-    border:1px solid rgba(255,177,72,.28);
-    border-left:3px solid #f0a44b;border-radius:7px;
-    background:rgba(240,164,75,.10);color:#f2c58f;
-    font-size:11px;font-weight:bold;line-height:1.45;
-}
-.shipping strong{color:#fff}
+/* =========================
+   GALLERY BUTTONS
+========================= */
 
-.stock{margin-top:8px;color:#777;font-size:10px}
-.stock.out{color:#ff8d8d;font-weight:bold}
-
-.buy{
-    width:100%;margin-top:18px;padding:16px;border:0;
-    border-radius:6px;background:#fff;color:#111;
-    font-size:11px;font-weight:900;letter-spacing:1.5px;cursor:pointer;
-}
-.buy:hover{background:#ddd}
-.buy:disabled{opacity:.45;cursor:not-allowed}
-
-.empty,.loading{
-    grid-column:1/-1;padding:100px 20px;
-    text-align:center;color:#aaa;
-}
-
-footer{
-    padding:35px 5%;border-top:1px solid rgba(255,255,255,.1);
-    text-align:center;color:#777;font-size:10px;
-}
-
-/* LIGHTBOX */
-.image-lightbox{
-    position:fixed;inset:0;z-index:10000;
-    display:none;align-items:center;justify-content:center;
-    padding:25px;background:rgba(0,0,0,.92);
-    backdrop-filter:blur(12px);
-}
-.image-lightbox.show{display:flex}
-.lightbox-content{
-    position:relative;width:min(1100px,100%);
-    height:min(90vh,900px);
-    display:flex;align-items:center;justify-content:center;
-}
-.lightbox-image{
-    max-width:100%;max-height:90vh;width:auto;height:auto;
-    object-fit:contain;border-radius:8px;
-}
-.lightbox-close{
-    position:absolute;top:-10px;right:-10px;z-index:10;
-    width:44px;height:44px;border:1px solid rgba(255,255,255,.25);
-    border-radius:50%;background:rgba(0,0,0,.7);
-    color:#fff;cursor:pointer;font-size:24px;
-}
+.gallery-arrow,
 .lightbox-arrow{
-    top:50%;width:48px;height:48px;font-size:22px;
+    position:absolute;
+    z-index:5;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:50%;
+
+    background:rgba(0,0,0,.55);
+
+    color:#fff;
+
+    cursor:pointer;
+}
+
+.gallery-arrow{
+    top:50%;
+
+    width:34px;
+    height:34px;
+
     transform:translateY(-50%);
 }
-.lightbox-arrow.prev{left:10px}
-.lightbox-arrow.next{right:10px}
 
-/* MODAL */
+.gallery-arrow.prev{
+    left:10px;
+}
+
+.gallery-arrow.next{
+    right:10px;
+}
+
+.gallery-counter,
+.lightbox-counter{
+    position:absolute;
+    left:50%;
+    bottom:9px;
+    z-index:5;
+
+    padding:5px 9px;
+
+    border-radius:20px;
+
+    background:rgba(0,0,0,.55);
+
+    color:#fff;
+
+    font-size:9px;
+    font-weight:bold;
+
+    transform:translateX(-50%);
+}
+
+.swipe-hint{
+    position:absolute;
+    left:50%;
+    bottom:36px;
+    z-index:4;
+
+    padding:4px 8px;
+
+    border-radius:15px;
+
+    background:rgba(0,0,0,.42);
+
+    color:#ddd;
+
+    font-size:8px;
+
+    transform:translateX(-50%);
+
+    opacity:.8;
+
+    pointer-events:none;
+}
+
+/* =========================
+   PRODUCT INFO
+========================= */
+
+.product-name{
+    font-size:15px;
+    font-weight:800;
+    line-height:1.3;
+}
+
+.product-code{
+    margin-top:5px;
+
+    color:#777;
+
+    font-size:9px;
+    letter-spacing:1.1px;
+}
+
+.product-description{
+    margin-top:7px;
+
+    color:#999;
+
+    font-size:11px;
+    line-height:1.45;
+
+    /*
+     * Evita que una descripción enorme
+     * haga crecer demasiado la tarjeta.
+     */
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+}
+
+.product-price{
+    margin-top:10px;
+
+    font-size:16px;
+    font-weight:800;
+}
+
+/* =========================
+   LABELS
+========================= */
+
+.label{
+    margin-top:13px;
+
+    color:#aaa;
+
+    font-size:9px;
+    font-weight:bold;
+
+    text-transform:uppercase;
+    letter-spacing:1.1px;
+}
+
+.label span{
+    color:#fff;
+}
+
+/* =========================
+   COLORS
+========================= */
+
+.colors{
+    display:flex;
+    flex-wrap:wrap;
+
+    gap:8px;
+
+    margin-top:8px;
+}
+
+.color{
+    width:34px;
+    height:34px;
+
+    flex:0 0 34px;
+
+    border:2px solid rgba(255,255,255,.25);
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    background-color:#222;
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:center;
+
+    transition:.2s;
+}
+
+.color:hover{
+    transform:scale(1.06);
+    border-color:#fff;
+}
+
+.color.active{
+    outline:2px solid #fff;
+    outline-offset:2px;
+}
+
+/* =========================
+   SIZES
+========================= */
+
+.sizes{
+    display:flex;
+    flex-wrap:wrap;
+
+    gap:6px;
+
+    margin-top:8px;
+}
+
+.size{
+    min-width:39px;
+
+    padding:7px 10px;
+
+    border:1px solid rgba(255,255,255,.20);
+
+    border-radius:5px;
+
+    color:#bbb;
+
+    background:transparent;
+
+    cursor:pointer;
+
+    font-size:10px;
+    font-weight:bold;
+}
+
+.size:hover{
+    border-color:#fff;
+}
+
+.size.active{
+    background:#fff;
+    color:#111;
+    border-color:#fff;
+}
+
+/* =========================
+   QUANTITY
+========================= */
+
+.quantity{
+    display:flex;
+    align-items:center;
+
+    gap:11px;
+
+    margin-top:13px;
+}
+
+.quantity button{
+    width:32px;
+    height:32px;
+
+    border:1px solid rgba(255,255,255,.20);
+
+    border-radius:5px;
+
+    background:#181818;
+    color:#fff;
+
+    cursor:pointer;
+
+    font-size:16px;
+}
+
+.quantity span{
+    min-width:22px;
+
+    text-align:center;
+
+    font-size:13px;
+    font-weight:bold;
+}
+
+/* =========================
+   SHIPPING
+========================= */
+
+.shipping{
+    margin-top:12px;
+
+    padding:9px 10px;
+
+    border:1px solid rgba(255,177,72,.28);
+
+    border-left:3px solid #f0a44b;
+
+    border-radius:6px;
+
+    background:rgba(240,164,75,.10);
+
+    color:#f2c58f;
+
+    font-size:10px;
+    font-weight:bold;
+
+    line-height:1.4;
+}
+
+.shipping strong{
+    color:#fff;
+}
+
+/* =========================
+   STOCK
+========================= */
+
+.stock{
+    margin-top:6px;
+
+    color:#777;
+
+    font-size:9px;
+}
+
+.stock.out{
+    color:#ff8d8d;
+    font-weight:bold;
+}
+
+/* =========================
+   BUY BUTTON
+========================= */
+
+.buy{
+    width:100%;
+
+    margin-top:13px;
+
+    padding:13px;
+
+    border:0;
+
+    border-radius:5px;
+
+    background:#fff;
+    color:#111;
+
+    font-size:10px;
+    font-weight:900;
+
+    letter-spacing:1.4px;
+
+    cursor:pointer;
+}
+
+.buy:hover{
+    background:#ddd;
+}
+
+.buy:disabled{
+    opacity:.45;
+    cursor:not-allowed;
+}
+
+/* =========================
+   LOADING
+========================= */
+
+.empty,
+.loading{
+    grid-column:1/-1;
+
+    padding:100px 20px;
+
+    text-align:center;
+
+    color:#aaa;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    padding:35px 5%;
+
+    border-top:1px solid rgba(255,255,255,.1);
+
+    text-align:center;
+
+    color:#777;
+
+    font-size:10px;
+}
+
+/* =========================
+   LIGHTBOX
+========================= */
+
+.image-lightbox{
+    position:fixed;
+    inset:0;
+    z-index:10000;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:25px;
+
+    background:rgba(0,0,0,.92);
+
+    backdrop-filter:blur(12px);
+}
+
+.image-lightbox.show{
+    display:flex;
+}
+
+.lightbox-content{
+    position:relative;
+
+    width:min(1100px,100%);
+
+    height:min(90vh,900px);
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+}
+
+.lightbox-image{
+    max-width:100%;
+    max-height:90vh;
+
+    width:auto;
+    height:auto;
+
+    object-fit:contain;
+
+    border-radius:8px;
+}
+
+.lightbox-close{
+    position:absolute;
+
+    top:-10px;
+    right:-10px;
+
+    z-index:10;
+
+    width:44px;
+    height:44px;
+
+    border:1px solid rgba(255,255,255,.25);
+
+    border-radius:50%;
+
+    background:rgba(0,0,0,.7);
+
+    color:#fff;
+
+    cursor:pointer;
+
+    font-size:24px;
+}
+
+.lightbox-arrow{
+    top:50%;
+
+    width:48px;
+    height:48px;
+
+    font-size:22px;
+
+    transform:translateY(-50%);
+}
+
+.lightbox-arrow.prev{
+    left:10px;
+}
+
+.lightbox-arrow.next{
+    right:10px;
+}
+
+/* =========================
+   MODAL
+========================= */
+
 .modal{
-    position:fixed;inset:0;z-index:5000;
-    display:none;align-items:center;justify-content:center;
-    padding:25px;background:rgba(0,0,0,.78);
+    position:fixed;
+    inset:0;
+
+    z-index:5000;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:25px;
+
+    background:rgba(0,0,0,.78);
+
     backdrop-filter:blur(10px);
 }
-.modal.show{display:flex}
-.modal-box{
-    width:min(700px,100%);max-height:calc(100vh - 40px);
-    overflow-y:auto;padding:30px;border:1px solid rgba(255,255,255,.16);
-    border-radius:15px;background:linear-gradient(145deg,#222,#111);
-}
-.modal-header{
-    display:flex;align-items:flex-start;justify-content:space-between;
-    gap:20px;margin-bottom:25px;
-}
-.modal-header small{
-    color:#999;font-size:10px;font-weight:bold;letter-spacing:3px;
-}
-.modal-header h2{margin-top:8px;font-size:28px}
-.close-modal{
-    width:40px;height:40px;border:1px solid rgba(255,255,255,.15);
-    border-radius:6px;background:#222;color:#fff;cursor:pointer;font-size:20px;
-}
-.order-summary{
-    margin-bottom:25px;padding:16px;
-    border:1px solid rgba(255,255,255,.10);
-    border-radius:8px;background:rgba(255,255,255,.045);
-    color:#aaa;font-size:12px;line-height:1.7;
-}
-.order-summary strong{color:#fff}
-.form-title{
-    margin:25px 0 15px;font-size:13px;font-weight:900;letter-spacing:1.5px;
-}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.form-field{margin-bottom:14px}
-.form-field.full{grid-column:1/-1}
-.form-field label{
-    display:block;margin-bottom:7px;color:#aaa;font-size:10px;
-    font-weight:bold;letter-spacing:1px;text-transform:uppercase;
-}
-.form-field input,.form-field textarea{
-    width:100%;padding:14px;border:1px solid rgba(255,255,255,.16);
-    border-radius:6px;outline:none;background:rgba(0,0,0,.35);
-    color:#fff;font-size:14px;
-}
-.form-field input{min-height:48px}
-.form-field textarea{min-height:100px;resize:vertical}
-.form-error{
-    display:none;margin-bottom:15px;padding:12px;
-    border:1px solid rgba(255,255,255,.20);
-    border-radius:6px;background:rgba(255,255,255,.06);
-    color:#fff;font-size:11px;
-}
-.form-error.show{display:block}
-.send-order{
-    width:100%;margin-top:12px;padding:17px;border:0;border-radius:7px;
-    background:#fff;color:#111;cursor:pointer;
-    font-size:12px;font-weight:900;letter-spacing:1.2px;
-}
-.cancel-order{
-    width:100%;margin-top:10px;padding:13px;
-    border:1px solid rgba(255,255,255,.15);border-radius:6px;
-    background:transparent;color:#aaa;cursor:pointer;
+
+.modal.show{
+    display:flex;
 }
 
+.modal-box{
+    width:min(700px,100%);
+
+    max-height:calc(100vh - 40px);
+
+    overflow-y:auto;
+
+    padding:30px;
+
+    border:1px solid rgba(255,255,255,.16);
+
+    border-radius:15px;
+
+    background:linear-gradient(
+        145deg,
+        #222,
+        #111
+    );
+}
+
+.modal-header{
+    display:flex;
+
+    align-items:flex-start;
+    justify-content:space-between;
+
+    gap:20px;
+
+    margin-bottom:25px;
+}
+
+.modal-header small{
+    color:#999;
+
+    font-size:10px;
+    font-weight:bold;
+
+    letter-spacing:3px;
+}
+
+.modal-header h2{
+    margin-top:8px;
+
+    font-size:28px;
+}
+
+.close-modal{
+    width:40px;
+    height:40px;
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:6px;
+
+    background:#222;
+
+    color:#fff;
+
+    cursor:pointer;
+
+    font-size:20px;
+}
+
+.order-summary{
+    margin-bottom:25px;
+
+    padding:16px;
+
+    border:1px solid rgba(255,255,255,.10);
+
+    border-radius:8px;
+
+    background:rgba(255,255,255,.045);
+
+    color:#aaa;
+
+    font-size:12px;
+
+    line-height:1.7;
+}
+
+.order-summary strong{
+    color:#fff;
+}
+
+.form-title{
+    margin:25px 0 15px;
+
+    font-size:13px;
+    font-weight:900;
+
+    letter-spacing:1.5px;
+}
+
+.form-grid{
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:14px;
+}
+
+.form-field{
+    margin-bottom:14px;
+}
+
+.form-field.full{
+    grid-column:1/-1;
+}
+
+.form-field label{
+    display:block;
+
+    margin-bottom:7px;
+
+    color:#aaa;
+
+    font-size:10px;
+    font-weight:bold;
+
+    letter-spacing:1px;
+
+    text-transform:uppercase;
+}
+
+.form-field input,
+.form-field textarea{
+    width:100%;
+
+    padding:14px;
+
+    border:1px solid rgba(255,255,255,.16);
+
+    border-radius:6px;
+
+    outline:none;
+
+    background:rgba(0,0,0,.35);
+
+    color:#fff;
+
+    font-size:14px;
+}
+
+.form-field input{
+    min-height:48px;
+}
+
+.form-field textarea{
+    min-height:100px;
+
+    resize:vertical;
+}
+
+.form-error{
+    display:none;
+
+    margin-bottom:15px;
+
+    padding:12px;
+
+    border:1px solid rgba(255,255,255,.20);
+
+    border-radius:6px;
+
+    background:rgba(255,255,255,.06);
+
+    color:#fff;
+
+    font-size:11px;
+}
+
+.form-error.show{
+    display:block;
+}
+
+.send-order{
+    width:100%;
+
+    margin-top:12px;
+
+    padding:17px;
+
+    border:0;
+
+    border-radius:7px;
+
+    background:#fff;
+
+    color:#111;
+
+    cursor:pointer;
+
+    font-size:12px;
+    font-weight:900;
+
+    letter-spacing:1.2px;
+}
+
+.cancel-order{
+    width:100%;
+
+    margin-top:10px;
+
+    padding:13px;
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:6px;
+
+    background:transparent;
+
+    color:#aaa;
+
+    cursor:pointer;
+}
+
+/* =========================
+   TABLET
+========================= */
+
 @media(max-width:1100px){
-    .products{grid-template-columns:repeat(3,minmax(0,1fr))}
-    .product-gallery{height:330px}
-}
-@media(max-width:850px){
-    .products{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .hero,.products-section{width:92%}
-}
-@media(max-width:600px){
-    header{padding:15px;flex-wrap:wrap;gap:14px}
-    .logo{font-size:17px;letter-spacing:2.5px}
-    nav{order:3;flex-basis:100%;justify-content:flex-start;gap:22px}
-    .hero{width:94%;padding:50px 0 38px}
-    .hero h1{font-size:clamp(48px,16vw,76px);letter-spacing:-5px}
-    .hero p{font-size:13px}
-    .products-section{width:94%}
-    .products{display:flex;flex-direction:column;gap:18px}
-    .product{width:100%;padding:12px}
-    .product-gallery{
-        height:min(115vw,430px);margin:-12px -12px 15px;
+
+    .products{
+        grid-template-columns:
+            repeat(3,minmax(0,1fr));
     }
-    .product:hover{transform:none}
-    .product-image img,.product:hover .product-image img{transform:none}
-    .color{width:38px;height:38px;flex-basis:38px}
-    .form-grid{grid-template-columns:1fr}
-    .form-field.full{grid-column:auto}
-    .modal{padding:0;align-items:flex-end}
+
+    .product-gallery{
+        height:250px;
+    }
+}
+
+/* =========================
+   TABLET PEQUEÑA
+========================= */
+
+@media(max-width:850px){
+
+    .products{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+
+    .hero,
+    .products-section{
+        width:92%;
+    }
+
+    .product-gallery{
+        height:250px;
+    }
+}
+
+/* =========================
+   MÓVIL
+========================= */
+
+@media(max-width:600px){
+
+    header{
+        padding:15px;
+
+        flex-wrap:wrap;
+
+        gap:14px;
+    }
+
+    .logo{
+        font-size:17px;
+
+        letter-spacing:2.5px;
+    }
+
+    nav{
+        order:3;
+
+        flex-basis:100%;
+
+        justify-content:flex-start;
+
+        gap:22px;
+    }
+
+    .hero{
+        width:94%;
+
+        padding:50px 0 35px;
+    }
+
+    .hero h1{
+        font-size:
+            clamp(48px,16vw,76px);
+
+        letter-spacing:-5px;
+    }
+
+    .hero p{
+        font-size:13px;
+    }
+
+    .products-section{
+        width:94%;
+    }
+
+    /*
+     * En móvil también reducimos mucho
+     * la altura de la tarjeta.
+     */
+    .products{
+        display:flex;
+
+        flex-direction:column;
+
+        gap:16px;
+    }
+
+    .product{
+        width:100%;
+
+        padding:11px;
+    }
+
+    .product-gallery{
+
+        /*
+         * ANTES: hasta 430px
+         * AHORA: mucho más corta
+         */
+        height:280px;
+
+        margin:
+            -11px
+            -11px
+            14px;
+    }
+
+    .product:hover{
+        transform:none;
+    }
+
+    .product-image img,
+    .product:hover .product-image img{
+        transform:none;
+    }
+
+    .product-name{
+        font-size:15px;
+    }
+
+    .product-description{
+        font-size:11px;
+    }
+
+    .color{
+        width:35px;
+        height:35px;
+
+        flex-basis:35px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-field.full{
+        grid-column:auto;
+    }
+
+    .modal{
+        padding:0;
+
+        align-items:flex-end;
+    }
+
     .modal-box{
-        width:100%;max-height:96vh;padding:22px 17px 25px;
-        border-radius:18px 18px 0 0;
+        width:100%;
+
+        max-height:96vh;
+
+        padding:22px 17px 25px;
+
+        border-radius:
+            18px 18px 0 0;
+    }
+}
+
+/* =========================
+   MÓVILES MUY PEQUEÑOS
+========================= */
+
+@media(max-width:400px){
+
+    .product-gallery{
+        height:250px;
+    }
+
+    .product{
+        padding:10px;
+    }
+
+    .product-gallery{
+        margin:
+            -10px
+            -10px
+            13px;
+    }
+
+    .shipping{
+        font-size:9px;
+    }
+
+    .buy{
+        padding:12px;
     }
 }
 </style>
@@ -336,164 +1129,387 @@ footer{
 <body>
 
 <header>
-    <div class="logo">Strangis</div>
+
+    <div class="logo">
+        Strangis
+    </div>
 
     <nav>
-        <a href="index.html">Inicio</a>
-        <a href="camisetas.html">Camisetas</a>
-        <a href="pantalones.html">Pantalones</a>
-        <a href="conjuntos.html">Conjuntos</a>
-        <a href="gorras.html">Gorras</a>
-        <a href="gafas.html" class="active">Gafas</a>
-        <a href="bisuteria.html">Bisutería</a>
+
+        <a href="index.html">
+            Inicio
+        </a>
+
+        <a href="camisetas.html">
+            Camisetas
+        </a>
+
+        <a href="pantalones.html">
+            Pantalones
+        </a>
+
+        <a href="conjuntos.html">
+            Conjuntos
+        </a>
+
+        <a href="gorras.html">
+            Gorras
+        </a>
+
+        <a href="gafas.html" class="active">
+            Gafas
+        </a>
+
+        <a href="bisuteria.html">
+            Bisutería
+        </a>
+
     </nav>
+
 </header>
 
+
 <section class="hero">
-    <small>COLECCIÓN</small>
-    <h1>GAFAS</h1>
+
+    <small>
+        COLECCIÓN
+    </small>
+
+    <h1>
+        GAFAS
+    </h1>
+
     <p>
         Gafas seleccionadas para completar
         tus looks con personalidad.
     </p>
+
 </section>
+
 
 <section class="products-section">
-    <div class="products" id="productsContainer">
-        <div class="loading">Cargando productos...</div>
+
+    <div
+        class="products"
+        id="productsContainer"
+    >
+
+        <div class="loading">
+            Cargando productos...
+        </div>
+
     </div>
+
 </section>
 
+
 <footer>
+
     © 2026 Strangis · TODOS LOS DERECHOS RESERVADOS
+
 </footer>
 
-<!-- LIGHTBOX -->
 
-<div class="image-lightbox" id="imageLightbox">
+<!-- =========================
+     LIGHTBOX
+========================= -->
+
+<div
+    class="image-lightbox"
+    id="imageLightbox"
+>
+
     <div class="lightbox-content">
 
-        <button class="lightbox-close" type="button"
-                onclick="closeLightbox()">×</button>
+        <button
+            class="lightbox-close"
+            type="button"
+            onclick="closeLightbox()"
+        >
+            ×
+        </button>
 
-        <button class="lightbox-arrow prev" type="button"
-                onclick="changeLightboxImage(-1)">‹</button>
+        <button
+            class="lightbox-arrow prev"
+            type="button"
+            onclick="changeLightboxImage(-1)"
+        >
+            ‹
+        </button>
 
-        <img class="lightbox-image"
-             id="lightboxImage"
-             src=""
-             alt="">
+        <img
+            class="lightbox-image"
+            id="lightboxImage"
+            src=""
+            alt=""
+        >
 
-        <button class="lightbox-arrow next" type="button"
-                onclick="changeLightboxImage(1)">›</button>
+        <button
+            class="lightbox-arrow next"
+            type="button"
+            onclick="changeLightboxImage(1)"
+        >
+            ›
+        </button>
 
-        <div class="lightbox-counter" id="lightboxCounter">
+        <div
+            class="lightbox-counter"
+            id="lightboxCounter"
+        >
             1 / 1
         </div>
 
     </div>
+
 </div>
 
-<!-- MODAL PEDIDO -->
 
-<div class="modal" id="customerModal">
+<!-- =========================
+     MODAL PEDIDO
+========================= -->
+
+<div
+    class="modal"
+    id="customerModal"
+>
 
     <div class="modal-box">
 
         <div class="modal-header">
+
             <div>
-                <small>FINALIZAR PEDIDO</small>
-                <h2>Datos de envío</h2>
+
+                <small>
+                    FINALIZAR PEDIDO
+                </small>
+
+                <h2>
+                    Datos de envío
+                </h2>
+
             </div>
 
-            <button class="close-modal" type="button"
-                    onclick="closeCustomerModal()">×</button>
+            <button
+                class="close-modal"
+                type="button"
+                onclick="closeCustomerModal()"
+            >
+                ×
+            </button>
+
         </div>
 
-        <div class="order-summary" id="orderSummary"></div>
 
-        <div class="form-error" id="formError"></div>
+        <div
+            class="order-summary"
+            id="orderSummary"
+        ></div>
 
-        <div class="form-title">DATOS DEL CLIENTE</div>
+
+        <div
+            class="form-error"
+            id="formError"
+        ></div>
+
+
+        <div class="form-title">
+            DATOS DEL CLIENTE
+        </div>
+
 
         <div class="form-grid">
 
             <div class="form-field full">
-                <label>Nombre y apellidos *</label>
-                <input id="customerName" type="text" autocomplete="name">
+
+                <label>
+                    Nombre y apellidos *
+                </label>
+
+                <input
+                    id="customerName"
+                    type="text"
+                    autocomplete="name"
+                >
+
             </div>
 
-            <div class="form-field">
-                <label>Teléfono *</label>
-                <input id="customerPhone" type="tel" autocomplete="tel">
-            </div>
 
             <div class="form-field">
-                <label>Email</label>
-                <input id="customerEmail" type="email" autocomplete="email">
+
+                <label>
+                    Teléfono *
+                </label>
+
+                <input
+                    id="customerPhone"
+                    type="tel"
+                    autocomplete="tel"
+                >
+
+            </div>
+
+
+            <div class="form-field">
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    id="customerEmail"
+                    type="email"
+                    autocomplete="email"
+                >
+
             </div>
 
         </div>
 
-        <div class="form-title">DIRECCIÓN DE ENVÍO</div>
+
+        <div class="form-title">
+            DIRECCIÓN DE ENVÍO
+        </div>
+
 
         <div class="form-grid">
 
             <div class="form-field full">
-                <label>Dirección *</label>
-                <input id="customerAddress" type="text"
-                       autocomplete="street-address">
+
+                <label>
+                    Dirección *
+                </label>
+
+                <input
+                    id="customerAddress"
+                    type="text"
+                    autocomplete="street-address"
+                >
+
             </div>
 
-            <div class="form-field">
-                <label>Número *</label>
-                <input id="customerNumber" type="text">
-            </div>
 
             <div class="form-field">
-                <label>Piso / Puerta</label>
-                <input id="customerFloor" type="text">
+
+                <label>
+                    Número *
+                </label>
+
+                <input
+                    id="customerNumber"
+                    type="text"
+                >
+
             </div>
 
-            <div class="form-field">
-                <label>Código postal *</label>
-                <input id="customerPostal" type="text" inputmode="numeric">
-            </div>
 
             <div class="form-field">
-                <label>Ciudad *</label>
-                <input id="customerCity" type="text">
+
+                <label>
+                    Piso / Puerta
+                </label>
+
+                <input
+                    id="customerFloor"
+                    type="text"
+                >
+
             </div>
 
-            <div class="form-field">
-                <label>Provincia *</label>
-                <input id="customerProvince" type="text">
-            </div>
 
             <div class="form-field">
-                <label>País *</label>
-                <input id="customerCountry" type="text" value="España">
+
+                <label>
+                    Código postal *
+                </label>
+
+                <input
+                    id="customerPostal"
+                    type="text"
+                    inputmode="numeric"
+                >
+
             </div>
+
+
+            <div class="form-field">
+
+                <label>
+                    Ciudad *
+                </label>
+
+                <input
+                    id="customerCity"
+                    type="text"
+                >
+
+            </div>
+
+
+            <div class="form-field">
+
+                <label>
+                    Provincia *
+                </label>
+
+                <input
+                    id="customerProvince"
+                    type="text"
+                >
+
+            </div>
+
+
+            <div class="form-field">
+
+                <label>
+                    País *
+                </label>
+
+                <input
+                    id="customerCountry"
+                    type="text"
+                    value="España"
+                >
+
+            </div>
+
 
             <div class="form-field full">
-                <label>Observaciones</label>
-                <textarea id="customerNotes"></textarea>
+
+                <label>
+                    Observaciones
+                </label>
+
+                <textarea
+                    id="customerNotes"
+                ></textarea>
+
             </div>
 
         </div>
 
-        <button class="send-order" type="button"
-                onclick="sendOrderToWhatsApp()">
+
+        <button
+            class="send-order"
+            type="button"
+            onclick="sendOrderToWhatsApp()"
+        >
             ENVIAR PEDIDO POR WHATSAPP
         </button>
 
-        <button class="cancel-order" type="button"
-                onclick="closeCustomerModal()">
+
+        <button
+            class="cancel-order"
+            type="button"
+            onclick="closeCustomerModal()"
+        >
             CANCELAR
         </button>
 
     </div>
+
 </div>
+
 
 <script>
 
@@ -503,43 +1519,71 @@ const STRANGIS_SUPABASE_URL =
 const STRANGIS_SUPABASE_KEY =
     "sb_publishable_M7ETdIWvj4nCQZ55i24Vpw_5Yc5Islk";
 
-const STRANGIS_PRODUCTS_TABLE = "Products";
-const CATEGORY = "gafas";
+const STRANGIS_PRODUCTS_TABLE =
+    "Products";
+
+const CATEGORY =
+    "gafas";
 
 let PRODUCTS = [];
+
 let currentOrder = null;
+
 let lightboxProductIndex = 0;
+
 let lightboxVariantIndex = 0;
+
+
+/* =========================
+   SUPABASE
+========================= */
 
 const supabaseClient = {
 
-    async request(path, options = {}) {
+    async request(path,options={}){
 
-        const response = await fetch(
-            STRANGIS_SUPABASE_URL + path,
-            {
-                ...options,
-                headers:{
-                    "apikey":STRANGIS_SUPABASE_KEY,
-                    "Authorization":
-                        "Bearer " + STRANGIS_SUPABASE_KEY,
-                    "Content-Type":"application/json",
-                    ...(options.headers || {})
+        const response =
+            await fetch(
+                STRANGIS_SUPABASE_URL + path,
+                {
+                    ...options,
+
+                    headers:{
+                        "apikey":
+                            STRANGIS_SUPABASE_KEY,
+
+                        "Authorization":
+                            "Bearer " +
+                            STRANGIS_SUPABASE_KEY,
+
+                        "Content-Type":
+                            "application/json",
+
+                        ...(options.headers || {})
+                    }
                 }
-            }
-        );
+            );
 
-        const text = await response.text();
+        const text =
+            await response.text();
 
         let data = null;
 
-        try {
-            data = text ? JSON.parse(text) : null;
-        } catch {
+        try{
+
+            data =
+                text
+                    ? JSON.parse(text)
+                    : null;
+
+        }catch{
+
             data = text;
+
         }
 
         if(!response.ok){
+
             throw new Error(
                 data?.message ||
                 data?.error_description ||
@@ -547,69 +1591,77 @@ const supabaseClient = {
                 text ||
                 `Error HTTP ${response.status}`
             );
+
         }
 
         return data;
     },
 
+
     async getProducts(){
 
-        const params = new URLSearchParams({
-            select:"*",
-            category:`eq.${CATEGORY}`,
-            active:"eq.true",
-            order:"id.asc"
-        });
+        const params =
+            new URLSearchParams({
+
+                select:"*",
+
+                category:
+                    `eq.${CATEGORY}`,
+
+                active:"eq.true",
+
+                order:"id.asc"
+
+            });
 
         return this.request(
             `/rest/v1/${encodeURIComponent(
                 STRANGIS_PRODUCTS_TABLE
             )}?${params.toString()}`
         );
+
     }
+
 };
+
+
+/* =========================
+   HELPERS
+========================= */
 
 function money(value){
 
-    return Number(value || 0).toLocaleString(
+    return Number(
+        value || 0
+    ).toLocaleString(
         "es-ES",
         {
             style:"currency",
             currency:"EUR"
         }
     );
+
 }
+
 
 function escapeHTML(value){
 
-    return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+    return String(
+        value ?? ""
+    )
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
 }
 
-/*
- * IMPORTANTE:
- *
- * Supabase devuelve images así:
- *
- * [
- *   {
- *     "name":"2",
- *     "color":"#888888",
- *     "images":[
- *       "https://i.imgur.com/MjwUBxg.jpeg"
- *     ]
- *   }
- * ]
- *
- * El código anterior buscaba variant.image.
- * Ahora acepta correctamente variant.images[0].
- */
 
-function parseJSON(value, fallback = []){
+function parseJSON(
+    value,
+    fallback=[]
+){
 
     if(Array.isArray(value)){
         return value;
@@ -619,7 +1671,8 @@ function parseJSON(value, fallback = []){
 
         try{
 
-            const parsed = JSON.parse(value);
+            const parsed =
+                JSON.parse(value);
 
             return Array.isArray(parsed)
                 ? parsed
@@ -630,109 +1683,123 @@ function parseJSON(value, fallback = []){
             return fallback;
 
         }
+
     }
 
     return fallback;
 }
 
+
+/* =========================
+   VARIANTS
+========================= */
+
 function getVariants(product){
 
-    const rawVariants = parseJSON(
-        product.images,
-        []
-    );
-
-    const result = [];
-
-    rawVariants.forEach((variant,index)=>{
-
-        /*
-         * Caso 1:
-         * La variante es directamente una URL.
-         */
-        if(typeof variant === "string"){
-
-            if(variant.trim()){
-
-                result.push({
-                    name:`Color ${index + 1}`,
-                    image:variant.trim()
-                });
-
-            }
-
-            return;
-        }
-
-        if(!variant || typeof variant !== "object"){
-            return;
-        }
-
-        /*
-         * CASO CORRECTO DE TU BASE DE DATOS:
-         *
-         * variant.images = [
-         *   "https://..."
-         * ]
-         */
-
-        const images = parseJSON(
-            variant.images,
+    const rawVariants =
+        parseJSON(
+            product.images,
             []
         );
 
-        /*
-         * También aceptamos otros formatos
-         * por compatibilidad.
-         */
+    const result = [];
 
-        let image = "";
 
-        if(images.length){
+    rawVariants.forEach(
+        (variant,index)=>{
 
-            image = String(
-                images[0] || ""
-            ).trim();
+            if(typeof variant === "string"){
 
-        }else if(variant.image){
+                if(variant.trim()){
 
-            image = String(
-                variant.image
-            ).trim();
+                    result.push({
 
-        }else if(variant.url){
+                        name:
+                            `Color ${index + 1}`,
 
-            image = String(
-                variant.url
-            ).trim();
+                        image:
+                            variant.trim()
 
-        }else if(variant.src){
+                    });
 
-            image = String(
-                variant.src
-            ).trim();
+                }
+
+                return;
+            }
+
+
+            if(
+                !variant ||
+                typeof variant !== "object"
+            ){
+                return;
+            }
+
+
+            const images =
+                parseJSON(
+                    variant.images,
+                    []
+                );
+
+
+            let image = "";
+
+
+            if(images.length){
+
+                image =
+                    String(
+                        images[0] || ""
+                    ).trim();
+
+            }else if(variant.image){
+
+                image =
+                    String(
+                        variant.image
+                    ).trim();
+
+            }else if(variant.url){
+
+                image =
+                    String(
+                        variant.url
+                    ).trim();
+
+            }else if(variant.src){
+
+                image =
+                    String(
+                        variant.src
+                    ).trim();
+
+            }
+
+
+            if(!image){
+                return;
+            }
+
+
+            result.push({
+
+                name:
+                    variant.name ||
+                    variant.color ||
+                    `Color ${index + 1}`,
+
+                image
+
+            });
 
         }
+    );
 
-        if(!image){
-            return;
-        }
-
-        result.push({
-
-            name:
-                variant.name ||
-                variant.color ||
-                `Color ${index + 1}`,
-
-            image:image
-
-        });
-
-    });
 
     return result;
 }
+
 
 function getSizes(product){
 
@@ -740,7 +1807,13 @@ function getSizes(product){
         product.sizes,
         []
     );
+
 }
+
+
+/* =========================
+   LOAD PRODUCTS
+========================= */
 
 async function loadProducts(){
 
@@ -749,21 +1822,28 @@ async function loadProducts(){
             "productsContainer"
         );
 
+
     container.innerHTML = `
+
         <div class="loading">
             Cargando productos...
         </div>
+
     `;
+
 
     try{
 
         PRODUCTS =
-            await supabaseClient.getProducts();
+            await supabaseClient
+                .getProducts();
+
 
         console.log(
             "Productos recibidos:",
             PRODUCTS
         );
+
 
         renderProducts();
 
@@ -773,6 +1853,7 @@ async function loadProducts(){
             "ERROR SUPABASE:",
             error
         );
+
 
         container.innerHTML = `
 
@@ -785,18 +1866,29 @@ async function loadProducts(){
                 <br><br>
 
                 Error:
-                ${escapeHTML(error.message)}
+                ${escapeHTML(
+                    error.message
+                )}
 
                 <br><br>
 
                 Comprueba en Supabase que la tabla
-                <strong>Products</strong> permita SELECT
-                público mediante RLS/policies.
+                <strong>Products</strong>
+                permita SELECT público mediante
+                RLS/policies.
 
             </div>
+
         `;
+
     }
+
 }
+
+
+/* =========================
+   RENDER
+========================= */
 
 function renderProducts(){
 
@@ -805,52 +1897,72 @@ function renderProducts(){
             "productsContainer"
         );
 
+
     if(!PRODUCTS.length){
 
         container.innerHTML = `
+
             <div class="empty">
+
                 No hay gafas activas
                 disponibles actualmente.
+
             </div>
+
         `;
 
         return;
     }
 
+
     container.innerHTML =
-        PRODUCTS.map(
-            (product,index)=>
-                createProductHTML(
-                    product,
-                    index
-                )
-        ).join("");
+        PRODUCTS
+            .map(
+                (product,index)=>
+                    createProductHTML(
+                        product,
+                        index
+                    )
+            )
+            .join("");
+
 }
 
-function createProductHTML(product,index){
 
-    const variants = getVariants(product);
-    const sizes = getSizes(product);
+/* =========================
+   PRODUCT HTML
+========================= */
 
-    const firstVariant = variants[0];
+function createProductHTML(
+    product,
+    index
+){
+
+    const variants =
+        getVariants(product);
+
+    const sizes =
+        getSizes(product);
+
+    const firstVariant =
+        variants[0];
+
 
     const stockDefined =
         product.stock !== null &&
         product.stock !== undefined;
+
 
     const stock =
         stockDefined
             ? Number(product.stock)
             : null;
 
-    const outOfStock =
-        stockDefined && stock <= 0;
 
-    /*
-     * Si no hay imagen, mostramos la tarjeta
-     * igualmente, pero ya no debería ocurrir
-     * con el formato de tu registro.
-     */
+    const outOfStock =
+        stockDefined &&
+        stock <= 0;
+
 
     if(!firstVariant){
 
@@ -876,26 +1988,42 @@ function createProductHTML(product,index){
                     SIN IMAGEN
                 </div>
 
+
                 <div class="product-name">
+
                     ${escapeHTML(
-                        product.name || "Gafas"
+                        product.name ||
+                        "Gafas"
                     )}
+
                 </div>
+
 
                 <div class="product-code">
+
                     REF:
                     ${escapeHTML(
-                        product.ref || product.id
+                        product.ref ||
+                        product.id
                     )}
+
                 </div>
 
+
                 <div class="product-price">
-                    ${money(product.price)}
+
+                    ${money(
+                        product.price
+                    )}
+
                 </div>
 
             </article>
+
         `;
+
     }
+
 
     return `
 
@@ -921,9 +2049,12 @@ function createProductHTML(product,index){
 
                     <img
                         id="image-${index}"
-                        src="${escapeHTML(firstVariant.image)}"
+                        src="${escapeHTML(
+                            firstVariant.image
+                        )}"
                         alt="${escapeHTML(
-                            product.name || "Gafas"
+                            product.name ||
+                            "Gafas"
                         )}"
                         loading="lazy"
                         draggable="false"
@@ -931,6 +2062,7 @@ function createProductHTML(product,index){
                     >
 
                 </div>
+
 
                 ${
                     variants.length > 1
@@ -944,7 +2076,10 @@ function createProductHTML(product,index){
                             event.stopPropagation();
                             selectPreviousVariant(${index})
                         "
-                    >‹</button>
+                    >
+                        ‹
+                    </button>
+
 
                     <button
                         class="gallery-arrow next"
@@ -953,7 +2088,10 @@ function createProductHTML(product,index){
                             event.stopPropagation();
                             selectNextVariant(${index})
                         "
-                    >›</button>
+                    >
+                        ›
+                    </button>
+
 
                     <div
                         class="gallery-counter"
@@ -961,6 +2099,7 @@ function createProductHTML(product,index){
                     >
                         1 / ${variants.length}
                     </div>
+
 
                     <div class="swipe-hint">
                         ← desliza →
@@ -973,80 +2112,111 @@ function createProductHTML(product,index){
 
             </div>
 
+
             <div class="product-name">
+
                 ${escapeHTML(
-                    product.name || "Gafas"
+                    product.name ||
+                    "Gafas"
                 )}
+
             </div>
 
+
             <div class="product-code">
+
                 REF:
                 ${escapeHTML(
-                    product.ref || product.id
+                    product.ref ||
+                    product.id
                 )}
+
             </div>
+
 
             ${
                 product.description
                 ?
                 `
+
                 <div class="product-description">
+
                     ${escapeHTML(
                         product.description
                     )}
+
                 </div>
+
                 `
                 :
                 ""
             }
 
+
             <div class="product-price">
-                ${money(product.price)}
+
+                ${money(
+                    product.price
+                )}
+
             </div>
 
+
             <div class="label">
+
                 Color:
-                <span id="color-name-${index}">
+
+                <span
+                    id="color-name-${index}"
+                >
                     ${escapeHTML(
                         firstVariant.name
                     )}
                 </span>
+
             </div>
+
 
             <div class="colors">
 
                 ${
-                    variants.map(
-                        (variant,variantIndex)=>`
+                    variants
+                        .map(
+                            (
+                                variant,
+                                variantIndex
+                            ) => `
 
-                        <button
-                            type="button"
-                            class="color ${
-                                variantIndex === 0
-                                    ? "active"
-                                    : ""
-                            }"
-                            style="
-                                background-image:url('${escapeHTML(
-                                    variant.image
-                                )}');
-                            "
-                            title="${escapeHTML(
-                                variant.name
-                            )}"
-                            onclick="
-                                selectColor(
-                                    ${index},
-                                    ${variantIndex}
-                                )
-                            "
-                        ></button>
+                            <button
+                                type="button"
+                                class="color ${
+                                    variantIndex === 0
+                                        ? "active"
+                                        : ""
+                                }"
+                                style="
+                                    background-image:url('${escapeHTML(
+                                        variant.image
+                                    )}');
+                                "
+                                title="${escapeHTML(
+                                    variant.name
+                                )}"
+                                onclick="
+                                    selectColor(
+                                        ${index},
+                                        ${variantIndex}
+                                    )
+                                "
+                            ></button>
 
-                    `
-                    ).join("")
+                        `
+                        )
+                        .join("")
                 }
 
             </div>
+
 
             ${
                 sizes.length
@@ -1057,27 +2227,37 @@ function createProductHTML(product,index){
                     Talla
                 </div>
 
+
                 <div class="sizes">
 
                     ${
-                        sizes.map(
-                            (size,sizeIndex)=>`
+                        sizes
+                            .map(
+                                (
+                                    size,
+                                    sizeIndex
+                                ) => `
 
-                            <button
-                                type="button"
-                                class="size"
-                                onclick="
-                                    selectSize(
-                                        ${index},
-                                        ${sizeIndex}
-                                    )
-                                "
-                            >
-                                ${escapeHTML(size)}
-                            </button>
+                                <button
+                                    type="button"
+                                    class="size"
+                                    onclick="
+                                        selectSize(
+                                            ${index},
+                                            ${sizeIndex}
+                                        )
+                                    "
+                                >
 
-                        `
-                        ).join("")
+                                    ${escapeHTML(
+                                        size
+                                    )}
+
+                                </button>
+
+                            `
+                            )
+                            .join("")
                     }
 
                 </div>
@@ -1087,25 +2267,43 @@ function createProductHTML(product,index){
                 ""
             }
 
+
             <div class="quantity">
 
                 <button
                     type="button"
                     onclick="changeQuantity(${index},-1)"
-                    ${outOfStock ? "disabled" : ""}
-                >−</button>
+                    ${
+                        outOfStock
+                            ? "disabled"
+                            : ""
+                    }
+                >
+                    −
+                </button>
 
-                <span id="quantity-${index}">
+
+                <span
+                    id="quantity-${index}"
+                >
                     1
                 </span>
+
 
                 <button
                     type="button"
                     onclick="changeQuantity(${index},1)"
-                    ${outOfStock ? "disabled" : ""}
-                >+</button>
+                    ${
+                        outOfStock
+                            ? "disabled"
+                            : ""
+                    }
+                >
+                    +
+                </button>
 
             </div>
+
 
             <div class="shipping">
 
@@ -1122,57 +2320,91 @@ function createProductHTML(product,index){
                 ${escapeHTML(
                     product.shipping_max ?? 9
                 )}
+
                 días laborables
 
             </div>
+
 
             ${
                 stockDefined
                 ?
                 `
-                <div class="stock ${
-                    outOfStock ? "out" : ""
-                }">
+
+                <div
+                    class="stock ${
+                        outOfStock
+                            ? "out"
+                            : ""
+                    }"
+                >
 
                     ${
                         outOfStock
                             ? "AGOTADO"
-                            : `Stock disponible: ${escapeHTML(stock)}`
+                            : `
+                                Stock disponible:
+                                ${escapeHTML(stock)}
+                            `
                     }
 
                 </div>
+
                 `
                 :
                 ""
             }
 
+
             <button
                 type="button"
                 class="buy"
                 onclick="buyProduct(${index})"
-                ${outOfStock ? "disabled" : ""}
+                ${
+                    outOfStock
+                        ? "disabled"
+                        : ""
+                }
             >
+
                 ${
                     outOfStock
                         ? "AGOTADO"
                         : "COMPRAR"
                 }
+
             </button>
 
         </article>
+
     `;
+
 }
 
-function setVariant(productIndex,variantIndex){
 
-    const product = PRODUCTS[productIndex];
+/* =========================
+   VARIANTS
+========================= */
+
+function setVariant(
+    productIndex,
+    variantIndex
+){
+
+    const product =
+        PRODUCTS[productIndex];
 
     if(!product)return;
 
-    const variants = getVariants(product);
-    const variant = variants[variantIndex];
+
+    const variants =
+        getVariants(product);
+
+    const variant =
+        variants[variantIndex];
 
     if(!variant)return;
+
 
     const card =
         document.getElementById(
@@ -1184,123 +2416,223 @@ function setVariant(productIndex,variantIndex){
             `image-${productIndex}`
         );
 
+
     if(!card || !image)return;
 
-    card.dataset.variant = variantIndex;
 
-    image.src = variant.image;
+    card.dataset.variant =
+        variantIndex;
+
+
+    image.src =
+        variant.image;
+
 
     image.alt =
         `${product.name || "Producto"} - ${variant.name}`;
 
-    card.querySelectorAll(".color").forEach(
-        (button,i)=>{
-            button.classList.toggle(
-                "active",
-                i === variantIndex
-            );
-        }
-    );
+
+    card
+        .querySelectorAll(".color")
+        .forEach(
+            (button,i)=>{
+
+                button.classList.toggle(
+                    "active",
+                    i === variantIndex
+                );
+
+            }
+        );
+
 
     const colorName =
         document.getElementById(
             `color-name-${productIndex}`
         );
 
+
     if(colorName){
-        colorName.textContent = variant.name;
+
+        colorName.textContent =
+            variant.name;
+
     }
+
 
     const counter =
         document.getElementById(
             `gallery-counter-${productIndex}`
         );
 
+
     if(counter){
+
         counter.textContent =
             `${variantIndex + 1} / ${variants.length}`;
+
     }
+
 }
 
-function selectColor(productIndex,variantIndex){
-    setVariant(productIndex,variantIndex);
+
+function selectColor(
+    productIndex,
+    variantIndex
+){
+
+    setVariant(
+        productIndex,
+        variantIndex
+    );
+
 }
 
-function selectNextVariant(productIndex){
 
-    const product = PRODUCTS[productIndex];
+function selectNextVariant(
+    productIndex
+){
+
+    const product =
+        PRODUCTS[productIndex];
+
     if(!product)return;
 
-    const variants = getVariants(product);
+
+    const variants =
+        getVariants(product);
+
 
     const card =
         document.getElementById(
             `product-${productIndex}`
         );
 
-    if(!card || !variants.length)return;
+
+    if(
+        !card ||
+        !variants.length
+    ){
+        return;
+    }
+
 
     let current =
-        Number(card.dataset.variant || 0);
+        Number(
+            card.dataset.variant || 0
+        );
+
 
     current++;
 
+
     if(current >= variants.length){
+
         current = 0;
+
     }
 
-    setVariant(productIndex,current);
+
+    setVariant(
+        productIndex,
+        current
+    );
+
 }
 
-function selectPreviousVariant(productIndex){
 
-    const product = PRODUCTS[productIndex];
+function selectPreviousVariant(
+    productIndex
+){
+
+    const product =
+        PRODUCTS[productIndex];
+
     if(!product)return;
 
-    const variants = getVariants(product);
+
+    const variants =
+        getVariants(product);
+
 
     const card =
         document.getElementById(
             `product-${productIndex}`
         );
 
-    if(!card || !variants.length)return;
+
+    if(
+        !card ||
+        !variants.length
+    ){
+        return;
+    }
+
 
     let current =
-        Number(card.dataset.variant || 0);
+        Number(
+            card.dataset.variant || 0
+        );
+
 
     current--;
 
+
     if(current < 0){
-        current = variants.length - 1;
+
+        current =
+            variants.length - 1;
+
     }
 
-    setVariant(productIndex,current);
+
+    setVariant(
+        productIndex,
+        current
+    );
+
 }
+
+
+/* =========================
+   TOUCH
+========================= */
 
 let galleryStartX = 0;
 let galleryStartY = 0;
+
 
 function galleryTouchStart(event){
 
     if(
         !event.touches ||
         !event.touches.length
-    )return;
+    ){
+        return;
+    }
+
 
     galleryStartX =
         event.touches[0].clientX;
 
     galleryStartY =
         event.touches[0].clientY;
+
 }
 
-function galleryTouchEnd(event,productIndex){
+
+function galleryTouchEnd(
+    event,
+    productIndex
+){
 
     if(
         !event.changedTouches ||
         !event.changedTouches.length
-    )return;
+    ){
+        return;
+    }
+
 
     const endX =
         event.changedTouches[0].clientX;
@@ -1308,122 +2640,226 @@ function galleryTouchEnd(event,productIndex){
     const endY =
         event.changedTouches[0].clientY;
 
+
     const diffX =
         endX - galleryStartX;
 
     const diffY =
         endY - galleryStartY;
 
+
     if(
         Math.abs(diffX) < 45 ||
-        Math.abs(diffX) < Math.abs(diffY)
-    )return;
+        Math.abs(diffX) <
+        Math.abs(diffY)
+    ){
+        return;
+    }
+
 
     if(diffX < 0){
-        selectNextVariant(productIndex);
+
+        selectNextVariant(
+            productIndex
+        );
+
     }else{
-        selectPreviousVariant(productIndex);
+
+        selectPreviousVariant(
+            productIndex
+        );
+
     }
+
 }
 
-function selectSize(productIndex,sizeIndex){
 
-    const product = PRODUCTS[productIndex];
+/* =========================
+   SIZE
+========================= */
+
+function selectSize(
+    productIndex,
+    sizeIndex
+){
+
+    const product =
+        PRODUCTS[productIndex];
+
     if(!product)return;
 
-    const sizes = getSizes(product);
-    const size = sizes[sizeIndex];
+
+    const sizes =
+        getSizes(product);
+
+    const size =
+        sizes[sizeIndex];
+
 
     const card =
         document.getElementById(
             `product-${productIndex}`
         );
 
-    if(!card || size === undefined)return;
 
-    card.dataset.size = size;
+    if(
+        !card ||
+        size === undefined
+    ){
+        return;
+    }
 
-    card.querySelectorAll(".size").forEach(
-        (button,index)=>{
-            button.classList.toggle(
-                "active",
-                index === sizeIndex
-            );
-        }
-    );
+
+    card.dataset.size =
+        size;
+
+
+    card
+        .querySelectorAll(".size")
+        .forEach(
+            (button,index)=>{
+
+                button.classList.toggle(
+                    "active",
+                    index === sizeIndex
+                );
+
+            }
+        );
+
 }
 
-function changeQuantity(productIndex,change){
+
+/* =========================
+   QUANTITY
+========================= */
+
+function changeQuantity(
+    productIndex,
+    change
+){
 
     const card =
         document.getElementById(
             `product-${productIndex}`
         );
+
 
     if(!card)return;
 
-    const product = PRODUCTS[productIndex];
+
+    const product =
+        PRODUCTS[productIndex];
+
 
     let quantity =
-        Number(card.dataset.quantity || 1);
+        Number(
+            card.dataset.quantity || 1
+        );
+
 
     quantity += change;
 
+
     if(quantity < 1){
+
         quantity = 1;
+
     }
+
 
     if(
         product.stock !== null &&
         product.stock !== undefined
     ){
 
-        const stock = Number(product.stock);
+        const stock =
+            Number(product.stock);
 
-        if(stock > 0 && quantity > stock){
+
+        if(
+            stock > 0 &&
+            quantity > stock
+        ){
+
             quantity = stock;
+
         }
+
     }
 
-    card.dataset.quantity = quantity;
+
+    card.dataset.quantity =
+        quantity;
+
 
     const element =
         document.getElementById(
             `quantity-${productIndex}`
         );
 
+
     if(element){
-        element.textContent = quantity;
+
+        element.textContent =
+            quantity;
+
     }
+
 }
 
-function buyProduct(productIndex){
 
-    const product = PRODUCTS[productIndex];
+/* =========================
+   BUY
+========================= */
+
+function buyProduct(
+    productIndex
+){
+
+    const product =
+        PRODUCTS[productIndex];
+
     if(!product)return;
+
 
     const card =
         document.getElementById(
             `product-${productIndex}`
         );
 
-    const variants = getVariants(product);
+
+    const variants =
+        getVariants(product);
+
 
     const variant =
         variants[
-            Number(card.dataset.variant || 0)
+            Number(
+                card.dataset.variant || 0
+            )
         ];
 
-    const sizes = getSizes(product);
+
+    const sizes =
+        getSizes(product);
+
 
     const size =
         card.dataset.size ||
         "No especificada";
 
-    const quantity =
-        Number(card.dataset.quantity || 1);
 
-    if(sizes.length && !card.dataset.size){
+    const quantity =
+        Number(
+            card.dataset.quantity || 1
+        );
+
+
+    if(
+        sizes.length &&
+        !card.dataset.size
+    ){
 
         alert(
             "Selecciona una talla antes de continuar."
@@ -1431,6 +2867,7 @@ function buyProduct(productIndex){
 
         return;
     }
+
 
     if(!variant){
 
@@ -1441,20 +2878,26 @@ function buyProduct(productIndex){
         return;
     }
 
+
     if(
         product.stock !== null &&
         product.stock !== undefined &&
         Number(product.stock) <= 0
     ){
 
-        alert("Este producto está agotado.");
+        alert(
+            "Este producto está agotado."
+        );
+
         return;
     }
+
 
     if(
         product.stock !== null &&
         product.stock !== undefined &&
-        quantity > Number(product.stock)
+        quantity >
+        Number(product.stock)
     ){
 
         alert(
@@ -1464,46 +2907,77 @@ function buyProduct(productIndex){
         return;
     }
 
+
     currentOrder = {
+
         product,
+
         variant,
+
         size,
+
         quantity,
+
         total:
-            Number(product.price || 0) *
+            Number(
+                product.price || 0
+            ) *
             quantity
+
     };
 
+
     showOrderSummary();
+
 
     const modal =
         document.getElementById(
             "customerModal"
         );
 
+
     const error =
         document.getElementById(
             "formError"
         );
 
-    error.classList.remove("show");
+
+    error.classList.remove(
+        "show"
+    );
+
     error.textContent = "";
 
-    modal.classList.add("show");
 
-    document.body.style.overflow = "hidden";
+    modal.classList.add(
+        "show"
+    );
+
+
+    document.body.style.overflow =
+        "hidden";
+
 }
+
+
+/* =========================
+   ORDER SUMMARY
+========================= */
 
 function showOrderSummary(){
 
-    const order = currentOrder;
+    const order =
+        currentOrder;
+
 
     document.getElementById(
         "orderSummary"
     ).innerHTML = `
 
         <strong>
-            ${escapeHTML(order.product.name)}
+            ${escapeHTML(
+                order.product.name
+            )}
         </strong>
 
         <br>
@@ -1518,14 +2992,18 @@ function showOrderSummary(){
 
         Color:
         <strong>
-            ${escapeHTML(order.variant.name)}
+            ${escapeHTML(
+                order.variant.name
+            )}
         </strong>
 
         <br>
 
         Talla:
         <strong>
-            ${escapeHTML(order.size)}
+            ${escapeHTML(
+                order.size
+            )}
         </strong>
 
         <br>
@@ -1539,36 +3017,58 @@ function showOrderSummary(){
 
         Precio unidad:
         <strong>
-            ${money(order.product.price)}
+            ${money(
+                order.product.price
+            )}
         </strong>
 
         <br>
 
         Total:
         <strong>
-            ${money(order.total)}
+            ${money(
+                order.total
+            )}
         </strong>
+
     `;
+
 }
+
+
+/* =========================
+   MODAL
+========================= */
 
 function closeCustomerModal(){
 
-    document.getElementById(
-        "customerModal"
-    ).classList.remove("show");
+    document
+        .getElementById(
+            "customerModal"
+        )
+        .classList.remove(
+            "show"
+        );
 
-    document.body.style.overflow = "";
+
+    document.body.style.overflow =
+        "";
+
 }
+
 
 function fieldValue(id){
 
     const element =
         document.getElementById(id);
 
+
     return element
         ? element.value.trim()
         : "";
+
 }
+
 
 function showFormError(message){
 
@@ -1577,39 +3077,102 @@ function showFormError(message){
             "formError"
         );
 
-    error.textContent = message;
-    error.classList.add("show");
+
+    error.textContent =
+        message;
+
+
+    error.classList.add(
+        "show"
+    );
+
 }
+
+
+/* =========================
+   WHATSAPP
+========================= */
 
 function sendOrderToWhatsApp(){
 
     if(!currentOrder)return;
 
-    const name = fieldValue("customerName");
-    const phone = fieldValue("customerPhone");
-    const email = fieldValue("customerEmail");
-    const address = fieldValue("customerAddress");
-    const number = fieldValue("customerNumber");
-    const floor = fieldValue("customerFloor");
-    const postal = fieldValue("customerPostal");
-    const city = fieldValue("customerCity");
-    const province = fieldValue("customerProvince");
-    const country = fieldValue("customerCountry");
-    const notes = fieldValue("customerNotes");
+
+    const name =
+        fieldValue(
+            "customerName"
+        );
+
+    const phone =
+        fieldValue(
+            "customerPhone"
+        );
+
+    const email =
+        fieldValue(
+            "customerEmail"
+        );
+
+    const address =
+        fieldValue(
+            "customerAddress"
+        );
+
+    const number =
+        fieldValue(
+            "customerNumber"
+        );
+
+    const floor =
+        fieldValue(
+            "customerFloor"
+        );
+
+    const postal =
+        fieldValue(
+            "customerPostal"
+        );
+
+    const city =
+        fieldValue(
+            "customerCity"
+        );
+
+    const province =
+        fieldValue(
+            "customerProvince"
+        );
+
+    const country =
+        fieldValue(
+            "customerCountry"
+        );
+
+    const notes =
+        fieldValue(
+            "customerNotes"
+        );
+
 
     if(!name){
+
         showFormError(
             "Introduce tu nombre y apellidos."
         );
+
         return;
     }
 
+
     if(!phone){
+
         showFormError(
             "Introduce tu teléfono."
         );
+
         return;
     }
+
 
     if(
         !address ||
@@ -1627,10 +3190,16 @@ function sendOrderToWhatsApp(){
         return;
     }
 
+
     const whatsapp =
         String(
-            currentOrder.product.whatsapp || ""
-        ).replace(/\D/g,"");
+            currentOrder.product.whatsapp ||
+            ""
+        ).replace(
+            /\D/g,
+            ""
+        );
+
 
     if(!whatsapp){
 
@@ -1640,6 +3209,7 @@ function sendOrderToWhatsApp(){
 
         return;
     }
+
 
     const message =
 
@@ -1717,119 +3287,212 @@ ${notes || "Ninguna"}
 
 ━━━━━━━━━━━━━━━━`;
 
+
     const url =
         "https://wa.me/" +
         whatsapp +
         "?text=" +
-        encodeURIComponent(message);
+        encodeURIComponent(
+            message
+        );
+
 
     closeCustomerModal();
 
-    window.open(url,"_blank");
+
+    window.open(
+        url,
+        "_blank"
+    );
+
 }
 
-function openLightbox(productIndex){
 
-    const product = PRODUCTS[productIndex];
+/* =========================
+   LIGHTBOX
+========================= */
+
+function openLightbox(
+    productIndex
+){
+
+    const product =
+        PRODUCTS[productIndex];
+
     if(!product)return;
 
-    const variants = getVariants(product);
+
+    const variants =
+        getVariants(product);
+
+
     if(!variants.length)return;
+
 
     const card =
         document.getElementById(
             `product-${productIndex}`
         );
 
-    lightboxProductIndex = productIndex;
+
+    lightboxProductIndex =
+        productIndex;
+
 
     lightboxVariantIndex =
-        Number(card.dataset.variant || 0);
+        Number(
+            card.dataset.variant || 0
+        );
+
 
     updateLightbox();
 
-    document.getElementById(
-        "imageLightbox"
-    ).classList.add("show");
 
-    document.body.style.overflow = "hidden";
+    document
+        .getElementById(
+            "imageLightbox"
+        )
+        .classList.add(
+            "show"
+        );
+
+
+    document.body.style.overflow =
+        "hidden";
+
 }
+
 
 function updateLightbox(){
 
     const product =
-        PRODUCTS[lightboxProductIndex];
+        PRODUCTS[
+            lightboxProductIndex
+        ];
+
 
     if(!product)return;
 
-    const variants = getVariants(product);
+
+    const variants =
+        getVariants(product);
+
 
     const variant =
-        variants[lightboxVariantIndex];
+        variants[
+            lightboxVariantIndex
+        ];
+
 
     if(!variant)return;
 
-    document.getElementById(
-        "lightboxImage"
-    ).src = variant.image;
 
     document.getElementById(
         "lightboxImage"
-    ).alt = product.name || "Producto";
+    ).src =
+        variant.image;
+
+
+    document.getElementById(
+        "lightboxImage"
+    ).alt =
+        product.name ||
+        "Producto";
+
 
     document.getElementById(
         "lightboxCounter"
     ).textContent =
         `${lightboxVariantIndex + 1} / ${variants.length}`;
+
 }
 
-function changeLightboxImage(direction){
+
+function changeLightboxImage(
+    direction
+){
 
     const product =
-        PRODUCTS[lightboxProductIndex];
+        PRODUCTS[
+            lightboxProductIndex
+        ];
+
 
     if(!product)return;
 
-    const variants = getVariants(product);
+
+    const variants =
+        getVariants(product);
+
 
     if(!variants.length)return;
 
-    lightboxVariantIndex += direction;
+
+    lightboxVariantIndex +=
+        direction;
+
 
     if(
         lightboxVariantIndex >=
         variants.length
     ){
+
         lightboxVariantIndex = 0;
+
     }
 
+
     if(lightboxVariantIndex < 0){
+
         lightboxVariantIndex =
             variants.length - 1;
+
     }
+
 
     setVariant(
         lightboxProductIndex,
         lightboxVariantIndex
     );
 
+
     updateLightbox();
+
 }
+
 
 function closeLightbox(){
 
-    document.getElementById(
-        "imageLightbox"
-    ).classList.remove("show");
+    document
+        .getElementById(
+            "imageLightbox"
+        )
+        .classList.remove(
+            "show"
+        );
+
 
     if(
-        !document.getElementById(
-            "customerModal"
-        ).classList.contains("show")
+        !document
+            .getElementById(
+                "customerModal"
+            )
+            .classList.contains(
+                "show"
+            )
     ){
-        document.body.style.overflow = "";
+
+        document.body.style.overflow =
+            "";
+
     }
+
 }
+
+
+/* =========================
+   IMAGE ERROR
+========================= */
 
 function imageError(image){
 
@@ -1838,61 +3501,108 @@ function imageError(image){
         image.src
     );
 
-    image.style.display = "none";
+
+    image.style.display =
+        "none";
+
 }
+
+
+/* =========================
+   KEYBOARD
+========================= */
 
 document.addEventListener(
     "keydown",
     function(event){
 
         if(event.key === "Escape"){
+
             closeLightbox();
+
             closeCustomerModal();
+
         }
+
 
         if(
             event.key === "ArrowRight" &&
-            document.getElementById(
-                "imageLightbox"
-            ).classList.contains("show")
+            document
+                .getElementById(
+                    "imageLightbox"
+                )
+                .classList.contains(
+                    "show"
+                )
         ){
+
             changeLightboxImage(1);
+
         }
+
 
         if(
             event.key === "ArrowLeft" &&
-            document.getElementById(
-                "imageLightbox"
-            ).classList.contains("show")
+            document
+                .getElementById(
+                    "imageLightbox"
+                )
+                .classList.contains(
+                    "show"
+                )
         ){
+
             changeLightboxImage(-1);
+
         }
+
     }
 );
 
-document.getElementById(
-    "customerModal"
-).addEventListener(
-    "click",
-    function(event){
 
-        if(event.target === this){
-            closeCustomerModal();
+/* =========================
+   CLOSE MODALS
+========================= */
+
+document
+    .getElementById(
+        "customerModal"
+    )
+    .addEventListener(
+        "click",
+        function(event){
+
+            if(event.target === this){
+
+                closeCustomerModal();
+
+            }
+
         }
-    }
-);
+    );
 
-document.getElementById(
-    "imageLightbox"
-).addEventListener(
-    "click",
-    function(event){
 
-        if(event.target === this){
-            closeLightbox();
+document
+    .getElementById(
+        "imageLightbox"
+    )
+    .addEventListener(
+        "click",
+        function(event){
+
+            if(event.target === this){
+
+                closeLightbox();
+
+            }
+
         }
-    }
-);
+    );
+
+
+/* =========================
+   START
+========================= */
 
 loadProducts();
 
