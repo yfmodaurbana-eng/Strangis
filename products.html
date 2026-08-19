@@ -204,6 +204,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
         }
 
         .product h3 {
@@ -723,6 +724,385 @@
 
 
     /*
+     * COMPROBAR SI ES UNA URL DE IMAGEN VÁLIDA
+     */
+
+    function isValidImageURL(value) {
+
+        if (
+            typeof value !== "string"
+        ) {
+            return false;
+        }
+
+        const url =
+            value.trim();
+
+        if (!url) {
+            return false;
+        }
+
+        /*
+         * Aceptamos:
+         * - https://...
+         * - http://...
+         * - URLs de Supabase Storage
+         * - data:image/...
+         * - rutas relativas
+         */
+
+        if (
+            /^data:image\//i.test(url)
+        ) {
+            return true;
+        }
+
+        if (
+            /^https?:\/\//i.test(url)
+        ) {
+            return true;
+        }
+
+        if (
+            url.startsWith("/")
+        ) {
+            return true;
+        }
+
+        if (
+            url.startsWith("./")
+        ) {
+            return true;
+        }
+
+        if (
+            url.startsWith("../")
+        ) {
+            return true;
+        }
+
+        return false;
+
+    }
+
+
+    /*
+     * EXTRAER URL DE UNA IMAGEN
+     *
+     * Admite:
+     *
+     * "https://..."
+     *
+     * {
+     *     image: "https://..."
+     * }
+     *
+     * {
+     *     name: "Negro",
+     *     image: "https://..."
+     * }
+     *
+     * {
+     *     url: "https://..."
+     * }
+     *
+     * {
+     *     src: "https://..."
+     * }
+     */
+
+    function extractImageURL(value) {
+
+        if (
+            typeof value === "string"
+        ) {
+
+            const image =
+                value.trim();
+
+            if (
+                isValidImageURL(image)
+            ) {
+
+                return image;
+
+            }
+
+            return "";
+
+        }
+
+
+        if (
+            !value ||
+            typeof value !== "object"
+        ) {
+
+            return "";
+
+        }
+
+
+        const possibleKeys = [
+
+            "image",
+
+            "url",
+
+            "src",
+
+            "image_url",
+
+            "imageUrl",
+
+            "photo",
+
+            "photo_url",
+
+            "photoUrl"
+
+        ];
+
+
+        for (
+            const key of possibleKeys
+        ) {
+
+            if (
+                typeof value[key] ===
+                "string"
+            ) {
+
+                const image =
+                    value[key].trim();
+
+                if (
+                    isValidImageURL(image)
+                ) {
+
+                    return image;
+
+                }
+
+            }
+
+        }
+
+
+        return "";
+
+    }
+
+
+    /*
+     * BUSCAR IMAGEN RECURSIVAMENTE
+     *
+     * Esto permite trabajar con:
+     *
+     * images: [
+     *     "https://..."
+     * ]
+     *
+     * images: [
+     *     {
+     *         name: "Negro",
+     *         image: "https://..."
+     *     }
+     * ]
+     *
+     * images: {
+     *     name: "Negro",
+     *     image: "https://..."
+     * }
+     */
+
+    function findImageURL(value) {
+
+        const direct =
+            extractImageURL(value);
+
+
+        if (direct) {
+
+            return direct;
+
+        }
+
+
+        if (
+            Array.isArray(value)
+        ) {
+
+            for (
+                const item of value
+            ) {
+
+                const image =
+                    findImageURL(item);
+
+                if (image) {
+
+                    return image;
+
+                }
+
+            }
+
+        }
+
+
+        return "";
+
+    }
+
+
+    /*
+     * OBTENER IMAGEN PRINCIPAL DEL PRODUCTO
+     */
+
+    function resolveProductImage(product) {
+
+        if (
+            !product ||
+            typeof product !== "object"
+        ) {
+
+            return "";
+
+        }
+
+
+        /*
+         * 1. images
+         */
+
+        const images =
+            findImageURL(
+                product.images
+            );
+
+
+        if (images) {
+
+            return images;
+
+        }
+
+
+        /*
+         * 2. image
+         */
+
+        const image =
+            findImageURL(
+                product.image
+            );
+
+
+        if (image) {
+
+            return image;
+
+        }
+
+
+        /*
+         * 3. image_url
+         */
+
+        const imageURL =
+            findImageURL(
+                product.image_url
+            );
+
+
+        if (imageURL) {
+
+            return imageURL;
+
+        }
+
+
+        /*
+         * 4. variants
+         *
+         * Si no existe imagen principal,
+         * buscamos la primera imagen
+         * de cualquiera de los colores.
+         */
+
+        const variants =
+            product.variants ||
+            product.colors ||
+            product.colours;
+
+
+        if (
+            Array.isArray(variants)
+        ) {
+
+            for (
+                const variant
+                of variants
+            ) {
+
+                const variantImage =
+                    findImageURL(
+                        variant
+                    );
+
+
+                if (variantImage) {
+
+                    return variantImage;
+
+                }
+
+            }
+
+        }
+
+
+        /*
+         * 5. Algunos proyectos guardan
+         * directamente los colores dentro
+         * de "options".
+         */
+
+        if (
+            Array.isArray(
+                product.options
+            )
+        ) {
+
+            for (
+                const option
+                of product.options
+            ) {
+
+                const optionImage =
+                    findImageURL(
+                        option
+                    );
+
+
+                if (optionImage) {
+
+                    return optionImage;
+
+                }
+
+            }
+
+        }
+
+
+        return "";
+
+    }
+
+
+    /*
      * RENDERIZAR VARIANTES
      */
 
@@ -1096,13 +1476,46 @@
                 .map(
                     function (product) {
 
+                        /*
+                         * IMPORTANTE:
+                         * No dependemos únicamente de
+                         * getProductImage().
+                         *
+                         * Primero intentamos interpretar
+                         * directamente todos los formatos
+                         * posibles que puede devolver
+                         * Supabase.
+                         */
+
                         const image =
+                            resolveProductImage(
+                                product
+                            );
+
+
+                        /*
+                         * Si por alguna razón
+                         * products.js tiene una función
+                         * getProductImage() que sí conoce
+                         * otro formato, la usamos como
+                         * último recurso.
+                         */
+
+                        const fallbackImage =
+                            !image &&
                             typeof getProductImage ===
                             "function"
-                                ? getProductImage(
-                                    product
+                                ? findImageURL(
+                                    getProductImage(
+                                        product
+                                    )
                                 )
                                 : "";
+
+
+                        const finalImage =
+                            image ||
+                            fallbackImage;
 
 
                         return `
@@ -1112,12 +1525,13 @@
                                 <div class="product-image">
 
                                     ${
-                                        image
+                                        finalImage
                                             ? `
                                                 <img
-                                                    src="${escapeHTML(image)}"
+                                                    src="${escapeHTML(finalImage)}"
                                                     alt="${escapeHTML(product.name)}"
                                                     loading="lazy"
+                                                    onerror="this.style.display='none';"
                                                 >
                                               `
                                             : ""
@@ -1141,9 +1555,12 @@
                                 <p>
                                     Categoría:
                                     ${escapeHTML(
-                                        getCategoryName(
-                                            product.category
-                                        )
+                                        typeof getCategoryName ===
+                                        "function"
+                                            ? getCategoryName(
+                                                product.category
+                                            )
+                                            : product.category
                                     )}
                                 </p>
 
@@ -1156,139 +1573,4 @@
                                 </p>
 
                                 <p>
-                                    Stock:
-                                    ${Number(
-                                        product.stock
-                                    )}
-                                </p>
-
-                            </article>
-
-                        `;
-
-                    }
-                )
-                .join("");
-
-    }
-
-
-    /*
-     * CARGAR PRODUCTOS
-     */
-
-    async function loadPageProducts() {
-
-        productsStatus.textContent =
-            "Cargando productos...";
-
-
-        try {
-
-            await initStrangisProducts();
-
-            renderProducts();
-
-        }
-        catch (error) {
-
-            console.error(
-                error
-            );
-
-            productsStatus.textContent =
-                "No se pudieron cargar los productos.";
-
-        }
-
-    }
-
-
-    /*
-     * GUARDAR PRODUCTO
-     */
-
-    form.addEventListener(
-        "submit",
-        async function (event) {
-
-            event.preventDefault();
-
-
-            const result =
-                await saveProductToSupabase();
-
-
-            if (!result) {
-
-                return;
-
-            }
-
-
-            renderProducts();
-
-            form.reset();
-
-            window.variants = [];
-
-            window.sizes = [];
-
-            renderVariants();
-
-            renderSizes();
-
-        }
-    );
-
-
-    /*
-     * ACTUALIZAR
-     */
-
-    refreshButton.addEventListener(
-        "click",
-        async function () {
-
-            productsStatus.textContent =
-                "Actualizando...";
-
-
-            try {
-
-                await refreshProducts();
-
-                renderProducts();
-
-            }
-            catch (error) {
-
-                console.error(
-                    error
-                );
-
-                productsStatus.textContent =
-                    "Error al actualizar.";
-
-            }
-
-        }
-    );
-
-
-    /*
-     * ESTADO INICIAL
-     */
-
-    renderVariants();
-
-    renderSizes();
-
-    loadPageProducts();
-
-})();
-
-</script>
-
-</body>
-</html>
+                                   
