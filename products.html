@@ -1,2378 +1,1294 @@
-/* =====================================================
-   STRANGIS — PRODUCTS.JS
-   MOTOR DE PRODUCTOS + SUPABASE
-   VERSIÓN REVISADA Y MEJORADA
-   ===================================================== */
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>STRANGIS — Productos</title>
+
+    <meta
+        name="description"
+        content="Gestión de productos STRANGIS"
+    >
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+            background: #f5f5f5;
+            color: #111;
+        }
+
+        body {
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: #111;
+            color: #fff;
+            padding: 24px;
+            border-radius: 14px;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            margin: 0 0 8px;
+            font-size: 28px;
+        }
+
+        .header p {
+            margin: 0;
+            color: #ccc;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 14px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow:
+                0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns:
+                repeat(
+                    2,
+                    minmax(0, 1fr)
+                );
+            gap: 16px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .field.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            border: 1px solid #d5d5d5;
+            border-radius: 9px;
+            padding: 12px;
+            font-size: 15px;
+            background: #fff;
+            color: #111;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #111;
+        }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        button {
+            border: 0;
+            border-radius: 9px;
+            padding: 12px 18px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: #111;
+            color: #fff;
+        }
+
+        .btn-secondary {
+            background: #e9e9e9;
+            color: #111;
+        }
+
+        .variants,
+        .sizes {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .variant {
+            display: grid;
+            grid-template-columns:
+                1fr 2fr auto;
+            gap: 10px;
+            align-items: end;
+        }
+
+        .size-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .size-row input {
+            flex: 1;
+        }
+
+        .products-list {
+            display: grid;
+            grid-template-columns:
+                repeat(
+                    auto-fill,
+                    minmax(240px, 1fr)
+                );
+            gap: 16px;
+        }
+
+        .product {
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
+            padding: 16px;
+            background: #fff;
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #eee;
+            margin-bottom: 12px;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product h3 {
+            margin: 0 0 8px;
+        }
+
+        .product p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .status {
+            padding: 12px;
+            border-radius: 9px;
+            background: #f0f0f0;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+        }
+
+        @media (max-width: 700px) {
+
+            body {
+                padding: 10px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .field.full {
+                grid-column: auto;
+            }
+
+            .variant {
+                grid-template-columns: 1fr;
+            }
+
+            .size-row {
+                flex-direction: column;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <header class="header">
+
+        <h1>STRANGIS</h1>
+
+        <p>
+            Gestión de productos
+        </p>
+
+    </header>
 
 
-/* =====================================================
-   CONFIGURACIÓN SUPABASE
-===================================================== */
+    <!-- =================================================
+         ESTADO
+    ================================================== -->
 
-const STRANGIS_SUPABASE_URL =
-    "https://xbbjfatmdbxbuoqdrgoj.supabase.co";
+    <section class="card">
 
-const STRANGIS_SUPABASE_KEY =
-    "sb_publishable_M7ETdIWvj4nCQZ55i24Vpw_5Yc5Islk";
+        <div
+            id="productsStatus"
+            class="status"
+        >
+            Cargando productos...
+        </div>
 
-const STRANGIS_PRODUCTS_TABLE =
-    "Products";
+        <div class="actions">
 
+            <button
+                type="button"
+                class="btn-secondary"
+                id="refreshProductsButton"
+            >
+                Actualizar productos
+            </button>
 
-/* =====================================================
-   CONFIGURACIÓN GENERAL
-===================================================== */
+        </div>
 
-const STRANGIS_ALLOWED_CATEGORIES = [
-
-    "camisetas",
-
-    "pantalones",
-
-    "conjuntos",
-
-    "gorras",
-
-    "gafas",
-
-    "bisuteria"
-
-];
+    </section>
 
 
-const STRANGIS_CATEGORY_NAMES = {
+    <!-- =================================================
+         FORMULARIO
+    ================================================== -->
 
-    camisetas:
-        "Camisetas",
+    <section class="card">
 
-    pantalones:
-        "Pantalones",
-
-    conjuntos:
-        "Conjuntos",
-
-    gorras:
-        "Gorras",
-
-    gafas:
-        "Gafas",
-
-    bisuteria:
-        "Bisutería"
-
-};
+        <h2>
+            Añadir producto
+        </h2>
 
 
-/* =====================================================
-   PRODUCTOS EN MEMORIA
-===================================================== */
+        <form
+            id="productForm"
+            autocomplete="off"
+        >
 
-const STRANGIS_PRODUCTS = [];
-
-
-/* =====================================================
-   UTILIDADES
-===================================================== */
-
-/**
- * Convierte cualquier valor a string limpio.
- */
-function strangisString(value) {
-
-    return String(
-        value ?? ""
-    ).trim();
-
-}
+            <div class="grid">
 
 
-/**
- * Convierte una categoría a formato normalizado.
- */
-function strangisNormalizeCategory(category) {
+                <!-- NOMBRE -->
 
-    return strangisString(category)
-        .toLowerCase();
+                <div class="field">
 
-}
+                    <label for="productName">
+                        Nombre del producto
+                    </label>
 
+                    <input
+                        type="text"
+                        id="productName"
+                        name="productName"
+                        placeholder="Ej. Camiseta Strangis"
+                        required
+                    >
 
-/**
- * Convierte un valor numérico de forma segura.
- *
- * A diferencia de:
- *
- *     Number(value) || 0
- *
- * esta función permite controlar explícitamente
- * los valores inválidos.
- */
-function strangisNumber(
-    value,
-    fallback = 0
-) {
-
-    if (
-        value ===
-        null ||
-        value ===
-        undefined ||
-        value === ""
-    ) {
-
-        return fallback;
-
-    }
+                </div>
 
 
-    const number =
-        Number(value);
+                <!-- REFERENCIA -->
+
+                <div class="field">
+
+                    <label for="productRef">
+                        Referencia / ID
+                    </label>
+
+                    <input
+                        type="text"
+                        id="productRef"
+                        name="productRef"
+                        placeholder="Ej. CAM-001"
+                        required
+                    >
+
+                </div>
 
 
-    return Number.isFinite(number)
-        ? number
-        : fallback;
+                <!-- PRECIO -->
 
-}
+                <div class="field">
+
+                    <label for="productPrice">
+                        Precio (€)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="productPrice"
+                        name="productPrice"
+                        min="0"
+                        step="0.01"
+                        placeholder="29.99"
+                        required
+                    >
+
+                </div>
 
 
-/**
- * Convierte un valor a entero positivo.
- */
-function strangisPositiveInteger(
-    value,
-    fallback = 0
-) {
+                <!-- STOCK -->
 
-    const number =
-        strangisNumber(
-            value,
-            fallback
+                <div class="field">
+
+                    <label for="productStock">
+                        Stock
+                    </label>
+
+                    <input
+                        type="number"
+                        id="productStock"
+                        name="productStock"
+                        min="0"
+                        step="1"
+                        placeholder="10"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- CATEGORÍA -->
+
+                <div class="field">
+
+                    <label for="productCategory">
+                        Categoría
+                    </label>
+
+                    <select
+                        id="productCategory"
+                        name="productCategory"
+                    >
+
+                        <option value="camisetas">
+                            Camisetas
+                        </option>
+
+                        <option value="pantalones">
+                            Pantalones
+                        </option>
+
+                        <option value="conjuntos">
+                            Conjuntos
+                        </option>
+
+                        <option value="gorras">
+                            Gorras
+                        </option>
+
+                        <option value="gafas">
+                            Gafas
+                        </option>
+
+                        <option value="bisuteria">
+                            Bisutería
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- WHATSAPP -->
+
+                <div class="field">
+
+                    <label for="productWhatsapp">
+                        WhatsApp
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="productWhatsapp"
+                        name="productWhatsapp"
+                        placeholder="34600000000"
+                    >
+
+                </div>
+
+
+                <!-- ENVÍO MÍNIMO -->
+
+                <div class="field">
+
+                    <label for="shippingMin">
+                        Envío mínimo (€)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="shippingMin"
+                        name="shippingMin"
+                        min="0"
+                        step="0.01"
+                        value="3"
+                    >
+
+                </div>
+
+
+                <!-- ENVÍO MÁXIMO -->
+
+                <div class="field">
+
+                    <label for="shippingMax">
+                        Envío máximo (€)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="shippingMax"
+                        name="shippingMax"
+                        min="0"
+                        step="0.01"
+                        value="9"
+                    >
+
+                </div>
+
+
+                <!-- DESCRIPCIÓN -->
+
+                <div class="field full">
+
+                    <label for="productDescription">
+                        Descripción
+                    </label>
+
+                    <textarea
+                        id="productDescription"
+                        name="productDescription"
+                        placeholder="Descripción del producto..."
+                    ></textarea>
+
+                </div>
+
+
+                <!-- VARIANTES -->
+
+                <div class="field full">
+
+                    <label>
+                        Colores / variantes
+                    </label>
+
+                    <div
+                        id="variantsContainer"
+                        class="variants"
+                    ></div>
+
+                    <button
+                        type="button"
+                        class="btn-secondary"
+                        id="addVariantButton"
+                    >
+                        + Añadir color
+                    </button>
+
+                </div>
+
+
+                <!-- TALLAS -->
+
+                <div class="field full">
+
+                    <label>
+                        Tallas
+                    </label>
+
+                    <div
+                        id="sizesContainer"
+                        class="sizes"
+                    ></div>
+
+                    <button
+                        type="button"
+                        class="btn-secondary"
+                        id="addSizeButton"
+                    >
+                        + Añadir talla
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="actions">
+
+                <button
+                    type="submit"
+                    class="btn-primary"
+                >
+                    Guardar producto
+                </button>
+
+                <button
+                    type="reset"
+                    class="btn-secondary"
+                >
+                    Limpiar
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+
+    <!-- =================================================
+         PRODUCTOS
+    ================================================== -->
+
+    <section class="card">
+
+        <h2>
+            Productos cargados
+        </h2>
+
+        <div
+            id="productsList"
+            class="products-list"
+        >
+
+            <div class="empty">
+                Cargando productos...
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<!-- =====================================================
+     VARIABLES GLOBALES DEL FORMULARIO
+===================================================== -->
+
+<script>
+
+    window.variants = [];
+
+    window.sizes = [];
+
+</script>
+
+
+<!-- =====================================================
+     PRODUCTS.JS
+===================================================== -->
+
+<script src="./products.js"></script>
+
+
+<!-- =====================================================
+     CONTROL DE LA PÁGINA
+===================================================== -->
+
+<script>
+
+(function () {
+
+    "use strict";
+
+
+    /*
+     * ELEMENTOS
+     */
+
+    const form =
+        document.getElementById(
+            "productForm"
+        );
+
+    const variantsContainer =
+        document.getElementById(
+            "variantsContainer"
+        );
+
+    const sizesContainer =
+        document.getElementById(
+            "sizesContainer"
+        );
+
+    const productsList =
+        document.getElementById(
+            "productsList"
+        );
+
+    const productsStatus =
+        document.getElementById(
+            "productsStatus"
+        );
+
+    const addVariantButton =
+        document.getElementById(
+            "addVariantButton"
+        );
+
+    const addSizeButton =
+        document.getElementById(
+            "addSizeButton"
+        );
+
+    const refreshButton =
+        document.getElementById(
+            "refreshProductsButton"
         );
 
 
-    return Math.max(
-        0,
-        Math.floor(number)
+    /*
+     * ESCAPAR HTML
+     */
+
+    function escapeHTML(value) {
+
+        return String(
+            value ?? ""
+        )
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+    }
+
+
+    /*
+     * RENDERIZAR VARIANTES
+     */
+
+    function renderVariants() {
+
+        variantsContainer.innerHTML = "";
+
+
+        window.variants.forEach(
+            function (variant, index) {
+
+                const row =
+                    document.createElement(
+                        "div"
+                    );
+
+                row.className =
+                    "variant";
+
+
+                row.innerHTML = `
+
+                    <div class="field">
+
+                        <label>
+                            Color
+                        </label>
+
+                        <input
+                            type="text"
+                            value="${escapeHTML(
+                                variant.name
+                            )}"
+                            placeholder="Ej. Negro"
+                            data-variant-name="${index}"
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            URL de imagen
+                        </label>
+
+                        <input
+                            type="url"
+                            value="${escapeHTML(
+                                variant.image
+                            )}"
+                            placeholder="https://..."
+                            data-variant-image="${index}"
+                        >
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="btn-secondary"
+                        data-remove-variant="${index}"
+                    >
+                        Eliminar
+                    </button>
+
+                `;
+
+
+                variantsContainer.appendChild(
+                    row
+                );
+
+            }
+        );
+
+    }
+
+
+    /*
+     * AÑADIR VARIANTE
+     */
+
+    addVariantButton.addEventListener(
+        "click",
+        function () {
+
+            window.variants.push({
+
+                name: "",
+
+                image: ""
+
+            });
+
+
+            renderVariants();
+
+        }
     );
 
-}
 
-
-/**
- * Intenta convertir un valor JSON.
- *
- * Si ya es un array/objeto, lo devuelve directamente.
- */
-function strangisParseJSON(value) {
-
-    if (
-        typeof value !==
-        "string"
-    ) {
-
-        return value;
-
-    }
-
-
-    const text =
-        value.trim();
-
-
-    if (!text) {
-
-        return value;
-
-    }
-
-
-    try {
-
-        return JSON.parse(text);
-
-    }
-    catch {
-
-        return value;
-
-    }
-
-}
-
-
-/* =====================================================
-   CLIENTE SUPABASE
-===================================================== */
-
-const supabaseClient = {
-
-    /**
-     * Realiza una petición REST a Supabase.
+    /*
+     * CAMBIOS EN VARIANTES
      */
-    async request(
-        path,
-        options = {}
-    ) {
 
-        const url =
-            STRANGIS_SUPABASE_URL +
-            path;
+    variantsContainer.addEventListener(
+        "input",
+        function (event) {
 
-
-        const headers = {
-
-            "apikey":
-                STRANGIS_SUPABASE_KEY,
-
-            "Authorization":
-                "Bearer " +
-                STRANGIS_SUPABASE_KEY,
-
-            "Content-Type":
-                "application/json",
-
-            ...(options.headers || {})
-
-        };
+            const target =
+                event.target;
 
 
-        let response;
+            const nameIndex =
+                target.dataset.variantName;
+
+
+            const imageIndex =
+                target.dataset.variantImage;
+
+
+            if (
+                nameIndex !==
+                undefined
+            ) {
+
+                window.variants[
+                    Number(nameIndex)
+                ].name =
+                    target.value;
+
+            }
+
+
+            if (
+                imageIndex !==
+                undefined
+            ) {
+
+                window.variants[
+                    Number(imageIndex)
+                ].image =
+                    target.value;
+
+            }
+
+        }
+    );
+
+
+    /*
+     * ELIMINAR VARIANTE
+     */
+
+    variantsContainer.addEventListener(
+        "click",
+        function (event) {
+
+            const button =
+                event.target.closest(
+                    "[data-remove-variant]"
+                );
+
+
+            if (!button) {
+
+                return;
+
+            }
+
+
+            const index =
+                Number(
+                    button.dataset.removeVariant
+                );
+
+
+            window.variants.splice(
+                index,
+                1
+            );
+
+
+            renderVariants();
+
+        }
+    );
+
+
+    /*
+     * RENDERIZAR TALLAS
+     */
+
+    function renderSizes() {
+
+        sizesContainer.innerHTML = "";
+
+
+        window.sizes.forEach(
+            function (size, index) {
+
+                const row =
+                    document.createElement(
+                        "div"
+                    );
+
+                row.className =
+                    "size-row";
+
+
+                row.innerHTML = `
+
+                    <input
+                        type="text"
+                        value="${escapeHTML(size)}"
+                        placeholder="Ej. M"
+                        data-size="${index}"
+                    >
+
+                    <button
+                        type="button"
+                        class="btn-secondary"
+                        data-remove-size="${index}"
+                    >
+                        Eliminar
+                    </button>
+
+                `;
+
+
+                sizesContainer.appendChild(
+                    row
+                );
+
+            }
+        );
+
+    }
+
+
+    /*
+     * AÑADIR TALLA
+     */
+
+    addSizeButton.addEventListener(
+        "click",
+        function () {
+
+            window.sizes.push("");
+
+            renderSizes();
+
+        }
+    );
+
+
+    /*
+     * CAMBIAR TALLA
+     */
+
+    sizesContainer.addEventListener(
+        "input",
+        function (event) {
+
+            const target =
+                event.target;
+
+
+            const index =
+                target.dataset.size;
+
+
+            if (
+                index ===
+                undefined
+            ) {
+
+                return;
+
+            }
+
+
+            window.sizes[
+                Number(index)
+            ] =
+                target.value;
+
+        }
+    );
+
+
+    /*
+     * ELIMINAR TALLA
+     */
+
+    sizesContainer.addEventListener(
+        "click",
+        function (event) {
+
+            const button =
+                event.target.closest(
+                    "[data-remove-size]"
+                );
+
+
+            if (!button) {
+
+                return;
+
+            }
+
+
+            const index =
+                Number(
+                    button.dataset.removeSize
+                );
+
+
+            window.sizes.splice(
+                index,
+                1
+            );
+
+
+            renderSizes();
+
+        }
+    );
+
+
+    /*
+     * RENDERIZAR PRODUCTOS
+     */
+
+    function renderProducts() {
+
+        const products =
+            typeof getProducts ===
+            "function"
+                ? getProducts()
+                : [];
+
+
+        if (!products.length) {
+
+            productsList.innerHTML = `
+
+                <div class="empty">
+
+                    No hay productos cargados.
+
+                </div>
+
+            `;
+
+            productsStatus.textContent =
+                "0 productos cargados.";
+
+            return;
+
+        }
+
+
+        productsStatus.textContent =
+            `${products.length} producto(s) cargado(s).`;
+
+
+        productsList.innerHTML =
+            products
+                .map(
+                    function (product) {
+
+                        const image =
+                            typeof getProductImage ===
+                            "function"
+                                ? getProductImage(
+                                    product
+                                )
+                                : "";
+
+
+                        return `
+
+                            <article class="product">
+
+                                <div class="product-image">
+
+                                    ${
+                                        image
+                                            ? `
+                                                <img
+                                                    src="${escapeHTML(image)}"
+                                                    alt="${escapeHTML(product.name)}"
+                                                    loading="lazy"
+                                                >
+                                              `
+                                            : ""
+                                    }
+
+                                </div>
+
+                                <h3>
+                                    ${escapeHTML(
+                                        product.name
+                                    )}
+                                </h3>
+
+                                <p>
+                                    Ref:
+                                    ${escapeHTML(
+                                        product.ref
+                                    )}
+                                </p>
+
+                                <p>
+                                    Categoría:
+                                    ${escapeHTML(
+                                        getCategoryName(
+                                            product.category
+                                        )
+                                    )}
+                                </p>
+
+                                <p>
+                                    Precio:
+                                    ${Number(
+                                        product.price
+                                    ).toFixed(2)}
+                                    €
+                                </p>
+
+                                <p>
+                                    Stock:
+                                    ${Number(
+                                        product.stock
+                                    )}
+                                </p>
+
+                            </article>
+
+                        `;
+
+                    }
+                )
+                .join("");
+
+    }
+
+
+    /*
+     * CARGAR PRODUCTOS
+     */
+
+    async function loadPageProducts() {
+
+        productsStatus.textContent =
+            "Cargando productos...";
 
 
         try {
 
-            response =
-                await fetch(
-                    url,
-                    {
-                        ...options,
-                        headers
-                    }
-                );
+            await initStrangisProducts();
+
+            renderProducts();
 
         }
-        catch(error) {
-
-            throw new Error(
-                "No se pudo conectar con Supabase. " +
-                (
-                    error?.message ||
-                    "Comprueba tu conexión a Internet."
-                )
-            );
-
-        }
-
-
-        const text =
-            await response.text();
-
-
-        let data = null;
-
-
-        if (text) {
-
-            try {
-
-                data =
-                    JSON.parse(text);
-
-            }
-            catch {
-
-                data =
-                    text;
-
-            }
-
-        }
-
-
-        if (!response.ok) {
-
-            const errorMessage =
-
-                data?.message ||
-
-                data?.error_description ||
-
-                data?.details ||
-
-                data?.hint ||
-
-                (
-                    typeof data ===
-                    "string"
-                        ? data
-                        : ""
-                ) ||
-
-                `Error HTTP ${response.status}`;
-
-
-            const error =
-                new Error(
-                    errorMessage
-                );
-
-
-            error.status =
-                response.status;
-
-
-            error.code =
-                data?.code || null;
-
-
-            error.details =
-                data?.details || null;
-
-
-            error.hint =
-                data?.hint || null;
-
-
-            throw error;
-
-        }
-
-
-        return data;
-
-    },
-
-
-    /**
-     * API simplificada compatible
-     * con el uso actual del proyecto.
-     */
-    from(table) {
-
-        const encodedTable =
-            encodeURIComponent(
-                table
-            );
-
-
-        return {
-
-            /**
-             * INSERT
-             */
-            async insert(product) {
-
-                try {
-
-                    const data =
-                        await supabaseClient.request(
-
-                            `/rest/v1/${encodedTable}`,
-
-                            {
-
-                                method:
-                                    "POST",
-
-                                headers: {
-
-                                    "Prefer":
-                                        "return=representation"
-
-                                },
-
-                                body:
-                                    JSON.stringify(
-                                        product
-                                    )
-
-                            }
-
-                        );
-
-
-                    return {
-
-                        data,
-
-                        error:
-                            null
-
-                    };
-
-                }
-                catch(error) {
-
-                    return {
-
-                        data:
-                            null,
-
-                        error
-
-                    };
-
-                }
-
-            },
-
-
-            /**
-             * SELECT *
-             */
-            async select() {
-
-                try {
-
-                    const data =
-                        await supabaseClient.request(
-
-                            `/rest/v1/${encodedTable}?select=*`
-
-                        );
-
-
-                    return {
-
-                        data,
-
-                        error:
-                            null
-
-                    };
-
-                }
-                catch(error) {
-
-                    return {
-
-                        data:
-                            null,
-
-                        error
-
-                    };
-
-                }
-
-            },
-
-
-            /**
-             * SELECT con filtro opcional.
-             *
-             * Ejemplo:
-             *
-             * .selectWhere("ref", "eq", "ABC123")
-             */
-            async selectWhere(
-                column,
-                operator,
-                value
-            ) {
-
-                try {
-
-                    const encodedColumn =
-                        encodeURIComponent(
-                            column
-                        );
-
-
-                    const encodedValue =
-                        encodeURIComponent(
-                            value
-                        );
-
-
-                    const data =
-                        await supabaseClient.request(
-
-                            `/rest/v1/${encodedTable}` +
-                            `?select=*` +
-                            `&${encodedColumn}=` +
-                            `${operator}.${encodedValue}`
-
-                        );
-
-
-                    return {
-
-                        data,
-
-                        error:
-                            null
-
-                    };
-
-                }
-                catch(error) {
-
-                    return {
-
-                        data:
-                            null,
-
-                        error
-
-                    };
-
-                }
-
-            }
-
-        };
-
-    }
-
-};
-
-
-/* =====================================================
-   NORMALIZAR PRODUCTO
-===================================================== */
-
-/**
- * Normaliza un producto recibido de Supabase.
- *
- * No modifica el objeto original.
- */
-function normalizeProduct(product) {
-
-    if (
-        !product ||
-        typeof product !==
-        "object"
-    ) {
-
-        return null;
-
-    }
-
-
-    const normalized = {
-
-        ...product
-
-    };
-
-
-    normalized.name =
-        strangisString(
-            product.name
-        );
-
-
-    normalized.category =
-        strangisNormalizeCategory(
-            product.category
-        );
-
-
-    normalized.ref =
-        strangisString(
-            product.ref
-        );
-
-
-    normalized.price =
-        strangisNumber(
-            product.price,
-            0
-        );
-
-
-    normalized.stock =
-        strangisPositiveInteger(
-            product.stock,
-            0
-        );
-
-
-    normalized.description =
-        strangisString(
-            product.description
-        );
-
-
-    normalized.whatsapp =
-        strangisString(
-            product.whatsapp
-        );
-
-
-    normalized.shipping_min =
-        strangisNumber(
-            product.shipping_min,
-            3
-        );
-
-
-    normalized.shipping_max =
-        strangisNumber(
-            product.shipping_max,
-            9
-        );
-
-
-    normalized.active =
-        product.active !== false;
-
-
-    /*
-       Normalizar imágenes.
-    */
-    const rawImages =
-        strangisParseJSON(
-            product.images
-        );
-
-
-    if (
-        Array.isArray(
-            rawImages
-        )
-    ) {
-
-        normalized.images =
-            rawImages;
-
-    }
-    else if (
-        typeof rawImages ===
-        "string" &&
-        rawImages.trim()
-    ) {
-
-        normalized.images = [
-
-            rawImages.trim()
-
-        ];
-
-    }
-    else {
-
-        normalized.images = [];
-
-    }
-
-
-    /*
-       Normalizar tallas.
-    */
-    const rawSizes =
-        strangisParseJSON(
-            product.sizes
-        );
-
-
-    if (
-        Array.isArray(
-            rawSizes
-        )
-    ) {
-
-        normalized.sizes =
-            rawSizes
-                .map(
-                    size =>
-                        strangisString(
-                            size
-                        )
-                )
-                .filter(Boolean);
-
-    }
-    else if (
-        typeof rawSizes ===
-        "string" &&
-        rawSizes.trim()
-    ) {
-
-        /*
-           Compatibilidad con una columna
-           que contenga:
-
-           "S,M,L,XL"
-        */
-        normalized.sizes =
-            rawSizes
-                .split(",")
-                .map(
-                    size =>
-                        strangisString(
-                            size
-                        )
-                )
-                .filter(Boolean);
-
-    }
-    else {
-
-        normalized.sizes = [];
-
-    }
-
-
-    return normalized;
-
-}
-
-
-/* =====================================================
-   CARGAR PRODUCTOS DESDE SUPABASE
-===================================================== */
-
-async function loadProductsFromSupabase() {
-
-    console.log(
-        "STRANGIS — cargando productos desde Supabase..."
-    );
-
-
-    const result =
-        await supabaseClient
-            .from(
-                STRANGIS_PRODUCTS_TABLE
-            )
-            .select();
-
-
-    if (result.error) {
-
-        console.error(
-            "STRANGIS — error Supabase:",
-            result.error
-        );
-
-        throw result.error;
-
-    }
-
-
-    const products =
-        Array.isArray(
-            result.data
-        )
-            ? result.data
-            : [];
-
-
-    /*
-       Vaciar el array sin cambiar
-       su referencia.
-    */
-    STRANGIS_PRODUCTS.length = 0;
-
-
-    products.forEach(
-        product => {
-
-            const normalized =
-                normalizeProduct(
-                    product
-                );
-
-
-            if (normalized) {
-
-                STRANGIS_PRODUCTS.push(
-                    normalized
-                );
-
-            }
-
-        }
-    );
-
-
-    console.log(
-
-        `STRANGIS — ` +
-        `${STRANGIS_PRODUCTS.length} ` +
-        `productos cargados.`,
-
-        STRANGIS_PRODUCTS
-
-    );
-
-
-    return STRANGIS_PRODUCTS;
-
-}
-
-
-/* =====================================================
-   OBTENER PRODUCTOS
-===================================================== */
-
-function getProducts() {
-
-    return STRANGIS_PRODUCTS;
-
-}
-
-
-/* =====================================================
-   OBTENER PRODUCTOS ACTIVOS
-===================================================== */
-
-function getActiveProducts() {
-
-    return STRANGIS_PRODUCTS.filter(
-        product =>
-            product?.active !== false
-    );
-
-}
-
-
-/* =====================================================
-   PRODUCTOS POR CATEGORÍA
-===================================================== */
-
-function getProductsByCategory(
-    category
-) {
-
-    const wantedCategory =
-        strangisNormalizeCategory(
-            category
-        );
-
-
-    return STRANGIS_PRODUCTS.filter(
-        product => {
-
-            const productCategory =
-                strangisNormalizeCategory(
-                    product?.category
-                );
-
-
-            return (
-
-                productCategory ===
-                wantedCategory
-
-            );
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   PRODUCTOS ACTIVOS POR CATEGORÍA
-===================================================== */
-
-function getActiveProductsByCategory(
-    category
-) {
-
-    const wantedCategory =
-        strangisNormalizeCategory(
-            category
-        );
-
-
-    return STRANGIS_PRODUCTS.filter(
-        product => {
-
-            if (
-                product?.active ===
-                false
-            ) {
-
-                return false;
-
-            }
-
-
-            return (
-
-                strangisNormalizeCategory(
-                    product?.category
-                ) ===
-                wantedCategory
-
-            );
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   PRODUCTO POR ID
-===================================================== */
-
-function getProductById(id) {
-
-    if (
-        id ===
-        null ||
-        id ===
-        undefined
-    ) {
-
-        return undefined;
-
-    }
-
-
-    const wantedId =
-        String(id);
-
-
-    return STRANGIS_PRODUCTS.find(
-        product =>
-
-            String(
-                product?.id
-            ) ===
-            wantedId
-
-    );
-
-}
-
-
-/* =====================================================
-   PRODUCTO POR REFERENCIA
-===================================================== */
-
-function getProductByReference(
-    ref
-) {
-
-    const wantedRef =
-        strangisString(
-            ref
-        )
-        .toLowerCase();
-
-
-    if (!wantedRef) {
-
-        return undefined;
-
-    }
-
-
-    return STRANGIS_PRODUCTS.find(
-        product =>
-
-            strangisString(
-                product?.ref
-            )
-            .toLowerCase() ===
-            wantedRef
-
-    );
-
-}
-
-
-/* =====================================================
-   COMPROBAR REFERENCIA
-===================================================== */
-
-function productReferenceExists(
-    ref
-) {
-
-    return Boolean(
-        getProductByReference(
-            ref
-        )
-    );
-
-}
-
-
-/* =====================================================
-   NOMBRE DE CATEGORÍA
-===================================================== */
-
-function getCategoryName(
-    category
-) {
-
-    const key =
-        strangisNormalizeCategory(
-            category
-        );
-
-
-    return (
-
-        STRANGIS_CATEGORY_NAMES[
-            key
-        ] ||
-
-        strangisString(
-            category
-        )
-
-    );
-
-}
-
-
-/* =====================================================
-   OBTENER IMÁGENES DE PRODUCTO
-===================================================== */
-
-function getProductImages(
-    product
-) {
-
-    if (
-        !product
-    ) {
-
-        return [];
-
-    }
-
-
-    /*
-       Supabase puede devolver JSONB
-       como array o como string.
-    */
-    let images =
-        strangisParseJSON(
-            product.images
-        );
-
-
-    /*
-       Caso:
-       images = "https://..."
-    */
-    if (
-        typeof images ===
-        "string"
-    ) {
-
-        const url =
-            images.trim();
-
-
-        return url
-            ? [url]
-            : [];
-
-    }
-
-
-    /*
-       Debe ser un array.
-    */
-    if (
-        !Array.isArray(
-            images
-        )
-    ) {
-
-        return [];
-
-    }
-
-
-    return images
-
-        .map(
-            item => {
-
-                /*
-                   Formato:
-
-                   "https://..."
-                */
-                if (
-                    typeof item ===
-                    "string"
-                ) {
-
-                    return item.trim();
-
-                }
-
-
-                /*
-                   Formato:
-
-                   {
-                       name: "...",
-                       image: "..."
-                   }
-
-                   También admite:
-                       url
-                       src
-                */
-                if (
-                    item &&
-                    typeof item ===
-                    "object"
-                ) {
-
-                    return strangisString(
-
-                        item.image ||
-                        item.url ||
-                        item.src
-
-                    );
-
-                }
-
-
-                return "";
-
-            }
-        )
-
-        .filter(Boolean);
-
-}
-
-
-/* =====================================================
-   OBTENER PRIMERA IMAGEN
-===================================================== */
-
-function getProductImage(
-    product
-) {
-
-    const images =
-        getProductImages(
-            product
-        );
-
-
-    return (
-        images[0] ||
-        ""
-    );
-
-}
-
-
-/* =====================================================
-   OBTENER VARIANTES
-===================================================== */
-
-function getProductVariants(
-    product
-) {
-
-    if (
-        !product
-    ) {
-
-        return [];
-
-    }
-
-
-    let variants =
-        strangisParseJSON(
-            product.images
-        );
-
-
-    if (
-        !Array.isArray(
-            variants
-        )
-    ) {
-
-        return [];
-
-    }
-
-
-    return variants
-
-        .map(
-            variant => {
-
-                /*
-                   Variante antigua:
-                   "URL"
-                */
-                if (
-                    typeof variant ===
-                    "string"
-                ) {
-
-                    return {
-
-                        name:
-                            "",
-
-                        image:
-                            variant.trim()
-
-                    };
-
-                }
-
-
-                /*
-                   Variante nueva:
-                   {
-                       name,
-                       image
-                   }
-                */
-                if (
-                    variant &&
-                    typeof variant ===
-                    "object"
-                ) {
-
-                    return {
-
-                        name:
-                            strangisString(
-                                variant.name
-                            ),
-
-                        image:
-                            strangisString(
-
-                                variant.image ||
-                                variant.url ||
-                                variant.src
-
-                            )
-
-                    };
-
-                }
-
-
-                return {
-
-                    name:
-                        "",
-
-                    image:
-                        ""
-
-                };
-
-            }
-        )
-
-        .filter(
-            variant =>
-                variant.name ||
-                variant.image
-        );
-
-}
-
-
-/* =====================================================
-   OBTENER TALLAS
-===================================================== */
-
-function getProductSizes(
-    product
-) {
-
-    if (
-        !product
-    ) {
-
-        return [];
-
-    }
-
-
-    let sizes =
-        strangisParseJSON(
-            product.sizes
-        );
-
-
-    if (
-        Array.isArray(
-            sizes
-        )
-    ) {
-
-        return sizes
-
-            .map(
-                size =>
-                    strangisString(
-                        size
-                    )
-            )
-
-            .filter(Boolean);
-
-    }
-
-
-    /*
-       Compatibilidad con:
-       "S,M,L,XL"
-    */
-    if (
-        typeof sizes ===
-        "string"
-    ) {
-
-        return sizes
-
-            .split(",")
-
-            .map(
-                size =>
-                    strangisString(
-                        size
-                    )
-            )
-
-            .filter(Boolean);
-
-    }
-
-
-    return [];
-
-}
-
-
-/* =====================================================
-   VALIDAR CATEGORÍA
-===================================================== */
-
-function isValidProductCategory(
-    category
-) {
-
-    return STRANGIS_ALLOWED_CATEGORIES
-        .includes(
-            strangisNormalizeCategory(
-                category
-            )
-        );
-
-}
-
-
-/* =====================================================
-   OBTENER VALORES DEL FORMULARIO
-===================================================== */
-
-function getProductFormValues() {
-
-    const getValue = (
-        id
-    ) => {
-
-        const element =
-            document.getElementById(
-                id
-            );
-
-
-        return element
-            ? element.value
-            : "";
-
-    };
-
-
-    return {
-
-        name:
-            strangisString(
-                getValue(
-                    "productName"
-                )
-            ),
-
-        ref:
-            strangisString(
-                getValue(
-                    "productRef"
-                )
-            ),
-
-        price:
-            strangisNumber(
-                getValue(
-                    "productPrice"
-                ),
-                0
-            ),
-
-        stock:
-            strangisPositiveInteger(
-                getValue(
-                    "productStock"
-                ),
-                0
-            ),
-
-        description:
-            strangisString(
-                getValue(
-                    "productDescription"
-                )
-            ),
-
-        whatsapp:
-            strangisString(
-                getValue(
-                    "productWhatsapp"
-                )
-            )
-            .replace(
-                /\D/g,
-                ""
-            ),
-
-        shippingMin:
-            strangisNumber(
-                getValue(
-                    "shippingMin"
-                ),
-                3
-            ),
-
-        shippingMax:
-            strangisNumber(
-                getValue(
-                    "shippingMax"
-                ),
-                9
-            ),
-
-        category:
-            strangisNormalizeCategory(
-                getValue(
-                    "productCategory"
-                ) ||
-                "camisetas"
-            )
-
-    };
-
-}
-
-
-/* =====================================================
-   OBTENER VARIANTES DEL FORMULARIO
-===================================================== */
-
-function getFormVariants() {
-
-    const sourceVariants =
-        Array.isArray(
-            window.variants
-        )
-            ? window.variants
-            : [];
-
-
-    return sourceVariants
-
-        .map(
-            variant => {
-
-                return {
-
-                    name:
-                        strangisString(
-                            variant?.name
-                        ),
-
-                    image:
-                        strangisString(
-
-                            variant?.image ||
-                            variant?.url ||
-                            variant?.src
-
-                        )
-
-                };
-
-            }
-        )
-
-        .filter(
-            variant =>
-                variant.name ||
-                variant.image
-        );
-
-}
-
-
-/* =====================================================
-   OBTENER TALLAS DEL FORMULARIO
-===================================================== */
-
-function getFormSizes() {
-
-    const sourceSizes =
-        Array.isArray(
-            window.sizes
-        )
-            ? window.sizes
-            : [];
-
-
-    return sourceSizes
-
-        .map(
-            size =>
-                strangisString(
-                    size
-                )
-        )
-
-        .filter(Boolean);
-
-}
-
-
-/* =====================================================
-   VALIDAR VARIANTES
-===================================================== */
-
-function validateProductVariants(
-    variants
-) {
-
-    if (
-        !Array.isArray(
-            variants
-        ) ||
-        !variants.length
-    ) {
-
-        return {
-
-            valid:
-                false,
-
-            message:
-                "Añade al menos un color con su imagen."
-
-        };
-
-    }
-
-
-    for (
-        const variant
-        of variants
-    ) {
-
-        if (
-            !variant.name
-        ) {
-
-            return {
-
-                valid:
-                    false,
-
-                message:
-                    "Todos los colores deben tener nombre."
-
-            };
-
-        }
-
-
-        if (
-            !variant.image
-        ) {
-
-            return {
-
-                valid:
-                    false,
-
-                message:
-                    "Todos los colores deben tener una URL de imagen."
-
-            };
-
-        }
-
-    }
-
-
-    return {
-
-        valid:
-            true,
-
-        message:
-            ""
-
-    };
-
-}
-
-
-/* =====================================================
-   VALIDAR PRODUCTO
-===================================================== */
-
-function validateProductData(
-    data,
-    variants
-) {
-
-    if (
-        !data.name
-    ) {
-
-        return {
-
-            valid:
-                false,
-
-            message:
-                "Introduce el nombre del producto."
-
-        };
-
-    }
-
-
-    if (
-        !data.ref
-    ) {
-
-        return {
-
-            valid:
-                false,
-
-            message:
-                "Introduce la referencia / ID."
-
-        };
-
-    }
-
-
-    if (
-        !isValidProductCategory(
-            data.category
-        )
-    ) {
-
-        return {
-
-            valid:
-                false,
-
-            message:
-                "Selecciona una categoría válida."
-
-        };
-
-    }
-
-
-    if (
-        data.price <
-        0
-    ) {
-
-        return {
-
-            valid:
-                false,
-
-            message:
-                "El precio no puede ser negativo."
-
-        };
-
-    }
-
-
-    if (
-        data.stock <
-        0
-    ) {
-
-        return {
-
-            valid:
-                false,
-
-            message:
-                "El stock no puede ser negativo."
-
-        };
-
-    }
-
-
-    if (
-        data.shippingMin <
-        0 ||
-        data.shippingMax <
-        0
-    ) {
-
-        return {
-
-            valid:
-                false,
-
-            message:
-                "Los gastos de envío no pueden ser negativos."
-
-        };
-
-    }
-
-
-    if (
-        data.shippingMin >
-        data.shippingMax
-    ) {
-
-        return {
-
-            valid:
-                false,
-
-            message:
-                "El envío mínimo no puede ser superior al máximo."
-
-        };
-
-    }
-
-
-    const variantsResult =
-        validateProductVariants(
-            variants
-        );
-
-
-    if (
-        !variantsResult.valid
-    ) {
-
-        return variantsResult;
-
-    }
-
-
-    return {
-
-        valid:
-            true,
-
-        message:
-            ""
-
-    };
-
-}
-
-
-/* =====================================================
-   CREAR OBJETO PRODUCTO
-===================================================== */
-
-function buildProductFromForm() {
-
-    const data =
-        getProductFormValues();
-
-
-    const variants =
-        getFormVariants();
-
-
-    const sizes =
-        getFormSizes();
-
-
-    const validation =
-        validateProductData(
-            data,
-            variants
-        );
-
-
-    if (
-        !validation.valid
-    ) {
-
-        return {
-
-            product:
-                null,
-
-            error:
-                validation.message
-
-        };
-
-    }
-
-
-    const product = {
-
-        name:
-            data.name,
-
-        category:
-            data.category,
-
-        ref:
-            data.ref,
-
-        price:
-            data.price,
-
-        stock:
-            data.stock,
-
-        description:
-            data.description,
-
-        whatsapp:
-            data.whatsapp,
-
-        images:
-            variants,
-
-        sizes:
-            sizes,
-
-        shipping_min:
-            data.shippingMin,
-
-        shipping_max:
-            data.shippingMax,
-
-        active:
-            true
-
-    };
-
-
-    return {
-
-        product,
-
-        error:
-            null
-
-    };
-
-}
-
-
-/* =====================================================
-   GUARDAR PRODUCTO EN SUPABASE
-===================================================== */
-
-async function saveProductToSupabase() {
-
-    try {
-
-        /* =============================================
-           COMPROBAR CAMPO NOMBRE
-        ============================================= */
-
-        const nameElement =
-            document.getElementById(
-                "productName"
-            );
-
-
-        if (
-            !nameElement
-        ) {
-
-            alert(
-                "No se encontró el campo del nombre del producto."
-            );
-
-            return null;
-
-        }
-
-
-        /* =============================================
-           CONSTRUIR PRODUCTO
-        ============================================= */
-
-        const built =
-            buildProductFromForm();
-
-
-        if (
-            built.error
-        ) {
-
-            alert(
-                built.error
-            );
-
-            return null;
-
-        }
-
-
-        const product =
-            built.product;
-
-
-        /* =============================================
-           COMPROBAR REFERENCIA LOCAL
-        ============================================= */
-
-        const existingProduct =
-            getProductByReference(
-                product.ref
-            );
-
-
-        if (
-            existingProduct
-        ) {
-
-            const shouldContinue =
-                window.confirm(
-
-                    "Ya existe un producto en memoria " +
-                    `con la referencia "${product.ref}".\n\n` +
-                    "¿Quieres continuar de todos modos?"
-
-                );
-
-
-            if (
-                !shouldContinue
-            ) {
-
-                return null;
-
-            }
-
-        }
-
-
-        /* =============================================
-           LOG
-        ============================================= */
-
-        console.log(
-            "STRANGIS — producto a guardar:",
-            product
-        );
-
-
-        /* =============================================
-           INSERTAR
-        ============================================= */
-
-        const result =
-            await supabaseClient
-                .from(
-                    STRANGIS_PRODUCTS_TABLE
-                )
-                .insert(
-                    product
-                );
-
-
-        /* =============================================
-           ERROR
-        ============================================= */
-
-        if (
-            result.error
-        ) {
+        catch (error) {
 
             console.error(
-                "STRANGIS — error guardando:",
-                result.error
+                error
             );
 
-
-            let message =
-                result.error.message ||
-                "Error desconocido.";
-
-
-            /*
-               Mensaje más comprensible
-               para conflictos de unicidad.
-            */
-            if (
-                result.error.code ===
-                "23505"
-            ) {
-
-                message =
-                    "La referencia del producto ya existe.";
-
-            }
-
-
-            alert(
-
-                "❌ No se pudo guardar el producto:\n\n" +
-                message
-
-            );
-
-
-            return null;
+            productsStatus.textContent =
+                "No se pudieron cargar los productos.";
 
         }
 
-
-        /* =============================================
-           ACTUALIZAR MEMORIA
-        ============================================= */
-
-        const savedProducts =
-            Array.isArray(
-                result.data
-            )
-                ? result.data
-                : [];
+    }
 
 
-        savedProducts.forEach(
-            savedProduct => {
+    /*
+     * GUARDAR PRODUCTO
+     */
 
-                const normalized =
-                    normalizeProduct(
-                        savedProduct
-                    );
+    form.addEventListener(
+        "submit",
+        async function (event) {
 
-
-                if (
-                    !normalized
-                ) {
-
-                    return;
-
-                }
+            event.preventDefault();
 
 
-                /*
-                   Si Supabase devuelve un ID,
-                   intentamos evitar duplicados
-                   en memoria.
-                */
-                const existingIndex =
-                    normalized.id !==
-                    undefined &&
-                    normalized.id !==
-                    null
-
-                        ? STRANGIS_PRODUCTS.findIndex(
-                            item =>
-                                String(
-                                    item?.id
-                                ) ===
-                                String(
-                                    normalized.id
-                                )
-                          )
-
-                        : -1;
+            const result =
+                await saveProductToSupabase();
 
 
-                if (
-                    existingIndex >=
-                    0
-                ) {
+            if (!result) {
 
-                    STRANGIS_PRODUCTS[
-                        existingIndex
-                    ] =
-                        normalized;
-
-                }
-                else {
-
-                    STRANGIS_PRODUCTS.push(
-                        normalized
-                    );
-
-                }
+                return;
 
             }
-        );
 
 
-        /* =============================================
-           ÉXITO
-        ============================================= */
+            renderProducts();
 
-        alert(
-            "✅ Producto guardado correctamente en Supabase."
-        );
+            form.reset();
+
+            window.variants = [];
+
+            window.sizes = [];
+
+            renderVariants();
+
+            renderSizes();
+
+        }
+    );
 
 
-        /* =============================================
-           GENERAR CÓDIGO SI EXISTE
-        ============================================= */
+    /*
+     * ACTUALIZAR
+     */
 
-        if (
-            typeof window.generateCode ===
-            "function"
-        ) {
+    refreshButton.addEventListener(
+        "click",
+        async function () {
+
+            productsStatus.textContent =
+                "Actualizando...";
+
 
             try {
 
-                window.generateCode();
+                await refreshProducts();
+
+                renderProducts();
 
             }
-            catch(error) {
+            catch (error) {
 
                 console.error(
-                    "STRANGIS — error generando código:",
                     error
                 );
 
+                productsStatus.textContent =
+                    "Error al actualizar.";
+
             }
 
         }
+    );
 
 
-        /*
-           Devolvemos el producto guardado
-           para que otras funciones puedan
-           utilizarlo si lo necesitan.
-        */
-        return (
-            savedProducts[0] ||
-            product
-        );
+    /*
+     * ESTADO INICIAL
+     */
 
-    }
-    catch(error) {
+    renderVariants();
 
-        console.error(
-            "STRANGIS — error inesperado guardando producto:",
-            error
-        );
+    renderSizes();
 
+    loadPageProducts();
 
-        alert(
+})();
 
-            "❌ No se pudo guardar el producto:\n\n" +
+</script>
 
-            (
-                error?.message ||
-                String(error)
-            )
-
-        );
-
-
-        return null;
-
-    }
-
-}
-
-
-/* =====================================================
-   RECARGAR PRODUCTOS
-===================================================== */
-
-/**
- * Alias cómodo para volver a cargar productos.
- */
-async function refreshProducts() {
-
-    return await loadProductsFromSupabase();
-
-}
-
-
-/* =====================================================
-   INICIALIZACIÓN
-===================================================== */
-
-async function initStrangisProducts() {
-
-    try {
-
-        await loadProductsFromSupabase();
-
-        return STRANGIS_PRODUCTS;
-
-    }
-    catch(error) {
-
-        /*
-           No lanzamos el error para no romper
-           las páginas que solamente necesitan
-           las funciones del archivo.
-        */
-
-        console.error(
-
-            "STRANGIS — no se pudieron cargar productos:",
-
-            error
-
-        );
-
-
-        return [];
-
-    }
-
-}
-
-
-/* =====================================================
-   EXPORTACIÓN GLOBAL
-===================================================== */
-
-window.STRANGIS_PRODUCTS =
-    STRANGIS_PRODUCTS;
-
-
-window.STRANGIS_ALLOWED_CATEGORIES =
-    STRANGIS_ALLOWED_CATEGORIES;
-
-
-window.supabaseClient =
-    supabaseClient;
-
-
-window.normalizeProduct =
-    normalizeProduct;
-
-
-window.loadProductsFromSupabase =
-    loadProductsFromSupabase;
-
-
-window.refreshProducts =
-    refreshProducts;
-
-
-window.initStrangisProducts =
-    initStrangisProducts;
-
-
-window.getProducts =
-    getProducts;
-
-
-window.getActiveProducts =
-    getActiveProducts;
-
-
-window.getProductsByCategory =
-    getProductsByCategory;
-
-
-window.getActiveProductsByCategory =
-    getActiveProductsByCategory;
-
-
-window.getProductById =
-    getProductById;
-
-
-window.getProductByReference =
-    getProductByReference;
-
-
-window.productReferenceExists =
-    productReferenceExists;
-
-
-window.getCategoryName =
-    getCategoryName;
-
-
-window.getProductImages =
-    getProductImages;
-
-
-window.getProductImage =
-    getProductImage;
-
-
-window.getProductVariants =
-    getProductVariants;
-
-
-window.getProductSizes =
-    getProductSizes;
-
-
-window.isValidProductCategory =
-    isValidProductCategory;
-
-
-window.getProductFormValues =
-    getProductFormValues;
-
-
-window.getFormVariants =
-    getFormVariants;
-
-
-window.getFormSizes =
-    getFormSizes;
-
-
-window.validateProductVariants =
-    validateProductVariants;
-
-
-window.validateProductData =
-    validateProductData;
-
-
-window.buildProductFromForm =
-    buildProductFromForm;
-
-
-window.saveProductToSupabase =
-    saveProductToSupabase;
-
-
-/* =====================================================
-   FIN
-===================================================== */
-
-console.log(
-    "STRANGIS — products.js cargado correctamente."
-);
+</body>
+</html>
