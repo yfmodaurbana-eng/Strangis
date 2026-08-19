@@ -49,62 +49,308 @@ const STRANGIS_PRODUCTS = [];
 ===================================================== */
 
 function strangisString(value) {
-    return String(value ?? "").trim();
+
+    return String(
+        value ?? ""
+    ).trim();
+
 }
 
 
 function strangisNormalizeCategory(category) {
-    return strangisString(category).toLowerCase();
+
+    return strangisString(
+        category
+    ).toLowerCase();
+
 }
 
 
-function strangisNumber(value, fallback = 0) {
+function strangisNumber(
+    value,
+    fallback = 0
+) {
 
     if (
         value === null ||
         value === undefined ||
         value === ""
     ) {
+
         return fallback;
+
     }
 
-    const number = Number(value);
+    const number =
+        Number(value);
 
     return Number.isFinite(number)
         ? number
         : fallback;
+
 }
 
 
-function strangisPositiveInteger(value, fallback = 0) {
+function strangisPositiveInteger(
+    value,
+    fallback = 0
+) {
 
-    const number = strangisNumber(value, fallback);
+    const number =
+        strangisNumber(
+            value,
+            fallback
+        );
 
     return Math.max(
         0,
         Math.floor(number)
     );
+
 }
 
 
 function strangisParseJSON(value) {
 
-    if (typeof value !== "string") {
+    if (
+        typeof value !== "string"
+    ) {
+
         return value;
+
     }
 
-    const text = value.trim();
+    const text =
+        value.trim();
 
     if (!text) {
+
         return value;
+
     }
 
     try {
+
         return JSON.parse(text);
+
     }
     catch {
+
         return value;
+
     }
+
+}
+
+
+/* =====================================================
+   NORMALIZAR UNA IMAGEN
+=====================================================
+
+   Admite:
+
+   "https://..."
+
+   {
+       "name": "Negro",
+       "image": "https://..."
+   }
+
+   {
+       "name": "Negro",
+       "url": "https://..."
+   }
+
+   {
+       "name": "Negro",
+       "src": "https://..."
+   }
+===================================================== */
+
+function normalizeProductImage(item) {
+
+    if (
+        typeof item === "string"
+    ) {
+
+        const image =
+            item.trim();
+
+        if (!image) {
+
+            return null;
+
+        }
+
+        return {
+            name: "",
+            image: image
+        };
+
+    }
+
+
+    if (
+        !item ||
+        typeof item !== "object"
+    ) {
+
+        return null;
+
+    }
+
+
+    const image =
+        strangisString(
+            item.image ||
+            item.url ||
+            item.src ||
+            item.image_url ||
+            item.imageUrl ||
+            item.photo ||
+            item.photo_url ||
+            item.photoUrl
+        );
+
+
+    const name =
+        strangisString(
+            item.name ||
+            item.color ||
+            item.colour ||
+            item.variant
+        );
+
+
+    if (!image) {
+
+        return null;
+
+    }
+
+
+    return {
+        name: name,
+        image: image
+    };
+
+}
+
+
+/* =====================================================
+   NORMALIZAR LISTA DE IMÁGENES
+===================================================== */
+
+function normalizeProductImages(value) {
+
+    let raw =
+        strangisParseJSON(
+            value
+        );
+
+
+    /*
+     * Si no existe nada
+     */
+
+    if (
+        raw === null ||
+        raw === undefined ||
+        raw === ""
+    ) {
+
+        return [];
+
+    }
+
+
+    /*
+     * Caso:
+
+     * {
+     *     name: "Negro",
+     *     image: "https://..."
+     * }
+     */
+
+    if (
+        raw &&
+        typeof raw === "object" &&
+        !Array.isArray(raw)
+    ) {
+
+        const normalized =
+            normalizeProductImage(
+                raw
+            );
+
+        return normalized
+            ? [normalized]
+            : [];
+
+    }
+
+
+    /*
+     * Caso:
+
+     * "https://..."
+     */
+
+    if (
+        typeof raw === "string"
+    ) {
+
+        const normalized =
+            normalizeProductImage(
+                raw
+            );
+
+        return normalized
+            ? [normalized]
+            : [];
+
+    }
+
+
+    /*
+     * Caso:
+
+     * [
+     *     "https://...",
+     *     "https://..."
+     * ]
+     *
+     * o:
+     *
+     * [
+     *     {
+     *         name: "Negro",
+     *         image: "https://..."
+     *     }
+     * ]
+     */
+
+    if (
+        Array.isArray(raw)
+    ) {
+
+        return raw
+
+            .map(
+                item =>
+                    normalizeProductImage(
+                        item
+                    )
+            )
+
+            .filter(Boolean);
+
+    }
+
+
+    return [];
+
 }
 
 
@@ -114,34 +360,46 @@ function strangisParseJSON(value) {
 
 const supabaseClient = {
 
-    async request(path, options = {}) {
+    async request(
+        path,
+        options = {}
+    ) {
 
         const url =
-            STRANGIS_SUPABASE_URL + path;
+            STRANGIS_SUPABASE_URL +
+            path;
+
 
         const headers = {
-            "apikey": STRANGIS_SUPABASE_KEY,
+
+            "apikey":
+                STRANGIS_SUPABASE_KEY,
 
             "Authorization":
-                "Bearer " + STRANGIS_SUPABASE_KEY,
+                "Bearer " +
+                STRANGIS_SUPABASE_KEY,
 
             "Content-Type":
                 "application/json",
 
             ...(options.headers || {})
+
         };
+
 
         let response;
 
+
         try {
 
-            response = await fetch(
-                url,
-                {
-                    ...options,
-                    headers
-                }
-            );
+            response =
+                await fetch(
+                    url,
+                    {
+                        ...options,
+                        headers
+                    }
+                );
 
         }
         catch (error) {
@@ -156,20 +414,31 @@ const supabaseClient = {
 
         }
 
-        const text = await response.text();
+
+        const text =
+            await response.text();
+
 
         let data = null;
+
 
         if (text) {
 
             try {
-                data = JSON.parse(text);
+
+                data =
+                    JSON.parse(text);
+
             }
             catch {
-                data = text;
+
+                data =
+                    text;
+
             }
 
         }
+
 
         if (!response.ok) {
 
@@ -191,8 +460,12 @@ const supabaseClient = {
 
                 `Error HTTP ${response.status}`;
 
+
             const error =
-                new Error(errorMessage);
+                new Error(
+                    errorMessage
+                );
+
 
             error.status =
                 response.status;
@@ -206,17 +479,24 @@ const supabaseClient = {
             error.hint =
                 data?.hint || null;
 
+
             throw error;
+
         }
 
+
         return data;
+
     },
 
 
     from(table) {
 
         const encodedTable =
-            encodeURIComponent(table);
+            encodeURIComponent(
+                table
+            );
+
 
         return {
 
@@ -238,9 +518,13 @@ const supabaseClient = {
                                 },
 
                                 body:
-                                    JSON.stringify(product)
+                                    JSON.stringify(
+                                        product
+                                    )
                             }
+
                         );
+
 
                     return {
                         data,
@@ -256,6 +540,7 @@ const supabaseClient = {
                     };
 
                 }
+
             },
 
 
@@ -270,6 +555,7 @@ const supabaseClient = {
 
                         );
 
+
                     return {
                         data,
                         error: null
@@ -284,6 +570,7 @@ const supabaseClient = {
                     };
 
                 }
+
             },
 
 
@@ -296,10 +583,15 @@ const supabaseClient = {
                 try {
 
                     const encodedColumn =
-                        encodeURIComponent(column);
+                        encodeURIComponent(
+                            column
+                        );
 
                     const encodedValue =
-                        encodeURIComponent(value);
+                        encodeURIComponent(
+                            value
+                        );
+
 
                     const data =
                         await supabaseClient.request(
@@ -310,6 +602,7 @@ const supabaseClient = {
                             `${operator}.${encodedValue}`
 
                         );
+
 
                     return {
                         data,
@@ -325,9 +618,13 @@ const supabaseClient = {
                     };
 
                 }
+
             }
+
         };
+
     }
+
 };
 
 
@@ -341,23 +638,34 @@ function normalizeProduct(product) {
         !product ||
         typeof product !== "object"
     ) {
+
         return null;
+
     }
+
 
     const normalized = {
         ...product
     };
 
+
     normalized.name =
-        strangisString(product.name);
+        strangisString(
+            product.name
+        );
+
 
     normalized.category =
         strangisNormalizeCategory(
             product.category
         );
 
+
     normalized.ref =
-        strangisString(product.ref);
+        strangisString(
+            product.ref
+        );
+
 
     normalized.price =
         strangisNumber(
@@ -365,21 +673,25 @@ function normalizeProduct(product) {
             0
         );
 
+
     normalized.stock =
         strangisPositiveInteger(
             product.stock,
             0
         );
 
+
     normalized.description =
         strangisString(
             product.description
         );
 
+
     normalized.whatsapp =
         strangisString(
             product.whatsapp
         );
+
 
     normalized.shipping_min =
         strangisNumber(
@@ -387,11 +699,13 @@ function normalizeProduct(product) {
             3
         );
 
+
     normalized.shipping_max =
         strangisNumber(
             product.shipping_max,
             9
         );
+
 
     normalized.active =
         product.active !== false;
@@ -401,30 +715,47 @@ function normalizeProduct(product) {
        IMÁGENES
     ============================================= */
 
-    const rawImages =
-        strangisParseJSON(
+    normalized.images =
+        normalizeProductImages(
             product.images
         );
 
-    if (Array.isArray(rawImages)) {
 
-        normalized.images =
-            rawImages;
+    /*
+     * Compatibilidad adicional:
+     *
+     * Si la tabla tiene "image"
+     * en vez de "images".
+     */
 
-    }
-    else if (
-        typeof rawImages === "string" &&
-        rawImages.trim()
+    if (
+        !normalized.images.length &&
+        product.image
     ) {
 
-        normalized.images = [
-            rawImages.trim()
-        ];
+        normalized.images =
+            normalizeProductImages(
+                product.image
+            );
 
     }
-    else {
 
-        normalized.images = [];
+
+    /*
+     * Compatibilidad adicional:
+     *
+     * image_url
+     */
+
+    if (
+        !normalized.images.length &&
+        product.image_url
+    ) {
+
+        normalized.images =
+            normalizeProductImages(
+                product.image_url
+            );
 
     }
 
@@ -438,13 +769,21 @@ function normalizeProduct(product) {
             product.sizes
         );
 
-    if (Array.isArray(rawSizes)) {
+
+    if (
+        Array.isArray(rawSizes)
+    ) {
 
         normalized.sizes =
             rawSizes
-                .map(size =>
-                    strangisString(size)
+
+                .map(
+                    size =>
+                        strangisString(
+                            size
+                        )
                 )
+
                 .filter(Boolean);
 
     }
@@ -455,10 +794,16 @@ function normalizeProduct(product) {
 
         normalized.sizes =
             rawSizes
+
                 .split(",")
-                .map(size =>
-                    strangisString(size)
+
+                .map(
+                    size =>
+                        strangisString(
+                            size
+                        )
                 )
+
                 .filter(Boolean);
 
     }
@@ -468,7 +813,28 @@ function normalizeProduct(product) {
 
     }
 
+
+    /*
+     * DEBUG IMPORTANTE
+     */
+
+    console.log(
+        "STRANGIS — producto normalizado:",
+        {
+            name:
+                normalized.name,
+
+            ref:
+                normalized.ref,
+
+            images:
+                normalized.images
+        }
+    );
+
+
     return normalized;
+
 }
 
 
@@ -482,12 +848,14 @@ async function loadProductsFromSupabase() {
         "STRANGIS — cargando productos desde Supabase..."
     );
 
+
     const result =
         await supabaseClient
             .from(
                 STRANGIS_PRODUCTS_TABLE
             )
             .select();
+
 
     if (result.error) {
 
@@ -497,35 +865,60 @@ async function loadProductsFromSupabase() {
         );
 
         throw result.error;
+
     }
+
 
     const products =
         Array.isArray(result.data)
             ? result.data
             : [];
 
+
+    /*
+     * DEBUG:
+     * mostramos exactamente lo que
+     * devuelve Supabase.
+     */
+
+    console.log(
+        "STRANGIS — RESPUESTA ORIGINAL DE SUPABASE:",
+        products
+    );
+
+
     STRANGIS_PRODUCTS.length = 0;
 
-    products.forEach(product => {
 
-        const normalized =
-            normalizeProduct(product);
+    products.forEach(
+        product => {
 
-        if (normalized) {
+            const normalized =
+                normalizeProduct(
+                    product
+                );
 
-            STRANGIS_PRODUCTS.push(
-                normalized
-            );
+
+            if (normalized) {
+
+                STRANGIS_PRODUCTS.push(
+                    normalized
+                );
+
+            }
 
         }
-    });
+    );
+
 
     console.log(
         `STRANGIS — ${STRANGIS_PRODUCTS.length} productos cargados.`,
         STRANGIS_PRODUCTS
     );
 
+
     return STRANGIS_PRODUCTS;
+
 }
 
 
@@ -534,7 +927,9 @@ async function loadProductsFromSupabase() {
 ===================================================== */
 
 function getProducts() {
+
     return STRANGIS_PRODUCTS;
+
 }
 
 
@@ -544,6 +939,7 @@ function getActiveProducts() {
         product =>
             product?.active !== false
     );
+
 }
 
 
@@ -551,10 +947,15 @@ function getActiveProducts() {
    PRODUCTOS POR CATEGORÍA
 ===================================================== */
 
-function getProductsByCategory(category) {
+function getProductsByCategory(
+    category
+) {
 
     const wantedCategory =
-        strangisNormalizeCategory(category);
+        strangisNormalizeCategory(
+            category
+        );
+
 
     return STRANGIS_PRODUCTS.filter(
         product =>
@@ -562,27 +963,41 @@ function getProductsByCategory(category) {
                 product?.category
             ) === wantedCategory
     );
+
 }
 
 
-function getActiveProductsByCategory(category) {
+function getActiveProductsByCategory(
+    category
+) {
 
     const wantedCategory =
-        strangisNormalizeCategory(category);
-
-    return STRANGIS_PRODUCTS.filter(product => {
-
-        if (product?.active === false) {
-            return false;
-        }
-
-        return (
-            strangisNormalizeCategory(
-                product?.category
-            ) === wantedCategory
+        strangisNormalizeCategory(
+            category
         );
 
-    });
+
+    return STRANGIS_PRODUCTS.filter(
+        product => {
+
+            if (
+                product?.active === false
+            ) {
+
+                return false;
+
+            }
+
+
+            return (
+                strangisNormalizeCategory(
+                    product?.category
+                ) === wantedCategory
+            );
+
+        }
+    );
+
 }
 
 
@@ -596,16 +1011,22 @@ function getProductById(id) {
         id === null ||
         id === undefined
     ) {
+
         return undefined;
+
     }
+
 
     const wantedId =
         String(id);
 
+
     return STRANGIS_PRODUCTS.find(
         product =>
-            String(product?.id) === wantedId
+            String(product?.id) ===
+            wantedId
     );
+
 }
 
 
@@ -613,29 +1034,44 @@ function getProductById(id) {
    PRODUCTO POR REFERENCIA
 ===================================================== */
 
-function getProductByReference(ref) {
+function getProductByReference(
+    ref
+) {
 
     const wantedRef =
-        strangisString(ref)
-            .toLowerCase();
+        strangisString(
+            ref
+        ).toLowerCase();
+
 
     if (!wantedRef) {
+
         return undefined;
+
     }
+
 
     return STRANGIS_PRODUCTS.find(
         product =>
-            strangisString(product?.ref)
-                .toLowerCase() === wantedRef
+            strangisString(
+                product?.ref
+            ).toLowerCase() ===
+            wantedRef
     );
+
 }
 
 
-function productReferenceExists(ref) {
+function productReferenceExists(
+    ref
+) {
 
     return Boolean(
-        getProductByReference(ref)
+        getProductByReference(
+            ref
+        )
     );
+
 }
 
 
@@ -643,15 +1079,21 @@ function productReferenceExists(ref) {
    NOMBRE DE CATEGORÍA
 ===================================================== */
 
-function getCategoryName(category) {
+function getCategoryName(
+    category
+) {
 
     const key =
-        strangisNormalizeCategory(category);
+        strangisNormalizeCategory(
+            category
+        );
+
 
     return (
         STRANGIS_CATEGORY_NAMES[key] ||
         strangisString(category)
     );
+
 }
 
 
@@ -659,53 +1101,79 @@ function getCategoryName(category) {
    IMÁGENES DEL PRODUCTO
 ===================================================== */
 
-function getProductImages(product) {
+function getProductImages(
+    product
+) {
 
     if (!product) {
+
         return [];
+
     }
 
-    let images =
-        strangisParseJSON(
+
+    /*
+     * Si el producto ya está normalizado,
+     * usamos directamente normalized.images.
+     */
+
+    if (
+        Array.isArray(
             product.images
-        );
+        )
+    ) {
 
-    if (typeof images === "string") {
+        return product.images
 
-        const url =
-            images.trim();
+            .map(
+                item => {
 
-        return url
-            ? [url]
-            : [];
+                    if (
+                        typeof item === "string"
+                    ) {
+
+                        return item.trim();
+
+                    }
+
+
+                    if (
+                        item &&
+                        typeof item === "object"
+                    ) {
+
+                        return strangisString(
+                            item.image ||
+                            item.url ||
+                            item.src
+                        );
+
+                    }
+
+
+                    return "";
+
+                }
+            )
+
+            .filter(Boolean);
+
     }
 
-    if (!Array.isArray(images)) {
-        return [];
-    }
 
-    return images
-        .map(item => {
+    /*
+     * Fallback para productos no normalizados.
+     */
 
-            if (typeof item === "string") {
-                return item.trim();
-            }
-
-            if (
-                item &&
-                typeof item === "object"
-            ) {
-
-                return strangisString(
-                    item.image ||
-                    item.url ||
-                    item.src
-                );
-            }
-
-            return "";
-        })
+    return normalizeProductImages(
+        product.images
+    )
+        .map(
+            item =>
+                item.image
+        )
         .filter(Boolean);
+
 }
 
 
@@ -713,12 +1181,18 @@ function getProductImages(product) {
    PRIMERA IMAGEN
 ===================================================== */
 
-function getProductImage(product) {
+function getProductImage(
+    product
+) {
 
     const images =
-        getProductImages(product);
+        getProductImages(
+            product
+        );
+
 
     return images[0] || "";
+
 }
 
 
@@ -726,65 +1200,98 @@ function getProductImage(product) {
    VARIANTES
 ===================================================== */
 
-function getProductVariants(product) {
+function getProductVariants(
+    product
+) {
 
     if (!product) {
+
         return [];
+
     }
 
-    const variants =
-        strangisParseJSON(
+
+    /*
+     * Si ya está normalizado,
+     * product.images contiene objetos
+     * { name, image }.
+     */
+
+    if (
+        Array.isArray(
             product.images
-        );
+        )
+    ) {
 
-    if (!Array.isArray(variants)) {
-        return [];
+        return product.images
+
+            .map(
+                variant => {
+
+                    if (
+                        typeof variant ===
+                        "string"
+                    ) {
+
+                        return {
+
+                            name: "",
+
+                            image:
+                                variant.trim()
+
+                        };
+
+                    }
+
+
+                    if (
+                        variant &&
+                        typeof variant ===
+                        "object"
+                    ) {
+
+                        return {
+
+                            name:
+                                strangisString(
+                                    variant.name
+                                ),
+
+                            image:
+                                strangisString(
+                                    variant.image ||
+                                    variant.url ||
+                                    variant.src
+                                )
+
+                        };
+
+                    }
+
+
+                    return {
+
+                        name: "",
+
+                        image: ""
+
+                    };
+
+                }
+            )
+
+            .filter(
+                variant =>
+                    variant.name ||
+                    variant.image
+            );
+
     }
 
-    return variants
 
-        .map(variant => {
+    return [];
 
-            if (typeof variant === "string") {
-
-                return {
-                    name: "",
-                    image: variant.trim()
-                };
-            }
-
-            if (
-                variant &&
-                typeof variant === "object"
-            ) {
-
-                return {
-                    name:
-                        strangisString(
-                            variant.name
-                        ),
-
-                    image:
-                        strangisString(
-                            variant.image ||
-                            variant.url ||
-                            variant.src
-                        )
-                };
-            }
-
-            return {
-                name: "",
-                image: ""
-            };
-
-        })
-
-        .filter(
-            variant =>
-                variant.name ||
-                variant.image
-        );
 }
 
 
@@ -792,37 +1299,84 @@ function getProductVariants(product) {
    TALLAS
 ===================================================== */
 
-function getProductSizes(product) {
+function getProductSizes(
+    product
+) {
 
     if (!product) {
+
         return [];
+
     }
+
+
+    if (
+        Array.isArray(
+            product.sizes
+        )
+    ) {
+
+        return product.sizes
+
+            .map(
+                size =>
+                    strangisString(
+                        size
+                    )
+            )
+
+            .filter(Boolean);
+
+    }
+
 
     const sizes =
         strangisParseJSON(
             product.sizes
         );
 
-    if (Array.isArray(sizes)) {
+
+    if (
+        Array.isArray(sizes)
+    ) {
 
         return sizes
-            .map(size =>
-                strangisString(size)
+
+            .map(
+                size =>
+                    strangisString(
+                        size
+                    )
             )
+
             .filter(Boolean);
+
     }
 
-    if (typeof sizes === "string") {
+
+    if (
+        typeof sizes ===
+        "string"
+    ) {
 
         return sizes
+
             .split(",")
-            .map(size =>
-                strangisString(size)
+
+            .map(
+                size =>
+                    strangisString(
+                        size
+                    )
             )
+
             .filter(Boolean);
+
     }
+
 
     return [];
+
 }
 
 
@@ -830,11 +1384,16 @@ function getProductSizes(product) {
    VALIDAR CATEGORÍA
 ===================================================== */
 
-function isValidProductCategory(category) {
+function isValidProductCategory(
+    category
+) {
 
     return STRANGIS_ALLOWED_CATEGORIES.includes(
-        strangisNormalizeCategory(category)
+        strangisNormalizeCategory(
+            category
+        )
     );
+
 }
 
 
@@ -844,69 +1403,98 @@ function isValidProductCategory(category) {
 
 function getProductFormValues() {
 
-    const getValue = id => {
+    const getValue =
+        id => {
 
-        const element =
-            document.getElementById(id);
+            const element =
+                document.getElementById(
+                    id
+                );
 
-        return element
-            ? element.value
-            : "";
-    };
+
+            return element
+                ? element.value
+                : "";
+
+        };
+
 
     return {
 
         name:
             strangisString(
-                getValue("productName")
+                getValue(
+                    "productName"
+                )
             ),
 
         ref:
             strangisString(
-                getValue("productRef")
+                getValue(
+                    "productRef"
+                )
             ),
 
         price:
             strangisNumber(
-                getValue("productPrice"),
+                getValue(
+                    "productPrice"
+                ),
                 0
             ),
 
         stock:
             strangisPositiveInteger(
-                getValue("productStock"),
+                getValue(
+                    "productStock"
+                ),
                 0
             ),
 
         description:
             strangisString(
-                getValue("productDescription")
+                getValue(
+                    "productDescription"
+                )
             ),
 
         whatsapp:
             strangisString(
-                getValue("productWhatsapp")
+                getValue(
+                    "productWhatsapp"
+                )
             )
-            .replace(/\D/g, ""),
+            .replace(
+                /\D/g,
+                ""
+            ),
 
         shippingMin:
             strangisNumber(
-                getValue("shippingMin"),
+                getValue(
+                    "shippingMin"
+                ),
                 3
             ),
 
         shippingMax:
             strangisNumber(
-                getValue("shippingMax"),
+                getValue(
+                    "shippingMax"
+                ),
                 9
             ),
 
         category:
             strangisNormalizeCategory(
-                getValue("productCategory") ||
+                getValue(
+                    "productCategory"
+                ) ||
                 "camisetas"
             )
+
     };
+
 }
 
 
@@ -917,31 +1505,39 @@ function getProductFormValues() {
 function getFormVariants() {
 
     const sourceVariants =
-        Array.isArray(window.variants)
+        Array.isArray(
+            window.variants
+        )
             ? window.variants
             : [];
 
+
     return sourceVariants
 
-        .map(variant => ({
-            name:
-                strangisString(
-                    variant?.name
-                ),
+        .map(
+            variant => ({
 
-            image:
-                strangisString(
-                    variant?.image ||
-                    variant?.url ||
-                    variant?.src
-                )
-        }))
+                name:
+                    strangisString(
+                        variant?.name
+                    ),
+
+                image:
+                    strangisString(
+                        variant?.image ||
+                        variant?.url ||
+                        variant?.src
+                    )
+
+            })
+        )
 
         .filter(
             variant =>
                 variant.name ||
                 variant.image
         );
+
 }
 
 
@@ -952,17 +1548,24 @@ function getFormVariants() {
 function getFormSizes() {
 
     const sourceSizes =
-        Array.isArray(window.sizes)
+        Array.isArray(
+            window.sizes
+        )
             ? window.sizes
             : [];
 
+
     return sourceSizes
 
-        .map(size =>
-            strangisString(size)
+        .map(
+            size =>
+                strangisString(
+                    size
+                )
         )
 
         .filter(Boolean);
+
 }
 
 
@@ -970,7 +1573,9 @@ function getFormSizes() {
    VALIDAR VARIANTES
 ===================================================== */
 
-function validateProductVariants(variants) {
+function validateProductVariants(
+    variants
+) {
 
     if (
         !Array.isArray(variants) ||
@@ -978,37 +1583,59 @@ function validateProductVariants(variants) {
     ) {
 
         return {
+
             valid: false,
+
             message:
                 "Añade al menos un color con su imagen."
+
         };
+
     }
 
-    for (const variant of variants) {
+
+    for (
+        const variant of variants
+    ) {
 
         if (!variant.name) {
 
             return {
+
                 valid: false,
+
                 message:
                     "Todos los colores deben tener nombre."
+
             };
+
         }
+
 
         if (!variant.image) {
 
             return {
+
                 valid: false,
+
                 message:
                     "Todos los colores deben tener una URL de imagen."
+
             };
+
         }
+
     }
 
+
     return {
+
         valid: true,
+
         message: ""
+
     };
+
 }
 
 
@@ -1016,52 +1643,88 @@ function validateProductVariants(variants) {
    VALIDAR PRODUCTO
 ===================================================== */
 
-function validateProductData(data, variants) {
+function validateProductData(
+    data,
+    variants
+) {
 
     if (!data.name) {
 
         return {
+
             valid: false,
+
             message:
                 "Introduce el nombre del producto."
+
         };
+
     }
+
 
     if (!data.ref) {
 
         return {
+
             valid: false,
+
             message:
                 "Introduce la referencia / ID."
+
         };
+
     }
 
-    if (!isValidProductCategory(data.category)) {
+
+    if (
+        !isValidProductCategory(
+            data.category
+        )
+    ) {
 
         return {
+
             valid: false,
+
             message:
                 "Selecciona una categoría válida."
+
         };
+
     }
 
-    if (data.price < 0) {
+
+    if (
+        data.price < 0
+    ) {
 
         return {
+
             valid: false,
+
             message:
                 "El precio no puede ser negativo."
+
         };
+
     }
 
-    if (data.stock < 0) {
+
+    if (
+        data.stock < 0
+    ) {
 
         return {
+
             valid: false,
+
             message:
                 "El stock no puede ser negativo."
+
         };
+
     }
+
 
     if (
         data.shippingMin < 0 ||
@@ -1069,11 +1732,16 @@ function validateProductData(data, variants) {
     ) {
 
         return {
+
             valid: false,
+
             message:
                 "Los gastos de envío no pueden ser negativos."
+
         };
+
     }
+
 
     if (
         data.shippingMin >
@@ -1081,25 +1749,40 @@ function validateProductData(data, variants) {
     ) {
 
         return {
+
             valid: false,
+
             message:
                 "El envío mínimo no puede ser superior al máximo."
+
         };
+
     }
+
 
     const variantsResult =
         validateProductVariants(
             variants
         );
 
-    if (!variantsResult.valid) {
+
+    if (
+        !variantsResult.valid
+    ) {
+
         return variantsResult;
+
     }
 
+
     return {
+
         valid: true,
+
         message: ""
+
     };
+
 }
 
 
@@ -1112,11 +1795,14 @@ function buildProductFromForm() {
     const data =
         getProductFormValues();
 
+
     const variants =
         getFormVariants();
 
+
     const sizes =
         getFormSizes();
+
 
     const validation =
         validateProductData(
@@ -1124,13 +1810,22 @@ function buildProductFromForm() {
             variants
         );
 
-    if (!validation.valid) {
+
+    if (
+        !validation.valid
+    ) {
 
         return {
+
             product: null,
-            error: validation.message
+
+            error:
+                validation.message
+
         };
+
     }
+
 
     const product = {
 
@@ -1155,6 +1850,20 @@ function buildProductFromForm() {
         whatsapp:
             data.whatsapp,
 
+        /*
+         * IMPORTANTE:
+         *
+         * Guardamos las variantes
+         * como objetos:
+         *
+         * [
+         *   {
+         *      name: "Negro",
+         *      image: "https://..."
+         *   }
+         * ]
+         */
+
         images:
             variants,
 
@@ -1169,12 +1878,18 @@ function buildProductFromForm() {
 
         active:
             true
+
     };
 
+
     return {
+
         product,
+
         error: null
+
     };
+
 }
 
 
@@ -1191,6 +1906,7 @@ async function saveProductToSupabase() {
                 "productName"
             );
 
+
         if (!nameElement) {
 
             alert(
@@ -1198,10 +1914,13 @@ async function saveProductToSupabase() {
             );
 
             return null;
+
         }
+
 
         const built =
             buildProductFromForm();
+
 
         if (built.error) {
 
@@ -1210,20 +1929,19 @@ async function saveProductToSupabase() {
             );
 
             return null;
+
         }
+
 
         const product =
             built.product;
 
 
-        /* =============================================
-           COMPROBAR REFERENCIA LOCAL
-        ============================================= */
-
         const existingProduct =
             getProductByReference(
                 product.ref
             );
+
 
         if (existingProduct) {
 
@@ -1236,9 +1954,13 @@ async function saveProductToSupabase() {
 
                 );
 
+
             if (!shouldContinue) {
+
                 return null;
+
             }
+
         }
 
 
@@ -1248,15 +1970,13 @@ async function saveProductToSupabase() {
         );
 
 
-        /* =============================================
-           INSERTAR EN SUPABASE
-        ============================================= */
-
         const result =
             await supabaseClient
+
                 .from(
                     STRANGIS_PRODUCTS_TABLE
                 )
+
                 .insert(
                     product
                 );
@@ -1269,9 +1989,11 @@ async function saveProductToSupabase() {
                 result.error
             );
 
+
             let message =
                 result.error.message ||
                 "Error desconocido.";
+
 
             if (
                 result.error.code ===
@@ -1280,25 +2002,28 @@ async function saveProductToSupabase() {
 
                 message =
                     "La referencia del producto ya existe.";
+
             }
+
 
             alert(
                 "❌ No se pudo guardar el producto:\n\n" +
                 message
             );
 
+
             return null;
+
         }
 
 
-        /* =============================================
-           ACTUALIZAR MEMORIA
-        ============================================= */
-
         const savedProducts =
-            Array.isArray(result.data)
+            Array.isArray(
+                result.data
+            )
                 ? result.data
                 : [];
+
 
         savedProducts.forEach(
             savedProduct => {
@@ -1308,9 +2033,13 @@ async function saveProductToSupabase() {
                         savedProduct
                     );
 
+
                 if (!normalized) {
+
                     return;
+
                 }
+
 
                 const existingIndex =
                     normalized.id !== undefined &&
@@ -1318,17 +2047,25 @@ async function saveProductToSupabase() {
 
                         ? STRANGIS_PRODUCTS.findIndex(
                             item =>
-                                String(item?.id) ===
-                                String(normalized.id)
+                                String(
+                                    item?.id
+                                ) ===
+                                String(
+                                    normalized.id
+                                )
                         )
 
                         : -1;
 
-                if (existingIndex >= 0) {
+
+                if (
+                    existingIndex >= 0
+                ) {
 
                     STRANGIS_PRODUCTS[
                         existingIndex
-                    ] = normalized;
+                    ] =
+                        normalized;
 
                 }
                 else {
@@ -1336,7 +2073,9 @@ async function saveProductToSupabase() {
                     STRANGIS_PRODUCTS.push(
                         normalized
                     );
+
                 }
+
             }
         );
 
@@ -1346,17 +2085,15 @@ async function saveProductToSupabase() {
         );
 
 
-        /* =============================================
-           GENERAR CÓDIGO
-        ============================================= */
-
         if (
             typeof window.generateCode ===
             "function"
         ) {
 
             try {
+
                 window.generateCode();
+
             }
             catch (error) {
 
@@ -1364,7 +2101,9 @@ async function saveProductToSupabase() {
                     "STRANGIS — error generando código:",
                     error
                 );
+
             }
+
         }
 
 
@@ -1381,6 +2120,7 @@ async function saveProductToSupabase() {
             error
         );
 
+
         alert(
             "❌ No se pudo guardar el producto:\n\n" +
             (
@@ -1389,8 +2129,11 @@ async function saveProductToSupabase() {
             )
         );
 
+
         return null;
+
     }
+
 }
 
 
@@ -1401,6 +2144,7 @@ async function saveProductToSupabase() {
 async function refreshProducts() {
 
     return await loadProductsFromSupabase();
+
 }
 
 
@@ -1425,7 +2169,9 @@ async function initStrangisProducts() {
         );
 
         return [];
+
     }
+
 }
 
 
