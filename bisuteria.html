@@ -7,6 +7,7 @@
 <title>Bisutería | Strangis</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -37,7 +38,9 @@ textarea{
     font:inherit;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 
 header{
     position:sticky;
@@ -88,7 +91,9 @@ nav a.active{
     color:#fff;
 }
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
 .hero{
     width:min(1400px,90%);
@@ -118,7 +123,9 @@ nav a.active{
     line-height:1.7;
 }
 
-/* PRODUCTS */
+/* =========================
+   PRODUCTS
+========================= */
 
 .products-section{
     width:min(1400px,90%);
@@ -149,7 +156,9 @@ nav a.active{
     background:rgba(255,255,255,.075);
 }
 
-/* GALLERY */
+/* =========================
+   GALERÍA
+========================= */
 
 .product-gallery{
     position:relative;
@@ -241,7 +250,9 @@ nav a.active{
     pointer-events:none;
 }
 
-/* INFO */
+/* =========================
+   INFO
+========================= */
 
 .product-name{
     font-size:16px;
@@ -282,7 +293,9 @@ nav a.active{
     color:#fff;
 }
 
-/* COLORS */
+/* =========================
+   COLORES / VARIANTES
+========================= */
 
 .colors{
     display:flex;
@@ -315,7 +328,9 @@ nav a.active{
     outline-offset:3px;
 }
 
-/* SIZES */
+/* =========================
+   TALLAS
+========================= */
 
 .sizes{
     display:flex;
@@ -346,7 +361,9 @@ nav a.active{
     border-color:#fff;
 }
 
-/* QUANTITY */
+/* =========================
+   CANTIDAD
+========================= */
 
 .quantity{
     display:flex;
@@ -373,7 +390,9 @@ nav a.active{
     font-weight:bold;
 }
 
-/* SHIPPING */
+/* =========================
+   ENVÍO
+========================= */
 
 .shipping{
     margin-top:17px;
@@ -403,7 +422,9 @@ nav a.active{
     font-weight:bold;
 }
 
-/* BUY */
+/* =========================
+   COMPRAR
+========================= */
 
 .buy{
     width:100%;
@@ -428,7 +449,9 @@ nav a.active{
     cursor:not-allowed;
 }
 
-/* EMPTY */
+/* =========================
+   ESTADOS
+========================= */
 
 .empty,
 .loading{
@@ -438,7 +461,9 @@ nav a.active{
     color:#aaa;
 }
 
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 
 footer{
     padding:35px 5%;
@@ -448,7 +473,9 @@ footer{
     font-size:10px;
 }
 
-/* LIGHTBOX */
+/* =========================
+   LIGHTBOX
+========================= */
 
 .image-lightbox{
     position:fixed;
@@ -515,7 +542,9 @@ footer{
     right:10px;
 }
 
-/* MODAL */
+/* =========================
+   MODAL
+========================= */
 
 .modal{
     position:fixed;
@@ -681,9 +710,12 @@ footer{
     cursor:pointer;
 }
 
-/* RESPONSIVE */
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media(max-width:1100px){
+
     .products{
         grid-template-columns:repeat(3,minmax(0,1fr));
     }
@@ -691,9 +723,11 @@ footer{
     .product-gallery{
         height:330px;
     }
+
 }
 
 @media(max-width:850px){
+
     .products{
         grid-template-columns:repeat(2,minmax(0,1fr));
     }
@@ -702,6 +736,7 @@ footer{
     .products-section{
         width:92%;
     }
+
 }
 
 @media(max-width:600px){
@@ -792,7 +827,9 @@ footer{
         padding:22px 17px 25px;
         border-radius:18px 18px 0 0;
     }
+
 }
+
 </style>
 </head>
 
@@ -841,13 +878,17 @@ footer{
 
 <section class="hero">
 
-    <small>COLECCIÓN</small>
+    <small>
+        COLECCIÓN
+    </small>
 
-    <h1>BISUTERÍA</h1>
+    <h1>
+        BISUTERÍA
+    </h1>
 
     <p>
-        Bisutería seleccionada para completar
-        tus looks con personalidad.
+        Accesorios seleccionados para
+        completar tus looks con personalidad.
     </p>
 
 </section>
@@ -874,7 +915,9 @@ footer{
 </footer>
 
 
-<!-- LIGHTBOX -->
+<!-- =========================
+     LIGHTBOX
+========================= -->
 
 <div
     class="image-lightbox"
@@ -926,7 +969,9 @@ footer{
 </div>
 
 
-<!-- MODAL PEDIDO -->
+<!-- =========================
+     MODAL PEDIDO
+========================= -->
 
 <div
     class="modal"
@@ -1174,7 +1219,8 @@ footer{
 <script>
 
 /* =====================================================
-   STRANGIS — SUPABASE
+   STRANGIS
+   CONFIGURACIÓN
 ===================================================== */
 
 const STRANGIS_SUPABASE_URL =
@@ -1190,9 +1236,11 @@ const STRANGIS_PRODUCTS_TABLE =
 
 
 /*
-    ÚNICO CAMBIO DE CONFIGURACIÓN
-    RESPECTO A CAMISETAS:
+   IMPORTANTE:
+   Esta página solo muestra productos
+   cuya categoría sea "bisuteria".
 */
+
 const CATEGORY =
     "bisuteria";
 
@@ -1212,7 +1260,7 @@ let lightboxVariantIndex = 0;
 
 const supabaseClient = {
 
-    async request(path, options = {}) {
+    async request(path, options = {}){
 
         const response =
             await fetch(
@@ -1365,61 +1413,181 @@ function parseJSON(value,fallback=[]){
 
 
 /* =====================================================
-   VARIANTES
+   IMÁGENES
 ===================================================== */
+
+/*
+   TU ADMINISTRADOR GUARDA ALGO COMO:
+
+   [
+      {
+         "name":"Principal",
+         "color":"#888888",
+         "images":[
+             "https://..."
+         ]
+      }
+   ]
+
+   Esta función convierte ese formato
+   en variantes utilizables por la tienda.
+*/
 
 function getVariants(product){
 
-    const variants =
+    const raw =
         parseJSON(
             product.images,
             []
         );
 
 
-    return variants
-        .map(
-            (variant,index)=>{
-
-                if(
-                    typeof variant === "string"
-                ){
-
-                    return {
-                        name:
-                            `Color ${index + 1}`,
-
-                        image:
-                            variant
-                    };
-
-                }
+    const variants = [];
 
 
-                return {
+    raw.forEach(
+        (variant,index)=>{
+
+            /*
+               Si por algún motivo el administrador
+               guarda directamente una URL.
+            */
+
+            if(typeof variant === "string"){
+
+                variants.push({
 
                     name:
-                        variant.name ||
-                        variant.color ||
-                        `Color ${index + 1}`,
+                        `Variante ${index + 1}`,
 
-                    image:
-                        variant.image ||
-                        variant.url ||
-                        variant.src ||
-                        ""
+                    color:
+                        "#888888",
 
-                };
+                    images:[
+                        variant
+                    ]
+
+                });
+
+                return;
 
             }
-        )
-        .filter(
-            variant =>
+
+
+            if(!variant || typeof variant !== "object"){
+                return;
+            }
+
+
+            /*
+               Puede venir como:
+
+               images: ["url"]
+
+               o
+
+               image: "url"
+
+               o
+
+               url: "url"
+            */
+
+            let images = [];
+
+
+            if(Array.isArray(variant.images)){
+
+                images =
+                    variant.images
+                        .filter(Boolean)
+                        .map(String);
+
+            }
+
+
+            if(
+                !images.length &&
                 variant.image
-        );
+            ){
+
+                images = [
+                    String(variant.image)
+                ];
+
+            }
+
+
+            if(
+                !images.length &&
+                variant.url
+            ){
+
+                images = [
+                    String(variant.url)
+                ];
+
+            }
+
+
+            if(!images.length){
+                return;
+            }
+
+
+            variants.push({
+
+                name:
+                    variant.name ||
+                    variant.colorName ||
+                    variant.color ||
+                    `Variante ${index + 1}`,
+
+                color:
+                    variant.color ||
+                    "#888888",
+
+                images
+
+            });
+
+        }
+    );
+
+
+    return variants;
 
 }
 
+
+/* =====================================================
+   TODAS LAS IMÁGENES DE UNA VARIANTE
+===================================================== */
+
+function getVariantImages(variant){
+
+    if(!variant){
+        return [];
+    }
+
+
+    if(Array.isArray(variant.images)){
+
+        return variant.images
+            .filter(Boolean)
+            .map(String);
+
+    }
+
+
+    return [];
+
+}
+
+
+/* =====================================================
+   TALLAS
+===================================================== */
 
 function getSizes(product){
 
@@ -1432,7 +1600,7 @@ function getSizes(product){
 
 
 /* =====================================================
-   CARGAR DESDE SUPABASE
+   CARGAR PRODUCTOS
 ===================================================== */
 
 async function loadProducts(){
@@ -1453,7 +1621,7 @@ async function loadProducts(){
     try{
 
         console.log(
-            "Conectando con Supabase..."
+            "Cargando bisutería desde Supabase..."
         );
 
 
@@ -1463,7 +1631,7 @@ async function loadProducts(){
 
 
         console.log(
-            "Productos recibidos:",
+            "Productos de bisutería:",
             PRODUCTS
         );
 
@@ -1495,8 +1663,8 @@ async function loadProducts(){
 
                 <br><br>
 
-                Comprueba en Supabase que
-                la tabla <strong>Products</strong>
+                Comprueba que la tabla
+                <strong>Products</strong>
                 permita SELECT público
                 mediante RLS/policies.
 
@@ -1554,7 +1722,7 @@ function renderProducts(){
 
 
 /* =====================================================
-   TARJETA PRODUCTO
+   CREAR PRODUCTO
 ===================================================== */
 
 function createProductHTML(
@@ -1585,6 +1753,16 @@ function createProductHTML(
             : null;
 
 
+    const outOfStock =
+        stockDefined &&
+        stock <= 0;
+
+
+    /*
+       Si el producto no tiene imágenes,
+       seguimos mostrando toda la información.
+    */
+
     if(!firstVariant){
 
         return `
@@ -1593,6 +1771,7 @@ function createProductHTML(
                 class="product"
                 id="product-${index}"
                 data-variant="0"
+                data-image="0"
                 data-size=""
                 data-quantity="1"
             >
@@ -1611,7 +1790,10 @@ function createProductHTML(
 
 
                 <div class="product-name">
-                    ${escapeHTML(product.name)}
+                    ${escapeHTML(
+                        product.name ||
+                        "Producto"
+                    )}
                 </div>
 
 
@@ -1624,9 +1806,25 @@ function createProductHTML(
                 </div>
 
 
+                ${
+                    product.description
+                    ?
+                    `
+                    <div class="product-description">
+                        ${escapeHTML(
+                            product.description
+                        )}
+                    </div>
+                    `
+                    :
+                    ""
+                }
+
+
                 <div class="product-price">
                     ${money(product.price)}
                 </div>
+
 
             </article>
 
@@ -1635,9 +1833,14 @@ function createProductHTML(
     }
 
 
-    const outOfStock =
-        stockDefined &&
-        stock <= 0;
+    const firstImages =
+        getVariantImages(
+            firstVariant
+        );
+
+
+    const firstImage =
+        firstImages[0];
 
 
     return `
@@ -1646,9 +1849,12 @@ function createProductHTML(
             class="product"
             id="product-${index}"
             data-variant="0"
+            data-image="0"
             data-size=""
             data-quantity="1"
         >
+
+            <!-- GALERÍA -->
 
             <div
                 class="product-gallery"
@@ -1664,8 +1870,11 @@ function createProductHTML(
 
                     <img
                         id="image-${index}"
-                        src="${escapeHTML(firstVariant.image)}"
-                        alt="${escapeHTML(product.name || "Bisutería")}"
+                        src="${escapeHTML(firstImage)}"
+                        alt="${escapeHTML(
+                            product.name ||
+                            "Producto"
+                        )}"
                         loading="lazy"
                         draggable="false"
                         onerror="imageError(this)"
@@ -1702,14 +1911,27 @@ function createProductHTML(
                         ›
                     </button>
 
+                    `
+                    :
+                    ""
+                }
+
+
+                ${
+                    variants.length > 1 ||
+                    firstImages.length > 1
+                    ?
+                    `
 
                     <div
                         class="gallery-counter"
                         id="gallery-counter-${index}"
                     >
-                        1 / ${variants.length}
+                        1 / ${Math.max(
+                            variants.length,
+                            firstImages.length
+                        )}
                     </div>
-
 
                     <div class="swipe-hint">
                         ← desliza →
@@ -1723,15 +1945,19 @@ function createProductHTML(
             </div>
 
 
+            <!-- NOMBRE -->
+
             <div class="product-name">
 
                 ${escapeHTML(
                     product.name ||
-                    "Bisutería"
+                    "Producto"
                 )}
 
             </div>
 
+
+            <!-- REFERENCIA -->
 
             <div class="product-code">
 
@@ -1743,6 +1969,8 @@ function createProductHTML(
 
             </div>
 
+
+            <!-- DESCRIPCIÓN -->
 
             ${
                 product.description
@@ -1763,6 +1991,8 @@ function createProductHTML(
             }
 
 
+            <!-- PRECIO -->
+
             <div class="product-price">
 
                 ${money(product.price)}
@@ -1770,57 +2000,89 @@ function createProductHTML(
             </div>
 
 
-            <div class="label">
+            <!-- VARIANTES -->
 
-                Color:
+            ${
+                variants.length
+                ?
+                `
 
-                <span
-                    id="color-name-${index}"
-                >
-                    ${escapeHTML(
-                        firstVariant.name
-                    )}
-                </span>
+                <div class="label">
 
-            </div>
+                    Variante:
+
+                    <span
+                        id="color-name-${index}"
+                    >
+                        ${escapeHTML(
+                            firstVariant.name
+                        )}
+                    </span>
+
+                </div>
 
 
-            <div class="colors">
+                <div class="colors">
 
-                ${
-                    variants
-                        .map(
-                            (
-                                variant,
-                                variantIndex
-                            ) => `
+                    ${
+                        variants
+                            .map(
+                                (
+                                    variant,
+                                    variantIndex
+                                )=>`
 
-                                <button
-                                    type="button"
-                                    class="color ${
-                                        variantIndex === 0
-                                            ? "active"
-                                            : ""
-                                    }"
-                                    style="
-                                        background-image:url('${escapeHTML(variant.image)}');
-                                    "
-                                    title="${escapeHTML(variant.name)}"
-                                    onclick="
-                                        selectColor(
-                                            ${index},
-                                            ${variantIndex}
-                                        )
-                                    "
-                                ></button>
+                                    <button
+                                        type="button"
+                                        class="color ${
+                                            variantIndex === 0
+                                                ? "active"
+                                                : ""
+                                        }"
+                                        style="
+                                            background-color:${escapeHTML(
+                                                variant.color ||
+                                                "#888888"
+                                            )};
+                                            ${
+                                                getVariantImages(
+                                                    variant
+                                                )[0]
+                                                ?
+                                                `background-image:url('${escapeHTML(
+                                                    getVariantImages(
+                                                        variant
+                                                    )[0]
+                                                )}');`
+                                                :
+                                                ""
+                                            }
+                                        "
+                                        title="${escapeHTML(
+                                            variant.name
+                                        )}"
+                                        onclick="
+                                            selectColor(
+                                                ${index},
+                                                ${variantIndex}
+                                            )
+                                        "
+                                    ></button>
 
-                            `
-                        )
-                        .join("")
-                }
+                                `
+                            )
+                            .join("")
+                    }
 
-            </div>
+                </div>
 
+                `
+                :
+                ""
+            }
+
+
+            <!-- TALLAS -->
 
             ${
                 sizes.length
@@ -1840,7 +2102,7 @@ function createProductHTML(
                                 (
                                     size,
                                     sizeIndex
-                                ) => `
+                                )=>`
 
                                     <button
                                         type="button"
@@ -1867,6 +2129,8 @@ function createProductHTML(
                 ""
             }
 
+
+            <!-- CANTIDAD -->
 
             <div class="quantity">
 
@@ -1897,6 +2161,8 @@ function createProductHTML(
             </div>
 
 
+            <!-- ENVÍO -->
+
             <div class="shipping">
 
                 🚚
@@ -1920,17 +2186,27 @@ function createProductHTML(
             </div>
 
 
+            <!-- STOCK -->
+
             ${
                 stockDefined
                 ?
                 `
 
-                <div class="stock ${outOfStock ? "out" : ""}">
+                <div
+                    class="stock ${
+                        outOfStock
+                            ? "out"
+                            : ""
+                    }"
+                >
 
                     ${
                         outOfStock
-                        ? "AGOTADO"
-                        : `Stock disponible: ${escapeHTML(stock)}`
+                        ?
+                        "AGOTADO"
+                        :
+                        `Stock disponible: ${escapeHTML(stock)}`
                     }
 
                 </div>
@@ -1941,6 +2217,8 @@ function createProductHTML(
             }
 
 
+            <!-- COMPRAR -->
+
             <button
                 type="button"
                 class="buy"
@@ -1950,8 +2228,10 @@ function createProductHTML(
 
                 ${
                     outOfStock
-                    ? "AGOTADO"
-                    : "COMPRAR"
+                    ?
+                    "AGOTADO"
+                    :
+                    "COMPRAR"
                 }
 
             </button>
@@ -1964,12 +2244,13 @@ function createProductHTML(
 
 
 /* =====================================================
-   VARIANTE
+   CAMBIAR VARIANTE
 ===================================================== */
 
 function setVariant(
     productIndex,
-    variantIndex
+    variantIndex,
+    imageIndex = 0
 ){
 
     const product =
@@ -1994,6 +2275,22 @@ function setVariant(
     }
 
 
+    const images =
+        getVariantImages(
+            variant
+        );
+
+
+    if(!images.length){
+        return;
+    }
+
+
+    if(imageIndex >= images.length){
+        imageIndex = 0;
+    }
+
+
     const card =
         document.getElementById(
             `product-${productIndex}`
@@ -2015,8 +2312,12 @@ function setVariant(
         variantIndex;
 
 
+    card.dataset.image =
+        imageIndex;
+
+
     image.src =
-        variant.image;
+        images[imageIndex];
 
 
     image.alt =
@@ -2051,6 +2352,63 @@ function setVariant(
     }
 
 
+    updateGalleryCounter(
+        productIndex
+    );
+
+}
+
+
+function updateGalleryCounter(
+    productIndex
+){
+
+    const product =
+        PRODUCTS[productIndex];
+
+
+    const card =
+        document.getElementById(
+            `product-${productIndex}`
+        );
+
+
+    if(!product || !card){
+        return;
+    }
+
+
+    const variants =
+        getVariants(product);
+
+
+    const variantIndex =
+        Number(
+            card.dataset.variant || 0
+        );
+
+
+    const imageIndex =
+        Number(
+            card.dataset.image || 0
+        );
+
+
+    const variant =
+        variants[variantIndex];
+
+
+    if(!variant){
+        return;
+    }
+
+
+    const images =
+        getVariantImages(
+            variant
+        );
+
+
     const counter =
         document.getElementById(
             `gallery-counter-${productIndex}`
@@ -2060,7 +2418,7 @@ function setVariant(
     if(counter){
 
         counter.textContent =
-            `${variantIndex + 1} / ${variants.length}`;
+            `${imageIndex + 1} / ${images.length}`;
 
     }
 
@@ -2074,7 +2432,8 @@ function selectColor(
 
     setVariant(
         productIndex,
-        variantIndex
+        variantIndex,
+        0
     );
 
 }
@@ -2119,7 +2478,8 @@ function selectNextVariant(
 
     setVariant(
         productIndex,
-        current
+        current,
+        0
     );
 
 }
@@ -2158,13 +2518,15 @@ function selectPreviousVariant(
 
 
     if(current < 0){
-        current = variants.length - 1;
+        current =
+            variants.length - 1;
     }
 
 
     setVariant(
         productIndex,
-        current
+        current,
+        0
     );
 
 }
@@ -2236,10 +2598,86 @@ function galleryTouchEnd(
     }
 
 
+    /*
+       Primero cambiamos imágenes dentro
+       de la misma variante.
+
+       Cuando llegamos al final,
+       cambiamos de variante.
+    */
+
+    const product =
+        PRODUCTS[productIndex];
+
+
+    const card =
+        document.getElementById(
+            `product-${productIndex}`
+        );
+
+
+    const variants =
+        getVariants(product);
+
+
+    const variantIndex =
+        Number(
+            card.dataset.variant || 0
+        );
+
+
+    const imageIndex =
+        Number(
+            card.dataset.image || 0
+        );
+
+
+    const variant =
+        variants[variantIndex];
+
+
+    const images =
+        getVariantImages(
+            variant
+        );
+
+
     if(diffX < 0){
-        selectNextVariant(productIndex);
+
+        if(imageIndex + 1 < images.length){
+
+            setVariant(
+                productIndex,
+                variantIndex,
+                imageIndex + 1
+            );
+
+        }else{
+
+            selectNextVariant(
+                productIndex
+            );
+
+        }
+
     }else{
-        selectPreviousVariant(productIndex);
+
+        if(imageIndex > 0){
+
+            setVariant(
+                productIndex,
+                variantIndex,
+                imageIndex - 1
+            );
+
+        }else{
+
+            selectPreviousVariant(
+                productIndex
+            );
+
+        }
+
     }
 
 }
@@ -2441,7 +2879,7 @@ function buyProduct(productIndex){
     if(!variant){
 
         alert(
-            "Este producto no tiene una imagen/color configurado."
+            "Este producto no tiene una variante configurada."
         );
 
         return;
@@ -2511,12 +2949,19 @@ function buyProduct(productIndex){
         );
 
 
-    error.classList.remove("show");
+    error.classList.remove(
+        "show"
+    );
 
-    error.textContent = "";
+
+    error.textContent =
+        "";
 
 
-    modal.classList.add("show");
+    modal.classList.add(
+        "show"
+    );
+
 
     document.body.style.overflow =
         "hidden";
@@ -2557,14 +3002,16 @@ function showOrderSummary(){
             <br>
 
             Categoría:
-
             <strong>
-                Bisutería
+                ${escapeHTML(
+                    order.product.category ||
+                    CATEGORY
+                )}
             </strong>
 
             <br>
 
-            Color:
+            Variante:
 
             <strong>
                 ${escapeHTML(
@@ -2625,7 +3072,9 @@ function closeCustomerModal(){
         .getElementById(
             "customerModal"
         )
-        .classList.remove("show");
+        .classList.remove(
+            "show"
+        );
 
 
     document.body.style.overflow =
@@ -2659,7 +3108,9 @@ function showFormError(message){
         message;
 
 
-    error.classList.add("show");
+    error.classList.add(
+        "show"
+    );
 
 }
 
@@ -2676,47 +3127,69 @@ function sendOrderToWhatsApp(){
 
 
     const name =
-        fieldValue("customerName");
+        fieldValue(
+            "customerName"
+        );
 
 
     const phone =
-        fieldValue("customerPhone");
+        fieldValue(
+            "customerPhone"
+        );
 
 
     const email =
-        fieldValue("customerEmail");
+        fieldValue(
+            "customerEmail"
+        );
 
 
     const address =
-        fieldValue("customerAddress");
+        fieldValue(
+            "customerAddress"
+        );
 
 
     const number =
-        fieldValue("customerNumber");
+        fieldValue(
+            "customerNumber"
+        );
 
 
     const floor =
-        fieldValue("customerFloor");
+        fieldValue(
+            "customerFloor"
+        );
 
 
     const postal =
-        fieldValue("customerPostal");
+        fieldValue(
+            "customerPostal"
+        );
 
 
     const city =
-        fieldValue("customerCity");
+        fieldValue(
+            "customerCity"
+        );
 
 
     const province =
-        fieldValue("customerProvince");
+        fieldValue(
+            "customerProvince"
+        );
 
 
     const country =
-        fieldValue("customerCountry");
+        fieldValue(
+            "customerCountry"
+        );
 
 
     const notes =
-        fieldValue("customerNotes");
+        fieldValue(
+            "customerNotes"
+        );
 
 
     if(!name){
@@ -2761,9 +3234,13 @@ function sendOrderToWhatsApp(){
 
     const whatsapp =
         String(
-            currentOrder.product.whatsapp || ""
+            currentOrder.product.whatsapp ||
+            ""
         )
-        .replace(/\D/g,"");
+        .replace(
+            /\D/g,
+            ""
+        );
 
 
     if(!whatsapp){
@@ -2792,9 +3269,9 @@ REF:
 ${currentOrder.product.ref || currentOrder.product.id}
 
 Categoría:
-${currentOrder.product.category || "bisuteria"}
+${currentOrder.product.category || CATEGORY}
 
-Color:
+Variante:
 ${currentOrder.variant.name}
 
 Talla:
@@ -2858,7 +3335,9 @@ ${notes || "Ninguna"}
         "https://wa.me/" +
         whatsapp +
         "?text=" +
-        encodeURIComponent(message);
+        encodeURIComponent(
+            message
+        );
 
 
     closeCustomerModal();
@@ -2876,7 +3355,9 @@ ${notes || "Ninguna"}
    LIGHTBOX
 ===================================================== */
 
-function openLightbox(productIndex){
+function openLightbox(
+    productIndex
+){
 
     const product =
         PRODUCTS[productIndex];
@@ -2919,7 +3400,9 @@ function openLightbox(productIndex){
         .getElementById(
             "imageLightbox"
         )
-        .classList.add("show");
+        .classList.add(
+            "show"
+        );
 
 
     document.body.style.overflow =
@@ -2956,20 +3439,47 @@ function updateLightbox(){
     }
 
 
-    document
-        .getElementById(
-            "lightboxImage"
-        )
-        .src =
-        variant.image;
+    const images =
+        getVariantImages(
+            variant
+        );
 
 
-    document
-        .getElementById(
+    if(!images.length){
+        return;
+    }
+
+
+    const card =
+        document.getElementById(
+            `product-${lightboxProductIndex}`
+        );
+
+
+    const imageIndex =
+        Number(
+            card?.dataset.image || 0
+        );
+
+
+    const image =
+        document.getElementById(
             "lightboxImage"
-        )
-        .alt =
-        product.name || "Producto";
+        );
+
+
+    image.src =
+        images[
+            Math.min(
+                imageIndex,
+                images.length - 1
+            )
+        ];
+
+
+    image.alt =
+        product.name ||
+        "Producto";
 
 
     document
@@ -2977,12 +3487,17 @@ function updateLightbox(){
             "lightboxCounter"
         )
         .textContent =
-        `${lightboxVariantIndex + 1} / ${variants.length}`;
+        `${Math.min(
+            imageIndex + 1,
+            images.length
+        )} / ${images.length}`;
 
 }
 
 
-function changeLightboxImage(direction){
+function changeLightboxImage(
+    direction
+){
 
     const product =
         PRODUCTS[
@@ -2999,36 +3514,112 @@ function changeLightboxImage(direction){
         getVariants(product);
 
 
-    if(!variants.length){
+    const card =
+        document.getElementById(
+            `product-${lightboxProductIndex}`
+        );
+
+
+    if(!card){
         return;
     }
 
 
-    lightboxVariantIndex +=
-        direction;
+    let variantIndex =
+        Number(
+            card.dataset.variant || 0
+        );
 
 
-    if(
-        lightboxVariantIndex >=
-        variants.length
-    ){
+    let imageIndex =
+        Number(
+            card.dataset.image || 0
+        );
 
-        lightboxVariantIndex = 0;
 
+    const variant =
+        variants[variantIndex];
+
+
+    const images =
+        getVariantImages(
+            variant
+        );
+
+
+    if(!images.length){
+        return;
     }
 
 
-    if(lightboxVariantIndex < 0){
+    if(direction > 0){
 
-        lightboxVariantIndex =
-            variants.length - 1;
+        if(
+            imageIndex + 1 <
+            images.length
+        ){
+
+            imageIndex++;
+
+        }else{
+
+            variantIndex++;
+
+            if(
+                variantIndex >=
+                variants.length
+            ){
+
+                variantIndex = 0;
+
+            }
+
+            imageIndex = 0;
+
+        }
+
+    }else{
+
+        if(imageIndex > 0){
+
+            imageIndex--;
+
+        }else{
+
+            variantIndex--;
+
+            if(variantIndex < 0){
+
+                variantIndex =
+                    variants.length - 1;
+
+            }
+
+            const previousVariant =
+                variants[variantIndex];
+
+
+            const previousImages =
+                getVariantImages(
+                    previousVariant
+                );
+
+
+            imageIndex =
+                Math.max(
+                    previousImages.length - 1,
+                    0
+                );
+
+        }
 
     }
 
 
     setVariant(
         lightboxProductIndex,
-        lightboxVariantIndex
+        variantIndex,
+        imageIndex
     );
 
 
@@ -3043,7 +3634,9 @@ function closeLightbox(){
         .getElementById(
             "imageLightbox"
         )
-        .classList.remove("show");
+        .classList.remove(
+            "show"
+        );
 
 
     if(
@@ -3051,7 +3644,9 @@ function closeLightbox(){
             .getElementById(
                 "customerModal"
             )
-            .classList.contains("show")
+            .classList.contains(
+                "show"
+            )
     ){
 
         document.body.style.overflow =
@@ -3093,7 +3688,9 @@ document.addEventListener(
                 .getElementById(
                     "imageLightbox"
                 )
-                .classList.contains("show")
+                .classList.contains(
+                    "show"
+                )
         ){
 
             changeLightboxImage(1);
@@ -3107,7 +3704,9 @@ document.addEventListener(
                 .getElementById(
                     "imageLightbox"
                 )
-                .classList.contains("show")
+                .classList.contains(
+                    "show"
+                )
         ){
 
             changeLightboxImage(-1);
