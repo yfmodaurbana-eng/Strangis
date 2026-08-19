@@ -684,6 +684,7 @@ footer{
 /* RESPONSIVE */
 
 @media(max-width:1100px){
+
     .products{
         grid-template-columns:repeat(3,minmax(0,1fr));
     }
@@ -691,9 +692,11 @@ footer{
     .product-gallery{
         height:330px;
     }
+
 }
 
 @media(max-width:850px){
+
     .products{
         grid-template-columns:repeat(2,minmax(0,1fr));
     }
@@ -702,6 +705,7 @@ footer{
     .products-section{
         width:92%;
     }
+
 }
 
 @media(max-width:600px){
@@ -792,6 +796,7 @@ footer{
         padding:22px 17px 25px;
         border-radius:18px 18px 0 0;
     }
+
 }
 </style>
 </head>
@@ -841,13 +846,17 @@ footer{
 
 <section class="hero">
 
-    <small>COLECCIÓN</small>
+    <small>
+        COLECCIÓN
+    </small>
 
-    <h1>CONJUNTOS</h1>
+    <h1>
+        CONJUNTOS
+    </h1>
 
     <p>
         Conjuntos seleccionados para crear
-        tus looks completos con personalidad.
+        tus looks con personalidad.
     </p>
 
 </section>
@@ -870,7 +879,9 @@ footer{
 
 
 <footer>
+
     © 2026 Strangis · TODOS LOS DERECHOS RESERVADOS
+
 </footer>
 
 
@@ -1180,19 +1191,16 @@ footer{
 const STRANGIS_SUPABASE_URL =
     "https://xbbjfatmdbxbuoqdrgoj.supabase.co";
 
-
 const STRANGIS_SUPABASE_KEY =
     "sb_publishable_M7ETdIWvj4nCQZ55i24Vpw_5Yc5Islk";
-
 
 const STRANGIS_PRODUCTS_TABLE =
     "Products";
 
-
 /*
    IMPORTANTE:
-   Esta es la única diferencia de categoría
-   respecto a camisetas.html.
+   Esta página solo carga productos cuya categoría
+   sea exactamente "conjuntos".
 */
 
 const CATEGORY =
@@ -1209,12 +1217,12 @@ let lightboxVariantIndex = 0;
 
 
 /* =====================================================
-   CLIENTE SUPABASE
+   SUPABASE
 ===================================================== */
 
 const supabaseClient = {
 
-    async request(path, options = {}) {
+    async request(path, options = {}){
 
         const response =
             await fetch(
@@ -1367,58 +1375,159 @@ function parseJSON(value,fallback=[]){
 
 
 /* =====================================================
-   VARIANTES
+   VARIANTES / IMÁGENES
+   Compatible con:
+
+   [
+     {
+       "name":"Principal",
+       "color":"#888",
+       "images":["URL"]
+     }
+   ]
+
+   y también con:
+
+   [
+     {
+       "name":"Principal",
+       "image":"URL"
+     }
+   ]
+
+   y con:
+
+   [
+      "URL"
+   ]
 ===================================================== */
 
 function getVariants(product){
 
-    const variants =
+    const raw =
         parseJSON(
             product.images,
             []
         );
 
 
-    return variants
-        .map(
-            (variant,index)=>{
+    const result = [];
 
-                if(
-                    typeof variant === "string"
-                ){
 
-                    return {
+    raw.forEach(
+        (variant,index)=>{
+
+            if(typeof variant === "string"){
+
+                if(variant){
+
+                    result.push({
+
                         name:
                             `Color ${index + 1}`,
 
+                        color:
+                            "#222",
+
                         image:
                             variant
-                    };
+
+                    });
 
                 }
 
-
-                return {
-
-                    name:
-                        variant.name ||
-                        variant.color ||
-                        `Color ${index + 1}`,
-
-                    image:
-                        variant.image ||
-                        variant.url ||
-                        variant.src ||
-                        ""
-
-                };
+                return;
 
             }
-        )
-        .filter(
-            variant =>
+
+
+            if(!variant || typeof variant !== "object"){
+                return;
+            }
+
+
+            let images = [];
+
+
+            if(Array.isArray(variant.images)){
+
+                images =
+                    variant.images
+                        .filter(Boolean);
+
+            }
+
+
+            if(
+                !images.length &&
                 variant.image
-        );
+            ){
+
+                images = [
+                    variant.image
+                ];
+
+            }
+
+
+            if(
+                !images.length &&
+                variant.url
+            ){
+
+                images = [
+                    variant.url
+                ];
+
+            }
+
+
+            if(
+                !images.length &&
+                variant.src
+            ){
+
+                images = [
+                    variant.src
+                ];
+
+            }
+
+
+            images.forEach(
+                (image,imageIndex)=>{
+
+                    if(!image){
+                        return;
+                    }
+
+
+                    result.push({
+
+                        name:
+                            variant.name ||
+                            variant.color ||
+                            `Color ${index + 1}`,
+
+                        color:
+                            variant.color ||
+                            "#222",
+
+                        image:
+                            image,
+
+                        imageIndex
+
+                    });
+
+                }
+            );
+
+        }
+    );
+
+
+    return result;
 
 }
 
@@ -1434,7 +1543,7 @@ function getSizes(product){
 
 
 /* =====================================================
-   CARGAR DESDE SUPABASE
+   CARGAR PRODUCTOS
 ===================================================== */
 
 async function loadProducts(){
@@ -1446,9 +1555,11 @@ async function loadProducts(){
 
 
     container.innerHTML = `
+
         <div class="loading">
             Cargando productos...
         </div>
+
     `;
 
 
@@ -1465,7 +1576,7 @@ async function loadProducts(){
 
 
         console.log(
-            "Productos recibidos:",
+            "Conjuntos recibidos:",
             PRODUCTS
         );
 
@@ -1497,10 +1608,10 @@ async function loadProducts(){
 
                 <br><br>
 
-                Comprueba en Supabase que
-                la tabla <strong>Products</strong>
-                permita SELECT público
-                mediante RLS/policies.
+                Comprueba en Supabase que la tabla
+                <strong>Products</strong>
+                permita SELECT público mediante
+                RLS/policies.
 
             </div>
 
@@ -1556,7 +1667,7 @@ function renderProducts(){
 
 
 /* =====================================================
-   TARJETA PRODUCTO
+   PRODUCTO
 ===================================================== */
 
 function createProductHTML(
@@ -1587,6 +1698,16 @@ function createProductHTML(
             : null;
 
 
+    const outOfStock =
+        stockDefined &&
+        stock <= 0;
+
+
+    /*
+       Si el administrador todavía no ha puesto
+       ninguna imagen, mostramos igualmente la ficha.
+    */
+
     if(!firstVariant){
 
         return `
@@ -1613,21 +1734,43 @@ function createProductHTML(
 
 
                 <div class="product-name">
-                    ${escapeHTML(product.name)}
+                    ${escapeHTML(
+                        product.name ||
+                        "Conjunto"
+                    )}
                 </div>
 
 
                 <div class="product-code">
+
                     REF:
                     ${escapeHTML(
                         product.ref ||
                         product.id
                     )}
+
                 </div>
 
 
+                ${
+                    product.description
+                    ?
+                    `
+                    <div class="product-description">
+                        ${escapeHTML(
+                            product.description
+                        )}
+                    </div>
+                    `
+                    :
+                    ""
+                }
+
+
                 <div class="product-price">
+
                     ${money(product.price)}
+
                 </div>
 
             </article>
@@ -1635,11 +1778,6 @@ function createProductHTML(
         `;
 
     }
-
-
-    const outOfStock =
-        stockDefined &&
-        stock <= 0;
 
 
     return `
@@ -1805,7 +1943,13 @@ function createProductHTML(
                                             : ""
                                     }"
                                     style="
-                                        background-image:url('${escapeHTML(variant.image)}');
+                                        background-color:${escapeHTML(
+                                            variant.color ||
+                                            "#222"
+                                        )};
+                                        background-image:url('${escapeHTML(
+                                            variant.image
+                                        )}');
                                     "
                                     title="${escapeHTML(variant.name)}"
                                     onclick="
@@ -1931,8 +2075,10 @@ function createProductHTML(
 
                     ${
                         outOfStock
-                        ? "AGOTADO"
-                        : `Stock disponible: ${escapeHTML(stock)}`
+                        ?
+                        "AGOTADO"
+                        :
+                        `Stock disponible: ${escapeHTML(stock)}`
                     }
 
                 </div>
@@ -1952,8 +2098,10 @@ function createProductHTML(
 
                 ${
                     outOfStock
-                    ? "AGOTADO"
-                    : "COMPRAR"
+                    ?
+                    "AGOTADO"
+                    :
+                    "COMPRAR"
                 }
 
             </button>
@@ -2160,7 +2308,8 @@ function selectPreviousVariant(
 
 
     if(current < 0){
-        current = variants.length - 1;
+        current =
+            variants.length - 1;
     }
 
 
@@ -2234,14 +2383,20 @@ function galleryTouchEnd(
         Math.abs(diffX) < 45 ||
         Math.abs(diffX) < Math.abs(diffY)
     ){
+
         return;
+
     }
 
 
     if(diffX < 0){
+
         selectNextVariant(productIndex);
+
     }else{
+
         selectPreviousVariant(productIndex);
+
     }
 
 }
@@ -2274,8 +2429,13 @@ function selectSize(
         );
 
 
-    if(!card || size === undefined){
+    if(
+        !card ||
+        size === undefined
+    ){
+
         return;
+
     }
 
 
@@ -2963,7 +3123,8 @@ function updateLightbox(){
             "lightboxImage"
         )
         .alt =
-        product.name || "Producto";
+        product.name ||
+        "Producto";
 
 
     document
