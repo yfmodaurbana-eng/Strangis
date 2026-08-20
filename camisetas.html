@@ -193,7 +193,7 @@ nav a.active{
 }
 
 /* =========================
-   ETIQUETA EN LA IMAGEN
+   INFORMACIÓN IMAGEN
 ========================= */
 
 .product-image-label{
@@ -202,20 +202,13 @@ nav a.active{
     right:14px;
     bottom:14px;
     z-index:6;
-
     padding:12px 14px;
-
     border:1px solid rgba(255,255,255,.18);
     border-radius:9px;
-
     background:rgba(10,10,10,.76);
-
     backdrop-filter:blur(14px);
     -webkit-backdrop-filter:blur(14px);
-
-    box-shadow:
-        0 10px 30px rgba(0,0,0,.38);
-
+    box-shadow:0 10px 30px rgba(0,0,0,.38);
     pointer-events:none;
 }
 
@@ -228,14 +221,10 @@ nav a.active{
 
 .product-image-label-name{
     min-width:0;
-
     color:#fff;
-
     font-size:13px;
     font-weight:800;
     line-height:1.25;
-    letter-spacing:.2px;
-
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
@@ -243,9 +232,7 @@ nav a.active{
 
 .product-image-label-price{
     flex-shrink:0;
-
     color:#fff;
-
     font-size:14px;
     font-weight:900;
     white-space:nowrap;
@@ -255,11 +242,8 @@ nav a.active{
     display:flex;
     align-items:center;
     gap:8px;
-
     margin-top:6px;
-
     color:#aaa;
-
     font-size:9px;
     font-weight:700;
     letter-spacing:1px;
@@ -290,14 +274,11 @@ nav a.active{
 .lightbox-arrow{
     position:absolute;
     z-index:8;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     border:1px solid rgba(255,255,255,.25);
     border-radius:50%;
-
     background:rgba(0,0,0,.55);
     color:#fff;
     cursor:pointer;
@@ -332,16 +313,12 @@ nav a.active{
     position:absolute;
     left:50%;
     z-index:8;
-
     padding:5px 9px;
-
     border-radius:20px;
     background:rgba(0,0,0,.55);
-
     color:#fff;
     font-size:9px;
     font-weight:bold;
-
     transform:translateX(-50%);
 }
 
@@ -354,17 +331,12 @@ nav a.active{
     left:50%;
     bottom:48px;
     z-index:7;
-
     padding:4px 8px;
-
     border-radius:15px;
     background:rgba(0,0,0,.35);
-
     color:#ddd;
     font-size:8px;
-
     transform:translateX(-50%);
-
     opacity:.65;
     pointer-events:none;
 }
@@ -374,7 +346,11 @@ nav a.active{
 ========================= */
 
 .product-name,
-.product-code{
+.product-code,
+.product-price,
+.colors,
+.variant-selector,
+.label{
     display:none;
 }
 
@@ -383,22 +359,6 @@ nav a.active{
     color:#999;
     font-size:12px;
     line-height:1.55;
-}
-
-.product-price{
-    display:none;
-}
-
-.colors{
-    display:none;
-}
-
-.variant-selector{
-    display:none;
-}
-
-.label{
-    display:none;
 }
 
 /* =========================
@@ -448,13 +408,10 @@ nav a.active{
 .quantity button{
     width:36px;
     height:36px;
-
     border:1px solid rgba(255,255,255,.20);
     border-radius:5px;
-
     background:#181818;
     color:#fff;
-
     cursor:pointer;
     font-size:18px;
 }
@@ -473,15 +430,11 @@ nav a.active{
 .shipping{
     margin-top:15px;
     padding:11px 12px;
-
     border:1px solid rgba(255,177,72,.28);
     border-left:3px solid #f0a44b;
     border-radius:7px;
-
     background:rgba(240,164,75,.10);
-
     color:#f2c58f;
-
     font-size:11px;
     font-weight:bold;
     line-height:1.45;
@@ -510,17 +463,13 @@ nav a.active{
     width:100%;
     margin-top:16px;
     padding:15px;
-
     border:0;
     border-radius:6px;
-
     background:#fff;
     color:#111;
-
     font-size:11px;
     font-weight:900;
     letter-spacing:1.5px;
-
     cursor:pointer;
 }
 
@@ -565,13 +514,10 @@ footer{
     position:fixed;
     inset:0;
     z-index:10000;
-
     display:none;
     align-items:center;
     justify-content:center;
-
     padding:25px;
-
     background:rgba(0,0,0,.92);
     backdrop-filter:blur(12px);
 }
@@ -582,10 +528,8 @@ footer{
 
 .lightbox-content{
     position:relative;
-
     width:min(1100px,100%);
     height:min(90vh,900px);
-
     display:flex;
     align-items:center;
     justify-content:center;
@@ -594,10 +538,8 @@ footer{
 .lightbox-image{
     max-width:100%;
     max-height:90vh;
-
     width:auto;
     height:auto;
-
     object-fit:contain;
     border-radius:8px;
 }
@@ -607,16 +549,12 @@ footer{
     top:-10px;
     right:-10px;
     z-index:10;
-
     width:44px;
     height:44px;
-
     border:1px solid rgba(255,255,255,.25);
     border-radius:50%;
-
     background:rgba(0,0,0,.7);
     color:#fff;
-
     cursor:pointer;
     font-size:24px;
 }
@@ -649,13 +587,10 @@ footer{
     position:fixed;
     inset:0;
     z-index:5000;
-
     display:none;
     align-items:center;
     justify-content:center;
-
     padding:25px;
-
     background:rgba(0,0,0,.78);
     backdrop-filter:blur(10px);
 }
@@ -667,14 +602,10 @@ footer{
 .modal-box{
     width:min(700px,100%);
     max-height:calc(100vh - 40px);
-
     overflow-y:auto;
-
     padding:30px;
-
     border:1px solid rgba(255,255,255,.16);
     border-radius:15px;
-
     background:linear-gradient(145deg,#222,#111);
 }
 
@@ -701,13 +632,10 @@ footer{
 .close-modal{
     width:40px;
     height:40px;
-
     border:1px solid rgba(255,255,255,.15);
     border-radius:6px;
-
     background:#222;
     color:#fff;
-
     cursor:pointer;
     font-size:20px;
 }
@@ -715,14 +643,10 @@ footer{
 .order-summary{
     margin-bottom:25px;
     padding:16px;
-
     border:1px solid rgba(255,255,255,.10);
     border-radius:8px;
-
     background:rgba(255,255,255,.045);
-
     color:#aaa;
-
     font-size:12px;
     line-height:1.7;
 }
@@ -733,7 +657,6 @@ footer{
 
 .form-title{
     margin:25px 0 15px;
-
     font-size:13px;
     font-weight:900;
     letter-spacing:1.5px;
@@ -756,9 +679,7 @@ footer{
 .form-field label{
     display:block;
     margin-bottom:7px;
-
     color:#aaa;
-
     font-size:10px;
     font-weight:bold;
     letter-spacing:1px;
@@ -768,17 +689,12 @@ footer{
 .form-field input,
 .form-field textarea{
     width:100%;
-
     padding:14px;
-
     border:1px solid rgba(255,255,255,.16);
     border-radius:6px;
-
     outline:none;
-
     background:rgba(0,0,0,.35);
     color:#fff;
-
     font-size:14px;
 }
 
@@ -793,15 +709,11 @@ footer{
 
 .form-error{
     display:none;
-
     margin-bottom:15px;
     padding:12px;
-
     border:1px solid rgba(255,255,255,.20);
     border-radius:6px;
-
     background:rgba(255,255,255,.06);
-
     color:#fff;
     font-size:11px;
 }
@@ -814,15 +726,11 @@ footer{
     width:100%;
     margin-top:12px;
     padding:17px;
-
     border:0;
     border-radius:7px;
-
     background:#fff;
     color:#111;
-
     cursor:pointer;
-
     font-size:12px;
     font-weight:900;
     letter-spacing:1.2px;
@@ -832,13 +740,10 @@ footer{
     width:100%;
     margin-top:10px;
     padding:13px;
-
     border:1px solid rgba(255,255,255,.15);
     border-radius:6px;
-
     background:transparent;
     color:#aaa;
-
     cursor:pointer;
 }
 
@@ -1391,16 +1296,74 @@ let lightboxVariantIndex = 0;
 
 
 /* =====================================================
+   NAVEGACIÓN DESDE INICIO
+===================================================== */
+
+let initialProductRef = null;
+
+let initialVariantIndex = 0;
+
+let initialImageIndex = 0;
+
+
+/*
+    Lee:
+
+    camisetas.html
+    ?ref=CAMISETA001
+    &variant=1
+    &image=2
+*/
+
+function readProductNavigation(){
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    initialProductRef =
+        params.get("ref") ||
+        params.get("product") ||
+        params.get("id");
+
+
+    initialVariantIndex =
+        Math.max(
+            0,
+            Number(
+                params.get("variant") || 0
+            )
+        );
+
+
+    initialImageIndex =
+        Math.max(
+            0,
+            Number(
+                params.get("image") || 0
+            )
+        );
+
+}
+
+
+/* =====================================================
    CLIENTE SUPABASE
 ===================================================== */
 
 const supabaseClient = {
 
-    async request(path, options = {}){
+    async request(
+        path,
+        options = {}
+    ){
 
         const response =
             await fetch(
-                STRANGIS_SUPABASE_URL + path,
+                STRANGIS_SUPABASE_URL +
+                path,
                 {
                     ...options,
 
@@ -1479,7 +1442,9 @@ const supabaseClient = {
 
 
         return this.request(
-            `/rest/v1/${encodeURIComponent(STRANGIS_PRODUCTS_TABLE)}?${params.toString()}`
+            `/rest/v1/${encodeURIComponent(
+                STRANGIS_PRODUCTS_TABLE
+            )}?${params.toString()}`
         );
 
     }
@@ -1493,7 +1458,9 @@ const supabaseClient = {
 
 function money(value){
 
-    return Number(value || 0).toLocaleString(
+    return Number(
+        value || 0
+    ).toLocaleString(
         "es-ES",
         {
             style:"currency",
@@ -1506,17 +1473,22 @@ function money(value){
 
 function escapeHTML(value){
 
-    return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+    return String(
+        value ?? ""
+    )
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 
 }
 
 
-function parseJSON(value,fallback=[]){
+function parseJSON(
+    value,
+    fallback = []
+){
 
     if(Array.isArray(value)){
         return value;
@@ -1529,6 +1501,7 @@ function parseJSON(value,fallback=[]){
 
             const parsed =
                 JSON.parse(value);
+
 
             return Array.isArray(parsed)
                 ? parsed
@@ -1565,7 +1538,10 @@ function getVariants(product){
 
 
     raw.forEach(
-        (variant,index)=>{
+        (
+            variant,
+            index
+        )=>{
 
             if(typeof variant === "string"){
 
@@ -1588,15 +1564,24 @@ function getVariants(product){
             }
 
 
-            if(!variant || typeof variant !== "object"){
+            if(
+                !variant ||
+                typeof variant !== "object"
+            ){
+
                 return;
+
             }
 
 
             let images = [];
 
 
-            if(Array.isArray(variant.images)){
+            if(
+                Array.isArray(
+                    variant.images
+                )
+            ){
 
                 images =
                     variant.images
@@ -1612,7 +1597,9 @@ function getVariants(product){
             ){
 
                 images = [
-                    String(variant.image)
+                    String(
+                        variant.image
+                    )
                 ];
 
             }
@@ -1624,7 +1611,9 @@ function getVariants(product){
             ){
 
                 images = [
-                    String(variant.url)
+                    String(
+                        variant.url
+                    )
                 ];
 
             }
@@ -1660,14 +1649,20 @@ function getVariants(product){
 }
 
 
-function getVariantImages(variant){
+function getVariantImages(
+    variant
+){
 
     if(!variant){
         return [];
     }
 
 
-    if(Array.isArray(variant.images)){
+    if(
+        Array.isArray(
+            variant.images
+        )
+    ){
 
         return variant.images
             .filter(Boolean)
@@ -1740,7 +1735,9 @@ async function loadProducts(){
                 <br><br>
 
                 Error:
-                ${escapeHTML(error.message)}
+                ${escapeHTML(
+                    error.message
+                )}
 
                 <br><br>
 
@@ -1759,7 +1756,185 @@ async function loadProducts(){
 
 
 /* =====================================================
-   RENDER PRODUCTOS
+   BUSCAR PRODUCTO DE LA URL
+===================================================== */
+
+function findInitialProductIndex(){
+
+    if(!initialProductRef){
+        return -1;
+    }
+
+
+    return PRODUCTS.findIndex(
+        product => {
+
+            const productRef =
+                product.ref ??
+                product.id;
+
+
+            return String(
+                productRef
+            ) === String(
+                initialProductRef
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   ABRIR PRODUCTO EXACTO DESDE INICIO
+===================================================== */
+
+function openInitialProduct(){
+
+    const productIndex =
+        findInitialProductIndex();
+
+
+    if(productIndex < 0){
+        return;
+    }
+
+
+    const product =
+        PRODUCTS[
+            productIndex
+        ];
+
+
+    const variants =
+        getVariants(product);
+
+
+    if(!variants.length){
+        return;
+    }
+
+
+    let variantIndex =
+        initialVariantIndex;
+
+
+    if(
+        variantIndex >=
+        variants.length
+    ){
+
+        variantIndex = 0;
+
+    }
+
+
+    if(variantIndex < 0){
+        variantIndex = 0;
+    }
+
+
+    const variant =
+        variants[
+            variantIndex
+        ];
+
+
+    const images =
+        getVariantImages(
+            variant
+        );
+
+
+    if(!images.length){
+        return;
+    }
+
+
+    let imageIndex =
+        initialImageIndex;
+
+
+    if(
+        imageIndex >=
+        images.length
+    ){
+
+        imageIndex = 0;
+
+    }
+
+
+    if(imageIndex < 0){
+        imageIndex = 0;
+    }
+
+
+    /*
+       Primero ponemos la variante
+       y la imagen exacta.
+    */
+
+    setVariant(
+        productIndex,
+        variantIndex,
+        imageIndex
+    );
+
+
+    /*
+       Después desplazamos hasta
+       el producto.
+    */
+
+    setTimeout(
+        ()=>{
+
+            const card =
+                document.getElementById(
+                    `product-${productIndex}`
+                );
+
+
+            if(card){
+
+                card.scrollIntoView({
+
+                    behavior:"smooth",
+
+                    block:"center"
+
+                });
+
+            }
+
+
+            /*
+               Abrimos directamente
+               la foto seleccionada.
+            */
+
+            setTimeout(
+                ()=>{
+
+                    openLightbox(
+                        productIndex
+                    );
+
+                },
+                350
+            );
+
+        },
+        150
+    );
+
+}
+
+
+/* =====================================================
+   RENDER
 ===================================================== */
 
 function renderProducts(){
@@ -1791,7 +1966,10 @@ function renderProducts(){
     container.innerHTML =
         PRODUCTS
             .map(
-                (product,index)=>
+                (
+                    product,
+                    index
+                )=>
                     createProductHTML(
                         product,
                         index
@@ -1938,7 +2116,9 @@ function createProductHTML(
 
                     <img
                         id="image-${index}"
-                        src="${escapeHTML(firstImage)}"
+                        src="${escapeHTML(
+                            firstImage || ""
+                        )}"
                         alt="${escapeHTML(
                             product.name ||
                             "Producto"
@@ -1948,10 +2128,6 @@ function createProductHTML(
                         onerror="imageError(this)"
                     >
 
-
-                    <!-- =========================
-                         INFORMACIÓN SOBRE IMAGEN
-                    ========================== -->
 
                     <div
                         class="product-image-label"
@@ -1977,7 +2153,9 @@ function createProductHTML(
                                 class="product-image-label-price"
                                 id="product-label-price-${index}"
                             >
-                                ${money(product.price)}
+                                ${money(
+                                    product.price
+                                )}
                             </div>
 
                         </div>
@@ -2073,10 +2251,7 @@ function createProductHTML(
                         class="gallery-counter"
                         id="gallery-counter-${index}"
                     >
-                        1 / ${Math.max(
-                            variants.length,
-                            firstImages.length
-                        )}
+                        1 / ${firstImages.length}
                     </div>
 
                     <div class="swipe-hint">
@@ -2135,7 +2310,9 @@ function createProductHTML(
                                             )
                                         "
                                     >
-                                        ${escapeHTML(size)}
+                                        ${escapeHTML(
+                                            size
+                                        )}
                                     </button>
 
                                 `
@@ -2155,7 +2332,12 @@ function createProductHTML(
 
                 <button
                     type="button"
-                    onclick="changeQuantity(${index},-1)"
+                    onclick="
+                        changeQuantity(
+                            ${index},
+                            -1
+                        )
+                    "
                     ${outOfStock ? "disabled" : ""}
                 >
                     −
@@ -2171,7 +2353,12 @@ function createProductHTML(
 
                 <button
                     type="button"
-                    onclick="changeQuantity(${index},1)"
+                    onclick="
+                        changeQuantity(
+                            ${index},
+                            1
+                        )
+                    "
                     ${outOfStock ? "disabled" : ""}
                 >
                     +
@@ -2221,7 +2408,9 @@ function createProductHTML(
                         ?
                         "AGOTADO"
                         :
-                        `Stock disponible: ${escapeHTML(stock)}`
+                        `Stock disponible: ${escapeHTML(
+                            stock
+                        )}`
                     }
 
                 </div>
@@ -2235,7 +2424,9 @@ function createProductHTML(
             <button
                 type="button"
                 class="buy"
-                onclick="buyProduct(${index})"
+                onclick="
+                    buyProduct(${index})
+                "
                 ${outOfStock ? "disabled" : ""}
             >
 
@@ -2257,7 +2448,7 @@ function createProductHTML(
 
 
 /* =====================================================
-   CAMBIAR VARIANTE / IMAGEN
+   CAMBIAR VARIANTE + IMAGEN
 ===================================================== */
 
 function setVariant(
@@ -2267,7 +2458,9 @@ function setVariant(
 ){
 
     const product =
-        PRODUCTS[productIndex];
+        PRODUCTS[
+            productIndex
+        ];
 
 
     if(!product){
@@ -2280,7 +2473,9 @@ function setVariant(
 
 
     const variant =
-        variants[variantIndex];
+        variants[
+            variantIndex
+        ];
 
 
     if(!variant){
@@ -2299,9 +2494,14 @@ function setVariant(
     }
 
 
-    if(imageIndex >= images.length){
-        imageIndex = 0;
-    }
+    imageIndex =
+        Math.max(
+            0,
+            Math.min(
+                imageIndex,
+                images.length - 1
+            )
+        );
 
 
     const card =
@@ -2330,7 +2530,9 @@ function setVariant(
 
 
     image.src =
-        images[imageIndex];
+        images[
+            imageIndex
+        ];
 
 
     image.alt =
@@ -2393,7 +2595,9 @@ function setVariant(
     if(labelPrice){
 
         labelPrice.textContent =
-            money(product.price);
+            money(
+                product.price
+            );
 
     }
 
@@ -2405,12 +2609,18 @@ function setVariant(
 }
 
 
+/* =====================================================
+   CONTADOR
+===================================================== */
+
 function updateGalleryCounter(
     productIndex
 ){
 
     const product =
-        PRODUCTS[productIndex];
+        PRODUCTS[
+            productIndex
+        ];
 
 
     const card =
@@ -2441,7 +2651,9 @@ function updateGalleryCounter(
 
 
     const variant =
-        variants[variantIndex];
+        variants[
+            variantIndex
+        ];
 
 
     if(!variant){
@@ -2471,26 +2683,18 @@ function updateGalleryCounter(
 }
 
 
-function selectColor(
-    productIndex,
-    variantIndex
-){
-
-    setVariant(
-        productIndex,
-        variantIndex,
-        0
-    );
-
-}
-
+/* =====================================================
+   VARIANTE SIGUIENTE
+===================================================== */
 
 function selectNextVariant(
     productIndex
 ){
 
     const product =
-        PRODUCTS[productIndex];
+        PRODUCTS[
+            productIndex
+        ];
 
 
     const variants =
@@ -2503,8 +2707,13 @@ function selectNextVariant(
         );
 
 
-    if(!card || !variants.length){
+    if(
+        !card ||
+        !variants.length
+    ){
+
         return;
+
     }
 
 
@@ -2517,8 +2726,13 @@ function selectNextVariant(
     current++;
 
 
-    if(current >= variants.length){
+    if(
+        current >=
+        variants.length
+    ){
+
         current = 0;
+
     }
 
 
@@ -2531,12 +2745,18 @@ function selectNextVariant(
 }
 
 
+/* =====================================================
+   VARIANTE ANTERIOR
+===================================================== */
+
 function selectPreviousVariant(
     productIndex
 ){
 
     const product =
-        PRODUCTS[productIndex];
+        PRODUCTS[
+            productIndex
+        ];
 
 
     const variants =
@@ -2549,8 +2769,13 @@ function selectPreviousVariant(
         );
 
 
-    if(!card || !variants.length){
+    if(
+        !card ||
+        !variants.length
+    ){
+
         return;
+
     }
 
 
@@ -2595,7 +2820,9 @@ function galleryTouchStart(event){
         !event.touches ||
         !event.touches.length
     ){
+
         return;
+
     }
 
 
@@ -2618,7 +2845,9 @@ function galleryTouchEnd(
         !event.changedTouches ||
         !event.changedTouches.length
     ){
+
         return;
+
     }
 
 
@@ -2642,12 +2871,16 @@ function galleryTouchEnd(
         Math.abs(diffX) < 45 ||
         Math.abs(diffX) < Math.abs(diffY)
     ){
+
         return;
+
     }
 
 
     const product =
-        PRODUCTS[productIndex];
+        PRODUCTS[
+            productIndex
+        ];
 
 
     const card =
@@ -2673,7 +2906,9 @@ function galleryTouchEnd(
 
 
     const variant =
-        variants[variantIndex];
+        variants[
+            variantIndex
+        ];
 
 
     const images =
@@ -2684,7 +2919,10 @@ function galleryTouchEnd(
 
     if(diffX < 0){
 
-        if(imageIndex + 1 < images.length){
+        if(
+            imageIndex + 1 <
+            images.length
+        ){
 
             setVariant(
                 productIndex,
@@ -2733,7 +2971,9 @@ function selectSize(
 ){
 
     const product =
-        PRODUCTS[productIndex];
+        PRODUCTS[
+            productIndex
+        ];
 
 
     const sizes =
@@ -2741,7 +2981,9 @@ function selectSize(
 
 
     const size =
-        sizes[sizeIndex];
+        sizes[
+            sizeIndex
+        ];
 
 
     const card =
@@ -2750,8 +2992,13 @@ function selectSize(
         );
 
 
-    if(!card || size === undefined){
+    if(
+        !card ||
+        size === undefined
+    ){
+
         return;
+
     }
 
 
@@ -2760,9 +3007,14 @@ function selectSize(
 
 
     card
-        .querySelectorAll(".size")
+        .querySelectorAll(
+            ".size"
+        )
         .forEach(
-            (button,index)=>{
+            (
+                button,
+                index
+            )=>{
 
                 button.classList.toggle(
                     "active",
@@ -2796,7 +3048,9 @@ function changeQuantity(
 
 
     const product =
-        PRODUCTS[productIndex];
+        PRODUCTS[
+            productIndex
+        ];
 
 
     let quantity =
@@ -2809,7 +3063,9 @@ function changeQuantity(
 
 
     if(quantity < 1){
+
         quantity = 1;
+
     }
 
 
@@ -2819,7 +3075,9 @@ function changeQuantity(
     ){
 
         const stock =
-            Number(product.stock);
+            Number(
+                product.stock
+            );
 
 
         if(
@@ -2858,10 +3116,14 @@ function changeQuantity(
    COMPRAR
 ===================================================== */
 
-function buyProduct(productIndex){
+function buyProduct(
+    productIndex
+){
 
     const product =
-        PRODUCTS[productIndex];
+        PRODUCTS[
+            productIndex
+        ];
 
 
     if(!product){
@@ -2945,7 +3207,8 @@ function buyProduct(productIndex){
     if(
         product.stock !== null &&
         product.stock !== undefined &&
-        quantity > Number(product.stock)
+        quantity >
+        Number(product.stock)
     ){
 
         alert(
@@ -2968,7 +3231,9 @@ function buyProduct(productIndex){
         quantity,
 
         total:
-            Number(product.price || 0) *
+            Number(
+                product.price || 0
+            ) *
             quantity
 
     };
@@ -3052,7 +3317,6 @@ function showOrderSummary(){
             <br>
 
             Variante:
-
             <strong>
                 ${escapeHTML(
                     order.variant.name
@@ -3062,7 +3326,6 @@ function showOrderSummary(){
             <br>
 
             Talla:
-
             <strong>
                 ${escapeHTML(
                     order.size
@@ -3072,7 +3335,6 @@ function showOrderSummary(){
             <br>
 
             Cantidad:
-
             <strong>
                 ${order.quantity}
             </strong>
@@ -3080,7 +3342,6 @@ function showOrderSummary(){
             <br>
 
             Precio unidad:
-
             <strong>
                 ${money(
                     order.product.price
@@ -3090,7 +3351,6 @@ function showOrderSummary(){
             <br>
 
             Total:
-
             <strong>
                 ${money(
                     order.total
@@ -3126,7 +3386,9 @@ function closeCustomerModal(){
 function fieldValue(id){
 
     const element =
-        document.getElementById(id);
+        document.getElementById(
+            id
+        );
 
 
     return element
@@ -3400,7 +3662,9 @@ function openLightbox(
 ){
 
     const product =
-        PRODUCTS[productIndex];
+        PRODUCTS[
+            productIndex
+        ];
 
 
     if(!product){
@@ -3450,6 +3714,10 @@ function openLightbox(
 
 }
 
+
+/* =====================================================
+   ACTUALIZAR LIGHTBOX
+===================================================== */
 
 function updateLightbox(){
 
@@ -3502,6 +3770,16 @@ function updateLightbox(){
         );
 
 
+    const safeImageIndex =
+        Math.min(
+            Math.max(
+                imageIndex,
+                0
+            ),
+            images.length - 1
+        );
+
+
     const image =
         document.getElementById(
             "lightboxImage"
@@ -3510,16 +3788,12 @@ function updateLightbox(){
 
     image.src =
         images[
-            Math.min(
-                imageIndex,
-                images.length - 1
-            )
+            safeImageIndex
         ];
 
 
     image.alt =
-        product.name ||
-        "Producto";
+        `${product.name || "Producto"} - ${variant.name}`;
 
 
     document
@@ -3527,13 +3801,14 @@ function updateLightbox(){
             "lightboxCounter"
         )
         .textContent =
-        `${Math.min(
-            imageIndex + 1,
-            images.length
-        )} / ${images.length}`;
+        `${safeImageIndex + 1} / ${images.length}`;
 
 }
 
+
+/* =====================================================
+   CAMBIAR IMAGEN LIGHTBOX
+===================================================== */
 
 function changeLightboxImage(
     direction
@@ -3578,7 +3853,9 @@ function changeLightboxImage(
 
 
     const variant =
-        variants[variantIndex];
+        variants[
+            variantIndex
+        ];
 
 
     const images =
@@ -3605,6 +3882,7 @@ function changeLightboxImage(
 
             variantIndex++;
 
+
             if(
                 variantIndex >=
                 variants.length
@@ -3613,6 +3891,7 @@ function changeLightboxImage(
                 variantIndex = 0;
 
             }
+
 
             imageIndex = 0;
 
@@ -3628,15 +3907,21 @@ function changeLightboxImage(
 
             variantIndex--;
 
-            if(variantIndex < 0){
+
+            if(
+                variantIndex < 0
+            ){
 
                 variantIndex =
                     variants.length - 1;
 
             }
 
+
             const previousVariant =
-                variants[variantIndex];
+                variants[
+                    variantIndex
+                ];
 
 
             const previousImages =
@@ -3663,10 +3948,18 @@ function changeLightboxImage(
     );
 
 
+    lightboxVariantIndex =
+        variantIndex;
+
+
     updateLightbox();
 
 }
 
+
+/* =====================================================
+   CERRAR LIGHTBOX
+===================================================== */
 
 function closeLightbox(){
 
@@ -3697,6 +3990,10 @@ function closeLightbox(){
 }
 
 
+/* =====================================================
+   ERROR IMAGEN
+===================================================== */
+
 function imageError(image){
 
     image.style.display =
@@ -3706,7 +4003,7 @@ function imageError(image){
 
 
 /* =====================================================
-   EVENTOS
+   TECLADO
 ===================================================== */
 
 document.addEventListener(
@@ -3757,6 +4054,10 @@ document.addEventListener(
 );
 
 
+/* =====================================================
+   CLICK MODAL
+===================================================== */
+
 document
     .getElementById(
         "customerModal"
@@ -3765,7 +4066,9 @@ document
         "click",
         function(event){
 
-            if(event.target === this){
+            if(
+                event.target === this
+            ){
 
                 closeCustomerModal();
 
@@ -3775,6 +4078,10 @@ document
     );
 
 
+/* =====================================================
+   CLICK LIGHTBOX
+===================================================== */
+
 document
     .getElementById(
         "imageLightbox"
@@ -3783,7 +4090,9 @@ document
         "click",
         function(event){
 
-            if(event.target === this){
+            if(
+                event.target === this
+            ){
 
                 closeLightbox();
 
@@ -3797,9 +4106,35 @@ document
    INICIO
 ===================================================== */
 
-loadProducts();
+async function init(){
+
+    /*
+       Primero leemos la URL.
+    */
+
+    readProductNavigation();
+
+
+    /*
+       Después cargamos los productos.
+    */
+
+    await loadProducts();
+
+
+    /*
+       Finalmente comprobamos si Inicio
+       nos pidió una variante/foto concreta.
+    */
+
+    openInitialProduct();
+
+}
+
+
+init();
 
 </script>
 
 </body>
-    </html>
+</html>
