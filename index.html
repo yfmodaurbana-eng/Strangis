@@ -5,10 +5,7 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Strangis</title>
 
@@ -27,26 +24,6 @@
     <meta
         property="og:image"
         content="https://i.imgur.com/nomrvEn.jpeg"
-    >
-
-    <meta
-        property="og:image:secure_url"
-        content="https://i.imgur.com/nomrvEn.jpeg"
-    >
-
-    <meta
-        property="og:image:type"
-        content="image/jpeg"
-    >
-
-    <meta
-        property="og:image:width"
-        content="1200"
-    >
-
-    <meta
-        property="og:image:height"
-        content="630"
     >
 
     <style>
@@ -88,6 +65,7 @@
         input{
             font:inherit;
         }
+
 
         /* =====================================================
            HEADER
@@ -164,6 +142,7 @@
         nav a.active{
             color:#fff;
         }
+
 
         /* =====================================================
            BUSCADOR
@@ -333,6 +312,7 @@
         .search-result strong{
             color:#ddd;
         }
+
 
         /* =====================================================
            HERO
@@ -596,6 +576,7 @@
         .hero-note strong{
             color:#ffb15c;
         }
+
 
         /* =====================================================
            PRODUCTOS
@@ -870,18 +851,6 @@
             text-decoration:none;
         }
 
-        .product.search-match{
-
-            border-color:
-                rgba(255,180,90,.45);
-
-            box-shadow:
-                0 0 0 1px
-                rgba(255,180,90,.12),
-
-                0 15px 40px
-                rgba(0,0,0,.25);
-        }
 
         /* =====================================================
            VACÍO
@@ -932,6 +901,7 @@
 
             line-height:1.7;
         }
+
 
         /* =====================================================
            INFORMACIÓN
@@ -1072,6 +1042,7 @@
             line-height:1.75;
         }
 
+
         /* =====================================================
            FOOTER
         ====================================================== */
@@ -1092,6 +1063,7 @@
 
             letter-spacing:1px;
         }
+
 
         /* =====================================================
            WHATSAPP
@@ -1143,6 +1115,7 @@
 
             fill:#fff;
         }
+
 
         /* =====================================================
            RESPONSIVE
@@ -1479,7 +1452,7 @@
                 type="search"
                 autocomplete="off"
                 spellcheck="false"
-                placeholder="Buscar por color, referencia o nombre..."
+                placeholder="Buscar por referencia, color o nombre..."
                 aria-label="Buscar productos"
             >
 
@@ -1498,8 +1471,7 @@
 
         <div class="search-help">
 
-            Escribe un color, referencia o nombre para mostrar
-            la imagen correspondiente.
+            Busca por referencia, nombre o color.
 
         </div>
 
@@ -1694,23 +1666,13 @@
         };
 
 
-        const CATEGORY_NAMES = {
-
-            camisetas:"Camisetas",
-            pantalones:"Pantalones",
-            conjuntos:"Conjuntos",
-            gorras:"Gorras",
-            gafas:"Gafas",
-            bisuteria:"Bisutería"
-
-        };
-
-
         /* =====================================================
            ESTADO
         ====================================================== */
 
         let allProducts = [];
+
+        let colorLinks = [];
 
         let currentSearch = "";
 
@@ -1742,7 +1704,7 @@
 
 
         /* =====================================================
-           NORMALIZAR TEXTO
+           NORMALIZAR
         ====================================================== */
 
         function normalizeText(value){
@@ -1756,7 +1718,7 @@
 
 
         /* =====================================================
-           IMÁGENES DEL PRODUCTO
+           IMÁGENES DE PRODUCT
         ====================================================== */
 
         function getProductImages(product){
@@ -1765,67 +1727,61 @@
                 return [];
             }
 
-            let raw =
-                product.images;
-
+            let raw = product.images;
 
             if(typeof raw === "string"){
 
                 try{
 
-                    raw =
-                        JSON.parse(raw);
+                    raw = JSON.parse(raw);
 
                 }catch(error){
 
-                    if(
-                        raw.trim()
-                        .startsWith("http")
-                    ){
-
-                        return [
-                            raw.trim()
-                        ];
+                    if(raw.startsWith("http")){
+                        return [raw];
                     }
 
                     return [];
                 }
             }
 
-
             if(!Array.isArray(raw)){
                 return [];
             }
 
-
             const result = [];
-
 
             raw.forEach(item=>{
 
-                if(
-                    typeof item === "string"
-                ){
+                if(typeof item === "string"){
 
                     if(item.trim()){
-
-                        result.push(
-                            item.trim()
-                        );
+                        result.push(item.trim());
                     }
 
                     return;
                 }
 
-
-                if(
-                    !item ||
-                    typeof item !== "object"
-                ){
-
+                if(!item || typeof item !== "object"){
                     return;
                 }
 
+                if(Array.isArray(item.images)){
+
+                    item.images.forEach(image=>{
+
+                        if(
+                            typeof image === "string" &&
+                            image.trim()
+                        ){
+
+                            result.push(
+                                image.trim()
+                            );
+                        }
+
+                    });
+                }
 
                 [
                     "image",
@@ -1845,30 +1801,7 @@
 
                 });
 
-
-                if(
-                    Array.isArray(
-                        item.images
-                    )
-                ){
-
-                    item.images.forEach(image=>{
-
-                        if(
-                            typeof image === "string" &&
-                            image.trim()
-                        ){
-
-                            result.push(
-                                image.trim()
-                            );
-                        }
-
-                    });
-                }
-
             });
-
 
             return [
                 ...new Set(result)
@@ -1879,515 +1812,9 @@
         function getProductImage(product){
 
             const images =
-                getProductImages(
-                    product
-                );
+                getProductImages(product);
 
             return images[0] || "";
-        }
-
-
-        /* =====================================================
-           VARIANTES
-        ====================================================== */
-
-        function getVariants(product){
-
-            if(!product){
-                return [];
-            }
-
-
-            let value =
-                product.variants;
-
-
-            if(
-                value === undefined ||
-                value === null
-            ){
-
-                return [];
-            }
-
-
-            if(typeof value === "string"){
-
-                const text =
-                    value.trim();
-
-
-                if(!text){
-                    return [];
-                }
-
-
-                try{
-
-                    value =
-                        JSON.parse(text);
-
-                }catch(error){
-
-                    return text
-                        .split(/[,|;]/)
-                        .map(
-                            item =>
-                                item.trim()
-                        )
-                        .filter(Boolean);
-                }
-            }
-
-
-            if(Array.isArray(value)){
-
-                return value;
-            }
-
-
-            if(
-                typeof value === "object"
-            ){
-
-                return Object.values(value);
-            }
-
-
-            return [
-                value
-            ];
-        }
-
-
-        /* =====================================================
-           OBTENER COLOR DE UNA VARIANTE
-        ====================================================== */
-
-        function getVariantColor(variant){
-
-            if(
-                !variant ||
-                typeof variant !== "object"
-            ){
-
-                return "";
-            }
-
-
-            const value =
-                variant.color ??
-                variant.colour ??
-                variant.colors ??
-                variant.colours ??
-                "";
-
-
-            if(
-                Array.isArray(value)
-            ){
-
-                return value
-                    .join(" ");
-            }
-
-
-            return String(
-                value
-            ).trim();
-        }
-
-
-        /* =====================================================
-           OBTENER IMAGEN DE UNA VARIANTE
-        ====================================================== */
-
-        function getVariantImage(variant){
-
-            if(
-                !variant ||
-                typeof variant !== "object"
-            ){
-
-                return "";
-            }
-
-
-            /*
-             * Aceptamos varios nombres posibles
-             * para que funcione aunque la imagen
-             * esté guardada con un nombre diferente.
-             */
-
-            const direct =
-                variant.image ??
-                variant.image_url ??
-                variant.imageUrl ??
-                variant.url ??
-                variant.src ??
-                "";
-
-
-            if(
-                typeof direct === "string" &&
-                direct.trim()
-            ){
-
-                return direct.trim();
-            }
-
-
-            if(
-                Array.isArray(
-                    variant.images
-                )
-            ){
-
-                const first =
-                    variant.images.find(
-                        image =>
-                            typeof image === "string" &&
-                            image.trim()
-                    );
-
-
-                if(first){
-
-                    return first.trim();
-                }
-            }
-
-
-            return "";
-        }
-
-
-        /* =====================================================
-           BUSCAR IMAGEN EXACTA POR COLOR
-        ====================================================== */
-
-        function getImageForSearch(
-            product,
-            search
-        ){
-
-            const query =
-                normalizeText(
-                    search
-                );
-
-
-            /*
-             * Si no hay búsqueda,
-             * mostramos la primera imagen normal.
-             */
-
-            if(!query){
-
-                return getProductImage(
-                    product
-                );
-            }
-
-
-            const variants =
-                getVariants(
-                    product
-                );
-
-
-            /*
-             * PRIMERA PRIORIDAD:
-             *
-             * Buscar una variante cuyo color
-             * coincida exactamente con lo escrito.
-             */
-
-            for(
-                const variant of variants
-            ){
-
-                const color =
-                    getVariantColor(
-                        variant
-                    );
-
-
-                if(!color){
-                    continue;
-                }
-
-
-                const normalizedColor =
-                    normalizeText(
-                        color
-                    );
-
-
-                if(
-                    normalizedColor === query
-                ){
-
-                    const image =
-                        getVariantImage(
-                            variant
-                        );
-
-
-                    if(image){
-
-                        return image;
-                    }
-                }
-            }
-
-
-            /*
-             * SEGUNDA PRIORIDAD:
-             *
-             * Coincidencia parcial del color.
-             *
-             * Ejemplo:
-             * "negro" encuentra "Negro".
-             */
-
-            for(
-                const variant of variants
-            ){
-
-                const color =
-                    getVariantColor(
-                        variant
-                    );
-
-
-                if(!color){
-                    continue;
-                }
-
-
-                const normalizedColor =
-                    normalizeText(
-                        color
-                    );
-
-
-                if(
-                    normalizedColor.includes(
-                        query
-                    )
-                ){
-
-                    const image =
-                        getVariantImage(
-                            variant
-                        );
-
-
-                    if(image){
-
-                        return image;
-                    }
-                }
-            }
-
-
-            /*
-             * TERCERA PRIORIDAD:
-             *
-             * Si el producto tiene un color directo
-             * pero las imágenes están en "images",
-             * usamos la imagen principal.
-             */
-
-            return getProductImage(
-                product
-            );
-        }
-
-
-        /* =====================================================
-           OBTENER COLORES
-        ====================================================== */
-
-        function getProductColors(product){
-
-            if(!product){
-                return [];
-            }
-
-
-            const colors = [];
-
-
-            function addColor(value){
-
-                if(
-                    value === undefined ||
-                    value === null
-                ){
-
-                    return;
-                }
-
-
-                if(Array.isArray(value)){
-
-                    value.forEach(
-                        item =>
-                            addColor(item)
-                    );
-
-                    return;
-                }
-
-
-                if(
-                    typeof value === "string" ||
-                    typeof value === "number"
-                ){
-
-                    String(value)
-                        .split(/[,|;]/)
-                        .map(
-                            item =>
-                                item.trim()
-                        )
-                        .filter(Boolean)
-                        .forEach(
-                            item =>
-                                colors.push(item)
-                        );
-
-                    return;
-                }
-
-
-                if(
-                    typeof value === "object"
-                ){
-
-                    [
-                        "color",
-                        "colour",
-                        "colors",
-                        "colours"
-                    ].forEach(key=>{
-
-                        if(
-                            value[key] !== undefined
-                        ){
-
-                            addColor(
-                                value[key]
-                            );
-                        }
-
-                    });
-                }
-            }
-
-
-            [
-                "color",
-                "colour",
-                "colors",
-                "colours"
-            ].forEach(key=>{
-
-                if(
-                    product[key] !== undefined
-                ){
-
-                    addColor(
-                        product[key]
-                    );
-                }
-
-            });
-
-
-            const variants =
-                getVariants(
-                    product
-                );
-
-
-            variants.forEach(
-                variant=>{
-
-                    const color =
-                        getVariantColor(
-                            variant
-                        );
-
-
-                    if(color){
-
-                        addColor(
-                            color
-                        );
-                    }
-
-                }
-            );
-
-
-            return [
-                ...new Map(
-                    colors.map(
-                        color => [
-                            normalizeText(color),
-                            color
-                        ]
-                    )
-                ).values()
-            ];
-        }
-
-
-        /* =====================================================
-           COMPROBAR SI LA BÚSQUEDA ES UN COLOR
-        ====================================================== */
-
-        function matchesColor(
-            product,
-            search
-        ){
-
-            const query =
-                normalizeText(
-                    search
-                );
-
-
-            if(!query){
-                return false;
-            }
-
-
-            const colors =
-                getProductColors(
-                    product
-                );
-
-
-            return colors.some(
-                color => {
-
-                    const normalized =
-                        normalizeText(
-                            color
-                        );
-
-
-                    return (
-                        normalized === query ||
-                        normalized.includes(query) ||
-                        query.includes(normalized)
-                    );
-                }
-            );
         }
 
 
@@ -2410,44 +1837,239 @@
            CATEGORÍA
         ====================================================== */
 
-        function getCategoryName(
-            category
-        ){
+        function getCategoryName(category){
+
+            const names = {
+
+                camisetas:"Camisetas",
+                pantalones:"Pantalones",
+                conjuntos:"Conjuntos",
+                gorras:"Gorras",
+                gafas:"Gafas",
+                bisuteria:"Bisutería"
+
+            };
 
             const key =
-                String(
-                    category || ""
-                )
-                .trim()
-                .toLowerCase();
+                normalizeText(category);
 
-
-            return CATEGORY_NAMES[key]
-                || category
-                || "Strangis";
+            return names[key] ||
+                category ||
+                "Strangis";
         }
 
 
         /* =====================================================
-           LINK PRODUCTO
+           PRODUCT_COLOR
+           
+           Busca la foto exacta asociada al color.
+        ====================================================== */
+
+        function findColorImage(
+            productId,
+            search
+        ){
+
+            const query =
+                normalizeText(search);
+
+            if(!query){
+                return null;
+            }
+
+            const matches =
+                colorLinks.filter(
+                    item =>
+                        String(item.product_id) ===
+                        String(productId)
+                );
+
+            if(!matches.length){
+                return null;
+            }
+
+
+            /* Coincidencia exacta */
+
+            const exact =
+                matches.find(
+                    item =>
+                        normalizeText(item.color) ===
+                        query
+                );
+
+            if(exact){
+                return exact;
+            }
+
+
+            /* Coincidencia parcial */
+
+            const partial =
+                matches.find(
+                    item =>
+                        normalizeText(item.color)
+                            .includes(query)
+                );
+
+            if(partial){
+                return partial;
+            }
+
+
+            /* Buscar palabras */
+
+            const words =
+                query
+                    .split(/\s+/)
+                    .filter(Boolean);
+
+            const wordMatch =
+                matches.find(
+                    item => {
+
+                        const color =
+                            normalizeText(
+                                item.color
+                            );
+
+                        return words.some(
+                            word =>
+                                color.includes(word)
+                        );
+                    }
+                );
+
+            if(wordMatch){
+                return wordMatch;
+            }
+
+
+            return null;
+        }
+
+
+        /* =====================================================
+           TEXTO BUSCABLE DEL PRODUCTO
+        ====================================================== */
+
+        function getProductSearchText(product){
+
+            const colorData =
+                colorLinks.filter(
+                    item =>
+                        String(item.product_id) ===
+                        String(product.id)
+                );
+
+            const colors =
+                colorData
+                    .map(item => item.color)
+                    .join(" ");
+
+
+            return normalizeText(
+                [
+                    product.name,
+                    product.category,
+                    product.ref,
+                    product.description,
+                    colors
+                ]
+                .filter(Boolean)
+                .join(" ")
+            );
+        }
+
+
+        /* =====================================================
+           FILTRAR PRODUCTOS
+        ====================================================== */
+
+        function filterProducts(search){
+
+            const query =
+                normalizeText(search);
+
+            if(!query){
+
+                return allProducts;
+            }
+
+
+            const words =
+                query
+                    .split(/\s+/)
+                    .filter(Boolean);
+
+
+            return allProducts.filter(
+                product => {
+
+                    const text =
+                        getProductSearchText(
+                            product
+                        );
+
+                    return words.every(
+                        word =>
+                            text.includes(word)
+                    );
+
+                }
+            );
+        }
+
+
+        /* =====================================================
+           IMAGEN PARA MOSTRAR
+           
+           Si se busca un color y existe en
+           product_colors, usamos ESA imagen.
+        ====================================================== */
+
+        function getDisplayImage(
+            product,
+            search
+        ){
+
+            const colorImage =
+                findColorImage(
+                    product.id,
+                    search
+                );
+
+            if(
+                colorImage &&
+                colorImage.image_url
+            ){
+
+                return colorImage.image_url;
+            }
+
+
+            return getProductImage(
+                product
+            );
+        }
+
+
+        /* =====================================================
+           LINK DEL PRODUCTO
         ====================================================== */
 
         function getProductLink(
-            product
+            product,
+            search
         ){
 
             const category =
-                String(
-                    product?.category || ""
-                )
-                .trim()
-                .toLowerCase();
-
+                normalizeText(
+                    product?.category
+                );
 
             const base =
-                CATEGORY_LINKS[
-                    category
-                ];
+                CATEGORY_LINKS[category];
 
 
             if(!base){
@@ -2474,27 +2096,41 @@
             }
 
 
-            if(
-                product?.id !== undefined &&
-                product?.id !== null
-            ){
+            const colorData =
+                findColorImage(
+                    product.id,
+                    search
+                );
+
+
+            if(colorData){
 
                 params.set(
-                    "id",
-                    String(
-                        product.id
-                    )
+                    "color",
+                    colorData.color
+                );
+
+                params.set(
+                    "image",
+                    colorData.image_url
                 );
             }
 
 
-            if(product?.name){
+            if(search){
 
                 params.set(
-                    "producto",
-                    String(
-                        product.name
-                    )
+                    "buscar",
+                    search
+                );
+            }
+
+
+            if(product?.id !== undefined){
+
+                params.set(
+                    "id",
+                    String(product.id)
                 );
             }
 
@@ -2510,123 +2146,6 @@
 
 
         /* =====================================================
-           TEXTO BUSCABLE
-        ====================================================== */
-
-        function getSearchableText(
-            product
-        ){
-
-            const colors =
-                getProductColors(
-                    product
-                ).join(" ");
-
-
-            const variants =
-                getVariants(
-                    product
-                )
-                .map(
-                    variant => {
-
-                        if(
-                            typeof variant === "string"
-                        ){
-
-                            return variant;
-                        }
-
-
-                        if(
-                            variant &&
-                            typeof variant === "object"
-                        ){
-
-                            return Object.values(
-                                variant
-                            ).join(" ");
-                        }
-
-
-                        return "";
-                    }
-                )
-                .join(" ");
-
-
-            return normalizeText(
-
-                [
-                    product?.name,
-                    product?.title,
-                    product?.description,
-                    product?.brand,
-                    product?.model,
-                    product?.category,
-
-                    getProductReference(
-                        product
-                    ),
-
-                    colors,
-                    variants
-
-                ]
-                .filter(Boolean)
-                .join(" ")
-
-            );
-        }
-
-
-        /* =====================================================
-           FILTRAR PRODUCTOS
-        ====================================================== */
-
-        function filterProducts(
-            search
-        ){
-
-            const query =
-                normalizeText(
-                    search
-                );
-
-
-            if(!query){
-
-                return allProducts;
-            }
-
-
-            const words =
-                query
-                    .split(/\s+/)
-                    .filter(Boolean);
-
-
-            return allProducts.filter(
-                product => {
-
-                    const searchable =
-                        getSearchableText(
-                            product
-                        );
-
-
-                    return words.every(
-                        word =>
-                            searchable.includes(
-                                word
-                            )
-                    );
-                }
-            );
-        }
-
-
-        /* =====================================================
            TARJETA
         ====================================================== */
 
@@ -2635,15 +2154,8 @@
             search
         ){
 
-            /*
-             * ESTA ES LA PARTE IMPORTANTE:
-             *
-             * Si buscas "negro", la imagen se obtiene
-             * de la variante negra.
-             */
-
             const image =
-                getImageForSearch(
+                getDisplayImage(
                     product,
                     search
                 );
@@ -2667,72 +2179,29 @@
                 );
 
 
-            const category =
-                String(
-                    product?.category ||
-                    ""
-                )
-                .trim()
-                .toLowerCase();
-
-
             const categoryName =
                 getCategoryName(
-                    category
+                    product?.category
                 );
 
 
-            const colors =
-                getProductColors(
-                    product
-                );
-
-
-            /*
-             * Si estamos buscando un color,
-             * mostramos ese color.
-             */
-
-            let displayedColor = "";
-
-
-            if(
-                search &&
-                matchesColor(
-                    product,
+            const matchedColor =
+                findColorImage(
+                    product.id,
                     search
-                )
-            ){
-
-                displayedColor =
-                    search.trim();
-
-            }else{
-
-                displayedColor =
-                    colors.join(" · ");
-            }
+                );
 
 
             const link =
                 getProductLink(
-                    product
+                    product,
+                    search
                 );
 
 
             return `
 
-                <article
-                    class="product ${
-                        search &&
-                        matchesColor(
-                            product,
-                            search
-                        )
-                        ? "search-match"
-                        : ""
-                    }"
-                >
+                <article class="product">
 
                     <a
                         class="product-link"
@@ -2743,17 +2212,7 @@
 
                             <img
                                 src="${escapeAttribute(image)}"
-                                alt="${escapeHTML(
-                                    name +
-                                    (
-                                        displayedColor
-                                        ?
-                                        " " +
-                                        displayedColor
-                                        :
-                                        ""
-                                    )
-                                )}"
+                                alt="${escapeHTML(name)}"
                                 loading="lazy"
                                 draggable="false"
                                 onerror="
@@ -2768,7 +2227,9 @@
                         <div class="product-info">
 
                             <div class="product-name">
+
                                 ${escapeHTML(name)}
+
                             </div>
 
 
@@ -2777,10 +2238,10 @@
                                 ?
                                 `
                                 <div class="product-ref">
+
                                     REF:
-                                    ${escapeHTML(
-                                        reference
-                                    )}
+                                    ${escapeHTML(reference)}
+
                                 </div>
                                 `
                                 :
@@ -2789,21 +2250,25 @@
 
 
                             <div class="product-category">
+
                                 ${escapeHTML(
                                     categoryName
                                 )}
+
                             </div>
 
 
                             ${
-                                displayedColor
+                                matchedColor
                                 ?
                                 `
                                 <div class="product-variants">
+
                                     COLOR:
                                     ${escapeHTML(
-                                        displayedColor
+                                        matchedColor.color
                                     )}
+
                                 </div>
                                 `
                                 :
@@ -2824,9 +2289,7 @@
            MOSTRAR PRODUCTOS
         ====================================================== */
 
-        function renderProducts(
-            products
-        ){
+        function renderProducts(products){
 
             const container =
                 document.getElementById(
@@ -2851,36 +2314,28 @@
             }
 
 
-            const activeProducts =
+            const validProducts =
                 Array.isArray(products)
                 ?
                 products.filter(
                     product =>
                         product &&
-                        product.active !== false
+                        product.active !== false &&
+                        Boolean(
+                            getDisplayImage(
+                                product,
+                                currentSearch
+                            )
+                        )
                 )
                 :
                 [];
 
 
-            const validProducts =
-                activeProducts.filter(
-                    product =>
-                        Boolean(
-                            getImageForSearch(
-                                product,
-                                currentSearch
-                            )
-                        )
-                );
-
-
             counter.textContent =
                 validProducts.length === 1
-                ?
-                "1 artículo"
-                :
-                `${validProducts.length} artículos`;
+                ? "1 artículo"
+                : `${validProducts.length} artículos`;
 
 
             if(currentSearch){
@@ -2891,13 +2346,14 @@
                     ?
 
                     `
+                    Encontrados:
                     <strong>
                         ${validProducts.length}
                     </strong>
                     ${
                         validProducts.length === 1
-                        ? "imagen encontrada"
-                        : "imágenes encontradas"
+                        ? "artículo"
+                        : "artículos"
                     }
                     `
 
@@ -2905,7 +2361,7 @@
 
                     `
                     <strong>
-                        No se encontró ninguna imagen
+                        No se encontraron productos
                     </strong>
                     `;
 
@@ -2916,10 +2372,6 @@
 
 
             if(!validProducts.length){
-
-                container.style.animation =
-                    "none";
-
 
                 container.innerHTML = `
 
@@ -2935,25 +2387,14 @@
 
                         </div>
 
-
                         <div class="empty-text">
 
                             ${
                                 currentSearch
-
                                 ?
-
-                                `
-                                No encontramos ningún producto
-                                con ese color, referencia o nombre.
-                                `
-
+                                "No encontramos ningún producto con esa referencia, nombre o color."
                                 :
-
-                                `
-                                Estamos preparando nuevos artículos
-                                para la colección Strangis.
-                                `
+                                "Estamos preparando nuevos artículos para la colección Strangis."
                             }
 
                         </div>
@@ -2978,27 +2419,6 @@
                     .join("");
 
 
-            /*
-             * Sin búsqueda:
-             * carrusel normal.
-             *
-             * Con búsqueda:
-             * mostramos solamente las imágenes
-             * encontradas, sin duplicarlas.
-             */
-
-            if(currentSearch){
-
-                container.innerHTML =
-                    cards;
-
-                container.style.animation =
-                    "none";
-
-                return;
-            }
-
-
             if(validProducts.length > 1){
 
                 container.innerHTML =
@@ -3018,7 +2438,7 @@
 
 
         /* =====================================================
-           BUSCADOR
+           BUSCAR
         ====================================================== */
 
         function performSearch(){
@@ -3068,58 +2488,7 @@
 
 
         /* =====================================================
-           EVENTOS
-        ====================================================== */
-
-        const searchInput =
-            document.getElementById(
-                "productSearch"
-            );
-
-
-        const searchClear =
-            document.getElementById(
-                "searchClear"
-            );
-
-
-        if(searchInput){
-
-            searchInput.addEventListener(
-                "input",
-                performSearch
-            );
-
-
-            searchInput.addEventListener(
-                "search",
-                performSearch
-            );
-        }
-
-
-        if(searchClear){
-
-            searchClear.addEventListener(
-                "click",
-                ()=>{
-
-                    if(searchInput){
-
-                        searchInput.value = "";
-
-                        searchInput.focus();
-                    }
-
-
-                    performSearch();
-                }
-            );
-        }
-
-
-        /* =====================================================
-           CARGAR PRODUCTOS
+           CARGAR PRODUCTOS Y COLORES
         ====================================================== */
 
         async function loadInicioProducts(){
@@ -3142,30 +2511,11 @@
                     "Cargando...";
 
 
-                if(!currentSearch){
+                /*
+                 * Cargar productos.
+                 */
 
-                    container.innerHTML = `
-
-                        <div class="empty">
-
-                            <div class="empty-title">
-                                Cargando productos
-                            </div>
-
-                            <div class="empty-text">
-                                Un momento...
-                            </div>
-
-                        </div>
-
-                    `;
-                }
-
-
-                const {
-                    data,
-                    error
-                } =
+                const productsResponse =
                     await supabaseClient
 
                         .from("Products")
@@ -3185,21 +2535,77 @@
                         );
 
 
-                if(error){
-                    throw error;
+                if(
+                    productsResponse.error
+                ){
+
+                    throw productsResponse.error;
+                }
+
+
+                allProducts =
+                    Array.isArray(
+                        productsResponse.data
+                    )
+                    ?
+                    productsResponse.data
+                    :
+                    [];
+
+
+                /*
+                 * Cargar la tabla product_colors.
+                 */
+
+                const colorsResponse =
+                    await supabaseClient
+
+                        .from("product_colors")
+
+                        .select(
+                            "id, product_id, color, image_url"
+                        );
+
+
+                if(
+                    colorsResponse.error
+                ){
+
+                    console.error(
+                        "STRANGIS — error product_colors:",
+                        colorsResponse.error
+                    );
+
+                    /*
+                     * No rompemos la web si la tabla
+                     * tiene RLS o algún problema.
+                     */
+
+                    colorLinks = [];
+
+                }else{
+
+                    colorLinks =
+                        Array.isArray(
+                            colorsResponse.data
+                        )
+                        ?
+                        colorsResponse.data
+                        :
+                        [];
                 }
 
 
                 console.log(
-                    "STRANGIS — productos recibidos:",
-                    data
+                    "STRANGIS — productos:",
+                    allProducts.length
                 );
 
 
-                allProducts =
-                    Array.isArray(data)
-                    ? data
-                    : [];
+                console.log(
+                    "STRANGIS — colores:",
+                    colorLinks
+                );
 
 
                 renderProducts(
@@ -3212,7 +2618,7 @@
             }catch(error){
 
                 console.error(
-                    "STRANGIS — error Supabase:",
+                    "STRANGIS — error:",
                     error
                 );
 
@@ -3226,9 +2632,12 @@
                     <div class="empty">
 
                         <div class="empty-title">
+
                             No se pudieron cargar
                             los productos
+
                         </div>
+
 
                         <div class="empty-text">
 
@@ -3237,19 +2646,58 @@
                                 "Error desconocido."
                             )}
 
-                            <br><br>
-
-                            Comprueba las políticas
-                            <strong>RLS</strong>
-                            de la tabla
-                            <strong>Products</strong>.
-
                         </div>
 
                     </div>
 
                 `;
             }
+        }
+
+
+        /* =====================================================
+           LIMPIAR BUSCADOR
+        ====================================================== */
+
+        const searchInput =
+            document.getElementById(
+                "productSearch"
+            );
+
+
+        const searchClear =
+            document.getElementById(
+                "searchClear"
+            );
+
+
+        if(searchInput){
+
+            searchInput.addEventListener(
+                "input",
+                performSearch
+            );
+
+            searchInput.addEventListener(
+                "search",
+                performSearch
+            );
+        }
+
+
+        if(searchClear){
+
+            searchClear.addEventListener(
+                "click",
+                ()=>{
+
+                    searchInput.value = "";
+
+                    performSearch();
+
+                    searchInput.focus();
+                }
+            );
         }
 
 
@@ -3305,14 +2753,14 @@
 
 
         /* =====================================================
-           INICIO
+           INICIAR
         ====================================================== */
 
         loadInicioProducts();
 
 
         /*
-         * Actualizar productos cada 30 segundos.
+         * Actualizar cada 30 segundos.
          */
 
         setInterval(
@@ -3322,15 +2770,15 @@
 
 
         console.log(
-            "STRANGIS — inicio conectado a Supabase"
+            "STRANGIS — Inicio conectado"
         );
 
         console.log(
-            "STRANGIS — búsqueda por color con imagen asociada"
+            "STRANGIS — búsqueda por color mediante product_colors"
         );
 
     </script>
 
 </body>
 
-    </html>
+</html>
