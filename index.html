@@ -17,41 +17,41 @@
         content="Strangis — Tu tienda online."
     >
 
-<!-- =====================================================
-     COMPARTIR WEB — SOLO IMAGEN
-====================================================== -->
+    <!-- =====================================================
+         COMPARTIR WEB
+    ====================================================== -->
 
-<meta property="og:type" content="website">
+    <meta property="og:type" content="website">
 
-<meta
-    property="og:url"
-    content="https://yfmodaurbana-eng.github.io/TiendaOnline/"
->
+    <meta
+        property="og:url"
+        content="https://yfmodaurbana-eng.github.io/TiendaOnline/"
+    >
 
-<meta
-    property="og:image"
-    content="https://i.imgur.com/nomrvEn.jpeg"
->
+    <meta
+        property="og:image"
+        content="https://i.imgur.com/nomrvEn.jpeg"
+    >
 
-<meta
-    property="og:image:secure_url"
-    content="https://i.imgur.com/nomrvEn.jpeg"
->
+    <meta
+        property="og:image:secure_url"
+        content="https://i.imgur.com/nomrvEn.jpeg"
+    >
 
-<meta
-    property="og:image:type"
-    content="image/png"
->
+    <meta
+        property="og:image:type"
+        content="image/jpeg"
+    >
 
-<meta
-    property="og:image:width"
-    content="1200"
->
+    <meta
+        property="og:image:width"
+        content="1200"
+    >
 
-<meta
-    property="og:image:height"
-    content="630"
->
+    <meta
+        property="og:image:height"
+        content="630"
+    >
 
     <!-- =====================================================
          ESTILOS
@@ -66,7 +66,7 @@
         }
 
         html{
-         "   scroll-behavior:smooth;
+            scroll-behavior:smooth;
         }
 
         body{
@@ -96,6 +96,10 @@
         input{
             font:inherit;
         }
+
+        /* =====================================================
+           HEADER
+        ====================================================== */
 
         header{
 
@@ -169,9 +173,185 @@
             color:#fff;
         }
 
+        /* =====================================================
+           BUSCADOR
+        ====================================================== */
+
+        .search-section{
+
+            width:min(900px,90%);
+
+            margin:0 auto;
+
+            padding:
+                25px 0
+                0;
+        }
+
+        .search-box{
+
+            position:relative;
+
+            width:100%;
+
+            display:flex;
+            align-items:center;
+        }
+
+        .search-icon{
+
+            position:absolute;
+
+            left:17px;
+
+            width:18px;
+            height:18px;
+
+            color:#888;
+
+            pointer-events:none;
+        }
+
+        .search-input{
+
+            width:100%;
+
+            height:52px;
+
+            padding:
+                0 50px
+                0 48px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.14);
+
+            border-radius:10px;
+
+            outline:none;
+
+            color:#fff;
+
+            background:
+                rgba(255,255,255,.055);
+
+            box-shadow:
+                inset 0 0 20px
+                rgba(255,255,255,.015),
+
+                0 8px 30px
+                rgba(0,0,0,.15);
+
+            transition:
+                border-color .2s ease,
+                background .2s ease,
+                box-shadow .2s ease;
+        }
+
+        .search-input::placeholder{
+            color:#777;
+        }
+
+        .search-input:focus{
+
+            border-color:
+                rgba(255,255,255,.35);
+
+            background:
+                rgba(255,255,255,.075);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(255,255,255,.035),
+
+                0 10px 35px
+                rgba(0,0,0,.2);
+        }
+
+        .search-clear{
+
+            position:absolute;
+
+            right:10px;
+
+            width:34px;
+            height:34px;
+
+            display:flex;
+            align-items:center;
+            justify-content:center;
+
+            border:0;
+            border-radius:50%;
+
+            color:#999;
+
+            background:
+                rgba(255,255,255,.07);
+
+            cursor:pointer;
+
+            opacity:0;
+            visibility:hidden;
+
+            transition:
+                opacity .2s ease,
+                background .2s ease,
+                color .2s ease;
+        }
+
+        .search-clear.visible{
+
+            opacity:1;
+            visibility:visible;
+        }
+
+        .search-clear:hover{
+
+            color:#fff;
+
+            background:
+                rgba(255,255,255,.14);
+        }
+
+        .search-help{
+
+            margin-top:9px;
+
+            color:#666;
+
+            font-size:9px;
+
+            letter-spacing:.8px;
+
+            text-align:center;
+        }
+
+        .search-result{
+
+            min-height:16px;
+
+            margin-top:8px;
+
+            color:#999;
+
+            font-size:10px;
+
+            text-align:center;
+        }
+
+        .search-result strong{
+            color:#ddd;
+        }
+
+        /* =====================================================
+           HERO
+        ====================================================== */
+
         .hero{
 
             width:min(1400px,90%);
+
             margin:auto;
 
             padding:
@@ -187,6 +367,7 @@
         .hero h1{
 
             position:relative;
+
             display:inline-block;
 
             margin-top:0;
@@ -199,7 +380,9 @@
                 );
 
             line-height:.8;
+
             letter-spacing:-9px;
+
             font-weight:900;
 
             color:#f7f7f7;
@@ -232,6 +415,7 @@
             position:absolute;
 
             inset:0;
+
             z-index:-1;
 
             color:transparent;
@@ -387,6 +571,7 @@
             color:#b5b5b5;
 
             font-size:16px;
+
             line-height:1.8;
         }
 
@@ -458,11 +643,13 @@
         }
 
         .hero-note strong{
-
             color:#ffb15c;
-
             font-weight:900;
         }
+
+        /* =====================================================
+           PRODUCTOS
+        ====================================================== */
 
         .products-section{
 
@@ -481,7 +668,9 @@
         .section-heading{
 
             display:flex;
+
             align-items:end;
+
             justify-content:space-between;
 
             gap:20px;
@@ -492,6 +681,7 @@
         .section-heading h2{
 
             font-size:14px;
+
             font-weight:900;
 
             letter-spacing:2px;
@@ -504,6 +694,7 @@
             color:#777;
 
             font-size:10px;
+
             letter-spacing:1px;
         }
 
@@ -597,6 +788,7 @@
         .product{
 
             flex:0 0 205px;
+
             width:205px;
 
             overflow:hidden;
@@ -674,23 +866,51 @@
             color:#fff;
 
             font-size:12px;
+
             font-weight:800;
 
             line-height:1.35;
         }
 
-        .product-category{
+        .product-ref{
 
             margin-top:5px;
+
+            color:#aaa;
+
+            font-size:9px;
+
+            font-weight:bold;
+
+            letter-spacing:.8px;
+
+            text-transform:uppercase;
+        }
+
+        .product-category{
+
+            margin-top:4px;
 
             color:#777;
 
             font-size:9px;
+
             font-weight:bold;
 
             letter-spacing:1px;
 
             text-transform:uppercase;
+        }
+
+        .product-variants{
+
+            margin-top:6px;
+
+            color:#777;
+
+            font-size:8px;
+
+            line-height:1.4;
         }
 
         .product-link{
@@ -701,6 +921,10 @@
 
             text-decoration:none;
         }
+
+        /* =====================================================
+           VACÍO
+        ====================================================== */
 
         .empty{
 
@@ -728,6 +952,7 @@
             color:#aaa;
 
             font-size:12px;
+
             font-weight:bold;
 
             letter-spacing:2px;
@@ -748,6 +973,10 @@
 
             line-height:1.7;
         }
+
+        /* =====================================================
+           INFORMACIÓN
+        ====================================================== */
 
         .info-section{
 
@@ -770,10 +999,6 @@
 
             gap:15px;
         }
-
-        /* =====================================================
-           TARJETAS INFORMACIÓN — NARANJA SUAVE
-        ====================================================== */
 
         .info-card{
 
@@ -820,14 +1045,11 @@
             color:#ffad5c;
 
             font-size:9px;
+
             font-weight:bold;
 
             letter-spacing:2px;
         }
-
-        /* =====================================================
-           TÍTULOS TARJETAS — NEÓN RESPIRANDO
-        ====================================================== */
 
         .info-card h3{
 
@@ -907,6 +1129,10 @@
             line-height:1.75;
         }
 
+        /* =====================================================
+           FOOTER
+        ====================================================== */
+
         footer{
 
             padding:
@@ -924,6 +1150,10 @@
 
             letter-spacing:1px;
         }
+
+        /* =====================================================
+           WHATSAPP
+        ====================================================== */
 
         .whatsapp-button{
 
@@ -972,6 +1202,10 @@
             fill:#fff;
         }
 
+        /* =====================================================
+           RESPONSIVE
+        ====================================================== */
+
         @media(max-width:1100px){
 
             .product{
@@ -1006,6 +1240,7 @@
             .logo{
 
                 font-size:17px;
+
                 letter-spacing:2.5px;
             }
 
@@ -1022,6 +1257,20 @@
 
             nav a{
                 font-size:10px;
+            }
+
+            .search-section{
+
+                width:94%;
+
+                padding-top:20px;
+            }
+
+            .search-input{
+
+                height:48px;
+
+                padding-left:45px;
             }
 
             .hero{
@@ -1077,6 +1326,7 @@
             .product{
 
                 flex-basis:155px;
+
                 width:155px;
 
                 border-radius:7px;
@@ -1092,8 +1342,16 @@
                 font-size:10px;
             }
 
+            .product-ref{
+                font-size:8px;
+            }
+
             .product-category{
                 font-size:8px;
+            }
+
+            .product-variants{
+                font-size:7px;
             }
 
             .products{
@@ -1137,6 +1395,7 @@
             .product{
 
                 flex-basis:145px;
+
                 width:145px;
             }
 
@@ -1246,6 +1505,82 @@
 
 
     <!-- =====================================================
+         BUSCADOR
+    ====================================================== -->
+
+    <section class="search-section">
+
+        <div class="search-box">
+
+            <svg
+                class="search-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+            >
+
+                <circle
+                    cx="11"
+                    cy="11"
+                    r="7"
+                ></circle>
+
+                <line
+                    x1="16.65"
+                    y1="16.65"
+                    x2="21"
+                    y2="21"
+                ></line>
+
+            </svg>
+
+
+            <input
+                id="productSearch"
+                class="search-input"
+                type="search"
+                autocomplete="off"
+                spellcheck="false"
+                placeholder="Buscar por referencia o variante..."
+                aria-label="Buscar productos por referencia o variante"
+            >
+
+
+            <button
+                id="searchClear"
+                class="search-clear"
+                type="button"
+                aria-label="Limpiar búsqueda"
+            >
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div class="search-help">
+
+            Puedes buscar por referencia, variante o nombre del producto.
+
+        </div>
+
+
+        <div
+            id="searchResult"
+            class="search-result"
+            aria-live="polite"
+        ></div>
+
+    </section>
+
+
+    <!-- =====================================================
          HERO
     ====================================================== -->
 
@@ -1292,6 +1627,7 @@
 
         </div>
 
+
         <div
             class="carousel-window"
             id="carouselWindow"
@@ -1333,6 +1669,7 @@
 
             </div>
 
+
             <div class="info-card">
 
                 <small>
@@ -1350,6 +1687,7 @@
                 </p>
 
             </div>
+
 
             <div class="info-card">
 
@@ -1406,6 +1744,10 @@
             );
 
 
+        /* =====================================================
+           CATEGORÍAS
+        ====================================================== */
+
         const CATEGORY_LINKS = {
 
             camisetas:"camisetas.html",
@@ -1429,6 +1771,19 @@
 
         };
 
+
+        /* =====================================================
+           ESTADO
+        ====================================================== */
+
+        let allProducts = [];
+
+        let currentSearch = "";
+
+
+        /* =====================================================
+           SEGURIDAD HTML
+        ====================================================== */
 
         function escapeHTML(value){
 
@@ -1454,6 +1809,28 @@
         }
 
 
+        /* =====================================================
+           NORMALIZAR TEXTO
+        ====================================================== */
+
+        function normalizeText(value){
+
+            return String(value ?? "")
+
+                .normalize("NFD")
+
+                .replace(/[\u0300-\u036f]/g,"")
+
+                .toLowerCase()
+
+                .trim();
+        }
+
+
+        /* =====================================================
+           IMÁGENES
+        ====================================================== */
+
         function getProductImages(product){
 
             if(!product){
@@ -1465,7 +1842,9 @@
             if(typeof raw === "string"){
 
                 try{
+
                     raw = JSON.parse(raw);
+
                 }
 
                 catch(error){
@@ -1549,6 +1928,182 @@
         }
 
 
+        /* =====================================================
+           VARIANTES
+           
+           Admite:
+           - texto
+           - array
+           - JSON
+           - objetos JSON
+        ====================================================== */
+
+        function getProductVariants(product){
+
+            if(!product){
+                return [];
+            }
+
+            let value =
+                product.variants;
+
+            if(
+                value === null ||
+                value === undefined
+            ){
+                return [];
+            }
+
+
+            if(typeof value === "string"){
+
+                const trimmed =
+                    value.trim();
+
+                if(!trimmed){
+                    return [];
+                }
+
+
+                try{
+
+                    value =
+                        JSON.parse(trimmed);
+
+                }
+
+                catch(error){
+
+                    return trimmed
+                        .split(/[,|;]/)
+                        .map(item=>item.trim())
+                        .filter(Boolean);
+                }
+            }
+
+
+            if(Array.isArray(value)){
+
+                const result = [];
+
+                value.forEach(item=>{
+
+                    if(
+                        typeof item === "string"
+                    ){
+
+                        if(item.trim()){
+                            result.push(item.trim());
+                        }
+
+                        return;
+                    }
+
+
+                    if(
+                        typeof item === "number"
+                    ){
+
+                        result.push(
+                            String(item)
+                        );
+
+                        return;
+                    }
+
+
+                    if(
+                        item &&
+                        typeof item === "object"
+                    ){
+
+                        [
+                            "name",
+                            "variant",
+                            "value",
+                            "size",
+                            "color",
+                            "ref"
+                        ].forEach(key=>{
+
+                            if(
+                                item[key] !==
+                                undefined &&
+                                item[key] !== null &&
+                                String(item[key]).trim()
+                            ){
+
+                                result.push(
+                                    String(item[key]).trim()
+                                );
+
+                            }
+
+                        });
+
+                    }
+
+                });
+
+                return [
+                    ...new Set(result)
+                ];
+            }
+
+
+            if(
+                typeof value === "object"
+            ){
+
+                const result = [];
+
+                Object.entries(value)
+                    .forEach(
+                        ([key,val])=>{
+
+                            result.push(key);
+
+                            if(
+                                typeof val === "string" ||
+                                typeof val === "number"
+                            ){
+
+                                result.push(
+                                    String(val)
+                                );
+
+                            }
+
+                        }
+                    );
+
+                return [
+                    ...new Set(result)
+                ];
+            }
+
+
+            return [
+                String(value)
+            ];
+        }
+
+
+        /* =====================================================
+           TEXTO DE VARIANTES
+        ====================================================== */
+
+        function getVariantsText(product){
+
+            return getProductVariants(product)
+                .join(" · ");
+        }
+
+
+        /* =====================================================
+           CATEGORÍAS
+        ====================================================== */
+
         function getCategoryName(category){
 
             const key =
@@ -1576,6 +2131,74 @@
         }
 
 
+        /* =====================================================
+           DATOS PARA BUSCAR
+        ====================================================== */
+
+        function getSearchableText(product){
+
+            const reference =
+                product?.ref ??
+                product?.reference ??
+                product?.sku ??
+                "";
+
+            const name =
+                product?.name ??
+                "";
+
+            const variants =
+                getProductVariants(product)
+                    .join(" ");
+
+            const category =
+                product?.category ??
+                "";
+
+            return normalizeText(
+                [
+                    reference,
+                    name,
+                    variants,
+                    category
+                ].join(" ")
+            );
+        }
+
+
+        /* =====================================================
+           FILTRAR PRODUCTOS
+        ====================================================== */
+
+        function filterProducts(search){
+
+            const query =
+                normalizeText(search);
+
+            if(!query){
+                return allProducts;
+            }
+
+            return allProducts.filter(
+                product => {
+
+                    const searchable =
+                        getSearchableText(
+                            product
+                        );
+
+                    return searchable.includes(
+                        query
+                    );
+                }
+            );
+        }
+
+
+        /* =====================================================
+           TARJETA
+        ====================================================== */
+
         function createProductCard(product){
 
             const image =
@@ -1585,11 +2208,22 @@
                 return "";
             }
 
+
             const name =
                 String(
                     product?.name ||
                     "Producto Strangis"
                 );
+
+
+            const reference =
+                String(
+                    product?.ref ??
+                    product?.reference ??
+                    product?.sku ??
+                    ""
+                );
+
 
             const category =
                 String(
@@ -1599,11 +2233,20 @@
                 .trim()
                 .toLowerCase();
 
+
             const categoryName =
-                getCategoryName(category);
+                getCategoryName(
+                    category
+                );
+
+
+            const variants =
+                getVariantsText(product);
+
 
             const link =
                 getProductLink(product);
+
 
             return `
 
@@ -1626,15 +2269,43 @@
 
                         </div>
 
+
                         <div class="product-info">
 
                             <div class="product-name">
                                 ${escapeHTML(name)}
                             </div>
 
+
+                            ${
+                                reference
+                                ?
+                                `
+                                <div class="product-ref">
+                                    REF: ${escapeHTML(reference)}
+                                </div>
+                                `
+                                :
+                                ""
+                            }
+
+
                             <div class="product-category">
                                 ${escapeHTML(categoryName)}
                             </div>
+
+
+                            ${
+                                variants
+                                ?
+                                `
+                                <div class="product-variants">
+                                    ${escapeHTML(variants)}
+                                </div>
+                                `
+                                :
+                                ""
+                            }
 
                         </div>
 
@@ -1646,6 +2317,10 @@
         }
 
 
+        /* =====================================================
+           MOSTRAR PRODUCTOS
+        ====================================================== */
+
         function renderProducts(products){
 
             const container =
@@ -1653,14 +2328,23 @@
                     "productsContainer"
                 );
 
+
             const counter =
                 document.getElementById(
                     "productCount"
                 );
 
+
+            const result =
+                document.getElementById(
+                    "searchResult"
+                );
+
+
             if(!container){
                 return;
             }
+
 
             const activeProducts =
                 Array.isArray(products)
@@ -1673,6 +2357,7 @@
 
                 : [];
 
+
             const validProducts =
                 activeProducts.filter(
                     product =>
@@ -1681,10 +2366,42 @@
                         )
                 );
 
+
             counter.textContent =
                 validProducts.length === 1
                 ? "1 artículo"
                 : `${validProducts.length} artículos`;
+
+
+            if(currentSearch){
+
+                result.innerHTML =
+                    validProducts.length
+
+                    ?
+
+                    `Encontrados:
+                    <strong>
+                        ${validProducts.length}
+                    </strong>
+                    ${
+                        validProducts.length === 1
+                        ? "artículo"
+                        : "artículos"
+                    }`
+
+                    :
+
+                    `<strong>
+                        No se encontraron productos
+                    </strong>`;
+            }
+
+            else{
+
+                result.textContent = "";
+            }
+
 
             if(!validProducts.length){
 
@@ -1696,12 +2413,35 @@
                     <div class="empty">
 
                         <div class="empty-title">
-                            Próximamente
+
+                            ${
+                                currentSearch
+                                ? "Sin resultados"
+                                : "Próximamente"
+                            }
+
                         </div>
 
                         <div class="empty-text">
-                            Estamos preparando nuevos artículos
-                            para la colección Strangis.
+
+                            ${
+                                currentSearch
+
+                                ?
+
+                                `
+                                No encontramos ningún producto
+                                con esa referencia o variante.
+                                `
+
+                                :
+
+                                `
+                                Estamos preparando nuevos artículos
+                                para la colección Strangis.
+                                `
+                            }
+
                         </div>
 
                     </div>
@@ -1711,20 +2451,138 @@
                 return;
             }
 
+
             const cards =
                 validProducts
                     .map(createProductCard)
                     .join("");
 
-            container.innerHTML =
-                cards + cards;
 
-            container.style.animation =
-                validProducts.length === 1
-                ? "none"
-                : "";
+            /*
+             * Duplicamos los productos únicamente
+             * cuando hay más de un resultado para
+             * mantener el carrusel infinito.
+             */
+
+            if(validProducts.length > 1){
+
+                container.innerHTML =
+                    cards + cards;
+
+                container.style.animation =
+                    "";
+
+            }
+
+            else{
+
+                container.innerHTML =
+                    cards;
+
+                container.style.animation =
+                    "none";
+            }
         }
 
+
+        /* =====================================================
+           BUSCAR
+        ====================================================== */
+
+        function performSearch(){
+
+            const input =
+                document.getElementById(
+                    "productSearch"
+                );
+
+
+            const clearButton =
+                document.getElementById(
+                    "searchClear"
+                );
+
+
+            if(!input){
+                return;
+            }
+
+
+            currentSearch =
+                input.value.trim();
+
+
+            if(clearButton){
+
+                clearButton.classList.toggle(
+                    "visible",
+                    Boolean(currentSearch)
+                );
+            }
+
+
+            const filtered =
+                filterProducts(
+                    currentSearch
+                );
+
+
+            renderProducts(
+                filtered
+            );
+        }
+
+
+        /* =====================================================
+           EVENTOS DEL BUSCADOR
+        ====================================================== */
+
+        const searchInput =
+            document.getElementById(
+                "productSearch"
+            );
+
+
+        const searchClear =
+            document.getElementById(
+                "searchClear"
+            );
+
+
+        if(searchInput){
+
+            searchInput.addEventListener(
+                "input",
+                performSearch
+            );
+
+
+            searchInput.addEventListener(
+                "search",
+                performSearch
+            );
+        }
+
+
+        if(searchClear){
+
+            searchClear.addEventListener(
+                "click",
+                ()=>{
+
+                    searchInput.value = "";
+
+                    searchInput.focus();
+
+                    performSearch();
+                }
+            );
+        }
+
+
+        /* =====================================================
+           CARGAR PRODUCTOS
+        ====================================================== */
 
         async function loadInicioProducts(){
 
@@ -1733,31 +2591,38 @@
                     "productsContainer"
                 );
 
+
             const counter =
                 document.getElementById(
                     "productCount"
                 );
+
 
             try{
 
                 counter.textContent =
                     "Cargando...";
 
-                container.innerHTML = `
 
-                    <div class="empty">
+                if(!currentSearch){
 
-                        <div class="empty-title">
-                            Cargando productos
+                    container.innerHTML = `
+
+                        <div class="empty">
+
+                            <div class="empty-title">
+                                Cargando productos
+                            </div>
+
+                            <div class="empty-text">
+                                Un momento...
+                            </div>
+
                         </div>
 
-                        <div class="empty-text">
-                            Un momento...
-                        </div>
+                    `;
+                }
 
-                    </div>
-
-                `;
 
                 const {data,error} =
                     await supabaseClient
@@ -1775,20 +2640,39 @@
                             }
                         );
 
+
                 if(error){
                     throw error;
                 }
+
 
                 console.log(
                     "STRANGIS — productos recibidos:",
                     data
                 );
 
-                renderProducts(
+
+                allProducts =
                     Array.isArray(data)
-                        ? data
-                        : []
+                    ? data
+                    : [];
+
+
+                /*
+                 * Si el usuario está buscando,
+                 * mantenemos la búsqueda.
+                 */
+
+                const filtered =
+                    filterProducts(
+                        currentSearch
+                    );
+
+
+                renderProducts(
+                    filtered
                 );
+
 
             }
 
@@ -1799,8 +2683,10 @@
                     error
                 );
 
+
                 counter.textContent =
                     "Error";
+
 
                 container.innerHTML = `
 
@@ -1834,10 +2720,15 @@
         }
 
 
+        /* =====================================================
+           PAUSAR CARRUSEL AL PASAR EL RATÓN
+        ====================================================== */
+
         const carouselWindow =
             document.getElementById(
                 "carouselWindow"
             );
+
 
         if(carouselWindow){
 
@@ -1850,12 +2741,15 @@
                             "productsContainer"
                         );
 
+
                     if(track){
+
                         track.style.animationPlayState =
                             "paused";
                     }
                 }
             );
+
 
             carouselWindow.addEventListener(
                 "mouseleave",
@@ -1866,7 +2760,9 @@
                             "productsContainer"
                         );
 
+
                     if(track){
+
                         track.style.animationPlayState =
                             "running";
                     }
@@ -1875,8 +2771,16 @@
         }
 
 
+        /* =====================================================
+           INICIO
+        ====================================================== */
+
         loadInicioProducts();
 
+
+        /*
+         * Actualizar productos cada 30 segundos.
+         */
 
         setInterval(
             loadInicioProducts,
@@ -1892,4 +2796,4 @@
 
 </body>
 
-</html>
+    </html>
