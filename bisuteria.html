@@ -163,13 +163,14 @@ nav a.active{
 .product-gallery{
     position:relative;
     height:390px;
-    margin:-16px -16px 20px;
+    margin:-16px -16px 14px;
     overflow:hidden;
     background:#171717;
     touch-action:pan-y;
 }
 
 .product-image{
+    position:relative;
     width:100%;
     height:100%;
     display:flex;
@@ -191,15 +192,112 @@ nav a.active{
     transform:scale(1.08);
 }
 
+/* =========================
+   ETIQUETA EN LA IMAGEN
+========================= */
+
+.product-image-label{
+    position:absolute;
+    left:14px;
+    right:14px;
+    bottom:14px;
+    z-index:6;
+
+    padding:12px 14px;
+
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:9px;
+
+    background:rgba(10,10,10,.76);
+
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.38);
+
+    pointer-events:none;
+}
+
+.product-image-label-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+}
+
+.product-image-label-name{
+    min-width:0;
+
+    color:#fff;
+
+    font-size:13px;
+    font-weight:800;
+    line-height:1.25;
+    letter-spacing:.2px;
+
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.product-image-label-price{
+    flex-shrink:0;
+
+    color:#fff;
+
+    font-size:14px;
+    font-weight:900;
+    white-space:nowrap;
+}
+
+.product-image-label-meta{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    margin-top:6px;
+
+    color:#aaa;
+
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+.product-image-label-ref{
+    color:#aaa;
+}
+
+.product-image-label-color{
+    color:#fff;
+}
+
+.product-image-label-separator{
+    width:3px;
+    height:3px;
+    flex:0 0 3px;
+    border-radius:50%;
+    background:#777;
+}
+
+/* =========================
+   FLECHAS
+========================= */
+
 .gallery-arrow,
 .lightbox-arrow{
     position:absolute;
-    z-index:5;
+    z-index:8;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     border:1px solid rgba(255,255,255,.25);
     border-radius:50%;
+
     background:rgba(0,0,0,.55);
     color:#fff;
     cursor:pointer;
@@ -207,125 +305,110 @@ nav a.active{
 
 .gallery-arrow{
     top:50%;
-    width:38px;
-    height:38px;
+    width:36px;
+    height:36px;
     transform:translateY(-50%);
 }
 
 .gallery-arrow.prev{
-    left:12px;
+    left:10px;
 }
 
 .gallery-arrow.next{
-    right:12px;
+    right:10px;
 }
+
+.gallery-arrow:hover{
+    background:rgba(0,0,0,.78);
+    border-color:rgba(255,255,255,.5);
+}
+
+/* =========================
+   CONTADOR
+========================= */
 
 .gallery-counter,
 .lightbox-counter{
     position:absolute;
     left:50%;
-    bottom:12px;
-    z-index:5;
-    padding:6px 10px;
+    z-index:8;
+
+    padding:5px 9px;
+
     border-radius:20px;
     background:rgba(0,0,0,.55);
+
     color:#fff;
-    font-size:10px;
+    font-size:9px;
     font-weight:bold;
+
     transform:translateX(-50%);
+}
+
+.gallery-counter{
+    bottom:72px;
 }
 
 .swipe-hint{
     position:absolute;
     left:50%;
-    bottom:42px;
-    z-index:4;
-    padding:5px 9px;
+    bottom:48px;
+    z-index:7;
+
+    padding:4px 8px;
+
     border-radius:15px;
-    background:rgba(0,0,0,.42);
+    background:rgba(0,0,0,.35);
+
     color:#ddd;
-    font-size:9px;
+    font-size:8px;
+
     transform:translateX(-50%);
-    opacity:.8;
+
+    opacity:.65;
     pointer-events:none;
 }
 
 /* =========================
-   INFO
+   INFORMACIÓN
 ========================= */
 
-.product-name{
-    font-size:16px;
-    font-weight:800;
-    line-height:1.35;
-}
+/*
+   Nombre y referencia ya están
+   dentro de la etiqueta de imagen.
+*/
 
+.product-name,
 .product-code{
-    margin-top:7px;
-    color:#777;
-    font-size:10px;
-    letter-spacing:1.2px;
+    display:none;
 }
 
 .product-description{
-    margin-top:10px;
+    margin-top:4px;
     color:#999;
     font-size:12px;
     line-height:1.55;
 }
 
 .product-price{
-    margin-top:14px;
-    font-size:17px;
-    font-weight:800;
+    display:none;
+}
+
+/*
+   Las etiquetas de variante/color
+   inferiores desaparecen.
+*/
+
+.colors{
+    display:none;
+}
+
+.variant-selector{
+    display:none;
 }
 
 .label{
-    margin-top:18px;
-    color:#aaa;
-    font-size:10px;
-    font-weight:bold;
-    text-transform:uppercase;
-    letter-spacing:1.2px;
-}
-
-.label span{
-    color:#fff;
-}
-
-/* =========================
-   COLORES / VARIANTES
-========================= */
-
-.colors{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    margin-top:11px;
-}
-
-.color{
-    width:42px;
-    height:42px;
-    flex:0 0 42px;
-    border:2px solid rgba(255,255,255,.25);
-    border-radius:50%;
-    cursor:pointer;
-    background-color:#222;
-    background-repeat:no-repeat;
-    background-size:cover;
-    background-position:center;
-    transition:.2s;
-}
-
-.color:hover{
-    transform:scale(1.08);
-    border-color:#fff;
-}
-
-.color.active{
-    outline:2px solid #fff;
-    outline-offset:3px;
+    display:none;
 }
 
 /* =========================
@@ -336,7 +419,7 @@ nav a.active{
     display:flex;
     flex-wrap:wrap;
     gap:7px;
-    margin-top:11px;
+    margin-top:12px;
 }
 
 .size{
@@ -369,16 +452,19 @@ nav a.active{
     display:flex;
     align-items:center;
     gap:14px;
-    margin-top:18px;
+    margin-top:16px;
 }
 
 .quantity button{
     width:36px;
     height:36px;
+
     border:1px solid rgba(255,255,255,.20);
     border-radius:5px;
+
     background:#181818;
     color:#fff;
+
     cursor:pointer;
     font-size:18px;
 }
@@ -395,13 +481,17 @@ nav a.active{
 ========================= */
 
 .shipping{
-    margin-top:17px;
+    margin-top:15px;
     padding:11px 12px;
+
     border:1px solid rgba(255,177,72,.28);
     border-left:3px solid #f0a44b;
     border-radius:7px;
+
     background:rgba(240,164,75,.10);
+
     color:#f2c58f;
+
     font-size:11px;
     font-weight:bold;
     line-height:1.45;
@@ -428,15 +518,19 @@ nav a.active{
 
 .buy{
     width:100%;
-    margin-top:18px;
-    padding:16px;
+    margin-top:16px;
+    padding:15px;
+
     border:0;
     border-radius:6px;
+
     background:#fff;
     color:#111;
+
     font-size:11px;
     font-weight:900;
     letter-spacing:1.5px;
+
     cursor:pointer;
 }
 
@@ -481,10 +575,13 @@ footer{
     position:fixed;
     inset:0;
     z-index:10000;
+
     display:none;
     align-items:center;
     justify-content:center;
+
     padding:25px;
+
     background:rgba(0,0,0,.92);
     backdrop-filter:blur(12px);
 }
@@ -495,8 +592,10 @@ footer{
 
 .lightbox-content{
     position:relative;
+
     width:min(1100px,100%);
     height:min(90vh,900px);
+
     display:flex;
     align-items:center;
     justify-content:center;
@@ -505,8 +604,10 @@ footer{
 .lightbox-image{
     max-width:100%;
     max-height:90vh;
+
     width:auto;
     height:auto;
+
     object-fit:contain;
     border-radius:8px;
 }
@@ -516,12 +617,16 @@ footer{
     top:-10px;
     right:-10px;
     z-index:10;
+
     width:44px;
     height:44px;
+
     border:1px solid rgba(255,255,255,.25);
     border-radius:50%;
+
     background:rgba(0,0,0,.7);
     color:#fff;
+
     cursor:pointer;
     font-size:24px;
 }
@@ -542,6 +647,10 @@ footer{
     right:10px;
 }
 
+.lightbox-counter{
+    bottom:15px;
+}
+
 /* =========================
    MODAL
 ========================= */
@@ -550,10 +659,13 @@ footer{
     position:fixed;
     inset:0;
     z-index:5000;
+
     display:none;
     align-items:center;
     justify-content:center;
+
     padding:25px;
+
     background:rgba(0,0,0,.78);
     backdrop-filter:blur(10px);
 }
@@ -565,10 +677,14 @@ footer{
 .modal-box{
     width:min(700px,100%);
     max-height:calc(100vh - 40px);
+
     overflow-y:auto;
+
     padding:30px;
+
     border:1px solid rgba(255,255,255,.16);
     border-radius:15px;
+
     background:linear-gradient(145deg,#222,#111);
 }
 
@@ -595,10 +711,13 @@ footer{
 .close-modal{
     width:40px;
     height:40px;
+
     border:1px solid rgba(255,255,255,.15);
     border-radius:6px;
+
     background:#222;
     color:#fff;
+
     cursor:pointer;
     font-size:20px;
 }
@@ -606,10 +725,14 @@ footer{
 .order-summary{
     margin-bottom:25px;
     padding:16px;
+
     border:1px solid rgba(255,255,255,.10);
     border-radius:8px;
+
     background:rgba(255,255,255,.045);
+
     color:#aaa;
+
     font-size:12px;
     line-height:1.7;
 }
@@ -620,6 +743,7 @@ footer{
 
 .form-title{
     margin:25px 0 15px;
+
     font-size:13px;
     font-weight:900;
     letter-spacing:1.5px;
@@ -642,7 +766,9 @@ footer{
 .form-field label{
     display:block;
     margin-bottom:7px;
+
     color:#aaa;
+
     font-size:10px;
     font-weight:bold;
     letter-spacing:1px;
@@ -652,12 +778,17 @@ footer{
 .form-field input,
 .form-field textarea{
     width:100%;
+
     padding:14px;
+
     border:1px solid rgba(255,255,255,.16);
     border-radius:6px;
+
     outline:none;
+
     background:rgba(0,0,0,.35);
     color:#fff;
+
     font-size:14px;
 }
 
@@ -672,11 +803,15 @@ footer{
 
 .form-error{
     display:none;
+
     margin-bottom:15px;
     padding:12px;
+
     border:1px solid rgba(255,255,255,.20);
     border-radius:6px;
+
     background:rgba(255,255,255,.06);
+
     color:#fff;
     font-size:11px;
 }
@@ -689,11 +824,15 @@ footer{
     width:100%;
     margin-top:12px;
     padding:17px;
+
     border:0;
     border-radius:7px;
+
     background:#fff;
     color:#111;
+
     cursor:pointer;
+
     font-size:12px;
     font-weight:900;
     letter-spacing:1.2px;
@@ -703,10 +842,13 @@ footer{
     width:100%;
     margin-top:10px;
     padding:13px;
+
     border:1px solid rgba(255,255,255,.15);
     border-radius:6px;
+
     background:transparent;
     color:#aaa;
+
     cursor:pointer;
 }
 
@@ -790,11 +932,7 @@ footer{
 
     .product-gallery{
         height:min(115vw,430px);
-        margin:-12px -12px 15px;
-    }
-
-    .product:hover{
-        transform:none;
+        margin:-12px -12px 12px;
     }
 
     .product-image img,
@@ -802,10 +940,24 @@ footer{
         transform:none;
     }
 
-    .color{
-        width:38px;
-        height:38px;
-        flex-basis:38px;
+    .product-image-label{
+        left:10px;
+        right:10px;
+        bottom:10px;
+        padding:10px 12px;
+    }
+
+    .product-image-label-name{
+        font-size:12px;
+    }
+
+    .product-image-label-price{
+        font-size:13px;
+    }
+
+    .product-image-label-meta{
+        margin-top:4px;
+        font-size:8px;
     }
 
     .form-grid{
@@ -1235,12 +1387,6 @@ const STRANGIS_PRODUCTS_TABLE =
     "Products";
 
 
-/*
-   IMPORTANTE:
-   Esta página solo muestra productos
-   cuya categoría sea "bisuteria".
-*/
-
 const CATEGORY =
     "bisuteria";
 
@@ -1413,25 +1559,8 @@ function parseJSON(value,fallback=[]){
 
 
 /* =====================================================
-   IMÁGENES
+   VARIANTES
 ===================================================== */
-
-/*
-   TU ADMINISTRADOR GUARDA ALGO COMO:
-
-   [
-      {
-         "name":"Principal",
-         "color":"#888888",
-         "images":[
-             "https://..."
-         ]
-      }
-   ]
-
-   Esta función convierte ese formato
-   en variantes utilizables por la tienda.
-*/
 
 function getVariants(product){
 
@@ -1447,11 +1576,6 @@ function getVariants(product){
 
     raw.forEach(
         (variant,index)=>{
-
-            /*
-               Si por algún motivo el administrador
-               guarda directamente una URL.
-            */
 
             if(typeof variant === "string"){
 
@@ -1478,20 +1602,6 @@ function getVariants(product){
                 return;
             }
 
-
-            /*
-               Puede venir como:
-
-               images: ["url"]
-
-               o
-
-               image: "url"
-
-               o
-
-               url: "url"
-            */
 
             let images = [];
 
@@ -1560,10 +1670,6 @@ function getVariants(product){
 }
 
 
-/* =====================================================
-   TODAS LAS IMÁGENES DE UNA VARIANTE
-===================================================== */
-
 function getVariantImages(variant){
 
     if(!variant){
@@ -1584,10 +1690,6 @@ function getVariantImages(variant){
 
 }
 
-
-/* =====================================================
-   TALLAS
-===================================================== */
 
 function getSizes(product){
 
@@ -1620,20 +1722,9 @@ async function loadProducts(){
 
     try{
 
-        console.log(
-            "Cargando bisutería desde Supabase..."
-        );
-
-
         PRODUCTS =
             await supabaseClient
                 .getProducts();
-
-
-        console.log(
-            "Productos de bisutería:",
-            PRODUCTS
-        );
 
 
         renderProducts();
@@ -1678,7 +1769,7 @@ async function loadProducts(){
 
 
 /* =====================================================
-   RENDER
+   RENDER PRODUCTOS
 ===================================================== */
 
 function renderProducts(){
@@ -1758,11 +1849,6 @@ function createProductHTML(
         stock <= 0;
 
 
-    /*
-       Si el producto no tiene imágenes,
-       seguimos mostrando toda la información.
-    */
-
     if(!firstVariant){
 
         return `
@@ -1789,42 +1875,36 @@ function createProductHTML(
                 </div>
 
 
-                <div class="product-name">
+                <div class="product-description">
                     ${escapeHTML(
+                        product.description ||
                         product.name ||
                         "Producto"
                     )}
                 </div>
 
 
-                <div class="product-code">
-                    REF:
+                <div class="shipping">
+
+                    🚚
+
+                    <strong>
+                        Envío estimado:
+                    </strong>
+
                     ${escapeHTML(
-                        product.ref ||
-                        product.id
+                        product.shipping_min ?? 3
                     )}
+
+                    –
+
+                    ${escapeHTML(
+                        product.shipping_max ?? 9
+                    )}
+
+                    días laborables
+
                 </div>
-
-
-                ${
-                    product.description
-                    ?
-                    `
-                    <div class="product-description">
-                        ${escapeHTML(
-                            product.description
-                        )}
-                    </div>
-                    `
-                    :
-                    ""
-                }
-
-
-                <div class="product-price">
-                    ${money(product.price)}
-                </div>
-
 
             </article>
 
@@ -1854,7 +1934,9 @@ function createProductHTML(
             data-quantity="1"
         >
 
-            <!-- GALERÍA -->
+            <!-- =========================
+                 GALERÍA
+            ========================== -->
 
             <div
                 class="product-gallery"
@@ -1879,6 +1961,84 @@ function createProductHTML(
                         draggable="false"
                         onerror="imageError(this)"
                     >
+
+
+                    <!-- =========================
+                         INFORMACIÓN SOBRE IMAGEN
+                    ========================== -->
+
+                    <div
+                        class="product-image-label"
+                        id="product-image-label-${index}"
+                    >
+
+                        <div
+                            class="product-image-label-top"
+                        >
+
+                            <div
+                                class="product-image-label-name"
+                                id="product-label-name-${index}"
+                            >
+                                ${escapeHTML(
+                                    product.name ||
+                                    "Producto"
+                                )}
+                            </div>
+
+
+                            <div
+                                class="product-image-label-price"
+                                id="product-label-price-${index}"
+                            >
+                                ${money(product.price)}
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="product-image-label-meta"
+                        >
+
+                            <span
+                                class="product-image-label-ref"
+                                id="product-label-ref-${index}"
+                            >
+                                REF:
+                                ${escapeHTML(
+                                    product.ref ||
+                                    product.id
+                                )}
+                            </span>
+
+
+                            ${
+                                variants.length
+                                ?
+                                `
+
+                                <span
+                                    class="product-image-label-separator"
+                                ></span>
+
+                                <span
+                                    class="product-image-label-color"
+                                    id="product-label-color-${index}"
+                                >
+                                    ${escapeHTML(
+                                        firstVariant.name
+                                    )}
+                                </span>
+
+                                `
+                                :
+                                ""
+                            }
+
+                        </div>
+
+                    </div>
 
                 </div>
 
@@ -1945,32 +2105,9 @@ function createProductHTML(
             </div>
 
 
-            <!-- NOMBRE -->
-
-            <div class="product-name">
-
-                ${escapeHTML(
-                    product.name ||
-                    "Producto"
-                )}
-
-            </div>
-
-
-            <!-- REFERENCIA -->
-
-            <div class="product-code">
-
-                REF:
-                ${escapeHTML(
-                    product.ref ||
-                    product.id
-                )}
-
-            </div>
-
-
-            <!-- DESCRIPCIÓN -->
+            <!-- =========================
+                 DESCRIPCIÓN
+            ========================== -->
 
             ${
                 product.description
@@ -1991,108 +2128,14 @@ function createProductHTML(
             }
 
 
-            <!-- PRECIO -->
-
-            <div class="product-price">
-
-                ${money(product.price)}
-
-            </div>
-
-
-            <!-- VARIANTES -->
-
-            ${
-                variants.length
-                ?
-                `
-
-                <div class="label">
-
-                    Variante:
-
-                    <span
-                        id="color-name-${index}"
-                    >
-                        ${escapeHTML(
-                            firstVariant.name
-                        )}
-                    </span>
-
-                </div>
-
-
-                <div class="colors">
-
-                    ${
-                        variants
-                            .map(
-                                (
-                                    variant,
-                                    variantIndex
-                                )=>`
-
-                                    <button
-                                        type="button"
-                                        class="color ${
-                                            variantIndex === 0
-                                                ? "active"
-                                                : ""
-                                        }"
-                                        style="
-                                            background-color:${escapeHTML(
-                                                variant.color ||
-                                                "#888888"
-                                            )};
-                                            ${
-                                                getVariantImages(
-                                                    variant
-                                                )[0]
-                                                ?
-                                                `background-image:url('${escapeHTML(
-                                                    getVariantImages(
-                                                        variant
-                                                    )[0]
-                                                )}');`
-                                                :
-                                                ""
-                                            }
-                                        "
-                                        title="${escapeHTML(
-                                            variant.name
-                                        )}"
-                                        onclick="
-                                            selectColor(
-                                                ${index},
-                                                ${variantIndex}
-                                            )
-                                        "
-                                    ></button>
-
-                                `
-                            )
-                            .join("")
-                    }
-
-                </div>
-
-                `
-                :
-                ""
-            }
-
-
-            <!-- TALLAS -->
+            <!-- =========================
+                 TALLAS
+            ========================== -->
 
             ${
                 sizes.length
                 ?
                 `
-
-                <div class="label">
-                    Talla
-                </div>
-
 
                 <div class="sizes">
 
@@ -2130,7 +2173,9 @@ function createProductHTML(
             }
 
 
-            <!-- CANTIDAD -->
+            <!-- =========================
+                 CANTIDAD
+            ========================== -->
 
             <div class="quantity">
 
@@ -2161,7 +2206,9 @@ function createProductHTML(
             </div>
 
 
-            <!-- ENVÍO -->
+            <!-- =========================
+                 ENVÍO
+            ========================== -->
 
             <div class="shipping">
 
@@ -2186,7 +2233,9 @@ function createProductHTML(
             </div>
 
 
-            <!-- STOCK -->
+            <!-- =========================
+                 STOCK
+            ========================== -->
 
             ${
                 stockDefined
@@ -2217,7 +2266,9 @@ function createProductHTML(
             }
 
 
-            <!-- COMPRAR -->
+            <!-- =========================
+                 COMPRAR
+            ========================== -->
 
             <button
                 type="button"
@@ -2244,7 +2295,7 @@ function createProductHTML(
 
 
 /* =====================================================
-   CAMBIAR VARIANTE
+   CAMBIAR VARIANTE / IMAGEN
 ===================================================== */
 
 function setVariant(
@@ -2324,30 +2375,67 @@ function setVariant(
         `${product.name || "Producto"} - ${variant.name}`;
 
 
-    card
-        .querySelectorAll(".color")
-        .forEach(
-            (button,i)=>{
+    /* =========================
+       ACTUALIZAR ETIQUETA
+    ========================== */
 
-                button.classList.toggle(
-                    "active",
-                    i === variantIndex
-                );
-
-            }
-        );
-
-
-    const colorName =
+    const labelName =
         document.getElementById(
-            `color-name-${productIndex}`
+            `product-label-name-${productIndex}`
         );
 
 
-    if(colorName){
+    if(labelName){
 
-        colorName.textContent =
+        labelName.textContent =
+            product.name ||
+            "Producto";
+
+    }
+
+
+    const labelRef =
+        document.getElementById(
+            `product-label-ref-${productIndex}`
+        );
+
+
+    if(labelRef){
+
+        labelRef.textContent =
+            "REF: " +
+            (
+                product.ref ||
+                product.id
+            );
+
+    }
+
+
+    const labelColor =
+        document.getElementById(
+            `product-label-color-${productIndex}`
+        );
+
+
+    if(labelColor){
+
+        labelColor.textContent =
             variant.name;
+
+    }
+
+
+    const labelPrice =
+        document.getElementById(
+            `product-label-price-${productIndex}`
+        );
+
+
+    if(labelPrice){
+
+        labelPrice.textContent =
+            money(product.price);
 
     }
 
@@ -2518,8 +2606,10 @@ function selectPreviousVariant(
 
 
     if(current < 0){
+
         current =
             variants.length - 1;
+
     }
 
 
@@ -2597,14 +2687,6 @@ function galleryTouchEnd(
         return;
     }
 
-
-    /*
-       Primero cambiamos imágenes dentro
-       de la misma variante.
-
-       Cuando llegamos al final,
-       cambiamos de variante.
-    */
 
     const product =
         PRODUCTS[productIndex];
