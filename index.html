@@ -3,2162 +3,2242 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+    <title>Strangis</title>
 
-<title>Strangis</title>
+    <meta
+        name="description"
+        content="Strangis — Tu tienda online."
+    >
+
+    <!-- =====================================================
+         COMPARTIR WEB
+    ====================================================== -->
 
-<meta
-    name="description"
-    content="Strangis — Tu tienda online."
->
+    <meta property="og:type" content="website">
 
-<meta property="og:type" content="website">
+    <meta
+        property="og:url"
+        content="https://yfmodaurbana-eng.github.io/TiendaOnline/"
+    >
 
-<meta
-    property="og:url"
-    content="https://yfmodaurbana-eng.github.io/TiendaOnline/"
->
+    <meta
+        property="og:image"
+        content="https://i.imgur.com/nomrvEn.jpeg"
+    >
 
-<meta
-    property="og:image"
-    content="https://i.imgur.com/nomrvEn.jpeg"
->
+    <meta
+        property="og:image:secure_url"
+        content="https://i.imgur.com/nomrvEn.jpeg"
+    >
 
-<meta
-    property="og:image:secure_url"
-    content="https://i.imgur.com/nomrvEn.jpeg"
->
+    <meta
+        property="og:image:type"
+        content="image/jpeg"
+    >
 
-<meta
-    property="og:image:type"
-    content="image/jpeg"
->
+    <meta
+        property="og:image:width"
+        content="1200"
+    >
 
-<meta
-    property="og:image:width"
-    content="1200"
->
+    <meta
+        property="og:image:height"
+        content="630"
+    >
 
-<meta
-    property="og:image:height"
-    content="630"
->
+    <!-- =====================================================
+         ESTILOS
+    ====================================================== -->
 
+    <style>
 
-<style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+        html{
+            scroll-behavior:smooth;
+        }
 
-html{
-    scroll-behavior:smooth;
-}
+        body{
 
-body{
+            min-height:100vh;
 
-    min-height:100vh;
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
 
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+            color:#fff;
 
-    color:#fff;
+            background:
+                linear-gradient(
+                    135deg,
+                    #151515 0%,
+                    #292929 38%,
+                    #4d4d4d 65%,
+                    #222 100%
+                );
 
-    background:
-        linear-gradient(
-            135deg,
-            #151515 0%,
-            #292929 38%,
-            #4d4d4d 65%,
-            #222 100%
-        );
+            overflow-x:hidden;
+        }
 
-    overflow-x:hidden;
-}
+        button,
+        input{
+            font:inherit;
+        }
 
-button,
-input{
-    font:inherit;
-}
+        /* =====================================================
+           HEADER
+        ====================================================== */
 
+        header{
 
-/* =====================================================
-   HEADER
-===================================================== */
+            position:sticky;
+            top:0;
+            z-index:1000;
 
-header{
+            padding:18px 5%;
 
-    position:sticky;
-    top:0;
-    z-index:1000;
+            display:flex;
+            align-items:center;
+            gap:30px;
 
-    padding:18px 5%;
+            border-bottom:
+                1px solid
+                rgba(255,255,255,.12);
 
-    display:flex;
-    align-items:center;
-    gap:30px;
+            background:
+                rgba(20,20,20,.92);
 
-    border-bottom:
-        1px solid
-        rgba(255,255,255,.12);
+            backdrop-filter:blur(18px);
+        }
 
-    background:
-        rgba(20,20,20,.92);
+        .logo{
 
-    backdrop-filter:blur(18px);
-}
+            flex-shrink:0;
 
-.logo{
+            color:#fff;
 
-    flex-shrink:0;
+            font-size:22px;
+            font-weight:900;
+            letter-spacing:4px;
+        }
 
-    color:#fff;
+        nav{
 
-    font-size:22px;
-    font-weight:900;
-    letter-spacing:4px;
-}
+            flex:1;
 
-nav{
+            display:flex;
+            justify-content:center;
+            gap:28px;
 
-    flex:1;
+            overflow-x:auto;
+            scrollbar-width:none;
+        }
 
-    display:flex;
-    justify-content:center;
-    gap:28px;
+        nav::-webkit-scrollbar{
+            display:none;
+        }
 
-    overflow-x:auto;
-    scrollbar-width:none;
-}
+        nav a{
 
-nav::-webkit-scrollbar{
-    display:none;
-}
+            color:#999;
 
-nav a{
+            text-decoration:none;
 
-    color:#999;
+            font-size:11px;
+            font-weight:bold;
 
-    text-decoration:none;
+            letter-spacing:1.5px;
 
-    font-size:11px;
-    font-weight:bold;
+            text-transform:uppercase;
 
-    letter-spacing:1.5px;
+            white-space:nowrap;
 
-    text-transform:uppercase;
+            transition:color .2s ease;
+        }
 
-    white-space:nowrap;
+        nav a:hover,
+        nav a.active{
+            color:#fff;
+        }
 
-    transition:color .2s ease;
-}
+        /* =====================================================
+           BUSCADOR
+        ====================================================== */
 
-nav a:hover,
-nav a.active{
-    color:#fff;
-}
+        .search-section{
 
+            width:min(900px,90%);
 
-/* =====================================================
-   BUSCADOR
-===================================================== */
+            margin:0 auto;
 
-.search-section{
+            padding:
+                25px 0
+                0;
+        }
 
-    width:min(900px,90%);
+        .search-box{
 
-    margin:0 auto;
+            position:relative;
 
-    padding:25px 0 0;
-}
+            width:100%;
 
-.search-box{
+            display:flex;
+            align-items:center;
+        }
 
-    position:relative;
+        .search-icon{
 
-    width:100%;
+            position:absolute;
 
-    display:flex;
-    align-items:center;
-}
+            left:17px;
 
-.search-icon{
+            width:18px;
+            height:18px;
 
-    position:absolute;
+            color:#888;
 
-    left:17px;
+            pointer-events:none;
+        }
 
-    width:18px;
-    height:18px;
+        .search-input{
 
-    color:#888;
+            width:100%;
 
-    pointer-events:none;
-}
+            height:52px;
 
-.search-input{
+            padding:
+                0 50px
+                0 48px;
 
-    width:100%;
+            border:
+                1px solid
+                rgba(255,255,255,.14);
 
-    height:52px;
+            border-radius:10px;
 
-    padding:
-        0 50px
-        0 48px;
+            outline:none;
 
-    border:
-        1px solid
-        rgba(255,255,255,.14);
+            color:#fff;
 
-    border-radius:10px;
+            background:
+                rgba(255,255,255,.055);
 
-    outline:none;
+            box-shadow:
+                inset 0 0 20px
+                rgba(255,255,255,.015),
 
-    color:#fff;
+                0 8px 30px
+                rgba(0,0,0,.15);
 
-    background:
-        rgba(255,255,255,.055);
+            transition:
+                border-color .2s ease,
+                background .2s ease,
+                box-shadow .2s ease;
+        }
 
-    box-shadow:
-        inset 0 0 20px
-        rgba(255,255,255,.015),
+        .search-input::placeholder{
+            color:#777;
+        }
 
-        0 8px 30px
-        rgba(0,0,0,.15);
+        .search-input:focus{
 
-    transition:
-        border-color .2s ease,
-        background .2s ease,
-        box-shadow .2s ease;
-}
+            border-color:
+                rgba(255,255,255,.35);
 
-.search-input::placeholder{
-    color:#777;
-}
+            background:
+                rgba(255,255,255,.075);
 
-.search-input:focus{
+            box-shadow:
+                0 0 0 3px
+                rgba(255,255,255,.035),
 
-    border-color:
-        rgba(255,255,255,.35);
+                0 10px 35px
+                rgba(0,0,0,.2);
+        }
 
-    background:
-        rgba(255,255,255,.075);
+        .search-clear{
 
-    box-shadow:
-        0 0 0 3px
-        rgba(255,255,255,.035),
+            position:absolute;
 
-        0 10px 35px
-        rgba(0,0,0,.2);
-}
+            right:10px;
 
-.search-clear{
+            width:34px;
+            height:34px;
 
-    position:absolute;
+            display:flex;
+            align-items:center;
+            justify-content:center;
 
-    right:10px;
+            border:0;
+            border-radius:50%;
 
-    width:34px;
-    height:34px;
+            color:#999;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+            background:
+                rgba(255,255,255,.07);
 
-    border:0;
-    border-radius:50%;
+            cursor:pointer;
 
-    color:#999;
+            opacity:0;
+            visibility:hidden;
 
-    background:
-        rgba(255,255,255,.07);
+            transition:
+                opacity .2s ease,
+                background .2s ease,
+                color .2s ease;
+        }
 
-    cursor:pointer;
+        .search-clear.visible{
 
-    opacity:0;
-    visibility:hidden;
+            opacity:1;
+            visibility:visible;
+        }
 
-    transition:
-        opacity .2s ease,
-        background .2s ease,
-        color .2s ease;
-}
+        .search-clear:hover{
 
-.search-clear.visible{
+            color:#fff;
 
-    opacity:1;
-    visibility:visible;
-}
+            background:
+                rgba(255,255,255,.14);
+        }
 
-.search-clear:hover{
+        .search-help{
 
-    color:#fff;
+            margin-top:9px;
 
-    background:
-        rgba(255,255,255,.14);
-}
+            color:#666;
 
-.search-help{
+            font-size:9px;
 
-    margin-top:9px;
+            letter-spacing:.8px;
 
-    color:#666;
+            text-align:center;
+        }
 
-    font-size:9px;
+        .search-result{
 
-    letter-spacing:.8px;
+            min-height:16px;
 
-    text-align:center;
-}
+            margin-top:8px;
 
-.search-result{
+            color:#999;
 
-    min-height:16px;
+            font-size:10px;
 
-    margin-top:8px;
+            text-align:center;
+        }
 
-    color:#999;
+        .search-result strong{
+            color:#ddd;
+        }
 
-    font-size:10px;
+        /* =====================================================
+           HERO
+        ====================================================== */
 
-    text-align:center;
-}
+        .hero{
 
-.search-result strong{
-    color:#ddd;
-}
+            width:min(1400px,90%);
 
+            margin:auto;
 
-/* =====================================================
-   HERO
-===================================================== */
+            padding:
+                clamp(70px,11vw,140px)
+                0
+                clamp(50px,7vw,90px);
+        }
 
-.hero{
+        .hero h1{
 
-    width:min(1400px,90%);
+            position:relative;
 
-    margin:auto;
+            display:inline-block;
 
-    padding:
-        clamp(70px,11vw,140px)
-        0
-        clamp(50px,7vw,90px);
-}
+            margin-top:0;
 
-.hero h1{
+            font-size:
+                clamp(
+                    70px,
+                    15vw,
+                    180px
+                );
 
-    position:relative;
+            line-height:.8;
 
-    display:inline-block;
+            letter-spacing:-9px;
 
-    font-size:
-        clamp(
-            70px,
-            15vw,
-            180px
-        );
+            font-weight:900;
 
-    line-height:.8;
+            color:#f7f7f7;
 
-    letter-spacing:-9px;
+            -webkit-text-stroke:
+                1px
+                rgba(255,255,255,.75);
 
-    font-weight:900;
+            text-shadow:
 
-    color:#f7f7f7;
+                0 0 2px rgba(255,255,255,.8),
 
-    -webkit-text-stroke:
-        1px
-        rgba(255,255,255,.75);
+                0 0 7px rgba(255,255,255,.45),
 
-    text-shadow:
+                0 0 18px rgba(255,255,255,.25),
 
-        0 0 2px rgba(255,255,255,.8),
+                0 12px 35px rgba(0,0,0,.45);
 
-        0 0 7px rgba(255,255,255,.45),
+            animation:
+                neonBreath
+                4.5s
+                ease-in-out
+                infinite;
+        }
 
-        0 0 18px rgba(255,255,255,.25),
+        .hero h1::before{
 
-        0 12px 35px rgba(0,0,0,.45);
+            content:"STRANGIS";
 
-    animation:
-        neonBreath
-        4.5s
-        ease-in-out
-        infinite;
-}
+            position:absolute;
 
-.hero h1::before{
+            inset:0;
 
-    content:"STRANGIS";
+            z-index:-1;
 
-    position:absolute;
+            color:transparent;
 
-    inset:0;
+            -webkit-text-stroke:
+                1px
+                rgba(255,255,255,.25);
 
-    z-index:-1;
+            filter:blur(5px);
 
-    color:transparent;
+            opacity:.7;
 
-    -webkit-text-stroke:
-        1px
-        rgba(255,255,255,.25);
+            animation:
+                neonHalo
+                4.5s
+                ease-in-out
+                infinite;
+        }
 
-    filter:blur(5px);
+        .hero h1::after{
 
-    opacity:.7;
+            content:"";
 
-    animation:
-        neonHalo
-        4.5s
-        ease-in-out
-        infinite;
-}
+            position:absolute;
 
-.hero h1::after{
+            left:5%;
+            right:5%;
 
-    content:"";
+            bottom:-18px;
 
-    position:absolute;
+            height:20px;
 
-    left:5%;
-    right:5%;
+            border-radius:50%;
 
-    bottom:-18px;
+            background:
+                rgba(255,255,255,.16);
 
-    height:20px;
+            filter:blur(20px);
 
-    border-radius:50%;
+            opacity:.35;
 
-    background:
-        rgba(255,255,255,.16);
+            animation:
+                floorGlow
+                4.5s
+                ease-in-out
+                infinite;
+        }
 
-    filter:blur(20px);
+        @keyframes neonBreath{
 
-    opacity:.35;
+            0%{
 
-    animation:
-        floorGlow
-        4.5s
-        ease-in-out
-        infinite;
-}
+                color:#bdbdbd;
 
-@keyframes neonBreath{
+                text-shadow:
 
-    0%{
+                    0 0 2px rgba(255,255,255,.35),
 
-        color:#bdbdbd;
+                    0 0 6px rgba(255,255,255,.20),
 
-        text-shadow:
+                    0 0 14px rgba(255,255,255,.12),
 
-            0 0 2px rgba(255,255,255,.35),
+                    0 12px 35px rgba(0,0,0,.50);
 
-            0 0 6px rgba(255,255,255,.20),
+                -webkit-text-stroke:
+                    1px
+                    rgba(255,255,255,.45);
+            }
 
-            0 0 14px rgba(255,255,255,.12),
+            50%{
 
-            0 12px 35px rgba(0,0,0,.50);
-    }
+                color:#ffffff;
 
-    50%{
+                text-shadow:
 
-        color:#fff;
+                    0 0 2px rgba(255,255,255,.95),
 
-        text-shadow:
+                    0 0 8px rgba(255,255,255,.70),
 
-            0 0 2px rgba(255,255,255,.95),
+                    0 0 18px rgba(255,255,255,.48),
 
-            0 0 8px rgba(255,255,255,.70),
+                    0 0 35px rgba(255,255,255,.25),
 
-            0 0 18px rgba(255,255,255,.48),
+                    0 12px 35px rgba(0,0,0,.45);
 
-            0 0 35px rgba(255,255,255,.25),
+                -webkit-text-stroke:
+                    1px
+                    rgba(255,255,255,.95);
+            }
 
-            0 12px 35px rgba(0,0,0,.45);
-    }
+            100%{
 
-    100%{
+                color:#bdbdbd;
 
-        color:#bdbdbd;
+                text-shadow:
 
-        text-shadow:
+                    0 0 2px rgba(255,255,255,.35),
 
-            0 0 2px rgba(255,255,255,.35),
+                    0 0 6px rgba(255,255,255,.20),
 
-            0 0 6px rgba(255,255,255,.20),
+                    0 0 14px rgba(255,255,255,.12),
 
-            0 0 14px rgba(255,255,255,.12),
+                    0 12px 35px rgba(0,0,0,.50);
 
-            0 12px 35px rgba(0,0,0,.50);
-    }
-}
+                -webkit-text-stroke:
+                    1px
+                    rgba(255,255,255,.45);
+            }
+        }
 
-@keyframes neonHalo{
+        @keyframes neonHalo{
 
-    0%{
-        opacity:.25;
-        filter:blur(7px);
-    }
+            0%{
+                opacity:.25;
+                filter:blur(7px);
+            }
 
-    50%{
-        opacity:.75;
-        filter:blur(4px);
-    }
+            50%{
+                opacity:.75;
+                filter:blur(4px);
+            }
 
-    100%{
-        opacity:.25;
-        filter:blur(7px);
-    }
-}
+            100%{
+                opacity:.25;
+                filter:blur(7px);
+            }
+        }
 
-@keyframes floorGlow{
+        @keyframes floorGlow{
 
-    0%{
-        opacity:.15;
-        transform:scaleX(.7);
-    }
+            0%{
+                opacity:.15;
+                transform:scaleX(.7);
+            }
 
-    50%{
-        opacity:.40;
-        transform:scaleX(1);
-    }
+            50%{
+                opacity:.40;
+                transform:scaleX(1);
+            }
 
-    100%{
-        opacity:.15;
-        transform:scaleX(.7);
-    }
-}
+            100%{
+                opacity:.15;
+                transform:scaleX(.7);
+            }
+        }
 
-.hero p{
+        .hero p{
 
-    max-width:700px;
+            max-width:700px;
 
-    margin-top:35px;
+            margin-top:35px;
 
-    color:#b5b5b5;
+            color:#b5b5b5;
 
-    font-size:16px;
+            font-size:16px;
 
-    line-height:1.8;
-}
+            line-height:1.8;
+        }
 
-.hero-note{
+        .hero-note{
 
-    position:relative;
+            position:relative;
 
-    max-width:850px;
+            max-width:850px;
 
-    margin-top:25px;
+            margin-top:25px;
 
-    padding:
-        22px
-        24px
-        22px
-        27px;
+            padding:
+                22px
+                24px
+                22px
+                27px;
 
-    border:
-        1px solid
-        rgba(255,165,70,.45);
+            border:
+                1px solid
+                rgba(255,165,70,.45);
 
-    border-left:
-        4px solid
-        rgba(255,150,45,.95);
+            border-left:
+                4px solid
+                rgba(255,150,45,.95);
 
-    border-radius:9px;
+            border-radius:9px;
 
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,145,45,.16),
-            rgba(120,65,20,.08)
-        );
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,145,45,.16),
+                    rgba(120,65,20,.08)
+                );
 
-    box-shadow:
+            box-shadow:
 
-        0 8px 30px
-        rgba(0,0,0,.25),
+                0 8px 30px
+                rgba(0,0,0,.25),
 
-        inset 0 0 25px
-        rgba(255,150,50,.04);
+                inset 0 0 25px
+                rgba(255,150,50,.04);
 
-    color:#d0d0d0;
+            color:#d0d0d0;
 
-    font-size:13px;
+            font-size:13px;
 
-    line-height:1.8;
-}
+            line-height:1.8;
+        }
 
-.hero-note::before{
+        .hero-note::before{
 
-    content:"AVISO IMPORTANTE";
+            content:"AVISO IMPORTANTE";
 
-    display:block;
+            display:block;
 
-    margin-bottom:9px;
+            margin-bottom:9px;
 
-    color:#ffb15c;
+            color:#ffb15c;
 
-    font-size:11px;
+            font-size:11px;
 
-    font-weight:900;
+            font-weight:900;
 
-    letter-spacing:2.5px;
-}
+            letter-spacing:2.5px;
+        }
 
-.hero-note strong{
-    color:#ffb15c;
-}
+        .hero-note strong{
+            color:#ffb15c;
+            font-weight:900;
+        }
 
+        /* =====================================================
+           PRODUCTOS
+        ====================================================== */
 
-/* =====================================================
-   PRODUCTOS
-===================================================== */
+        .products-section{
 
-.products-section{
+            width:min(1400px,90%);
 
-    width:min(1400px,90%);
+            margin:auto;
 
-    margin:auto;
+            padding:
+                10px
+                0
+                110px;
 
-    padding:
-        10px
-        0
-        110px;
+            overflow:hidden;
+        }
 
-    overflow:hidden;
-}
+        .section-heading{
 
-.section-heading{
+            display:flex;
 
-    display:flex;
+            align-items:end;
 
-    align-items:end;
+            justify-content:space-between;
 
-    justify-content:space-between;
+            gap:20px;
 
-    gap:20px;
+            margin-bottom:25px;
+        }
 
-    margin-bottom:25px;
-}
+        .section-heading h2{
 
-.section-heading h2{
+            font-size:14px;
 
-    font-size:14px;
+            font-weight:900;
 
-    font-weight:900;
+            letter-spacing:2px;
 
-    letter-spacing:2px;
+            text-transform:uppercase;
+        }
 
-    text-transform:uppercase;
-}
+        .section-heading span{
 
-.section-heading span{
+            color:#777;
 
-    color:#777;
+            font-size:10px;
 
-    font-size:10px;
+            letter-spacing:1px;
+        }
 
-    letter-spacing:1px;
-}
+        .carousel-window{
 
-.carousel-window{
+            width:100%;
 
-    width:100%;
+            overflow:hidden;
 
-    overflow:hidden;
+            position:relative;
 
-    position:relative;
+            padding:
+                5px 0
+                15px;
+        }
 
-    padding:
-        5px 0
-        15px;
-}
+        .carousel-window::before,
+        .carousel-window::after{
 
-.carousel-window::before,
-.carousel-window::after{
+            content:"";
 
-    content:"";
+            position:absolute;
 
-    position:absolute;
+            top:0;
+            bottom:0;
 
-    top:0;
-    bottom:0;
+            width:70px;
 
-    width:70px;
+            z-index:5;
 
-    z-index:5;
+            pointer-events:none;
+        }
 
-    pointer-events:none;
-}
+        .carousel-window::before{
 
-.carousel-window::before{
+            left:0;
 
-    left:0;
+            background:
+                linear-gradient(
+                    to right,
+                    rgba(30,30,30,.75),
+                    transparent
+                );
+        }
 
-    background:
-        linear-gradient(
-            to right,
-            rgba(30,30,30,.75),
-            transparent
-        );
-}
+        .carousel-window::after{
 
-.carousel-window::after{
+            right:0;
 
-    right:0;
+            background:
+                linear-gradient(
+                    to left,
+                    rgba(30,30,30,.75),
+                    transparent
+                );
+        }
 
-    background:
-        linear-gradient(
-            to left,
-            rgba(30,30,30,.75),
-            transparent
-        );
-}
+        .products{
 
-.products{
+            display:flex;
 
-    display:flex;
+            width:max-content;
 
-    width:max-content;
+            gap:12px;
 
-    gap:12px;
+            will-change:transform;
 
-    will-change:transform;
+            animation:
+                carouselMove
+                30s
+                linear
+                infinite;
+        }
 
-    animation:
-        carouselMove
-        30s
-        linear
-        infinite;
-}
+        @keyframes carouselMove{
 
-@keyframes carouselMove{
+            from{
+                transform:translateX(0);
+            }
 
-    from{
-        transform:translateX(0);
-    }
+            to{
+                transform:
+                    translateX(
+                        calc(
+                            -50% - 6px
+                        )
+                    );
+            }
+        }
 
-    to{
-        transform:
-            translateX(
-                calc(
-                    -50% - 6px
-                )
-            );
-    }
-}
+        .product{
 
-.product{
+            flex:0 0 205px;
 
-    flex:0 0 205px;
+            width:205px;
 
-    width:205px;
+            overflow:hidden;
 
-    overflow:hidden;
+            border:
+                1px solid
+                rgba(255,255,255,.10);
 
-    border:
-        1px solid
-        rgba(255,255,255,.10);
+            border-radius:9px;
 
-    border-radius:9px;
+            background:
+                rgba(255,255,255,.045);
 
-    background:
-        rgba(255,255,255,.045);
+            box-shadow:
+                0 12px 35px
+                rgba(0,0,0,.18);
 
-    box-shadow:
-        0 12px 35px
-        rgba(0,0,0,.18);
+            transition:
+                transform .25s ease,
+                border-color .25s ease,
+                background .25s ease;
+        }
 
-    transition:
-        transform .25s ease,
-        border-color .25s ease,
-        background .25s ease;
-}
+        .product:hover{
 
-.product:hover{
+            transform:translateY(-5px);
 
-    transform:translateY(-5px);
+            border-color:
+                rgba(255,255,255,.25);
 
-    border-color:
-        rgba(255,255,255,.25);
+            background:
+                rgba(255,255,255,.07);
+        }
 
-    background:
-        rgba(255,255,255,.07);
-}
+        .product-image{
 
-.product-image{
+            position:relative;
 
-    position:relative;
+            width:100%;
 
-    width:100%;
+            aspect-ratio:1 / 1.15;
 
-    aspect-ratio:1 / 1.15;
+            overflow:hidden;
 
-    overflow:hidden;
+            background:#181818;
+        }
 
-    background:#181818;
-}
+        .product-image img{
 
-.product-image img{
+            width:100%;
+            height:100%;
 
-    width:100%;
-    height:100%;
+            display:block;
 
-    display:block;
+            object-fit:cover;
 
-    object-fit:cover;
+            transition:
+                transform .4s ease;
+        }
 
-    transition:
-        transform .4s ease;
-}
+        .product:hover
+        .product-image img{
 
-.product:hover
-.product-image img{
+            transform:scale(1.045);
+        }
 
-    transform:scale(1.045);
-}
+        .product-info{
 
-.product-info{
+            padding:
+                12px 11px 14px;
+        }
 
-    padding:
-        12px 11px 14px;
-}
+        .product-name{
 
-.product-name{
+            color:#fff;
 
-    color:#fff;
+            font-size:12px;
 
-    font-size:12px;
+            font-weight:800;
 
-    font-weight:800;
+            line-height:1.35;
+        }
 
-    line-height:1.35;
-}
+        .product-ref{
 
-.product-ref{
+            margin-top:5px;
 
-    margin-top:5px;
+            color:#aaa;
 
-    color:#aaa;
+            font-size:9px;
 
-    font-size:9px;
+            font-weight:bold;
 
-    font-weight:bold;
+            letter-spacing:.8px;
 
-    letter-spacing:.8px;
+            text-transform:uppercase;
+        }
 
-    text-transform:uppercase;
-}
+        .product-category{
 
-.product-category{
+            margin-top:4px;
 
-    margin-top:4px;
+            color:#777;
 
-    color:#777;
+            font-size:9px;
 
-    font-size:9px;
+            font-weight:bold;
 
-    font-weight:bold;
+            letter-spacing:1px;
 
-    letter-spacing:1px;
+            text-transform:uppercase;
+        }
 
-    text-transform:uppercase;
-}
+        .product-variants{
 
-.product-variants{
+            margin-top:6px;
 
-    margin-top:6px;
+            color:#777;
 
-    color:#777;
+            font-size:8px;
 
-    font-size:8px;
+            line-height:1.4;
+        }
 
-    line-height:1.5;
-}
+        .product-link{
 
-.product-link{
+            display:block;
 
-    display:block;
+            color:inherit;
 
-    color:inherit;
+            text-decoration:none;
+        }
 
-    text-decoration:none;
-}
+        /* =====================================================
+           RESULTADO ENCONTRADO
+        ====================================================== */
 
+        .product.search-match{
 
-/* =====================================================
-   COLOR
-===================================================== */
+            border-color:
+                rgba(255,180,90,.45);
 
-.product-colors{
+            box-shadow:
+                0 0 0 1px
+                rgba(255,180,90,.12),
 
-    display:flex;
+                0 15px 40px
+                rgba(0,0,0,.25);
+        }
 
-    flex-wrap:wrap;
+        /* =====================================================
+           VACÍO
+        ====================================================== */
 
-    gap:5px;
+        .empty{
 
-    margin-top:7px;
-}
+            width:min(700px,100%);
 
-.product-color{
+            margin:auto;
 
-    padding:
-        3px 6px;
+            padding:
+                80px 20px;
 
-    border:
-        1px solid
-        rgba(255,255,255,.10);
+            border:
+                1px solid
+                rgba(255,255,255,.08);
 
-    border-radius:20px;
+            border-radius:10px;
 
-    color:#aaa;
+            text-align:center;
 
-    background:
-        rgba(255,255,255,.04);
+            background:
+                rgba(255,255,255,.025);
+        }
 
-    font-size:7px;
+        .empty-title{
 
-    font-weight:bold;
+            color:#aaa;
 
-    letter-spacing:.5px;
+            font-size:12px;
 
-    text-transform:uppercase;
-}
+            font-weight:bold;
 
+            letter-spacing:2px;
 
-/* =====================================================
-   VACÍO
-===================================================== */
+            text-transform:uppercase;
+        }
 
-.empty{
+        .empty-text{
 
-    width:min(700px,100%);
+            max-width:500px;
 
-    margin:auto;
+            margin:
+                15px auto 0;
 
-    padding:
-        80px 20px;
+            color:#666;
 
-    border:
-        1px solid
-        rgba(255,255,255,.08);
+            font-size:11px;
 
-    border-radius:10px;
+            line-height:1.7;
+        }
 
-    text-align:center;
+        /* =====================================================
+           INFORMACIÓN
+        ====================================================== */
 
-    background:
-        rgba(255,255,255,.025);
-}
+        .info-section{
 
-.empty-title{
+            width:min(1000px,90%);
 
-    color:#aaa;
+            margin:auto;
 
-    font-size:12px;
+            padding:
+                0
+                0
+                110px;
+        }
 
-    font-weight:bold;
+        .info-grid{
 
-    letter-spacing:2px;
+            display:grid;
 
-    text-transform:uppercase;
-}
+            grid-template-columns:
+                repeat(3,minmax(0,1fr));
 
-.empty-text{
+            gap:15px;
+        }
 
-    max-width:500px;
+        .info-card{
 
-    margin:
-        15px auto 0;
+            position:relative;
 
-    color:#666;
+            padding:27px;
 
-    font-size:11px;
+            border:
+                1px solid
+                rgba(255,166,80,.28);
 
-    line-height:1.7;
-}
+            border-radius:10px;
 
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,145,45,.14),
+                    rgba(255,120,25,.045)
+                );
 
-/* =====================================================
-   INFORMACIÓN
-===================================================== */
+            box-shadow:
 
-.info-section{
+                0 10px 35px
+                rgba(0,0,0,.22),
 
-    width:min(1000px,90%);
+                inset 0 0 30px
+                rgba(255,150,50,.035);
 
-    margin:auto;
+            transition:
+                transform .25s ease,
+                border-color .25s ease;
+        }
 
-    padding:
-        0
-        0
-        110px;
-}
+        .info-card:hover{
 
-.info-grid{
+            transform:translateY(-4px);
 
-    display:grid;
+            border-color:
+                rgba(255,180,100,.48);
+        }
 
-    grid-template-columns:
-        repeat(3,minmax(0,1fr));
+        .info-card small{
 
-    gap:15px;
-}
+            color:#ffad5c;
 
-.info-card{
+            font-size:9px;
 
-    position:relative;
+            font-weight:bold;
 
-    padding:27px;
+            letter-spacing:2px;
+        }
 
-    border:
-        1px solid
-        rgba(255,166,80,.28);
+        .info-card h3{
 
-    border-radius:10px;
+            position:relative;
 
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,145,45,.14),
-            rgba(255,120,25,.045)
-        );
+            margin-top:12px;
 
-    box-shadow:
+            color:#f5f5f5;
 
-        0 10px 35px
-        rgba(0,0,0,.22),
+            font-size:16px;
 
-        inset 0 0 30px
-        rgba(255,150,50,.035);
-}
+            line-height:1.25;
 
-.info-card small{
+            -webkit-text-stroke:
+                .35px
+                rgba(255,255,255,.35);
 
-    color:#ffad5c;
+            text-shadow:
 
-    font-size:9px;
+                0 0 3px rgba(255,255,255,.45),
 
-    font-weight:bold;
+                0 0 9px rgba(255,255,255,.18);
 
-    letter-spacing:2px;
-}
+            animation:
+                cardNeon
+                4.5s
+                ease-in-out
+                infinite;
+        }
 
-.info-card h3{
+        @keyframes cardNeon{
 
-    margin-top:12px;
+            0%{
 
-    color:#f5f5f5;
+                color:#bdbdbd;
 
-    font-size:16px;
+                text-shadow:
 
-    line-height:1.25;
+                    0 0 2px rgba(255,255,255,.20),
 
-    text-shadow:
-        0 0 3px rgba(255,255,255,.45),
-        0 0 9px rgba(255,255,255,.18);
-}
+                    0 0 7px rgba(255,255,255,.08);
+            }
 
-.info-card p{
+            50%{
 
-    margin-top:12px;
+                color:#ffffff;
 
-    color:#b5b5b5;
+                text-shadow:
 
-    font-size:12px;
+                    0 0 3px rgba(255,255,255,.85),
 
-    line-height:1.75;
-}
+                    0 0 10px rgba(255,255,255,.40),
 
+                    0 0 20px rgba(255,255,255,.15);
+            }
 
-/* =====================================================
-   FOOTER
-===================================================== */
+            100%{
 
-footer{
+                color:#bdbdbd;
 
-    padding:
-        35px 5%;
+                text-shadow:
 
-    border-top:
-        1px solid
-        rgba(255,255,255,.10);
+                    0 0 2px rgba(255,255,255,.20),
 
-    text-align:center;
+                    0 0 7px rgba(255,255,255,.08);
+            }
+        }
 
-    color:#666;
+        .info-card p{
 
-    font-size:9px;
+            margin-top:12px;
 
-    letter-spacing:1px;
-}
+            color:#b5b5b5;
 
+            font-size:12px;
 
-/* =====================================================
-   WHATSAPP
-===================================================== */
+            line-height:1.75;
+        }
 
-.whatsapp-button{
+        /* =====================================================
+           FOOTER
+        ====================================================== */
 
-    position:fixed;
+        footer{
 
-    right:20px;
-    bottom:20px;
+            padding:
+                35px 5%;
 
-    z-index:99999;
+            border-top:
+                1px solid
+                rgba(255,255,255,.10);
 
-    width:58px;
-    height:58px;
+            text-align:center;
 
-    display:flex;
+            color:#666;
 
-    align-items:center;
-    justify-content:center;
+            font-size:9px;
 
-    border-radius:50%;
+            letter-spacing:1px;
+        }
 
-    background:#25D366 !important;
+        /* =====================================================
+           WHATSAPP
+        ====================================================== */
 
-    color:#fff;
+        .whatsapp-button{
 
-    text-decoration:none;
+            position:fixed;
 
-    box-shadow:
-        0 5px 18px
-        rgba(0,0,0,.35);
-}
+            right:20px;
+            bottom:20px;
 
-.whatsapp-button svg{
+            z-index:99999;
 
-    width:30px;
-    height:30px;
+            width:58px;
+            height:58px;
 
-    fill:#fff;
-}
+            display:flex;
 
+            align-items:center;
+            justify-content:center;
 
-/* =====================================================
-   RESPONSIVE
-===================================================== */
+            border-radius:50%;
 
-@media(max-width:1100px){
+            background:#25D366 !important;
 
-    .product{
-        flex-basis:190px;
-        width:190px;
-    }
-}
+            color:#fff;
 
-@media(max-width:800px){
+            text-decoration:none;
 
-    .info-grid{
-        grid-template-columns:1fr;
-    }
+            box-shadow:
+                0 5px 18px
+                rgba(0,0,0,.35);
 
-    .product{
-        flex-basis:175px;
-        width:175px;
-    }
-}
+            transition:
+                transform .2s ease;
+        }
 
-@media(max-width:600px){
+        .whatsapp-button:hover{
+            transform:scale(1.08);
+        }
 
-    header{
+        .whatsapp-button svg{
 
-        padding:15px;
+            width:30px;
+            height:30px;
 
-        flex-wrap:wrap;
+            display:block;
 
-        gap:14px;
-    }
+            fill:#fff;
+        }
 
-    .logo{
+        /* =====================================================
+           RESPONSIVE
+        ====================================================== */
 
-        font-size:17px;
+        @media(max-width:1100px){
 
-        letter-spacing:2.5px;
-    }
+            .product{
+                flex-basis:190px;
+                width:190px;
+            }
+        }
 
-    nav{
+        @media(max-width:800px){
 
-        order:3;
+            .info-grid{
+                grid-template-columns:1fr;
+            }
 
-        flex-basis:100%;
+            .product{
+                flex-basis:175px;
+                width:175px;
+            }
+        }
 
-        justify-content:flex-start;
+        @media(max-width:600px){
 
-        gap:22px;
-    }
+            header{
 
-    nav a{
-        font-size:10px;
-    }
+                padding:15px;
 
-    .search-section{
+                flex-wrap:wrap;
 
-        width:94%;
+                gap:14px;
+            }
 
-        padding-top:20px;
-    }
+            .logo{
 
-    .search-input{
+                font-size:17px;
 
-        height:48px;
+                letter-spacing:2.5px;
+            }
 
-        padding-left:45px;
-    }
+            nav{
 
-    .hero{
+                order:3;
 
-        width:94%;
+                flex-basis:100%;
 
-        padding:
-            55px 0
-            45px;
-    }
+                justify-content:flex-start;
 
-    .hero h1{
+                gap:22px;
+            }
 
-        font-size:
-            clamp(
-                65px,
-                21vw,
-                100px
-            );
+            nav a{
+                font-size:10px;
+            }
 
-        letter-spacing:-6px;
-    }
+            .search-section{
 
-    .hero p{
+                width:94%;
 
-        margin-top:25px;
+                padding-top:20px;
+            }
 
-        font-size:13px;
-    }
+            .search-input{
 
-    .hero-note{
+                height:48px;
 
-        padding:
-            19px
-            18px
-            19px
-            21px;
+                padding-left:45px;
+            }
 
-        font-size:12px;
+            .hero{
 
-        line-height:1.75;
-    }
+                width:94%;
 
-    .products-section{
+                padding:
+                    55px 0
+                    45px;
+            }
 
-        width:94%;
+            .hero h1{
 
-        padding-bottom:80px;
-    }
+                margin-top:0;
 
-    .product{
+                font-size:
+                    clamp(
+                        65px,
+                        21vw,
+                        100px
+                    );
 
-        flex-basis:155px;
+                letter-spacing:-6px;
+            }
 
-        width:155px;
+            .hero p{
 
-        border-radius:7px;
-    }
+                margin-top:25px;
 
-    .product-info{
+                font-size:13px;
+            }
 
-        padding:
-            9px 8px 11px;
-    }
+            .hero-note{
 
-    .product-name{
-        font-size:10px;
-    }
+                padding:
+                    19px
+                    18px
+                    19px
+                    21px;
 
-    .product-ref{
-        font-size:8px;
-    }
+                font-size:12px;
 
-    .product-category{
-        font-size:8px;
-    }
+                line-height:1.75;
+            }
 
-    .product-variants{
-        font-size:7px;
-    }
+            .products-section{
 
-    .product-color{
-        font-size:6px;
-    }
+                width:94%;
 
-    .products{
+                padding-bottom:80px;
+            }
 
-        gap:9px;
+            .product{
 
-        animation-duration:24s;
-    }
+                flex-basis:155px;
 
-    .carousel-window::before,
-    .carousel-window::after{
-        width:35px;
-    }
+                width:155px;
 
-    .info-section{
-        width:94%;
-    }
+                border-radius:7px;
+            }
 
-    .info-card{
-        padding:23px;
-    }
+            .product-info{
 
-    .whatsapp-button{
+                padding:
+                    9px 8px 11px;
+            }
 
-        width:54px;
-        height:54px;
+            .product-name{
+                font-size:10px;
+            }
 
-        right:16px;
-        bottom:16px;
-    }
-}
+            .product-ref{
+                font-size:8px;
+            }
 
-@media(max-width:380px){
+            .product-category{
+                font-size:8px;
+            }
 
-    .product{
+            .product-variants{
+                font-size:7px;
+            }
 
-        flex-basis:145px;
+            .products{
 
-        width:145px;
-    }
+                gap:9px;
 
-    .products{
-        gap:7px;
-    }
+                animation-duration:24s;
+            }
 
-    .product-name{
-        font-size:9px;
-    }
-}
+            .carousel-window::before,
+            .carousel-window::after{
+                width:35px;
+            }
 
-@media(prefers-reduced-motion:reduce){
+            .info-section{
+                width:94%;
+            }
 
-    html{
-        scroll-behavior:auto !important;
-    }
+            .info-card{
+                padding:23px;
+            }
 
-    .hero h1{
-        animation:none !important;
-    }
+            .whatsapp-button{
 
-    .products{
-        animation:none !important;
-    }
+                width:54px;
+                height:54px;
 
-    *{
-        transition:none !important;
-    }
-}
+                right:16px;
+                bottom:16px;
+            }
 
-</style>
+            .whatsapp-button svg{
+
+                width:28px;
+                height:28px;
+            }
+        }
+
+        @media(max-width:380px){
+
+            .product{
+
+                flex-basis:145px;
+
+                width:145px;
+            }
+
+            .products{
+                gap:7px;
+            }
+
+            .product-name{
+                font-size:9px;
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce){
+
+            html{
+                scroll-behavior:auto !important;
+            }
+
+            .hero h1{
+                animation:none !important;
+            }
+
+            .products{
+                animation:none !important;
+            }
+
+            .info-card h3{
+                animation:none !important;
+            }
+
+            *{
+                transition:none !important;
+            }
+        }
+
+    </style>
 
 </head>
 
 
 <body>
 
+    <!-- =====================================================
+         WHATSAPP
+    ====================================================== -->
 
-<!-- =====================================================
-     WHATSAPP
-===================================================== -->
+    <a
+        href="https://wa.me/34674559614"
+        class="whatsapp-button"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="WhatsApp"
+    >
 
-<a
-    href="https://wa.me/34674559614"
-    class="whatsapp-button"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="WhatsApp"
->
+        <svg viewBox="0 0 24 24">
 
-<svg viewBox="0 0 24 24">
+            <path d="M20.52 3.48A11.86 11.86 0 0 0 12.08 0C5.53 0 .2 5.33.2 11.88c0 2.09.55 4.13 1.59 5.93L.1 24l6.34-1.66a11.9 11.9 0 0 0 5.64 1.43h.01c6.55 0 11.88-5.33 11.88-11.88 0-3.18-1.24-6.17-3.45-8.41ZM12.09 21.75h-.01a9.86 9.86 0 0 1-5.03-1.38l-.36-.21-3.76.99 1-3.67-.23-.38a9.84 9.84 0 0 1-1.51-5.22C2.19 6.44 6.62 2 12.08 2a9.83 9.83 0 0 1 6.99 2.9 9.88 9.88 0 0 1 2.91 7c0 5.46-4.43 9.89-9.89 9.89Zm5.42-7.41c-.3-.15-1.77-.87-2.05-.97-.28-.1-.48-.15-.68.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.68-1.64-.93-2.25-.24-.59-.49-.51-.68-.52h-.58c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.5s1.07 2.9 1.22 3.1c.15.2 2.1 3.21 5.09 4.5.71.31 1.27.5 1.7.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.27-.2-.57-.35Z"/>
 
-<path d="M20.52 3.48A11.86 11.86 0 0 0 12.08 0C5.53 0 .2 5.33.2 11.88c0 2.09.55 4.13 1.59 5.93L.1 24l6.34-1.66a11.9 11.9 0 0 0 5.64 1.43h.01c6.55 0 11.88-5.33 11.88-11.88 0-3.18-1.24-6.17-3.45-8.41ZM12.09 21.75h-.01a9.86 9.86 0 0 1-5.03-1.38l-.36-.21-3.76.99 1-3.67-.23-.38a9.84 9.84 0 0 1-1.51-5.22C2.19 6.44 6.62 2 12.08 2a9.83 9.83 0 0 1 6.99 2.9 9.88 9.88 0 0 1 2.91 7c0 5.46-4.43 9.89-9.89 9.89Zm5.42-7.41c-.3-.15-1.77-.87-2.05-.97-.28-.1-.48-.15-.68.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.68-1.64-.93-2.25-.24-.59-.49-.51-.68-.52h-.58c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.5s1.07 2.9 1.22 3.1c.15.2 2.1 3.21 5.09 4.5.71.31 1.27.5 1.7.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.27-.2-.57-.35Z"/>
+        </svg>
 
-</svg>
+    </a>
 
-</a>
 
+    <!-- =====================================================
+         CABECERA
+    ====================================================== -->
 
-<!-- =====================================================
-     HEADER
-===================================================== -->
+    <header>
 
-<header>
+        <div class="logo">
+            Strangis
+        </div>
 
-<div class="logo">
-Strangis
-</div>
+        <nav>
 
-<nav>
+            <a class="active" href="index.html">
+                Inicio
+            </a>
 
-<a class="active" href="index.html">
-Inicio
-</a>
+            <a href="camisetas.html">
+                Camisetas
+            </a>
 
-<a href="camisetas.html">
-Camisetas
-</a>
+            <a href="pantalones.html">
+                Pantalones
+            </a>
 
-<a href="pantalones.html">
-Pantalones
-</a>
+            <a href="conjuntos.html">
+                Conjuntos
+            </a>
 
-<a href="conjuntos.html">
-Conjuntos
-</a>
+            <a href="gorras.html">
+                Gorras
+            </a>
 
-<a href="gorras.html">
-Gorras
-</a>
+            <a href="gafas.html">
+                Gafas
+            </a>
 
-<a href="gafas.html">
-Gafas
-</a>
+            <a href="bisuteria.html">
+                Bisutería
+            </a>
 
-<a href="bisuteria.html">
-Bisutería
-</a>
+        </nav>
 
-</nav>
+    </header>
 
-</header>
 
+    <!-- =====================================================
+         BUSCADOR
+    ====================================================== -->
 
-<!-- =====================================================
-     BUSCADOR
-===================================================== -->
+    <section class="search-section">
 
-<section class="search-section">
+        <div class="search-box">
 
-<div class="search-box">
+            <svg
+                class="search-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+            >
 
-<svg
-    class="search-icon"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
->
+                <circle
+                    cx="11"
+                    cy="11"
+                    r="7"
+                ></circle>
 
-<circle
-    cx="11"
-    cy="11"
-    r="7"
-></circle>
+                <line
+                    x1="16.65"
+                    y1="16.65"
+                    x2="21"
+                    y2="21"
+                ></line>
 
-<line
-    x1="16.65"
-    y1="16.65"
-    x2="21"
-    y2="21"
-></line>
+            </svg>
 
-</svg>
 
+            <input
+                id="productSearch"
+                class="search-input"
+                type="search"
+                autocomplete="off"
+                spellcheck="false"
+                placeholder="Buscar por referencia, color o variante..."
+                aria-label="Buscar productos por referencia, color o variante"
+            >
 
-<input
-    id="productSearch"
-    class="search-input"
-    type="search"
-    autocomplete="off"
-    spellcheck="false"
-    placeholder="Buscar por referencia, color, variante o nombre..."
-    aria-label="Buscar productos"
-/>
 
+            <button
+                id="searchClear"
+                class="search-clear"
+                type="button"
+                aria-label="Limpiar búsqueda"
+            >
+                ×
+            </button>
 
-<button
-    id="searchClear"
-    class="search-clear"
-    type="button"
-    aria-label="Limpiar búsqueda"
->
+        </div>
 
-×
 
-</button>
+        <div class="search-help">
 
-</div>
+            Puedes buscar por referencia, color, variante,
+            nombre o categoría.
 
+        </div>
 
-<div class="search-help">
 
-Puedes buscar por referencia, color, variante, nombre o categoría.
+        <div
+            id="searchResult"
+            class="search-result"
+            aria-live="polite"
+        ></div>
 
-</div>
+    </section>
 
 
-<div
-    id="searchResult"
-    class="search-result"
-    aria-live="polite"
-></div>
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
 
-</section>
+    <section class="hero">
 
+        <h1>
+            STRANGIS
+        </h1>
 
-<!-- =====================================================
-     HERO
-===================================================== -->
+        <p>
+            Descubre nuestra selección de moda y accesorios.
+            Productos seleccionados para crear tu propio estilo
+            sin seguir las reglas de siempre.
+        </p>
 
-<section class="hero">
+        <div class="hero-note">
 
-<h1>
-STRANGIS
-</h1>
+            Los artículos pueden proceder de proveedores
+            internacionales. Por este motivo, algunos pedidos
+            pueden tardar <strong>hasta 30 días</strong> en llegar.
+            Te recomendamos tenerlo en cuenta antes de realizar
+            tu compra.
 
-<p>
-Descubre nuestra selección de moda y accesorios.
-Productos seleccionados para crear tu propio estilo
-sin seguir las reglas de siempre.
-</p>
+        </div>
 
-<div class="hero-note">
+    </section>
 
-Los artículos pueden proceder de proveedores
-internacionales. Por este motivo, algunos pedidos
-pueden tardar <strong>hasta 30 días</strong> en llegar.
-Te recomendamos tenerlo en cuenta antes de realizar
-tu compra.
 
-</div>
+    <!-- =====================================================
+         PRODUCTOS
+    ====================================================== -->
 
-</section>
+    <section class="products-section">
 
+        <div class="section-heading">
 
-<!-- =====================================================
-     PRODUCTOS
-===================================================== -->
+            <h2>
+                Todos los artículos
+            </h2>
 
-<section class="products-section">
+            <span id="productCount">
+                Cargando...
+            </span>
 
-<div class="section-heading">
+        </div>
 
-<h2>
-Todos los artículos
-</h2>
 
-<span id="productCount">
-Cargando...
-</span>
+        <div
+            class="carousel-window"
+            id="carouselWindow"
+        >
 
-</div>
+            <div
+                class="products"
+                id="productsContainer"
+            ></div>
 
+        </div>
 
-<div
-    class="carousel-window"
-    id="carouselWindow"
->
+    </section>
 
-<div
-    class="products"
-    id="productsContainer"
-></div>
 
-</div>
+    <!-- =====================================================
+         INFORMACIÓN
+    ====================================================== -->
 
-</section>
+    <section class="info-section">
 
+        <div class="info-grid">
 
-<!-- =====================================================
-     INFORMACIÓN
-===================================================== -->
+            <div class="info-card">
 
-<section class="info-section">
+                <small>
+                    ENVÍOS
+                </small>
 
-<div class="info-grid">
+                <h3>
+                    Envíos internacionales
+                </h3>
 
-<div class="info-card">
+                <p>
+                    Algunos artículos proceden de proveedores
+                    internacionales y pueden tardar
+                    <strong>hasta 30 días</strong> en llegar.
+                </p>
 
-<small>
-ENVÍOS
-</small>
+            </div>
 
-<h3>
-Envíos internacionales
-</h3>
 
-<p>
-Algunos artículos proceden de proveedores
-internacionales y pueden tardar
-<strong>hasta 30 días</strong> en llegar.
-</p>
+            <div class="info-card">
 
-</div>
+                <small>
+                    COLECCIÓN
+                </small>
 
+                <h3>
+                    Selección Strangis
+                </h3>
 
-<div class="info-card">
+                <p>
+                    Añadimos nuevos artículos
+                    progresivamente a nuestras diferentes
+                    categorías.
+                </p>
 
-<small>
-COLECCIÓN
-</small>
+            </div>
 
-<h3>
-Selección Strangis
-</h3>
 
-<p>
-Añadimos nuevos artículos
-progresivamente a nuestras diferentes
-categorías.
-</p>
+            <div class="info-card">
 
-</div>
+                <small>
+                    COMPRA
+                </small>
 
+                <h3>
+                    Compra sencilla
+                </h3>
 
-<div class="info-card">
+                <p>
+                    Selecciona el artículo que quieras,
+                    elige las opciones disponibles y
+                    realiza tu pedido.
+                </p>
 
-<small>
-COMPRA
-</small>
+            </div>
 
-<h3>
-Compra sencilla
-</h3>
+        </div>
 
-<p>
-Selecciona el artículo que quieras,
-elige las opciones disponibles y
-realiza tu pedido.
-</p>
+    </section>
 
-</div>
 
-</div>
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
 
-</section>
+    <footer>
 
+        © 2026 STRANGIS · TODOS LOS DERECHOS RESERVADOS
 
-<footer>
+    </footer>
 
-© 2026 STRANGIS · TODOS LOS DERECHOS RESERVADOS
 
-</footer>
+    <!-- =====================================================
+         SUPABASE
+    ====================================================== -->
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<!-- =====================================================
-     SUPABASE
-===================================================== -->
+    <script>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        const SUPABASE_URL =
+            "https://xbbjfatmdbxbuoqdrgoj.supabase.co";
 
-<script>
+        const SUPABASE_PUBLISHABLE_KEY =
+            "sb_publishable_M7ETdIWvj4nCQZ55i24Vpw_5Yc5Islk";
 
-const SUPABASE_URL =
-"https://xbbjfatmdbxbuoqdrgoj.supabase.co";
+        const supabaseClient =
+            window.supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_PUBLISHABLE_KEY
+            );
 
-const SUPABASE_PUBLISHABLE_KEY =
-"sb_publishable_M7ETdIWvj4nCQZ55i24Vpw_5Yc5Islk";
 
-const supabaseClient =
-window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY
-);
+        /* =====================================================
+           CATEGORÍAS
+        ====================================================== */
 
+        const CATEGORY_LINKS = {
 
-/* =====================================================
-   CATEGORÍAS
-===================================================== */
+            camisetas:"camisetas.html",
+            pantalones:"pantalones.html",
+            conjuntos:"conjuntos.html",
+            gorras:"gorras.html",
+            gafas:"gafas.html",
+            bisuteria:"bisuteria.html"
 
-const CATEGORY_LINKS = {
+        };
 
-    camisetas:"camisetas.html",
-    pantalones:"pantalones.html",
-    conjuntos:"conjuntos.html",
-    gorras:"gorras.html",
-    gafas:"gafas.html",
-    bisuteria:"bisuteria.html"
 
-};
+        const CATEGORY_NAMES = {
 
+            camisetas:"Camisetas",
+            pantalones:"Pantalones",
+            conjuntos:"Conjuntos",
+            gorras:"Gorras",
+            gafas:"Gafas",
+            bisuteria:"Bisutería"
 
-const CATEGORY_NAMES = {
+        };
 
-    camisetas:"Camisetas",
-    pantalones:"Pantalones",
-    conjuntos:"Conjuntos",
-    gorras:"Gorras",
-    gafas:"Gafas",
-    bisuteria:"Bisutería"
 
-};
+        /* =====================================================
+           ESTADO
+        ====================================================== */
 
+        let allProducts = [];
 
-/* =====================================================
-   ESTADO
-===================================================== */
+        let currentSearch = "";
 
-let allProducts = [];
 
-let currentSearch = "";
+        /* =====================================================
+           SEGURIDAD
+        ====================================================== */
 
+        function escapeHTML(value){
 
-/* =====================================================
-   SEGURIDAD
-===================================================== */
+            return String(value ?? "")
 
-function escapeHTML(value){
-
-    return String(value ?? "")
-
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-}
-
-
-function escapeAttribute(value){
-
-    return String(value ?? "")
-
-        .replace(/&/g,"&amp;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;");
-}
-
-
-/* =====================================================
-   NORMALIZAR
-===================================================== */
-
-function normalizeText(value){
-
-    return String(value ?? "")
-
-        .normalize("NFD")
-
-        .replace(/[\u0300-\u036f]/g,"")
-
-        .toLowerCase()
-
-        .trim();
-}
-
-
-/* =====================================================
-   OBTENER REFERENCIA
-===================================================== */
-
-function getProductReference(product){
-
-    return String(
-
-        product?.ref ??
-        product?.reference ??
-        product?.sku ??
-        ""
-
-    ).trim();
-}
-
-
-/* =====================================================
-   EXTRAER COLORES
-===================================================== */
-
-function getProductColors(product){
-
-    const colors = [];
-
-    if(!product){
-        return colors;
-    }
-
-
-    /*
-     * colors / color
-     */
-
-    if(Array.isArray(product.colors)){
-
-        product.colors.forEach(color=>{
-
-            if(typeof color === "string"){
-
-                if(color.trim()){
-                    colors.push(color.trim());
-                }
-
-            }
-
-            else if(
-                color &&
-                typeof color === "object"
-            ){
-
-                const value =
-                    color.name ??
-                    color.color ??
-                    color.value ??
-                    "";
-
-                if(String(value).trim()){
-                    colors.push(String(value).trim());
-                }
-
-            }
-
-        });
-
-    }
-
-
-    if(
-        typeof product.color === "string" &&
-        product.color.trim()
-    ){
-
-        colors.push(
-            product.color.trim()
-        );
-
-    }
-
-
-    /*
-     * images con estructura por color
-     */
-
-    let images =
-        product.images;
-
-
-    if(typeof images === "string"){
-
-        try{
-            images = JSON.parse(images);
-        }
-        catch(error){
-            images = [];
+                .replace(/&/g,"&amp;")
+                .replace(/</g,"&lt;")
+                .replace(/>/g,"&gt;")
+                .replace(/"/g,"&quot;")
+                .replace(/'/g,"&#039;");
         }
 
-    }
+
+        function escapeAttribute(value){
+
+            return String(value ?? "")
+
+                .replace(/&/g,"&amp;")
+                .replace(/"/g,"&quot;")
+                .replace(/'/g,"&#039;")
+                .replace(/</g,"&lt;")
+                .replace(/>/g,"&gt;");
+        }
 
 
-    if(Array.isArray(images)){
+        /* =====================================================
+           NORMALIZAR
+        ====================================================== */
 
-        images.forEach(item=>{
+        function normalizeText(value){
+
+            return String(value ?? "")
+
+                .normalize("NFD")
+
+                .replace(/[\u0300-\u036f]/g,"")
+
+                .toLowerCase()
+
+                .trim();
+        }
+
+
+        /* =====================================================
+           IMÁGENES
+        ====================================================== */
+
+        function getProductImages(product){
+
+            if(!product){
+                return [];
+            }
+
+            let raw = product.images;
+
+            if(typeof raw === "string"){
+
+                try{
+
+                    raw = JSON.parse(raw);
+
+                }
+
+                catch(error){
+
+                    if(raw.startsWith("http")){
+                        return [raw];
+                    }
+
+                    return [];
+                }
+            }
+
+            if(!Array.isArray(raw)){
+                return [];
+            }
+
+            const result = [];
+
+            raw.forEach(item=>{
+
+                if(typeof item === "string"){
+
+                    if(item.trim()){
+                        result.push(item.trim());
+                    }
+
+                    return;
+                }
+
+                if(!item || typeof item !== "object"){
+                    return;
+                }
+
+                if(Array.isArray(item.images)){
+
+                    item.images.forEach(image=>{
+
+                        if(
+                            typeof image === "string" &&
+                            image.trim()
+                        ){
+                            result.push(image.trim());
+                        }
+
+                    });
+                }
+
+                if(
+                    typeof item.image === "string" &&
+                    item.image.trim()
+                ){
+                    result.push(item.image.trim());
+                }
+
+                if(
+                    typeof item.url === "string" &&
+                    item.url.trim()
+                ){
+                    result.push(item.url.trim());
+                }
+
+                if(
+                    typeof item.src === "string" &&
+                    item.src.trim()
+                ){
+                    result.push(item.src.trim());
+                }
+
+            });
+
+            return [...new Set(result)];
+        }
+
+
+        function getProductImage(product){
+
+            const images =
+                getProductImages(product);
+
+            return images[0] || "";
+        }
+
+
+        /* =====================================================
+           VARIANTES
+        ====================================================== */
+
+        function getProductVariants(product){
+
+            if(!product){
+                return [];
+            }
+
+            let value =
+                product.variants;
 
             if(
-                item &&
-                typeof item === "object"
+                value === null ||
+                value === undefined
             ){
+                return [];
+            }
 
-                const color =
-                    item.color ??
-                    item.colour ??
-                    item.nameColor ??
-                    "";
 
-                if(String(color).trim()){
+            if(typeof value === "string"){
 
-                    colors.push(
-                        String(color).trim()
-                    );
+                const trimmed =
+                    value.trim();
+
+                if(!trimmed){
+                    return [];
+                }
+
+                try{
+
+                    value =
+                        JSON.parse(trimmed);
 
                 }
 
+                catch(error){
+
+                    return trimmed
+                        .split(/[,|;]/)
+                        .map(item=>item.trim())
+                        .filter(Boolean);
+                }
             }
 
-        });
 
-    }
+            if(Array.isArray(value)){
 
+                const result = [];
 
-    /*
-     * Variantes
-     */
+                value.forEach(item=>{
 
-    const variants =
-        getProductVariants(product);
+                    if(
+                        typeof item === "string"
+                    ){
 
+                        if(item.trim()){
+                            result.push(item.trim());
+                        }
 
-    variants.forEach(item=>{
-
-        const text =
-            String(item);
-
-        if(
-            /^(negro|blanco|rojo|azul|verde|gris|rosa|rosado|amarillo|naranja|marron|marrón|beige|violeta|morado|lila|camel|crema|dorado|plateado)$/i
-                .test(text.trim())
-        ){
-
-            colors.push(text.trim());
-
-        }
-
-    });
+                        return;
+                    }
 
 
-    return [
-        ...new Set(
-            colors.filter(Boolean)
-        )
-    ];
-}
+                    if(
+                        typeof item === "number"
+                    ){
+
+                        result.push(
+                            String(item)
+                        );
+
+                        return;
+                    }
 
 
-/* =====================================================
-   IMÁGENES
-   Soporta:
+                    if(
+                        item &&
+                        typeof item === "object"
+                    ){
 
-   1. ["url1","url2"]
+                        [
+                            "name",
+                            "variant",
+                            "value",
+                            "size",
+                            "color",
+                            "colour",
+                            "ref",
+                            "reference",
+                            "sku"
+                        ].forEach(key=>{
 
-   2. [
-        {
-            color:"Negro",
-            images:["url1","url2"]
-        }
-      ]
+                            if(
+                                item[key] !==
+                                undefined &&
+                                item[key] !== null &&
+                                String(item[key]).trim()
+                            ){
 
-   3. {
-        Negro:["url1","url2"],
-        Blanco:["url3","url4"]
-      }
+                                result.push(
+                                    String(item[key]).trim()
+                                );
 
-   4. {
-        image:"url"
-      }
+                            }
 
-   5. URL directamente
-===================================================== */
+                        });
 
-function getProductImages(product){
+                    }
 
-    if(!product){
-        return [];
-    }
+                });
 
+                return [
+                    ...new Set(result)
+                ];
+            }
 
-    let raw =
-        product.images;
-
-
-    if(
-        raw === null ||
-        raw === undefined
-    ){
-
-        /*
-         * También intentamos campos alternativos
-         */
-
-        raw =
-            product.image_urls ??
-            product.imageUrls ??
-            product.photos ??
-            product.gallery ??
-            product.image ??
-            "";
-
-    }
-
-
-    if(
-        raw === null ||
-        raw === undefined
-    ){
-
-        return [];
-
-    }
-
-
-    /*
-     * JSON como texto
-     */
-
-    if(typeof raw === "string"){
-
-        const text =
-            raw.trim();
-
-
-        if(!text){
-            return [];
-        }
-
-
-        try{
-
-            raw =
-                JSON.parse(text);
-
-        }
-
-        catch(error){
 
             if(
-                text.startsWith("http://") ||
-                text.startsWith("https://")
+                typeof value === "object"
             ){
 
-                return [text];
+                const result = [];
 
+                Object.entries(value)
+                    .forEach(
+                        ([key,val])=>{
+
+                            result.push(key);
+
+                            if(
+                                typeof val === "string" ||
+                                typeof val === "number"
+                            ){
+
+                                result.push(
+                                    String(val)
+                                );
+
+                            }
+
+                            else if(
+                                Array.isArray(val)
+                            ){
+
+                                val.forEach(item=>{
+
+                                    if(
+                                        typeof item === "string" ||
+                                        typeof item === "number"
+                                    ){
+
+                                        result.push(
+                                            String(item)
+                                        );
+                                    }
+
+                                });
+
+                            }
+
+                        }
+                    );
+
+                return [
+                    ...new Set(result)
+                ];
             }
 
-            /*
-             * Puede ser una lista separada
-             */
-
-            const possible =
-                text
-                    .split(/[\n,|;]/)
-                    .map(item=>item.trim())
-                    .filter(item =>
-                        item.startsWith("http://") ||
-                        item.startsWith("https://")
-                    );
 
             return [
-                ...new Set(possible)
+                String(value)
             ];
-
-        }
-
-    }
-
-
-    const result = [];
-
-
-    function addImage(value){
-
-        if(typeof value !== "string"){
-            return;
         }
 
 
-        const image =
-            value.trim();
+        function getVariantsText(product){
 
-
-        if(!image){
-            return;
+            return getProductVariants(product)
+                .join(" · ");
         }
 
 
-        if(
-            image.startsWith("http://") ||
-            image.startsWith("https://")
-        ){
+        /* =====================================================
+           EXTRAER COLORES
+        ====================================================== */
 
-            result.push(image);
+        function getProductColors(product){
 
-        }
+            if(!product){
+                return [];
+            }
 
-    }
+            const colors = [];
 
+            /*
+             * Campos directos habituales.
+             */
 
-    function readObject(item){
+            [
+                "color",
+                "colour",
+                "colors",
+                "colours"
+            ].forEach(key=>{
 
-        if(
-            !item ||
-            typeof item !== "object"
-        ){
+                const value =
+                    product[key];
 
-            return;
-
-        }
-
-
-        /*
-         * Imagen individual
-         */
-
-        addImage(item.image);
-
-        addImage(item.url);
-
-        addImage(item.src);
-
-        addImage(item.image_url);
-
-        addImage(item.imageUrl);
-
-
-        /*
-         * Array images
-         */
-
-        if(Array.isArray(item.images)){
-
-            item.images.forEach(image=>{
-
-                if(typeof image === "string"){
-
-                    addImage(image);
-
-                }
-
-                else if(
-                    image &&
-                    typeof image === "object"
+                if(
+                    value !== undefined &&
+                    value !== null
                 ){
 
-                    addImage(image.image);
-                    addImage(image.url);
-                    addImage(image.src);
-                    addImage(image.image_url);
+                    if(Array.isArray(value)){
+
+                        value.forEach(item=>{
+
+                            if(
+                                typeof item === "string" &&
+                                item.trim()
+                            ){
+
+                                colors.push(
+                                    item.trim()
+                                );
+
+                            }
+
+                        });
+
+                    }
+
+                    else if(
+                        typeof value === "string"
+                    ){
+
+                        value
+                            .split(/[,|;]/)
+                            .forEach(item=>{
+
+                                if(item.trim()){
+                                    colors.push(
+                                        item.trim()
+                                    );
+                                }
+
+                            });
+
+                    }
 
                 }
 
             });
 
-        }
+
+            /*
+             * Intentamos extraer colores
+             * desde variants.
+             */
+
+            let variants =
+                product.variants;
 
 
-        /*
-         * photos / gallery
-         */
+            if(typeof variants === "string"){
 
-        [
-            item.photos,
-            item.gallery,
-            item.urls
-        ].forEach(list=>{
+                try{
+                    variants =
+                        JSON.parse(variants);
+                }
+                catch(error){}
+            }
 
-            if(Array.isArray(list)){
 
-                list.forEach(image=>{
+            if(Array.isArray(variants)){
 
-                    if(typeof image === "string"){
-                        addImage(image);
-                    }
+                variants.forEach(item=>{
 
-                    else if(
-                        image &&
-                        typeof image === "object"
+                    if(
+                        item &&
+                        typeof item === "object"
                     ){
 
-                        addImage(image.image);
-                        addImage(image.url);
-                        addImage(image.src);
+                        [
+                            "color",
+                            "colour"
+                        ].forEach(key=>{
+
+                            if(
+                                item[key] !== undefined &&
+                                item[key] !== null &&
+                                String(item[key]).trim()
+                            ){
+
+                                colors.push(
+                                    String(item[key]).trim()
+                                );
+
+                            }
+
+                        });
 
                     }
 
@@ -2166,1405 +2246,1047 @@ function getProductImages(product){
 
             }
 
-        });
 
-    }
+            /*
+             * Eliminamos duplicados.
+             */
+
+            return [
+                ...new Map(
+                    colors.map(
+                        value=>[
+                            normalizeText(value),
+                            value
+                        ]
+                    )
+                ).values()
+            ];
+        }
 
 
-    /*
-     * ARRAY
-     */
+        /* =====================================================
+           DETECTAR COLOR DE LA BÚSQUEDA
+        ====================================================== */
 
-    if(Array.isArray(raw)){
+        function getMatchedColor(product, search){
 
-        raw.forEach(item=>{
+            const query =
+                normalizeText(search);
 
-            if(typeof item === "string"){
+            if(!query){
+                return "";
+            }
 
-                addImage(item);
+            const colors =
+                getProductColors(product);
+
+            /*
+             * Primero buscamos coincidencia exacta.
+             */
+
+            const exact =
+                colors.find(
+                    color =>
+                        normalizeText(color) === query
+                );
+
+            if(exact){
+                return exact;
+            }
+
+
+            /*
+             * Después coincidencia parcial.
+             */
+
+            const partial =
+                colors.find(
+                    color =>
+                        normalizeText(color)
+                            .includes(query)
+                );
+
+            if(partial){
+                return partial;
+            }
+
+
+            /*
+             * Si la búsqueda contiene
+             * varias palabras, intentamos
+             * encontrar un color dentro.
+             */
+
+            const words =
+                query
+                    .split(/\s+/)
+                    .filter(Boolean);
+
+
+            for(const color of colors){
+
+                const normalizedColor =
+                    normalizeText(color);
+
+                if(
+                    words.some(
+                        word =>
+                            normalizedColor.includes(word)
+                    )
+                ){
+
+                    return color;
+                }
+            }
+
+
+            return "";
+        }
+
+
+        /* =====================================================
+           REFERENCIA
+        ====================================================== */
+
+        function getProductReference(product){
+
+            return String(
+                product?.ref ??
+                product?.reference ??
+                product?.sku ??
+                ""
+            ).trim();
+        }
+
+
+        /* =====================================================
+           CATEGORÍA
+        ====================================================== */
+
+        function getCategoryName(category){
+
+            const key =
+                String(category || "")
+                    .trim()
+                    .toLowerCase();
+
+            return CATEGORY_NAMES[key]
+                || category
+                || "Strangis";
+        }
+
+
+        function getProductLink(
+            product,
+            search
+        ){
+
+            const category =
+                String(
+                    product?.category || ""
+                )
+                .trim()
+                .toLowerCase();
+
+
+            const base =
+                CATEGORY_LINKS[category];
+
+
+            if(!base){
+                return "#";
+            }
+
+
+            const reference =
+                getProductReference(
+                    product
+                );
+
+
+            const matchedColor =
+                getMatchedColor(
+                    product,
+                    search
+                );
+
+
+            const params =
+                new URLSearchParams();
+
+
+            /*
+             * REFERENCIA
+             */
+
+            if(reference){
+
+                params.set(
+                    "ref",
+                    reference
+                );
+            }
+
+
+            /*
+             * COLOR ENCONTRADO
+             */
+
+            if(matchedColor){
+
+                params.set(
+                    "color",
+                    matchedColor
+                );
+            }
+
+
+            /*
+             * BÚSQUEDA ORIGINAL
+             */
+
+            if(search){
+
+                params.set(
+                    "buscar",
+                    search
+                );
+            }
+
+
+            const query =
+                params.toString();
+
+
+            return query
+                ? `${base}?${query}`
+                : base;
+        }
+
+
+        /* =====================================================
+           DATOS PARA BUSCAR
+        ====================================================== */
+
+        function getSearchableText(product){
+
+            const reference =
+                getProductReference(
+                    product
+                );
+
+
+            const name =
+                product?.name ??
+                "";
+
+
+            const variants =
+                getProductVariants(product)
+                    .join(" ");
+
+
+            const colors =
+                getProductColors(product)
+                    .join(" ");
+
+
+            const category =
+                product?.category ??
+                "";
+
+
+            /*
+             * También incluimos posibles
+             * campos adicionales si existen.
+             */
+
+            const extra = [
+
+                product?.description,
+                product?.title,
+                product?.brand,
+                product?.model,
+                product?.color,
+                product?.colour
+
+            ].filter(Boolean);
+
+
+            return normalizeText(
+                [
+                    reference,
+                    name,
+                    variants,
+                    colors,
+                    category,
+                    ...extra
+                ].join(" ")
+            );
+        }
+
+
+        /* =====================================================
+           FILTRAR
+        ====================================================== */
+
+        function filterProducts(search){
+
+            const query =
+                normalizeText(search);
+
+
+            if(!query){
+                return allProducts;
+            }
+
+
+            /*
+             * Si escribimos:
+             *
+             * "camiseta negra"
+             *
+             * exigimos que TODAS las palabras
+             * estén presentes.
+             */
+
+            const words =
+                query
+                    .split(/\s+/)
+                    .filter(Boolean);
+
+
+            return allProducts.filter(
+                product => {
+
+                    const searchable =
+                        getSearchableText(
+                            product
+                        );
+
+
+                    return words.every(
+                        word =>
+                            searchable.includes(word)
+                    );
+                }
+            );
+        }
+
+
+        /* =====================================================
+           TARJETA
+        ====================================================== */
+
+        function createProductCard(
+            product,
+            search
+        ){
+
+            const image =
+                getProductImage(product);
+
+
+            if(!image){
+                return "";
+            }
+
+
+            const name =
+                String(
+                    product?.name ||
+                    "Producto Strangis"
+                );
+
+
+            const reference =
+                getProductReference(
+                    product
+                );
+
+
+            const category =
+                String(
+                    product?.category ||
+                    ""
+                )
+                .trim()
+                .toLowerCase();
+
+
+            const categoryName =
+                getCategoryName(
+                    category
+                );
+
+
+            const variants =
+                getVariantsText(
+                    product
+                );
+
+
+            const colors =
+                getProductColors(
+                    product
+                );
+
+
+            const matchedColor =
+                getMatchedColor(
+                    product,
+                    search
+                );
+
+
+            const link =
+                getProductLink(
+                    product,
+                    search
+                );
+
+
+            /*
+             * Si encontramos un color,
+             * lo mostramos claramente.
+             */
+
+            const colorText =
+                matchedColor
+                ||
+                colors.join(" · ");
+
+
+            return `
+
+                <article
+                    class="product ${
+                        matchedColor
+                        ? "search-match"
+                        : ""
+                    }"
+                >
+
+                    <a
+                        class="product-link"
+                        href="${escapeAttribute(link)}"
+                    >
+
+                        <div class="product-image">
+
+                            <img
+                                src="${escapeAttribute(image)}"
+                                alt="${escapeHTML(name)}"
+                                loading="lazy"
+                                draggable="false"
+                                onerror="this.closest('.product').style.display='none';"
+                            >
+
+                        </div>
+
+
+                        <div class="product-info">
+
+                            <div class="product-name">
+                                ${escapeHTML(name)}
+                            </div>
+
+
+                            ${
+                                reference
+                                ?
+                                `
+                                <div class="product-ref">
+                                    REF: ${escapeHTML(reference)}
+                                </div>
+                                `
+                                :
+                                ""
+                            }
+
+
+                            <div class="product-category">
+                                ${escapeHTML(categoryName)}
+                            </div>
+
+
+                            ${
+                                colorText
+                                ?
+                                `
+                                <div class="product-variants">
+                                    COLOR:
+                                    ${escapeHTML(colorText)}
+                                </div>
+                                `
+                                :
+                                ""
+                            }
+
+
+                            ${
+                                variants
+                                ?
+                                `
+                                <div class="product-variants">
+                                    ${escapeHTML(variants)}
+                                </div>
+                                `
+                                :
+                                ""
+                            }
+
+                        </div>
+
+                    </a>
+
+                </article>
+
+            `;
+        }
+
+
+        /* =====================================================
+           MOSTRAR
+        ====================================================== */
+
+        function renderProducts(products){
+
+            const container =
+                document.getElementById(
+                    "productsContainer"
+                );
+
+
+            const counter =
+                document.getElementById(
+                    "productCount"
+                );
+
+
+            const result =
+                document.getElementById(
+                    "searchResult"
+                );
+
+
+            if(!container){
+                return;
+            }
+
+
+            const activeProducts =
+                Array.isArray(products)
+
+                ? products.filter(
+                    product =>
+                        product &&
+                        product.active !== false
+                )
+
+                : [];
+
+
+            const validProducts =
+                activeProducts.filter(
+                    product =>
+                        Boolean(
+                            getProductImage(product)
+                        )
+                );
+
+
+            counter.textContent =
+                validProducts.length === 1
+                ? "1 artículo"
+                : `${validProducts.length} artículos`;
+
+
+            if(currentSearch){
+
+                result.innerHTML =
+                    validProducts.length
+
+                    ?
+
+                    `Encontrados:
+                    <strong>
+                        ${validProducts.length}
+                    </strong>
+                    ${
+                        validProducts.length === 1
+                        ? "artículo"
+                        : "artículos"
+                    }`
+
+                    :
+
+                    `<strong>
+                        No se encontraron productos
+                    </strong>`;
+            }
+
+            else{
+
+                result.textContent = "";
+            }
+
+
+            if(!validProducts.length){
+
+                container.style.animation =
+                    "none";
+
+
+                container.innerHTML = `
+
+                    <div class="empty">
+
+                        <div class="empty-title">
+
+                            ${
+                                currentSearch
+                                ? "Sin resultados"
+                                : "Próximamente"
+                            }
+
+                        </div>
+
+
+                        <div class="empty-text">
+
+                            ${
+                                currentSearch
+
+                                ?
+
+                                `
+                                No encontramos ningún producto
+                                con esa referencia, color o variante.
+                                `
+
+                                :
+
+                                `
+                                Estamos preparando nuevos artículos
+                                para la colección Strangis.
+                                `
+                            }
+
+                        </div>
+
+                    </div>
+
+                `;
+
+                return;
+            }
+
+
+            const cards =
+                validProducts
+                    .map(
+                        product =>
+                            createProductCard(
+                                product,
+                                currentSearch
+                            )
+                    )
+                    .join("");
+
+
+            /*
+             * Carrusel infinito.
+             */
+
+            if(validProducts.length > 1){
+
+                container.innerHTML =
+                    cards + cards;
+
+
+                container.style.animation =
+                    "";
 
             }
 
             else{
 
-                readObject(item);
+                container.innerHTML =
+                    cards;
 
+
+                container.style.animation =
+                    "none";
             }
-
-        });
-
-    }
-
-
-    /*
-     * OBJETO
-     */
-
-    else if(
-        raw &&
-        typeof raw === "object"
-    ){
-
-        readObject(raw);
-
-
-        /*
-         * Formato:
-
-           {
-              Negro:[
-                 "url1",
-                 "url2"
-              ],
-              Blanco:[
-                 "url3"
-              ]
-           }
-        */
-
-        Object.entries(raw)
-            .forEach(([key,value])=>{
-
-                if(
-                    key === "image" ||
-                    key === "url" ||
-                    key === "src" ||
-                    key === "images" ||
-                    key === "photos" ||
-                    key === "gallery"
-                ){
-
-                    return;
-
-                }
-
-
-                if(Array.isArray(value)){
-
-                    value.forEach(item=>{
-
-                        if(typeof item === "string"){
-
-                            addImage(item);
-
-                        }
-
-                        else{
-
-                            readObject(item);
-
-                        }
-
-                    });
-
-                }
-
-                else if(
-                    typeof value === "string"
-                ){
-
-                    addImage(value);
-
-                }
-
-            });
-
-    }
-
-
-    return [
-        ...new Set(result)
-    ];
-}
-
-
-function getProductImage(product){
-
-    const images =
-        getProductImages(product);
-
-    return images[0] || "";
-}
-
-
-/* =====================================================
-   IMAGEN POR COLOR
-===================================================== */
-
-function getImagesForColor(
-    product,
-    selectedColor
-){
-
-    if(!selectedColor){
-        return getProductImages(product);
-    }
-
-
-    let raw =
-        product?.images;
-
-
-    if(typeof raw === "string"){
-
-        try{
-            raw = JSON.parse(raw);
-        }
-        catch(error){
-            return getProductImages(product);
         }
 
-    }
+
+        /* =====================================================
+           BUSCAR
+        ====================================================== */
+
+        function performSearch(){
+
+            const input =
+                document.getElementById(
+                    "productSearch"
+                );
 
 
-    const wanted =
-        normalizeText(selectedColor);
+            const clearButton =
+                document.getElementById(
+                    "searchClear"
+                );
 
 
-    if(Array.isArray(raw)){
-
-        for(const item of raw){
-
-            if(
-                !item ||
-                typeof item !== "object"
-            ){
-
-                continue;
-
+            if(!input){
+                return;
             }
 
 
-            const color =
-                item.color ??
-                item.colour ??
-                item.nameColor ??
-                "";
+            currentSearch =
+                input.value.trim();
 
 
-            if(
-                normalizeText(color) === wanted
-            ){
+            if(clearButton){
 
-                if(Array.isArray(item.images)){
+                clearButton.classList.toggle(
+                    "visible",
+                    Boolean(currentSearch)
+                );
+            }
 
-                    return item.images
-                        .filter(
-                            image =>
-                                typeof image === "string"
+
+            const filtered =
+                filterProducts(
+                    currentSearch
+                );
+
+
+            renderProducts(
+                filtered
+            );
+        }
+
+
+        /* =====================================================
+           EVENTOS
+        ====================================================== */
+
+        const searchInput =
+            document.getElementById(
+                "productSearch"
+            );
+
+
+        const searchClear =
+            document.getElementById(
+                "searchClear"
+            );
+
+
+        if(searchInput){
+
+            searchInput.addEventListener(
+                "input",
+                performSearch
+            );
+
+
+            searchInput.addEventListener(
+                "search",
+                performSearch
+            );
+
+
+            /*
+             * Enter:
+             *
+             * Si hay un único resultado,
+             * vamos directamente a él.
+             */
+
+            searchInput.addEventListener(
+                "keydown",
+                event => {
+
+                    if(
+                        event.key !== "Enter"
+                    ){
+                        return;
+                    }
+
+
+                    const filtered =
+                        filterProducts(
+                            searchInput.value.trim()
                         );
 
+
+                    if(
+                        filtered.length === 1
+                    ){
+
+                        const product =
+                            filtered[0];
+
+
+                        const link =
+                            getProductLink(
+                                product,
+                                searchInput.value.trim()
+                            );
+
+
+                        if(link && link !== "#"){
+
+                            window.location.href =
+                                link;
+                        }
+                    }
+
+                }
+            );
+        }
+
+
+        if(searchClear){
+
+            searchClear.addEventListener(
+                "click",
+                ()=>{
+
+                    searchInput.value = "";
+
+                    searchInput.focus();
+
+                    performSearch();
+                }
+            );
+        }
+
+
+        /* =====================================================
+           CARGAR PRODUCTOS
+        ====================================================== */
+
+        async function loadInicioProducts(){
+
+            const container =
+                document.getElementById(
+                    "productsContainer"
+                );
+
+
+            const counter =
+                document.getElementById(
+                    "productCount"
+                );
+
+
+            try{
+
+                counter.textContent =
+                    "Cargando...";
+
+
+                if(!currentSearch){
+
+                    container.innerHTML = `
+
+                        <div class="empty">
+
+                            <div class="empty-title">
+                                Cargando productos
+                            </div>
+
+                            <div class="empty-text">
+                                Un momento...
+                            </div>
+
+                        </div>
+
+                    `;
                 }
 
 
-                if(item.image){
-                    return [item.image];
+                const {
+                    data,
+                    error
+                } =
+                    await supabaseClient
+
+                        .from("Products")
+
+                        .select("*")
+
+                        .eq("active",true)
+
+                        .order(
+                            "id",
+                            {
+                                ascending:false
+                            }
+                        );
+
+
+                if(error){
+                    throw error;
                 }
+
+
+                console.log(
+                    "STRANGIS — productos recibidos:",
+                    data
+                );
+
+
+                allProducts =
+                    Array.isArray(data)
+                    ? data
+                    : [];
+
+
+                const filtered =
+                    filterProducts(
+                        currentSearch
+                    );
+
+
+                renderProducts(
+                    filtered
+                );
+
 
             }
 
+            catch(error){
+
+                console.error(
+                    "STRANGIS — error Supabase:",
+                    error
+                );
+
+
+                counter.textContent =
+                    "Error";
+
+
+                container.innerHTML = `
+
+                    <div class="empty">
+
+                        <div class="empty-title">
+                            No se pudieron cargar
+                            los productos
+                        </div>
+
+                        <div class="empty-text">
+
+                            ${escapeHTML(
+                                error?.message ||
+                                "Error desconocido."
+                            )}
+
+                            <br><br>
+
+                            Comprueba las políticas
+                            <strong>RLS</strong>
+                            de la tabla
+                            <strong>Products</strong>.
+
+                        </div>
+
+                    </div>
+
+                `;
+            }
         }
 
-    }
+
+        /* =====================================================
+           PAUSAR CARRUSEL
+        ====================================================== */
+
+        const carouselWindow =
+            document.getElementById(
+                "carouselWindow"
+            );
 
 
-    return getProductImages(product);
-}
+        if(carouselWindow){
+
+            carouselWindow.addEventListener(
+                "mouseenter",
+                ()=>{
+
+                    const track =
+                        document.getElementById(
+                            "productsContainer"
+                        );
 
 
-/* =====================================================
-   VARIANTES
-===================================================== */
+                    if(track){
 
-function getProductVariants(product){
-
-    if(!product){
-        return [];
-    }
+                        track.style.animationPlayState =
+                            "paused";
+                    }
+                }
+            );
 
 
-    let value =
-        product.variants;
+            carouselWindow.addEventListener(
+                "mouseleave",
+                ()=>{
+
+                    const track =
+                        document.getElementById(
+                            "productsContainer"
+                        );
 
 
-    if(
-        value === null ||
-        value === undefined
-    ){
+                    if(track){
+
+                        track.style.animationPlayState =
+                            "running";
+                    }
+                }
+            );
+        }
+
+
+        /* =====================================================
+           INICIO
+        ====================================================== */
+
+        loadInicioProducts();
+
 
         /*
-         * Campos alternativos
+         * Actualizar productos cada 30 segundos.
          */
 
-        value =
-            product.options ??
-            product.sizes ??
-            product.tallas ??
-            [];
-
-    }
-
-
-    if(
-        value === null ||
-        value === undefined
-    ){
-
-        return [];
-
-    }
-
-
-    if(typeof value === "string"){
-
-        const trimmed =
-            value.trim();
-
-
-        if(!trimmed){
-            return [];
-        }
-
-
-        try{
-
-            value =
-                JSON.parse(trimmed);
-
-        }
-
-        catch(error){
-
-            return trimmed
-
-                .split(/[,|;\n]/)
-
-                .map(item=>item.trim())
-
-                .filter(Boolean);
-
-        }
-
-    }
-
-
-    if(Array.isArray(value)){
-
-        const result = [];
-
-
-        value.forEach(item=>{
-
-            if(typeof item === "string"){
-
-                if(item.trim()){
-                    result.push(item.trim());
-                }
-
-                return;
-
-            }
-
-
-            if(typeof item === "number"){
-
-                result.push(
-                    String(item)
-                );
-
-                return;
-
-            }
-
-
-            if(
-                item &&
-                typeof item === "object"
-            ){
-
-                [
-                    "name",
-                    "variant",
-                    "value",
-                    "size",
-                    "color",
-                    "ref"
-                ].forEach(key=>{
-
-                    if(
-                        item[key] !== undefined &&
-                        item[key] !== null &&
-                        String(item[key]).trim()
-                    ){
-
-                        result.push(
-                            String(item[key]).trim()
-                        );
-
-                    }
-
-                });
-
-            }
-
-        });
-
-
-        return [
-            ...new Set(result)
-        ];
-
-    }
-
-
-    if(
-        typeof value === "object"
-    ){
-
-        const result = [];
-
-
-        Object.entries(value)
-            .forEach(
-                ([key,val])=>{
-
-                    result.push(key);
-
-
-                    if(
-                        typeof val === "string" ||
-                        typeof val === "number"
-                    ){
-
-                        result.push(
-                            String(val)
-                        );
-
-                    }
-
-                }
-            );
-
-
-        return [
-            ...new Set(result)
-        ];
-
-    }
-
-
-    return [
-        String(value)
-    ];
-}
-
-
-function getVariantsText(product){
-
-    return getProductVariants(product)
-        .join(" · ");
-}
-
-
-/* =====================================================
-   CATEGORÍA
-===================================================== */
-
-function getCategoryName(category){
-
-    const key =
-        String(category || "")
-            .trim()
-            .toLowerCase();
-
-    return CATEGORY_NAMES[key]
-        || category
-        || "Strangis";
-}
-
-
-/* =====================================================
-   LINK DEL PRODUCTO
-===================================================== */
-
-function getProductLink(
-    product,
-    selectedColor=""
-){
-
-    const category =
-        String(
-            product?.category || ""
-        )
-        .trim()
-        .toLowerCase();
-
-
-    const base =
-        CATEGORY_LINKS[category]
-        || "#";
-
-
-    const reference =
-        getProductReference(product);
-
-
-    /*
-     * Si tenemos referencia y/o color,
-     * pasamos ambos a la página.
-     */
-
-    if(
-        base !== "#" &&
-        (
-            reference ||
-            selectedColor
-        )
-    ){
-
-        const params =
-            new URLSearchParams();
-
-
-        if(reference){
-
-            params.set(
-                "ref",
-                reference
-            );
-
-        }
-
-
-        if(selectedColor){
-
-            params.set(
-                "color",
-                selectedColor
-            );
-
-        }
-
-
-        return (
-            base +
-            "?" +
-            params.toString()
+        setInterval(
+            loadInicioProducts,
+            30000
         );
-
-    }
-
-
-    return base;
-}
-
-
-/* =====================================================
-   DATOS DE BÚSQUEDA
-===================================================== */
-
-function getSearchableText(product){
-
-    const reference =
-        getProductReference(product);
-
-
-    const name =
-        product?.name ??
-        product?.title ??
-        "";
-
-
-    const category =
-        product?.category ??
-        "";
-
-
-    const variants =
-        getProductVariants(product)
-            .join(" ");
-
-
-    const colors =
-        getProductColors(product)
-            .join(" ");
-
-
-    /*
-     * También buscamos en todos los datos
-     * de imágenes por si el color está dentro
-     * de esa estructura.
-     */
-
-    let imageData = "";
-
-
-    try{
-
-        imageData =
-            JSON.stringify(
-                product?.images ?? ""
-            );
-
-    }
-
-    catch(error){
-
-        imageData = "";
-
-    }
-
-
-    return normalizeText(
-
-        [
-            reference,
-            name,
-            variants,
-            colors,
-            category,
-            imageData
-
-        ].join(" ")
-
-    );
-}
-
-
-/* =====================================================
-   DETECTAR COLOR BUSCADO
-===================================================== */
-
-function findMatchingColor(
-    product,
-    search
-){
-
-    const query =
-        normalizeText(search);
-
-
-    if(!query){
-        return "";
-    }
-
-
-    const colors =
-        getProductColors(product);
-
-
-    /*
-     * Primero coincidencia exacta
-     */
-
-    const exact =
-        colors.find(
-            color =>
-                normalizeText(color) === query
-        );
-
-
-    if(exact){
-        return exact;
-    }
-
-
-    /*
-     * Después coincidencia parcial
-     */
-
-    const partial =
-        colors.find(
-            color =>
-                normalizeText(color)
-                    .includes(query) ||
-                query.includes(
-                    normalizeText(color)
-                )
-        );
-
-
-    return partial || "";
-}
-
-
-/* =====================================================
-   FILTRAR
-===================================================== */
-
-function filterProducts(search){
-
-    const query =
-        normalizeText(search);
-
-
-    if(!query){
-        return allProducts;
-    }
-
-
-    return allProducts.filter(
-        product => {
-
-            const searchable =
-                getSearchableText(product);
-
-
-            return searchable.includes(
-                query
-            );
-
-        }
-    );
-}
-
-
-/* =====================================================
-   TARJETA
-===================================================== */
-
-function createProductCard(product){
-
-    /*
-     * Si la búsqueda corresponde a un color,
-     * intentamos mostrar la primera imagen
-     * perteneciente a ese color.
-     */
-
-    const matchingColor =
-        findMatchingColor(
-            product,
-            currentSearch
-        );
-
-
-    const colorImages =
-        matchingColor
-
-        ?
-
-        getImagesForColor(
-            product,
-            matchingColor
-        )
-
-        :
-
-        [];
-
-
-    const image =
-        colorImages[0]
-        || getProductImage(product);
-
-
-    if(!image){
-        return "";
-    }
-
-
-    const name =
-        String(
-            product?.name ||
-            product?.title ||
-            "Producto Strangis"
-        );
-
-
-    const reference =
-        getProductReference(product);
-
-
-    const category =
-        String(
-            product?.category ||
-            ""
-        )
-        .trim()
-        .toLowerCase();
-
-
-    const categoryName =
-        getCategoryName(
-            category
-        );
-
-
-    const variants =
-        getVariantsText(product);
-
-
-    const colors =
-        getProductColors(product);
-
-
-    const link =
-        getProductLink(
-            product,
-            matchingColor
-        );
-
-
-    return `
-
-<article class="product">
-
-<a
-    class="product-link"
-    href="${escapeAttribute(link)}"
->
-
-<div class="product-image">
-
-<img
-    src="${escapeAttribute(image)}"
-    alt="${escapeHTML(
-        name +
-        (
-            matchingColor
-            ? " " + matchingColor
-            : ""
-        )
-    )}"
-    loading="lazy"
-    draggable="false"
-    onerror="this.style.display='none';"
->
-
-</div>
-
-
-<div class="product-info">
-
-<div class="product-name">
-
-${escapeHTML(name)}
-
-</div>
-
-
-${
-    reference
-
-    ?
-
-    `
-    <div class="product-ref">
-
-        REF:
-        ${escapeHTML(reference)}
-
-    </div>
-    `
-
-    :
-
-    ""
-}
-
-
-<div class="product-category">
-
-${escapeHTML(categoryName)}
-
-</div>
-
-
-${
-    matchingColor
-
-    ?
-
-    `
-    <div class="product-variants">
-
-        COLOR:
-        <strong>
-            ${escapeHTML(matchingColor)}
-        </strong>
-
-    </div>
-    `
-
-    :
-
-    ""
-}
-
-
-${
-    variants
-
-    ?
-
-    `
-    <div class="product-variants">
-
-        ${escapeHTML(variants)}
-
-    </div>
-    `
-
-    :
-
-    ""
-}
-
-
-${
-    colors.length
-
-    ?
-
-    `
-
-    <div class="product-colors">
-
-        ${colors
-            .map(
-                color =>
-                `
-                <span class="product-color">
-                    ${escapeHTML(color)}
-                </span>
-                `
-            )
-            .join("")
-        }
-
-    </div>
-
-    `
-
-    :
-
-    ""
-}
-
-</div>
-
-</a>
-
-</article>
-
-`;
-
-}
-
-
-/* =====================================================
-   RENDER
-===================================================== */
-
-function renderProducts(products){
-
-    const container =
-        document.getElementById(
-            "productsContainer"
-        );
-
-
-    const counter =
-        document.getElementById(
-            "productCount"
-        );
-
-
-    const result =
-        document.getElementById(
-            "searchResult"
-        );
-
-
-    if(!container){
-        return;
-    }
-
-
-    const activeProducts =
-        Array.isArray(products)
-
-        ?
-
-        products.filter(
-            product =>
-                product &&
-                product.active !== false
-        )
-
-        :
-
-        [];
-
-
-    const validProducts =
-        activeProducts.filter(
-            product =>
-                Boolean(
-                    getProductImage(product)
-                )
-        );
-
-
-    counter.textContent =
-
-        validProducts.length === 1
-
-        ?
-
-        "1 artículo"
-
-        :
-
-        `${validProducts.length} artículos`;
-
-
-    if(currentSearch){
-
-        result.innerHTML =
-
-            validProducts.length
-
-            ?
-
-            `Encontrados:
-            <strong>
-                ${validProducts.length}
-            </strong>
-            ${
-                validProducts.length === 1
-                ? "artículo"
-                : "artículos"
-            }`
-
-            :
-
-            `<strong>
-                No se encontraron productos
-            </strong>`;
-
-    }
-
-    else{
-
-        result.textContent = "";
-
-    }
-
-
-    if(!validProducts.length){
-
-        container.style.animation =
-            "none";
-
-
-        container.innerHTML = `
-
-<div class="empty">
-
-<div class="empty-title">
-
-${
-    currentSearch
-    ? "Sin resultados"
-    : "Próximamente"
-}
-
-</div>
-
-
-<div class="empty-text">
-
-${
-    currentSearch
-
-    ?
-
-    `
-    No encontramos ningún producto
-    con esa referencia, color,
-    variante o nombre.
-    `
-
-    :
-
-    `
-    Estamos preparando nuevos artículos
-    para la colección Strangis.
-    `
-}
-
-</div>
-
-</div>
-
-`;
-
-        return;
-
-    }
-
-
-    const cards =
-        validProducts
-            .map(createProductCard)
-            .join("");
-
-
-    /*
-     * Carrusel infinito solamente
-     * con más de un producto.
-     */
-
-    if(validProducts.length > 1){
-
-        container.innerHTML =
-            cards + cards;
-
-
-        container.style.animation =
-            "";
-
-    }
-
-    else{
-
-        container.innerHTML =
-            cards;
-
-
-        container.style.animation =
-            "none";
-
-    }
-
-}
-
-
-/* =====================================================
-   BÚSQUEDA
-===================================================== */
-
-function performSearch(){
-
-    const input =
-        document.getElementById(
-            "productSearch"
-        );
-
-
-    const clearButton =
-        document.getElementById(
-            "searchClear"
-        );
-
-
-    if(!input){
-        return;
-    }
-
-
-    currentSearch =
-        input.value.trim();
-
-
-    if(clearButton){
-
-        clearButton.classList.toggle(
-            "visible",
-            Boolean(currentSearch)
-        );
-
-    }
-
-
-    const filtered =
-        filterProducts(
-            currentSearch
-        );
-
-
-    renderProducts(
-        filtered
-    );
-
-}
-
-
-/* =====================================================
-   EVENTOS
-===================================================== */
-
-const searchInput =
-    document.getElementById(
-        "productSearch"
-    );
-
-
-const searchClear =
-    document.getElementById(
-        "searchClear"
-    );
-
-
-if(searchInput){
-
-    searchInput.addEventListener(
-        "input",
-        performSearch
-    );
-
-
-    searchInput.addEventListener(
-        "search",
-        performSearch
-    );
-
-}
-
-
-if(searchClear){
-
-    searchClear.addEventListener(
-        "click",
-        ()=>{
-
-            searchInput.value =
-                "";
-
-            searchInput.focus();
-
-            performSearch();
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   CARGAR SUPABASE
-===================================================== */
-
-async function loadInicioProducts(){
-
-    const container =
-        document.getElementById(
-            "productsContainer"
-        );
-
-
-    const counter =
-        document.getElementById(
-            "productCount"
-        );
-
-
-    try{
-
-        counter.textContent =
-            "Cargando...";
-
-
-        if(!currentSearch){
-
-            container.innerHTML = `
-
-<div class="empty">
-
-<div class="empty-title">
-Cargando productos
-</div>
-
-<div class="empty-text">
-Un momento...
-</div>
-
-</div>
-
-`;
-
-        }
-
-
-        const {data,error} =
-            await supabaseClient
-
-                .from("Products")
-
-                .select("*")
-
-                .eq(
-                    "active",
-                    true
-                )
-
-                .order(
-                    "id",
-                    {
-                        ascending:false
-                    }
-                );
-
-
-        if(error){
-            throw error;
-        }
 
 
         console.log(
-            "STRANGIS — productos recibidos:",
-            data
+            "STRANGIS — inicio conectado directamente a Supabase"
         );
 
-
-        allProducts =
-            Array.isArray(data)
-            ? data
-            : [];
-
-
-        const filtered =
-            filterProducts(
-                currentSearch
-            );
-
-
-        renderProducts(
-            filtered
+        console.log(
+            "STRANGIS — buscador: referencia + color + variante + nombre"
         );
 
-
-    }
-
-    catch(error){
-
-        console.error(
-            "STRANGIS — error Supabase:",
-            error
+        console.log(
+            "STRANGIS — navegación: ref + color + buscar"
         );
 
-
-        counter.textContent =
-            "Error";
-
-
-        container.innerHTML = `
-
-<div class="empty">
-
-<div class="empty-title">
-
-No se pudieron cargar
-los productos
-
-</div>
-
-
-<div class="empty-text">
-
-${escapeHTML(
-    error?.message ||
-    "Error desconocido."
-)}
-
-<br><br>
-
-Comprueba las políticas
-<strong>RLS</strong>
-de la tabla
-<strong>Products</strong>.
-
-</div>
-
-</div>
-
-`;
-
-    }
-
-}
-
-
-/* =====================================================
-   PAUSAR CARRUSEL
-===================================================== */
-
-const carouselWindow =
-    document.getElementById(
-        "carouselWindow"
-    );
-
-
-if(carouselWindow){
-
-    carouselWindow.addEventListener(
-        "mouseenter",
-        ()=>{
-
-            const track =
-                document.getElementById(
-                    "productsContainer"
-                );
-
-
-            if(track){
-
-                track.style.animationPlayState =
-                    "paused";
-
-            }
-
-        }
-    );
-
-
-    carouselWindow.addEventListener(
-        "mouseleave",
-        ()=>{
-
-            const track =
-                document.getElementById(
-                    "productsContainer"
-                );
-
-
-            if(track){
-
-                track.style.animationPlayState =
-                    "running";
-
-            }
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   INICIO
-===================================================== */
-
-loadInicioProducts();
-
-
-/* =====================================================
-   ACTUALIZACIÓN
-===================================================== */
-
-setInterval(
-    loadInicioProducts,
-    30000
-);
-
-
-console.log(
-    "STRANGIS — inicio conectado directamente a Supabase"
-);
-
-</script>
+    </script>
 
 </body>
 
-    </html>
+</html>
