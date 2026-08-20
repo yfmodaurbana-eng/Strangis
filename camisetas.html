@@ -35,7 +35,9 @@ button,input,textarea{
     font:inherit;
 }
 
-/* HEADER */
+/* =====================================================
+   HEADER
+===================================================== */
 
 header{
     position:sticky;
@@ -48,6 +50,7 @@ header{
     border-bottom:1px solid rgba(255,255,255,.12);
     background:rgba(20,20,20,.92);
     backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
 }
 
 .logo{
@@ -85,12 +88,14 @@ nav a.active{
     color:#fff;
 }
 
-/* HERO */
+/* =====================================================
+   HERO
+===================================================== */
 
 .hero{
     width:min(1400px,90%);
     margin:auto;
-    padding:clamp(65px,9vw,110px) 0 clamp(45px,6vw,75px);
+    padding:clamp(65px,9vw,110px) 0 35px;
 }
 
 .hero small{
@@ -115,7 +120,131 @@ nav a.active{
     line-height:1.7;
 }
 
-/* PRODUCTOS */
+/* =====================================================
+   BUSCADOR DE COLORES
+===================================================== */
+
+.search-section{
+    width:min(1400px,90%);
+    margin:0 auto 35px;
+}
+
+.search-box{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px;
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:12px;
+    background:rgba(255,255,255,.055);
+    box-shadow:0 15px 45px rgba(0,0,0,.12);
+}
+
+.search-icon{
+    width:42px;
+    height:42px;
+    flex:0 0 42px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:8px;
+    background:rgba(255,255,255,.08);
+    color:#aaa;
+    font-size:18px;
+}
+
+#colorSearch{
+    width:100%;
+    min-width:0;
+    padding:13px 5px;
+    border:0;
+    outline:0;
+    background:transparent;
+    color:#fff;
+    font-size:14px;
+}
+
+#colorSearch::placeholder{
+    color:#777;
+}
+
+.clear-search{
+    display:none;
+    flex:0 0 auto;
+    padding:9px 13px;
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:6px;
+    background:transparent;
+    color:#aaa;
+    cursor:pointer;
+    font-size:10px;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+.clear-search.show{
+    display:block;
+}
+
+.clear-search:hover{
+    color:#fff;
+    border-color:#fff;
+}
+
+/* =====================================================
+   FILTROS DE COLOR
+===================================================== */
+
+.color-filters{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:14px;
+}
+
+.color-filter{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 11px;
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:20px;
+    background:rgba(255,255,255,.04);
+    color:#aaa;
+    cursor:pointer;
+    font-size:10px;
+    font-weight:bold;
+    letter-spacing:.7px;
+    text-transform:uppercase;
+}
+
+.color-filter:hover,
+.color-filter.active{
+    border-color:#fff;
+    color:#fff;
+    background:rgba(255,255,255,.10);
+}
+
+.color-dot{
+    width:14px;
+    height:14px;
+    flex:0 0 14px;
+    border:1px solid rgba(255,255,255,.35);
+    border-radius:50%;
+}
+
+.search-result{
+    margin-top:14px;
+    color:#777;
+    font-size:10px;
+    font-weight:bold;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+/* =====================================================
+   PRODUCTOS
+===================================================== */
 
 .products-section{
     width:min(1400px,90%);
@@ -146,7 +275,16 @@ nav a.active{
     background:rgba(255,255,255,.075);
 }
 
-/* GALERÍA */
+.product.highlight{
+    border-color:#fff;
+    box-shadow:
+        0 0 0 1px rgba(255,255,255,.18),
+        0 20px 55px rgba(0,0,0,.30);
+}
+
+/* =====================================================
+   GALERÍA
+===================================================== */
 
 .product-gallery{
     position:relative;
@@ -180,7 +318,9 @@ nav a.active{
     transform:scale(1.08);
 }
 
-/* INFORMACIÓN SOBRE LA IMAGEN */
+/* =====================================================
+   INFORMACIÓN SOBRE LA IMAGEN
+===================================================== */
 
 .product-image-label{
     position:absolute;
@@ -188,19 +328,13 @@ nav a.active{
     right:14px;
     bottom:14px;
     z-index:6;
-
     padding:12px 14px;
-
     border:1px solid rgba(255,255,255,.18);
     border-radius:9px;
-
     background:rgba(10,10,10,.76);
-
     backdrop-filter:blur(14px);
     -webkit-backdrop-filter:blur(14px);
-
     box-shadow:0 10px 30px rgba(0,0,0,.38);
-
     pointer-events:none;
 }
 
@@ -258,7 +392,9 @@ nav a.active{
     background:#777;
 }
 
-/* FLECHAS */
+/* =====================================================
+   FLECHAS
+===================================================== */
 
 .gallery-arrow,
 .lightbox-arrow{
@@ -294,7 +430,9 @@ nav a.active{
     background:rgba(0,0,0,.78);
 }
 
-/* CONTADOR */
+/* =====================================================
+   CONTADOR
+===================================================== */
 
 .gallery-counter,
 .lightbox-counter{
@@ -329,7 +467,9 @@ nav a.active{
     pointer-events:none;
 }
 
-/* INFO */
+/* =====================================================
+   INFO
+===================================================== */
 
 .product-description{
     margin-top:4px;
@@ -338,7 +478,9 @@ nav a.active{
     line-height:1.55;
 }
 
-/* TALLAS */
+/* =====================================================
+   TALLAS
+===================================================== */
 
 .sizes{
     display:flex;
@@ -369,7 +511,9 @@ nav a.active{
     border-color:#fff;
 }
 
-/* CANTIDAD */
+/* =====================================================
+   CANTIDAD
+===================================================== */
 
 .quantity{
     display:flex;
@@ -389,6 +533,11 @@ nav a.active{
     font-size:18px;
 }
 
+.quantity button:disabled{
+    opacity:.4;
+    cursor:not-allowed;
+}
+
 .quantity span{
     min-width:25px;
     text-align:center;
@@ -396,7 +545,9 @@ nav a.active{
     font-weight:bold;
 }
 
-/* ENVÍO */
+/* =====================================================
+   ENVÍO
+===================================================== */
 
 .shipping{
     margin-top:15px;
@@ -426,7 +577,9 @@ nav a.active{
     font-weight:bold;
 }
 
-/* COMPRAR */
+/* =====================================================
+   COMPRAR
+===================================================== */
 
 .buy{
     width:100%;
@@ -459,7 +612,9 @@ nav a.active{
     color:#aaa;
 }
 
-/* FOOTER */
+/* =====================================================
+   FOOTER
+===================================================== */
 
 footer{
     padding:35px 5%;
@@ -469,7 +624,9 @@ footer{
     font-size:10px;
 }
 
-/* LIGHTBOX */
+/* =====================================================
+   LIGHTBOX
+===================================================== */
 
 .image-lightbox{
     position:fixed;
@@ -481,6 +638,7 @@ footer{
     padding:25px;
     background:rgba(0,0,0,.92);
     backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
 }
 
 .image-lightbox.show{
@@ -540,7 +698,9 @@ footer{
     bottom:15px;
 }
 
-/* MODAL */
+/* =====================================================
+   MODAL
+===================================================== */
 
 .modal{
     position:fixed;
@@ -552,6 +712,7 @@ footer{
     padding:25px;
     background:rgba(0,0,0,.78);
     backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
 }
 
 .modal.show{
@@ -706,9 +867,12 @@ footer{
     cursor:pointer;
 }
 
-/* RESPONSIVE */
+/* =====================================================
+   RESPONSIVE
+===================================================== */
 
 @media(max-width:1100px){
+
     .products{
         grid-template-columns:repeat(3,minmax(0,1fr));
     }
@@ -719,12 +883,14 @@ footer{
 }
 
 @media(max-width:850px){
+
     .products{
         grid-template-columns:repeat(2,minmax(0,1fr));
     }
 
     .hero,
-    .products-section{
+    .products-section,
+    .search-section{
         width:92%;
     }
 }
@@ -751,7 +917,7 @@ footer{
 
     .hero{
         width:94%;
-        padding:50px 0 38px;
+        padding:50px 0 30px;
     }
 
     .hero h1{
@@ -763,7 +929,8 @@ footer{
         font-size:13px;
     }
 
-    .products-section{
+    .products-section,
+    .search-section{
         width:94%;
     }
 
@@ -827,6 +994,20 @@ footer{
         padding:22px 17px 25px;
         border-radius:18px 18px 0 0;
     }
+
+    .search-box{
+        padding:9px;
+    }
+
+    .search-icon{
+        width:38px;
+        height:38px;
+        flex-basis:38px;
+    }
+
+    .clear-search{
+        padding:8px 10px;
+    }
 }
 </style>
 </head>
@@ -849,6 +1030,7 @@ footer{
 
 </header>
 
+
 <section class="hero">
 
     <small>COLECCIÓN</small>
@@ -862,9 +1044,57 @@ footer{
 
 </section>
 
+
+<!-- =====================================================
+     BUSCADOR
+===================================================== -->
+
+<section class="search-section">
+
+    <div class="search-box">
+
+        <div class="search-icon">
+            ⌕
+        </div>
+
+        <input
+            id="colorSearch"
+            type="search"
+            autocomplete="off"
+            placeholder="Buscar por color, nombre o referencia..."
+            oninput="handleSearch()"
+        >
+
+        <button
+            id="clearSearch"
+            class="clear-search"
+            type="button"
+            onclick="clearSearch()"
+        >
+            LIMPIAR
+        </button>
+
+    </div>
+
+    <div
+        class="color-filters"
+        id="colorFilters"
+    ></div>
+
+    <div
+        class="search-result"
+        id="searchResult"
+    ></div>
+
+</section>
+
+
 <section class="products-section">
 
-    <div class="products" id="productsContainer">
+    <div
+        class="products"
+        id="productsContainer"
+    >
 
         <div class="loading">
             Cargando productos...
@@ -874,13 +1104,20 @@ footer{
 
 </section>
 
+
 <footer>
     © 2026 Strangis · TODOS LOS DERECHOS RESERVADOS
 </footer>
 
-<!-- LIGHTBOX -->
 
-<div class="image-lightbox" id="imageLightbox">
+<!-- =====================================================
+     LIGHTBOX
+===================================================== -->
+
+<div
+    class="image-lightbox"
+    id="imageLightbox"
+>
 
     <div class="lightbox-content">
 
@@ -920,9 +1157,15 @@ footer{
 
 </div>
 
-<!-- MODAL PEDIDO -->
 
-<div class="modal" id="customerModal">
+<!-- =====================================================
+     MODAL PEDIDO
+===================================================== -->
+
+<div
+    class="modal"
+    id="customerModal"
+>
 
     <div class="modal-box">
 
@@ -941,9 +1184,15 @@ footer{
 
         </div>
 
-        <div class="order-summary" id="orderSummary"></div>
+        <div
+            class="order-summary"
+            id="orderSummary"
+        ></div>
 
-        <div class="form-error" id="formError"></div>
+        <div
+            class="form-error"
+            id="formError"
+        ></div>
 
         <div class="form-title">
             DATOS DEL CLIENTE
@@ -952,93 +1201,165 @@ footer{
         <div class="form-grid">
 
             <div class="form-field full">
-                <label>Nombre y apellidos *</label>
+
+                <label>
+                    Nombre y apellidos *
+                </label>
+
                 <input
                     id="customerName"
                     type="text"
                     autocomplete="name"
                 >
+
             </div>
 
             <div class="form-field">
-                <label>Teléfono *</label>
+
+                <label>
+                    Teléfono *
+                </label>
+
                 <input
                     id="customerPhone"
                     type="tel"
                     autocomplete="tel"
                 >
+
             </div>
 
             <div class="form-field">
-                <label>Email</label>
+
+                <label>
+                    Email
+                </label>
+
                 <input
                     id="customerEmail"
                     type="email"
                     autocomplete="email"
                 >
+
             </div>
 
         </div>
+
 
         <div class="form-title">
             DIRECCIÓN DE ENVÍO
         </div>
 
+
         <div class="form-grid">
 
             <div class="form-field full">
-                <label>Dirección *</label>
+
+                <label>
+                    Dirección *
+                </label>
+
                 <input
                     id="customerAddress"
                     type="text"
                     autocomplete="street-address"
                 >
+
             </div>
 
             <div class="form-field">
-                <label>Número *</label>
-                <input id="customerNumber" type="text">
+
+                <label>
+                    Número *
+                </label>
+
+                <input
+                    id="customerNumber"
+                    type="text"
+                >
+
             </div>
 
             <div class="form-field">
-                <label>Piso / Puerta</label>
-                <input id="customerFloor" type="text">
+
+                <label>
+                    Piso / Puerta
+                </label>
+
+                <input
+                    id="customerFloor"
+                    type="text"
+                >
+
             </div>
 
             <div class="form-field">
-                <label>Código postal *</label>
+
+                <label>
+                    Código postal *
+                </label>
+
                 <input
                     id="customerPostal"
                     type="text"
                     inputmode="numeric"
                 >
+
             </div>
 
             <div class="form-field">
-                <label>Ciudad *</label>
-                <input id="customerCity" type="text">
+
+                <label>
+                    Ciudad *
+                </label>
+
+                <input
+                    id="customerCity"
+                    type="text"
+                >
+
             </div>
 
             <div class="form-field">
-                <label>Provincia *</label>
-                <input id="customerProvince" type="text">
+
+                <label>
+                    Provincia *
+                </label>
+
+                <input
+                    id="customerProvince"
+                    type="text"
+                >
+
             </div>
 
             <div class="form-field">
-                <label>País *</label>
+
+                <label>
+                    País *
+                </label>
+
                 <input
                     id="customerCountry"
                     type="text"
                     value="España"
                 >
+
             </div>
 
             <div class="form-field full">
-                <label>Observaciones</label>
-                <textarea id="customerNotes"></textarea>
+
+                <label>
+                    Observaciones
+                </label>
+
+                <textarea
+                    id="customerNotes"
+                ></textarea>
+
             </div>
 
         </div>
+
 
         <button
             class="send-order"
@@ -1047,6 +1368,7 @@ footer{
         >
             ENVIAR PEDIDO POR WHATSAPP
         </button>
+
 
         <button
             class="cancel-order"
@@ -1059,6 +1381,7 @@ footer{
     </div>
 
 </div>
+
 
 <script>
 
@@ -1078,6 +1401,11 @@ const STRANGIS_PRODUCTS_TABLE =
 const CATEGORY =
     "camisetas";
 
+
+/* =====================================================
+   ESTADO
+===================================================== */
+
 let PRODUCTS = [];
 
 let currentOrder = null;
@@ -1089,7 +1417,12 @@ let lightboxVariantIndex = 0;
 let lightboxImageIndex = 0;
 
 let galleryStartX = 0;
+
 let galleryStartY = 0;
+
+let activeColorFilter = "";
+
+let searchTimer = null;
 
 
 /* =====================================================
@@ -1128,12 +1461,19 @@ const supabaseClient = {
         let data = null;
 
         try{
-            data = text ? JSON.parse(text) : null;
+
+            data =
+                text
+                    ? JSON.parse(text)
+                    : null;
+
         }catch{
+
             data = text;
         }
 
         if(!response.ok){
+
             throw new Error(
                 data?.message ||
                 data?.error_description ||
@@ -1144,6 +1484,7 @@ const supabaseClient = {
 
         return data;
     },
+
 
     async getProducts(){
 
@@ -1161,6 +1502,7 @@ const supabaseClient = {
             )}?${params.toString()}`
         );
     }
+
 };
 
 
@@ -1191,6 +1533,16 @@ function escapeHTML(value){
 }
 
 
+function normalizeText(value){
+
+    return String(value ?? "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g,"")
+        .toLowerCase()
+        .trim();
+}
+
+
 function parseJSON(value,fallback=[]){
 
     if(Array.isArray(value)){
@@ -1209,7 +1561,6 @@ function parseJSON(value,fallback=[]){
         }catch{
 
             return fallback;
-
         }
     }
 
@@ -1219,54 +1570,33 @@ function parseJSON(value,fallback=[]){
 
 /* =====================================================
    VARIANTES
-   ADMITE:
-
-   [
-     {
-       "name":"Negro",
-       "color":"#000000",
-       "images":[
-         "foto1.jpg",
-         "foto2.jpg",
-         "foto3.jpg"
-       ]
-     },
-     {
-       "name":"Blanco",
-       "color":"#ffffff",
-       "images":[
-         "foto4.jpg",
-         "foto5.jpg"
-       ]
-     }
-   ]
-
-   TAMBIÉN ADMITE:
-   colorName
-   image
-   url
 ===================================================== */
 
 function getVariants(product){
 
-    let raw =
+    const raw =
         parseJSON(
             product.images,
             []
         );
 
+
     /*
-     * Si images viene como:
+     * Si images es directamente:
      *
-     * ["foto1.jpg","foto2.jpg"]
+     * [
+     *   "foto1.jpg",
+     *   "foto2.jpg"
+     * ]
      *
-     * lo tratamos como una única variante.
+     * se considera un solo color.
      */
 
     if(
         raw.length &&
         raw.every(
-            item => typeof item === "string"
+            item =>
+                typeof item === "string"
         )
     ){
 
@@ -1285,10 +1615,11 @@ function getVariants(product){
                     raw.filter(Boolean)
             }
         ];
-
     }
 
+
     const variants = [];
+
 
     raw.forEach(
         (variant,index)=>{
@@ -1300,24 +1631,22 @@ function getVariants(product){
                 return;
             }
 
+
             let images = [];
 
-            /*
-             * images: [...]
-             */
 
-            if(Array.isArray(variant.images)){
+            if(
+                Array.isArray(
+                    variant.images
+                )
+            ){
 
                 images =
                     variant.images
                         .filter(Boolean)
                         .map(String);
-
             }
 
-            /*
-             * image: "..."
-             */
 
             if(
                 !images.length &&
@@ -1325,14 +1654,12 @@ function getVariants(product){
             ){
 
                 images = [
-                    String(variant.image)
+                    String(
+                        variant.image
+                    )
                 ];
-
             }
 
-            /*
-             * url: "..."
-             */
 
             if(
                 !images.length &&
@@ -1340,21 +1667,17 @@ function getVariants(product){
             ){
 
                 images = [
-                    String(variant.url)
+                    String(
+                        variant.url
+                    )
                 ];
-
             }
+
 
             if(!images.length){
                 return;
             }
 
-            /*
-             * AQUÍ ESTÁ LA PARTE IMPORTANTE:
-             * el nombre del color se busca en
-             * varias propiedades para que
-             * siempre aparezca.
-             */
 
             const variantName =
                 variant.name ||
@@ -1365,6 +1688,25 @@ function getVariants(product){
                 variant.color ||
                 `Color ${index + 1}`;
 
+
+            let colorValue =
+                variant.hex ||
+                variant.colorHex ||
+                "#888888";
+
+
+            if(
+                typeof variant.color === "string" &&
+                /^#?[0-9a-f]{3,8}$/i.test(
+                    variant.color
+                )
+            ){
+
+                colorValue =
+                    variant.color;
+            }
+
+
             variants.push({
 
                 name:String(
@@ -1372,16 +1714,7 @@ function getVariants(product){
                 ),
 
                 color:
-                    variant.hex ||
-                    variant.colorHex ||
-                    (
-                        typeof variant.color === "string" &&
-                        /^#?[0-9a-f]{3,8}$/i.test(
-                            variant.color
-                        )
-                        ? variant.color
-                        : "#888888"
-                    ),
+                    colorValue,
 
                 images
 
@@ -1389,6 +1722,7 @@ function getVariants(product){
 
         }
     );
+
 
     return variants;
 }
@@ -1400,7 +1734,9 @@ function getVariantImages(variant){
         return [];
     }
 
-    return Array.isArray(variant.images)
+    return Array.isArray(
+        variant.images
+    )
         ? variant.images
             .filter(Boolean)
             .map(String)
@@ -1418,7 +1754,7 @@ function getSizes(product){
 
 
 /* =====================================================
-   CARGAR
+   CARGAR PRODUCTOS
 ===================================================== */
 
 async function loadProducts(){
@@ -1428,11 +1764,13 @@ async function loadProducts(){
             "productsContainer"
         );
 
+
     container.innerHTML = `
         <div class="loading">
             Cargando productos...
         </div>
     `;
+
 
     try{
 
@@ -1440,11 +1778,18 @@ async function loadProducts(){
             await supabaseClient
                 .getProducts();
 
+
+        buildColorFilters();
+
         renderProducts();
+
+        updateSearchResult();
+
 
     }catch(error){
 
         console.error(error);
+
 
         container.innerHTML = `
             <div class="empty">
@@ -1467,7 +1812,620 @@ async function loadProducts(){
 
 
 /* =====================================================
-   RENDER
+   OBTENER TODOS LOS COLORES
+===================================================== */
+
+function getAllColors(){
+
+    const colors = [];
+
+    PRODUCTS.forEach(
+        product => {
+
+            const variants =
+                getVariants(product);
+
+
+            variants.forEach(
+                variant => {
+
+                    const name =
+                        String(
+                            variant.name ||
+                            ""
+                        ).trim();
+
+
+                    if(!name){
+                        return;
+                    }
+
+
+                    const normalized =
+                        normalizeText(
+                            name
+                        );
+
+
+                    if(
+                        !colors.some(
+                            item =>
+                                item.normalized ===
+                                normalized
+                        )
+                    ){
+
+                        colors.push({
+
+                            name,
+
+                            normalized,
+
+                            color:
+                                variant.color ||
+                                "#888888"
+
+                        });
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+    return colors.sort(
+        (a,b)=>
+            a.name.localeCompare(
+                b.name,
+                "es"
+            )
+    );
+}
+
+
+/* =====================================================
+   BOTONES DE COLOR
+===================================================== */
+
+function buildColorFilters(){
+
+    const container =
+        document.getElementById(
+            "colorFilters"
+        );
+
+
+    const colors =
+        getAllColors();
+
+
+    if(!colors.length){
+
+        container.innerHTML = "";
+
+        return;
+    }
+
+
+    container.innerHTML =
+        colors
+            .map(
+                color => `
+
+                    <button
+                        type="button"
+                        class="color-filter ${
+                            activeColorFilter ===
+                            color.normalized
+                            ? "active"
+                            : ""
+                        }"
+                        onclick="
+                            selectColorFilter(
+                                '${escapeJS(
+                                    color.name
+                            )}'
+                        )
+                    "
+                    >
+
+                        <span
+                            class="color-dot"
+                            style="
+                                background:${escapeHTML(
+                                    color.color
+                                )}
+                            "
+                        ></span>
+
+                        ${escapeHTML(
+                            color.name
+                        )}
+
+                    </button>
+
+                `
+            )
+            .join("");
+}
+
+
+/*
+ * Evita romper el onclick
+ * cuando el nombre del color
+ * contiene comillas.
+ */
+
+function escapeJS(value){
+
+    return String(value ?? "")
+        .replace(/\\/g,"\\\\")
+        .replace(/'/g,"\\'");
+}
+
+
+/* =====================================================
+   SELECCIONAR COLOR
+===================================================== */
+
+function selectColorFilter(colorName){
+
+    const input =
+        document.getElementById(
+            "colorSearch"
+        );
+
+
+    activeColorFilter =
+        normalizeText(
+            colorName
+        );
+
+
+    input.value =
+        colorName;
+
+
+    buildColorFilters();
+
+    renderProducts();
+
+    updateSearchResult();
+
+
+    /*
+     * IMPORTANTE:
+     *
+     * Después de filtrar buscamos
+     * exactamente la variante/color.
+     *
+     * Cuando la encontramos:
+     *
+     * 1. hacemos scroll hasta producto
+     * 2. seleccionamos la variante
+     * 3. ponemos la primera foto
+     * 4. abrimos directamente el lightbox
+     */
+
+    const result =
+        findProductByColor(
+            colorName
+        );
+
+
+    if(result){
+
+        openProductColor(
+            result.productIndex,
+            result.variantIndex,
+            0
+        );
+    }
+}
+
+
+/* =====================================================
+   BÚSQUEDA
+===================================================== */
+
+function handleSearch(){
+
+    const input =
+        document.getElementById(
+            "colorSearch"
+        );
+
+
+    const value =
+        input.value.trim();
+
+
+    activeColorFilter = "";
+
+
+    const clearButton =
+        document.getElementById(
+            "clearSearch"
+        );
+
+
+    clearButton.classList.toggle(
+        "show",
+        Boolean(value)
+    );
+
+
+    buildColorFilters();
+
+
+    renderProducts();
+
+    updateSearchResult();
+
+
+    /*
+     * Si el texto coincide exactamente
+     * con un color, vamos directamente
+     * a la foto de ese color.
+     */
+
+    if(value){
+
+        clearTimeout(
+            searchTimer
+        );
+
+
+        searchTimer =
+            setTimeout(
+                () => {
+
+                    const exactColor =
+                        findProductByColor(
+                            value
+                        );
+
+
+                    if(exactColor){
+
+                        openProductColor(
+                            exactColor.productIndex,
+                            exactColor.variantIndex,
+                            0
+                        );
+                    }
+
+                },
+                350
+            );
+    }
+}
+
+
+/* =====================================================
+   LIMPIAR
+===================================================== */
+
+function clearSearch(){
+
+    const input =
+        document.getElementById(
+            "colorSearch"
+        );
+
+
+    input.value = "";
+
+    activeColorFilter = "";
+
+
+    document
+        .getElementById(
+            "clearSearch"
+        )
+        .classList.remove(
+            "show"
+        );
+
+
+    buildColorFilters();
+
+    renderProducts();
+
+    updateSearchResult();
+}
+
+
+/* =====================================================
+   BUSCAR PRODUCTO POR COLOR
+===================================================== */
+
+function findProductByColor(
+    colorName
+){
+
+    const normalizedSearch =
+        normalizeText(
+            colorName
+        );
+
+
+    for(
+        let productIndex = 0;
+        productIndex < PRODUCTS.length;
+        productIndex++
+    ){
+
+        const product =
+            PRODUCTS[productIndex];
+
+
+        const variants =
+            getVariants(product);
+
+
+        for(
+            let variantIndex = 0;
+            variantIndex < variants.length;
+            variantIndex++
+        ){
+
+            const variant =
+                variants[variantIndex];
+
+
+            const normalizedVariant =
+                normalizeText(
+                    variant.name
+                );
+
+
+            if(
+                normalizedVariant ===
+                normalizedSearch
+            ){
+
+                return {
+                    productIndex,
+                    variantIndex
+                };
+            }
+        }
+    }
+
+
+    return null;
+}
+
+
+/* =====================================================
+   IR DIRECTAMENTE AL PRODUCTO + FOTO
+===================================================== */
+
+function openProductColor(
+    productIndex,
+    variantIndex,
+    imageIndex = 0
+){
+
+    const product =
+        PRODUCTS[productIndex];
+
+
+    if(!product){
+        return;
+    }
+
+
+    const variants =
+        getVariants(product);
+
+
+    const variant =
+        variants[variantIndex];
+
+
+    if(!variant){
+        return;
+    }
+
+
+    const images =
+        getVariantImages(
+            variant
+        );
+
+
+    if(!images.length){
+        return;
+    }
+
+
+    /*
+     * Primero seleccionamos la variante
+     * en la tarjeta.
+     */
+
+    setVariant(
+        productIndex,
+        variantIndex,
+        imageIndex
+    );
+
+
+    /*
+     * Esperamos un instante para permitir
+     * que el navegador renderice el producto.
+     */
+
+    setTimeout(
+        () => {
+
+            const card =
+                document.getElementById(
+                    `product-${productIndex}`
+                );
+
+
+            if(card){
+
+                card.scrollIntoView({
+                    behavior:"smooth",
+                    block:"center"
+                });
+
+
+                card.classList.add(
+                    "highlight"
+                );
+
+
+                setTimeout(
+                    () => {
+
+                        card.classList.remove(
+                            "highlight"
+                        );
+
+                    },
+                    1800
+                );
+            }
+
+
+            /*
+             * Abrimos directamente
+             * la foto de esa variante.
+             */
+
+            setTimeout(
+                () => {
+
+                    openLightbox(
+                        productIndex
+                    );
+
+                },
+                450
+            );
+
+        },
+        50
+    );
+}
+
+
+/* =====================================================
+   FILTRADO
+===================================================== */
+
+function productMatchesSearch(
+    product,
+    search
+){
+
+    if(!search){
+        return true;
+    }
+
+
+    const variants =
+        getVariants(product);
+
+
+    const productText =
+        [
+            product.name,
+            product.description,
+            product.ref,
+            product.id,
+            product.category
+        ]
+            .map(normalizeText)
+            .join(" ");
+
+
+    if(
+        productText.includes(
+            search
+        )
+    ){
+
+        return true;
+    }
+
+
+    return variants.some(
+        variant =>
+            normalizeText(
+                variant.name
+            ).includes(
+                search
+            )
+    );
+}
+
+
+/* =====================================================
+   RESULTADO
+===================================================== */
+
+function updateSearchResult(){
+
+    const result =
+        document.getElementById(
+            "searchResult"
+        );
+
+
+    const input =
+        document.getElementById(
+            "colorSearch"
+        );
+
+
+    const search =
+        normalizeText(
+            input.value
+        );
+
+
+    if(!search){
+
+        result.textContent =
+            `${PRODUCTS.length} camisetas disponibles`;
+
+        return;
+    }
+
+
+    const matches =
+        PRODUCTS.filter(
+            product =>
+                productMatchesSearch(
+                    product,
+                    search
+                )
+        );
+
+
+    if(matches.length === 1){
+
+        result.textContent =
+            "1 camiseta encontrada";
+
+    }else{
+
+        result.textContent =
+            `${matches.length} camisetas encontradas`;
+    }
+}
+
+
+/* =====================================================
+   RENDER PRODUCTOS
 ===================================================== */
 
 function renderProducts(){
@@ -1477,25 +2435,61 @@ function renderProducts(){
             "productsContainer"
         );
 
-    if(!PRODUCTS.length){
+
+    const input =
+        document.getElementById(
+            "colorSearch"
+        );
+
+
+    const search =
+        normalizeText(
+            input.value
+        );
+
+
+    const filtered =
+        PRODUCTS.filter(
+            product =>
+                productMatchesSearch(
+                    product,
+                    search
+                )
+        );
+
+
+    if(!filtered.length){
 
         container.innerHTML = `
             <div class="empty">
-                No hay camisetas disponibles.
+
+                No se encontraron camisetas
+                para esa búsqueda.
+
             </div>
         `;
 
         return;
     }
 
+
     container.innerHTML =
-        PRODUCTS
+        filtered
             .map(
-                (product,index)=>
-                    createProductHTML(
+                product => {
+
+                    const originalIndex =
+                        PRODUCTS.indexOf(
+                            product
+                        );
+
+
+                    return createProductHTML(
                         product,
-                        index
-                    )
+                        originalIndex
+                    );
+
+                }
             )
             .join("");
 }
@@ -1513,24 +2507,30 @@ function createProductHTML(
     const variants =
         getVariants(product);
 
+
     const sizes =
         getSizes(product);
+
 
     const firstVariant =
         variants[0];
 
+
     const stockDefined =
         product.stock !== null &&
         product.stock !== undefined;
+
 
     const stock =
         stockDefined
             ? Number(product.stock)
             : null;
 
+
     const outOfStock =
         stockDefined &&
         stock <= 0;
+
 
     if(!firstVariant){
 
@@ -1568,13 +2568,16 @@ function createProductHTML(
         `;
     }
 
+
     const images =
         getVariantImages(
             firstVariant
         );
 
+
     const firstImage =
         images[0];
+
 
     return `
         <article
@@ -1600,7 +2603,9 @@ function createProductHTML(
 
                     <img
                         id="image-${index}"
-                        src="${escapeHTML(firstImage || "")}"
+                        src="${escapeHTML(
+                            firstImage || ""
+                        )}"
                         alt="${escapeHTML(
                             product.name ||
                             "Producto"
@@ -1610,7 +2615,6 @@ function createProductHTML(
                         onerror="imageError(this)"
                     >
 
-                    <!-- INFORMACIÓN SOBRE LA IMAGEN -->
 
                     <div
                         class="product-image-label"
@@ -1631,13 +2635,17 @@ function createProductHTML(
                                 )}
                             </div>
 
+
                             <div
                                 class="product-image-label-price"
                             >
-                                ${money(product.price)}
+                                ${money(
+                                    product.price
+                                )}
                             </div>
 
                         </div>
+
 
                         <div
                             class="product-image-label-meta"
@@ -1653,32 +2661,27 @@ function createProductHTML(
                                 )}
                             </span>
 
-                            ${
-                                firstVariant
-                                ?
-                                `
-                                <span
-                                    class="product-image-label-separator"
-                                ></span>
 
-                                <span
-                                    class="product-image-label-color"
-                                    id="product-label-color-${index}"
-                                >
-                                    ${escapeHTML(
-                                        firstVariant.name
-                                    )}
-                                </span>
-                                `
-                                :
-                                ""
-                            }
+                            <span
+                                class="product-image-label-separator"
+                            ></span>
+
+
+                            <span
+                                class="product-image-label-color"
+                                id="product-label-color-${index}"
+                            >
+                                ${escapeHTML(
+                                    firstVariant.name
+                                )}
+                            </span>
 
                         </div>
 
                     </div>
 
                 </div>
+
 
                 ${
                     variants.length > 1
@@ -1710,6 +2713,7 @@ function createProductHTML(
                     ""
                 }
 
+
                 ${
                     images.length > 1 ||
                     variants.length > 1
@@ -1732,6 +2736,7 @@ function createProductHTML(
 
             </div>
 
+
             ${
                 product.description
                 ?
@@ -1746,6 +2751,7 @@ function createProductHTML(
                 ""
             }
 
+
             ${
                 sizes.length
                 ?
@@ -1754,6 +2760,7 @@ function createProductHTML(
 
                     ${sizes.map(
                         (size,sizeIndex)=>`
+
                             <button
                                 type="button"
                                 class="size"
@@ -1764,8 +2771,11 @@ function createProductHTML(
                                     )
                                 "
                             >
-                                ${escapeHTML(size)}
+                                ${escapeHTML(
+                                    size
+                                )}
                             </button>
+
                         `
                     ).join("")}
 
@@ -1774,6 +2784,7 @@ function createProductHTML(
                 :
                 ""
             }
+
 
             <div class="quantity">
 
@@ -1785,9 +2796,11 @@ function createProductHTML(
                     −
                 </button>
 
+
                 <span id="quantity-${index}">
                     1
                 </span>
+
 
                 <button
                     type="button"
@@ -1798,6 +2811,7 @@ function createProductHTML(
                 </button>
 
             </div>
+
 
             <div class="shipping">
 
@@ -1819,27 +2833,35 @@ function createProductHTML(
 
             </div>
 
+
             ${
                 stockDefined
                 ?
                 `
                 <div
                     class="stock ${
-                        outOfStock ? "out" : ""
+                        outOfStock
+                            ? "out"
+                            : ""
                     }"
                 >
+
                     ${
                         outOfStock
                         ?
                         "AGOTADO"
                         :
-                        `Stock disponible: ${escapeHTML(stock)}`
+                        `Stock disponible: ${escapeHTML(
+                            stock
+                        )}`
                     }
+
                 </div>
                 `
                 :
                 ""
             }
+
 
             <button
                 type="button"
@@ -1849,8 +2871,10 @@ function createProductHTML(
             >
                 ${
                     outOfStock
-                    ? "AGOTADO"
-                    : "COMPRAR"
+                    ?
+                    "AGOTADO"
+                    :
+                    "COMPRAR"
                 }
             </button>
 
@@ -1872,78 +2896,99 @@ function setVariant(
     const product =
         PRODUCTS[productIndex];
 
+
     if(!product){
         return;
     }
 
+
     const variants =
         getVariants(product);
+
 
     if(!variants.length){
         return;
     }
 
+
     if(
         variantIndex < 0 ||
         variantIndex >= variants.length
     ){
+
         variantIndex = 0;
     }
+
 
     const variant =
         variants[variantIndex];
 
+
     const images =
-        getVariantImages(variant);
+        getVariantImages(
+            variant
+        );
+
 
     if(!images.length){
         return;
     }
 
+
     if(
         imageIndex < 0 ||
         imageIndex >= images.length
     ){
+
         imageIndex = 0;
     }
+
 
     const card =
         document.getElementById(
             `product-${productIndex}`
         );
 
+
     const image =
         document.getElementById(
             `image-${productIndex}`
         );
 
+
     if(!card || !image){
         return;
     }
 
+
     card.dataset.variant =
         variantIndex;
+
 
     card.dataset.image =
         imageIndex;
 
+
     image.src =
         images[imageIndex];
 
+
     image.alt =
         `${product.name || "Producto"} - ${variant.name}`;
+
 
     const colorLabel =
         document.getElementById(
             `product-label-color-${productIndex}`
         );
 
+
     if(colorLabel){
 
         colorLabel.textContent =
             variant.name;
-
     }
+
 
     updateGalleryCounter(
         productIndex
@@ -1962,46 +3007,59 @@ function updateGalleryCounter(
     const product =
         PRODUCTS[productIndex];
 
+
     const card =
         document.getElementById(
             `product-${productIndex}`
         );
+
 
     const counter =
         document.getElementById(
             `gallery-counter-${productIndex}`
         );
 
+
     if(
         !product ||
         !card ||
         !counter
     ){
+
         return;
     }
 
+
     const variants =
         getVariants(product);
+
 
     const variantIndex =
         Number(
             card.dataset.variant || 0
         );
 
+
     const imageIndex =
         Number(
             card.dataset.image || 0
         );
 
+
     const variant =
         variants[variantIndex];
+
 
     if(!variant){
         return;
     }
 
+
     const images =
-        getVariantImages(variant);
+        getVariantImages(
+            variant
+        );
+
 
     counter.textContent =
         `${imageIndex + 1} / ${images.length}`;
@@ -2019,32 +3077,48 @@ function selectNextVariant(
     const product =
         PRODUCTS[productIndex];
 
+
     const card =
         document.getElementById(
             `product-${productIndex}`
         );
 
-    if(!product || !card){
+
+    if(
+        !product ||
+        !card
+    ){
+
         return;
     }
+
 
     const variants =
         getVariants(product);
 
+
     if(!variants.length){
         return;
     }
+
 
     let current =
         Number(
             card.dataset.variant || 0
         );
 
+
     current++;
 
-    if(current >= variants.length){
+
+    if(
+        current >=
+        variants.length
+    ){
+
         current = 0;
     }
+
 
     setVariant(
         productIndex,
@@ -2065,33 +3139,46 @@ function selectPreviousVariant(
     const product =
         PRODUCTS[productIndex];
 
+
     const card =
         document.getElementById(
             `product-${productIndex}`
         );
 
-    if(!product || !card){
+
+    if(
+        !product ||
+        !card
+    ){
+
         return;
     }
+
 
     const variants =
         getVariants(product);
 
+
     if(!variants.length){
         return;
     }
+
 
     let current =
         Number(
             card.dataset.variant || 0
         );
 
+
     current--;
 
+
     if(current < 0){
+
         current =
             variants.length - 1;
     }
+
 
     setVariant(
         productIndex,
@@ -2111,11 +3198,14 @@ function galleryTouchStart(event){
         !event.touches ||
         !event.touches.length
     ){
+
         return;
     }
 
+
     galleryStartX =
         event.touches[0].clientX;
+
 
     galleryStartY =
         event.touches[0].clientY;
@@ -2131,58 +3221,81 @@ function galleryTouchEnd(
         !event.changedTouches ||
         !event.changedTouches.length
     ){
+
         return;
     }
+
 
     const endX =
         event.changedTouches[0].clientX;
 
+
     const endY =
         event.changedTouches[0].clientY;
+
 
     const diffX =
         endX - galleryStartX;
 
+
     const diffY =
         endY - galleryStartY;
 
+
     if(
         Math.abs(diffX) < 45 ||
-        Math.abs(diffX) < Math.abs(diffY)
+        Math.abs(diffX) <
+        Math.abs(diffY)
     ){
+
         return;
     }
 
+
     const product =
         PRODUCTS[productIndex];
+
 
     const card =
         document.getElementById(
             `product-${productIndex}`
         );
 
-    if(!product || !card){
+
+    if(
+        !product ||
+        !card
+    ){
+
         return;
     }
 
+
     const variants =
         getVariants(product);
+
 
     const variantIndex =
         Number(
             card.dataset.variant || 0
         );
 
+
     const imageIndex =
         Number(
             card.dataset.image || 0
         );
 
+
     const variant =
         variants[variantIndex];
 
+
     const images =
-        getVariantImages(variant);
+        getVariantImages(
+            variant
+        );
+
 
     if(diffX < 0){
 
@@ -2202,7 +3315,6 @@ function galleryTouchEnd(
             selectNextVariant(
                 productIndex
             );
-
         }
 
     }else{
@@ -2220,7 +3332,6 @@ function galleryTouchEnd(
             selectPreviousVariant(
                 productIndex
             );
-
         }
     }
 }
@@ -2238,28 +3349,39 @@ function selectSize(
     const product =
         PRODUCTS[productIndex];
 
+
     const sizes =
         getSizes(product);
 
+
     const size =
         sizes[sizeIndex];
+
 
     const card =
         document.getElementById(
             `product-${productIndex}`
         );
 
-    if(!card || size === undefined){
+
+    if(
+        !card ||
+        size === undefined
+    ){
+
         return;
     }
 
+
     card.dataset.size =
         size;
+
 
     card
         .querySelectorAll(".size")
         .forEach(
             (button,index)=>{
+
                 button.classList.toggle(
                     "active",
                     index === sizeIndex
@@ -2283,23 +3405,30 @@ function changeQuantity(
             `product-${productIndex}`
         );
 
+
     if(!card){
         return;
     }
 
+
     const product =
         PRODUCTS[productIndex];
+
 
     let quantity =
         Number(
             card.dataset.quantity || 1
         );
 
+
     quantity += change;
 
+
     if(quantity < 1){
+
         quantity = 1;
     }
+
 
     if(
         product.stock !== null &&
@@ -2309,23 +3438,29 @@ function changeQuantity(
         const stock =
             Number(product.stock);
 
+
         if(
             stock > 0 &&
             quantity > stock
         ){
+
             quantity = stock;
         }
     }
 
+
     card.dataset.quantity =
         quantity;
+
 
     const quantityElement =
         document.getElementById(
             `quantity-${productIndex}`
         );
 
+
     if(quantityElement){
+
         quantityElement.textContent =
             quantity;
     }
@@ -2336,22 +3471,32 @@ function changeQuantity(
    COMPRAR
 ===================================================== */
 
-function buyProduct(productIndex){
+function buyProduct(
+    productIndex
+){
 
     const product =
         PRODUCTS[productIndex];
+
 
     const card =
         document.getElementById(
             `product-${productIndex}`
         );
 
-    if(!product || !card){
+
+    if(
+        !product ||
+        !card
+    ){
+
         return;
     }
 
+
     const variants =
         getVariants(product);
+
 
     const variant =
         variants[
@@ -2360,17 +3505,21 @@ function buyProduct(productIndex){
             )
         ];
 
+
     const sizes =
         getSizes(product);
+
 
     const size =
         card.dataset.size ||
         "No especificada";
 
+
     const quantity =
         Number(
             card.dataset.quantity || 1
         );
+
 
     if(
         sizes.length &&
@@ -2384,6 +3533,7 @@ function buyProduct(productIndex){
         return;
     }
 
+
     if(!variant){
 
         alert(
@@ -2392,6 +3542,7 @@ function buyProduct(productIndex){
 
         return;
     }
+
 
     if(
         product.stock !== null &&
@@ -2406,6 +3557,7 @@ function buyProduct(productIndex){
         return;
     }
 
+
     currentOrder = {
 
         product,
@@ -2417,23 +3569,33 @@ function buyProduct(productIndex){
         quantity,
 
         total:
-            Number(product.price || 0) *
+            Number(
+                product.price || 0
+            ) *
             quantity
     };
 
+
     showOrderSummary();
+
 
     document
         .getElementById(
             "formError"
         )
-        .classList.remove("show");
+        .classList.remove(
+            "show"
+        );
+
 
     document
         .getElementById(
             "customerModal"
         )
-        .classList.add("show");
+        .classList.add(
+            "show"
+        );
+
 
     document.body.style.overflow =
         "hidden";
@@ -2448,6 +3610,7 @@ function showOrderSummary(){
 
     const order =
         currentOrder;
+
 
     document
         .getElementById(
@@ -2525,16 +3688,23 @@ function closeCustomerModal(){
         .getElementById(
             "customerModal"
         )
-        .classList.remove("show");
+        .classList.remove(
+            "show"
+        );
+
 
     if(
         !document
             .getElementById(
                 "imageLightbox"
             )
-            .classList.contains("show")
+            .classList.contains(
+                "show"
+            )
     ){
-        document.body.style.overflow = "";
+
+        document.body.style.overflow =
+            "";
     }
 }
 
@@ -2544,23 +3714,30 @@ function fieldValue(id){
     const element =
         document.getElementById(id);
 
+
     return element
         ? element.value.trim()
         : "";
 }
 
 
-function showFormError(message){
+function showFormError(
+    message
+){
 
     const error =
         document.getElementById(
             "formError"
         );
 
+
     error.textContent =
         message;
 
-    error.classList.add("show");
+
+    error.classList.add(
+        "show"
+    );
 }
 
 
@@ -2574,52 +3751,92 @@ function sendOrderToWhatsApp(){
         return;
     }
 
+
     const name =
-        fieldValue("customerName");
+        fieldValue(
+            "customerName"
+        );
+
 
     const phone =
-        fieldValue("customerPhone");
+        fieldValue(
+            "customerPhone"
+        );
+
 
     const email =
-        fieldValue("customerEmail");
+        fieldValue(
+            "customerEmail"
+        );
+
 
     const address =
-        fieldValue("customerAddress");
+        fieldValue(
+            "customerAddress"
+        );
+
 
     const number =
-        fieldValue("customerNumber");
+        fieldValue(
+            "customerNumber"
+        );
+
 
     const floor =
-        fieldValue("customerFloor");
+        fieldValue(
+            "customerFloor"
+        );
+
 
     const postal =
-        fieldValue("customerPostal");
+        fieldValue(
+            "customerPostal"
+        );
+
 
     const city =
-        fieldValue("customerCity");
+        fieldValue(
+            "customerCity"
+        );
+
 
     const province =
-        fieldValue("customerProvince");
+        fieldValue(
+            "customerProvince"
+        );
+
 
     const country =
-        fieldValue("customerCountry");
+        fieldValue(
+            "customerCountry"
+        );
+
 
     const notes =
-        fieldValue("customerNotes");
+        fieldValue(
+            "customerNotes"
+        );
+
 
     if(!name){
+
         showFormError(
             "Introduce tu nombre y apellidos."
         );
+
         return;
     }
 
+
     if(!phone){
+
         showFormError(
             "Introduce tu teléfono."
         );
+
         return;
     }
+
 
     if(
         !address ||
@@ -2637,11 +3854,16 @@ function sendOrderToWhatsApp(){
         return;
     }
 
+
     const whatsapp =
         String(
             currentOrder.product.whatsapp ||
             ""
-        ).replace(/\D/g,"");
+        ).replace(
+            /\D/g,
+            ""
+        );
+
 
     if(!whatsapp){
 
@@ -2651,6 +3873,7 @@ function sendOrderToWhatsApp(){
 
         return;
     }
+
 
     const message =
 
@@ -2728,13 +3951,18 @@ ${notes || "Ninguna"}
 
 ━━━━━━━━━━━━━━━━`;
 
+
     const url =
         "https://wa.me/" +
         whatsapp +
         "?text=" +
-        encodeURIComponent(message);
+        encodeURIComponent(
+            message
+        );
+
 
     closeCustomerModal();
+
 
     window.open(
         url,
@@ -2754,42 +3982,54 @@ function openLightbox(
     const product =
         PRODUCTS[productIndex];
 
+
     if(!product){
         return;
     }
 
+
     const variants =
         getVariants(product);
+
 
     if(!variants.length){
         return;
     }
+
 
     const card =
         document.getElementById(
             `product-${productIndex}`
         );
 
+
     lightboxProductIndex =
         productIndex;
 
+
     lightboxVariantIndex =
         Number(
-            card.dataset.variant || 0
+            card?.dataset.variant || 0
         );
+
 
     lightboxImageIndex =
         Number(
-            card.dataset.image || 0
+            card?.dataset.image || 0
         );
 
+
     updateLightbox();
+
 
     document
         .getElementById(
             "imageLightbox"
         )
-        .classList.add("show");
+        .classList.add(
+            "show"
+        );
+
 
     document.body.style.overflow =
         "hidden";
@@ -2803,50 +4043,71 @@ function updateLightbox(){
             lightboxProductIndex
         ];
 
+
     if(!product){
         return;
     }
 
+
     const variants =
         getVariants(product);
+
 
     const variant =
         variants[
             lightboxVariantIndex
         ];
 
+
     if(!variant){
         return;
     }
 
+
     const images =
-        getVariantImages(variant);
+        getVariantImages(
+            variant
+        );
+
 
     if(!images.length){
         return;
     }
 
+
     if(
-        lightboxImageIndex >= images.length
+        lightboxImageIndex >=
+        images.length
     ){
+
         lightboxImageIndex =
             images.length - 1;
     }
 
-    if(lightboxImageIndex < 0){
+
+    if(
+        lightboxImageIndex < 0
+    ){
+
         lightboxImageIndex = 0;
     }
+
 
     const image =
         document.getElementById(
             "lightboxImage"
         );
 
+
     image.src =
-        images[lightboxImageIndex];
+        images[
+            lightboxImageIndex
+        ];
+
 
     image.alt =
         `${product.name || "Producto"} - ${variant.name}`;
+
 
     document
         .getElementById(
@@ -2866,32 +4127,45 @@ function changeLightboxImage(
             lightboxProductIndex
         ];
 
+
     if(!product){
         return;
     }
 
+
     const variants =
         getVariants(product);
+
 
     if(!variants.length){
         return;
     }
 
+
     let variantIndex =
         lightboxVariantIndex;
+
 
     let imageIndex =
         lightboxImageIndex;
 
+
     const variant =
-        variants[variantIndex];
+        variants[
+            variantIndex
+        ];
+
 
     const images =
-        getVariantImages(variant);
+        getVariantImages(
+            variant
+        );
+
 
     if(!images.length){
         return;
     }
+
 
     if(direction > 0){
 
@@ -2906,12 +4180,15 @@ function changeLightboxImage(
 
             variantIndex++;
 
+
             if(
                 variantIndex >=
                 variants.length
             ){
+
                 variantIndex = 0;
             }
+
 
             imageIndex = 0;
         }
@@ -2926,15 +4203,23 @@ function changeLightboxImage(
 
             variantIndex--;
 
-            if(variantIndex < 0){
+
+            if(
+                variantIndex < 0
+            ){
+
                 variantIndex =
                     variants.length - 1;
             }
 
+
             const previousImages =
                 getVariantImages(
-                    variants[variantIndex]
+                    variants[
+                        variantIndex
+                    ]
                 );
+
 
             imageIndex =
                 Math.max(
@@ -2944,22 +4229,21 @@ function changeLightboxImage(
         }
     }
 
+
     lightboxVariantIndex =
         variantIndex;
+
 
     lightboxImageIndex =
         imageIndex;
 
-    /*
-     * También sincronizamos
-     * la tarjeta principal.
-     */
 
     setVariant(
         lightboxProductIndex,
         variantIndex,
         imageIndex
     );
+
 
     updateLightbox();
 }
@@ -2971,28 +4255,36 @@ function closeLightbox(){
         .getElementById(
             "imageLightbox"
         )
-        .classList.remove("show");
+        .classList.remove(
+            "show"
+        );
+
 
     if(
         !document
             .getElementById(
                 "customerModal"
             )
-            .classList.contains("show")
+            .classList.contains(
+                "show"
+            )
     ){
-        document.body.style.overflow = "";
+
+        document.body.style.overflow =
+            "";
     }
 }
 
 
 function imageError(image){
 
-    image.style.display = "none";
+    image.style.display =
+        "none";
 }
 
 
 /* =====================================================
-   TECLADO Y MODALES
+   TECLADO
 ===================================================== */
 
 document.addEventListener(
@@ -3002,8 +4294,10 @@ document.addEventListener(
         if(event.key === "Escape"){
 
             closeLightbox();
+
             closeCustomerModal();
         }
+
 
         if(
             event.key === "ArrowRight" &&
@@ -3011,11 +4305,14 @@ document.addEventListener(
                 .getElementById(
                     "imageLightbox"
                 )
-                .classList.contains("show")
+                .classList.contains(
+                    "show"
+                )
         ){
 
             changeLightboxImage(1);
         }
+
 
         if(
             event.key === "ArrowLeft" &&
@@ -3023,7 +4320,9 @@ document.addEventListener(
                 .getElementById(
                     "imageLightbox"
                 )
-                .classList.contains("show")
+                .classList.contains(
+                    "show"
+                )
         ){
 
             changeLightboxImage(-1);
@@ -3031,6 +4330,10 @@ document.addEventListener(
     }
 );
 
+
+/* =====================================================
+   CERRAR MODAL AL PULSAR FUERA
+===================================================== */
 
 document
     .getElementById(
@@ -3040,7 +4343,10 @@ document
         "click",
         function(event){
 
-            if(event.target === this){
+            if(
+                event.target === this
+            ){
+
                 closeCustomerModal();
             }
         }
@@ -3055,7 +4361,10 @@ document
         "click",
         function(event){
 
-            if(event.target === this){
+            if(
+                event.target === this
+            ){
+
                 closeLightbox();
             }
         }
@@ -3071,4 +4380,4 @@ loadProducts();
 </script>
 
 </body>
-</html>
+    </html>
