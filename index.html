@@ -17,10 +17,6 @@
         content="Strangis — Tu tienda online."
     >
 
-    <!-- =====================================================
-         COMPARTIR WEB
-    ====================================================== -->
-
     <meta property="og:type" content="website">
 
     <meta
@@ -1483,7 +1479,7 @@
                 type="search"
                 autocomplete="off"
                 spellcheck="false"
-                placeholder="Buscar por referencia, color o variante..."
+                placeholder="Buscar por color, referencia o nombre..."
                 aria-label="Buscar productos"
             >
 
@@ -1502,8 +1498,8 @@
 
         <div class="search-help">
 
-            Puedes buscar por referencia, color,
-            variante, nombre o categoría.
+            Escribe un color, referencia o nombre para mostrar
+            la imagen correspondiente.
 
         </div>
 
@@ -1760,7 +1756,7 @@
 
 
         /* =====================================================
-           IMÁGENES
+           IMÁGENES DEL PRODUCTO
         ====================================================== */
 
         function getProductImages(product){
@@ -1769,58 +1765,67 @@
                 return [];
             }
 
-            let raw = product.images;
+            let raw =
+                product.images;
+
 
             if(typeof raw === "string"){
 
                 try{
 
-                    raw = JSON.parse(raw);
+                    raw =
+                        JSON.parse(raw);
 
                 }catch(error){
 
-                    if(raw.startsWith("http")){
-                        return [raw];
+                    if(
+                        raw.trim()
+                        .startsWith("http")
+                    ){
+
+                        return [
+                            raw.trim()
+                        ];
                     }
 
                     return [];
                 }
             }
 
+
             if(!Array.isArray(raw)){
                 return [];
             }
 
+
             const result = [];
+
 
             raw.forEach(item=>{
 
-                if(typeof item === "string"){
+                if(
+                    typeof item === "string"
+                ){
 
                     if(item.trim()){
-                        result.push(item.trim());
+
+                        result.push(
+                            item.trim()
+                        );
                     }
 
                     return;
                 }
 
-                if(!item || typeof item !== "object"){
+
+                if(
+                    !item ||
+                    typeof item !== "object"
+                ){
+
                     return;
                 }
 
-                if(Array.isArray(item.images)){
-
-                    item.images.forEach(image=>{
-
-                        if(
-                            typeof image === "string" &&
-                            image.trim()
-                        ){
-                            result.push(image.trim());
-                        }
-
-                    });
-                }
 
                 [
                     "image",
@@ -1840,7 +1845,30 @@
 
                 });
 
+
+                if(
+                    Array.isArray(
+                        item.images
+                    )
+                ){
+
+                    item.images.forEach(image=>{
+
+                        if(
+                            typeof image === "string" &&
+                            image.trim()
+                        ){
+
+                            result.push(
+                                image.trim()
+                            );
+                        }
+
+                    });
+                }
+
             });
+
 
             return [
                 ...new Set(result)
@@ -1851,7 +1879,9 @@
         function getProductImage(product){
 
             const images =
-                getProductImages(product);
+                getProductImages(
+                    product
+                );
 
             return images[0] || "";
         }
@@ -1861,43 +1891,50 @@
            VARIANTES
         ====================================================== */
 
-        function getProductVariants(product){
+        function getVariants(product){
 
             if(!product){
                 return [];
             }
+
 
             let value =
                 product.variants;
 
 
             if(
-                value === null ||
-                value === undefined
+                value === undefined ||
+                value === null
             ){
+
                 return [];
             }
 
 
             if(typeof value === "string"){
 
-                const trimmed =
+                const text =
                     value.trim();
 
-                if(!trimmed){
+
+                if(!text){
                     return [];
                 }
+
 
                 try{
 
                     value =
-                        JSON.parse(trimmed);
+                        JSON.parse(text);
 
                 }catch(error){
 
-                    return trimmed
+                    return text
                         .split(/[,|;]/)
-                        .map(item=>item.trim())
+                        .map(
+                            item =>
+                                item.trim()
+                        )
                         .filter(Boolean);
                 }
             }
@@ -1905,63 +1942,7 @@
 
             if(Array.isArray(value)){
 
-                const result = [];
-
-                value.forEach(item=>{
-
-                    if(
-                        typeof item === "string" ||
-                        typeof item === "number"
-                    ){
-
-                        result.push(
-                            String(item).trim()
-                        );
-
-                        return;
-                    }
-
-
-                    if(
-                        item &&
-                        typeof item === "object"
-                    ){
-
-                        [
-                            "name",
-                            "variant",
-                            "value",
-                            "size",
-                            "color",
-                            "colour",
-                            "ref",
-                            "reference",
-                            "sku"
-                        ].forEach(key=>{
-
-                            if(
-                                item[key] !== undefined &&
-                                item[key] !== null &&
-                                String(item[key]).trim()
-                            ){
-
-                                result.push(
-                                    String(
-                                        item[key]
-                                    ).trim()
-                                );
-                            }
-
-                        });
-                    }
-
-                });
-
-                return [
-                    ...new Set(
-                        result.filter(Boolean)
-                    )
-                ];
+                return value;
             }
 
 
@@ -1969,67 +1950,264 @@
                 typeof value === "object"
             ){
 
-                const result = [];
-
-                Object.entries(value)
-                    .forEach(([key,val])=>{
-
-                        result.push(key);
-
-                        if(
-                            typeof val === "string" ||
-                            typeof val === "number"
-                        ){
-
-                            result.push(
-                                String(val)
-                            );
-
-                        }
-
-                        else if(
-                            Array.isArray(val)
-                        ){
-
-                            val.forEach(item=>{
-
-                                if(
-                                    typeof item === "string" ||
-                                    typeof item === "number"
-                                ){
-
-                                    result.push(
-                                        String(item)
-                                    );
-                                }
-
-                            });
-                        }
-
-                    });
-
-
-                return [
-                    ...new Set(result)
-                ];
+                return Object.values(value);
             }
 
 
             return [
-                String(value)
+                value
             ];
         }
 
 
-        function getVariantsText(product){
+        /* =====================================================
+           OBTENER COLOR DE UNA VARIANTE
+        ====================================================== */
 
-            return getProductVariants(product)
-                .join(" · ");
+        function getVariantColor(variant){
+
+            if(
+                !variant ||
+                typeof variant !== "object"
+            ){
+
+                return "";
+            }
+
+
+            const value =
+                variant.color ??
+                variant.colour ??
+                variant.colors ??
+                variant.colours ??
+                "";
+
+
+            if(
+                Array.isArray(value)
+            ){
+
+                return value
+                    .join(" ");
+            }
+
+
+            return String(
+                value
+            ).trim();
         }
 
 
         /* =====================================================
-           COLORES
+           OBTENER IMAGEN DE UNA VARIANTE
+        ====================================================== */
+
+        function getVariantImage(variant){
+
+            if(
+                !variant ||
+                typeof variant !== "object"
+            ){
+
+                return "";
+            }
+
+
+            /*
+             * Aceptamos varios nombres posibles
+             * para que funcione aunque la imagen
+             * esté guardada con un nombre diferente.
+             */
+
+            const direct =
+                variant.image ??
+                variant.image_url ??
+                variant.imageUrl ??
+                variant.url ??
+                variant.src ??
+                "";
+
+
+            if(
+                typeof direct === "string" &&
+                direct.trim()
+            ){
+
+                return direct.trim();
+            }
+
+
+            if(
+                Array.isArray(
+                    variant.images
+                )
+            ){
+
+                const first =
+                    variant.images.find(
+                        image =>
+                            typeof image === "string" &&
+                            image.trim()
+                    );
+
+
+                if(first){
+
+                    return first.trim();
+                }
+            }
+
+
+            return "";
+        }
+
+
+        /* =====================================================
+           BUSCAR IMAGEN EXACTA POR COLOR
+        ====================================================== */
+
+        function getImageForSearch(
+            product,
+            search
+        ){
+
+            const query =
+                normalizeText(
+                    search
+                );
+
+
+            /*
+             * Si no hay búsqueda,
+             * mostramos la primera imagen normal.
+             */
+
+            if(!query){
+
+                return getProductImage(
+                    product
+                );
+            }
+
+
+            const variants =
+                getVariants(
+                    product
+                );
+
+
+            /*
+             * PRIMERA PRIORIDAD:
+             *
+             * Buscar una variante cuyo color
+             * coincida exactamente con lo escrito.
+             */
+
+            for(
+                const variant of variants
+            ){
+
+                const color =
+                    getVariantColor(
+                        variant
+                    );
+
+
+                if(!color){
+                    continue;
+                }
+
+
+                const normalizedColor =
+                    normalizeText(
+                        color
+                    );
+
+
+                if(
+                    normalizedColor === query
+                ){
+
+                    const image =
+                        getVariantImage(
+                            variant
+                        );
+
+
+                    if(image){
+
+                        return image;
+                    }
+                }
+            }
+
+
+            /*
+             * SEGUNDA PRIORIDAD:
+             *
+             * Coincidencia parcial del color.
+             *
+             * Ejemplo:
+             * "negro" encuentra "Negro".
+             */
+
+            for(
+                const variant of variants
+            ){
+
+                const color =
+                    getVariantColor(
+                        variant
+                    );
+
+
+                if(!color){
+                    continue;
+                }
+
+
+                const normalizedColor =
+                    normalizeText(
+                        color
+                    );
+
+
+                if(
+                    normalizedColor.includes(
+                        query
+                    )
+                ){
+
+                    const image =
+                        getVariantImage(
+                            variant
+                        );
+
+
+                    if(image){
+
+                        return image;
+                    }
+                }
+            }
+
+
+            /*
+             * TERCERA PRIORIDAD:
+             *
+             * Si el producto tiene un color directo
+             * pero las imágenes están en "images",
+             * usamos la imagen principal.
+             */
+
+            return getProductImage(
+                product
+            );
+        }
+
+
+        /* =====================================================
+           OBTENER COLORES
         ====================================================== */
 
         function getProductColors(product){
@@ -2038,7 +2216,76 @@
                 return [];
             }
 
+
             const colors = [];
+
+
+            function addColor(value){
+
+                if(
+                    value === undefined ||
+                    value === null
+                ){
+
+                    return;
+                }
+
+
+                if(Array.isArray(value)){
+
+                    value.forEach(
+                        item =>
+                            addColor(item)
+                    );
+
+                    return;
+                }
+
+
+                if(
+                    typeof value === "string" ||
+                    typeof value === "number"
+                ){
+
+                    String(value)
+                        .split(/[,|;]/)
+                        .map(
+                            item =>
+                                item.trim()
+                        )
+                        .filter(Boolean)
+                        .forEach(
+                            item =>
+                                colors.push(item)
+                        );
+
+                    return;
+                }
+
+
+                if(
+                    typeof value === "object"
+                ){
+
+                    [
+                        "color",
+                        "colour",
+                        "colors",
+                        "colours"
+                    ].forEach(key=>{
+
+                        if(
+                            value[key] !== undefined
+                        ){
+
+                            addColor(
+                                value[key]
+                            );
+                        }
+
+                    });
+                }
+            }
 
 
             [
@@ -2048,138 +2295,74 @@
                 "colours"
             ].forEach(key=>{
 
-                const value =
-                    product[key];
-
                 if(
-                    value === undefined ||
-                    value === null
-                ){
-                    return;
-                }
-
-
-                if(Array.isArray(value)){
-
-                    value.forEach(item=>{
-
-                        if(
-                            typeof item === "string" &&
-                            item.trim()
-                        ){
-
-                            colors.push(
-                                item.trim()
-                            );
-                        }
-
-                    });
-
-                }
-
-                else if(
-                    typeof value === "string"
+                    product[key] !== undefined
                 ){
 
-                    value
-                        .split(/[,|;]/)
-                        .forEach(item=>{
-
-                            if(item.trim()){
-
-                                colors.push(
-                                    item.trim()
-                                );
-                            }
-
-                        });
+                    addColor(
+                        product[key]
+                    );
                 }
 
             });
 
 
-            /*
-             * Extraer colores de variants.
-             */
-
-            let variants =
-                product.variants;
+            const variants =
+                getVariants(
+                    product
+                );
 
 
-            if(typeof variants === "string"){
+            variants.forEach(
+                variant=>{
 
-                try{
-
-                    variants =
-                        JSON.parse(
-                            variants
+                    const color =
+                        getVariantColor(
+                            variant
                         );
 
-                }catch(error){}
-            }
 
+                    if(color){
 
-            if(Array.isArray(variants)){
-
-                variants.forEach(item=>{
-
-                    if(
-                        item &&
-                        typeof item === "object"
-                    ){
-
-                        [
-                            "color",
-                            "colour"
-                        ].forEach(key=>{
-
-                            if(
-                                item[key] !== undefined &&
-                                item[key] !== null &&
-                                String(item[key]).trim()
-                            ){
-
-                                colors.push(
-                                    String(
-                                        item[key]
-                                    ).trim()
-                                );
-                            }
-
-                        });
-
+                        addColor(
+                            color
+                        );
                     }
 
-                });
-            }
+                }
+            );
 
 
             return [
                 ...new Map(
-                    colors.map(value=>[
-                        normalizeText(value),
-                        value
-                    ])
+                    colors.map(
+                        color => [
+                            normalizeText(color),
+                            color
+                        ]
+                    )
                 ).values()
             ];
         }
 
 
         /* =====================================================
-           COLOR ENCONTRADO
+           COMPROBAR SI LA BÚSQUEDA ES UN COLOR
         ====================================================== */
 
-        function getMatchedColor(
+        function matchesColor(
             product,
             search
         ){
 
             const query =
-                normalizeText(search);
+                normalizeText(
+                    search
+                );
 
 
             if(!query){
-                return "";
+                return false;
             }
 
 
@@ -2189,106 +2372,22 @@
                 );
 
 
-            /*
-             * Coincidencia exacta.
-             */
+            return colors.some(
+                color => {
 
-            const exact =
-                colors.find(
-                    color =>
-                        normalizeText(color) ===
-                        query
-                );
+                    const normalized =
+                        normalizeText(
+                            color
+                        );
 
 
-            if(exact){
-                return exact;
-            }
-
-
-            /*
-             * Coincidencia parcial.
-             */
-
-            const partial =
-                colors.find(
-                    color =>
-                        normalizeText(color)
-                            .includes(query)
-                );
-
-
-            if(partial){
-                return partial;
-            }
-
-
-            /*
-             * Buscar palabras individuales.
-             */
-
-            const words =
-                query
-                    .split(/\s+/)
-                    .filter(Boolean);
-
-
-            for(
-                const color of colors
-            ){
-
-                const normalizedColor =
-                    normalizeText(
-                        color
+                    return (
+                        normalized === query ||
+                        normalized.includes(query) ||
+                        query.includes(normalized)
                     );
-
-
-                if(
-                    words.some(
-                        word =>
-                            normalizedColor
-                                .includes(word)
-                    )
-                ){
-
-                    return color;
                 }
-            }
-
-
-            /*
-             * Si no existe campo color,
-             * intentar localizar la palabra
-             * dentro de variants.
-             */
-
-            const variants =
-                getProductVariants(
-                    product
-                );
-
-
-            for(
-                const variant of variants
-            ){
-
-                const normalized =
-                    normalizeText(
-                        variant
-                    );
-
-
-                if(
-                    normalized === query ||
-                    normalized.includes(query)
-                ){
-
-                    return variant;
-                }
-            }
-
-
-            return "";
+            );
         }
 
 
@@ -2330,12 +2429,11 @@
 
 
         /* =====================================================
-           LINK DIRECTO AL PRODUCTO
+           LINK PRODUCTO
         ====================================================== */
 
         function getProductLink(
-            product,
-            search
+            product
         ){
 
             const category =
@@ -2347,7 +2445,9 @@
 
 
             const base =
-                CATEGORY_LINKS[category];
+                CATEGORY_LINKS[
+                    category
+                ];
 
 
             if(!base){
@@ -2355,39 +2455,14 @@
             }
 
 
+            const params =
+                new URLSearchParams();
+
+
             const reference =
                 getProductReference(
                     product
                 );
-
-
-            /*
-             * IMPORTANTE:
-             *
-             * Primero intentamos obtener el color
-             * real del producto.
-             *
-             * Si la búsqueda fue "negro", enviamos
-             * el color exacto que está guardado.
-             */
-
-            const matchedColor =
-                getMatchedColor(
-                    product,
-                    search
-                );
-
-
-            /*
-             * Parámetros enviados a la categoría.
-             *
-             * La página camisetas.html que hicimos
-             * puede utilizar ref/color/buscar para
-             * encontrar y abrir el producto.
-             */
-
-            const params =
-                new URLSearchParams();
 
 
             if(reference){
@@ -2399,58 +2474,6 @@
             }
 
 
-            if(matchedColor){
-
-                params.set(
-                    "color",
-                    matchedColor
-                );
-            }
-
-
-            /*
-             * También enviamos la búsqueda original
-             * para mantener el contexto.
-             */
-
-            if(search){
-
-                params.set(
-                    "buscar",
-                    search
-                );
-            }
-
-
-            /*
-             * NUEVO:
-             *
-             * Enviamos también el nombre.
-             * Esto permite a la página de categoría
-             * localizar el producto aunque la referencia
-             * no sea única.
-             */
-
-            if(product?.name){
-
-                params.set(
-                    "producto",
-                    String(
-                        product.name
-                    )
-                );
-            }
-
-
-            /*
-             * NUEVO:
-             *
-             * Enviamos el ID de Supabase.
-             *
-             * Si la página de categoría dispone de él,
-             * puede localizar exactamente la fila.
-             */
-
             if(
                 product?.id !== undefined &&
                 product?.id !== null
@@ -2460,6 +2483,17 @@
                     "id",
                     String(
                         product.id
+                    )
+                );
+            }
+
+
+            if(product?.name){
+
+                params.set(
+                    "producto",
+                    String(
+                        product.name
                     )
                 );
             }
@@ -2483,58 +2517,71 @@
             product
         ){
 
-            const reference =
-                getProductReference(
-                    product
-                );
-
-
-            const variants =
-                getProductVariants(
-                    product
-                ).join(" ");
-
-
             const colors =
                 getProductColors(
                     product
                 ).join(" ");
 
 
-            const extra = [
+            const variants =
+                getVariants(
+                    product
+                )
+                .map(
+                    variant => {
 
-                product?.name,
-                product?.description,
-                product?.title,
-                product?.brand,
-                product?.model,
-                product?.category,
-                product?.color,
-                product?.colour,
-                product?.sku,
-                product?.ref,
-                product?.reference
+                        if(
+                            typeof variant === "string"
+                        ){
 
-            ].filter(
-                value =>
-                    value !== undefined &&
-                    value !== null
-            );
+                            return variant;
+                        }
+
+
+                        if(
+                            variant &&
+                            typeof variant === "object"
+                        ){
+
+                            return Object.values(
+                                variant
+                            ).join(" ");
+                        }
+
+
+                        return "";
+                    }
+                )
+                .join(" ");
 
 
             return normalizeText(
+
                 [
-                    reference,
-                    variants,
+                    product?.name,
+                    product?.title,
+                    product?.description,
+                    product?.brand,
+                    product?.model,
+                    product?.category,
+
+                    getProductReference(
+                        product
+                    ),
+
                     colors,
-                    ...extra
-                ].join(" ")
+                    variants
+
+                ]
+                .filter(Boolean)
+                .join(" ")
+
             );
         }
 
 
         /* =====================================================
-           FILTRAR
+           FILTRAR PRODUCTOS
         ====================================================== */
 
         function filterProducts(
@@ -2548,6 +2595,7 @@
 
 
             if(!query){
+
                 return allProducts;
             }
 
@@ -2587,9 +2635,17 @@
             search
         ){
 
+            /*
+             * ESTA ES LA PARTE IMPORTANTE:
+             *
+             * Si buscas "negro", la imagen se obtiene
+             * de la variante negra.
+             */
+
             const image =
-                getProductImage(
-                    product
+                getImageForSearch(
+                    product,
+                    search
                 );
 
 
@@ -2626,42 +2682,53 @@
                 );
 
 
-            const variants =
-                getVariantsText(
-                    product
-                );
-
-
             const colors =
                 getProductColors(
                     product
                 );
 
 
-            const matchedColor =
-                getMatchedColor(
+            /*
+             * Si estamos buscando un color,
+             * mostramos ese color.
+             */
+
+            let displayedColor = "";
+
+
+            if(
+                search &&
+                matchesColor(
                     product,
                     search
-                );
+                )
+            ){
+
+                displayedColor =
+                    search.trim();
+
+            }else{
+
+                displayedColor =
+                    colors.join(" · ");
+            }
 
 
             const link =
                 getProductLink(
-                    product,
-                    search
+                    product
                 );
-
-
-            const colorText =
-                matchedColor ||
-                colors.join(" · ");
 
 
             return `
 
                 <article
                     class="product ${
-                        matchedColor
+                        search &&
+                        matchesColor(
+                            product,
+                            search
+                        )
                         ? "search-match"
                         : ""
                     }"
@@ -2676,7 +2743,17 @@
 
                             <img
                                 src="${escapeAttribute(image)}"
-                                alt="${escapeHTML(name)}"
+                                alt="${escapeHTML(
+                                    name +
+                                    (
+                                        displayedColor
+                                        ?
+                                        " " +
+                                        displayedColor
+                                        :
+                                        ""
+                                    )
+                                )}"
                                 loading="lazy"
                                 draggable="false"
                                 onerror="
@@ -2701,7 +2778,9 @@
                                 `
                                 <div class="product-ref">
                                     REF:
-                                    ${escapeHTML(reference)}
+                                    ${escapeHTML(
+                                        reference
+                                    )}
                                 </div>
                                 `
                                 :
@@ -2717,28 +2796,13 @@
 
 
                             ${
-                                colorText
+                                displayedColor
                                 ?
                                 `
                                 <div class="product-variants">
                                     COLOR:
                                     ${escapeHTML(
-                                        colorText
-                                    )}
-                                </div>
-                                `
-                                :
-                                ""
-                            }
-
-
-                            ${
-                                variants
-                                ?
-                                `
-                                <div class="product-variants">
-                                    ${escapeHTML(
-                                        variants
+                                        displayedColor
                                     )}
                                 </div>
                                 `
@@ -2803,8 +2867,9 @@
                 activeProducts.filter(
                     product =>
                         Boolean(
-                            getProductImage(
-                                product
+                            getImageForSearch(
+                                product,
+                                currentSearch
                             )
                         )
                 );
@@ -2826,14 +2891,13 @@
                     ?
 
                     `
-                    Encontrados:
                     <strong>
                         ${validProducts.length}
                     </strong>
                     ${
                         validProducts.length === 1
-                        ? "artículo"
-                        : "artículos"
+                        ? "imagen encontrada"
+                        : "imágenes encontradas"
                     }
                     `
 
@@ -2841,7 +2905,7 @@
 
                     `
                     <strong>
-                        No se encontraron productos
+                        No se encontró ninguna imagen
                     </strong>
                     `;
 
@@ -2881,7 +2945,7 @@
 
                                 `
                                 No encontramos ningún producto
-                                con esa referencia, color o variante.
+                                con ese color, referencia o nombre.
                                 `
 
                                 :
@@ -2914,6 +2978,27 @@
                     .join("");
 
 
+            /*
+             * Sin búsqueda:
+             * carrusel normal.
+             *
+             * Con búsqueda:
+             * mostramos solamente las imágenes
+             * encontradas, sin duplicarlas.
+             */
+
+            if(currentSearch){
+
+                container.innerHTML =
+                    cards;
+
+                container.style.animation =
+                    "none";
+
+                return;
+            }
+
+
             if(validProducts.length > 1){
 
                 container.innerHTML =
@@ -2933,7 +3018,7 @@
 
 
         /* =====================================================
-           BÚSQUEDA
+           BUSCADOR
         ====================================================== */
 
         function performSearch(){
@@ -2983,71 +3068,7 @@
 
 
         /* =====================================================
-           IR DIRECTAMENTE AL RESULTADO
-        ====================================================== */
-
-        function openSingleSearchResult(){
-
-            const input =
-                document.getElementById(
-                    "productSearch"
-                );
-
-
-            if(!input){
-                return;
-            }
-
-
-            const search =
-                input.value.trim();
-
-
-            if(!search){
-                return;
-            }
-
-
-            const filtered =
-                filterProducts(
-                    search
-                );
-
-
-            /*
-             * SOLO redirigimos si existe exactamente
-             * un producto.
-             */
-
-            if(filtered.length !== 1){
-                return;
-            }
-
-
-            const product =
-                filtered[0];
-
-
-            const link =
-                getProductLink(
-                    product,
-                    search
-                );
-
-
-            if(
-                link &&
-                link !== "#"
-            ){
-
-                window.location.href =
-                    link;
-            }
-        }
-
-
-        /* =====================================================
-           EVENTOS DEL BUSCADOR
+           EVENTOS
         ====================================================== */
 
         const searchInput =
@@ -3073,23 +3094,6 @@
             searchInput.addEventListener(
                 "search",
                 performSearch
-            );
-
-
-            searchInput.addEventListener(
-                "keydown",
-                event => {
-
-                    if(
-                        event.key === "Enter"
-                    ){
-
-                        event.preventDefault();
-
-                        openSingleSearchResult();
-                    }
-
-                }
             );
         }
 
@@ -3198,14 +3202,10 @@
                     : [];
 
 
-                const filtered =
+                renderProducts(
                     filterProducts(
                         currentSearch
-                    );
-
-
-                renderProducts(
-                    filtered
+                    )
                 );
 
 
@@ -3326,15 +3326,11 @@
         );
 
         console.log(
-            "STRANGIS — búsqueda por referencia, color, variante y nombre"
-        );
-
-        console.log(
-            "STRANGIS — navegación directa mediante id + ref + color"
+            "STRANGIS — búsqueda por color con imagen asociada"
         );
 
     </script>
 
 </body>
 
-</html>
+    </html>
