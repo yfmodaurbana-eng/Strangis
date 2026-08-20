@@ -38,10 +38,6 @@ textarea{
     font:inherit;
 }
 
-/* =========================
-   HEADER
-========================= */
-
 header{
     position:sticky;
     top:0;
@@ -91,9 +87,7 @@ nav a.active{
     color:#fff;
 }
 
-/* =========================
-   HERO
-========================= */
+/* HERO */
 
 .hero{
     width:min(1400px,90%);
@@ -123,9 +117,7 @@ nav a.active{
     line-height:1.7;
 }
 
-/* =========================
-   PRODUCTS
-========================= */
+/* PRODUCTOS */
 
 .products-section{
     width:min(1400px,90%);
@@ -153,12 +145,9 @@ nav a.active{
 .product:hover{
     transform:translateY(-4px);
     border-color:rgba(255,255,255,.25);
-    background:rgba(255,255,255,.075);
 }
 
-/* =========================
-   GALERÍA
-========================= */
+/* GALERÍA */
 
 .product-gallery{
     position:relative;
@@ -192,9 +181,7 @@ nav a.active{
     transform:scale(1.08);
 }
 
-/* =========================
-   INFORMACIÓN IMAGEN
-========================= */
+/* INFORMACIÓN SOBRE FOTO */
 
 .product-image-label{
     position:absolute;
@@ -207,8 +194,6 @@ nav a.active{
     border-radius:9px;
     background:rgba(10,10,10,.76);
     backdrop-filter:blur(14px);
-    -webkit-backdrop-filter:blur(14px);
-    box-shadow:0 10px 30px rgba(0,0,0,.38);
     pointer-events:none;
 }
 
@@ -224,7 +209,6 @@ nav a.active{
     color:#fff;
     font-size:13px;
     font-weight:800;
-    line-height:1.25;
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
@@ -235,7 +219,6 @@ nav a.active{
     color:#fff;
     font-size:14px;
     font-weight:900;
-    white-space:nowrap;
 }
 
 .product-image-label-meta{
@@ -250,25 +233,11 @@ nav a.active{
     text-transform:uppercase;
 }
 
-.product-image-label-ref{
-    color:#aaa;
-}
-
 .product-image-label-color{
     color:#fff;
 }
 
-.product-image-label-separator{
-    width:3px;
-    height:3px;
-    flex:0 0 3px;
-    border-radius:50%;
-    background:#777;
-}
-
-/* =========================
-   FLECHAS
-========================= */
+/* FLECHAS */
 
 .gallery-arrow,
 .lightbox-arrow{
@@ -299,14 +268,12 @@ nav a.active{
     right:10px;
 }
 
-.gallery-arrow:hover{
-    background:rgba(0,0,0,.78);
-    border-color:rgba(255,255,255,.5);
+.gallery-arrow:hover,
+.lightbox-arrow:hover{
+    background:rgba(0,0,0,.8);
 }
 
-/* =========================
-   CONTADOR
-========================= */
+/* CONTADOR */
 
 .gallery-counter,
 .lightbox-counter{
@@ -323,53 +290,87 @@ nav a.active{
 }
 
 .gallery-counter{
-    bottom:72px;
+    bottom:70px;
 }
 
-.swipe-hint{
-    position:absolute;
-    left:50%;
-    bottom:48px;
-    z-index:7;
-    padding:4px 8px;
-    border-radius:15px;
-    background:rgba(0,0,0,.35);
-    color:#ddd;
-    font-size:8px;
-    transform:translateX(-50%);
-    opacity:.65;
-    pointer-events:none;
+/* COLORES */
+
+.colors-section{
+    margin-top:15px;
 }
 
-/* =========================
-   INFORMACIÓN
-========================= */
-
-.product-name,
-.product-code,
-.product-price,
-.colors,
-.variant-selector,
-.label{
-    display:none;
+.colors-title{
+    margin-bottom:9px;
+    color:#999;
+    font-size:9px;
+    font-weight:900;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
 }
+
+.colors{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:9px;
+}
+
+.color-option{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    padding:6px 9px 6px 6px;
+    border:1px solid rgba(255,255,255,.16);
+    border-radius:20px;
+    background:rgba(255,255,255,.04);
+    color:#aaa;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.color-option:hover{
+    border-color:rgba(255,255,255,.45);
+    color:#fff;
+}
+
+.color-option.active{
+    border-color:#fff;
+    color:#fff;
+    background:rgba(255,255,255,.1);
+}
+
+.color-dot{
+    width:20px;
+    height:20px;
+    flex:0 0 20px;
+    border-radius:50%;
+    border:2px solid rgba(255,255,255,.55);
+    box-shadow:
+        inset 0 0 0 1px rgba(0,0,0,.25),
+        0 0 0 1px rgba(0,0,0,.25);
+}
+
+.color-name{
+    font-size:10px;
+    font-weight:800;
+}
+
+/* INFO */
 
 .product-description{
-    margin-top:4px;
+    margin-top:10px;
     color:#999;
     font-size:12px;
     line-height:1.55;
 }
 
-/* =========================
-   TALLAS
-========================= */
+/* TALLAS */
 
 .sizes{
     display:flex;
     flex-wrap:wrap;
     gap:7px;
-    margin-top:12px;
+    margin-top:15px;
 }
 
 .size{
@@ -394,9 +395,7 @@ nav a.active{
     border-color:#fff;
 }
 
-/* =========================
-   CANTIDAD
-========================= */
+/* CANTIDAD */
 
 .quantity{
     display:flex;
@@ -423,9 +422,7 @@ nav a.active{
     font-weight:bold;
 }
 
-/* =========================
-   ENVÍO
-========================= */
+/* ENVÍO */
 
 .shipping{
     margin-top:15px;
@@ -455,10 +452,6 @@ nav a.active{
     font-weight:bold;
 }
 
-/* =========================
-   COMPRAR
-========================= */
-
 .buy{
     width:100%;
     margin-top:16px;
@@ -482,10 +475,6 @@ nav a.active{
     cursor:not-allowed;
 }
 
-/* =========================
-   ESTADOS
-========================= */
-
 .empty,
 .loading{
     grid-column:1/-1;
@@ -493,10 +482,6 @@ nav a.active{
     text-align:center;
     color:#aaa;
 }
-
-/* =========================
-   FOOTER
-========================= */
 
 footer{
     padding:35px 5%;
@@ -506,9 +491,7 @@ footer{
     font-size:10px;
 }
 
-/* =========================
-   LIGHTBOX
-========================= */
+/* LIGHTBOX */
 
 .image-lightbox{
     position:fixed;
@@ -579,9 +562,7 @@ footer{
     bottom:15px;
 }
 
-/* =========================
-   MODAL
-========================= */
+/* MODAL */
 
 .modal{
     position:fixed;
@@ -747,9 +728,7 @@ footer{
     cursor:pointer;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* RESPONSIVE */
 
 @media(max-width:1100px){
 
@@ -842,19 +821,6 @@ footer{
         padding:10px 12px;
     }
 
-    .product-image-label-name{
-        font-size:12px;
-    }
-
-    .product-image-label-price{
-        font-size:13px;
-    }
-
-    .product-image-label-meta{
-        margin-top:4px;
-        font-size:8px;
-    }
-
     .form-grid{
         grid-template-columns:1fr;
     }
@@ -925,13 +891,9 @@ footer{
 
 <section class="hero">
 
-    <small>
-        COLECCIÓN
-    </small>
+    <small>COLECCIÓN</small>
 
-    <h1>
-        CAMISETAS
-    </h1>
+    <h1>CAMISETAS</h1>
 
     <p>
         Camisetas seleccionadas para
@@ -962,9 +924,7 @@ footer{
 </footer>
 
 
-<!-- =========================
-     LIGHTBOX
-========================= -->
+<!-- LIGHTBOX -->
 
 <div
     class="image-lightbox"
@@ -1016,9 +976,7 @@ footer{
 </div>
 
 
-<!-- =========================
-     MODAL PEDIDO
-========================= -->
+<!-- MODAL PEDIDO -->
 
 <div
     class="modal"
@@ -1177,7 +1135,6 @@ footer{
                 <input
                     id="customerPostal"
                     type="text"
-                    inputmode="numeric"
                 >
 
             </div>
@@ -1266,21 +1223,17 @@ footer{
 <script>
 
 /* =====================================================
-   STRANGIS
    CONFIGURACIÓN
 ===================================================== */
 
 const STRANGIS_SUPABASE_URL =
     "https://xbbjfatmdbxbuoqdrgoj.supabase.co";
 
-
 const STRANGIS_SUPABASE_KEY =
     "sb_publishable_M7ETdIWvj4nCQZ55i24Vpw_5Yc5Islk";
 
-
 const STRANGIS_PRODUCTS_TABLE =
     "Products";
-
 
 const CATEGORY =
     "camisetas";
@@ -1292,78 +1245,18 @@ let currentOrder = null;
 
 let lightboxProductIndex = 0;
 
-let lightboxVariantIndex = 0;
-
 
 /* =====================================================
-   NAVEGACIÓN DESDE INICIO
-===================================================== */
-
-let initialProductRef = null;
-
-let initialVariantIndex = 0;
-
-let initialImageIndex = 0;
-
-
-/*
-    Lee:
-
-    camisetas.html
-    ?ref=CAMISETA001
-    &variant=1
-    &image=2
-*/
-
-function readProductNavigation(){
-
-    const params =
-        new URLSearchParams(
-            window.location.search
-        );
-
-
-    initialProductRef =
-        params.get("ref") ||
-        params.get("product") ||
-        params.get("id");
-
-
-    initialVariantIndex =
-        Math.max(
-            0,
-            Number(
-                params.get("variant") || 0
-            )
-        );
-
-
-    initialImageIndex =
-        Math.max(
-            0,
-            Number(
-                params.get("image") || 0
-            )
-        );
-
-}
-
-
-/* =====================================================
-   CLIENTE SUPABASE
+   SUPABASE
 ===================================================== */
 
 const supabaseClient = {
 
-    async request(
-        path,
-        options = {}
-    ){
+    async request(path,options={}){
 
         const response =
             await fetch(
-                STRANGIS_SUPABASE_URL +
-                path,
+                STRANGIS_SUPABASE_URL + path,
                 {
                     ...options,
 
@@ -1383,27 +1276,19 @@ const supabaseClient = {
                 }
             );
 
-
         const text =
             await response.text();
 
-
         let data = null;
 
-
         try{
-
             data =
                 text
                     ? JSON.parse(text)
                     : null;
-
         }catch{
-
             data = text;
-
         }
-
 
         if(!response.ok){
 
@@ -1415,7 +1300,6 @@ const supabaseClient = {
             );
 
         }
-
 
         return data;
 
@@ -1440,7 +1324,6 @@ const supabaseClient = {
 
             });
 
-
         return this.request(
             `/rest/v1/${encodeURIComponent(
                 STRANGIS_PRODUCTS_TABLE
@@ -1458,9 +1341,7 @@ const supabaseClient = {
 
 function money(value){
 
-    return Number(
-        value || 0
-    ).toLocaleString(
+    return Number(value || 0).toLocaleString(
         "es-ES",
         {
             style:"currency",
@@ -1473,27 +1354,21 @@ function money(value){
 
 function escapeHTML(value){
 
-    return String(
-        value ?? ""
-    )
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 
 }
 
 
-function parseJSON(
-    value,
-    fallback = []
-){
+function parseJSON(value,fallback=[]){
 
     if(Array.isArray(value)){
         return value;
     }
-
 
     if(typeof value === "string"){
 
@@ -1502,10 +1377,7 @@ function parseJSON(
             const parsed =
                 JSON.parse(value);
 
-
-            return Array.isArray(parsed)
-                ? parsed
-                : fallback;
+            return parsed;
 
         }catch{
 
@@ -1515,7 +1387,6 @@ function parseJSON(
 
     }
 
-
     return fallback;
 
 }
@@ -1523,6 +1394,33 @@ function parseJSON(
 
 /* =====================================================
    VARIANTES
+=====================================================
+
+   FORMATO ESPERADO:
+
+   images = [
+
+       {
+           "name":"Negro",
+           "color":"#000000",
+           "images":[
+               "foto-negra-1.jpg",
+               "foto-negra-2.jpg",
+               "foto-negra-3.jpg"
+           ]
+       },
+
+       {
+           "name":"Blanco",
+           "color":"#ffffff",
+           "images":[
+               "foto-blanca-1.jpg",
+               "foto-blanca-2.jpg"
+           ]
+       }
+
+   ]
+
 ===================================================== */
 
 function getVariants(product){
@@ -1533,15 +1431,16 @@ function getVariants(product){
             []
         );
 
-
     const variants = [];
 
 
     raw.forEach(
-        (
-            variant,
-            index
-        )=>{
+        (variant,index)=>{
+
+            /*
+             * Compatibilidad con formato antiguo:
+             * images: ["foto1.jpg","foto2.jpg"]
+             */
 
             if(typeof variant === "string"){
 
@@ -1564,24 +1463,19 @@ function getVariants(product){
             }
 
 
-            if(
-                !variant ||
-                typeof variant !== "object"
-            ){
-
+            if(!variant || typeof variant !== "object"){
                 return;
-
             }
 
 
             let images = [];
 
 
-            if(
-                Array.isArray(
-                    variant.images
-                )
-            ){
+            /*
+             * FORMATO PRINCIPAL
+             */
+
+            if(Array.isArray(variant.images)){
 
                 images =
                     variant.images
@@ -1591,19 +1485,27 @@ function getVariants(product){
             }
 
 
+            /*
+             * Compatibilidad:
+             * image
+             */
+
             if(
                 !images.length &&
                 variant.image
             ){
 
                 images = [
-                    String(
-                        variant.image
-                    )
+                    String(variant.image)
                 ];
 
             }
 
+
+            /*
+             * Compatibilidad:
+             * url
+             */
 
             if(
                 !images.length &&
@@ -1611,9 +1513,7 @@ function getVariants(product){
             ){
 
                 images = [
-                    String(
-                        variant.url
-                    )
+                    String(variant.url)
                 ];
 
             }
@@ -1629,12 +1529,19 @@ function getVariants(product){
                 name:
                     variant.name ||
                     variant.colorName ||
+                    variant.color_name ||
                     variant.color ||
                     `Variante ${index + 1}`,
 
                 color:
-                    variant.color ||
-                    "#888888",
+                    variant.colorHex ||
+                    variant.color_hex ||
+                    (
+                        typeof variant.color === "string" &&
+                        variant.color.startsWith("#")
+                            ? variant.color
+                            : "#888888"
+                    ),
 
                 images
 
@@ -1649,29 +1556,18 @@ function getVariants(product){
 }
 
 
-function getVariantImages(
-    variant
-){
+function getVariantImages(variant){
 
-    if(!variant){
+    if(
+        !variant ||
+        !Array.isArray(variant.images)
+    ){
         return [];
     }
 
-
-    if(
-        Array.isArray(
-            variant.images
-        )
-    ){
-
-        return variant.images
-            .filter(Boolean)
-            .map(String);
-
-    }
-
-
-    return [];
+    return variant.images
+        .filter(Boolean)
+        .map(String);
 
 }
 
@@ -1687,7 +1583,7 @@ function getSizes(product){
 
 
 /* =====================================================
-   CARGAR PRODUCTOS
+   CARGAR
 ===================================================== */
 
 async function loadProducts(){
@@ -1696,7 +1592,6 @@ async function loadProducts(){
         document.getElementById(
             "productsContainer"
         );
-
 
     container.innerHTML = `
         <div class="loading">
@@ -1711,17 +1606,11 @@ async function loadProducts(){
             await supabaseClient
                 .getProducts();
 
-
         renderProducts();
-
 
     }catch(error){
 
-        console.error(
-            "ERROR SUPABASE:",
-            error
-        );
-
+        console.error(error);
 
         container.innerHTML = `
 
@@ -1734,201 +1623,15 @@ async function loadProducts(){
 
                 <br><br>
 
-                Error:
                 ${escapeHTML(
                     error.message
                 )}
-
-                <br><br>
-
-                Comprueba que la tabla
-                <strong>Products</strong>
-                permita SELECT público
-                mediante RLS/policies.
 
             </div>
 
         `;
 
     }
-
-}
-
-
-/* =====================================================
-   BUSCAR PRODUCTO DE LA URL
-===================================================== */
-
-function findInitialProductIndex(){
-
-    if(!initialProductRef){
-        return -1;
-    }
-
-
-    return PRODUCTS.findIndex(
-        product => {
-
-            const productRef =
-                product.ref ??
-                product.id;
-
-
-            return String(
-                productRef
-            ) === String(
-                initialProductRef
-            );
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   ABRIR PRODUCTO EXACTO DESDE INICIO
-===================================================== */
-
-function openInitialProduct(){
-
-    const productIndex =
-        findInitialProductIndex();
-
-
-    if(productIndex < 0){
-        return;
-    }
-
-
-    const product =
-        PRODUCTS[
-            productIndex
-        ];
-
-
-    const variants =
-        getVariants(product);
-
-
-    if(!variants.length){
-        return;
-    }
-
-
-    let variantIndex =
-        initialVariantIndex;
-
-
-    if(
-        variantIndex >=
-        variants.length
-    ){
-
-        variantIndex = 0;
-
-    }
-
-
-    if(variantIndex < 0){
-        variantIndex = 0;
-    }
-
-
-    const variant =
-        variants[
-            variantIndex
-        ];
-
-
-    const images =
-        getVariantImages(
-            variant
-        );
-
-
-    if(!images.length){
-        return;
-    }
-
-
-    let imageIndex =
-        initialImageIndex;
-
-
-    if(
-        imageIndex >=
-        images.length
-    ){
-
-        imageIndex = 0;
-
-    }
-
-
-    if(imageIndex < 0){
-        imageIndex = 0;
-    }
-
-
-    /*
-       Primero ponemos la variante
-       y la imagen exacta.
-    */
-
-    setVariant(
-        productIndex,
-        variantIndex,
-        imageIndex
-    );
-
-
-    /*
-       Después desplazamos hasta
-       el producto.
-    */
-
-    setTimeout(
-        ()=>{
-
-            const card =
-                document.getElementById(
-                    `product-${productIndex}`
-                );
-
-
-            if(card){
-
-                card.scrollIntoView({
-
-                    behavior:"smooth",
-
-                    block:"center"
-
-                });
-
-            }
-
-
-            /*
-               Abrimos directamente
-               la foto seleccionada.
-            */
-
-            setTimeout(
-                ()=>{
-
-                    openLightbox(
-                        productIndex
-                    );
-
-                },
-                350
-            );
-
-        },
-        150
-    );
 
 }
 
@@ -1951,8 +1654,8 @@ function renderProducts(){
 
             <div class="empty">
 
-                No hay productos de camisetas
-                activos disponibles actualmente.
+                No hay camisetas activas
+                disponibles actualmente.
 
             </div>
 
@@ -1966,10 +1669,7 @@ function renderProducts(){
     container.innerHTML =
         PRODUCTS
             .map(
-                (
-                    product,
-                    index
-                )=>
+                (product,index)=>
                     createProductHTML(
                         product,
                         index
@@ -1981,7 +1681,7 @@ function renderProducts(){
 
 
 /* =====================================================
-   CREAR PRODUCTO
+   PRODUCTO
 ===================================================== */
 
 function createProductHTML(
@@ -1992,25 +1692,29 @@ function createProductHTML(
     const variants =
         getVariants(product);
 
-
     const sizes =
         getSizes(product);
 
-
     const firstVariant =
         variants[0];
+
+    const firstImages =
+        getVariantImages(
+            firstVariant
+        );
+
+    const firstImage =
+        firstImages[0] || "";
 
 
     const stockDefined =
         product.stock !== null &&
         product.stock !== undefined;
 
-
     const stock =
         stockDefined
             ? Number(product.stock)
             : null;
-
 
     const outOfStock =
         stockDefined &&
@@ -2042,7 +1746,6 @@ function createProductHTML(
                     SIN IMAGEN
                 </div>
 
-
                 <div class="product-description">
                     ${escapeHTML(
                         product.description ||
@@ -2051,44 +1754,11 @@ function createProductHTML(
                     )}
                 </div>
 
-
-                <div class="shipping">
-
-                    🚚
-
-                    <strong>
-                        Envío estimado:
-                    </strong>
-
-                    ${escapeHTML(
-                        product.shipping_min ?? 3
-                    )}
-
-                    –
-
-                    ${escapeHTML(
-                        product.shipping_max ?? 9
-                    )}
-
-                    días laborables
-
-                </div>
-
             </article>
 
         `;
 
     }
-
-
-    const firstImages =
-        getVariantImages(
-            firstVariant
-        );
-
-
-    const firstImage =
-        firstImages[0];
 
 
     return `
@@ -2116,12 +1786,10 @@ function createProductHTML(
 
                     <img
                         id="image-${index}"
-                        src="${escapeHTML(
-                            firstImage || ""
-                        )}"
+                        src="${escapeHTML(firstImage)}"
                         alt="${escapeHTML(
                             product.name ||
-                            "Producto"
+                            "Camiseta"
                         )}"
                         loading="lazy"
                         draggable="false"
@@ -2131,7 +1799,6 @@ function createProductHTML(
 
                     <div
                         class="product-image-label"
-                        id="product-image-label-${index}"
                     >
 
                         <div
@@ -2140,22 +1807,17 @@ function createProductHTML(
 
                             <div
                                 class="product-image-label-name"
-                                id="product-label-name-${index}"
                             >
                                 ${escapeHTML(
                                     product.name ||
-                                    "Producto"
+                                    "Camiseta"
                                 )}
                             </div>
 
-
                             <div
                                 class="product-image-label-price"
-                                id="product-label-price-${index}"
                             >
-                                ${money(
-                                    product.price
-                                )}
+                                ${money(product.price)}
                             </div>
 
                         </div>
@@ -2165,10 +1827,7 @@ function createProductHTML(
                             class="product-image-label-meta"
                         >
 
-                            <span
-                                class="product-image-label-ref"
-                                id="product-label-ref-${index}"
-                            >
+                            <span>
                                 REF:
                                 ${escapeHTML(
                                     product.ref ||
@@ -2176,29 +1835,14 @@ function createProductHTML(
                                 )}
                             </span>
 
-
-                            ${
-                                variants.length
-                                ?
-                                `
-
-                                <span
-                                    class="product-image-label-separator"
-                                ></span>
-
-                                <span
-                                    class="product-image-label-color"
-                                    id="product-label-color-${index}"
-                                >
-                                    ${escapeHTML(
-                                        firstVariant.name
-                                    )}
-                                </span>
-
-                                `
-                                :
-                                ""
-                            }
+                            <span
+                                id="product-label-color-${index}"
+                                class="product-image-label-color"
+                            >
+                                ${escapeHTML(
+                                    firstVariant.name
+                                )}
+                            </span>
 
                         </div>
 
@@ -2223,7 +1867,6 @@ function createProductHTML(
                         ‹
                     </button>
 
-
                     <button
                         class="gallery-arrow next"
                         type="button"
@@ -2242,8 +1885,8 @@ function createProductHTML(
 
 
                 ${
-                    variants.length > 1 ||
-                    firstImages.length > 1
+                    firstImages.length > 1 ||
+                    variants.length > 1
                     ?
                     `
 
@@ -2254,10 +1897,6 @@ function createProductHTML(
                         1 / ${firstImages.length}
                     </div>
 
-                    <div class="swipe-hint">
-                        ← desliza →
-                    </div>
-
                     `
                     :
                     ""
@@ -2266,17 +1905,101 @@ function createProductHTML(
             </div>
 
 
+            <!-- =====================
+                 SELECTOR DE COLORES
+            ====================== -->
+
+            ${
+                variants.length
+                ?
+                `
+
+                <div class="colors-section">
+
+                    <div class="colors-title">
+                        COLOR:
+                        <span id="selected-color-name-${index}">
+                            ${escapeHTML(
+                                firstVariant.name
+                            )}
+                        </span>
+                    </div>
+
+
+                    <div class="colors">
+
+                        ${
+                            variants
+                                .map(
+                                    (
+                                        variant,
+                                        variantIndex
+                                    )=>`
+
+                                        <button
+                                            type="button"
+                                            class="color-option ${
+                                                variantIndex === 0
+                                                    ? "active"
+                                                    : ""
+                                            }"
+                                            id="color-${index}-${variantIndex}"
+                                            onclick="
+                                                selectColor(
+                                                    ${index},
+                                                    ${variantIndex}
+                                                )
+                                            "
+                                            title="${escapeHTML(
+                                                variant.name
+                                            )}"
+                                        >
+
+                                            <span
+                                                class="color-dot"
+                                                style="
+                                                    background:${escapeHTML(
+                                                        getColorCSS(
+                                                            variant
+                                                        )
+                                                    )};
+                                                "
+                                            ></span>
+
+                                            <span
+                                                class="color-name"
+                                            >
+                                                ${escapeHTML(
+                                                    variant.name
+                                                )}
+                                            </span>
+
+                                        </button>
+
+                                    `
+                                )
+                                .join("")
+                        }
+
+                    </div>
+
+                </div>
+
+                `
+                :
+                ""
+            }
+
+
             ${
                 product.description
                 ?
                 `
 
                 <div class="product-description">
-
                     ${escapeHTML(
                         product.description
                     )}
-
                 </div>
 
                 `
@@ -2310,9 +2033,7 @@ function createProductHTML(
                                             )
                                         "
                                     >
-                                        ${escapeHTML(
-                                            size
-                                        )}
+                                        ${escapeHTML(size)}
                                     </button>
 
                                 `
@@ -2332,33 +2053,19 @@ function createProductHTML(
 
                 <button
                     type="button"
-                    onclick="
-                        changeQuantity(
-                            ${index},
-                            -1
-                        )
-                    "
+                    onclick="changeQuantity(${index},-1)"
                     ${outOfStock ? "disabled" : ""}
                 >
                     −
                 </button>
 
-
-                <span
-                    id="quantity-${index}"
-                >
+                <span id="quantity-${index}">
                     1
                 </span>
 
-
                 <button
                     type="button"
-                    onclick="
-                        changeQuantity(
-                            ${index},
-                            1
-                        )
-                    "
+                    onclick="changeQuantity(${index},1)"
                     ${outOfStock ? "disabled" : ""}
                 >
                     +
@@ -2408,9 +2115,7 @@ function createProductHTML(
                         ?
                         "AGOTADO"
                         :
-                        `Stock disponible: ${escapeHTML(
-                            stock
-                        )}`
+                        `Stock disponible: ${escapeHTML(stock)}`
                     }
 
                 </div>
@@ -2424,18 +2129,14 @@ function createProductHTML(
             <button
                 type="button"
                 class="buy"
-                onclick="
-                    buyProduct(${index})
-                "
+                onclick="buyProduct(${index})"
                 ${outOfStock ? "disabled" : ""}
             >
 
                 ${
                     outOfStock
-                    ?
-                    "AGOTADO"
-                    :
-                    "COMPRAR"
+                        ? "AGOTADO"
+                        : "COMPRAR"
                 }
 
             </button>
@@ -2448,20 +2149,136 @@ function createProductHTML(
 
 
 /* =====================================================
-   CAMBIAR VARIANTE + IMAGEN
+   COLOR CSS
+===================================================== */
+
+function getColorCSS(variant){
+
+    if(!variant){
+        return "#888";
+    }
+
+
+    const value =
+        variant.color;
+
+
+    if(!value){
+        return "#888";
+    }
+
+
+    /*
+     * Si es un HEX:
+     */
+
+    if(
+        typeof value === "string" &&
+        (
+            value.startsWith("#") ||
+            value.startsWith("rgb") ||
+            value.startsWith("hsl") ||
+            value.startsWith("linear-gradient")
+        )
+    ){
+
+        return value;
+
+    }
+
+
+    /*
+     * Si el admin guarda:
+     *
+     * "Negro"
+     * "Blanco"
+     * "Rojo"
+     *
+     * convertimos a color visual.
+     */
+
+    const colors = {
+
+        negro:"#111111",
+
+        blanco:"#ffffff",
+
+        rojo:"#d62828",
+
+        azul:"#2563eb",
+
+        verde:"#16a34a",
+
+        amarillo:"#facc15",
+
+        naranja:"#f97316",
+
+        rosa:"#ec4899",
+
+        morado:"#8b5cf6",
+
+        gris:"#777777",
+
+        beige:"#d6c3a5",
+
+        marron:"#795548",
+
+        marrón:"#795548",
+
+        crema:"#f3e7c9",
+
+        celeste:"#38bdf8",
+
+        turquesa:"#14b8a6",
+
+        dorado:"#d4af37",
+
+        plateado:"#c0c0c0"
+
+    };
+
+
+    const key =
+        String(value)
+            .trim()
+            .toLowerCase();
+
+
+    return colors[key] || "#888888";
+
+}
+
+
+/* =====================================================
+   SELECCIONAR COLOR
+===================================================== */
+
+function selectColor(
+    productIndex,
+    variantIndex
+){
+
+    setVariant(
+        productIndex,
+        variantIndex,
+        0
+    );
+
+}
+
+
+/* =====================================================
+   CAMBIAR VARIANTE
 ===================================================== */
 
 function setVariant(
     productIndex,
     variantIndex,
-    imageIndex = 0
+    imageIndex=0
 ){
 
     const product =
-        PRODUCTS[
-            productIndex
-        ];
-
+        PRODUCTS[productIndex];
 
     if(!product){
         return;
@@ -2471,12 +2288,8 @@ function setVariant(
     const variants =
         getVariants(product);
 
-
     const variant =
-        variants[
-            variantIndex
-        ];
-
+        variants[variantIndex];
 
     if(!variant){
         return;
@@ -2487,7 +2300,6 @@ function setVariant(
         getVariantImages(
             variant
         );
-
 
     if(!images.length){
         return;
@@ -2509,7 +2321,6 @@ function setVariant(
             `product-${productIndex}`
         );
 
-
     const image =
         document.getElementById(
             `image-${productIndex}`
@@ -2524,59 +2335,67 @@ function setVariant(
     card.dataset.variant =
         variantIndex;
 
-
     card.dataset.image =
         imageIndex;
 
 
     image.src =
-        images[
-            imageIndex
-        ];
-
+        images[imageIndex];
 
     image.alt =
-        `${product.name || "Producto"} - ${variant.name}`;
+        `${product.name || "Camiseta"} - ${variant.name}`;
 
 
-    const labelName =
+    /*
+     * ACTUALIZAR COLOR ACTIVO
+     */
+
+    variants.forEach(
+        (_,index)=>{
+
+            const button =
+                document.getElementById(
+                    `color-${productIndex}-${index}`
+                );
+
+            if(button){
+
+                button.classList.toggle(
+                    "active",
+                    index === variantIndex
+                );
+
+            }
+
+        }
+    );
+
+
+    /*
+     * NOMBRE DEL COLOR
+     */
+
+    const colorName =
         document.getElementById(
-            `product-label-name-${productIndex}`
+            `selected-color-name-${productIndex}`
         );
 
+    if(colorName){
 
-    if(labelName){
-
-        labelName.textContent =
-            product.name ||
-            "Producto";
+        colorName.textContent =
+            variant.name;
 
     }
 
 
-    const labelRef =
-        document.getElementById(
-            `product-label-ref-${productIndex}`
-        );
-
-
-    if(labelRef){
-
-        labelRef.textContent =
-            "REF: " +
-            (
-                product.ref ||
-                product.id
-            );
-
-    }
-
+    /*
+     * COLOR SOBRE LA FOTO
+     */
 
     const labelColor =
         document.getElementById(
             `product-label-color-${productIndex}`
         );
-
 
     if(labelColor){
 
@@ -2586,24 +2405,102 @@ function setVariant(
     }
 
 
-    const labelPrice =
+    updateGalleryCounter(
+        productIndex
+    );
+
+}
+
+
+/* =====================================================
+   SIGUIENTE COLOR
+===================================================== */
+
+function selectNextVariant(
+    productIndex
+){
+
+    const product =
+        PRODUCTS[productIndex];
+
+    const variants =
+        getVariants(product);
+
+    const card =
         document.getElementById(
-            `product-label-price-${productIndex}`
+            `product-${productIndex}`
         );
 
-
-    if(labelPrice){
-
-        labelPrice.textContent =
-            money(
-                product.price
-            );
-
+    if(!card || !variants.length){
+        return;
     }
 
 
-    updateGalleryCounter(
-        productIndex
+    let current =
+        Number(
+            card.dataset.variant || 0
+        );
+
+
+    current++;
+
+
+    if(current >= variants.length){
+        current = 0;
+    }
+
+
+    setVariant(
+        productIndex,
+        current,
+        0
+    );
+
+}
+
+
+/* =====================================================
+   COLOR ANTERIOR
+===================================================== */
+
+function selectPreviousVariant(
+    productIndex
+){
+
+    const product =
+        PRODUCTS[productIndex];
+
+    const variants =
+        getVariants(product);
+
+    const card =
+        document.getElementById(
+            `product-${productIndex}`
+        );
+
+    if(!card || !variants.length){
+        return;
+    }
+
+
+    let current =
+        Number(
+            card.dataset.variant || 0
+        );
+
+
+    current--;
+
+
+    if(current < 0){
+        current = variants.length - 1;
+    }
+
+
+    setVariant(
+        productIndex,
+        current,
+        0
     );
 
 }
@@ -2618,16 +2515,12 @@ function updateGalleryCounter(
 ){
 
     const product =
-        PRODUCTS[
-            productIndex
-        ];
-
+        PRODUCTS[productIndex];
 
     const card =
         document.getElementById(
             `product-${productIndex}`
         );
-
 
     if(!product || !card){
         return;
@@ -2651,10 +2544,7 @@ function updateGalleryCounter(
 
 
     const variant =
-        variants[
-            variantIndex
-        ];
-
+        variants[variantIndex];
 
     if(!variant){
         return;
@@ -2684,133 +2574,10 @@ function updateGalleryCounter(
 
 
 /* =====================================================
-   VARIANTE SIGUIENTE
-===================================================== */
-
-function selectNextVariant(
-    productIndex
-){
-
-    const product =
-        PRODUCTS[
-            productIndex
-        ];
-
-
-    const variants =
-        getVariants(product);
-
-
-    const card =
-        document.getElementById(
-            `product-${productIndex}`
-        );
-
-
-    if(
-        !card ||
-        !variants.length
-    ){
-
-        return;
-
-    }
-
-
-    let current =
-        Number(
-            card.dataset.variant || 0
-        );
-
-
-    current++;
-
-
-    if(
-        current >=
-        variants.length
-    ){
-
-        current = 0;
-
-    }
-
-
-    setVariant(
-        productIndex,
-        current,
-        0
-    );
-
-}
-
-
-/* =====================================================
-   VARIANTE ANTERIOR
-===================================================== */
-
-function selectPreviousVariant(
-    productIndex
-){
-
-    const product =
-        PRODUCTS[
-            productIndex
-        ];
-
-
-    const variants =
-        getVariants(product);
-
-
-    const card =
-        document.getElementById(
-            `product-${productIndex}`
-        );
-
-
-    if(
-        !card ||
-        !variants.length
-    ){
-
-        return;
-
-    }
-
-
-    let current =
-        Number(
-            card.dataset.variant || 0
-        );
-
-
-    current--;
-
-
-    if(current < 0){
-
-        current =
-            variants.length - 1;
-
-    }
-
-
-    setVariant(
-        productIndex,
-        current,
-        0
-    );
-
-}
-
-
-/* =====================================================
    SWIPE
 ===================================================== */
 
 let galleryStartX = 0;
-
 let galleryStartY = 0;
 
 
@@ -2820,15 +2587,12 @@ function galleryTouchStart(event){
         !event.touches ||
         !event.touches.length
     ){
-
         return;
-
     }
 
 
     galleryStartX =
         event.touches[0].clientX;
-
 
     galleryStartY =
         event.touches[0].clientY;
@@ -2845,15 +2609,12 @@ function galleryTouchEnd(
         !event.changedTouches ||
         !event.changedTouches.length
     ){
-
         return;
-
     }
 
 
     const endX =
         event.changedTouches[0].clientX;
-
 
     const endY =
         event.changedTouches[0].clientY;
@@ -2861,7 +2622,6 @@ function galleryTouchEnd(
 
     const diffX =
         endX - galleryStartX;
-
 
     const diffY =
         endY - galleryStartY;
@@ -2871,17 +2631,12 @@ function galleryTouchEnd(
         Math.abs(diffX) < 45 ||
         Math.abs(diffX) < Math.abs(diffY)
     ){
-
         return;
-
     }
 
 
     const product =
-        PRODUCTS[
-            productIndex
-        ];
-
+        PRODUCTS[productIndex];
 
     const card =
         document.getElementById(
@@ -2889,26 +2644,29 @@ function galleryTouchEnd(
         );
 
 
+    if(!product || !card){
+        return;
+    }
+
+
     const variants =
         getVariants(product);
 
 
-    const variantIndex =
+    let variantIndex =
         Number(
             card.dataset.variant || 0
         );
 
 
-    const imageIndex =
+    let imageIndex =
         Number(
             card.dataset.image || 0
         );
 
 
     const variant =
-        variants[
-            variantIndex
-        ];
+        variants[variantIndex];
 
 
     const images =
@@ -2971,20 +2729,13 @@ function selectSize(
 ){
 
     const product =
-        PRODUCTS[
-            productIndex
-        ];
-
+        PRODUCTS[productIndex];
 
     const sizes =
         getSizes(product);
 
-
     const size =
-        sizes[
-            sizeIndex
-        ];
-
+        sizes[sizeIndex];
 
     const card =
         document.getElementById(
@@ -2992,13 +2743,8 @@ function selectSize(
         );
 
 
-    if(
-        !card ||
-        size === undefined
-    ){
-
+    if(!card || size === undefined){
         return;
-
     }
 
 
@@ -3007,14 +2753,9 @@ function selectSize(
 
 
     card
-        .querySelectorAll(
-            ".size"
-        )
+        .querySelectorAll(".size")
         .forEach(
-            (
-                button,
-                index
-            )=>{
+            (button,index)=>{
 
                 button.classList.toggle(
                     "active",
@@ -3048,9 +2789,7 @@ function changeQuantity(
 
 
     const product =
-        PRODUCTS[
-            productIndex
-        ];
+        PRODUCTS[productIndex];
 
 
     let quantity =
@@ -3063,9 +2802,7 @@ function changeQuantity(
 
 
     if(quantity < 1){
-
         quantity = 1;
-
     }
 
 
@@ -3075,9 +2812,7 @@ function changeQuantity(
     ){
 
         const stock =
-            Number(
-                product.stock
-            );
+            Number(product.stock);
 
 
         if(
@@ -3116,14 +2851,10 @@ function changeQuantity(
    COMPRAR
 ===================================================== */
 
-function buyProduct(
-    productIndex
-){
+function buyProduct(productIndex){
 
     const product =
-        PRODUCTS[
-            productIndex
-        ];
+        PRODUCTS[productIndex];
 
 
     if(!product){
@@ -3181,7 +2912,7 @@ function buyProduct(
     if(!variant){
 
         alert(
-            "Este producto no tiene una variante configurada."
+            "Selecciona un color antes de continuar."
         );
 
         return;
@@ -3204,22 +2935,6 @@ function buyProduct(
     }
 
 
-    if(
-        product.stock !== null &&
-        product.stock !== undefined &&
-        quantity >
-        Number(product.stock)
-    ){
-
-        alert(
-            "La cantidad seleccionada supera el stock disponible."
-        );
-
-        return;
-
-    }
-
-
     currentOrder = {
 
         product,
@@ -3231,9 +2946,7 @@ function buyProduct(
         quantity,
 
         total:
-            Number(
-                product.price || 0
-            ) *
+            Number(product.price || 0) *
             quantity
 
     };
@@ -3242,30 +2955,22 @@ function buyProduct(
     showOrderSummary();
 
 
-    const modal =
-        document.getElementById(
-            "customerModal"
-        );
-
-
-    const error =
-        document.getElementById(
+    document
+        .getElementById(
             "formError"
+        )
+        .classList.remove(
+            "show"
         );
 
 
-    error.classList.remove(
-        "show"
-    );
-
-
-    error.textContent =
-        "";
-
-
-    modal.classList.add(
-        "show"
-    );
+    document
+        .getElementById(
+            "customerModal"
+        )
+        .classList.add(
+            "show"
+        );
 
 
     document.body.style.overflow =
@@ -3306,17 +3011,8 @@ function showOrderSummary(){
 
             <br>
 
-            Categoría:
-            <strong>
-                ${escapeHTML(
-                    order.product.category ||
-                    CATEGORY
-                )}
-            </strong>
+            Color:
 
-            <br>
-
-            Variante:
             <strong>
                 ${escapeHTML(
                     order.variant.name
@@ -3326,6 +3022,7 @@ function showOrderSummary(){
             <br>
 
             Talla:
+
             <strong>
                 ${escapeHTML(
                     order.size
@@ -3335,6 +3032,7 @@ function showOrderSummary(){
             <br>
 
             Cantidad:
+
             <strong>
                 ${order.quantity}
             </strong>
@@ -3342,6 +3040,7 @@ function showOrderSummary(){
             <br>
 
             Precio unidad:
+
             <strong>
                 ${money(
                     order.product.price
@@ -3351,6 +3050,7 @@ function showOrderSummary(){
             <br>
 
             Total:
+
             <strong>
                 ${money(
                     order.total
@@ -3386,10 +3086,7 @@ function closeCustomerModal(){
 function fieldValue(id){
 
     const element =
-        document.getElementById(
-            id
-        );
-
+        document.getElementById(id);
 
     return element
         ? element.value.trim()
@@ -3429,69 +3126,37 @@ function sendOrderToWhatsApp(){
 
 
     const name =
-        fieldValue(
-            "customerName"
-        );
-
+        fieldValue("customerName");
 
     const phone =
-        fieldValue(
-            "customerPhone"
-        );
-
+        fieldValue("customerPhone");
 
     const email =
-        fieldValue(
-            "customerEmail"
-        );
-
+        fieldValue("customerEmail");
 
     const address =
-        fieldValue(
-            "customerAddress"
-        );
-
+        fieldValue("customerAddress");
 
     const number =
-        fieldValue(
-            "customerNumber"
-        );
-
+        fieldValue("customerNumber");
 
     const floor =
-        fieldValue(
-            "customerFloor"
-        );
-
+        fieldValue("customerFloor");
 
     const postal =
-        fieldValue(
-            "customerPostal"
-        );
-
+        fieldValue("customerPostal");
 
     const city =
-        fieldValue(
-            "customerCity"
-        );
-
+        fieldValue("customerCity");
 
     const province =
-        fieldValue(
-            "customerProvince"
-        );
-
+        fieldValue("customerProvince");
 
     const country =
-        fieldValue(
-            "customerCountry"
-        );
-
+        fieldValue("customerCountry");
 
     const notes =
-        fieldValue(
-            "customerNotes"
-        );
+        fieldValue("customerNotes");
 
 
     if(!name){
@@ -3538,8 +3203,7 @@ function sendOrderToWhatsApp(){
         String(
             currentOrder.product.whatsapp ||
             ""
-        )
-        .replace(
+        ).replace(
             /\D/g,
             ""
         );
@@ -3573,7 +3237,7 @@ ${currentOrder.product.ref || currentOrder.product.id}
 Categoría:
 ${currentOrder.product.category || CATEGORY}
 
-Variante:
+🎨 COLOR:
 ${currentOrder.variant.name}
 
 Talla:
@@ -3662,9 +3326,7 @@ function openLightbox(
 ){
 
     const product =
-        PRODUCTS[
-            productIndex
-        ];
+        PRODUCTS[productIndex];
 
 
     if(!product){
@@ -3681,20 +3343,8 @@ function openLightbox(
     }
 
 
-    const card =
-        document.getElementById(
-            `product-${productIndex}`
-        );
-
-
     lightboxProductIndex =
         productIndex;
-
-
-    lightboxVariantIndex =
-        Number(
-            card.dataset.variant || 0
-        );
 
 
     updateLightbox();
@@ -3715,10 +3365,6 @@ function openLightbox(
 }
 
 
-/* =====================================================
-   ACTUALIZAR LIGHTBOX
-===================================================== */
-
 function updateLightbox(){
 
     const product =
@@ -3736,10 +3382,31 @@ function updateLightbox(){
         getVariants(product);
 
 
+    const card =
+        document.getElementById(
+            `product-${lightboxProductIndex}`
+        );
+
+
+    if(!card){
+        return;
+    }
+
+
+    const variantIndex =
+        Number(
+            card.dataset.variant || 0
+        );
+
+
+    const imageIndex =
+        Number(
+            card.dataset.image || 0
+        );
+
+
     const variant =
-        variants[
-            lightboxVariantIndex
-        ];
+        variants[variantIndex];
 
 
     if(!variant){
@@ -3758,41 +3425,26 @@ function updateLightbox(){
     }
 
 
-    const card =
-        document.getElementById(
-            `product-${lightboxProductIndex}`
-        );
-
-
-    const imageIndex =
-        Number(
-            card?.dataset.image || 0
-        );
-
-
-    const safeImageIndex =
+    const safeIndex =
         Math.min(
-            Math.max(
-                imageIndex,
-                0
-            ),
+            imageIndex,
             images.length - 1
         );
 
 
-    const image =
-        document.getElementById(
+    document
+        .getElementById(
             "lightboxImage"
-        );
+        )
+        .src =
+        images[safeIndex];
 
 
-    image.src =
-        images[
-            safeImageIndex
-        ];
-
-
-    image.alt =
+    document
+        .getElementById(
+            "lightboxImage"
+        )
+        .alt =
         `${product.name || "Producto"} - ${variant.name}`;
 
 
@@ -3801,14 +3453,10 @@ function updateLightbox(){
             "lightboxCounter"
         )
         .textContent =
-        `${safeImageIndex + 1} / ${images.length}`;
+        `${safeIndex + 1} / ${images.length}`;
 
 }
 
-
-/* =====================================================
-   CAMBIAR IMAGEN LIGHTBOX
-===================================================== */
 
 function changeLightboxImage(
     direction
@@ -3853,12 +3501,10 @@ function changeLightboxImage(
 
 
     const variant =
-        variants[
-            variantIndex
-        ];
+        variants[variantIndex];
 
 
-    const images =
+    let images =
         getVariantImages(
             variant
         );
@@ -3882,7 +3528,6 @@ function changeLightboxImage(
 
             variantIndex++;
 
-
             if(
                 variantIndex >=
                 variants.length
@@ -3891,7 +3536,6 @@ function changeLightboxImage(
                 variantIndex = 0;
 
             }
-
 
             imageIndex = 0;
 
@@ -3907,10 +3551,7 @@ function changeLightboxImage(
 
             variantIndex--;
 
-
-            if(
-                variantIndex < 0
-            ){
+            if(variantIndex < 0){
 
                 variantIndex =
                     variants.length - 1;
@@ -3918,21 +3559,15 @@ function changeLightboxImage(
             }
 
 
-            const previousVariant =
-                variants[
-                    variantIndex
-                ];
-
-
-            const previousImages =
+            images =
                 getVariantImages(
-                    previousVariant
+                    variants[variantIndex]
                 );
 
 
             imageIndex =
                 Math.max(
-                    previousImages.length - 1,
+                    images.length - 1,
                     0
                 );
 
@@ -3948,18 +3583,10 @@ function changeLightboxImage(
     );
 
 
-    lightboxVariantIndex =
-        variantIndex;
-
-
     updateLightbox();
 
 }
 
-
-/* =====================================================
-   CERRAR LIGHTBOX
-===================================================== */
 
 function closeLightbox(){
 
@@ -3990,10 +3617,6 @@ function closeLightbox(){
 }
 
 
-/* =====================================================
-   ERROR IMAGEN
-===================================================== */
-
 function imageError(image){
 
     image.style.display =
@@ -4003,7 +3626,7 @@ function imageError(image){
 
 
 /* =====================================================
-   TECLADO
+   EVENTOS
 ===================================================== */
 
 document.addEventListener(
@@ -4013,7 +3636,6 @@ document.addEventListener(
         if(event.key === "Escape"){
 
             closeLightbox();
-
             closeCustomerModal();
 
         }
@@ -4054,10 +3676,6 @@ document.addEventListener(
 );
 
 
-/* =====================================================
-   CLICK MODAL
-===================================================== */
-
 document
     .getElementById(
         "customerModal"
@@ -4066,9 +3684,7 @@ document
         "click",
         function(event){
 
-            if(
-                event.target === this
-            ){
+            if(event.target === this){
 
                 closeCustomerModal();
 
@@ -4078,10 +3694,6 @@ document
     );
 
 
-/* =====================================================
-   CLICK LIGHTBOX
-===================================================== */
-
 document
     .getElementById(
         "imageLightbox"
@@ -4090,9 +3702,7 @@ document
         "click",
         function(event){
 
-            if(
-                event.target === this
-            ){
+            if(event.target === this){
 
                 closeLightbox();
 
@@ -4106,33 +3716,7 @@ document
    INICIO
 ===================================================== */
 
-async function init(){
-
-    /*
-       Primero leemos la URL.
-    */
-
-    readProductNavigation();
-
-
-    /*
-       Después cargamos los productos.
-    */
-
-    await loadProducts();
-
-
-    /*
-       Finalmente comprobamos si Inicio
-       nos pidió una variante/foto concreta.
-    */
-
-    openInitialProduct();
-
-}
-
-
-init();
+loadProducts();
 
 </script>
 
