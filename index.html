@@ -1,2784 +1,2098 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Strangis</title><meta name="description" content="Strangis — Tu tienda online."><style>
 
-<head>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-    <meta charset="UTF-8">
+html{
+    scroll-behavior:smooth;
+}
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+body{
 
-    <title>Strangis</title>
+    min-height:100vh;
 
-    <meta
-        name="description"
-        content="Strangis — Tu tienda online."
-    >
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-    <meta property="og:type" content="website">
+    color:#fff;
 
-    <meta
-        property="og:url"
-        content="https://yfmodaurbana-eng.github.io/TiendaOnline/"
-    >
+    background:
+        linear-gradient(
+            135deg,
+            #151515 0%,
+            #292929 38%,
+            #4d4d4d 65%,
+            #222 100%
+        );
 
-    <meta
-        property="og:image"
-        content="https://i.imgur.com/nomrvEn.jpeg"
-    >
+    overflow-x:hidden;
+}
 
-    <style>
+button,
+input{
+    font:inherit;
+}
 
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
+/* =====================================================
+   HEADER
+===================================================== */
+
+header{
+
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    padding:18px 5%;
+
+    display:flex;
+    align-items:center;
+    gap:30px;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.12);
+
+    background:
+        rgba(20,20,20,.92);
+
+    backdrop-filter:blur(18px);
+}
+
+.logo{
+
+    flex-shrink:0;
+
+    color:#fff;
+
+    font-size:22px;
+    font-weight:900;
+
+    letter-spacing:4px;
+}
+
+nav{
+
+    flex:1;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:28px;
+
+    overflow-x:auto;
+
+    scrollbar-width:none;
+}
+
+nav::-webkit-scrollbar{
+    display:none;
+}
+
+nav a{
+
+    color:#999;
+
+    text-decoration:none;
+
+    font-size:11px;
+
+    font-weight:bold;
+
+    letter-spacing:1.5px;
+
+    text-transform:uppercase;
+
+    white-space:nowrap;
+}
+
+nav a:hover,
+nav a.active{
+    color:#fff;
+}
+
+/* =====================================================
+   BUSCADOR
+===================================================== */
+
+.search-section{
+
+    width:min(900px,90%);
+
+    margin:0 auto;
+
+    padding:25px 0 0;
+}
+
+.search-box{
+
+    position:relative;
+
+    width:100%;
+
+    display:flex;
+
+    align-items:center;
+}
+
+.search-icon{
+
+    position:absolute;
+
+    left:17px;
+
+    width:18px;
+    height:18px;
+
+    color:#888;
+
+    pointer-events:none;
+}
+
+.search-input{
+
+    width:100%;
+
+    height:52px;
+
+    padding:
+        0 50px
+        0 48px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.14);
+
+    border-radius:10px;
+
+    outline:none;
+
+    color:#fff;
+
+    background:
+        rgba(255,255,255,.055);
+}
+
+.search-input::placeholder{
+    color:#777;
+}
+
+.search-input:focus{
+
+    border-color:
+        rgba(255,255,255,.35);
+
+    background:
+        rgba(255,255,255,.075);
+}
+
+.search-clear{
+
+    position:absolute;
+
+    right:10px;
+
+    width:34px;
+    height:34px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border:0;
+
+    border-radius:50%;
+
+    color:#999;
+
+    background:
+        rgba(255,255,255,.07);
+
+    cursor:pointer;
+
+    opacity:0;
+
+    visibility:hidden;
+}
+
+.search-clear.visible{
+
+    opacity:1;
+
+    visibility:visible;
+}
+
+.search-clear:hover{
+
+    color:#fff;
+
+    background:
+        rgba(255,255,255,.14);
+}
+
+.search-help{
+
+    margin-top:9px;
+
+    color:#666;
+
+    font-size:9px;
+
+    letter-spacing:.8px;
+
+    text-align:center;
+}
+
+.search-result{
+
+    min-height:16px;
+
+    margin-top:8px;
+
+    color:#999;
+
+    font-size:10px;
+
+    text-align:center;
+}
+
+.search-result strong{
+    color:#ddd;
+}
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero{
+
+    width:min(1400px,90%);
+
+    margin:auto;
+
+    padding:
+        clamp(70px,11vw,140px)
+        0
+        clamp(50px,7vw,90px);
+}
+
+.hero h1{
+
+    font-size:
+        clamp(
+            70px,
+            15vw,
+            180px
+        );
+
+    line-height:.8;
+
+    letter-spacing:-9px;
+
+    font-weight:900;
+
+    color:#f7f7f7;
+
+    text-shadow:
+
+        0 0 2px rgba(255,255,255,.8),
+
+        0 0 7px rgba(255,255,255,.45),
+
+        0 0 18px rgba(255,255,255,.25),
+
+        0 12px 35px rgba(0,0,0,.45);
+}
+
+.hero p{
+
+    max-width:700px;
+
+    margin-top:35px;
+
+    color:#b5b5b5;
+
+    font-size:16px;
+
+    line-height:1.8;
+}
+
+.hero-note{
+
+    max-width:850px;
+
+    margin-top:25px;
+
+    padding:
+        22px
+        24px
+        22px
+        27px;
+
+    border:
+        1px solid
+        rgba(255,165,70,.45);
+
+    border-left:
+        4px solid
+        rgba(255,150,45,.95);
+
+    border-radius:9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,145,45,.16),
+            rgba(120,65,20,.08)
+        );
+
+    color:#d0d0d0;
+
+    font-size:13px;
+
+    line-height:1.8;
+}
+
+.hero-note::before{
+
+    content:"AVISO IMPORTANTE";
+
+    display:block;
+
+    margin-bottom:9px;
+
+    color:#ffb15c;
+
+    font-size:11px;
+
+    font-weight:900;
+
+    letter-spacing:2.5px;
+}
+
+.hero-note strong{
+    color:#ffb15c;
+}
+
+/* =====================================================
+   PRODUCTOS
+===================================================== */
+
+.products-section{
+
+    width:min(1400px,90%);
+
+    margin:auto;
+
+    padding:
+        10px
+        0
+        110px;
+
+    overflow:hidden;
+}
+
+.section-heading{
+
+    display:flex;
+
+    align-items:end;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    margin-bottom:25px;
+}
+
+.section-heading h2{
+
+    font-size:14px;
+
+    font-weight:900;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+}
+
+.section-heading span{
+
+    color:#777;
+
+    font-size:10px;
+
+    letter-spacing:1px;
+}
+
+.carousel-window{
+
+    width:100%;
+
+    overflow:hidden;
+
+    position:relative;
+
+    padding:5px 0 15px;
+}
+
+.carousel-window::before,
+.carousel-window::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    bottom:0;
+
+    width:70px;
+
+    z-index:5;
+
+    pointer-events:none;
+}
+
+.carousel-window::before{
+
+    left:0;
+
+    background:
+        linear-gradient(
+            to right,
+            rgba(30,30,30,.75),
+            transparent
+        );
+}
+
+.carousel-window::after{
+
+    right:0;
+
+    background:
+        linear-gradient(
+            to left,
+            rgba(30,30,30,.75),
+            transparent
+        );
+}
+
+.products{
+
+    display:flex;
+
+    width:max-content;
+
+    gap:12px;
+
+    will-change:transform;
+
+    animation:
+        carouselMove
+        30s
+        linear
+        infinite;
+}
+
+@keyframes carouselMove{
+
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:
+            translateX(
+                calc(
+                    -50% - 6px
+                )
+            );
+    }
+}
+
+.product{
+
+    flex:0 0 205px;
+
+    width:205px;
+
+    overflow:hidden;
+
+    border:
+        1px solid
+        rgba(255,255,255,.10);
+
+    border-radius:9px;
+
+    background:
+        rgba(255,255,255,.045);
+
+    box-shadow:
+        0 12px 35px
+        rgba(0,0,0,.18);
+
+    transition:
+        transform .25s ease,
+        border-color .25s ease;
+}
+
+.product:hover{
+
+    transform:translateY(-5px);
+
+    border-color:
+        rgba(255,255,255,.25);
+}
+
+.product-image{
+
+    position:relative;
+
+    width:100%;
+
+    aspect-ratio:1 / 1.15;
+
+    overflow:hidden;
+
+    background:#181818;
+}
+
+.product-image img{
+
+    width:100%;
+    height:100%;
+
+    display:block;
+
+    object-fit:cover;
+
+    transition:
+        transform .4s ease;
+}
+
+.product:hover
+.product-image img{
+
+    transform:scale(1.045);
+}
+
+.product-info{
+
+    padding:
+        12px 11px 14px;
+}
+
+.product-name{
+
+    color:#fff;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    line-height:1.35;
+}
+
+.product-ref{
+
+    margin-top:5px;
+
+    color:#aaa;
+
+    font-size:9px;
+
+    font-weight:bold;
+
+    letter-spacing:.8px;
+
+    text-transform:uppercase;
+}
+
+.product-category{
+
+    margin-top:4px;
+
+    color:#777;
+
+    font-size:9px;
+
+    font-weight:bold;
+
+    letter-spacing:1px;
+
+    text-transform:uppercase;
+}
+
+.product-color{
+
+    margin-top:6px;
+
+    color:#ffb15c;
+
+    font-size:9px;
+
+    font-weight:bold;
+
+    letter-spacing:.5px;
+}
+
+.product-link{
+
+    display:block;
+
+    color:inherit;
+
+    text-decoration:none;
+}
+
+/* =====================================================
+   VACÍO
+===================================================== */
+
+.empty{
+
+    width:min(700px,100%);
+
+    margin:auto;
+
+    padding:80px 20px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    border-radius:10px;
+
+    text-align:center;
+
+    background:
+        rgba(255,255,255,.025);
+}
+
+.empty-title{
+
+    color:#aaa;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+}
+
+.empty-text{
+
+    max-width:500px;
+
+    margin:15px auto 0;
+
+    color:#666;
+
+    font-size:11px;
+
+    line-height:1.7;
+}
+
+/* =====================================================
+   INFORMACIÓN
+===================================================== */
+
+.info-section{
+
+    width:min(1000px,90%);
+
+    margin:auto;
+
+    padding:0 0 110px;
+}
+
+.info-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,minmax(0,1fr));
+
+    gap:15px;
+}
+
+.info-card{
+
+    padding:27px;
+
+    border:
+        1px solid
+        rgba(255,166,80,.28);
+
+    border-radius:10px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,145,45,.14),
+            rgba(255,120,25,.045)
+        );
+}
+
+.info-card small{
+
+    color:#ffad5c;
+
+    font-size:9px;
+
+    font-weight:bold;
+
+    letter-spacing:2px;
+}
+
+.info-card h3{
+
+    margin-top:12px;
+
+    color:#f5f5f5;
+
+    font-size:16px;
+}
+
+.info-card p{
+
+    margin-top:12px;
+
+    color:#b5b5b5;
+
+    font-size:12px;
+
+    line-height:1.75;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+
+    padding:35px 5%;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.10);
+
+    text-align:center;
+
+    color:#666;
+
+    font-size:9px;
+
+    letter-spacing:1px;
+}
+
+/* =====================================================
+   WHATSAPP
+===================================================== */
+
+.whatsapp-button{
+
+    position:fixed;
+
+    right:20px;
+    bottom:20px;
+
+    z-index:99999;
+
+    width:58px;
+    height:58px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#25D366;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    box-shadow:
+        0 5px 18px
+        rgba(0,0,0,.35);
+}
+
+.whatsapp-button svg{
+
+    width:30px;
+    height:30px;
+
+    fill:#fff;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:800px){
+
+    .info-grid{
+        grid-template-columns:1fr;
+    }
+
+    .product{
+
+        flex-basis:175px;
+
+        width:175px;
+    }
+}
+
+@media(max-width:600px){
+
+    header{
+
+        padding:15px;
+
+        flex-wrap:wrap;
+
+        gap:14px;
+    }
+
+    .logo{
+
+        font-size:17px;
+
+        letter-spacing:2.5px;
+    }
+
+    nav{
+
+        order:3;
+
+        flex-basis:100%;
+
+        justify-content:flex-start;
+
+        gap:22px;
+    }
+
+    nav a{
+        font-size:10px;
+    }
+
+    .search-section{
+
+        width:94%;
+
+        padding-top:20px;
+    }
+
+    .search-input{
+
+        height:48px;
+
+        padding-left:45px;
+    }
+
+    .hero{
+
+        width:94%;
+
+        padding:
+            55px 0
+            45px;
+    }
+
+    .hero h1{
+
+        font-size:
+            clamp(
+                65px,
+                21vw,
+                100px
+            );
+
+        letter-spacing:-6px;
+    }
+
+    .hero p{
+
+        margin-top:25px;
+
+        font-size:13px;
+    }
+
+    .hero-note{
+
+        padding:
+            19px
+            18px
+            19px
+            21px;
+
+        font-size:12px;
+    }
+
+    .products-section{
+
+        width:94%;
+
+        padding-bottom:80px;
+    }
+
+    .product{
+
+        flex-basis:155px;
+
+        width:155px;
+    }
+
+    .products{
+
+        gap:9px;
+
+        animation-duration:24s;
+    }
+
+    .carousel-window::before,
+    .carousel-window::after{
+        width:35px;
+    }
+
+    .info-section{
+        width:94%;
+    }
+
+    .whatsapp-button{
+
+        width:54px;
+        height:54px;
+
+        right:16px;
+        bottom:16px;
+    }
+}
+
+</style></head><body><!-- =====================================================
+     WHATSAPP
+===================================================== --><a
+href="https://wa.me/34674559614"
+class="whatsapp-button"
+target="_blank"
+rel="noopener noreferrer"
+aria-label="WhatsApp"
+
+«»
+
+<svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.08 0C5.53 0 .2 5.33.2 11.88c0 2.09.55 4.13 1.59 5.93L.1 24l6.34-1.66a11.9 11.9 0 0 0 5.64 1.43h.01c6.55 0 11.88-5.33 11.88-11.88 0-3.18-1.24-6.17-3.45-8.41ZM12.09 21.75h-.01a9.86 9.86 0 0 1-5.03-1.38l-.36-.21-3.76.99 1-3.67-.23-.38a9.84 9.84 0 0 1-1.51-5.22C2.19 6.44 6.62 2 12.08 2a9.83 9.83 0 0 1 6.99 2.9 9.88 9.88 0 0 1 2.91 7c0 5.46-4.43 9.89-9.89 9.89Zm5.42-7.41c-.3-.15-1.77-.87-2.05-.97-.28-.1-.48-.15-.68.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.68-1.64-.93-2.25-.24-.59-.49-.51-.68-.52h-.58c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.5s1.07 2.9 1.22 3.1c.15.2 2.1 3.21 5.09 4.5.71.31 1.27.5 1.7.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.27-.2-.57-.35Z"/></svg></a><!-- =====================================================
+     CABECERA
+===================================================== --><header><div class="logo">
+Strangis
+</div><nav><a class="active" href="index.html">
+Inicio
+</a><a href="camisetas.html">
+Camisetas
+</a><a href="pantalones.html">
+Pantalones
+</a><a href="conjuntos.html">
+Conjuntos
+</a><a href="gorras.html">
+Gorras
+</a><a href="gafas.html">
+Gafas
+</a><a href="bisuteria.html">
+Bisutería
+</a></nav></header><!-- =====================================================
+     BUSCADOR
+===================================================== --><section class="search-section"><div class="search-box"><svg
+class="search-icon"
+viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round"
+
+«»
+
+<circle
+cx="11"
+cy="11"
+r="7"
+
+«</circle>»
+
+<line
+x1="16.65"
+y1="16.65"
+x2="21"
+y2="21"
+
+«</line>»
+
+</svg><input
+id="productSearch"
+class="search-input"
+type="search"
+autocomplete="off"
+spellcheck="false"
+placeholder="Buscar por referencia, color o nombre..."
+aria-label="Buscar productos"
+
+«»
+
+<button
+id="searchClear"
+class="search-clear"
+type="button"
+aria-label="Limpiar búsqueda"
+
+«»
+
+×
+</button>
+
+</div><div class="search-help">Puedes buscar por referencia, color o nombre.
+
+</div><div
+id="searchResult"
+class="search-result"
+aria-live="polite"
+></div></section><!-- =====================================================
+     HERO
+===================================================== --><section class="hero"><h1>
+STRANGIS
+</h1><p>
+Descubre nuestra selección de moda y accesorios.
+Productos seleccionados para crear tu propio estilo
+sin seguir las reglas de siempre.
+</p><div class="hero-note">Los artículos pueden proceder de proveedores
+internacionales. Por este motivo, algunos pedidos
+pueden tardar <strong>hasta 30 días</strong> en llegar.
+Te recomendamos tenerlo en cuenta antes de realizar
+tu compra.
+
+</div></section><!-- =====================================================
+     PRODUCTOS
+===================================================== --><section class="products-section"><div class="section-heading"><h2>
+Todos los artículos
+</h2><span id="productCount">
+Cargando...
+</span></div><div
+class="carousel-window"
+id="carouselWindow"
+><div
+class="products"
+id="productsContainer"
+></div></div></section><!-- =====================================================
+     INFORMACIÓN
+===================================================== --><section class="info-section"><div class="info-grid"><div class="info-card"><small>
+ENVÍOS
+</small><h3>
+Envíos internacionales
+</h3><p>
+Algunos artículos proceden de proveedores
+internacionales y pueden tardar
+<strong>hasta 30 días</strong> en llegar.
+</p></div><div class="info-card"><small>
+COLECCIÓN
+</small><h3>
+Selección Strangis
+</h3><p>
+Añadimos nuevos artículos
+progresivamente a nuestras diferentes
+categorías.
+</p></div><div class="info-card"><small>
+COMPRA
+</small><h3>
+Compra sencilla
+</h3><p>
+Selecciona el artículo que quieras,
+elige las opciones disponibles y
+realiza tu pedido.
+</p></div></div></section><footer>© 2026 STRANGIS · TODOS LOS DERECHOS RESERVADOS
+
+</footer><!-- =====================================================
+     SUPABASE
+===================================================== --><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>
+
+const SUPABASE_URL =
+"https://xbbjfatmdbxbuoqdrgoj.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+"sb_publishable_M7ETdIWvj4nCQZ55i24Vpw_5Yc5Islk";
+
+const supabaseClient =
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+);
+
+
+/* =====================================================
+   CATEGORÍAS
+===================================================== */
+
+const CATEGORY_LINKS = {
+
+    camisetas:"camisetas.html",
+
+    pantalones:"pantalones.html",
+
+    conjuntos:"conjuntos.html",
+
+    gorras:"gorras.html",
+
+    gafas:"gafas.html",
+
+    bisuteria:"bisuteria.html"
+
+};
+
+
+/* =====================================================
+   ESTADO
+===================================================== */
+
+let allProducts = [];
+
+let colorImages = [];
+
+let currentSearch = "";
+
+
+/* =====================================================
+   NORMALIZAR
+===================================================== */
+
+function normalizeText(value){
+
+    return String(value ?? "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g,"")
+        .toLowerCase()
+        .trim();
+}
+
+
+/* =====================================================
+   ESCAPE
+===================================================== */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+}
+
+
+function escapeAttribute(value){
+
+    return escapeHTML(value);
+}
+
+
+/* =====================================================
+   IMAGEN PRINCIPAL
+===================================================== */
+
+function getMainImage(product){
+
+    if(!product){
+        return "";
+    }
+
+    let images =
+        product.images;
+
+    if(typeof images === "string"){
+
+        try{
+
+            images =
+                JSON.parse(images);
+
+        }catch(error){
+
+            return images.startsWith("http")
+                ? images
+                : "";
+        }
+    }
+
+    if(!Array.isArray(images)){
+        return "";
+    }
+
+    for(const item of images){
+
+        if(typeof item === "string"){
+            return item;
         }
 
-        html{
-            scroll-behavior:smooth;
-        }
-
-        body{
-
-            min-height:100vh;
-
-            font-family:
-                Arial,
-                Helvetica,
-                sans-serif;
-
-            color:#fff;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #151515 0%,
-                    #292929 38%,
-                    #4d4d4d 65%,
-                    #222 100%
-                );
-
-            overflow-x:hidden;
-        }
-
-        button,
-        input{
-            font:inherit;
-        }
-
-
-        /* =====================================================
-           HEADER
-        ====================================================== */
-
-        header{
-
-            position:sticky;
-            top:0;
-            z-index:1000;
-
-            padding:18px 5%;
-
-            display:flex;
-            align-items:center;
-            gap:30px;
-
-            border-bottom:
-                1px solid
-                rgba(255,255,255,.12);
-
-            background:
-                rgba(20,20,20,.92);
-
-            backdrop-filter:blur(18px);
-        }
-
-        .logo{
-
-            flex-shrink:0;
-
-            color:#fff;
-
-            font-size:22px;
-            font-weight:900;
-            letter-spacing:4px;
-        }
-
-        nav{
-
-            flex:1;
-
-            display:flex;
-            justify-content:center;
-            gap:28px;
-
-            overflow-x:auto;
-            scrollbar-width:none;
-        }
-
-        nav::-webkit-scrollbar{
-            display:none;
-        }
-
-        nav a{
-
-            color:#999;
-
-            text-decoration:none;
-
-            font-size:11px;
-            font-weight:bold;
-
-            letter-spacing:1.5px;
-
-            text-transform:uppercase;
-
-            white-space:nowrap;
-
-            transition:color .2s ease;
-        }
-
-        nav a:hover,
-        nav a.active{
-            color:#fff;
-        }
-
-
-        /* =====================================================
-           BUSCADOR
-        ====================================================== */
-
-        .search-section{
-
-            width:min(900px,90%);
-
-            margin:0 auto;
-
-            padding:25px 0 0;
-        }
-
-        .search-box{
-
-            position:relative;
-
-            width:100%;
-
-            display:flex;
-            align-items:center;
-        }
-
-        .search-icon{
-
-            position:absolute;
-
-            left:17px;
-
-            width:18px;
-            height:18px;
-
-            color:#888;
-
-            pointer-events:none;
-        }
-
-        .search-input{
-
-            width:100%;
-
-            height:52px;
-
-            padding:
-                0 50px
-                0 48px;
-
-            border:
-                1px solid
-                rgba(255,255,255,.14);
-
-            border-radius:10px;
-
-            outline:none;
-
-            color:#fff;
-
-            background:
-                rgba(255,255,255,.055);
-
-            box-shadow:
-                inset 0 0 20px
-                rgba(255,255,255,.015),
-
-                0 8px 30px
-                rgba(0,0,0,.15);
-
-            transition:
-                border-color .2s ease,
-                background .2s ease,
-                box-shadow .2s ease;
-        }
-
-        .search-input::placeholder{
-            color:#777;
-        }
-
-        .search-input:focus{
-
-            border-color:
-                rgba(255,255,255,.35);
-
-            background:
-                rgba(255,255,255,.075);
-
-            box-shadow:
-                0 0 0 3px
-                rgba(255,255,255,.035),
-
-                0 10px 35px
-                rgba(0,0,0,.2);
-        }
-
-        .search-clear{
-
-            position:absolute;
-
-            right:10px;
-
-            width:34px;
-            height:34px;
-
-            display:flex;
-            align-items:center;
-            justify-content:center;
-
-            border:0;
-            border-radius:50%;
-
-            color:#999;
-
-            background:
-                rgba(255,255,255,.07);
-
-            cursor:pointer;
-
-            opacity:0;
-            visibility:hidden;
-
-            transition:
-                opacity .2s ease,
-                background .2s ease,
-                color .2s ease;
-        }
-
-        .search-clear.visible{
-
-            opacity:1;
-            visibility:visible;
-        }
-
-        .search-clear:hover{
-
-            color:#fff;
-
-            background:
-                rgba(255,255,255,.14);
-        }
-
-        .search-help{
-
-            margin-top:9px;
-
-            color:#666;
-
-            font-size:9px;
-
-            letter-spacing:.8px;
-
-            text-align:center;
-        }
-
-        .search-result{
-
-            min-height:16px;
-
-            margin-top:8px;
-
-            color:#999;
-
-            font-size:10px;
-
-            text-align:center;
-        }
-
-        .search-result strong{
-            color:#ddd;
-        }
-
-
-        /* =====================================================
-           HERO
-        ====================================================== */
-
-        .hero{
-
-            width:min(1400px,90%);
-
-            margin:auto;
-
-            padding:
-                clamp(70px,11vw,140px)
-                0
-                clamp(50px,7vw,90px);
-        }
-
-        .hero h1{
-
-            position:relative;
-
-            display:inline-block;
-
-            font-size:
-                clamp(
-                    70px,
-                    15vw,
-                    180px
-                );
-
-            line-height:.8;
-
-            letter-spacing:-9px;
-
-            font-weight:900;
-
-            color:#f7f7f7;
-
-            -webkit-text-stroke:
-                1px
-                rgba(255,255,255,.75);
-
-            text-shadow:
-
-                0 0 2px rgba(255,255,255,.8),
-
-                0 0 7px rgba(255,255,255,.45),
-
-                0 0 18px rgba(255,255,255,.25),
-
-                0 12px 35px rgba(0,0,0,.45);
-
-            animation:
-                neonBreath
-                4.5s
-                ease-in-out
-                infinite;
-        }
-
-        .hero h1::before{
-
-            content:"STRANGIS";
-
-            position:absolute;
-
-            inset:0;
-
-            z-index:-1;
-
-            color:transparent;
-
-            -webkit-text-stroke:
-                1px
-                rgba(255,255,255,.25);
-
-            filter:blur(5px);
-
-            opacity:.7;
-
-            animation:
-                neonHalo
-                4.5s
-                ease-in-out
-                infinite;
-        }
-
-        .hero h1::after{
-
-            content:"";
-
-            position:absolute;
-
-            left:5%;
-            right:5%;
-
-            bottom:-18px;
-
-            height:20px;
-
-            border-radius:50%;
-
-            background:
-                rgba(255,255,255,.16);
-
-            filter:blur(20px);
-
-            opacity:.35;
-
-            animation:
-                floorGlow
-                4.5s
-                ease-in-out
-                infinite;
-        }
-
-        @keyframes neonBreath{
-
-            0%,100%{
-
-                color:#bdbdbd;
-
-                text-shadow:
-
-                    0 0 2px rgba(255,255,255,.35),
-
-                    0 0 6px rgba(255,255,255,.20),
-
-                    0 0 14px rgba(255,255,255,.12),
-
-                    0 12px 35px rgba(0,0,0,.50);
-
-                -webkit-text-stroke:
-                    1px
-                    rgba(255,255,255,.45);
+        if(
+            item &&
+            typeof item === "object"
+        ){
+
+            if(
+                Array.isArray(item.images) &&
+                item.images.length
+            ){
+
+                return item.images[0];
             }
 
-            50%{
+            if(
+                typeof item.url === "string"
+            ){
 
-                color:#ffffff;
-
-                text-shadow:
-
-                    0 0 2px rgba(255,255,255,.95),
-
-                    0 0 8px rgba(255,255,255,.70),
-
-                    0 0 18px rgba(255,255,255,.48),
-
-                    0 0 35px rgba(255,255,255,.25),
-
-                    0 12px 35px rgba(0,0,0,.45);
-
-                -webkit-text-stroke:
-                    1px
-                    rgba(255,255,255,.95);
+                return item.url;
             }
         }
-
-        @keyframes neonHalo{
-
-            0%,100%{
-                opacity:.25;
-                filter:blur(7px);
-            }
-
-            50%{
-                opacity:.75;
-                filter:blur(4px);
-            }
-        }
-
-        @keyframes floorGlow{
-
-            0%,100%{
-                opacity:.15;
-                transform:scaleX(.7);
-            }
-
-            50%{
-                opacity:.40;
-                transform:scaleX(1);
-            }
-        }
-
-        .hero p{
-
-            max-width:700px;
-
-            margin-top:35px;
-
-            color:#b5b5b5;
-
-            font-size:16px;
-
-            line-height:1.8;
-        }
-
-        .hero-note{
-
-            position:relative;
-
-            max-width:850px;
-
-            margin-top:25px;
-
-            padding:
-                22px
-                24px
-                22px
-                27px;
-
-            border:
-                1px solid
-                rgba(255,165,70,.45);
-
-            border-left:
-                4px solid
-                rgba(255,150,45,.95);
-
-            border-radius:9px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(255,145,45,.16),
-                    rgba(120,65,20,.08)
-                );
-
-            box-shadow:
-
-                0 8px 30px
-                rgba(0,0,0,.25),
-
-                inset 0 0 25px
-                rgba(255,150,50,.04);
-
-            color:#d0d0d0;
-
-            font-size:13px;
-
-            line-height:1.8;
-        }
-
-        .hero-note::before{
-
-            content:"AVISO IMPORTANTE";
-
-            display:block;
-
-            margin-bottom:9px;
-
-            color:#ffb15c;
-
-            font-size:11px;
-
-            font-weight:900;
-
-            letter-spacing:2.5px;
-        }
-
-        .hero-note strong{
-            color:#ffb15c;
-        }
-
-
-        /* =====================================================
-           PRODUCTOS
-        ====================================================== */
-
-        .products-section{
-
-            width:min(1400px,90%);
-
-            margin:auto;
-
-            padding:
-                10px
-                0
-                110px;
-
-            overflow:hidden;
-        }
-
-        .section-heading{
-
-            display:flex;
-
-            align-items:end;
-
-            justify-content:space-between;
-
-            gap:20px;
-
-            margin-bottom:25px;
-        }
-
-        .section-heading h2{
-
-            font-size:14px;
-
-            font-weight:900;
-
-            letter-spacing:2px;
-
-            text-transform:uppercase;
-        }
-
-        .section-heading span{
-
-            color:#777;
-
-            font-size:10px;
-
-            letter-spacing:1px;
-        }
-
-        .carousel-window{
-
-            width:100%;
-
-            overflow:hidden;
-
-            position:relative;
-
-            padding:5px 0 15px;
-        }
-
-        .carousel-window::before,
-        .carousel-window::after{
-
-            content:"";
-
-            position:absolute;
-
-            top:0;
-            bottom:0;
-
-            width:70px;
-
-            z-index:5;
-
-            pointer-events:none;
-        }
-
-        .carousel-window::before{
-
-            left:0;
-
-            background:
-                linear-gradient(
-                    to right,
-                    rgba(30,30,30,.75),
-                    transparent
-                );
-        }
-
-        .carousel-window::after{
-
-            right:0;
-
-            background:
-                linear-gradient(
-                    to left,
-                    rgba(30,30,30,.75),
-                    transparent
-                );
-        }
-
-        .products{
-
-            display:flex;
-
-            width:max-content;
-
-            gap:12px;
-
-            will-change:transform;
-
-            animation:
-                carouselMove
-                30s
-                linear
-                infinite;
-        }
-
-        @keyframes carouselMove{
-
-            from{
-                transform:translateX(0);
-            }
-
-            to{
-                transform:
-                    translateX(
-                        calc(
-                            -50% - 6px
-                        )
+    }
+
+    return "";
+}
+
+
+/* =====================================================
+   BUSCAR COLOR EN product_colors
+===================================================== */
+
+function findColorImage(
+    product,
+    search
+){
+
+    const query =
+        normalizeText(search);
+
+    if(!query){
+        return null;
+    }
+
+    const matches =
+        colorImages.filter(
+            item =>
+                Number(item.product_id) ===
+                Number(product.id)
+        );
+
+    if(!matches.length){
+        return null;
+    }
+
+
+    /*
+     * Primero coincidencia exacta.
+     */
+
+    let found =
+        matches.find(
+            item =>
+                normalizeText(item.color) ===
+                query
+        );
+
+    if(found){
+        return found;
+    }
+
+
+    /*
+     * Después coincidencia parcial.
+     *
+     * Ejemplo:
+     * "azul" encuentra "Azul oscuro".
+     */
+
+    found =
+        matches.find(
+            item =>
+                normalizeText(item.color)
+                    .includes(query)
+        );
+
+    if(found){
+        return found;
+    }
+
+
+    /*
+     * También permitimos buscar
+     * varias palabras.
+     *
+     * "azul oscuro"
+     * encuentra "Azul oscuro".
+     */
+
+    const words =
+        query
+            .split(/\s+/)
+            .filter(Boolean);
+
+    found =
+        matches.find(
+            item => {
+
+                const color =
+                    normalizeText(
+                        item.color
                     );
-            }
-        }
 
-        .product{
-
-            flex:0 0 205px;
-
-            width:205px;
-
-            overflow:hidden;
-
-            border:
-                1px solid
-                rgba(255,255,255,.10);
-
-            border-radius:9px;
-
-            background:
-                rgba(255,255,255,.045);
-
-            box-shadow:
-                0 12px 35px
-                rgba(0,0,0,.18);
-
-            transition:
-                transform .25s ease,
-                border-color .25s ease,
-                background .25s ease;
-        }
-
-        .product:hover{
-
-            transform:translateY(-5px);
-
-            border-color:
-                rgba(255,255,255,.25);
-
-            background:
-                rgba(255,255,255,.07);
-        }
-
-        .product-image{
-
-            position:relative;
-
-            width:100%;
-
-            aspect-ratio:1 / 1.15;
-
-            overflow:hidden;
-
-            background:#181818;
-        }
-
-        .product-image img{
-
-            width:100%;
-            height:100%;
-
-            display:block;
-
-            object-fit:cover;
-
-            transition:
-                transform .4s ease;
-        }
-
-        .product:hover
-        .product-image img{
-
-            transform:scale(1.045);
-        }
-
-        .product-info{
-
-            padding:
-                12px 11px 14px;
-        }
-
-        .product-name{
-
-            color:#fff;
-
-            font-size:12px;
-
-            font-weight:800;
-
-            line-height:1.35;
-        }
-
-        .product-ref{
-
-            margin-top:5px;
-
-            color:#aaa;
-
-            font-size:9px;
-
-            font-weight:bold;
-
-            letter-spacing:.8px;
-
-            text-transform:uppercase;
-        }
-
-        .product-category{
-
-            margin-top:4px;
-
-            color:#777;
-
-            font-size:9px;
-
-            font-weight:bold;
-
-            letter-spacing:1px;
-
-            text-transform:uppercase;
-        }
-
-        .product-variants{
-
-            margin-top:6px;
-
-            color:#777;
-
-            font-size:8px;
-
-            line-height:1.4;
-        }
-
-        .product-link{
-
-            display:block;
-
-            color:inherit;
-
-            text-decoration:none;
-        }
-
-
-        /* =====================================================
-           VACÍO
-        ====================================================== */
-
-        .empty{
-
-            width:min(700px,100%);
-
-            margin:auto;
-
-            padding:80px 20px;
-
-            border:
-                1px solid
-                rgba(255,255,255,.08);
-
-            border-radius:10px;
-
-            text-align:center;
-
-            background:
-                rgba(255,255,255,.025);
-        }
-
-        .empty-title{
-
-            color:#aaa;
-
-            font-size:12px;
-
-            font-weight:bold;
-
-            letter-spacing:2px;
-
-            text-transform:uppercase;
-        }
-
-        .empty-text{
-
-            max-width:500px;
-
-            margin:15px auto 0;
-
-            color:#666;
-
-            font-size:11px;
-
-            line-height:1.7;
-        }
-
-
-        /* =====================================================
-           INFORMACIÓN
-        ====================================================== */
-
-        .info-section{
-
-            width:min(1000px,90%);
-
-            margin:auto;
-
-            padding:0 0 110px;
-        }
-
-        .info-grid{
-
-            display:grid;
-
-            grid-template-columns:
-                repeat(3,minmax(0,1fr));
-
-            gap:15px;
-        }
-
-        .info-card{
-
-            position:relative;
-
-            padding:27px;
-
-            border:
-                1px solid
-                rgba(255,166,80,.28);
-
-            border-radius:10px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(255,145,45,.14),
-                    rgba(255,120,25,.045)
+                return words.every(
+                    word =>
+                        color.includes(word)
                 );
-
-            box-shadow:
-
-                0 10px 35px
-                rgba(0,0,0,.22),
-
-                inset 0 0 30px
-                rgba(255,150,50,.035);
-
-            transition:
-                transform .25s ease,
-                border-color .25s ease;
-        }
-
-        .info-card:hover{
-
-            transform:translateY(-4px);
-
-            border-color:
-                rgba(255,180,100,.48);
-        }
-
-        .info-card small{
-
-            color:#ffad5c;
-
-            font-size:9px;
-
-            font-weight:bold;
-
-            letter-spacing:2px;
-        }
-
-        .info-card h3{
-
-            margin-top:12px;
-
-            color:#f5f5f5;
-
-            font-size:16px;
-
-            line-height:1.25;
-
-            -webkit-text-stroke:
-                .35px
-                rgba(255,255,255,.35);
-
-            text-shadow:
-
-                0 0 3px rgba(255,255,255,.45),
-
-                0 0 9px rgba(255,255,255,.18);
-
-            animation:
-                cardNeon
-                4.5s
-                ease-in-out
-                infinite;
-        }
-
-        @keyframes cardNeon{
-
-            0%,100%{
-
-                color:#bdbdbd;
-
-                text-shadow:
-
-                    0 0 2px rgba(255,255,255,.20),
-
-                    0 0 7px rgba(255,255,255,.08);
             }
-
-            50%{
-
-                color:#ffffff;
-
-                text-shadow:
-
-                    0 0 3px rgba(255,255,255,.85),
-
-                    0 0 10px rgba(255,255,255,.40),
-
-                    0 0 20px rgba(255,255,255,.15);
-            }
-        }
-
-        .info-card p{
-
-            margin-top:12px;
-
-            color:#b5b5b5;
-
-            font-size:12px;
-
-            line-height:1.75;
-        }
-
-
-        /* =====================================================
-           FOOTER
-        ====================================================== */
-
-        footer{
-
-            padding:35px 5%;
-
-            border-top:
-                1px solid
-                rgba(255,255,255,.10);
-
-            text-align:center;
-
-            color:#666;
-
-            font-size:9px;
-
-            letter-spacing:1px;
-        }
-
-
-        /* =====================================================
-           WHATSAPP
-        ====================================================== */
-
-        .whatsapp-button{
-
-            position:fixed;
-
-            right:20px;
-            bottom:20px;
-
-            z-index:99999;
-
-            width:58px;
-            height:58px;
-
-            display:flex;
-
-            align-items:center;
-            justify-content:center;
-
-            border-radius:50%;
-
-            background:#25D366 !important;
-
-            color:#fff;
-
-            text-decoration:none;
-
-            box-shadow:
-                0 5px 18px
-                rgba(0,0,0,.35);
-
-            transition:
-                transform .2s ease;
-        }
-
-        .whatsapp-button:hover{
-            transform:scale(1.08);
-        }
-
-        .whatsapp-button svg{
-
-            width:30px;
-            height:30px;
-
-            display:block;
-
-            fill:#fff;
-        }
-
-
-        /* =====================================================
-           RESPONSIVE
-        ====================================================== */
-
-        @media(max-width:1100px){
-
-            .product{
-                flex-basis:190px;
-                width:190px;
-            }
-        }
-
-        @media(max-width:800px){
-
-            .info-grid{
-                grid-template-columns:1fr;
-            }
-
-            .product{
-                flex-basis:175px;
-                width:175px;
-            }
-        }
-
-        @media(max-width:600px){
-
-            header{
-
-                padding:15px;
-
-                flex-wrap:wrap;
-
-                gap:14px;
-            }
-
-            .logo{
-
-                font-size:17px;
-
-                letter-spacing:2.5px;
-            }
-
-            nav{
-
-                order:3;
-
-                flex-basis:100%;
-
-                justify-content:flex-start;
-
-                gap:22px;
-            }
-
-            nav a{
-                font-size:10px;
-            }
-
-            .search-section{
-
-                width:94%;
-
-                padding-top:20px;
-            }
-
-            .search-input{
-
-                height:48px;
-
-                padding-left:45px;
-            }
-
-            .hero{
-
-                width:94%;
-
-                padding:
-                    55px 0
-                    45px;
-            }
-
-            .hero h1{
-
-                font-size:
-                    clamp(
-                        65px,
-                        21vw,
-                        100px
-                    );
-
-                letter-spacing:-6px;
-            }
-
-            .hero p{
-
-                margin-top:25px;
-
-                font-size:13px;
-            }
-
-            .hero-note{
-
-                padding:
-                    19px
-                    18px
-                    19px
-                    21px;
-
-                font-size:12px;
-
-                line-height:1.75;
-            }
-
-            .products-section{
-
-                width:94%;
-
-                padding-bottom:80px;
-            }
-
-            .product{
-
-                flex-basis:155px;
-
-                width:155px;
-
-                border-radius:7px;
-            }
-
-            .product-info{
-
-                padding:
-                    9px 8px 11px;
-            }
-
-            .product-name{
-                font-size:10px;
-            }
-
-            .product-ref{
-                font-size:8px;
-            }
-
-            .product-category{
-                font-size:8px;
-            }
-
-            .product-variants{
-                font-size:7px;
-            }
-
-            .products{
-
-                gap:9px;
-
-                animation-duration:24s;
-            }
-
-            .carousel-window::before,
-            .carousel-window::after{
-                width:35px;
-            }
-
-            .info-section{
-                width:94%;
-            }
-
-            .info-card{
-                padding:23px;
-            }
-
-            .whatsapp-button{
-
-                width:54px;
-                height:54px;
-
-                right:16px;
-                bottom:16px;
-            }
-
-            .whatsapp-button svg{
-
-                width:28px;
-                height:28px;
-            }
-        }
-
-        @media(max-width:380px){
-
-            .product{
-
-                flex-basis:145px;
-
-                width:145px;
-            }
-
-            .products{
-                gap:7px;
-            }
-
-            .product-name{
-                font-size:9px;
-            }
-        }
-
-        @media(prefers-reduced-motion:reduce){
-
-            html{
-                scroll-behavior:auto !important;
-            }
-
-            .hero h1,
-            .products,
-            .info-card h3{
-                animation:none !important;
-            }
-
-            *{
-                transition:none !important;
-            }
-        }
-
-    </style>
-
-</head>
-
-
-<body>
-
-
-    <!-- =====================================================
-         WHATSAPP
-    ====================================================== -->
-
-    <a
-        href="https://wa.me/34674559614"
-        class="whatsapp-button"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="WhatsApp"
-    >
-
-        <svg viewBox="0 0 24 24">
-
-            <path d="M20.52 3.48A11.86 11.86 0 0 0 12.08 0C5.53 0 .2 5.33.2 11.88c0 2.09.55 4.13 1.59 5.93L.1 24l6.34-1.66a11.9 11.9 0 0 0 5.64 1.43h.01c6.55 0 11.88-5.33 11.88-11.88 0-3.18-1.24-6.17-3.45-8.41ZM12.09 21.75h-.01a9.86 9.86 0 0 1-5.03-1.38l-.36-.21-3.76.99 1-3.67-.23-.38a9.84 9.84 0 0 1-1.51-5.22C2.19 6.44 6.62 2 12.08 2a9.83 9.83 0 0 1 6.99 2.9 9.88 9.88 0 0 1 2.91 7c0 5.46-4.43 9.89-9.89 9.89Zm5.42-7.41c-.3-.15-1.77-.87-2.05-.97-.28-.1-.48-.15-.68.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.68-1.64-.93-2.25-.24-.59-.49-.51-.68-.52h-.58c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.5s1.07 2.9 1.22 3.1c.15.2 2.1 3.21 5.09 4.5.71.31 1.27.5 1.7.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.27-.2-.57-.35Z"/>
-
-        </svg>
-
-    </a>
-
-
-    <!-- =====================================================
-         CABECERA
-    ====================================================== -->
-
-    <header>
-
-        <div class="logo">
-            Strangis
-        </div>
-
-        <nav>
-
-            <a class="active" href="index.html">
-                Inicio
-            </a>
-
-            <a href="camisetas.html">
-                Camisetas
-            </a>
-
-            <a href="pantalones.html">
-                Pantalones
-            </a>
-
-            <a href="conjuntos.html">
-                Conjuntos
-            </a>
-
-            <a href="gorras.html">
-                Gorras
-            </a>
-
-            <a href="gafas.html">
-                Gafas
-            </a>
-
-            <a href="bisuteria.html">
-                Bisutería
-            </a>
-
-        </nav>
-
-    </header>
-
-
-    <!-- =====================================================
-         BUSCADOR
-    ====================================================== -->
-
-    <section class="search-section">
-
-        <div class="search-box">
-
-            <svg
-                class="search-icon"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-            >
-
-                <circle
-                    cx="11"
-                    cy="11"
-                    r="7"
-                ></circle>
-
-                <line
-                    x1="16.65"
-                    y1="16.65"
-                    x2="21"
-                    y2="21"
-                ></line>
-
-            </svg>
-
-
-            <input
-                id="productSearch"
-                class="search-input"
-                type="search"
-                autocomplete="off"
-                spellcheck="false"
-                placeholder="Buscar por referencia, color o nombre..."
-                aria-label="Buscar productos"
-            >
-
-
-            <button
-                id="searchClear"
-                class="search-clear"
-                type="button"
-                aria-label="Limpiar búsqueda"
-            >
-                ×
-            </button>
-
-        </div>
-
-
-        <div class="search-help">
-
-            Busca por referencia, nombre o color.
-
-        </div>
-
-
-        <div
-            id="searchResult"
-            class="search-result"
-            aria-live="polite"
-        ></div>
-
-    </section>
-
-
-    <!-- =====================================================
-         HERO
-    ====================================================== -->
-
-    <section class="hero">
-
-        <h1>
-            STRANGIS
-        </h1>
-
-        <p>
-            Descubre nuestra selección de moda y accesorios.
-            Productos seleccionados para crear tu propio estilo
-            sin seguir las reglas de siempre.
-        </p>
-
-        <div class="hero-note">
-
-            Los artículos pueden proceder de proveedores
-            internacionales. Por este motivo, algunos pedidos
-            pueden tardar <strong>hasta 30 días</strong> en llegar.
-            Te recomendamos tenerlo en cuenta antes de realizar
-            tu compra.
-
-        </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         PRODUCTOS
-    ====================================================== -->
-
-    <section class="products-section">
-
-        <div class="section-heading">
-
-            <h2>
-                Todos los artículos
-            </h2>
-
-            <span id="productCount">
-                Cargando...
-            </span>
-
-        </div>
-
-
-        <div
-            class="carousel-window"
-            id="carouselWindow"
-        >
-
-            <div
-                class="products"
-                id="productsContainer"
-            ></div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         INFORMACIÓN
-    ====================================================== -->
-
-    <section class="info-section">
-
-        <div class="info-grid">
-
-            <div class="info-card">
-
-                <small>
-                    ENVÍOS
-                </small>
-
-                <h3>
-                    Envíos internacionales
-                </h3>
-
-                <p>
-                    Algunos artículos proceden de proveedores
-                    internacionales y pueden tardar
-                    <strong>hasta 30 días</strong> en llegar.
-                </p>
-
-            </div>
-
-
-            <div class="info-card">
-
-                <small>
-                    COLECCIÓN
-                </small>
-
-                <h3>
-                    Selección Strangis
-                </h3>
-
-                <p>
-                    Añadimos nuevos artículos
-                    progresivamente a nuestras diferentes
-                    categorías.
-                </p>
-
-            </div>
-
-
-            <div class="info-card">
-
-                <small>
-                    COMPRA
-                </small>
-
-                <h3>
-                    Compra sencilla
-                </h3>
-
-                <p>
-                    Selecciona el artículo que quieras,
-                    elige las opciones disponibles y
-                    realiza tu pedido.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         FOOTER
-    ====================================================== -->
-
-    <footer>
-
-        © 2026 STRANGIS · TODOS LOS DERECHOS RESERVADOS
-
-    </footer>
-
-
-    <!-- =====================================================
-         SUPABASE
-    ====================================================== -->
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-    <script>
-
-        const SUPABASE_URL =
-            "https://xbbjfatmdbxbuoqdrgoj.supabase.co";
-
-        const SUPABASE_PUBLISHABLE_KEY =
-            "sb_publishable_M7ETdIWvj4nCQZ55i24Vpw_5Yc5Islk";
-
-
-        const supabaseClient =
-            window.supabase.createClient(
-                SUPABASE_URL,
-                SUPABASE_PUBLISHABLE_KEY
+        );
+
+    return found || null;
+}
+
+
+/* =====================================================
+   TEXTO BUSCABLE DEL PRODUCTO
+===================================================== */
+
+function productMatchesText(
+    product,
+    search
+){
+
+    const query =
+        normalizeText(search);
+
+    if(!query){
+        return true;
+    }
+
+    const text =
+        normalizeText(
+            [
+                product.name,
+                product.ref,
+                product.category,
+                product.description
+            ]
+            .filter(Boolean)
+            .join(" ")
+        );
+
+    return query
+        .split(/\s+/)
+        .filter(Boolean)
+        .every(
+            word =>
+                text.includes(word)
+        );
+}
+
+
+/* =====================================================
+   FILTRAR PRODUCTOS
+===================================================== */
+
+function filterProducts(){
+
+    const query =
+        normalizeText(
+            currentSearch
+        );
+
+    if(!query){
+
+        return allProducts.map(
+            product => ({
+                product,
+                color:null
+            })
+        );
+    }
+
+
+    const result = [];
+
+
+    for(const product of allProducts){
+
+        /*
+         * PRIMERO:
+         * comprobar si la búsqueda corresponde
+         * a un color de product_colors.
+         */
+
+        const color =
+            findColorImage(
+                product,
+                currentSearch
             );
 
 
-        /* =====================================================
-           CATEGORÍAS
-        ====================================================== */
+        if(color){
 
-        const CATEGORY_LINKS = {
+            result.push({
 
-            camisetas:"camisetas.html",
-            pantalones:"pantalones.html",
-            conjuntos:"conjuntos.html",
-            gorras:"gorras.html",
-            gafas:"gafas.html",
-            bisuteria:"bisuteria.html"
+                product,
 
-        };
-
-
-        /* =====================================================
-           ESTADO
-        ====================================================== */
-
-        let allProducts = [];
-
-        let colorLinks = [];
-
-        let currentSearch = "";
-
-
-        /* =====================================================
-           SEGURIDAD
-        ====================================================== */
-
-        function escapeHTML(value){
-
-            return String(value ?? "")
-                .replace(/&/g,"&amp;")
-                .replace(/</g,"&lt;")
-                .replace(/>/g,"&gt;")
-                .replace(/"/g,"&quot;")
-                .replace(/'/g,"&#039;");
-        }
-
-
-        function escapeAttribute(value){
-
-            return String(value ?? "")
-                .replace(/&/g,"&amp;")
-                .replace(/"/g,"&quot;")
-                .replace(/'/g,"&#039;")
-                .replace(/</g,"&lt;")
-                .replace(/>/g,"&gt;");
-        }
-
-
-        /* =====================================================
-           NORMALIZAR
-        ====================================================== */
-
-        function normalizeText(value){
-
-            return String(value ?? "")
-                .normalize("NFD")
-                .replace(/[\u0300-\u036f]/g,"")
-                .toLowerCase()
-                .trim();
-        }
-
-
-        /* =====================================================
-           IMÁGENES DE PRODUCT
-        ====================================================== */
-
-        function getProductImages(product){
-
-            if(!product){
-                return [];
-            }
-
-            let raw = product.images;
-
-            if(typeof raw === "string"){
-
-                try{
-
-                    raw = JSON.parse(raw);
-
-                }catch(error){
-
-                    if(raw.startsWith("http")){
-                        return [raw];
-                    }
-
-                    return [];
-                }
-            }
-
-            if(!Array.isArray(raw)){
-                return [];
-            }
-
-            const result = [];
-
-            raw.forEach(item=>{
-
-                if(typeof item === "string"){
-
-                    if(item.trim()){
-                        result.push(item.trim());
-                    }
-
-                    return;
-                }
-
-                if(!item || typeof item !== "object"){
-                    return;
-                }
-
-                if(Array.isArray(item.images)){
-
-                    item.images.forEach(image=>{
-
-                        if(
-                            typeof image === "string" &&
-                            image.trim()
-                        ){
-
-                            result.push(
-                                image.trim()
-                            );
-                        }
-
-                    });
-                }
-
-                [
-                    "image",
-                    "url",
-                    "src"
-                ].forEach(key=>{
-
-                    if(
-                        typeof item[key] === "string" &&
-                        item[key].trim()
-                    ){
-
-                        result.push(
-                            item[key].trim()
-                        );
-                    }
-
-                });
+                color
 
             });
 
-            return [
-                ...new Set(result)
-            ];
+            continue;
         }
-
-
-        function getProductImage(product){
-
-            const images =
-                getProductImages(product);
-
-            return images[0] || "";
-        }
-
-
-        /* =====================================================
-           REFERENCIA
-        ====================================================== */
-
-        function getProductReference(product){
-
-            return String(
-                product?.ref ??
-                product?.reference ??
-                product?.sku ??
-                ""
-            ).trim();
-        }
-
-
-        /* =====================================================
-           CATEGORÍA
-        ====================================================== */
-
-        function getCategoryName(category){
-
-            const names = {
-
-                camisetas:"Camisetas",
-                pantalones:"Pantalones",
-                conjuntos:"Conjuntos",
-                gorras:"Gorras",
-                gafas:"Gafas",
-                bisuteria:"Bisutería"
-
-            };
-
-            const key =
-                normalizeText(category);
-
-            return names[key] ||
-                category ||
-                "Strangis";
-        }
-
-
-        /* =====================================================
-           PRODUCT_COLOR
-           
-           Busca la foto exacta asociada al color.
-        ====================================================== */
-
-        function findColorImage(
-            productId,
-            search
-        ){
-
-            const query =
-                normalizeText(search);
-
-            if(!query){
-                return null;
-            }
-
-            const matches =
-                colorLinks.filter(
-                    item =>
-                        String(item.product_id) ===
-                        String(productId)
-                );
-
-            if(!matches.length){
-                return null;
-            }
-
-
-            /* Coincidencia exacta */
-
-            const exact =
-                matches.find(
-                    item =>
-                        normalizeText(item.color) ===
-                        query
-                );
-
-            if(exact){
-                return exact;
-            }
-
-
-            /* Coincidencia parcial */
-
-            const partial =
-                matches.find(
-                    item =>
-                        normalizeText(item.color)
-                            .includes(query)
-                );
-
-            if(partial){
-                return partial;
-            }
-
-
-            /* Buscar palabras */
-
-            const words =
-                query
-                    .split(/\s+/)
-                    .filter(Boolean);
-
-            const wordMatch =
-                matches.find(
-                    item => {
-
-                        const color =
-                            normalizeText(
-                                item.color
-                            );
-
-                        return words.some(
-                            word =>
-                                color.includes(word)
-                        );
-                    }
-                );
-
-            if(wordMatch){
-                return wordMatch;
-            }
-
-
-            return null;
-        }
-
-
-        /* =====================================================
-           TEXTO BUSCABLE DEL PRODUCTO
-        ====================================================== */
-
-        function getProductSearchText(product){
-
-            const colorData =
-                colorLinks.filter(
-                    item =>
-                        String(item.product_id) ===
-                        String(product.id)
-                );
-
-            const colors =
-                colorData
-                    .map(item => item.color)
-                    .join(" ");
-
-
-            return normalizeText(
-                [
-                    product.name,
-                    product.category,
-                    product.ref,
-                    product.description,
-                    colors
-                ]
-                .filter(Boolean)
-                .join(" ")
-            );
-        }
-
-
-        /* =====================================================
-           FILTRAR PRODUCTOS
-        ====================================================== */
-
-        function filterProducts(search){
-
-            const query =
-                normalizeText(search);
-
-            if(!query){
-
-                return allProducts;
-            }
-
-
-            const words =
-                query
-                    .split(/\s+/)
-                    .filter(Boolean);
-
-
-            return allProducts.filter(
-                product => {
-
-                    const text =
-                        getProductSearchText(
-                            product
-                        );
-
-                    return words.every(
-                        word =>
-                            text.includes(word)
-                    );
-
-                }
-            );
-        }
-
-
-        /* =====================================================
-           IMAGEN PARA MOSTRAR
-           
-           Si se busca un color y existe en
-           product_colors, usamos ESA imagen.
-        ====================================================== */
-
-        function getDisplayImage(
-            product,
-            search
-        ){
-
-            const colorImage =
-                findColorImage(
-                    product.id,
-                    search
-                );
-
-            if(
-                colorImage &&
-                colorImage.image_url
-            ){
-
-                return colorImage.image_url;
-            }
-
-
-            return getProductImage(
-                product
-            );
-        }
-
-
-        /* =====================================================
-           LINK DEL PRODUCTO
-        ====================================================== */
-
-        function getProductLink(
-            product,
-            search
-        ){
-
-            const category =
-                normalizeText(
-                    product?.category
-                );
-
-            const base =
-                CATEGORY_LINKS[category];
-
-
-            if(!base){
-                return "#";
-            }
-
-
-            const params =
-                new URLSearchParams();
-
-
-            const reference =
-                getProductReference(
-                    product
-                );
-
-
-            if(reference){
-
-                params.set(
-                    "ref",
-                    reference
-                );
-            }
-
-
-            const colorData =
-                findColorImage(
-                    product.id,
-                    search
-                );
-
-
-            if(colorData){
-
-                params.set(
-                    "color",
-                    colorData.color
-                );
-
-                params.set(
-                    "image",
-                    colorData.image_url
-                );
-            }
-
-
-            if(search){
-
-                params.set(
-                    "buscar",
-                    search
-                );
-            }
-
-
-            if(product?.id !== undefined){
-
-                params.set(
-                    "id",
-                    String(product.id)
-                );
-            }
-
-
-            const query =
-                params.toString();
-
-
-            return query
-                ? `${base}?${query}`
-                : base;
-        }
-
-
-        /* =====================================================
-           TARJETA
-        ====================================================== */
-
-        function createProductCard(
-            product,
-            search
-        ){
-
-            const image =
-                getDisplayImage(
-                    product,
-                    search
-                );
-
-
-            if(!image){
-                return "";
-            }
-
-
-            const name =
-                String(
-                    product?.name ||
-                    "Producto Strangis"
-                );
-
-
-            const reference =
-                getProductReference(
-                    product
-                );
-
-
-            const categoryName =
-                getCategoryName(
-                    product?.category
-                );
-
-
-            const matchedColor =
-                findColorImage(
-                    product.id,
-                    search
-                );
-
-
-            const link =
-                getProductLink(
-                    product,
-                    search
-                );
-
-
-            return `
-
-                <article class="product">
-
-                    <a
-                        class="product-link"
-                        href="${escapeAttribute(link)}"
-                    >
-
-                        <div class="product-image">
-
-                            <img
-                                src="${escapeAttribute(image)}"
-                                alt="${escapeHTML(name)}"
-                                loading="lazy"
-                                draggable="false"
-                                onerror="
-                                    this.closest('.product')
-                                        .style.display='none';
-                                "
-                            >
-
-                        </div>
-
-
-                        <div class="product-info">
-
-                            <div class="product-name">
-
-                                ${escapeHTML(name)}
-
-                            </div>
-
-
-                            ${
-                                reference
-                                ?
-                                `
-                                <div class="product-ref">
-
-                                    REF:
-                                    ${escapeHTML(reference)}
-
-                                </div>
-                                `
-                                :
-                                ""
-                            }
-
-
-                            <div class="product-category">
-
-                                ${escapeHTML(
-                                    categoryName
-                                )}
-
-                            </div>
-
-
-                            ${
-                                matchedColor
-                                ?
-                                `
-                                <div class="product-variants">
-
-                                    COLOR:
-                                    ${escapeHTML(
-                                        matchedColor.color
-                                    )}
-
-                                </div>
-                                `
-                                :
-                                ""
-                            }
-
-                        </div>
-
-                    </a>
-
-                </article>
-
-            `;
-        }
-
-
-        /* =====================================================
-           MOSTRAR PRODUCTOS
-        ====================================================== */
-
-        function renderProducts(products){
-
-            const container =
-                document.getElementById(
-                    "productsContainer"
-                );
-
-
-            const counter =
-                document.getElementById(
-                    "productCount"
-                );
-
-
-            const result =
-                document.getElementById(
-                    "searchResult"
-                );
-
-
-            if(!container){
-                return;
-            }
-
-
-            const validProducts =
-                Array.isArray(products)
-                ?
-                products.filter(
-                    product =>
-                        product &&
-                        product.active !== false &&
-                        Boolean(
-                            getDisplayImage(
-                                product,
-                                currentSearch
-                            )
-                        )
-                )
-                :
-                [];
-
-
-            counter.textContent =
-                validProducts.length === 1
-                ? "1 artículo"
-                : `${validProducts.length} artículos`;
-
-
-            if(currentSearch){
-
-                result.innerHTML =
-                    validProducts.length
-
-                    ?
-
-                    `
-                    Encontrados:
-                    <strong>
-                        ${validProducts.length}
-                    </strong>
-                    ${
-                        validProducts.length === 1
-                        ? "artículo"
-                        : "artículos"
-                    }
-                    `
-
-                    :
-
-                    `
-                    <strong>
-                        No se encontraron productos
-                    </strong>
-                    `;
-
-            }else{
-
-                result.textContent = "";
-            }
-
-
-            if(!validProducts.length){
-
-                container.innerHTML = `
-
-                    <div class="empty">
-
-                        <div class="empty-title">
-
-                            ${
-                                currentSearch
-                                ? "Sin resultados"
-                                : "Próximamente"
-                            }
-
-                        </div>
-
-                        <div class="empty-text">
-
-                            ${
-                                currentSearch
-                                ?
-                                "No encontramos ningún producto con esa referencia, nombre o color."
-                                :
-                                "Estamos preparando nuevos artículos para la colección Strangis."
-                            }
-
-                        </div>
-
-                    </div>
-
-                `;
-
-                return;
-            }
-
-
-            const cards =
-                validProducts
-                    .map(
-                        product =>
-                            createProductCard(
-                                product,
-                                currentSearch
-                            )
-                    )
-                    .join("");
-
-
-            if(validProducts.length > 1){
-
-                container.innerHTML =
-                    cards + cards;
-
-                container.style.animation = "";
-
-            }else{
-
-                container.innerHTML =
-                    cards;
-
-                container.style.animation =
-                    "none";
-            }
-        }
-
-
-        /* =====================================================
-           BUSCAR
-        ====================================================== */
-
-        function performSearch(){
-
-            const input =
-                document.getElementById(
-                    "productSearch"
-                );
-
-
-            const clearButton =
-                document.getElementById(
-                    "searchClear"
-                );
-
-
-            if(!input){
-                return;
-            }
-
-
-            currentSearch =
-                input.value.trim();
-
-
-            if(clearButton){
-
-                clearButton.classList.toggle(
-                    "visible",
-                    Boolean(
-                        currentSearch
-                    )
-                );
-            }
-
-
-            const filtered =
-                filterProducts(
-                    currentSearch
-                );
-
-
-            renderProducts(
-                filtered
-            );
-        }
-
-
-        /* =====================================================
-           CARGAR PRODUCTOS Y COLORES
-        ====================================================== */
-
-        async function loadInicioProducts(){
-
-            const container =
-                document.getElementById(
-                    "productsContainer"
-                );
-
-
-            const counter =
-                document.getElementById(
-                    "productCount"
-                );
-
-
-            try{
-
-                counter.textContent =
-                    "Cargando...";
-
-
-                /*
-                 * Cargar productos.
-                 */
-
-                const productsResponse =
-                    await supabaseClient
-
-                        .from("Products")
-
-                        .select("*")
-
-                        .eq(
-                            "active",
-                            true
-                        )
-
-                        .order(
-                            "id",
-                            {
-                                ascending:false
-                            }
-                        );
-
-
-                if(
-                    productsResponse.error
-                ){
-
-                    throw productsResponse.error;
-                }
-
-
-                allProducts =
-                    Array.isArray(
-                        productsResponse.data
-                    )
-                    ?
-                    productsResponse.data
-                    :
-                    [];
-
-
-                /*
-                 * Cargar la tabla product_colors.
-                 */
-
-                const colorsResponse =
-                    await supabaseClient
-
-                        .from("product_colors")
-
-                        .select(
-                            "id, product_id, color, image_url"
-                        );
-
-
-                if(
-                    colorsResponse.error
-                ){
-
-                    console.error(
-                        "STRANGIS — error product_colors:",
-                        colorsResponse.error
-                    );
-
-                    /*
-                     * No rompemos la web si la tabla
-                     * tiene RLS o algún problema.
-                     */
-
-                    colorLinks = [];
-
-                }else{
-
-                    colorLinks =
-                        Array.isArray(
-                            colorsResponse.data
-                        )
-                        ?
-                        colorsResponse.data
-                        :
-                        [];
-                }
-
-
-                console.log(
-                    "STRANGIS — productos:",
-                    allProducts.length
-                );
-
-
-                console.log(
-                    "STRANGIS — colores:",
-                    colorLinks
-                );
-
-
-                renderProducts(
-                    filterProducts(
-                        currentSearch
-                    )
-                );
-
-
-            }catch(error){
-
-                console.error(
-                    "STRANGIS — error:",
-                    error
-                );
-
-
-                counter.textContent =
-                    "Error";
-
-
-                container.innerHTML = `
-
-                    <div class="empty">
-
-                        <div class="empty-title">
-
-                            No se pudieron cargar
-                            los productos
-
-                        </div>
-
-
-                        <div class="empty-text">
-
-                            ${escapeHTML(
-                                error?.message ||
-                                "Error desconocido."
-                            )}
-
-                        </div>
-
-                    </div>
-
-                `;
-            }
-        }
-
-
-        /* =====================================================
-           LIMPIAR BUSCADOR
-        ====================================================== */
-
-        const searchInput =
-            document.getElementById(
-                "productSearch"
-            );
-
-
-        const searchClear =
-            document.getElementById(
-                "searchClear"
-            );
-
-
-        if(searchInput){
-
-            searchInput.addEventListener(
-                "input",
-                performSearch
-            );
-
-            searchInput.addEventListener(
-                "search",
-                performSearch
-            );
-        }
-
-
-        if(searchClear){
-
-            searchClear.addEventListener(
-                "click",
-                ()=>{
-
-                    searchInput.value = "";
-
-                    performSearch();
-
-                    searchInput.focus();
-                }
-            );
-        }
-
-
-        /* =====================================================
-           PAUSAR CARRUSEL
-        ====================================================== */
-
-        const carouselWindow =
-            document.getElementById(
-                "carouselWindow"
-            );
-
-
-        if(carouselWindow){
-
-            carouselWindow.addEventListener(
-                "mouseenter",
-                ()=>{
-
-                    const track =
-                        document.getElementById(
-                            "productsContainer"
-                        );
-
-
-                    if(track){
-
-                        track.style.animationPlayState =
-                            "paused";
-                    }
-                }
-            );
-
-
-            carouselWindow.addEventListener(
-                "mouseleave",
-                ()=>{
-
-                    const track =
-                        document.getElementById(
-                            "productsContainer"
-                        );
-
-
-                    if(track){
-
-                        track.style.animationPlayState =
-                            "running";
-                    }
-                }
-            );
-        }
-
-
-        /* =====================================================
-           INICIAR
-        ====================================================== */
-
-        loadInicioProducts();
 
 
         /*
-         * Actualizar cada 30 segundos.
+         * Si no es un color,
+         * buscar referencia/nombre/categoría.
          */
 
-        setInterval(
-            loadInicioProducts,
-            30000
+        if(
+            productMatchesText(
+                product,
+                currentSearch
+            )
+        ){
+
+            result.push({
+
+                product,
+
+                color:null
+
+            });
+        }
+    }
+
+
+    return result;
+}
+
+
+/* =====================================================
+   LINK DEL PRODUCTO
+===================================================== */
+
+function getProductLink(
+    product,
+    color
+){
+
+    const category =
+        normalizeText(
+            product.category
         );
+
+    const base =
+        CATEGORY_LINKS[category];
+
+    if(!base){
+        return "#";
+    }
+
+    const params =
+        new URLSearchParams();
+
+    if(product.id !== undefined){
+
+        params.set(
+            "id",
+            product.id
+        );
+    }
+
+    if(product.ref){
+
+        params.set(
+            "ref",
+            product.ref
+        );
+    }
+
+    if(color?.color){
+
+        params.set(
+            "color",
+            color.color
+        );
+    }
+
+    const query =
+        params.toString();
+
+    return query
+        ? `${base}?${query}`
+        : base;
+}
+
+
+/* =====================================================
+   CREAR TARJETA
+===================================================== */
+
+function createCard(
+    item
+){
+
+    const product =
+        item.product;
+
+    const color =
+        item.color;
+
+
+    /*
+     * MUY IMPORTANTE:
+     *
+     * Si hemos encontrado color,
+     * usamos la imagen de product_colors.
+     *
+     * Si no, usamos la principal.
+     */
+
+    const image =
+        color?.image_url ||
+        getMainImage(product);
+
+
+    if(!image){
+        return "";
+    }
+
+
+    const name =
+        product.name ||
+        "Producto Strangis";
+
+
+    const ref =
+        product.ref ||
+        "";
+
+
+    const category =
+        product.category ||
+        "";
+
+
+    const link =
+        getProductLink(
+            product,
+            color
+        );
+
+
+    return `
+
+    <article class="product">
+
+        <a
+            class="product-link"
+            href="${escapeAttribute(link)}"
+        >
+
+            <div class="product-image">
+
+                <img
+                    src="${escapeAttribute(image)}"
+                    alt="${escapeHTML(
+                        name +
+                        (
+                            color?.color
+                            ? " " + color.color
+                            : ""
+                        )
+                    )}"
+                    loading="lazy"
+                    draggable="false"
+                    onerror="
+                        this.closest('.product')
+                        .style.display='none';
+                    "
+                >
+
+            </div>
+
+
+            <div class="product-info">
+
+                <div class="product-name">
+                    ${escapeHTML(name)}
+                </div>
+
+
+                ${
+                    ref
+                    ?
+                    `
+                    <div class="product-ref">
+                        REF:
+                        ${escapeHTML(ref)}
+                    </div>
+                    `
+                    :
+                    ""
+                }
+
+
+                <div class="product-category">
+                    ${escapeHTML(category)}
+                </div>
+
+
+                ${
+                    color?.color
+                    ?
+                    `
+                    <div class="product-color">
+                        COLOR:
+                        ${escapeHTML(
+                            color.color
+                        )}
+                    </div>
+                    `
+                    :
+                    ""
+                }
+
+            </div>
+
+        </a>
+
+    </article>
+
+    `;
+}
+
+
+/* =====================================================
+   RENDER
+===================================================== */
+
+function renderProducts(){
+
+    const container =
+        document.getElementById(
+            "productsContainer"
+        );
+
+    const counter =
+        document.getElementById(
+            "productCount"
+        );
+
+    const result =
+        document.getElementById(
+            "searchResult"
+        );
+
+
+    const filtered =
+        filterProducts();
+
+
+    if(currentSearch){
+
+        result.innerHTML =
+            filtered.length
+
+            ?
+
+            `
+            Encontrados:
+            <strong>
+                ${filtered.length}
+            </strong>
+            ${
+                filtered.length === 1
+                ? "resultado"
+                : "resultados"
+            }
+            `
+
+            :
+
+            `
+            <strong>
+                No se encontró el color o producto
+            </strong>
+            `;
+
+    }else{
+
+        result.textContent = "";
+    }
+
+
+    counter.textContent =
+        filtered.length === 1
+        ? "1 artículo"
+        : `${filtered.length} artículos`;
+
+
+    if(!filtered.length){
+
+        container.innerHTML = `
+
+        <div class="empty">
+
+            <div class="empty-title">
+                Sin resultados
+            </div>
+
+            <div class="empty-text">
+
+                No encontramos ningún producto
+                con esa referencia, color o nombre.
+
+            </div>
+
+        </div>
+
+        `;
+
+        return;
+    }
+
+
+    const cards =
+        filtered
+            .map(
+                item =>
+                    createCard(item)
+            )
+            .join("");
+
+
+    /*
+     * Cuando buscamos un color:
+     *
+     * NO duplicamos el carrusel.
+     *
+     * Así ves claramente la foto
+     * correspondiente al color.
+     */
+
+    if(currentSearch){
+
+        container.innerHTML =
+            cards;
+
+        container.style.animation =
+            "none";
+
+        return;
+    }
+
+
+    /*
+     * Sin búsqueda:
+     * carrusel normal.
+     */
+
+    container.innerHTML =
+        cards + cards;
+
+    container.style.animation = "";
+}
+
+
+/* =====================================================
+   CARGAR PRODUCTOS
+===================================================== */
+
+async function loadProducts(){
+
+    const container =
+        document.getElementById(
+            "productsContainer"
+        );
+
+    const counter =
+        document.getElementById(
+            "productCount"
+        );
+
+
+    try{
+
+        counter.textContent =
+            "Cargando...";
+
+
+        /*
+         * PRODUCTOS
+         */
+
+        const productsResponse =
+            await supabaseClient
+
+                .from("Products")
+
+                .select("*")
+
+                .eq(
+                    "active",
+                    true
+                )
+
+                .order(
+                    "id",
+                    {
+                        ascending:false
+                    }
+                );
+
+
+        if(productsResponse.error){
+
+            throw productsResponse.error;
+        }
+
+
+        allProducts =
+            productsResponse.data || [];
+
+
+        /*
+         * COLORES
+         *
+         * Esta es la parte importante.
+         *
+         * Consultamos la tabla
+         * product_colors.
+         */
+
+        const colorsResponse =
+            await supabaseClient
+
+                .from("product_colors")
+
+                .select(
+                    "id, product_id, color, image_url"
+                );
+
+
+        if(colorsResponse.error){
+
+            console.error(
+                "Error product_colors:",
+                colorsResponse.error
+            );
+
+            colorImages = [];
+
+        }else{
+
+            colorImages =
+                colorsResponse.data || [];
+        }
 
 
         console.log(
-            "STRANGIS — Inicio conectado"
+            "STRANGIS — productos:",
+            allProducts
         );
 
         console.log(
-            "STRANGIS — búsqueda por color mediante product_colors"
+            "STRANGIS — colores:",
+            colorImages
         );
 
-    </script>
 
-</body>
+        renderProducts();
 
-</html>
+
+    }catch(error){
+
+        console.error(
+            "STRANGIS — error:",
+            error
+        );
+
+
+        counter.textContent =
+            "Error";
+
+
+        container.innerHTML = `
+
+        <div class="empty">
+
+            <div class="empty-title">
+                Error al cargar
+            </div>
+
+            <div class="empty-text">
+
+                ${escapeHTML(
+                    error?.message ||
+                    "No se pudieron cargar los productos."
+                )}
+
+            </div>
+
+        </div>
+
+        `;
+    }
+}
+
+
+/* =====================================================
+   BUSCADOR
+===================================================== */
+
+const searchInput =
+    document.getElementById(
+        "productSearch"
+    );
+
+
+const searchClear =
+    document.getElementById(
+        "searchClear"
+    );
+
+
+searchInput.addEventListener(
+    "input",
+    ()=>{
+
+        currentSearch =
+            searchInput.value.trim();
+
+
+        searchClear.classList.toggle(
+            "visible",
+            Boolean(currentSearch)
+        );
+
+
+        renderProducts();
+
+    }
+);
+
+
+searchInput.addEventListener(
+    "keydown",
+    event => {
+
+        if(
+            event.key === "Enter"
+        ){
+
+            event.preventDefault();
+
+            /*
+             * La imagen correspondiente
+             * ya aparece automáticamente.
+             *
+             * No hace falta redirigir.
+             */
+
+            renderProducts();
+        }
+
+    }
+);
+
+
+searchClear.addEventListener(
+    "click",
+    ()=>{
+
+        searchInput.value = "";
+
+        currentSearch = "";
+
+        searchClear.classList.remove(
+            "visible"
+        );
+
+        searchInput.focus();
+
+        renderProducts();
+
+    }
+);
+
+
+/* =====================================================
+   PAUSAR CARRUSEL
+===================================================== */
+
+const carouselWindow =
+    document.getElementById(
+        "carouselWindow"
+    );
+
+
+carouselWindow.addEventListener(
+    "mouseenter",
+    ()=>{
+
+        const track =
+            document.getElementById(
+                "productsContainer"
+            );
+
+        track.style.animationPlayState =
+            "paused";
+
+    }
+);
+
+
+carouselWindow.addEventListener(
+    "mouseleave",
+    ()=>{
+
+        const track =
+            document.getElementById(
+                "productsContainer"
+            );
+
+        if(!currentSearch){
+
+            track.style.animationPlayState =
+                "running";
+        }
+
+    }
+);
+
+
+/* =====================================================
+   INICIO
+===================================================== */
+
+loadProducts();
+
+
+/*
+ * Actualizar cada 30 segundos.
+ */
+
+setInterval(
+    loadProducts,
+    30000
+);
+
+</script></body></html>
