@@ -193,7 +193,8 @@ nav a.active{
 }
 
 /* =========================
-   ETIQUETA EN LA IMAGEN
+   ETIQUETA PROFESIONAL
+   DENTRO DE LA IMAGEN
 ========================= */
 
 .product-image-label{
@@ -228,14 +229,11 @@ nav a.active{
 
 .product-image-label-name{
     min-width:0;
-
     color:#fff;
-
     font-size:13px;
     font-weight:800;
     line-height:1.25;
     letter-spacing:.2px;
-
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
@@ -243,9 +241,7 @@ nav a.active{
 
 .product-image-label-price{
     flex-shrink:0;
-
     color:#fff;
-
     font-size:14px;
     font-weight:900;
     white-space:nowrap;
@@ -255,11 +251,8 @@ nav a.active{
     display:flex;
     align-items:center;
     gap:8px;
-
     margin-top:6px;
-
     color:#aaa;
-
     font-size:9px;
     font-weight:700;
     letter-spacing:1px;
@@ -373,13 +366,9 @@ nav a.active{
    INFORMACIÓN
 ========================= */
 
-/*
-   Nombre y referencia ya están
-   dentro de la etiqueta de imagen.
-*/
-
 .product-name,
-.product-code{
+.product-code,
+.product-price{
     display:none;
 }
 
@@ -390,23 +379,8 @@ nav a.active{
     line-height:1.55;
 }
 
-.product-price{
-    display:none;
-}
-
-/*
-   Las etiquetas de variante/color
-   inferiores desaparecen.
-*/
-
-.colors{
-    display:none;
-}
-
-.variant-selector{
-    display:none;
-}
-
+.colors,
+.variant-selector,
 .label{
     display:none;
 }
@@ -425,11 +399,15 @@ nav a.active{
 .size{
     min-width:43px;
     padding:9px 12px;
+
     border:1px solid rgba(255,255,255,.20);
     border-radius:5px;
+
     color:#bbb;
     background:transparent;
+
     cursor:pointer;
+
     font-size:11px;
     font-weight:bold;
 }
@@ -907,9 +885,8 @@ footer{
     }
 
     .hero h1{
-            .hero h1{
-        font-size:clamp(34px,16vw,7px);
-        letter-spacing:-1px;
+        font-size:clamp(48px,16vw,76px);
+        letter-spacing:-5px;
     }
 
     .hero p{
@@ -1024,8 +1001,8 @@ footer{
             Bisutería
         </a>
 
-        <a href="pedreria.html" class="active">
-    Pedrería
+        <a href="pedreria.html">
+            Pedreria
         </a>
 
     </nav>
@@ -1036,7 +1013,7 @@ footer{
 <section class="hero">
 
     <small>
-        Colección/Bisutería/Collares/Pulseras/Relojes/Pendientes
+        COLECCIÓN
     </small>
 
     <h1>
@@ -1044,8 +1021,9 @@ footer{
     </h1>
 
     <p>
-        Accesorios seleccionados para
-        completar tus looks con personalidad.
+        Bisutería seleccionada para
+        completar tus looks con estilo,
+        detalle y personalidad.
     </p>
 
 </section>
@@ -1939,10 +1917,6 @@ function createProductHTML(
             data-quantity="1"
         >
 
-            <!-- =========================
-                 GALERÍA
-            ========================== -->
-
             <div
                 class="product-gallery"
                 id="gallery-${index}"
@@ -1967,10 +1941,6 @@ function createProductHTML(
                         onerror="imageError(this)"
                     >
 
-
-                    <!-- =========================
-                         INFORMACIÓN SOBRE IMAGEN
-                    ========================== -->
 
                     <div
                         class="product-image-label"
@@ -2110,10 +2080,6 @@ function createProductHTML(
             </div>
 
 
-            <!-- =========================
-                 DESCRIPCIÓN
-            ========================== -->
-
             ${
                 product.description
                 ?
@@ -2132,10 +2098,6 @@ function createProductHTML(
                 ""
             }
 
-
-            <!-- =========================
-                 TALLAS
-            ========================== -->
 
             ${
                 sizes.length
@@ -2178,10 +2140,6 @@ function createProductHTML(
             }
 
 
-            <!-- =========================
-                 CANTIDAD
-            ========================== -->
-
             <div class="quantity">
 
                 <button
@@ -2211,10 +2169,6 @@ function createProductHTML(
             </div>
 
 
-            <!-- =========================
-                 ENVÍO
-            ========================== -->
-
             <div class="shipping">
 
                 🚚
@@ -2237,10 +2191,6 @@ function createProductHTML(
 
             </div>
 
-
-            <!-- =========================
-                 STOCK
-            ========================== -->
 
             ${
                 stockDefined
@@ -2270,10 +2220,6 @@ function createProductHTML(
                 ""
             }
 
-
-            <!-- =========================
-                 COMPRAR
-            ========================== -->
 
             <button
                 type="button"
@@ -2379,10 +2325,6 @@ function setVariant(
     image.alt =
         `${product.name || "Producto"} - ${variant.name}`;
 
-
-    /* =========================
-       ACTUALIZAR ETIQUETA
-    ========================== */
 
     const labelName =
         document.getElementById(
@@ -3099,7 +3041,6 @@ function showOrderSummary(){
             <br>
 
             Variante:
-
             <strong>
                 ${escapeHTML(
                     order.variant.name
@@ -3109,7 +3050,6 @@ function showOrderSummary(){
             <br>
 
             Talla:
-
             <strong>
                 ${escapeHTML(
                     order.size
@@ -3119,7 +3059,6 @@ function showOrderSummary(){
             <br>
 
             Cantidad:
-
             <strong>
                 ${order.quantity}
             </strong>
@@ -3127,7 +3066,6 @@ function showOrderSummary(){
             <br>
 
             Precio unidad:
-
             <strong>
                 ${money(
                     order.product.price
@@ -3137,7 +3075,6 @@ function showOrderSummary(){
             <br>
 
             Total:
-
             <strong>
                 ${money(
                     order.total
