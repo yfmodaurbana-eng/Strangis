@@ -7,6 +7,7 @@
 <title>Camisetas | Strangis</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -37,7 +38,9 @@ textarea{
     font:inherit;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 
 header{
     position:sticky;
@@ -88,7 +91,9 @@ nav a.active{
     color:#fff;
 }
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
 .hero{
     width:min(1400px,90%);
@@ -118,7 +123,9 @@ nav a.active{
     line-height:1.7;
 }
 
-/* PRODUCTS */
+/* =========================
+   PRODUCTS
+========================= */
 
 .products-section{
     width:min(1400px,90%);
@@ -135,7 +142,7 @@ nav a.active{
 .product{
     min-width:0;
     overflow:hidden;
-    padding:16px;
+    padding:12px;
     border:1px solid rgba(255,255,255,.12);
     border-radius:12px;
     background:rgba(255,255,255,.055);
@@ -149,12 +156,14 @@ nav a.active{
     background:rgba(255,255,255,.075);
 }
 
-/* GALLERY */
+/* =========================
+   GALERÍA
+========================= */
 
 .product-gallery{
     position:relative;
     height:390px;
-    margin:-16px -16px 20px;
+    margin:-12px -12px 14px;
     overflow:hidden;
     background:#171717;
     touch-action:pan-y;
@@ -174,12 +183,75 @@ nav a.active{
     width:100%;
     height:100%;
     object-fit:cover;
-    transform:scale(1.04);
+    transform:scale(1.01);
     transition:.35s;
 }
 
 .product:hover .product-image img{
-    transform:scale(1.08);
+    transform:scale(1.04);
+}
+
+/* =========================
+   ETIQUETA SOBRE IMAGEN
+========================= */
+
+.product-overlay{
+    position:absolute;
+    left:12px;
+    right:12px;
+    bottom:12px;
+    z-index:4;
+    padding:12px 14px;
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:9px;
+    background:rgba(12,12,12,.72);
+    backdrop-filter:blur(14px);
+    box-shadow:0 8px 25px rgba(0,0,0,.35);
+    pointer-events:none;
+}
+
+.product-overlay-top{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.product-overlay-info{
+    min-width:0;
+}
+
+.product-overlay-name{
+    overflow:hidden;
+    color:#fff;
+    font-size:14px;
+    font-weight:800;
+    line-height:1.25;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.product-overlay-ref{
+    margin-top:4px;
+    color:rgba(255,255,255,.55);
+    font-size:9px;
+    font-weight:bold;
+    letter-spacing:1.1px;
+}
+
+.product-overlay-variant{
+    margin-top:5px;
+    color:rgba(255,255,255,.78);
+    font-size:10px;
+    font-weight:bold;
+}
+
+.product-overlay-price{
+    flex-shrink:0;
+    color:#fff;
+    font-size:15px;
+    font-weight:900;
+    white-space:nowrap;
 }
 
 .gallery-arrow,
@@ -241,20 +313,9 @@ nav a.active{
     pointer-events:none;
 }
 
-/* INFO */
-
-.product-name{
-    font-size:16px;
-    font-weight:800;
-    line-height:1.35;
-}
-
-.product-code{
-    margin-top:7px;
-    color:#777;
-    font-size:10px;
-    letter-spacing:1.2px;
-}
+/* =========================
+   INFO
+========================= */
 
 .product-description{
     margin-top:10px;
@@ -263,26 +324,9 @@ nav a.active{
     line-height:1.55;
 }
 
-.product-price{
-    margin-top:14px;
-    font-size:17px;
-    font-weight:800;
-}
-
-.label{
-    margin-top:18px;
-    color:#aaa;
-    font-size:10px;
-    font-weight:bold;
-    text-transform:uppercase;
-    letter-spacing:1.2px;
-}
-
-.label span{
-    color:#fff;
-}
-
-/* COLORS */
+/* =========================
+   COLORES / VARIANTES
+========================= */
 
 .colors{
     display:flex;
@@ -315,7 +359,9 @@ nav a.active{
     outline-offset:3px;
 }
 
-/* SIZES */
+/* =========================
+   TALLAS
+========================= */
 
 .sizes{
     display:flex;
@@ -346,7 +392,9 @@ nav a.active{
     border-color:#fff;
 }
 
-/* QUANTITY */
+/* =========================
+   CANTIDAD
+========================= */
 
 .quantity{
     display:flex;
@@ -373,7 +421,9 @@ nav a.active{
     font-weight:bold;
 }
 
-/* SHIPPING */
+/* =========================
+   ENVÍO
+========================= */
 
 .shipping{
     margin-top:17px;
@@ -403,7 +453,9 @@ nav a.active{
     font-weight:bold;
 }
 
-/* BUY */
+/* =========================
+   COMPRAR
+========================= */
 
 .buy{
     width:100%;
@@ -428,7 +480,9 @@ nav a.active{
     cursor:not-allowed;
 }
 
-/* EMPTY */
+/* =========================
+   ESTADOS
+========================= */
 
 .empty,
 .loading{
@@ -438,7 +492,9 @@ nav a.active{
     color:#aaa;
 }
 
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 
 footer{
     padding:35px 5%;
@@ -448,7 +504,9 @@ footer{
     font-size:10px;
 }
 
-/* LIGHTBOX */
+/* =========================
+   LIGHTBOX
+========================= */
 
 .image-lightbox{
     position:fixed;
@@ -515,7 +573,9 @@ footer{
     right:10px;
 }
 
-/* MODAL */
+/* =========================
+   MODAL
+========================= */
 
 .modal{
     position:fixed;
@@ -681,7 +741,9 @@ footer{
     cursor:pointer;
 }
 
-/* RESPONSIVE */
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media(max-width:1100px){
 
@@ -754,12 +816,12 @@ footer{
 
     .product{
         width:100%;
-        padding:12px;
+        padding:10px;
     }
 
     .product-gallery{
         height:min(115vw,430px);
-        margin:-12px -12px 15px;
+        margin:-10px -10px 13px;
     }
 
     .product:hover{
@@ -769,6 +831,21 @@ footer{
     .product-image img,
     .product:hover .product-image img{
         transform:none;
+    }
+
+    .product-overlay{
+        left:10px;
+        right:10px;
+        bottom:10px;
+        padding:11px 12px;
+    }
+
+    .product-overlay-name{
+        font-size:13px;
+    }
+
+    .product-overlay-price{
+        font-size:14px;
     }
 
     .color{
@@ -798,6 +875,7 @@ footer{
     }
 
 }
+
 </style>
 </head>
 
@@ -855,8 +933,8 @@ footer{
     </h1>
 
     <p>
-        Camisetas seleccionadas para crear
-        tus looks con personalidad.
+        Diseños seleccionados para crear
+        looks con personalidad.
     </p>
 
 </section>
@@ -883,9 +961,9 @@ footer{
 </footer>
 
 
-<!-- =====================================================
+<!-- =========================
      LIGHTBOX
-===================================================== -->
+========================= -->
 
 <div
     class="image-lightbox"
@@ -937,9 +1015,9 @@ footer{
 </div>
 
 
-<!-- =====================================================
+<!-- =========================
      MODAL PEDIDO
-===================================================== -->
+========================= -->
 
 <div
     class="modal"
@@ -1187,17 +1265,26 @@ footer{
 <script>
 
 /* =====================================================
-   STRANGIS — SUPABASE
+   STRANGIS
+   CONFIGURACIÓN
 ===================================================== */
 
 const STRANGIS_SUPABASE_URL =
     "https://xbbjfatmdbxbuoqdrgoj.supabase.co";
 
+
 const STRANGIS_SUPABASE_KEY =
     "sb_publishable_M7ETdIWvj4nCQZ55i24Vpw_5Yc5Islk";
 
+
 const STRANGIS_PRODUCTS_TABLE =
     "Products";
+
+
+/*
+   ESTA PÁGINA SOLO MUESTRA
+   CAMISETAS ACTIVAS.
+*/
 
 const CATEGORY =
     "camisetas";
@@ -1257,8 +1344,7 @@ const supabaseClient = {
                     ? JSON.parse(text)
                     : null;
 
-        }
-        catch{
+        }catch{
 
             data = text;
 
@@ -1339,7 +1425,7 @@ function escapeHTML(value){
 }
 
 
-function parseJSON(value,fallback = []){
+function parseJSON(value,fallback=[]){
 
     if(Array.isArray(value)){
         return value;
@@ -1357,8 +1443,7 @@ function parseJSON(value,fallback = []){
                 ? parsed
                 : fallback;
 
-        }
-        catch{
+        }catch{
 
             return fallback;
 
@@ -1373,155 +1458,134 @@ function parseJSON(value,fallback = []){
 
 
 /* =====================================================
-   VARIANTES
-   CORREGIDO PARA EL FORMATO DEL ADMINISTRADOR
+   VARIANTES / IMÁGENES
 ===================================================== */
 
 function getVariants(product){
 
-    const variants =
+    const raw =
         parseJSON(
             product.images,
             []
         );
 
 
-    return variants
-        .flatMap(
-            (variant,index)=>{
-
-                /*
-                 * Compatibilidad con una URL directa
-                 */
-
-                if(typeof variant === "string"){
-
-                    return [{
-                        name:
-                            `Color ${index + 1}`,
-
-                        color:
-                            "",
-
-                        image:
-                            variant,
-
-                        variantIndex:
-                            index,
-
-                        imageIndex:
-                            0
-                    }];
-
-                }
+    const variants = [];
 
 
-                if(
-                    !variant ||
-                    typeof variant !== "object"
-                ){
+    raw.forEach(
+        (variant,index)=>{
 
-                    return [];
+            if(typeof variant === "string"){
 
-                }
+                variants.push({
 
+                    name:
+                        `Variante ${index + 1}`,
 
-                /*
-                 * FORMATO DEL ADMINISTRADOR:
-                 *
-                 * {
-                 *   name: "Principal",
-                 *   color: "#888888",
-                 *   images: [
-                 *       "https://..."
-                 *   ]
-                 * }
-                 */
+                    color:
+                        "#888888",
 
-                let images = [];
+                    images:[
+                        variant
+                    ]
 
+                });
 
-                if(
-                    Array.isArray(
-                        variant.images
-                    )
-                ){
-
-                    images =
-                        variant.images;
-
-                }
-                else if(
-                    variant.image
-                ){
-
-                    images = [
-                        variant.image
-                    ];
-
-                }
-                else if(
-                    variant.url
-                ){
-
-                    images = [
-                        variant.url
-                    ];
-
-                }
-                else if(
-                    variant.src
-                ){
-
-                    images = [
-                        variant.src
-                    ];
-
-                }
-
-
-                return images
-                    .filter(
-                        image =>
-                            typeof image === "string" &&
-                            image.trim() !== ""
-                    )
-                    .map(
-                        (
-                            image,
-                            imageIndex
-                        )=>{
-
-                            return {
-
-                                name:
-                                    variant.name ||
-                                    variant.color ||
-                                    `Color ${index + 1}`,
-
-                                color:
-                                    variant.color || "",
-
-                                image:
-                                    image.trim(),
-
-                                variantIndex:
-                                    index,
-
-                                imageIndex:
-                                    imageIndex
-
-                            };
-
-                        }
-                    );
+                return;
 
             }
-        )
-        .filter(
-            variant =>
+
+
+            if(!variant || typeof variant !== "object"){
+                return;
+            }
+
+
+            let images = [];
+
+
+            if(Array.isArray(variant.images)){
+
+                images =
+                    variant.images
+                        .filter(Boolean)
+                        .map(String);
+
+            }
+
+
+            if(
+                !images.length &&
                 variant.image
-        );
+            ){
+
+                images = [
+                    String(variant.image)
+                ];
+
+            }
+
+
+            if(
+                !images.length &&
+                variant.url
+            ){
+
+                images = [
+                    String(variant.url)
+                ];
+
+            }
+
+
+            if(!images.length){
+                return;
+            }
+
+
+            variants.push({
+
+                name:
+                    variant.name ||
+                    variant.colorName ||
+                    variant.color ||
+                    `Variante ${index + 1}`,
+
+                color:
+                    variant.color ||
+                    "#888888",
+
+                images
+
+            });
+
+        }
+    );
+
+
+    return variants;
+
+}
+
+
+function getVariantImages(variant){
+
+    if(!variant){
+        return [];
+    }
+
+
+    if(Array.isArray(variant.images)){
+
+        return variant.images
+            .filter(Boolean)
+            .map(String);
+
+    }
+
+
+    return [];
 
 }
 
@@ -1549,36 +1613,23 @@ async function loadProducts(){
 
 
     container.innerHTML = `
-
         <div class="loading">
             Cargando productos...
         </div>
-
     `;
 
 
     try{
-
-        console.log(
-            "Conectando con Supabase..."
-        );
-
 
         PRODUCTS =
             await supabaseClient
                 .getProducts();
 
 
-        console.log(
-            "Productos recibidos:",
-            PRODUCTS
-        );
-
-
         renderProducts();
 
-    }
-    catch(error){
+
+    }catch(error){
 
         console.error(
             "ERROR SUPABASE:",
@@ -1602,10 +1653,10 @@ async function loadProducts(){
 
                 <br><br>
 
-                Comprueba en Supabase que la tabla
+                Comprueba que la tabla
                 <strong>Products</strong>
-                permita SELECT público mediante
-                RLS/policies.
+                permita SELECT público
+                mediante RLS/policies.
 
             </div>
 
@@ -1617,7 +1668,7 @@ async function loadProducts(){
 
 
 /* =====================================================
-   RENDER
+   RENDER PRODUCTOS
 ===================================================== */
 
 function renderProducts(){
@@ -1661,7 +1712,7 @@ function renderProducts(){
 
 
 /* =====================================================
-   TARJETA PRODUCTO
+   CREAR PRODUCTO
 ===================================================== */
 
 function createProductHTML(
@@ -1692,10 +1743,10 @@ function createProductHTML(
             : null;
 
 
-    /*
-     * Si no hay imagen, seguimos mostrando
-     * toda la información del producto.
-     */
+    const outOfStock =
+        stockDefined &&
+        stock <= 0;
+
 
     if(!firstVariant){
 
@@ -1705,6 +1756,7 @@ function createProductHTML(
                 class="product"
                 id="product-${index}"
                 data-variant="0"
+                data-image="0"
                 data-size=""
                 data-quantity="1"
             >
@@ -1722,49 +1774,14 @@ function createProductHTML(
                 </div>
 
 
-                <div class="product-name">
+                <div class="product-description">
 
                     ${escapeHTML(
-                        product.name ||
-                        "Camiseta"
+                        product.description || ""
                     )}
 
                 </div>
 
-
-                <div class="product-code">
-
-                    REF:
-                    ${escapeHTML(
-                        product.ref ||
-                        product.id
-                    )}
-
-                </div>
-
-
-                ${
-                    product.description
-                    ?
-                    `
-                    <div class="product-description">
-                        ${escapeHTML(
-                            product.description
-                        )}
-                    </div>
-                    `
-                    :
-                    ""
-                }
-
-
-                <div class="product-price">
-
-                    ${money(
-                        product.price
-                    )}
-
-                </div>
 
             </article>
 
@@ -1773,9 +1790,14 @@ function createProductHTML(
     }
 
 
-    const outOfStock =
-        stockDefined &&
-        stock <= 0;
+    const firstImages =
+        getVariantImages(
+            firstVariant
+        );
+
+
+    const firstImage =
+        firstImages[0];
 
 
     return `
@@ -1784,6 +1806,7 @@ function createProductHTML(
             class="product"
             id="product-${index}"
             data-variant="0"
+            data-image="0"
             data-size=""
             data-quantity="1"
         >
@@ -1802,12 +1825,79 @@ function createProductHTML(
 
                     <img
                         id="image-${index}"
-                        src="${escapeHTML(firstVariant.image)}"
-                        alt="${escapeHTML(product.name || "Camiseta")}"
+                        src="${escapeHTML(firstImage)}"
+                        alt="${escapeHTML(
+                            product.name ||
+                            "Camiseta"
+                        )}"
                         loading="lazy"
                         draggable="false"
                         onerror="imageError(this)"
                     >
+
+                </div>
+
+
+                <!-- ETIQUETA ELEGANTE -->
+
+                <div
+                    class="product-overlay"
+                    id="overlay-${index}"
+                >
+
+                    <div class="product-overlay-top">
+
+                        <div class="product-overlay-info">
+
+                            <div
+                                class="product-overlay-name"
+                                id="overlay-name-${index}"
+                            >
+                                ${escapeHTML(
+                                    product.name ||
+                                    "Camiseta"
+                                )}
+                            </div>
+
+
+                            <div
+                                class="product-overlay-ref"
+                            >
+                                REF:
+                                ${escapeHTML(
+                                    product.ref ||
+                                    product.id
+                                )}
+                            </div>
+
+
+                            ${
+                                variants.length
+                                ?
+                                `
+                                <div
+                                    class="product-overlay-variant"
+                                    id="overlay-variant-${index}"
+                                >
+                                    ${escapeHTML(
+                                        firstVariant.name
+                                    )}
+                                </div>
+                                `
+                                :
+                                ""
+                            }
+
+                        </div>
+
+
+                        <div
+                            class="product-overlay-price"
+                        >
+                            ${money(product.price)}
+                        </div>
+
+                    </div>
 
                 </div>
 
@@ -1840,14 +1930,24 @@ function createProductHTML(
                         ›
                     </button>
 
+                    `
+                    :
+                    ""
+                }
+
+
+                ${
+                    variants.length > 1 ||
+                    firstImages.length > 1
+                    ?
+                    `
 
                     <div
                         class="gallery-counter"
                         id="gallery-counter-${index}"
                     >
-                        1 / ${variants.length}
+                        1 / ${firstImages.length}
                     </div>
-
 
                     <div class="swipe-hint">
                         ← desliza →
@@ -1857,27 +1957,6 @@ function createProductHTML(
                     :
                     ""
                 }
-
-            </div>
-
-
-            <div class="product-name">
-
-                ${escapeHTML(
-                    product.name ||
-                    "Camiseta"
-                )}
-
-            </div>
-
-
-            <div class="product-code">
-
-                REF:
-                ${escapeHTML(
-                    product.ref ||
-                    product.id
-                )}
 
             </div>
 
@@ -1901,71 +1980,69 @@ function createProductHTML(
             }
 
 
-            <div class="product-price">
+            ${
+                variants.length
+                ?
+                `
 
-                ${money(
-                    product.price
-                )}
+                <div class="colors">
 
-            </div>
+                    ${
+                        variants
+                            .map(
+                                (
+                                    variant,
+                                    variantIndex
+                                )=>`
 
-
-            <div class="label">
-
-                Color:
-
-                <span
-                    id="color-name-${index}"
-                >
-                    ${escapeHTML(
-                        firstVariant.name
-                    )}
-                </span>
-
-            </div>
-
-
-            <div class="colors">
-
-                ${
-                    variants
-                        .map(
-                            (
-                                variant,
-                                variantIndex
-                            ) => `
-
-                                <button
-                                    type="button"
-                                    class="color ${
-                                        variantIndex === 0
-                                            ? "active"
-                                            : ""
-                                    }"
-                                    style="
-                                        background-color:${
-                                            escapeHTML(
+                                    <button
+                                        type="button"
+                                        class="color ${
+                                            variantIndex === 0
+                                                ? "active"
+                                                : ""
+                                        }"
+                                        style="
+                                            background-color:${escapeHTML(
                                                 variant.color ||
-                                                "#222"
+                                                "#888888"
+                                            )};
+                                            ${
+                                                getVariantImages(
+                                                    variant
+                                                )[0]
+                                                ?
+                                                `background-image:url('${escapeHTML(
+                                                    getVariantImages(
+                                                        variant
+                                                    )[0]
+                                                )}');`
+                                                :
+                                                ""
+                                            }
+                                        "
+                                        title="${escapeHTML(
+                                            variant.name
+                                        )}"
+                                        onclick="
+                                            selectColor(
+                                                ${index},
+                                                ${variantIndex}
                                             )
-                                        };
-                                        background-image:url('${escapeHTML(variant.image)}');
-                                    "
-                                    title="${escapeHTML(variant.name)}"
-                                    onclick="
-                                        selectColor(
-                                            ${index},
-                                            ${variantIndex}
-                                        )
-                                    "
-                                ></button>
+                                        "
+                                    ></button>
 
-                            `
-                        )
-                        .join("")
-                }
+                                `
+                            )
+                            .join("")
+                    }
 
-            </div>
+                </div>
+
+                `
+                :
+                ""
+            }
 
 
             ${
@@ -1986,7 +2063,7 @@ function createProductHTML(
                                 (
                                     size,
                                     sizeIndex
-                                ) => `
+                                )=>`
 
                                     <button
                                         type="button"
@@ -2071,7 +2148,13 @@ function createProductHTML(
                 ?
                 `
 
-                <div class="stock ${outOfStock ? "out" : ""}">
+                <div
+                    class="stock ${
+                        outOfStock
+                            ? "out"
+                            : ""
+                    }"
+                >
 
                     ${
                         outOfStock
@@ -2114,12 +2197,13 @@ function createProductHTML(
 
 
 /* =====================================================
-   VARIANTE
+   CAMBIAR VARIANTE / IMAGEN
 ===================================================== */
 
 function setVariant(
     productIndex,
-    variantIndex
+    variantIndex,
+    imageIndex = 0
 ){
 
     const product =
@@ -2144,6 +2228,22 @@ function setVariant(
     }
 
 
+    const images =
+        getVariantImages(
+            variant
+        );
+
+
+    if(!images.length){
+        return;
+    }
+
+
+    if(imageIndex >= images.length){
+        imageIndex = 0;
+    }
+
+
     const card =
         document.getElementById(
             `product-${productIndex}`
@@ -2165,12 +2265,16 @@ function setVariant(
         variantIndex;
 
 
+    card.dataset.image =
+        imageIndex;
+
+
     image.src =
-        variant.image;
+        images[imageIndex];
 
 
     image.alt =
-        `${product.name || "Producto"} - ${variant.name}`;
+        `${product.name || "Camiseta"} - ${variant.name}`;
 
 
     card
@@ -2187,18 +2291,75 @@ function setVariant(
         );
 
 
-    const colorName =
+    const overlayVariant =
         document.getElementById(
-            `color-name-${productIndex}`
+            `overlay-variant-${productIndex}`
         );
 
 
-    if(colorName){
+    if(overlayVariant){
 
-        colorName.textContent =
+        overlayVariant.textContent =
             variant.name;
 
     }
+
+
+    updateGalleryCounter(
+        productIndex
+    );
+
+}
+
+
+function updateGalleryCounter(
+    productIndex
+){
+
+    const product =
+        PRODUCTS[productIndex];
+
+
+    const card =
+        document.getElementById(
+            `product-${productIndex}`
+        );
+
+
+    if(!product || !card){
+        return;
+    }
+
+
+    const variants =
+        getVariants(product);
+
+
+    const variantIndex =
+        Number(
+            card.dataset.variant || 0
+        );
+
+
+    const imageIndex =
+        Number(
+            card.dataset.image || 0
+        );
+
+
+    const variant =
+        variants[variantIndex];
+
+
+    if(!variant){
+        return;
+    }
+
+
+    const images =
+        getVariantImages(
+            variant
+        );
 
 
     const counter =
@@ -2210,7 +2371,7 @@ function setVariant(
     if(counter){
 
         counter.textContent =
-            `${variantIndex + 1} / ${variants.length}`;
+            `${imageIndex + 1} / ${images.length}`;
 
     }
 
@@ -2224,7 +2385,8 @@ function selectColor(
 
     setVariant(
         productIndex,
-        variantIndex
+        variantIndex,
+        0
     );
 
 }
@@ -2236,11 +2398,6 @@ function selectNextVariant(
 
     const product =
         PRODUCTS[productIndex];
-
-
-    if(!product){
-        return;
-    }
 
 
     const variants =
@@ -2267,18 +2424,15 @@ function selectNextVariant(
     current++;
 
 
-    if(
-        current >= variants.length
-    ){
-
+    if(current >= variants.length){
         current = 0;
-
     }
 
 
     setVariant(
         productIndex,
-        current
+        current,
+        0
     );
 
 }
@@ -2290,11 +2444,6 @@ function selectPreviousVariant(
 
     const product =
         PRODUCTS[productIndex];
-
-
-    if(!product){
-        return;
-    }
 
 
     const variants =
@@ -2322,16 +2471,15 @@ function selectPreviousVariant(
 
 
     if(current < 0){
-
         current =
             variants.length - 1;
-
     }
 
 
     setVariant(
         productIndex,
-        current
+        current,
+        0
     );
 
 }
@@ -2352,9 +2500,7 @@ function galleryTouchStart(event){
         !event.touches ||
         !event.touches.length
     ){
-
         return;
-
     }
 
 
@@ -2377,9 +2523,7 @@ function galleryTouchEnd(
         !event.changedTouches ||
         !event.changedTouches.length
     ){
-
         return;
-
     }
 
 
@@ -2403,24 +2547,81 @@ function galleryTouchEnd(
         Math.abs(diffX) < 45 ||
         Math.abs(diffX) < Math.abs(diffY)
     ){
-
         return;
-
     }
+
+
+    const product =
+        PRODUCTS[productIndex];
+
+
+    const card =
+        document.getElementById(
+            `product-${productIndex}`
+        );
+
+
+    const variants =
+        getVariants(product);
+
+
+    const variantIndex =
+        Number(
+            card.dataset.variant || 0
+        );
+
+
+    const imageIndex =
+        Number(
+            card.dataset.image || 0
+        );
+
+
+    const variant =
+        variants[variantIndex];
+
+
+    const images =
+        getVariantImages(
+            variant
+        );
 
 
     if(diffX < 0){
 
-        selectNextVariant(
-            productIndex
-        );
+        if(imageIndex + 1 < images.length){
 
-    }
-    else{
+            setVariant(
+                productIndex,
+                variantIndex,
+                imageIndex + 1
+            );
 
-        selectPreviousVariant(
-            productIndex
-        );
+        }else{
+
+            selectNextVariant(
+                productIndex
+            );
+
+        }
+
+    }else{
+
+        if(imageIndex > 0){
+
+            setVariant(
+                productIndex,
+                variantIndex,
+                imageIndex - 1
+            );
+
+        }else{
+
+            selectPreviousVariant(
+                productIndex
+            );
+
+        }
 
     }
 
@@ -2454,13 +2655,8 @@ function selectSize(
         );
 
 
-    if(
-        !card ||
-        size === undefined
-    ){
-
+    if(!card || size === undefined){
         return;
-
     }
 
 
@@ -2518,9 +2714,7 @@ function changeQuantity(
 
 
     if(quantity < 1){
-
         quantity = 1;
-
     }
 
 
@@ -2630,7 +2824,7 @@ function buyProduct(productIndex){
     if(!variant){
 
         alert(
-            "Este producto no tiene una imagen/color configurado."
+            "Este producto no tiene una variante configurada."
         );
 
         return;
@@ -2752,8 +2946,17 @@ function showOrderSummary(){
 
             <br>
 
-            Color:
+            Categoría:
+            <strong>
+                ${escapeHTML(
+                    order.product.category ||
+                    CATEGORY
+                )}
+            </strong>
 
+            <br>
+
+            Variante:
             <strong>
                 ${escapeHTML(
                     order.variant.name
@@ -2763,7 +2966,6 @@ function showOrderSummary(){
             <br>
 
             Talla:
-
             <strong>
                 ${escapeHTML(
                     order.size
@@ -2773,7 +2975,6 @@ function showOrderSummary(){
             <br>
 
             Cantidad:
-
             <strong>
                 ${order.quantity}
             </strong>
@@ -2781,7 +2982,6 @@ function showOrderSummary(){
             <br>
 
             Precio unidad:
-
             <strong>
                 ${money(
                     order.product.price
@@ -2791,7 +2991,6 @@ function showOrderSummary(){
             <br>
 
             Total:
-
             <strong>
                 ${money(
                     order.total
@@ -2868,69 +3067,47 @@ function sendOrderToWhatsApp(){
 
 
     const name =
-        fieldValue(
-            "customerName"
-        );
+        fieldValue("customerName");
 
 
     const phone =
-        fieldValue(
-            "customerPhone"
-        );
+        fieldValue("customerPhone");
 
 
     const email =
-        fieldValue(
-            "customerEmail"
-        );
+        fieldValue("customerEmail");
 
 
     const address =
-        fieldValue(
-            "customerAddress"
-        );
+        fieldValue("customerAddress");
 
 
     const number =
-        fieldValue(
-            "customerNumber"
-        );
+        fieldValue("customerNumber");
 
 
     const floor =
-        fieldValue(
-            "customerFloor"
-        );
+        fieldValue("customerFloor");
 
 
     const postal =
-        fieldValue(
-            "customerPostal"
-        );
+        fieldValue("customerPostal");
 
 
     const city =
-        fieldValue(
-            "customerCity"
-        );
+        fieldValue("customerCity");
 
 
     const province =
-        fieldValue(
-            "customerProvince"
-        );
+        fieldValue("customerProvince");
 
 
     const country =
-        fieldValue(
-            "customerCountry"
-        );
+        fieldValue("customerCountry");
 
 
     const notes =
-        fieldValue(
-            "customerNotes"
-        );
+        fieldValue("customerNotes");
 
 
     if(!name){
@@ -3010,9 +3187,9 @@ REF:
 ${currentOrder.product.ref || currentOrder.product.id}
 
 Categoría:
-${currentOrder.product.category || "camisetas"}
+${currentOrder.product.category || CATEGORY}
 
-Color:
+Variante:
 ${currentOrder.variant.name}
 
 Talla:
@@ -3180,21 +3357,47 @@ function updateLightbox(){
     }
 
 
-    document
-        .getElementById(
-            "lightboxImage"
-        )
-        .src =
-        variant.image;
+    const images =
+        getVariantImages(
+            variant
+        );
 
 
-    document
-        .getElementById(
+    if(!images.length){
+        return;
+    }
+
+
+    const card =
+        document.getElementById(
+            `product-${lightboxProductIndex}`
+        );
+
+
+    const imageIndex =
+        Number(
+            card?.dataset.image || 0
+        );
+
+
+    const image =
+        document.getElementById(
             "lightboxImage"
-        )
-        .alt =
+        );
+
+
+    image.src =
+        images[
+            Math.min(
+                imageIndex,
+                images.length - 1
+            )
+        ];
+
+
+    image.alt =
         product.name ||
-        "Producto";
+        "Camiseta";
 
 
     document
@@ -3202,7 +3405,10 @@ function updateLightbox(){
             "lightboxCounter"
         )
         .textContent =
-        `${lightboxVariantIndex + 1} / ${variants.length}`;
+        `${Math.min(
+            imageIndex + 1,
+            images.length
+        )} / ${images.length}`;
 
 }
 
@@ -3226,38 +3432,112 @@ function changeLightboxImage(
         getVariants(product);
 
 
-    if(!variants.length){
+    const card =
+        document.getElementById(
+            `product-${lightboxProductIndex}`
+        );
+
+
+    if(!card){
         return;
     }
 
 
-    lightboxVariantIndex +=
-        direction;
+    let variantIndex =
+        Number(
+            card.dataset.variant || 0
+        );
 
 
-    if(
-        lightboxVariantIndex >=
-        variants.length
-    ){
+    let imageIndex =
+        Number(
+            card.dataset.image || 0
+        );
 
-        lightboxVariantIndex = 0;
 
+    const variant =
+        variants[variantIndex];
+
+
+    const images =
+        getVariantImages(
+            variant
+        );
+
+
+    if(!images.length){
+        return;
     }
 
 
-    if(
-        lightboxVariantIndex < 0
-    ){
+    if(direction > 0){
 
-        lightboxVariantIndex =
-            variants.length - 1;
+        if(
+            imageIndex + 1 <
+            images.length
+        ){
+
+            imageIndex++;
+
+        }else{
+
+            variantIndex++;
+
+            if(
+                variantIndex >=
+                variants.length
+            ){
+
+                variantIndex = 0;
+
+            }
+
+            imageIndex = 0;
+
+        }
+
+    }else{
+
+        if(imageIndex > 0){
+
+            imageIndex--;
+
+        }else{
+
+            variantIndex--;
+
+            if(variantIndex < 0){
+
+                variantIndex =
+                    variants.length - 1;
+
+            }
+
+            const previousVariant =
+                variants[variantIndex];
+
+
+            const previousImages =
+                getVariantImages(
+                    previousVariant
+                );
+
+
+            imageIndex =
+                Math.max(
+                    previousImages.length - 1,
+                    0
+                );
+
+        }
 
     }
 
 
     setVariant(
         lightboxProductIndex,
-        lightboxVariantIndex
+        variantIndex,
+        imageIndex
     );
 
 
@@ -3297,12 +3577,6 @@ function closeLightbox(){
 
 function imageError(image){
 
-    console.error(
-        "No se pudo cargar la imagen:",
-        image.src
-    );
-
-
     image.style.display =
         "none";
 
@@ -3337,9 +3611,7 @@ document.addEventListener(
                 )
         ){
 
-            changeLightboxImage(
-                1
-            );
+            changeLightboxImage(1);
 
         }
 
@@ -3355,9 +3627,7 @@ document.addEventListener(
                 )
         ){
 
-            changeLightboxImage(
-                -1
-            );
+            changeLightboxImage(-1);
 
         }
 
@@ -3373,9 +3643,7 @@ document
         "click",
         function(event){
 
-            if(
-                event.target === this
-            ){
+            if(event.target === this){
 
                 closeCustomerModal();
 
@@ -3393,9 +3661,7 @@ document
         "click",
         function(event){
 
-            if(
-                event.target === this
-            ){
+            if(event.target === this){
 
                 closeLightbox();
 
@@ -3414,4 +3680,4 @@ loadProducts();
 </script>
 
 </body>
-</html>
+    </html>
