@@ -121,128 +121,6 @@ nav a.active{
 }
 
 /* =====================================================
-   BUSCADOR DE COLORES
-===================================================== */
-
-.search-section{
-    width:min(1400px,90%);
-    margin:0 auto 35px;
-}
-
-.search-box{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding:12px;
-    border:1px solid rgba(255,255,255,.14);
-    border-radius:12px;
-    background:rgba(255,255,255,.055);
-    box-shadow:0 15px 45px rgba(0,0,0,.12);
-}
-
-.search-icon{
-    width:42px;
-    height:42px;
-    flex:0 0 42px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:8px;
-    background:rgba(255,255,255,.08);
-    color:#aaa;
-    font-size:18px;
-}
-
-#colorSearch{
-    width:100%;
-    min-width:0;
-    padding:13px 5px;
-    border:0;
-    outline:0;
-    background:transparent;
-    color:#fff;
-    font-size:14px;
-}
-
-#colorSearch::placeholder{
-    color:#777;
-}
-
-.clear-search{
-    display:none;
-    flex:0 0 auto;
-    padding:9px 13px;
-    border:1px solid rgba(255,255,255,.15);
-    border-radius:6px;
-    background:transparent;
-    color:#aaa;
-    cursor:pointer;
-    font-size:10px;
-    font-weight:bold;
-    letter-spacing:1px;
-}
-
-.clear-search.show{
-    display:block;
-}
-
-.clear-search:hover{
-    color:#fff;
-    border-color:#fff;
-}
-
-/* =====================================================
-   FILTROS DE COLOR
-===================================================== */
-
-.color-filters{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-    margin-top:14px;
-}
-
-.color-filter{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    padding:8px 11px;
-    border:1px solid rgba(255,255,255,.14);
-    border-radius:20px;
-    background:rgba(255,255,255,.04);
-    color:#aaa;
-    cursor:pointer;
-    font-size:10px;
-    font-weight:bold;
-    letter-spacing:.7px;
-    text-transform:uppercase;
-}
-
-.color-filter:hover,
-.color-filter.active{
-    border-color:#fff;
-    color:#fff;
-    background:rgba(255,255,255,.10);
-}
-
-.color-dot{
-    width:14px;
-    height:14px;
-    flex:0 0 14px;
-    border:1px solid rgba(255,255,255,.35);
-    border-radius:50%;
-}
-
-.search-result{
-    margin-top:14px;
-    color:#777;
-    font-size:10px;
-    font-weight:bold;
-    letter-spacing:1px;
-    text-transform:uppercase;
-}
-
-/* =====================================================
    PRODUCTOS
 ===================================================== */
 
@@ -889,8 +767,7 @@ footer{
     }
 
     .hero,
-    .products-section,
-    .search-section{
+    .products-section{
         width:92%;
     }
 }
@@ -929,8 +806,7 @@ footer{
         font-size:13px;
     }
 
-    .products-section,
-    .search-section{
+    .products-section{
         width:94%;
     }
 
@@ -994,20 +870,6 @@ footer{
         padding:22px 17px 25px;
         border-radius:18px 18px 0 0;
     }
-
-    .search-box{
-        padding:9px;
-    }
-
-    .search-icon{
-        width:38px;
-        height:38px;
-        flex-basis:38px;
-    }
-
-    .clear-search{
-        padding:8px 10px;
-    }
 }
 </style>
 </head>
@@ -1041,50 +903,6 @@ footer{
         Camisetas seleccionadas para
         completar tus looks con personalidad.
     </p>
-
-</section>
-
-
-<!-- =====================================================
-     BUSCADOR
-===================================================== -->
-
-<section class="search-section">
-
-    <div class="search-box">
-
-        <div class="search-icon">
-            ⌕
-        </div>
-
-        <input
-            id="colorSearch"
-            type="search"
-            autocomplete="off"
-            placeholder="Buscar por color, nombre o referencia..."
-            oninput="handleSearch()"
-        >
-
-        <button
-            id="clearSearch"
-            class="clear-search"
-            type="button"
-            onclick="clearSearch()"
-        >
-            LIMPIAR
-        </button>
-
-    </div>
-
-    <div
-        class="color-filters"
-        id="colorFilters"
-    ></div>
-
-    <div
-        class="search-result"
-        id="searchResult"
-    ></div>
 
 </section>
 
@@ -1420,10 +1238,6 @@ let galleryStartX = 0;
 
 let galleryStartY = 0;
 
-let activeColorFilter = "";
-
-let searchTimer = null;
-
 
 /* =====================================================
    SUPABASE
@@ -1455,10 +1269,13 @@ const supabaseClient = {
                 }
             );
 
+
         const text =
             await response.text();
 
+
         let data = null;
+
 
         try{
 
@@ -1472,6 +1289,7 @@ const supabaseClient = {
             data = text;
         }
 
+
         if(!response.ok){
 
             throw new Error(
@@ -1481,6 +1299,7 @@ const supabaseClient = {
                 `Error HTTP ${response.status}`
             );
         }
+
 
         return data;
     },
@@ -1495,6 +1314,7 @@ const supabaseClient = {
                 active:"eq.true",
                 order:"id.asc"
             });
+
 
         return this.request(
             `/rest/v1/${encodeURIComponent(
@@ -1533,21 +1353,12 @@ function escapeHTML(value){
 }
 
 
-function normalizeText(value){
-
-    return String(value ?? "")
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g,"")
-        .toLowerCase()
-        .trim();
-}
-
-
 function parseJSON(value,fallback=[]){
 
     if(Array.isArray(value)){
         return value;
     }
+
 
     if(typeof value === "string"){
 
@@ -1563,6 +1374,7 @@ function parseJSON(value,fallback=[]){
             return fallback;
         }
     }
+
 
     return fallback;
 }
@@ -1734,6 +1546,7 @@ function getVariantImages(variant){
         return [];
     }
 
+
     return Array.isArray(
         variant.images
     )
@@ -1779,11 +1592,7 @@ async function loadProducts(){
                 .getProducts();
 
 
-        buildColorFilters();
-
         renderProducts();
-
-        updateSearchResult();
 
 
     }catch(error){
@@ -1812,619 +1621,6 @@ async function loadProducts(){
 
 
 /* =====================================================
-   OBTENER TODOS LOS COLORES
-===================================================== */
-
-function getAllColors(){
-
-    const colors = [];
-
-    PRODUCTS.forEach(
-        product => {
-
-            const variants =
-                getVariants(product);
-
-
-            variants.forEach(
-                variant => {
-
-                    const name =
-                        String(
-                            variant.name ||
-                            ""
-                        ).trim();
-
-
-                    if(!name){
-                        return;
-                    }
-
-
-                    const normalized =
-                        normalizeText(
-                            name
-                        );
-
-
-                    if(
-                        !colors.some(
-                            item =>
-                                item.normalized ===
-                                normalized
-                        )
-                    ){
-
-                        colors.push({
-
-                            name,
-
-                            normalized,
-
-                            color:
-                                variant.color ||
-                                "#888888"
-
-                        });
-                    }
-
-                }
-            );
-
-        }
-    );
-
-
-    return colors.sort(
-        (a,b)=>
-            a.name.localeCompare(
-                b.name,
-                "es"
-            )
-    );
-}
-
-
-/* =====================================================
-   BOTONES DE COLOR
-===================================================== */
-
-function buildColorFilters(){
-
-    const container =
-        document.getElementById(
-            "colorFilters"
-        );
-
-
-    const colors =
-        getAllColors();
-
-
-    if(!colors.length){
-
-        container.innerHTML = "";
-
-        return;
-    }
-
-
-    container.innerHTML =
-        colors
-            .map(
-                color => `
-
-                    <button
-                        type="button"
-                        class="color-filter ${
-                            activeColorFilter ===
-                            color.normalized
-                            ? "active"
-                            : ""
-                        }"
-                        onclick="
-                            selectColorFilter(
-                                '${escapeJS(
-                                    color.name
-                            )}'
-                        )
-                    "
-                    >
-
-                        <span
-                            class="color-dot"
-                            style="
-                                background:${escapeHTML(
-                                    color.color
-                                )}
-                            "
-                        ></span>
-
-                        ${escapeHTML(
-                            color.name
-                        )}
-
-                    </button>
-
-                `
-            )
-            .join("");
-}
-
-
-/*
- * Evita romper el onclick
- * cuando el nombre del color
- * contiene comillas.
- */
-
-function escapeJS(value){
-
-    return String(value ?? "")
-        .replace(/\\/g,"\\\\")
-        .replace(/'/g,"\\'");
-}
-
-
-/* =====================================================
-   SELECCIONAR COLOR
-===================================================== */
-
-function selectColorFilter(colorName){
-
-    const input =
-        document.getElementById(
-            "colorSearch"
-        );
-
-
-    activeColorFilter =
-        normalizeText(
-            colorName
-        );
-
-
-    input.value =
-        colorName;
-
-
-    buildColorFilters();
-
-    renderProducts();
-
-    updateSearchResult();
-
-
-    /*
-     * IMPORTANTE:
-     *
-     * Después de filtrar buscamos
-     * exactamente la variante/color.
-     *
-     * Cuando la encontramos:
-     *
-     * 1. hacemos scroll hasta producto
-     * 2. seleccionamos la variante
-     * 3. ponemos la primera foto
-     * 4. abrimos directamente el lightbox
-     */
-
-    const result =
-        findProductByColor(
-            colorName
-        );
-
-
-    if(result){
-
-        openProductColor(
-            result.productIndex,
-            result.variantIndex,
-            0
-        );
-    }
-}
-
-
-/* =====================================================
-   BÚSQUEDA
-===================================================== */
-
-function handleSearch(){
-
-    const input =
-        document.getElementById(
-            "colorSearch"
-        );
-
-
-    const value =
-        input.value.trim();
-
-
-    activeColorFilter = "";
-
-
-    const clearButton =
-        document.getElementById(
-            "clearSearch"
-        );
-
-
-    clearButton.classList.toggle(
-        "show",
-        Boolean(value)
-    );
-
-
-    buildColorFilters();
-
-
-    renderProducts();
-
-    updateSearchResult();
-
-
-    /*
-     * Si el texto coincide exactamente
-     * con un color, vamos directamente
-     * a la foto de ese color.
-     */
-
-    if(value){
-
-        clearTimeout(
-            searchTimer
-        );
-
-
-        searchTimer =
-            setTimeout(
-                () => {
-
-                    const exactColor =
-                        findProductByColor(
-                            value
-                        );
-
-
-                    if(exactColor){
-
-                        openProductColor(
-                            exactColor.productIndex,
-                            exactColor.variantIndex,
-                            0
-                        );
-                    }
-
-                },
-                350
-            );
-    }
-}
-
-
-/* =====================================================
-   LIMPIAR
-===================================================== */
-
-function clearSearch(){
-
-    const input =
-        document.getElementById(
-            "colorSearch"
-        );
-
-
-    input.value = "";
-
-    activeColorFilter = "";
-
-
-    document
-        .getElementById(
-            "clearSearch"
-        )
-        .classList.remove(
-            "show"
-        );
-
-
-    buildColorFilters();
-
-    renderProducts();
-
-    updateSearchResult();
-}
-
-
-/* =====================================================
-   BUSCAR PRODUCTO POR COLOR
-===================================================== */
-
-function findProductByColor(
-    colorName
-){
-
-    const normalizedSearch =
-        normalizeText(
-            colorName
-        );
-
-
-    for(
-        let productIndex = 0;
-        productIndex < PRODUCTS.length;
-        productIndex++
-    ){
-
-        const product =
-            PRODUCTS[productIndex];
-
-
-        const variants =
-            getVariants(product);
-
-
-        for(
-            let variantIndex = 0;
-            variantIndex < variants.length;
-            variantIndex++
-        ){
-
-            const variant =
-                variants[variantIndex];
-
-
-            const normalizedVariant =
-                normalizeText(
-                    variant.name
-                );
-
-
-            if(
-                normalizedVariant ===
-                normalizedSearch
-            ){
-
-                return {
-                    productIndex,
-                    variantIndex
-                };
-            }
-        }
-    }
-
-
-    return null;
-}
-
-
-/* =====================================================
-   IR DIRECTAMENTE AL PRODUCTO + FOTO
-===================================================== */
-
-function openProductColor(
-    productIndex,
-    variantIndex,
-    imageIndex = 0
-){
-
-    const product =
-        PRODUCTS[productIndex];
-
-
-    if(!product){
-        return;
-    }
-
-
-    const variants =
-        getVariants(product);
-
-
-    const variant =
-        variants[variantIndex];
-
-
-    if(!variant){
-        return;
-    }
-
-
-    const images =
-        getVariantImages(
-            variant
-        );
-
-
-    if(!images.length){
-        return;
-    }
-
-
-    /*
-     * Primero seleccionamos la variante
-     * en la tarjeta.
-     */
-
-    setVariant(
-        productIndex,
-        variantIndex,
-        imageIndex
-    );
-
-
-    /*
-     * Esperamos un instante para permitir
-     * que el navegador renderice el producto.
-     */
-
-    setTimeout(
-        () => {
-
-            const card =
-                document.getElementById(
-                    `product-${productIndex}`
-                );
-
-
-            if(card){
-
-                card.scrollIntoView({
-                    behavior:"smooth",
-                    block:"center"
-                });
-
-
-                card.classList.add(
-                    "highlight"
-                );
-
-
-                setTimeout(
-                    () => {
-
-                        card.classList.remove(
-                            "highlight"
-                        );
-
-                    },
-                    1800
-                );
-            }
-
-
-            /*
-             * Abrimos directamente
-             * la foto de esa variante.
-             */
-
-            setTimeout(
-                () => {
-
-                    openLightbox(
-                        productIndex
-                    );
-
-                },
-                450
-            );
-
-        },
-        50
-    );
-}
-
-
-/* =====================================================
-   FILTRADO
-===================================================== */
-
-function productMatchesSearch(
-    product,
-    search
-){
-
-    if(!search){
-        return true;
-    }
-
-
-    const variants =
-        getVariants(product);
-
-
-    const productText =
-        [
-            product.name,
-            product.description,
-            product.ref,
-            product.id,
-            product.category
-        ]
-            .map(normalizeText)
-            .join(" ");
-
-
-    if(
-        productText.includes(
-            search
-        )
-    ){
-
-        return true;
-    }
-
-
-    return variants.some(
-        variant =>
-            normalizeText(
-                variant.name
-            ).includes(
-                search
-            )
-    );
-}
-
-
-/* =====================================================
-   RESULTADO
-===================================================== */
-
-function updateSearchResult(){
-
-    const result =
-        document.getElementById(
-            "searchResult"
-        );
-
-
-    const input =
-        document.getElementById(
-            "colorSearch"
-        );
-
-
-    const search =
-        normalizeText(
-            input.value
-        );
-
-
-    if(!search){
-
-        result.textContent =
-            `${PRODUCTS.length} camisetas disponibles`;
-
-        return;
-    }
-
-
-    const matches =
-        PRODUCTS.filter(
-            product =>
-                productMatchesSearch(
-                    product,
-                    search
-                )
-        );
-
-
-    if(matches.length === 1){
-
-        result.textContent =
-            "1 camiseta encontrada";
-
-    }else{
-
-        result.textContent =
-            `${matches.length} camisetas encontradas`;
-    }
-}
-
-
-/* =====================================================
    RENDER PRODUCTOS
 ===================================================== */
 
@@ -2436,35 +1632,12 @@ function renderProducts(){
         );
 
 
-    const input =
-        document.getElementById(
-            "colorSearch"
-        );
-
-
-    const search =
-        normalizeText(
-            input.value
-        );
-
-
-    const filtered =
-        PRODUCTS.filter(
-            product =>
-                productMatchesSearch(
-                    product,
-                    search
-                )
-        );
-
-
-    if(!filtered.length){
+    if(!PRODUCTS.length){
 
         container.innerHTML = `
             <div class="empty">
 
-                No se encontraron camisetas
-                para esa búsqueda.
+                No hay camisetas disponibles.
 
             </div>
         `;
@@ -2474,19 +1647,13 @@ function renderProducts(){
 
 
     container.innerHTML =
-        filtered
+        PRODUCTS
             .map(
-                product => {
-
-                    const originalIndex =
-                        PRODUCTS.indexOf(
-                            product
-                        );
-
+                (product,index) => {
 
                     return createProductHTML(
                         product,
-                        originalIndex
+                        index
                     );
 
                 }
@@ -4380,4 +3547,4 @@ loadProducts();
 </script>
 
 </body>
-    </html>
+</html>
