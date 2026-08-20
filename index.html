@@ -1,5 +1,3 @@
-index.html
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -25,11 +23,6 @@ index.html
 
 <meta
     property="og:image"
-    content="https://i.imgur.com/nomrvEn.jpeg"
->
-
-<meta
-    property="og:image:secure_url"
     content="https://i.imgur.com/nomrvEn.jpeg"
 >
 
@@ -72,6 +65,7 @@ button,
 input{
     font:inherit;
 }
+
 
 /* =====================================================
    HEADER
@@ -140,14 +134,13 @@ nav a{
     text-transform:uppercase;
 
     white-space:nowrap;
-
-    transition:color .2s ease;
 }
 
 nav a:hover,
 nav a.active{
     color:#fff;
 }
+
 
 /* =====================================================
    BUSCADOR
@@ -293,9 +286,9 @@ nav a.active{
 
 .search-result{
 
-    min-height:16px;
+    min-height:18px;
 
-    margin-top:8px;
+    margin-top:9px;
 
     color:#999;
 
@@ -307,6 +300,7 @@ nav a.active{
 .search-result strong{
     color:#ddd;
 }
+
 
 /* =====================================================
    HERO
@@ -326,8 +320,6 @@ nav a.active{
 
 .hero h1{
 
-    position:relative;
-
     display:inline-block;
 
     font-size:
@@ -345,10 +337,6 @@ nav a.active{
 
     color:#f7f7f7;
 
-    -webkit-text-stroke:
-        1px
-        rgba(255,255,255,.75);
-
     text-shadow:
 
         0 0 2px rgba(255,255,255,.8),
@@ -358,99 +346,6 @@ nav a.active{
         0 0 18px rgba(255,255,255,.25),
 
         0 12px 35px rgba(0,0,0,.45);
-
-    animation:
-        neonBreath
-        4.5s
-        ease-in-out
-        infinite;
-}
-
-.hero h1::before{
-
-    content:"STRANGIS";
-
-    position:absolute;
-
-    inset:0;
-
-    z-index:-1;
-
-    color:transparent;
-
-    -webkit-text-stroke:
-        1px
-        rgba(255,255,255,.25);
-
-    filter:blur(5px);
-
-    opacity:.7;
-}
-
-.hero h1::after{
-
-    content:"";
-
-    position:absolute;
-
-    left:5%;
-    right:5%;
-
-    bottom:-18px;
-
-    height:20px;
-
-    border-radius:50%;
-
-    background:
-        rgba(255,255,255,.16);
-
-    filter:blur(20px);
-
-    opacity:.35;
-}
-
-@keyframes neonBreath{
-
-    0%,100%{
-
-        color:#bdbdbd;
-
-        text-shadow:
-
-            0 0 2px rgba(255,255,255,.35),
-
-            0 0 6px rgba(255,255,255,.20),
-
-            0 0 14px rgba(255,255,255,.12),
-
-            0 12px 35px rgba(0,0,0,.50);
-
-        -webkit-text-stroke:
-            1px
-            rgba(255,255,255,.45);
-    }
-
-    50%{
-
-        color:#ffffff;
-
-        text-shadow:
-
-            0 0 2px rgba(255,255,255,.95),
-
-            0 0 8px rgba(255,255,255,.70),
-
-            0 0 18px rgba(255,255,255,.48),
-
-            0 0 35px rgba(255,255,255,.25),
-
-            0 12px 35px rgba(0,0,0,.45);
-
-        -webkit-text-stroke:
-            1px
-            rgba(255,255,255,.95);
-    }
 }
 
 .hero p{
@@ -467,8 +362,6 @@ nav a.active{
 }
 
 .hero-note{
-
-    position:relative;
 
     max-width:850px;
 
@@ -524,6 +417,7 @@ nav a.active{
 .hero-note strong{
     color:#ffb15c;
 }
+
 
 /* =====================================================
    PRODUCTOS
@@ -693,7 +587,22 @@ nav a.active{
         rgba(255,255,255,.25);
 }
 
+.product.search-match{
+
+    border-color:
+        rgba(255,180,90,.60);
+
+    box-shadow:
+        0 0 0 1px
+        rgba(255,180,90,.15),
+
+        0 15px 40px
+        rgba(0,0,0,.25);
+}
+
 .product-image{
+
+    position:relative;
 
     width:100%;
 
@@ -780,19 +689,11 @@ nav a.active{
 
     font-weight:bold;
 
-    letter-spacing:.7px;
+    letter-spacing:.5px;
 
     text-transform:uppercase;
 }
 
-.product-link{
-
-    display:block;
-
-    color:inherit;
-
-    text-decoration:none;
-}
 
 /* =====================================================
    VACÍO
@@ -844,6 +745,7 @@ nav a.active{
     line-height:1.7;
 }
 
+
 /* =====================================================
    INFORMACIÓN
 ===================================================== */
@@ -883,6 +785,10 @@ nav a.active{
             rgba(255,145,45,.14),
             rgba(255,120,25,.045)
         );
+
+    box-shadow:
+        0 10px 35px
+        rgba(0,0,0,.22);
 }
 
 .info-card small{
@@ -903,8 +809,6 @@ nav a.active{
     color:#f5f5f5;
 
     font-size:16px;
-
-    line-height:1.25;
 }
 
 .info-card p{
@@ -917,6 +821,7 @@ nav a.active{
 
     line-height:1.75;
 }
+
 
 /* =====================================================
    FOOTER
@@ -938,6 +843,7 @@ footer{
 
     letter-spacing:1px;
 }
+
 
 /* =====================================================
    WHATSAPP
@@ -962,7 +868,7 @@ footer{
 
     border-radius:50%;
 
-    background:#25D366 !important;
+    background:#25D366;
 
     color:#fff;
 
@@ -978,22 +884,13 @@ footer{
     width:30px;
     height:30px;
 
-    display:block;
-
     fill:#fff;
 }
+
 
 /* =====================================================
    RESPONSIVE
 ===================================================== */
-
-@media(max-width:1100px){
-
-    .product{
-        flex-basis:190px;
-        width:190px;
-    }
-}
 
 @media(max-width:800px){
 
@@ -1034,10 +931,6 @@ footer{
         justify-content:flex-start;
 
         gap:22px;
-    }
-
-    nav a{
-        font-size:10px;
     }
 
     .search-section{
@@ -1105,30 +998,6 @@ footer{
         flex-basis:155px;
 
         width:155px;
-
-        border-radius:7px;
-    }
-
-    .product-info{
-
-        padding:
-            9px 8px 11px;
-    }
-
-    .product-name{
-        font-size:10px;
-    }
-
-    .product-ref{
-        font-size:8px;
-    }
-
-    .product-category{
-        font-size:8px;
-    }
-
-    .product-color{
-        font-size:7px;
     }
 
     .products{
@@ -1147,10 +1016,6 @@ footer{
         width:94%;
     }
 
-    .info-card{
-        padding:23px;
-    }
-
     .whatsapp-button{
 
         width:54px;
@@ -1167,23 +1032,13 @@ footer{
     }
 }
 
-@media(prefers-reduced-motion:reduce){
-
-    html{
-        scroll-behavior:auto !important;
-    }
-
-    .hero h1,
-    .products{
-        animation:none !important;
-    }
-}
-
 </style>
 
 </head>
 
+
 <body>
+
 
 <!-- =====================================================
      WHATSAPP
@@ -1204,6 +1059,7 @@ footer{
 </svg>
 
 </a>
+
 
 <!-- =====================================================
      HEADER
@@ -1249,6 +1105,7 @@ footer{
 
 </header>
 
+
 <!-- =====================================================
      BUSCADOR
 ===================================================== -->
@@ -1282,6 +1139,7 @@ footer{
 
 </svg>
 
+
 <input
     id="productSearch"
     class="search-input"
@@ -1291,6 +1149,7 @@ footer{
     placeholder="Buscar por referencia, color o nombre..."
     aria-label="Buscar productos"
 />
+
 
 <button
     id="searchClear"
@@ -1303,11 +1162,13 @@ footer{
 
 </div>
 
+
 <div class="search-help">
 
 Puedes buscar por referencia, color o nombre.
 
 </div>
+
 
 <div
     id="searchResult"
@@ -1316,6 +1177,7 @@ Puedes buscar por referencia, color o nombre.
 ></div>
 
 </section>
+
 
 <!-- =====================================================
      HERO
@@ -1345,6 +1207,7 @@ tu compra.
 
 </section>
 
+
 <!-- =====================================================
      PRODUCTOS
 ===================================================== -->
@@ -1363,6 +1226,7 @@ tu compra.
 
 </div>
 
+
 <div
     class="carousel-window"
     id="carouselWindow"
@@ -1376,6 +1240,7 @@ tu compra.
 </div>
 
 </section>
+
 
 <!-- =====================================================
      INFORMACIÓN
@@ -1403,6 +1268,7 @@ tu compra.
 
 </div>
 
+
 <div class="info-card">
 
 <small>
@@ -1419,6 +1285,7 @@ tu compra.
 </p>
 
 </div>
+
 
 <div class="info-card">
 
@@ -1442,17 +1309,20 @@ tu compra.
 
 </section>
 
+
 <footer>
 
 © 2026 STRANGIS · TODOS LOS DERECHOS RESERVADOS
 
 </footer>
 
+
 <!-- =====================================================
      SUPABASE
 ===================================================== -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
 <script>
 
@@ -1462,11 +1332,22 @@ const SUPABASE_URL =
 const SUPABASE_PUBLISHABLE_KEY =
     "sb_publishable_M7ETdIWvj4nCQZ55i24Vpw_5Yc5Islk";
 
+
 const supabaseClient =
     window.supabase.createClient(
         SUPABASE_URL,
         SUPABASE_PUBLISHABLE_KEY
     );
+
+
+/* =====================================================
+   ESTADO
+===================================================== */
+
+let allProducts = [];
+
+let currentSearch = "";
+
 
 /* =====================================================
    CATEGORÍAS
@@ -1483,26 +1364,6 @@ const CATEGORY_LINKS = {
 
 };
 
-const CATEGORY_NAMES = {
-
-    camisetas:"Camisetas",
-    pantalones:"Pantalones",
-    conjuntos:"Conjuntos",
-    gorras:"Gorras",
-    gafas:"Gafas",
-    bisuteria:"Bisutería"
-
-};
-
-/* =====================================================
-   ESTADO
-===================================================== */
-
-let allProducts = [];
-
-let productColors = [];
-
-let currentSearch = "";
 
 /* =====================================================
    SEGURIDAD
@@ -1516,8 +1377,8 @@ function escapeHTML(value){
         .replace(/>/g,"&gt;")
         .replace(/"/g,"&quot;")
         .replace(/'/g,"&#039;");
-
 }
+
 
 function escapeAttribute(value){
 
@@ -1527,8 +1388,8 @@ function escapeAttribute(value){
         .replace(/'/g,"&#039;")
         .replace(/</g,"&lt;")
         .replace(/>/g,"&gt;");
-
 }
+
 
 /* =====================================================
    NORMALIZAR
@@ -1541,494 +1402,810 @@ function normalizeText(value){
         .replace(/[\u0300-\u036f]/g,"")
         .toLowerCase()
         .trim();
-
 }
 
-/* =====================================================
-   IMÁGENES PRODUCTO
-===================================================== */
-
-function getProductImages(product){
-
-    if(!product){
-        return [];
-    }
-
-    let raw = product.images;
-
-    if(typeof raw === "string"){
-
-        try{
-
-            raw = JSON.parse(raw);
-
-        }catch(error){
-
-            return raw.startsWith("http")
-                ? [raw]
-                : [];
-
-        }
-
-    }
-
-    if(!Array.isArray(raw)){
-        return [];
-    }
-
-    const result = [];
-
-    raw.forEach(item=>{
-
-        if(typeof item === "string"){
-
-            if(item.trim()){
-                result.push(item.trim());
-            }
-
-            return;
-        }
-
-        if(!item || typeof item !== "object"){
-            return;
-        }
-
-        if(Array.isArray(item.images)){
-
-            item.images.forEach(image=>{
-
-                if(
-                    typeof image === "string" &&
-                    image.trim()
-                ){
-
-                    result.push(
-                        image.trim()
-                    );
-
-                }
-
-            });
-
-        }
-
-        [
-            "image",
-            "url",
-            "src"
-        ].forEach(key=>{
-
-            if(
-                typeof item[key] === "string" &&
-                item[key].trim()
-            ){
-
-                result.push(
-                    item[key].trim()
-                );
-
-            }
-
-        });
-
-    });
-
-    return [...new Set(result)];
-
-}
-
-function getProductImage(product){
-
-    return getProductImages(product)[0] || "";
-
-}
 
 /* =====================================================
    REFERENCIA
 ===================================================== */
 
-function getProductReference(product){
+function getReference(product){
 
     return String(
-        product?.ref ??
-        product?.reference ??
-        product?.sku ??
+        product?.ref ||
         ""
     ).trim();
-
 }
+
 
 /* =====================================================
    CATEGORÍA
 ===================================================== */
 
-function getCategoryName(category){
+function getCategory(product){
 
-    const key =
-        String(category || "")
-            .trim()
-            .toLowerCase();
-
-    return CATEGORY_NAMES[key]
-        || category
-        || "Strangis";
-
+    return String(
+        product?.category ||
+        ""
+    )
+    .trim()
+    .toLowerCase();
 }
 
+
 /* =====================================================
-   COLORES DE product_colors
+   LEER IMÁGENES JSONB
 ===================================================== */
 
-function findColorMatches(search){
+/*
+
+Tu columna Products.images tiene exactamente esta
+estructura:
+
+[
+  {
+    "name":"Principal",
+    "color":"#828282",
+    "images":[
+      "https://..."
+    ]
+  },
+  {
+    "name":"Verde",
+    "color":"#08853e",
+    "images":[
+      "https://..."
+    ]
+  }
+]
+
+Esta función convierte eso en una lista sencilla.
+
+*/
+
+function getImageVariants(product){
+
+    if(!product){
+        return [];
+    }
+
+    let raw =
+        product.images;
+
+
+    if(typeof raw === "string"){
+
+        try{
+
+            raw =
+                JSON.parse(raw);
+
+        }catch(error){
+
+            return [];
+        }
+    }
+
+
+    if(!Array.isArray(raw)){
+        return [];
+    }
+
+
+    const result = [];
+
+
+    raw.forEach(item=>{
+
+        if(
+            !item ||
+            typeof item !== "object"
+        ){
+            return;
+        }
+
+
+        const name =
+            String(
+                item.name ||
+                ""
+            ).trim();
+
+
+        const color =
+            String(
+                item.color ||
+                ""
+            ).trim();
+
+
+        let images =
+            item.images;
+
+
+        if(typeof images === "string"){
+
+            try{
+
+                images =
+                    JSON.parse(images);
+
+            }catch(error){
+
+                images = [
+                    images
+                ];
+            }
+        }
+
+
+        if(!Array.isArray(images)){
+            return;
+        }
+
+
+        images.forEach(url=>{
+
+            if(
+                typeof url !== "string" ||
+                !url.trim()
+            ){
+                return;
+            }
+
+
+            result.push({
+
+                name:name,
+
+                color:color,
+
+                image:url.trim()
+
+            });
+
+        });
+
+    });
+
+
+    return result;
+}
+
+
+/* =====================================================
+   BUSCAR VARIANTE EXACTA
+===================================================== */
+
+function findMatchingVariant(
+    product,
+    search
+){
 
     const query =
         normalizeText(search);
 
+
     if(!query){
-        return [];
+        return null;
     }
+
+
+    const variants =
+        getImageVariants(product);
+
+
+    if(!variants.length){
+        return null;
+    }
+
 
     /*
-     * Primero coincidencia exacta.
+     * PRIMERO:
+     * coincidencia exacta con el nombre.
+     *
+     * "Crema" -> "Crema"
+     * "Verde" -> "Verde"
+     * "Negro" -> "Negro"
      */
 
-    const exact =
-        productColors.filter(row =>
-            normalizeText(row.color) === query
+    const exactName =
+        variants.find(
+            variant =>
+                normalizeText(
+                    variant.name
+                ) === query
         );
 
-    if(exact.length){
-        return exact;
+
+    if(exactName){
+        return exactName;
     }
+
 
     /*
-     * Después coincidencia parcial.
+     * SEGUNDO:
+     * coincidencia parcial con el nombre.
      */
 
-    return productColors.filter(row =>
-        normalizeText(row.color).includes(query)
-    );
+    const partialName =
+        variants.find(
+            variant =>
+                normalizeText(
+                    variant.name
+                ).includes(query)
+        );
 
+
+    if(partialName){
+        return partialName;
+    }
+
+
+    /*
+     * TERCERO:
+     * si el usuario escribe el código HEX.
+     */
+
+    const exactColor =
+        variants.find(
+            variant =>
+                normalizeText(
+                    variant.color
+                ) === query
+        );
+
+
+    if(exactColor){
+        return exactColor;
+    }
+
+
+    return null;
 }
+
 
 /* =====================================================
-   BUSCAR PRODUCTO POR ID
+   VARIANTE PRINCIPAL
 ===================================================== */
 
-function getProductById(id){
+function getMainVariant(product){
 
-    return allProducts.find(
-        product =>
-            String(product.id) === String(id)
-    );
+    const variants =
+        getImageVariants(product);
 
+
+    if(!variants.length){
+        return null;
+    }
+
+
+    const principal =
+        variants.find(
+            variant =>
+                normalizeText(
+                    variant.name
+                ) === "principal"
+        );
+
+
+    return principal ||
+        variants[0];
 }
+
 
 /* =====================================================
-   ENLACE DEL PRODUCTO
+   BUSCAR PRODUCTO
 ===================================================== */
 
-function getProductLink(product,color){
+function searchProducts(search){
 
-    if(!product){
-        return "#";
-    }
+    const query =
+        normalizeText(search);
 
-    const category =
-        String(product.category || "")
-            .trim()
-            .toLowerCase();
 
-    const base =
-        CATEGORY_LINKS[category];
+    if(!query){
 
-    if(!base){
-        return "#";
-    }
+        return allProducts.map(
+            product => ({
 
-    const params =
-        new URLSearchParams();
+                product:product,
 
-    if(product.id !== undefined){
+                variant:
+                    getMainVariant(
+                        product
+                    )
 
-        params.set(
-            "id",
-            String(product.id)
+            })
         );
-
     }
 
-    const reference =
-        getProductReference(product);
 
-    if(reference){
+    const words =
+        query
+            .split(/\s+/)
+            .filter(Boolean);
 
-        params.set(
-            "ref",
-            reference
-        );
 
-    }
+    const results = [];
 
-    if(color){
 
-        params.set(
-            "color",
-            color
-        );
+    allProducts.forEach(product=>{
 
-    }
+        /*
+         * Miramos TODAS las variantes.
+         */
 
-    return `${base}?${params.toString()}`;
+        const variants =
+            getImageVariants(
+                product
+            );
 
+
+        /*
+         * Buscar primero si alguna variante
+         * tiene exactamente el color/nombre.
+         */
+
+        const matchingVariant =
+            findMatchingVariant(
+                product,
+                search
+            );
+
+
+        if(matchingVariant){
+
+            results.push({
+
+                product:product,
+
+                variant:matchingVariant
+
+            });
+
+            return;
+        }
+
+
+        /*
+         * Si no coincide un color, buscamos
+         * por nombre, referencia, categoría
+         * o descripción.
+         */
+
+        const searchable =
+            normalizeText(
+                [
+                    product?.name,
+                    product?.ref,
+                    product?.category,
+                    product?.description
+                ]
+                .filter(Boolean)
+                .join(" ")
+            );
+
+
+        const matchesProduct =
+            words.every(
+                word =>
+                    searchable.includes(word)
+            );
+
+
+        if(matchesProduct){
+
+            results.push({
+
+                product:product,
+
+                variant:
+                    getMainVariant(
+                        product
+                    )
+
+            });
+
+        }
+
+    });
+
+
+    return results;
 }
+
 
 /* =====================================================
-   TARJETA NORMAL
+   CREAR TARJETA
 ===================================================== */
 
-function createProductCard(product){
-
-    const image =
-        getProductImage(product);
-
-    if(!image){
-        return "";
-    }
-
-    const name =
-        product.name ||
-        "Producto Strangis";
-
-    const reference =
-        getProductReference(product);
-
-    const categoryName =
-        getCategoryName(
-            product.category
-        );
-
-    const link =
-        getProductLink(
-            product,
-            ""
-        );
-
-    return `
-
-<article class="product">
-
-<a
-    class="product-link"
-    href="${escapeAttribute(link)}"
->
-
-<div class="product-image">
-
-<img
-    src="${escapeAttribute(image)}"
-    alt="${escapeHTML(name)}"
-    loading="lazy"
-    draggable="false"
-    onerror="
-        this.closest('.product').style.display='none';
-    "
->
-
-</div>
-
-<div class="product-info">
-
-<div class="product-name">
-    ${escapeHTML(name)}
-</div>
-
-${
-reference
-?
-`
-<div class="product-ref">
-    REF: ${escapeHTML(reference)}
-</div>
-`
-:
-""
-}
-
-<div class="product-category">
-    ${escapeHTML(categoryName)}
-</div>
-
-</div>
-
-</a>
-
-</article>
-
-`;
-
-}
-
-/* =====================================================
-   TARJETA COLOR
-===================================================== */
-
-function createColorCard(row){
+function createProductCard(
+    item,
+    search
+){
 
     const product =
-        getProductById(
-            row.product_id
-        );
+        item.product;
 
-    if(!product){
+
+    const variant =
+        item.variant;
+
+
+    if(!variant?.image){
         return "";
     }
 
-    const image =
-        row.image_url;
-
-    if(!image){
-        return "";
-    }
 
     const name =
-        product.name ||
-        "Producto Strangis";
+        String(
+            product?.name ||
+            "Producto Strangis"
+        );
+
 
     const reference =
-        getProductReference(product);
-
-    const categoryName =
-        getCategoryName(
-            product.category
+        getReference(
+            product
         );
 
-    const link =
-        getProductLink(
-            product,
-            row.color
+
+    const category =
+        getCategory(
+            product
         );
+
+
+    const variantName =
+        variant.name &&
+        normalizeText(
+            variant.name
+        ) !== "principal"
+
+        ?
+
+        variant.name
+
+        :
+
+        "";
+
+
+    const linkBase =
+        CATEGORY_LINKS[
+            category
+        ];
+
+
+    let link =
+        linkBase || "#";
+
+
+    /*
+     * Cuando hacemos clic en el producto,
+     * mandamos referencia y color.
+     */
+
+    if(linkBase){
+
+        const params =
+            new URLSearchParams();
+
+
+        if(reference){
+
+            params.set(
+                "ref",
+                reference
+            );
+        }
+
+
+        if(variantName){
+
+            params.set(
+                "color",
+                variantName
+            );
+        }
+
+
+        if(product?.id){
+
+            params.set(
+                "id",
+                product.id
+            );
+        }
+
+
+        if(params.toString()){
+
+            link =
+                `${linkBase}?${params.toString()}`;
+        }
+
+    }
+
+
+    const isColorSearch =
+        Boolean(
+            search &&
+            variantName
+        );
+
 
     return `
 
-<article class="product">
+    <article
+        class="product ${
+            isColorSearch
+            ? "search-match"
+            : ""
+        }"
+    >
 
-<a
-    class="product-link"
-    href="${escapeAttribute(link)}"
->
+        <a
+            class="product-link"
+            href="${escapeAttribute(link)}"
+        >
 
-<div class="product-image">
+            <div class="product-image">
 
-<img
-    src="${escapeAttribute(image)}"
-    alt="${escapeHTML(name)} - ${escapeHTML(row.color)}"
-    loading="lazy"
-    draggable="false"
-    onerror="
-        this.closest('.product').style.display='none';
-    "
->
+                <img
+                    src="${escapeAttribute(
+                        variant.image
+                    )}"
+                    alt="${escapeHTML(
+                        variantName
+                        ?
+                        `${name} - ${variantName}`
+                        :
+                        name
+                    )}"
+                    loading="lazy"
+                    draggable="false"
+                    onerror="
+                        this.closest('.product')
+                        .style.display='none';
+                    "
+                >
 
-</div>
+            </div>
 
-<div class="product-info">
 
-<div class="product-name">
-    ${escapeHTML(name)}
-</div>
+            <div class="product-info">
 
-${
-reference
-?
-`
-<div class="product-ref">
-    REF: ${escapeHTML(reference)}
-</div>
-`
-:
-""
+                <div class="product-name">
+                    ${escapeHTML(name)}
+                </div>
+
+
+                ${
+                    reference
+                    ?
+                    `
+                    <div class="product-ref">
+
+                        REF:
+                        ${escapeHTML(
+                            reference
+                        )}
+
+                    </div>
+                    `
+                    :
+                    ""
+                }
+
+
+                <div class="product-category">
+
+                    ${escapeHTML(
+                        category ||
+                        "Strangis"
+                    )}
+
+                </div>
+
+
+                ${
+                    variantName
+                    ?
+                    `
+                    <div class="product-color">
+
+                        COLOR:
+                        ${escapeHTML(
+                            variantName
+                        )}
+
+                    </div>
+                    `
+                    :
+                    ""
+                }
+
+            </div>
+
+        </a>
+
+    </article>
+
+    `;
 }
 
-<div class="product-category">
-    ${escapeHTML(categoryName)}
-</div>
-
-<div class="product-color">
-    COLOR: ${escapeHTML(row.color)}
-</div>
-
-</div>
-
-</a>
-
-</article>
-
-`;
-
-}
 
 /* =====================================================
-   MOSTRAR PRODUCTOS NORMALES
+   MOSTRAR PRODUCTOS
 ===================================================== */
 
-function renderNormalProducts(){
+function renderProducts(
+    results
+){
 
     const container =
         document.getElementById(
             "productsContainer"
         );
 
+
     const counter =
         document.getElementById(
             "productCount"
         );
 
+
+    const resultText =
+        document.getElementById(
+            "searchResult"
+        );
+
+
     if(!container){
         return;
     }
 
-    const valid =
-        allProducts.filter(
-            product =>
-                product &&
-                product.active !== false &&
-                getProductImage(product)
-        );
+
+    /*
+     * Contador.
+     */
 
     counter.textContent =
-        valid.length === 1
-        ? "1 artículo"
-        : `${valid.length} artículos`;
+        results.length === 1
 
-    const cards =
-        valid
-            .map(createProductCard)
-            .join("");
+        ?
 
-    if(!cards){
+        "1 artículo"
+
+        :
+
+        `${results.length} artículos`;
+
+
+    /*
+     * Mensaje de búsqueda.
+     */
+
+    if(currentSearch){
+
+        if(results.length){
+
+            const colorMatch =
+                results.find(
+                    item =>
+                        item.variant &&
+                        normalizeText(
+                            item.variant.name
+                        ) ===
+                        normalizeText(
+                            currentSearch
+                        )
+                );
+
+
+            if(colorMatch){
+
+                resultText.innerHTML = `
+
+                    Color encontrado:
+                    <strong>
+                        ${escapeHTML(
+                            colorMatch.variant.name
+                        )}
+                    </strong>
+
+                `;
+
+            }else{
+
+                resultText.innerHTML = `
+
+                    Encontrados:
+                    <strong>
+                        ${results.length}
+                    </strong>
+
+                `;
+            }
+
+        }else{
+
+            resultText.innerHTML = `
+
+                <strong>
+                    No se encontró el color o producto
+                </strong>
+
+            `;
+        }
+
+    }else{
+
+        resultText.textContent = "";
+    }
+
+
+    /*
+     * Sin resultados.
+     */
+
+    if(!results.length){
+
+        container.style.animation =
+            "none";
 
         container.innerHTML = `
 
-<div class="empty">
+            <div class="empty">
 
-<div class="empty-title">
-    Próximamente
-</div>
+                <div class="empty-title">
 
-<div class="empty-text">
-    Estamos preparando nuevos artículos
-    para la colección Strangis.
-</div>
+                    No encontrado
 
-</div>
+                </div>
 
-`;
+                <div class="empty-text">
+
+                    No existe ningún producto,
+                    referencia o color asociado
+                    a "<strong>${escapeHTML(
+                        currentSearch
+                    )}</strong>".
+
+                </div>
+
+            </div>
+
+        `;
 
         return;
     }
 
-    if(valid.length > 1){
+
+    /*
+     * Crear tarjetas.
+     */
+
+    const cards =
+        results
+            .map(
+                item =>
+                    createProductCard(
+                        item,
+                        currentSearch
+                    )
+            )
+            .join("");
+
+
+    /*
+     * Carrusel únicamente cuando
+     * hay varios productos.
+     */
+
+    if(results.length > 1){
 
         container.innerHTML =
             cards + cards;
@@ -2038,272 +2215,66 @@ function renderNormalProducts(){
 
     }else{
 
+        /*
+         * IMPORTANTE:
+         *
+         * Si buscamos "Crema" y existe una sola
+         * foto, mostramos SOLO esa foto.
+         */
+
         container.innerHTML =
             cards;
 
         container.style.animation =
             "none";
-
     }
-
 }
 
+
 /* =====================================================
-   MOSTRAR RESULTADO COLOR
+   BÚSQUEDA
 ===================================================== */
 
-function renderColorResults(rows,search){
+function performSearch(){
 
-    const container =
+    const input =
         document.getElementById(
-            "productsContainer"
+            "productSearch"
         );
 
-    const counter =
+
+    const clearButton =
         document.getElementById(
-            "productCount"
+            "searchClear"
         );
 
-    const result =
-        document.getElementById(
-            "searchResult"
+
+    currentSearch =
+        input.value.trim();
+
+
+    clearButton.classList.toggle(
+        "visible",
+        Boolean(
+            currentSearch
+        )
+    );
+
+
+    const results =
+        searchProducts(
+            currentSearch
         );
 
-    if(!container){
-        return;
-    }
 
-    const validRows =
-        rows.filter(
-            row =>
-                row &&
-                row.image_url &&
-                getProductById(row.product_id)
-        );
-
-    counter.textContent =
-        validRows.length === 1
-        ? "1 resultado"
-        : `${validRows.length} resultados`;
-
-    if(!validRows.length){
-
-        result.innerHTML = `
-<strong>
-    No se encontró el color o producto
-</strong>
-`;
-
-        container.style.animation =
-            "none";
-
-        container.innerHTML = `
-
-<div class="empty">
-
-<div class="empty-title">
-    Sin resultados
-</div>
-
-<div class="empty-text">
-    No encontramos una imagen asociada
-    al color <strong>${escapeHTML(search)}</strong>.
-</div>
-
-</div>
-
-`;
-
-        return;
-    }
-
-    result.innerHTML = `
-Encontrados:
-<strong>
-    ${validRows.length}
-</strong>
-${
-validRows.length === 1
-? "resultado"
-: "resultados"
+    renderProducts(
+        results
+    );
 }
-`;
 
-    container.style.animation =
-        "none";
-
-    container.innerHTML =
-        validRows
-            .map(createColorCard)
-            .join("");
-
-}
 
 /* =====================================================
-   BUSCAR EN PRODUCTOS
-===================================================== */
-
-function searchProducts(search){
-
-    const query =
-        normalizeText(search);
-
-    if(!query){
-
-        renderNormalProducts();
-
-        document.getElementById(
-            "searchResult"
-        ).textContent = "";
-
-        return;
-
-    }
-
-    /*
-     * PRIORIDAD ABSOLUTA:
-     *
-     * Buscar primero en product_colors.
-     *
-     * Ejemplo:
-     *
-     * "Crema"
-     *
-     * encuentra:
-     *
-     * product_id = 10
-     * color = Crema
-     * image_url = xOtPEjV.jpeg
-     */
-
-    const colorMatches =
-        findColorMatches(query);
-
-    if(colorMatches.length){
-
-        renderColorResults(
-            colorMatches,
-            search
-        );
-
-        return;
-
-    }
-
-    /*
-     * Si no es un color registrado,
-     * buscar por referencia o nombre.
-     */
-
-    const words =
-        query
-            .split(/\s+/)
-            .filter(Boolean);
-
-    const matches =
-        allProducts.filter(product=>{
-
-            const text =
-                normalizeText(
-                    [
-                        product.name,
-                        product.ref,
-                        product.category,
-                        product.description
-                    ]
-                    .filter(Boolean)
-                    .join(" ")
-                );
-
-            return words.every(
-                word =>
-                    text.includes(word)
-            );
-
-        });
-
-    const container =
-        document.getElementById(
-            "productsContainer"
-        );
-
-    const counter =
-        document.getElementById(
-            "productCount"
-        );
-
-    const result =
-        document.getElementById(
-            "searchResult"
-        );
-
-    const valid =
-        matches.filter(
-            product =>
-                getProductImage(product)
-        );
-
-    counter.textContent =
-        valid.length === 1
-        ? "1 resultado"
-        : `${valid.length} resultados`;
-
-    if(!valid.length){
-
-        result.innerHTML = `
-<strong>
-    No se encontró el color o producto
-</strong>
-`;
-
-        container.style.animation =
-            "none";
-
-        container.innerHTML = `
-
-<div class="empty">
-
-<div class="empty-title">
-    Sin resultados
-</div>
-
-<div class="empty-text">
-    No encontramos ningún producto
-    relacionado con
-    <strong>${escapeHTML(search)}</strong>.
-</div>
-
-</div>
-
-`;
-
-        return;
-    }
-
-    result.innerHTML = `
-Encontrados:
-<strong>
-    ${valid.length}
-</strong>
-${
-valid.length === 1
-? "resultado"
-: "resultados"
-}
-`;
-
-    container.style.animation =
-        "none";
-
-    container.innerHTML =
-        valid
-            .map(createProductCard)
-            .join("");
-
-}
-
-/* =====================================================
-   EVENTOS BUSCADOR
+   EVENTOS
 ===================================================== */
 
 const searchInput =
@@ -2311,56 +2282,38 @@ const searchInput =
         "productSearch"
     );
 
+
 const searchClear =
     document.getElementById(
         "searchClear"
     );
 
-if(searchInput){
 
-    searchInput.addEventListener(
-        "input",
-        ()=>{
+searchInput.addEventListener(
+    "input",
+    performSearch
+);
 
-            currentSearch =
-                searchInput.value.trim();
 
-            searchClear.classList.toggle(
-                "visible",
-                Boolean(currentSearch)
-            );
+searchInput.addEventListener(
+    "search",
+    performSearch
+);
 
-            searchProducts(
-                currentSearch
-            );
 
-        }
-    );
+searchClear.addEventListener(
+    "click",
+    ()=>{
 
-}
+        searchInput.value = "";
 
-if(searchClear){
+        searchInput.focus();
 
-    searchClear.addEventListener(
-        "click",
-        ()=>{
+        performSearch();
 
-            searchInput.value = "";
+    }
+);
 
-            currentSearch = "";
-
-            searchClear.classList.remove(
-                "visible"
-            );
-
-            searchProducts("");
-
-            searchInput.focus();
-
-        }
-    );
-
-}
 
 /* =====================================================
    CARGAR PRODUCTOS
@@ -2373,21 +2326,23 @@ async function loadProducts(){
             "productsContainer"
         );
 
+
     const counter =
         document.getElementById(
             "productCount"
         );
+
 
     try{
 
         counter.textContent =
             "Cargando...";
 
-        /*
-         * Productos
-         */
 
-        const productsResponse =
+        const {
+            data,
+            error
+        } =
             await supabaseClient
 
                 .from("Products")
@@ -2406,137 +2361,100 @@ async function loadProducts(){
                     }
                 );
 
-        if(productsResponse.error){
 
-            throw productsResponse.error;
-
+        if(error){
+            throw error;
         }
 
+
+        /*
+         * GUARDAMOS TODOS LOS PRODUCTOS.
+         *
+         * NO CONSULTAMOS product_colors.
+         */
+
         allProducts =
-            Array.isArray(
-                productsResponse.data
-            )
+            Array.isArray(data)
             ?
-            productsResponse.data
+            data
             :
             [];
 
-        /*
-         * COLORES
-         *
-         * Esta es la parte importante.
-         *
-         * La tabla tiene:
-         *
-         * id
-         * product_id
-         * color
-         * image_url
-         */
-
-        const colorsResponse =
-            await supabaseClient
-
-                .from("product_colors")
-
-                .select(
-                    "id, product_id, color, image_url"
-                );
-
-        if(colorsResponse.error){
-
-            console.error(
-                "Error product_colors:",
-                colorsResponse.error
-            );
-
-            /*
-             * No rompemos la página.
-             * La página seguirá mostrando
-             * los productos normales.
-             */
-
-            productColors = [];
-
-        }else{
-
-            productColors =
-                Array.isArray(
-                    colorsResponse.data
-                )
-                ?
-                colorsResponse.data
-                :
-                [];
-
-        }
 
         console.log(
             "STRANGIS — productos:",
-            allProducts.length
+            allProducts
         );
 
-        console.log(
-            "STRANGIS — colores:",
-            productColors
-        );
 
         /*
-         * Mostrar inicio normal.
+         * Mostrar productos iniciales.
          */
 
-        if(!currentSearch){
-
-            renderNormalProducts();
-
-        }else{
-
+        renderProducts(
             searchProducts(
                 currentSearch
+            )
+        );
+
+
+        /*
+         * Comprobar en consola que los colores
+         * realmente están llegando.
+         */
+
+        allProducts.forEach(product=>{
+
+            console.log(
+                "PRODUCTO:",
+                product.name,
+                "VARIANTES:",
+                getImageVariants(
+                    product
+                )
             );
 
-        }
+        });
+
 
     }catch(error){
 
         console.error(
-            "STRANGIS — error:",
+            "STRANGIS — Error:",
             error
         );
+
 
         counter.textContent =
             "Error";
 
+
         container.innerHTML = `
 
-<div class="empty">
+            <div class="empty">
 
-<div class="empty-title">
-    No se pudieron cargar los productos
-</div>
+                <div class="empty-title">
 
-<div class="empty-text">
+                    No se pudieron cargar
+                    los productos
 
-${escapeHTML(
-    error?.message ||
-    "Error desconocido."
-)}
+                </div>
 
-<br><br>
+                <div class="empty-text">
 
-Comprueba las políticas
-<strong>RLS</strong>
-de Supabase.
+                    ${escapeHTML(
+                        error?.message ||
+                        "Error desconocido"
+                    )}
 
-</div>
+                </div>
 
-</div>
+            </div>
 
-`;
-
+        `;
     }
-
 }
+
 
 /* =====================================================
    PAUSAR CARRUSEL
@@ -2547,47 +2465,46 @@ const carouselWindow =
         "carouselWindow"
     );
 
-if(carouselWindow){
 
-    carouselWindow.addEventListener(
-        "mouseenter",
-        ()=>{
+carouselWindow.addEventListener(
+    "mouseenter",
+    ()=>{
 
-            const track =
-                document.getElementById(
-                    "productsContainer"
-                );
+        const track =
+            document.getElementById(
+                "productsContainer"
+            );
 
-            if(track){
 
-                track.style.animationPlayState =
-                    "paused";
+        if(track){
 
-            }
-
+            track.style.animationPlayState =
+                "paused";
         }
-    );
 
-    carouselWindow.addEventListener(
-        "mouseleave",
-        ()=>{
+    }
+);
 
-            const track =
-                document.getElementById(
-                    "productsContainer"
-                );
 
-            if(track){
+carouselWindow.addEventListener(
+    "mouseleave",
+    ()=>{
 
-                track.style.animationPlayState =
-                    "running";
+        const track =
+            document.getElementById(
+                "productsContainer"
+            );
 
-            }
 
+        if(track){
+
+            track.style.animationPlayState =
+                "running";
         }
-    );
 
-}
+    }
+);
+
 
 /* =====================================================
    INICIO
@@ -2595,20 +2512,23 @@ if(carouselWindow){
 
 loadProducts();
 
+
+/*
+ * Actualizar cada 30 segundos.
+ */
+
 setInterval(
     loadProducts,
     30000
 );
 
-console.log(
-    "STRANGIS — Inicio conectado a Supabase"
-);
 
 console.log(
-    "STRANGIS — búsqueda directa mediante product_colors"
+    "STRANGIS — búsqueda directa por color desde Products.images"
 );
 
 </script>
 
 </body>
+
 </html>
