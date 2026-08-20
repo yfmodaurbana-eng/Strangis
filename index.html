@@ -1,3 +1,5 @@
+index.html
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -23,6 +25,11 @@
 
 <meta
     property="og:image"
+    content="https://i.imgur.com/nomrvEn.jpeg"
+>
+
+<meta
+    property="og:image:secure_url"
     content="https://i.imgur.com/nomrvEn.jpeg"
 >
 
@@ -65,7 +72,6 @@ button,
 input{
     font:inherit;
 }
-
 
 /* =====================================================
    HEADER
@@ -142,7 +148,6 @@ nav a:hover,
 nav a.active{
     color:#fff;
 }
-
 
 /* =====================================================
    BUSCADOR
@@ -288,9 +293,9 @@ nav a.active{
 
 .search-result{
 
-    min-height:18px;
+    min-height:16px;
 
-    margin-top:9px;
+    margin-top:8px;
 
     color:#999;
 
@@ -302,7 +307,6 @@ nav a.active{
 .search-result strong{
     color:#ddd;
 }
-
 
 /* =====================================================
    HERO
@@ -322,6 +326,8 @@ nav a.active{
 
 .hero h1{
 
+    position:relative;
+
     display:inline-block;
 
     font-size:
@@ -339,6 +345,10 @@ nav a.active{
 
     color:#f7f7f7;
 
+    -webkit-text-stroke:
+        1px
+        rgba(255,255,255,.75);
+
     text-shadow:
 
         0 0 2px rgba(255,255,255,.8),
@@ -348,6 +358,99 @@ nav a.active{
         0 0 18px rgba(255,255,255,.25),
 
         0 12px 35px rgba(0,0,0,.45);
+
+    animation:
+        neonBreath
+        4.5s
+        ease-in-out
+        infinite;
+}
+
+.hero h1::before{
+
+    content:"STRANGIS";
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:-1;
+
+    color:transparent;
+
+    -webkit-text-stroke:
+        1px
+        rgba(255,255,255,.25);
+
+    filter:blur(5px);
+
+    opacity:.7;
+}
+
+.hero h1::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:5%;
+    right:5%;
+
+    bottom:-18px;
+
+    height:20px;
+
+    border-radius:50%;
+
+    background:
+        rgba(255,255,255,.16);
+
+    filter:blur(20px);
+
+    opacity:.35;
+}
+
+@keyframes neonBreath{
+
+    0%,100%{
+
+        color:#bdbdbd;
+
+        text-shadow:
+
+            0 0 2px rgba(255,255,255,.35),
+
+            0 0 6px rgba(255,255,255,.20),
+
+            0 0 14px rgba(255,255,255,.12),
+
+            0 12px 35px rgba(0,0,0,.50);
+
+        -webkit-text-stroke:
+            1px
+            rgba(255,255,255,.45);
+    }
+
+    50%{
+
+        color:#ffffff;
+
+        text-shadow:
+
+            0 0 2px rgba(255,255,255,.95),
+
+            0 0 8px rgba(255,255,255,.70),
+
+            0 0 18px rgba(255,255,255,.48),
+
+            0 0 35px rgba(255,255,255,.25),
+
+            0 12px 35px rgba(0,0,0,.45);
+
+        -webkit-text-stroke:
+            1px
+            rgba(255,255,255,.95);
+    }
 }
 
 .hero p{
@@ -364,6 +467,8 @@ nav a.active{
 }
 
 .hero-note{
+
+    position:relative;
 
     max-width:850px;
 
@@ -420,7 +525,6 @@ nav a.active{
     color:#ffb15c;
 }
 
-
 /* =====================================================
    PRODUCTOS
 ===================================================== */
@@ -435,8 +539,6 @@ nav a.active{
         10px
         0
         110px;
-
-    overflow:hidden;
 }
 
 .section-heading{
@@ -580,8 +682,7 @@ nav a.active{
 
     transition:
         transform .25s ease,
-        border-color .25s ease,
-        background .25s ease;
+        border-color .25s ease;
 }
 
 .product:hover{
@@ -590,14 +691,9 @@ nav a.active{
 
     border-color:
         rgba(255,255,255,.25);
-
-    background:
-        rgba(255,255,255,.07);
 }
 
 .product-image{
-
-    position:relative;
 
     width:100%;
 
@@ -678,13 +774,15 @@ nav a.active{
 
     margin-top:6px;
 
-    color:#aaa;
+    color:#ffb15c;
 
     font-size:9px;
 
     font-weight:bold;
 
-    letter-spacing:.5px;
+    letter-spacing:.7px;
+
+    text-transform:uppercase;
 }
 
 .product-link{
@@ -695,117 +793,6 @@ nav a.active{
 
     text-decoration:none;
 }
-
-
-/* =====================================================
-   RESULTADO DE COLOR
-===================================================== */
-
-.color-result{
-
-    width:min(500px,100%);
-
-    margin:
-        0
-        auto
-        45px;
-
-    overflow:hidden;
-
-    border:
-        1px solid
-        rgba(255,255,255,.15);
-
-    border-radius:12px;
-
-    background:
-        rgba(255,255,255,.055);
-
-    box-shadow:
-        0 20px 60px
-        rgba(0,0,0,.3);
-}
-
-.color-result-image{
-
-    width:100%;
-
-    aspect-ratio:1 / 1;
-
-    overflow:hidden;
-
-    background:#181818;
-}
-
-.color-result-image img{
-
-    width:100%;
-    height:100%;
-
-    display:block;
-
-    object-fit:cover;
-}
-
-.color-result-info{
-
-    padding:18px;
-}
-
-.color-result-name{
-
-    font-size:15px;
-
-    font-weight:900;
-}
-
-.color-result-color{
-
-    margin-top:6px;
-
-    color:#aaa;
-
-    font-size:11px;
-
-    text-transform:uppercase;
-
-    letter-spacing:1px;
-}
-
-.color-result-button{
-
-    display:block;
-
-    margin-top:15px;
-
-    padding:12px;
-
-    border-radius:7px;
-
-    color:#fff;
-
-    background:
-        rgba(255,255,255,.08);
-
-    text-align:center;
-
-    text-decoration:none;
-
-    font-size:10px;
-
-    font-weight:bold;
-
-    letter-spacing:1px;
-
-    text-transform:uppercase;
-}
-
-.color-result-button:hover{
-
-    background:
-        rgba(255,255,255,.15);
-}
-
 
 /* =====================================================
    VACÍO
@@ -857,7 +844,6 @@ nav a.active{
     line-height:1.7;
 }
 
-
 /* =====================================================
    INFORMACIÓN
 ===================================================== */
@@ -897,10 +883,6 @@ nav a.active{
             rgba(255,145,45,.14),
             rgba(255,120,25,.045)
         );
-
-    box-shadow:
-        0 10px 35px
-        rgba(0,0,0,.22);
 }
 
 .info-card small{
@@ -936,7 +918,6 @@ nav a.active{
     line-height:1.75;
 }
 
-
 /* =====================================================
    FOOTER
 ===================================================== */
@@ -957,7 +938,6 @@ footer{
 
     letter-spacing:1px;
 }
-
 
 /* =====================================================
    WHATSAPP
@@ -982,7 +962,7 @@ footer{
 
     border-radius:50%;
 
-    background:#25D366;
+    background:#25D366 !important;
 
     color:#fff;
 
@@ -998,9 +978,10 @@ footer{
     width:30px;
     height:30px;
 
+    display:block;
+
     fill:#fff;
 }
-
 
 /* =====================================================
    RESPONSIVE
@@ -1147,7 +1128,7 @@ footer{
     }
 
     .product-color{
-        font-size:8px;
+        font-size:7px;
     }
 
     .products{
@@ -1178,15 +1159,31 @@ footer{
         right:16px;
         bottom:16px;
     }
+
+    .whatsapp-button svg{
+
+        width:28px;
+        height:28px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+
+    html{
+        scroll-behavior:auto !important;
+    }
+
+    .hero h1,
+    .products{
+        animation:none !important;
+    }
 }
 
 </style>
 
 </head>
 
-
 <body>
-
 
 <!-- =====================================================
      WHATSAPP
@@ -1207,7 +1204,6 @@ footer{
 </svg>
 
 </a>
-
 
 <!-- =====================================================
      HEADER
@@ -1253,7 +1249,6 @@ footer{
 
 </header>
 
-
 <!-- =====================================================
      BUSCADOR
 ===================================================== -->
@@ -1287,7 +1282,6 @@ footer{
 
 </svg>
 
-
 <input
     id="productSearch"
     class="search-input"
@@ -1298,25 +1292,22 @@ footer{
     aria-label="Buscar productos"
 />
 
-
 <button
     id="searchClear"
     class="search-clear"
     type="button"
     aria-label="Limpiar búsqueda"
 >
-×
+    ×
 </button>
 
 </div>
-
 
 <div class="search-help">
 
 Puedes buscar por referencia, color o nombre.
 
 </div>
-
 
 <div
     id="searchResult"
@@ -1325,7 +1316,6 @@ Puedes buscar por referencia, color o nombre.
 ></div>
 
 </section>
-
 
 <!-- =====================================================
      HERO
@@ -1338,13 +1328,10 @@ Puedes buscar por referencia, color o nombre.
 </h1>
 
 <p>
-
-Descubre nuestra selección de moda y accesorios.
-Productos seleccionados para crear tu propio estilo
-sin seguir las reglas de siempre.
-
+    Descubre nuestra selección de moda y accesorios.
+    Productos seleccionados para crear tu propio estilo
+    sin seguir las reglas de siempre.
 </p>
-
 
 <div class="hero-note">
 
@@ -1357,24 +1344,6 @@ tu compra.
 </div>
 
 </section>
-
-
-<!-- =====================================================
-     RESULTADO EXACTO DEL COLOR
-===================================================== -->
-
-<section
-    id="colorResultSection"
-    style="display:none;"
->
-
-<div
-    id="colorResult"
-    class="color-result"
-></div>
-
-</section>
-
 
 <!-- =====================================================
      PRODUCTOS
@@ -1394,7 +1363,6 @@ tu compra.
 
 </div>
 
-
 <div
     class="carousel-window"
     id="carouselWindow"
@@ -1409,7 +1377,6 @@ tu compra.
 
 </section>
 
-
 <!-- =====================================================
      INFORMACIÓN
 ===================================================== -->
@@ -1417,7 +1384,6 @@ tu compra.
 <section class="info-section">
 
 <div class="info-grid">
-
 
 <div class="info-card">
 
@@ -1430,15 +1396,12 @@ tu compra.
 </h3>
 
 <p>
-
-Algunos artículos proceden de proveedores
-internacionales y pueden tardar
-<strong>hasta 30 días</strong> en llegar.
-
+    Algunos artículos proceden de proveedores
+    internacionales y pueden tardar
+    <strong>hasta 30 días</strong> en llegar.
 </p>
 
 </div>
-
 
 <div class="info-card">
 
@@ -1451,15 +1414,11 @@ internacionales y pueden tardar
 </h3>
 
 <p>
-
-Añadimos nuevos artículos
-progresivamente a nuestras diferentes
-categorías.
-
+    Añadimos nuevos artículos progresivamente
+    a nuestras diferentes categorías.
 </p>
 
 </div>
-
 
 <div class="info-card">
 
@@ -1472,24 +1431,16 @@ categorías.
 </h3>
 
 <p>
-
-Selecciona el artículo que quieras,
-elige las opciones disponibles y
-realiza tu pedido.
-
+    Selecciona el artículo que quieras,
+    elige las opciones disponibles y
+    realiza tu pedido.
 </p>
 
 </div>
 
-
 </div>
 
 </section>
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
 
 <footer>
 
@@ -1497,19 +1448,13 @@ realiza tu pedido.
 
 </footer>
 
-
 <!-- =====================================================
      SUPABASE
 ===================================================== -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-
 <script>
-
-/* =====================================================
-   SUPABASE
-===================================================== */
 
 const SUPABASE_URL =
     "https://xbbjfatmdbxbuoqdrgoj.supabase.co";
@@ -1517,13 +1462,11 @@ const SUPABASE_URL =
 const SUPABASE_PUBLISHABLE_KEY =
     "sb_publishable_M7ETdIWvj4nCQZ55i24Vpw_5Yc5Islk";
 
-
 const supabaseClient =
     window.supabase.createClient(
         SUPABASE_URL,
         SUPABASE_PUBLISHABLE_KEY
     );
-
 
 /* =====================================================
    CATEGORÍAS
@@ -1540,7 +1483,6 @@ const CATEGORY_LINKS = {
 
 };
 
-
 const CATEGORY_NAMES = {
 
     camisetas:"Camisetas",
@@ -1552,17 +1494,15 @@ const CATEGORY_NAMES = {
 
 };
 
-
 /* =====================================================
    ESTADO
 ===================================================== */
 
 let allProducts = [];
 
-let allColors = [];
+let productColors = [];
 
 let currentSearch = "";
-
 
 /* =====================================================
    SEGURIDAD
@@ -1576,8 +1516,8 @@ function escapeHTML(value){
         .replace(/>/g,"&gt;")
         .replace(/"/g,"&quot;")
         .replace(/'/g,"&#039;");
-}
 
+}
 
 function escapeAttribute(value){
 
@@ -1587,8 +1527,8 @@ function escapeAttribute(value){
         .replace(/'/g,"&#039;")
         .replace(/</g,"&lt;")
         .replace(/>/g,"&gt;");
-}
 
+}
 
 /* =====================================================
    NORMALIZAR
@@ -1601,17 +1541,17 @@ function normalizeText(value){
         .replace(/[\u0300-\u036f]/g,"")
         .toLowerCase()
         .trim();
+
 }
 
-
 /* =====================================================
-   IMÁGENES DE PRODUCTS
+   IMÁGENES PRODUCTO
 ===================================================== */
 
-function getProductImage(product){
+function getProductImages(product){
 
     if(!product){
-        return "";
+        return [];
     }
 
     let raw = product.images;
@@ -1625,43 +1565,83 @@ function getProductImage(product){
         }catch(error){
 
             return raw.startsWith("http")
-                ? raw
-                : "";
-        }
-    }
+                ? [raw]
+                : [];
 
+        }
+
+    }
 
     if(!Array.isArray(raw)){
-        return "";
+        return [];
     }
 
+    const result = [];
 
-    for(const item of raw){
+    raw.forEach(item=>{
 
-        if(
-            item &&
-            typeof item === "object" &&
-            Array.isArray(item.images) &&
-            item.images.length
-        ){
+        if(typeof item === "string"){
 
-            return item.images[0];
+            if(item.trim()){
+                result.push(item.trim());
+            }
+
+            return;
         }
 
-
-        if(
-            typeof item === "string" &&
-            item.startsWith("http")
-        ){
-
-            return item;
+        if(!item || typeof item !== "object"){
+            return;
         }
-    }
 
+        if(Array.isArray(item.images)){
 
-    return "";
+            item.images.forEach(image=>{
+
+                if(
+                    typeof image === "string" &&
+                    image.trim()
+                ){
+
+                    result.push(
+                        image.trim()
+                    );
+
+                }
+
+            });
+
+        }
+
+        [
+            "image",
+            "url",
+            "src"
+        ].forEach(key=>{
+
+            if(
+                typeof item[key] === "string" &&
+                item[key].trim()
+            ){
+
+                result.push(
+                    item[key].trim()
+                );
+
+            }
+
+        });
+
+    });
+
+    return [...new Set(result)];
+
 }
 
+function getProductImage(product){
+
+    return getProductImages(product)[0] || "";
+
+}
 
 /* =====================================================
    REFERENCIA
@@ -1675,8 +1655,8 @@ function getProductReference(product){
         product?.sku ??
         ""
     ).trim();
-}
 
+}
 
 /* =====================================================
    CATEGORÍA
@@ -1692,145 +1672,82 @@ function getCategoryName(category){
     return CATEGORY_NAMES[key]
         || category
         || "Strangis";
+
 }
 
-
 /* =====================================================
-   IMAGEN EXACTA DEL COLOR
+   COLORES DE product_colors
 ===================================================== */
 
-function findColorResult(search){
+function findColorMatches(search){
 
     const query =
         normalizeText(search);
 
-
     if(!query){
-        return null;
+        return [];
     }
-
 
     /*
      * Primero coincidencia exacta.
      */
 
-    let result =
-        allColors.find(row =>
+    const exact =
+        productColors.filter(row =>
             normalizeText(row.color) === query
         );
 
-
-    if(result){
-        return result;
+    if(exact.length){
+        return exact;
     }
-
 
     /*
      * Después coincidencia parcial.
      */
 
-    result =
-        allColors.find(row =>
-            normalizeText(row.color)
-                .includes(query)
-        );
+    return productColors.filter(row =>
+        normalizeText(row.color).includes(query)
+    );
 
-
-    if(result){
-        return result;
-    }
-
-
-    /*
-     * Finalmente palabras.
-     *
-     * Ejemplo:
-     * "azul oscuro"
-     */
-
-    const words =
-        query
-            .split(/\s+/)
-            .filter(Boolean);
-
-
-    if(words.length){
-
-        result =
-            allColors.find(row => {
-
-                const color =
-                    normalizeText(row.color);
-
-                return words.every(word =>
-                    color.includes(word)
-                );
-            });
-    }
-
-
-    return result || null;
 }
 
-
 /* =====================================================
-   OBTENER PRODUCTO
+   BUSCAR PRODUCTO POR ID
 ===================================================== */
 
 function getProductById(id){
 
     return allProducts.find(
         product =>
-            String(product.id) ===
-            String(id)
-    ) || null;
+            String(product.id) === String(id)
+    );
+
 }
 
-
 /* =====================================================
-   LINK PRODUCTO
+   ENLACE DEL PRODUCTO
 ===================================================== */
 
-function getProductLink(product){
+function getProductLink(product,color){
 
     if(!product){
         return "#";
     }
 
-
     const category =
-        String(
-            product.category || ""
-        )
-        .trim()
-        .toLowerCase();
-
+        String(product.category || "")
+            .trim()
+            .toLowerCase();
 
     const base =
         CATEGORY_LINKS[category];
-
 
     if(!base){
         return "#";
     }
 
-
     const params =
         new URLSearchParams();
-
-
-    const ref =
-        getProductReference(product);
-
-
-    if(ref){
-
-        params.set(
-            "ref",
-            ref
-        );
-    }
-
 
     if(product.id !== undefined){
 
@@ -1838,130 +1755,33 @@ function getProductLink(product){
             "id",
             String(product.id)
         );
+
     }
 
+    const reference =
+        getProductReference(product);
+
+    if(reference){
+
+        params.set(
+            "ref",
+            reference
+        );
+
+    }
+
+    if(color){
+
+        params.set(
+            "color",
+            color
+        );
+
+    }
 
     return `${base}?${params.toString()}`;
+
 }
-
-
-/* =====================================================
-   MOSTRAR RESULTADO DE COLOR
-===================================================== */
-
-function renderColorResult(row){
-
-    const section =
-        document.getElementById(
-            "colorResultSection"
-        );
-
-
-    const container =
-        document.getElementById(
-            "colorResult"
-        );
-
-
-    if(!row){
-
-        section.style.display =
-            "none";
-
-        container.innerHTML =
-            "";
-
-        return;
-    }
-
-
-    const product =
-        getProductById(
-            row.product_id
-        );
-
-
-    if(!product){
-
-        section.style.display =
-            "none";
-
-        return;
-    }
-
-
-    const productName =
-        product.name ||
-        "Producto";
-
-
-    const link =
-        getProductLink(
-            product
-        );
-
-
-    section.style.display =
-        "block";
-
-
-    container.innerHTML = `
-
-        <div class="color-result-image">
-
-            <img
-                src="${escapeAttribute(row.image_url)}"
-                alt="${escapeHTML(
-                    productName +
-                    " " +
-                    row.color
-                )}"
-            >
-
-        </div>
-
-
-        <div class="color-result-info">
-
-            <div class="color-result-name">
-
-                ${escapeHTML(
-                    productName
-                )}
-
-            </div>
-
-
-            <div class="color-result-color">
-
-                Color:
-                ${escapeHTML(
-                    row.color
-                )}
-
-            </div>
-
-
-            ${
-                link !== "#"
-                ?
-                `
-                <a
-                    class="color-result-button"
-                    href="${escapeAttribute(link)}"
-                >
-                    Ver producto
-                </a>
-                `
-                :
-                ""
-            }
-
-        </div>
-
-    `;
-}
-
 
 /* =====================================================
    TARJETA NORMAL
@@ -1972,116 +1792,203 @@ function createProductCard(product){
     const image =
         getProductImage(product);
 
-
     if(!image){
         return "";
     }
-
 
     const name =
         product.name ||
         "Producto Strangis";
 
-
     const reference =
-        getProductReference(
-            product
-        );
+        getProductReference(product);
 
-
-    const category =
+    const categoryName =
         getCategoryName(
             product.category
         );
 
-
     const link =
         getProductLink(
-            product
+            product,
+            ""
         );
-
 
     return `
 
-        <article class="product">
+<article class="product">
 
-            <a
-                class="product-link"
-                href="${escapeAttribute(link)}"
-            >
+<a
+    class="product-link"
+    href="${escapeAttribute(link)}"
+>
 
-                <div class="product-image">
+<div class="product-image">
 
-                    <img
-                        src="${escapeAttribute(image)}"
-                        alt="${escapeHTML(name)}"
-                        loading="lazy"
-                        draggable="false"
-                    >
+<img
+    src="${escapeAttribute(image)}"
+    alt="${escapeHTML(name)}"
+    loading="lazy"
+    draggable="false"
+    onerror="
+        this.closest('.product').style.display='none';
+    "
+>
 
-                </div>
+</div>
 
+<div class="product-info">
 
-                <div class="product-info">
+<div class="product-name">
+    ${escapeHTML(name)}
+</div>
 
-                    <div class="product-name">
-
-                        ${escapeHTML(name)}
-
-                    </div>
-
-
-                    ${
-                        reference
-                        ?
-                        `
-                        <div class="product-ref">
-
-                            REF:
-                            ${escapeHTML(reference)}
-
-                        </div>
-                        `
-                        :
-                        ""
-                    }
-
-
-                    <div class="product-category">
-
-                        ${escapeHTML(category)}
-
-                    </div>
-
-                </div>
-
-            </a>
-
-        </article>
-
-    `;
+${
+reference
+?
+`
+<div class="product-ref">
+    REF: ${escapeHTML(reference)}
+</div>
+`
+:
+""
 }
 
+<div class="product-category">
+    ${escapeHTML(categoryName)}
+</div>
+
+</div>
+
+</a>
+
+</article>
+
+`;
+
+}
 
 /* =====================================================
-   MOSTRAR PRODUCTOS
+   TARJETA COLOR
 ===================================================== */
 
-function renderProducts(){
+function createColorCard(row){
+
+    const product =
+        getProductById(
+            row.product_id
+        );
+
+    if(!product){
+        return "";
+    }
+
+    const image =
+        row.image_url;
+
+    if(!image){
+        return "";
+    }
+
+    const name =
+        product.name ||
+        "Producto Strangis";
+
+    const reference =
+        getProductReference(product);
+
+    const categoryName =
+        getCategoryName(
+            product.category
+        );
+
+    const link =
+        getProductLink(
+            product,
+            row.color
+        );
+
+    return `
+
+<article class="product">
+
+<a
+    class="product-link"
+    href="${escapeAttribute(link)}"
+>
+
+<div class="product-image">
+
+<img
+    src="${escapeAttribute(image)}"
+    alt="${escapeHTML(name)} - ${escapeHTML(row.color)}"
+    loading="lazy"
+    draggable="false"
+    onerror="
+        this.closest('.product').style.display='none';
+    "
+>
+
+</div>
+
+<div class="product-info">
+
+<div class="product-name">
+    ${escapeHTML(name)}
+</div>
+
+${
+reference
+?
+`
+<div class="product-ref">
+    REF: ${escapeHTML(reference)}
+</div>
+`
+:
+""
+}
+
+<div class="product-category">
+    ${escapeHTML(categoryName)}
+</div>
+
+<div class="product-color">
+    COLOR: ${escapeHTML(row.color)}
+</div>
+
+</div>
+
+</a>
+
+</article>
+
+`;
+
+}
+
+/* =====================================================
+   MOSTRAR PRODUCTOS NORMALES
+===================================================== */
+
+function renderNormalProducts(){
 
     const container =
         document.getElementById(
             "productsContainer"
         );
 
-
     const counter =
         document.getElementById(
             "productCount"
         );
 
+    if(!container){
+        return;
+    }
 
-    const activeProducts =
+    const valid =
         allProducts.filter(
             product =>
                 product &&
@@ -2089,163 +1996,212 @@ function renderProducts(){
                 getProductImage(product)
         );
 
-
     counter.textContent =
-        activeProducts.length === 1
+        valid.length === 1
         ? "1 artículo"
-        : `${activeProducts.length} artículos`;
+        : `${valid.length} artículos`;
 
+    const cards =
+        valid
+            .map(createProductCard)
+            .join("");
 
-    if(!activeProducts.length){
+    if(!cards){
 
         container.innerHTML = `
 
-            <div class="empty">
+<div class="empty">
 
-                <div class="empty-title">
-                    Próximamente
-                </div>
+<div class="empty-title">
+    Próximamente
+</div>
 
-                <div class="empty-text">
+<div class="empty-text">
+    Estamos preparando nuevos artículos
+    para la colección Strangis.
+</div>
 
-                    Estamos preparando nuevos
-                    artículos para Strangis.
+</div>
 
-                </div>
-
-            </div>
-
-        `;
+`;
 
         return;
     }
 
+    if(valid.length > 1){
 
-    const cards =
-        activeProducts
-            .map(createProductCard)
-            .join("");
+        container.innerHTML =
+            cards + cards;
 
+        container.style.animation =
+            "";
 
-    container.innerHTML =
-        cards + cards;
+    }else{
+
+        container.innerHTML =
+            cards;
+
+        container.style.animation =
+            "none";
+
+    }
+
 }
 
-
 /* =====================================================
-   BUSCADOR
+   MOSTRAR RESULTADO COLOR
 ===================================================== */
 
-async function performSearch(){
+function renderColorResults(rows,search){
 
-    const input =
+    const container =
         document.getElementById(
-            "productSearch"
+            "productsContainer"
         );
 
-
-    const clear =
+    const counter =
         document.getElementById(
-            "searchClear"
+            "productCount"
         );
-
 
     const result =
         document.getElementById(
             "searchResult"
         );
 
+    if(!container){
+        return;
+    }
 
-    currentSearch =
-        input.value.trim();
+    const validRows =
+        rows.filter(
+            row =>
+                row &&
+                row.image_url &&
+                getProductById(row.product_id)
+        );
 
+    counter.textContent =
+        validRows.length === 1
+        ? "1 resultado"
+        : `${validRows.length} resultados`;
 
-    clear.classList.toggle(
-        "visible",
-        Boolean(currentSearch)
-    );
+    if(!validRows.length){
 
+        result.innerHTML = `
+<strong>
+    No se encontró el color o producto
+</strong>
+`;
 
-    /*
-     * Si no hay búsqueda,
-     * volvemos a mostrar todo.
-     */
+        container.style.animation =
+            "none";
 
-    if(!currentSearch){
+        container.innerHTML = `
 
-        renderColorResult(null);
+<div class="empty">
 
-        result.innerHTML =
-            "";
+<div class="empty-title">
+    Sin resultados
+</div>
 
-        renderProducts();
+<div class="empty-text">
+    No encontramos una imagen asociada
+    al color <strong>${escapeHTML(search)}</strong>.
+</div>
+
+</div>
+
+`;
 
         return;
     }
 
+    result.innerHTML = `
+Encontrados:
+<strong>
+    ${validRows.length}
+</strong>
+${
+validRows.length === 1
+? "resultado"
+: "resultados"
+}
+`;
 
-    /*
-     * BUSCAR PRIMERO EN product_colors.
-     *
-     * Esta es la parte importante.
-     */
+    container.style.animation =
+        "none";
 
-    const colorRow =
-        findColorResult(
-            currentSearch
-        );
+    container.innerHTML =
+        validRows
+            .map(createColorCard)
+            .join("");
 
+}
 
-    if(colorRow){
+/* =====================================================
+   BUSCAR EN PRODUCTOS
+===================================================== */
 
-        const product =
-            getProductById(
-                colorRow.product_id
-            );
-
-
-        if(product){
-
-            renderColorResult(
-                colorRow
-            );
-
-
-            result.innerHTML = `
-
-                Color encontrado:
-                <strong>
-                    ${escapeHTML(
-                        colorRow.color
-                    )}
-                </strong>
-
-            `;
-
-            return;
-        }
-    }
-
-
-    /*
-     * Si no es color,
-     * buscar por nombre o referencia.
-     */
+function searchProducts(search){
 
     const query =
-        normalizeText(
-            currentSearch
+        normalizeText(search);
+
+    if(!query){
+
+        renderNormalProducts();
+
+        document.getElementById(
+            "searchResult"
+        ).textContent = "";
+
+        return;
+
+    }
+
+    /*
+     * PRIORIDAD ABSOLUTA:
+     *
+     * Buscar primero en product_colors.
+     *
+     * Ejemplo:
+     *
+     * "Crema"
+     *
+     * encuentra:
+     *
+     * product_id = 10
+     * color = Crema
+     * image_url = xOtPEjV.jpeg
+     */
+
+    const colorMatches =
+        findColorMatches(query);
+
+    if(colorMatches.length){
+
+        renderColorResults(
+            colorMatches,
+            search
         );
 
+        return;
+
+    }
+
+    /*
+     * Si no es un color registrado,
+     * buscar por referencia o nombre.
+     */
 
     const words =
         query
             .split(/\s+/)
             .filter(Boolean);
 
-
     const matches =
-        allProducts.filter(product => {
+        allProducts.filter(product=>{
 
             const text =
                 normalizeText(
@@ -2259,117 +2215,95 @@ async function performSearch(){
                     .join(" ")
                 );
 
-
-            return words.every(word =>
-                text.includes(word)
+            return words.every(
+                word =>
+                    text.includes(word)
             );
+
         });
 
-
-    if(matches.length){
-
-        renderColorResult(
-            null
+    const container =
+        document.getElementById(
+            "productsContainer"
         );
 
+    const counter =
+        document.getElementById(
+            "productCount"
+        );
+
+    const result =
+        document.getElementById(
+            "searchResult"
+        );
+
+    const valid =
+        matches.filter(
+            product =>
+                getProductImage(product)
+        );
+
+    counter.textContent =
+        valid.length === 1
+        ? "1 resultado"
+        : `${valid.length} resultados`;
+
+    if(!valid.length){
 
         result.innerHTML = `
+<strong>
+    No se encontró el color o producto
+</strong>
+`;
 
-            Encontrados:
-            <strong>
-                ${matches.length}
-            </strong>
-            ${
-                matches.length === 1
-                ? "producto"
-                : "productos"
-            }
+        container.style.animation =
+            "none";
 
-        `;
+        container.innerHTML = `
 
+<div class="empty">
 
-        /*
-         * Mostrar solamente resultados
-         * coincidentes.
-         */
+<div class="empty-title">
+    Sin resultados
+</div>
 
-        const container =
-            document.getElementById(
-                "productsContainer"
-            );
+<div class="empty-text">
+    No encontramos ningún producto
+    relacionado con
+    <strong>${escapeHTML(search)}</strong>.
+</div>
 
+</div>
 
-        const cards =
-            matches
-                .map(createProductCard)
-                .join("");
-
-
-        container.innerHTML =
-            cards || `
-
-                <div class="empty">
-
-                    <div class="empty-title">
-                        Sin resultados
-                    </div>
-
-                </div>
-
-            `;
-
+`;
 
         return;
     }
 
-
-    /*
-     * Nada encontrado.
-     */
-
-    renderColorResult(
-        null
-    );
-
-
     result.innerHTML = `
+Encontrados:
+<strong>
+    ${valid.length}
+</strong>
+${
+valid.length === 1
+? "resultado"
+: "resultados"
+}
+`;
 
-        <strong>
-            No se encontró el color o producto
-        </strong>
+    container.style.animation =
+        "none";
 
-    `;
+    container.innerHTML =
+        valid
+            .map(createProductCard)
+            .join("");
 
-
-    document.getElementById(
-        "productsContainer"
-    ).innerHTML = `
-
-        <div class="empty">
-
-            <div class="empty-title">
-                Sin resultados
-            </div>
-
-            <div class="empty-text">
-
-                Prueba con un color como
-                <strong>Crema</strong>,
-                <strong>Verde</strong>,
-                <strong>Negro</strong>
-                o
-                <strong>Azul oscuro</strong>.
-
-            </div>
-
-        </div>
-
-    `;
 }
 
-
 /* =====================================================
-   EVENTOS
+   EVENTOS BUSCADOR
 ===================================================== */
 
 const searchInput =
@@ -2377,21 +2311,33 @@ const searchInput =
         "productSearch"
     );
 
-
 const searchClear =
     document.getElementById(
         "searchClear"
     );
 
-
 if(searchInput){
 
     searchInput.addEventListener(
         "input",
-        performSearch
-    );
-}
+        ()=>{
 
+            currentSearch =
+                searchInput.value.trim();
+
+            searchClear.classList.toggle(
+                "visible",
+                Boolean(currentSearch)
+            );
+
+            searchProducts(
+                currentSearch
+            );
+
+        }
+    );
+
+}
 
 if(searchClear){
 
@@ -2401,37 +2347,47 @@ if(searchClear){
 
             searchInput.value = "";
 
-            searchInput.focus();
+            currentSearch = "";
 
-            performSearch();
+            searchClear.classList.remove(
+                "visible"
+            );
+
+            searchProducts("");
+
+            searchInput.focus();
 
         }
     );
+
 }
 
-
 /* =====================================================
-   CARGAR PRODUCTS
+   CARGAR PRODUCTOS
 ===================================================== */
 
 async function loadProducts(){
+
+    const container =
+        document.getElementById(
+            "productsContainer"
+        );
 
     const counter =
         document.getElementById(
             "productCount"
         );
 
-
     try{
 
         counter.textContent =
             "Cargando...";
 
+        /*
+         * Productos
+         */
 
-        const {
-            data,
-            error
-        } =
+        const productsResponse =
             await supabaseClient
 
                 .from("Products")
@@ -2450,76 +2406,35 @@ async function loadProducts(){
                     }
                 );
 
+        if(productsResponse.error){
 
-        if(error){
-            throw error;
+            throw productsResponse.error;
+
         }
 
-
         allProducts =
-            Array.isArray(data)
-            ? data
-            : [];
+            Array.isArray(
+                productsResponse.data
+            )
+            ?
+            productsResponse.data
+            :
+            [];
 
+        /*
+         * COLORES
+         *
+         * Esta es la parte importante.
+         *
+         * La tabla tiene:
+         *
+         * id
+         * product_id
+         * color
+         * image_url
+         */
 
-        console.log(
-            "STRANGIS — Products:",
-            allProducts
-        );
-
-
-        renderProducts();
-
-
-    }catch(error){
-
-        console.error(
-            "STRANGIS — error Products:",
-            error
-        );
-
-
-        counter.textContent =
-            "Error";
-
-
-        document.getElementById(
-            "productsContainer"
-        ).innerHTML = `
-
-            <div class="empty">
-
-                <div class="empty-title">
-                    Error cargando productos
-                </div>
-
-                <div class="empty-text">
-
-                    ${escapeHTML(
-                        error.message
-                    )}
-
-                </div>
-
-            </div>
-
-        `;
-    }
-}
-
-
-/* =====================================================
-   CARGAR PRODUCT_COLORS
-===================================================== */
-
-async function loadProductColors(){
-
-    try{
-
-        const {
-            data,
-            error
-        } =
+        const colorsResponse =
             await supabaseClient
 
                 .from("product_colors")
@@ -2528,61 +2443,100 @@ async function loadProductColors(){
                     "id, product_id, color, image_url"
                 );
 
+        if(colorsResponse.error){
 
-        if(error){
-            throw error;
+            console.error(
+                "Error product_colors:",
+                colorsResponse.error
+            );
+
+            /*
+             * No rompemos la página.
+             * La página seguirá mostrando
+             * los productos normales.
+             */
+
+            productColors = [];
+
+        }else{
+
+            productColors =
+                Array.isArray(
+                    colorsResponse.data
+                )
+                ?
+                colorsResponse.data
+                :
+                [];
+
         }
 
-
-        allColors =
-            Array.isArray(data)
-            ? data
-            : [];
-
-
         console.log(
-            "STRANGIS — product_colors:",
-            allColors
+            "STRANGIS — productos:",
+            allProducts.length
         );
 
+        console.log(
+            "STRANGIS — colores:",
+            productColors
+        );
 
         /*
-         * Comprobación para que puedas ver
-         * claramente si Supabase devuelve los colores.
+         * Mostrar inicio normal.
          */
 
-        console.log(
-            "STRANGIS — colores disponibles:",
-            allColors.map(
-                row =>
-                    row.color
-            )
-        );
+        if(!currentSearch){
 
+            renderNormalProducts();
+
+        }else{
+
+            searchProducts(
+                currentSearch
+            );
+
+        }
 
     }catch(error){
 
         console.error(
-            "STRANGIS — error product_colors:",
+            "STRANGIS — error:",
             error
         );
 
+        counter.textContent =
+            "Error";
 
-        allColors = [];
+        container.innerHTML = `
 
+<div class="empty">
 
-        document.getElementById(
-            "searchResult"
-        ).innerHTML = `
+<div class="empty-title">
+    No se pudieron cargar los productos
+</div>
 
-            <strong>
-                No se pudo cargar la tabla de colores.
-            </strong>
+<div class="empty-text">
 
-        `;
+${escapeHTML(
+    error?.message ||
+    "Error desconocido."
+)}
+
+<br><br>
+
+Comprueba las políticas
+<strong>RLS</strong>
+de Supabase.
+
+</div>
+
+</div>
+
+`;
+
     }
-}
 
+}
 
 /* =====================================================
    PAUSAR CARRUSEL
@@ -2592,7 +2546,6 @@ const carouselWindow =
     document.getElementById(
         "carouselWindow"
     );
-
 
 if(carouselWindow){
 
@@ -2605,15 +2558,15 @@ if(carouselWindow){
                     "productsContainer"
                 );
 
-
             if(track){
 
                 track.style.animationPlayState =
                     "paused";
+
             }
+
         }
     );
-
 
     carouselWindow.addEventListener(
         "mouseleave",
@@ -2624,47 +2577,38 @@ if(carouselWindow){
                     "productsContainer"
                 );
 
-
             if(track){
 
                 track.style.animationPlayState =
                     "running";
+
             }
+
         }
     );
-}
 
+}
 
 /* =====================================================
    INICIO
 ===================================================== */
 
-async function init(){
+loadProducts();
 
-    /*
-     * Cargamos ambas tablas.
-     */
+setInterval(
+    loadProducts,
+    30000
+);
 
-    await Promise.all([
+console.log(
+    "STRANGIS — Inicio conectado a Supabase"
+);
 
-        loadProducts(),
-
-        loadProductColors()
-
-    ]);
-
-
-    console.log(
-        "STRANGIS — sistema de búsqueda por color listo."
-    );
-}
-
-
-init();
-
+console.log(
+    "STRANGIS — búsqueda directa mediante product_colors"
+);
 
 </script>
 
 </body>
-
 </html>
