@@ -7,7 +7,6 @@
 <title>Camisetas | Strangis</title>
 
 <style>
-
 *{
     margin:0;
     padding:0;
@@ -32,11 +31,11 @@ body{
         );
 }
 
-button,
-input,
-textarea{
+button,input,textarea{
     font:inherit;
 }
+
+/* HEADER */
 
 header{
     position:sticky;
@@ -79,7 +78,6 @@ nav a{
     letter-spacing:1.5px;
     text-transform:uppercase;
     white-space:nowrap;
-    transition:.2s;
 }
 
 nav a:hover,
@@ -145,6 +143,7 @@ nav a.active{
 .product:hover{
     transform:translateY(-4px);
     border-color:rgba(255,255,255,.25);
+    background:rgba(255,255,255,.075);
 }
 
 /* GALERÍA */
@@ -181,7 +180,7 @@ nav a.active{
     transform:scale(1.08);
 }
 
-/* INFORMACIÓN SOBRE FOTO */
+/* INFORMACIÓN SOBRE LA IMAGEN */
 
 .product-image-label{
     position:absolute;
@@ -189,11 +188,19 @@ nav a.active{
     right:14px;
     bottom:14px;
     z-index:6;
+
     padding:12px 14px;
+
     border:1px solid rgba(255,255,255,.18);
     border-radius:9px;
+
     background:rgba(10,10,10,.76);
+
     backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+
+    box-shadow:0 10px 30px rgba(0,0,0,.38);
+
     pointer-events:none;
 }
 
@@ -209,6 +216,7 @@ nav a.active{
     color:#fff;
     font-size:13px;
     font-weight:800;
+    line-height:1.25;
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
@@ -219,6 +227,7 @@ nav a.active{
     color:#fff;
     font-size:14px;
     font-weight:900;
+    white-space:nowrap;
 }
 
 .product-image-label-meta{
@@ -233,8 +242,20 @@ nav a.active{
     text-transform:uppercase;
 }
 
+.product-image-label-ref{
+    color:#aaa;
+}
+
 .product-image-label-color{
     color:#fff;
+}
+
+.product-image-label-separator{
+    width:3px;
+    height:3px;
+    flex:0 0 3px;
+    border-radius:50%;
+    background:#777;
 }
 
 /* FLECHAS */
@@ -270,7 +291,7 @@ nav a.active{
 
 .gallery-arrow:hover,
 .lightbox-arrow:hover{
-    background:rgba(0,0,0,.8);
+    background:rgba(0,0,0,.78);
 }
 
 /* CONTADOR */
@@ -290,75 +311,28 @@ nav a.active{
 }
 
 .gallery-counter{
-    bottom:70px;
+    bottom:72px;
 }
 
-/* COLORES */
-
-.colors-section{
-    margin-top:15px;
-}
-
-.colors-title{
-    margin-bottom:9px;
-    color:#999;
-    font-size:9px;
-    font-weight:900;
-    letter-spacing:1.5px;
-    text-transform:uppercase;
-}
-
-.colors{
-    display:flex;
-    flex-wrap:wrap;
-    align-items:center;
-    gap:9px;
-}
-
-.color-option{
-    display:flex;
-    align-items:center;
-    gap:7px;
-    padding:6px 9px 6px 6px;
-    border:1px solid rgba(255,255,255,.16);
-    border-radius:20px;
-    background:rgba(255,255,255,.04);
-    color:#aaa;
-    cursor:pointer;
-    transition:.2s;
-}
-
-.color-option:hover{
-    border-color:rgba(255,255,255,.45);
-    color:#fff;
-}
-
-.color-option.active{
-    border-color:#fff;
-    color:#fff;
-    background:rgba(255,255,255,.1);
-}
-
-.color-dot{
-    width:20px;
-    height:20px;
-    flex:0 0 20px;
-    border-radius:50%;
-    border:2px solid rgba(255,255,255,.55);
-    box-shadow:
-        inset 0 0 0 1px rgba(0,0,0,.25),
-        0 0 0 1px rgba(0,0,0,.25);
-}
-
-.color-name{
-    font-size:10px;
-    font-weight:800;
+.swipe-hint{
+    position:absolute;
+    left:50%;
+    bottom:48px;
+    z-index:7;
+    padding:4px 8px;
+    border-radius:15px;
+    background:rgba(0,0,0,.35);
+    color:#ddd;
+    font-size:8px;
+    transform:translateX(-50%);
+    opacity:.65;
+    pointer-events:none;
 }
 
 /* INFO */
 
 .product-description{
-    margin-top:10px;
+    margin-top:4px;
     color:#999;
     font-size:12px;
     line-height:1.55;
@@ -370,7 +344,7 @@ nav a.active{
     display:flex;
     flex-wrap:wrap;
     gap:7px;
-    margin-top:15px;
+    margin-top:12px;
 }
 
 .size{
@@ -452,6 +426,8 @@ nav a.active{
     font-weight:bold;
 }
 
+/* COMPRAR */
+
 .buy{
     width:100%;
     margin-top:16px;
@@ -482,6 +458,8 @@ nav a.active{
     text-align:center;
     color:#aaa;
 }
+
+/* FOOTER */
 
 footer{
     padding:35px 5%;
@@ -731,7 +709,6 @@ footer{
 /* RESPONSIVE */
 
 @media(max-width:1100px){
-
     .products{
         grid-template-columns:repeat(3,minmax(0,1fr));
     }
@@ -739,11 +716,9 @@ footer{
     .product-gallery{
         height:330px;
     }
-
 }
 
 @media(max-width:850px){
-
     .products{
         grid-template-columns:repeat(2,minmax(0,1fr));
     }
@@ -752,7 +727,6 @@ footer{
     .products-section{
         width:92%;
     }
-
 }
 
 @media(max-width:600px){
@@ -821,6 +795,19 @@ footer{
         padding:10px 12px;
     }
 
+    .product-image-label-name{
+        font-size:12px;
+    }
+
+    .product-image-label-price{
+        font-size:13px;
+    }
+
+    .product-image-label-meta{
+        margin-top:4px;
+        font-size:8px;
+    }
+
     .form-grid{
         grid-template-columns:1fr;
     }
@@ -840,9 +827,7 @@ footer{
         padding:22px 17px 25px;
         border-radius:18px 18px 0 0;
     }
-
 }
-
 </style>
 </head>
 
@@ -850,44 +835,19 @@ footer{
 
 <header>
 
-    <div class="logo">
-        Strangis
-    </div>
+    <div class="logo">Strangis</div>
 
     <nav>
-
-        <a href="index.html">
-            Inicio
-        </a>
-
-        <a class="active" href="camisetas.html">
-            Camisetas
-        </a>
-
-        <a href="pantalones.html">
-            Pantalones
-        </a>
-
-        <a href="conjuntos.html">
-            Conjuntos
-        </a>
-
-        <a href="gorras.html">
-            Gorras
-        </a>
-
-        <a href="gafas.html">
-            Gafas
-        </a>
-
-        <a href="bisuteria.html">
-            Bisutería
-        </a>
-
+        <a href="index.html">Inicio</a>
+        <a class="active" href="camisetas.html">Camisetas</a>
+        <a href="pantalones.html">Pantalones</a>
+        <a href="conjuntos.html">Conjuntos</a>
+        <a href="gorras.html">Gorras</a>
+        <a href="gafas.html">Gafas</a>
+        <a href="bisuteria.html">Bisutería</a>
     </nav>
 
 </header>
-
 
 <section class="hero">
 
@@ -902,13 +862,9 @@ footer{
 
 </section>
 
-
 <section class="products-section">
 
-    <div
-        class="products"
-        id="productsContainer"
-    >
+    <div class="products" id="productsContainer">
 
         <div class="loading">
             Cargando productos...
@@ -918,18 +874,13 @@ footer{
 
 </section>
 
-
 <footer>
     © 2026 Strangis · TODOS LOS DERECHOS RESERVADOS
 </footer>
 
-
 <!-- LIGHTBOX -->
 
-<div
-    class="image-lightbox"
-    id="imageLightbox"
->
+<div class="image-lightbox" id="imageLightbox">
 
     <div class="lightbox-content">
 
@@ -937,17 +888,13 @@ footer{
             class="lightbox-close"
             type="button"
             onclick="closeLightbox()"
-        >
-            ×
-        </button>
+        >×</button>
 
         <button
             class="lightbox-arrow prev"
             type="button"
             onclick="changeLightboxImage(-1)"
-        >
-            ‹
-        </button>
+        >‹</button>
 
         <img
             class="lightbox-image"
@@ -960,9 +907,7 @@ footer{
             class="lightbox-arrow next"
             type="button"
             onclick="changeLightboxImage(1)"
-        >
-            ›
-        </button>
+        >›</button>
 
         <div
             class="lightbox-counter"
@@ -975,228 +920,125 @@ footer{
 
 </div>
 
-
 <!-- MODAL PEDIDO -->
 
-<div
-    class="modal"
-    id="customerModal"
->
+<div class="modal" id="customerModal">
 
     <div class="modal-box">
 
         <div class="modal-header">
 
             <div>
-
-                <small>
-                    FINALIZAR PEDIDO
-                </small>
-
-                <h2>
-                    Datos de envío
-                </h2>
-
+                <small>FINALIZAR PEDIDO</small>
+                <h2>Datos de envío</h2>
             </div>
 
             <button
                 class="close-modal"
                 type="button"
                 onclick="closeCustomerModal()"
-            >
-                ×
-            </button>
+            >×</button>
 
         </div>
 
+        <div class="order-summary" id="orderSummary"></div>
 
-        <div
-            class="order-summary"
-            id="orderSummary"
-        ></div>
-
-
-        <div
-            class="form-error"
-            id="formError"
-        ></div>
-
+        <div class="form-error" id="formError"></div>
 
         <div class="form-title">
             DATOS DEL CLIENTE
         </div>
 
-
         <div class="form-grid">
 
             <div class="form-field full">
-
-                <label>
-                    Nombre y apellidos *
-                </label>
-
+                <label>Nombre y apellidos *</label>
                 <input
                     id="customerName"
                     type="text"
                     autocomplete="name"
                 >
-
             </div>
 
-
             <div class="form-field">
-
-                <label>
-                    Teléfono *
-                </label>
-
+                <label>Teléfono *</label>
                 <input
                     id="customerPhone"
                     type="tel"
                     autocomplete="tel"
                 >
-
             </div>
 
-
             <div class="form-field">
-
-                <label>
-                    Email
-                </label>
-
+                <label>Email</label>
                 <input
                     id="customerEmail"
                     type="email"
                     autocomplete="email"
                 >
-
             </div>
 
         </div>
-
 
         <div class="form-title">
             DIRECCIÓN DE ENVÍO
         </div>
 
-
         <div class="form-grid">
 
             <div class="form-field full">
-
-                <label>
-                    Dirección *
-                </label>
-
+                <label>Dirección *</label>
                 <input
                     id="customerAddress"
                     type="text"
                     autocomplete="street-address"
                 >
-
             </div>
 
-
             <div class="form-field">
-
-                <label>
-                    Número *
-                </label>
-
-                <input
-                    id="customerNumber"
-                    type="text"
-                >
-
+                <label>Número *</label>
+                <input id="customerNumber" type="text">
             </div>
 
-
             <div class="form-field">
-
-                <label>
-                    Piso / Puerta
-                </label>
-
-                <input
-                    id="customerFloor"
-                    type="text"
-                >
-
+                <label>Piso / Puerta</label>
+                <input id="customerFloor" type="text">
             </div>
 
-
             <div class="form-field">
-
-                <label>
-                    Código postal *
-                </label>
-
+                <label>Código postal *</label>
                 <input
                     id="customerPostal"
                     type="text"
+                    inputmode="numeric"
                 >
-
             </div>
 
-
             <div class="form-field">
-
-                <label>
-                    Ciudad *
-                </label>
-
-                <input
-                    id="customerCity"
-                    type="text"
-                >
-
+                <label>Ciudad *</label>
+                <input id="customerCity" type="text">
             </div>
 
-
             <div class="form-field">
-
-                <label>
-                    Provincia *
-                </label>
-
-                <input
-                    id="customerProvince"
-                    type="text"
-                >
-
+                <label>Provincia *</label>
+                <input id="customerProvince" type="text">
             </div>
 
-
             <div class="form-field">
-
-                <label>
-                    País *
-                </label>
-
+                <label>País *</label>
                 <input
                     id="customerCountry"
                     type="text"
                     value="España"
                 >
-
             </div>
 
-
             <div class="form-field full">
-
-                <label>
-                    Observaciones
-                </label>
-
-                <textarea
-                    id="customerNotes"
-                ></textarea>
-
+                <label>Observaciones</label>
+                <textarea id="customerNotes"></textarea>
             </div>
 
         </div>
-
 
         <button
             class="send-order"
@@ -1205,7 +1047,6 @@ footer{
         >
             ENVIAR PEDIDO POR WHATSAPP
         </button>
-
 
         <button
             class="cancel-order"
@@ -1218,7 +1059,6 @@ footer{
     </div>
 
 </div>
-
 
 <script>
 
@@ -1238,12 +1078,18 @@ const STRANGIS_PRODUCTS_TABLE =
 const CATEGORY =
     "camisetas";
 
-
 let PRODUCTS = [];
 
 let currentOrder = null;
 
 let lightboxProductIndex = 0;
+
+let lightboxVariantIndex = 0;
+
+let lightboxImageIndex = 0;
+
+let galleryStartX = 0;
+let galleryStartY = 0;
 
 
 /* =====================================================
@@ -1252,7 +1098,7 @@ let lightboxProductIndex = 0;
 
 const supabaseClient = {
 
-    async request(path,options={}){
+    async request(path, options = {}){
 
         const response =
             await fetch(
@@ -1282,46 +1128,31 @@ const supabaseClient = {
         let data = null;
 
         try{
-            data =
-                text
-                    ? JSON.parse(text)
-                    : null;
+            data = text ? JSON.parse(text) : null;
         }catch{
             data = text;
         }
 
         if(!response.ok){
-
             throw new Error(
                 data?.message ||
                 data?.error_description ||
                 text ||
                 `Error HTTP ${response.status}`
             );
-
         }
 
         return data;
-
     },
-
 
     async getProducts(){
 
         const params =
             new URLSearchParams({
-
                 select:"*",
-
-                category:
-                    `eq.${CATEGORY}`,
-
-                active:
-                    "eq.true",
-
-                order:
-                    "id.asc"
-
+                category:`eq.${CATEGORY}`,
+                active:"eq.true",
+                order:"id.asc"
             });
 
         return this.request(
@@ -1329,9 +1160,7 @@ const supabaseClient = {
                 STRANGIS_PRODUCTS_TABLE
             )}?${params.toString()}`
         );
-
     }
-
 };
 
 
@@ -1348,7 +1177,6 @@ function money(value){
             currency:"EUR"
         }
     );
-
 }
 
 
@@ -1360,7 +1188,6 @@ function escapeHTML(value){
         .replace(/>/g,"&gt;")
         .replace(/"/g,"&quot;")
         .replace(/'/g,"&#039;");
-
 }
 
 
@@ -1384,95 +1211,99 @@ function parseJSON(value,fallback=[]){
             return fallback;
 
         }
-
     }
 
     return fallback;
-
 }
 
 
 /* =====================================================
    VARIANTES
-=====================================================
+   ADMITE:
 
-   FORMATO ESPERADO:
-
-   images = [
-
-       {
-           "name":"Negro",
-           "color":"#000000",
-           "images":[
-               "foto-negra-1.jpg",
-               "foto-negra-2.jpg",
-               "foto-negra-3.jpg"
-           ]
-       },
-
-       {
-           "name":"Blanco",
-           "color":"#ffffff",
-           "images":[
-               "foto-blanca-1.jpg",
-               "foto-blanca-2.jpg"
-           ]
-       }
-
+   [
+     {
+       "name":"Negro",
+       "color":"#000000",
+       "images":[
+         "foto1.jpg",
+         "foto2.jpg",
+         "foto3.jpg"
+       ]
+     },
+     {
+       "name":"Blanco",
+       "color":"#ffffff",
+       "images":[
+         "foto4.jpg",
+         "foto5.jpg"
+       ]
+     }
    ]
 
+   TAMBIÉN ADMITE:
+   colorName
+   image
+   url
 ===================================================== */
 
 function getVariants(product){
 
-    const raw =
+    let raw =
         parseJSON(
             product.images,
             []
         );
 
-    const variants = [];
+    /*
+     * Si images viene como:
+     *
+     * ["foto1.jpg","foto2.jpg"]
+     *
+     * lo tratamos como una única variante.
+     */
 
+    if(
+        raw.length &&
+        raw.every(
+            item => typeof item === "string"
+        )
+    ){
+
+        return [
+            {
+                name:
+                    product.colorName ||
+                    product.color ||
+                    "Único",
+
+                color:
+                    product.color ||
+                    "#888888",
+
+                images:
+                    raw.filter(Boolean)
+            }
+        ];
+
+    }
+
+    const variants = [];
 
     raw.forEach(
         (variant,index)=>{
 
-            /*
-             * Compatibilidad con formato antiguo:
-             * images: ["foto1.jpg","foto2.jpg"]
-             */
-
-            if(typeof variant === "string"){
-
-                variants.push({
-
-                    name:
-                        `Variante ${index + 1}`,
-
-                    color:
-                        "#888888",
-
-                    images:[
-                        variant
-                    ]
-
-                });
-
-                return;
-
-            }
-
-
-            if(!variant || typeof variant !== "object"){
+            if(
+                !variant ||
+                typeof variant !== "object"
+            ){
                 return;
             }
-
 
             let images = [];
 
-
             /*
-             * FORMATO PRINCIPAL
+             * images: [...]
              */
 
             if(Array.isArray(variant.images)){
@@ -1484,10 +1315,8 @@ function getVariants(product){
 
             }
 
-
             /*
-             * Compatibilidad:
-             * image
+             * image: "..."
              */
 
             if(
@@ -1501,10 +1330,8 @@ function getVariants(product){
 
             }
 
-
             /*
-             * Compatibilidad:
-             * url
+             * url: "..."
              */
 
             if(
@@ -1518,29 +1345,42 @@ function getVariants(product){
 
             }
 
-
             if(!images.length){
                 return;
             }
 
+            /*
+             * AQUÍ ESTÁ LA PARTE IMPORTANTE:
+             * el nombre del color se busca en
+             * varias propiedades para que
+             * siempre aparezca.
+             */
+
+            const variantName =
+                variant.name ||
+                variant.colorName ||
+                variant.colourName ||
+                variant.color_name ||
+                variant.colour_name ||
+                variant.color ||
+                `Color ${index + 1}`;
 
             variants.push({
 
-                name:
-                    variant.name ||
-                    variant.colorName ||
-                    variant.color_name ||
-                    variant.color ||
-                    `Variante ${index + 1}`,
+                name:String(
+                    variantName
+                ),
 
                 color:
+                    variant.hex ||
                     variant.colorHex ||
-                    variant.color_hex ||
                     (
                         typeof variant.color === "string" &&
-                        variant.color.startsWith("#")
-                            ? variant.color
-                            : "#888888"
+                        /^#?[0-9a-f]{3,8}$/i.test(
+                            variant.color
+                        )
+                        ? variant.color
+                        : "#888888"
                     ),
 
                 images
@@ -1550,25 +1390,21 @@ function getVariants(product){
         }
     );
 
-
     return variants;
-
 }
 
 
 function getVariantImages(variant){
 
-    if(
-        !variant ||
-        !Array.isArray(variant.images)
-    ){
+    if(!variant){
         return [];
     }
 
-    return variant.images
-        .filter(Boolean)
-        .map(String);
-
+    return Array.isArray(variant.images)
+        ? variant.images
+            .filter(Boolean)
+            .map(String)
+        : [];
 }
 
 
@@ -1578,7 +1414,6 @@ function getSizes(product){
         product.sizes,
         []
     );
-
 }
 
 
@@ -1599,7 +1434,6 @@ async function loadProducts(){
         </div>
     `;
 
-
     try{
 
         PRODUCTS =
@@ -1613,7 +1447,6 @@ async function loadProducts(){
         console.error(error);
 
         container.innerHTML = `
-
             <div class="empty">
 
                 <strong>
@@ -1628,11 +1461,8 @@ async function loadProducts(){
                 )}
 
             </div>
-
         `;
-
     }
-
 }
 
 
@@ -1647,24 +1477,16 @@ function renderProducts(){
             "productsContainer"
         );
 
-
     if(!PRODUCTS.length){
 
         container.innerHTML = `
-
             <div class="empty">
-
-                No hay camisetas activas
-                disponibles actualmente.
-
+                No hay camisetas disponibles.
             </div>
-
         `;
 
         return;
-
     }
-
 
     container.innerHTML =
         PRODUCTS
@@ -1676,12 +1498,11 @@ function renderProducts(){
                     )
             )
             .join("");
-
 }
 
 
 /* =====================================================
-   PRODUCTO
+   HTML PRODUCTO
 ===================================================== */
 
 function createProductHTML(
@@ -1698,15 +1519,6 @@ function createProductHTML(
     const firstVariant =
         variants[0];
 
-    const firstImages =
-        getVariantImages(
-            firstVariant
-        );
-
-    const firstImage =
-        firstImages[0] || "";
-
-
     const stockDefined =
         product.stock !== null &&
         product.stock !== undefined;
@@ -1720,11 +1532,9 @@ function createProductHTML(
         stockDefined &&
         stock <= 0;
 
-
     if(!firstVariant){
 
         return `
-
             <article
                 class="product"
                 id="product-${index}"
@@ -1755,14 +1565,18 @@ function createProductHTML(
                 </div>
 
             </article>
-
         `;
-
     }
 
+    const images =
+        getVariantImages(
+            firstVariant
+        );
+
+    const firstImage =
+        images[0];
 
     return `
-
         <article
             class="product"
             id="product-${index}"
@@ -1786,19 +1600,21 @@ function createProductHTML(
 
                     <img
                         id="image-${index}"
-                        src="${escapeHTML(firstImage)}"
+                        src="${escapeHTML(firstImage || "")}"
                         alt="${escapeHTML(
                             product.name ||
-                            "Camiseta"
+                            "Producto"
                         )}"
                         loading="lazy"
                         draggable="false"
                         onerror="imageError(this)"
                     >
 
+                    <!-- INFORMACIÓN SOBRE LA IMAGEN -->
 
                     <div
                         class="product-image-label"
+                        id="product-image-label-${index}"
                     >
 
                         <div
@@ -1807,10 +1623,11 @@ function createProductHTML(
 
                             <div
                                 class="product-image-label-name"
+                                id="product-label-name-${index}"
                             >
                                 ${escapeHTML(
                                     product.name ||
-                                    "Camiseta"
+                                    "Producto"
                                 )}
                             </div>
 
@@ -1822,12 +1639,13 @@ function createProductHTML(
 
                         </div>
 
-
                         <div
                             class="product-image-label-meta"
                         >
 
-                            <span>
+                            <span
+                                class="product-image-label-ref"
+                            >
                                 REF:
                                 ${escapeHTML(
                                     product.ref ||
@@ -1835,14 +1653,26 @@ function createProductHTML(
                                 )}
                             </span>
 
-                            <span
-                                id="product-label-color-${index}"
-                                class="product-image-label-color"
-                            >
-                                ${escapeHTML(
-                                    firstVariant.name
-                                )}
-                            </span>
+                            ${
+                                firstVariant
+                                ?
+                                `
+                                <span
+                                    class="product-image-label-separator"
+                                ></span>
+
+                                <span
+                                    class="product-image-label-color"
+                                    id="product-label-color-${index}"
+                                >
+                                    ${escapeHTML(
+                                        firstVariant.name
+                                    )}
+                                </span>
+                                `
+                                :
+                                ""
+                            }
 
                         </div>
 
@@ -1850,18 +1680,16 @@ function createProductHTML(
 
                 </div>
 
-
                 ${
                     variants.length > 1
                     ?
                     `
-
                     <button
                         class="gallery-arrow prev"
                         type="button"
                         onclick="
                             event.stopPropagation();
-                            selectPreviousVariant(${index})
+                            selectPreviousVariant(${index});
                         "
                     >
                         ‹
@@ -1872,31 +1700,31 @@ function createProductHTML(
                         type="button"
                         onclick="
                             event.stopPropagation();
-                            selectNextVariant(${index})
+                            selectNextVariant(${index});
                         "
                     >
                         ›
                     </button>
-
                     `
                     :
                     ""
                 }
 
-
                 ${
-                    firstImages.length > 1 ||
+                    images.length > 1 ||
                     variants.length > 1
                     ?
                     `
-
                     <div
                         class="gallery-counter"
                         id="gallery-counter-${index}"
                     >
-                        1 / ${firstImages.length}
+                        1 / ${images.length}
                     </div>
 
+                    <div class="swipe-hint">
+                        ← desliza →
+                    </div>
                     `
                     :
                     ""
@@ -1904,150 +1732,48 @@ function createProductHTML(
 
             </div>
 
-
-            <!-- =====================
-                 SELECTOR DE COLORES
-            ====================== -->
-
-            ${
-                variants.length
-                ?
-                `
-
-                <div class="colors-section">
-
-                    <div class="colors-title">
-                        COLOR:
-                        <span id="selected-color-name-${index}">
-                            ${escapeHTML(
-                                firstVariant.name
-                            )}
-                        </span>
-                    </div>
-
-
-                    <div class="colors">
-
-                        ${
-                            variants
-                                .map(
-                                    (
-                                        variant,
-                                        variantIndex
-                                    )=>`
-
-                                        <button
-                                            type="button"
-                                            class="color-option ${
-                                                variantIndex === 0
-                                                    ? "active"
-                                                    : ""
-                                            }"
-                                            id="color-${index}-${variantIndex}"
-                                            onclick="
-                                                selectColor(
-                                                    ${index},
-                                                    ${variantIndex}
-                                                )
-                                            "
-                                            title="${escapeHTML(
-                                                variant.name
-                                            )}"
-                                        >
-
-                                            <span
-                                                class="color-dot"
-                                                style="
-                                                    background:${escapeHTML(
-                                                        getColorCSS(
-                                                            variant
-                                                        )
-                                                    )};
-                                                "
-                                            ></span>
-
-                                            <span
-                                                class="color-name"
-                                            >
-                                                ${escapeHTML(
-                                                    variant.name
-                                                )}
-                                            </span>
-
-                                        </button>
-
-                                    `
-                                )
-                                .join("")
-                        }
-
-                    </div>
-
-                </div>
-
-                `
-                :
-                ""
-            }
-
-
             ${
                 product.description
                 ?
                 `
-
                 <div class="product-description">
                     ${escapeHTML(
                         product.description
                     )}
                 </div>
-
                 `
                 :
                 ""
             }
-
 
             ${
                 sizes.length
                 ?
                 `
-
                 <div class="sizes">
 
-                    ${
-                        sizes
-                            .map(
-                                (
-                                    size,
-                                    sizeIndex
-                                )=>`
-
-                                    <button
-                                        type="button"
-                                        class="size"
-                                        onclick="
-                                            selectSize(
-                                                ${index},
-                                                ${sizeIndex}
-                                            )
-                                        "
-                                    >
-                                        ${escapeHTML(size)}
-                                    </button>
-
-                                `
-                            )
-                            .join("")
-                    }
+                    ${sizes.map(
+                        (size,sizeIndex)=>`
+                            <button
+                                type="button"
+                                class="size"
+                                onclick="
+                                    selectSize(
+                                        ${index},
+                                        ${sizeIndex}
+                                    )
+                                "
+                            >
+                                ${escapeHTML(size)}
+                            </button>
+                        `
+                    ).join("")}
 
                 </div>
-
                 `
                 :
                 ""
             }
-
 
             <div class="quantity">
 
@@ -2073,7 +1799,6 @@ function createProductHTML(
 
             </div>
 
-
             <div class="shipping">
 
                 🚚
@@ -2085,9 +1810,7 @@ function createProductHTML(
                 ${escapeHTML(
                     product.shipping_min ?? 3
                 )}
-
                 –
-
                 ${escapeHTML(
                     product.shipping_max ?? 9
                 )}
@@ -2096,20 +1819,15 @@ function createProductHTML(
 
             </div>
 
-
             ${
                 stockDefined
                 ?
                 `
-
                 <div
                     class="stock ${
-                        outOfStock
-                            ? "out"
-                            : ""
+                        outOfStock ? "out" : ""
                     }"
                 >
-
                     ${
                         outOfStock
                         ?
@@ -2117,14 +1835,11 @@ function createProductHTML(
                         :
                         `Stock disponible: ${escapeHTML(stock)}`
                     }
-
                 </div>
-
                 `
                 :
                 ""
             }
-
 
             <button
                 type="button"
@@ -2132,138 +1847,15 @@ function createProductHTML(
                 onclick="buyProduct(${index})"
                 ${outOfStock ? "disabled" : ""}
             >
-
                 ${
                     outOfStock
-                        ? "AGOTADO"
-                        : "COMPRAR"
+                    ? "AGOTADO"
+                    : "COMPRAR"
                 }
-
             </button>
 
         </article>
-
     `;
-
-}
-
-
-/* =====================================================
-   COLOR CSS
-===================================================== */
-
-function getColorCSS(variant){
-
-    if(!variant){
-        return "#888";
-    }
-
-
-    const value =
-        variant.color;
-
-
-    if(!value){
-        return "#888";
-    }
-
-
-    /*
-     * Si es un HEX:
-     */
-
-    if(
-        typeof value === "string" &&
-        (
-            value.startsWith("#") ||
-            value.startsWith("rgb") ||
-            value.startsWith("hsl") ||
-            value.startsWith("linear-gradient")
-        )
-    ){
-
-        return value;
-
-    }
-
-
-    /*
-     * Si el admin guarda:
-     *
-     * "Negro"
-     * "Blanco"
-     * "Rojo"
-     *
-     * convertimos a color visual.
-     */
-
-    const colors = {
-
-        negro:"#111111",
-
-        blanco:"#ffffff",
-
-        rojo:"#d62828",
-
-        azul:"#2563eb",
-
-        verde:"#16a34a",
-
-        amarillo:"#facc15",
-
-        naranja:"#f97316",
-
-        rosa:"#ec4899",
-
-        morado:"#8b5cf6",
-
-        gris:"#777777",
-
-        beige:"#d6c3a5",
-
-        marron:"#795548",
-
-        marrón:"#795548",
-
-        crema:"#f3e7c9",
-
-        celeste:"#38bdf8",
-
-        turquesa:"#14b8a6",
-
-        dorado:"#d4af37",
-
-        plateado:"#c0c0c0"
-
-    };
-
-
-    const key =
-        String(value)
-            .trim()
-            .toLowerCase();
-
-
-    return colors[key] || "#888888";
-
-}
-
-
-/* =====================================================
-   SELECCIONAR COLOR
-===================================================== */
-
-function selectColor(
-    productIndex,
-    variantIndex
-){
-
-    setVariant(
-        productIndex,
-        variantIndex,
-        0
-    );
-
 }
 
 
@@ -2274,7 +1866,7 @@ function selectColor(
 function setVariant(
     productIndex,
     variantIndex,
-    imageIndex=0
+    imageIndex = 0
 ){
 
     const product =
@@ -2284,37 +1876,36 @@ function setVariant(
         return;
     }
 
-
     const variants =
         getVariants(product);
+
+    if(!variants.length){
+        return;
+    }
+
+    if(
+        variantIndex < 0 ||
+        variantIndex >= variants.length
+    ){
+        variantIndex = 0;
+    }
 
     const variant =
         variants[variantIndex];
 
-    if(!variant){
-        return;
-    }
-
-
     const images =
-        getVariantImages(
-            variant
-        );
+        getVariantImages(variant);
 
     if(!images.length){
         return;
     }
 
-
-    imageIndex =
-        Math.max(
-            0,
-            Math.min(
-                imageIndex,
-                images.length - 1
-            )
-        );
-
+    if(
+        imageIndex < 0 ||
+        imageIndex >= images.length
+    ){
+        imageIndex = 0;
+    }
 
     const card =
         document.getElementById(
@@ -2326,11 +1917,9 @@ function setVariant(
             `image-${productIndex}`
         );
 
-
     if(!card || !image){
         return;
     }
-
 
     card.dataset.variant =
         variantIndex;
@@ -2338,171 +1927,27 @@ function setVariant(
     card.dataset.image =
         imageIndex;
 
-
     image.src =
         images[imageIndex];
 
     image.alt =
-        `${product.name || "Camiseta"} - ${variant.name}`;
+        `${product.name || "Producto"} - ${variant.name}`;
 
-
-    /*
-     * ACTUALIZAR COLOR ACTIVO
-     */
-
-    variants.forEach(
-        (_,index)=>{
-
-            const button =
-                document.getElementById(
-                    `color-${productIndex}-${index}`
-                );
-
-            if(button){
-
-                button.classList.toggle(
-                    "active",
-                    index === variantIndex
-                );
-
-            }
-
-        }
-    );
-
-
-    /*
-     * NOMBRE DEL COLOR
-     */
-
-    const colorName =
-        document.getElementById(
-            `selected-color-name-${productIndex}`
-        );
-
-    if(colorName){
-
-        colorName.textContent =
-            variant.name;
-
-    }
-
-
-    /*
-     * COLOR SOBRE LA FOTO
-     */
-
-    const labelColor =
+    const colorLabel =
         document.getElementById(
             `product-label-color-${productIndex}`
         );
 
-    if(labelColor){
+    if(colorLabel){
 
-        labelColor.textContent =
+        colorLabel.textContent =
             variant.name;
 
     }
 
-
     updateGalleryCounter(
         productIndex
     );
-
-}
-
-
-/* =====================================================
-   SIGUIENTE COLOR
-===================================================== */
-
-function selectNextVariant(
-    productIndex
-){
-
-    const product =
-        PRODUCTS[productIndex];
-
-    const variants =
-        getVariants(product);
-
-    const card =
-        document.getElementById(
-            `product-${productIndex}`
-        );
-
-    if(!card || !variants.length){
-        return;
-    }
-
-
-    let current =
-        Number(
-            card.dataset.variant || 0
-        );
-
-
-    current++;
-
-
-    if(current >= variants.length){
-        current = 0;
-    }
-
-
-    setVariant(
-        productIndex,
-        current,
-        0
-    );
-
-}
-
-
-/* =====================================================
-   COLOR ANTERIOR
-===================================================== */
-
-function selectPreviousVariant(
-    productIndex
-){
-
-    const product =
-        PRODUCTS[productIndex];
-
-    const variants =
-        getVariants(product);
-
-    const card =
-        document.getElementById(
-            `product-${productIndex}`
-        );
-
-    if(!card || !variants.length){
-        return;
-    }
-
-
-    let current =
-        Number(
-            card.dataset.variant || 0
-        );
-
-
-    current--;
-
-
-    if(current < 0){
-        current = variants.length - 1;
-    }
-
-
-    setVariant(
-        productIndex,
-        current,
-        0
-    );
-
 }
 
 
@@ -2522,26 +1967,31 @@ function updateGalleryCounter(
             `product-${productIndex}`
         );
 
-    if(!product || !card){
+    const counter =
+        document.getElementById(
+            `gallery-counter-${productIndex}`
+        );
+
+    if(
+        !product ||
+        !card ||
+        !counter
+    ){
         return;
     }
 
-
     const variants =
         getVariants(product);
-
 
     const variantIndex =
         Number(
             card.dataset.variant || 0
         );
 
-
     const imageIndex =
         Number(
             card.dataset.image || 0
         );
-
 
     const variant =
         variants[variantIndex];
@@ -2550,36 +2000,110 @@ function updateGalleryCounter(
         return;
     }
 
-
     const images =
-        getVariantImages(
-            variant
-        );
+        getVariantImages(variant);
+
+    counter.textContent =
+        `${imageIndex + 1} / ${images.length}`;
+}
 
 
-    const counter =
+/* =====================================================
+   SIGUIENTE COLOR
+===================================================== */
+
+function selectNextVariant(
+    productIndex
+){
+
+    const product =
+        PRODUCTS[productIndex];
+
+    const card =
         document.getElementById(
-            `gallery-counter-${productIndex}`
+            `product-${productIndex}`
         );
 
-
-    if(counter){
-
-        counter.textContent =
-            `${imageIndex + 1} / ${images.length}`;
-
+    if(!product || !card){
+        return;
     }
 
+    const variants =
+        getVariants(product);
+
+    if(!variants.length){
+        return;
+    }
+
+    let current =
+        Number(
+            card.dataset.variant || 0
+        );
+
+    current++;
+
+    if(current >= variants.length){
+        current = 0;
+    }
+
+    setVariant(
+        productIndex,
+        current,
+        0
+    );
+}
+
+
+/* =====================================================
+   COLOR ANTERIOR
+===================================================== */
+
+function selectPreviousVariant(
+    productIndex
+){
+
+    const product =
+        PRODUCTS[productIndex];
+
+    const card =
+        document.getElementById(
+            `product-${productIndex}`
+        );
+
+    if(!product || !card){
+        return;
+    }
+
+    const variants =
+        getVariants(product);
+
+    if(!variants.length){
+        return;
+    }
+
+    let current =
+        Number(
+            card.dataset.variant || 0
+        );
+
+    current--;
+
+    if(current < 0){
+        current =
+            variants.length - 1;
+    }
+
+    setVariant(
+        productIndex,
+        current,
+        0
+    );
 }
 
 
 /* =====================================================
    SWIPE
 ===================================================== */
-
-let galleryStartX = 0;
-let galleryStartY = 0;
-
 
 function galleryTouchStart(event){
 
@@ -2590,13 +2114,11 @@ function galleryTouchStart(event){
         return;
     }
 
-
     galleryStartX =
         event.touches[0].clientX;
 
     galleryStartY =
         event.touches[0].clientY;
-
 }
 
 
@@ -2612,13 +2134,11 @@ function galleryTouchEnd(
         return;
     }
 
-
     const endX =
         event.changedTouches[0].clientX;
 
     const endY =
         event.changedTouches[0].clientY;
-
 
     const diffX =
         endX - galleryStartX;
@@ -2626,14 +2146,12 @@ function galleryTouchEnd(
     const diffY =
         endY - galleryStartY;
 
-
     if(
         Math.abs(diffX) < 45 ||
         Math.abs(diffX) < Math.abs(diffY)
     ){
         return;
     }
-
 
     const product =
         PRODUCTS[productIndex];
@@ -2643,37 +2161,28 @@ function galleryTouchEnd(
             `product-${productIndex}`
         );
 
-
     if(!product || !card){
         return;
     }
 
-
     const variants =
         getVariants(product);
 
-
-    let variantIndex =
+    const variantIndex =
         Number(
             card.dataset.variant || 0
         );
 
-
-    let imageIndex =
+    const imageIndex =
         Number(
             card.dataset.image || 0
         );
 
-
     const variant =
         variants[variantIndex];
 
-
     const images =
-        getVariantImages(
-            variant
-        );
-
+        getVariantImages(variant);
 
     if(diffX < 0){
 
@@ -2713,14 +2222,12 @@ function galleryTouchEnd(
             );
 
         }
-
     }
-
 }
 
 
 /* =====================================================
-   TALLAS
+   TALLA
 ===================================================== */
 
 function selectSize(
@@ -2742,29 +2249,23 @@ function selectSize(
             `product-${productIndex}`
         );
 
-
     if(!card || size === undefined){
         return;
     }
 
-
     card.dataset.size =
         size;
-
 
     card
         .querySelectorAll(".size")
         .forEach(
             (button,index)=>{
-
                 button.classList.toggle(
                     "active",
                     index === sizeIndex
                 );
-
             }
         );
-
 }
 
 
@@ -2782,29 +2283,23 @@ function changeQuantity(
             `product-${productIndex}`
         );
 
-
     if(!card){
         return;
     }
 
-
     const product =
         PRODUCTS[productIndex];
-
 
     let quantity =
         Number(
             card.dataset.quantity || 1
         );
 
-
     quantity += change;
-
 
     if(quantity < 1){
         quantity = 1;
     }
-
 
     if(
         product.stock !== null &&
@@ -2814,36 +2309,26 @@ function changeQuantity(
         const stock =
             Number(product.stock);
 
-
         if(
             stock > 0 &&
             quantity > stock
         ){
-
             quantity = stock;
-
         }
-
     }
-
 
     card.dataset.quantity =
         quantity;
-
 
     const quantityElement =
         document.getElementById(
             `quantity-${productIndex}`
         );
 
-
     if(quantityElement){
-
         quantityElement.textContent =
             quantity;
-
     }
-
 }
 
 
@@ -2856,21 +2341,17 @@ function buyProduct(productIndex){
     const product =
         PRODUCTS[productIndex];
 
-
-    if(!product){
-        return;
-    }
-
-
     const card =
         document.getElementById(
             `product-${productIndex}`
         );
 
+    if(!product || !card){
+        return;
+    }
 
     const variants =
         getVariants(product);
-
 
     const variant =
         variants[
@@ -2879,21 +2360,17 @@ function buyProduct(productIndex){
             )
         ];
 
-
     const sizes =
         getSizes(product);
-
 
     const size =
         card.dataset.size ||
         "No especificada";
 
-
     const quantity =
         Number(
             card.dataset.quantity || 1
         );
-
 
     if(
         sizes.length &&
@@ -2905,20 +2382,16 @@ function buyProduct(productIndex){
         );
 
         return;
-
     }
-
 
     if(!variant){
 
         alert(
-            "Selecciona un color antes de continuar."
+            "Este producto no tiene una variante configurada."
         );
 
         return;
-
     }
-
 
     if(
         product.stock !== null &&
@@ -2931,9 +2404,7 @@ function buyProduct(productIndex){
         );
 
         return;
-
     }
-
 
     currentOrder = {
 
@@ -2948,34 +2419,24 @@ function buyProduct(productIndex){
         total:
             Number(product.price || 0) *
             quantity
-
     };
 
-
     showOrderSummary();
-
 
     document
         .getElementById(
             "formError"
         )
-        .classList.remove(
-            "show"
-        );
-
+        .classList.remove("show");
 
     document
         .getElementById(
             "customerModal"
         )
-        .classList.add(
-            "show"
-        );
-
+        .classList.add("show");
 
     document.body.style.overflow =
         "hidden";
-
 }
 
 
@@ -2987,7 +2448,6 @@ function showOrderSummary(){
 
     const order =
         currentOrder;
-
 
     document
         .getElementById(
@@ -3011,8 +2471,7 @@ function showOrderSummary(){
 
             <br>
 
-            Color:
-
+            Variante:
             <strong>
                 ${escapeHTML(
                     order.variant.name
@@ -3022,7 +2481,6 @@ function showOrderSummary(){
             <br>
 
             Talla:
-
             <strong>
                 ${escapeHTML(
                     order.size
@@ -3032,7 +2490,6 @@ function showOrderSummary(){
             <br>
 
             Cantidad:
-
             <strong>
                 ${order.quantity}
             </strong>
@@ -3040,7 +2497,6 @@ function showOrderSummary(){
             <br>
 
             Precio unidad:
-
             <strong>
                 ${money(
                     order.product.price
@@ -3050,15 +2506,12 @@ function showOrderSummary(){
             <br>
 
             Total:
-
             <strong>
                 ${money(
                     order.total
                 )}
             </strong>
-
         `;
-
 }
 
 
@@ -3072,14 +2525,17 @@ function closeCustomerModal(){
         .getElementById(
             "customerModal"
         )
-        .classList.remove(
-            "show"
-        );
+        .classList.remove("show");
 
-
-    document.body.style.overflow =
-        "";
-
+    if(
+        !document
+            .getElementById(
+                "imageLightbox"
+            )
+            .classList.contains("show")
+    ){
+        document.body.style.overflow = "";
+    }
 }
 
 
@@ -3091,7 +2547,6 @@ function fieldValue(id){
     return element
         ? element.value.trim()
         : "";
-
 }
 
 
@@ -3102,15 +2557,10 @@ function showFormError(message){
             "formError"
         );
 
-
     error.textContent =
         message;
 
-
-    error.classList.add(
-        "show"
-    );
-
+    error.classList.add("show");
 }
 
 
@@ -3123,7 +2573,6 @@ function sendOrderToWhatsApp(){
     if(!currentOrder){
         return;
     }
-
 
     const name =
         fieldValue("customerName");
@@ -3158,28 +2607,19 @@ function sendOrderToWhatsApp(){
     const notes =
         fieldValue("customerNotes");
 
-
     if(!name){
-
         showFormError(
             "Introduce tu nombre y apellidos."
         );
-
         return;
-
     }
 
-
     if(!phone){
-
         showFormError(
             "Introduce tu teléfono."
         );
-
         return;
-
     }
-
 
     if(
         !address ||
@@ -3195,19 +2635,13 @@ function sendOrderToWhatsApp(){
         );
 
         return;
-
     }
-
 
     const whatsapp =
         String(
             currentOrder.product.whatsapp ||
             ""
-        ).replace(
-            /\D/g,
-            ""
-        );
-
+        ).replace(/\D/g,"");
 
     if(!whatsapp){
 
@@ -3216,9 +2650,7 @@ function sendOrderToWhatsApp(){
         );
 
         return;
-
     }
-
 
     const message =
 
@@ -3237,7 +2669,7 @@ ${currentOrder.product.ref || currentOrder.product.id}
 Categoría:
 ${currentOrder.product.category || CATEGORY}
 
-🎨 COLOR:
+COLOR / VARIANTE:
 ${currentOrder.variant.name}
 
 Talla:
@@ -3296,24 +2728,18 @@ ${notes || "Ninguna"}
 
 ━━━━━━━━━━━━━━━━`;
 
-
     const url =
         "https://wa.me/" +
         whatsapp +
         "?text=" +
-        encodeURIComponent(
-            message
-        );
-
+        encodeURIComponent(message);
 
     closeCustomerModal();
-
 
     window.open(
         url,
         "_blank"
     );
-
 }
 
 
@@ -3328,40 +2754,45 @@ function openLightbox(
     const product =
         PRODUCTS[productIndex];
 
-
     if(!product){
         return;
     }
 
-
     const variants =
         getVariants(product);
-
 
     if(!variants.length){
         return;
     }
 
+    const card =
+        document.getElementById(
+            `product-${productIndex}`
+        );
 
     lightboxProductIndex =
         productIndex;
 
+    lightboxVariantIndex =
+        Number(
+            card.dataset.variant || 0
+        );
+
+    lightboxImageIndex =
+        Number(
+            card.dataset.image || 0
+        );
 
     updateLightbox();
-
 
     document
         .getElementById(
             "imageLightbox"
         )
-        .classList.add(
-            "show"
-        );
-
+        .classList.add("show");
 
     document.body.style.overflow =
         "hidden";
-
 }
 
 
@@ -3372,89 +2803,57 @@ function updateLightbox(){
             lightboxProductIndex
         ];
 
-
     if(!product){
         return;
     }
 
-
     const variants =
         getVariants(product);
 
-
-    const card =
-        document.getElementById(
-            `product-${lightboxProductIndex}`
-        );
-
-
-    if(!card){
-        return;
-    }
-
-
-    const variantIndex =
-        Number(
-            card.dataset.variant || 0
-        );
-
-
-    const imageIndex =
-        Number(
-            card.dataset.image || 0
-        );
-
-
     const variant =
-        variants[variantIndex];
-
+        variants[
+            lightboxVariantIndex
+        ];
 
     if(!variant){
         return;
     }
 
-
     const images =
-        getVariantImages(
-            variant
-        );
-
+        getVariantImages(variant);
 
     if(!images.length){
         return;
     }
 
+    if(
+        lightboxImageIndex >= images.length
+    ){
+        lightboxImageIndex =
+            images.length - 1;
+    }
 
-    const safeIndex =
-        Math.min(
-            imageIndex,
-            images.length - 1
+    if(lightboxImageIndex < 0){
+        lightboxImageIndex = 0;
+    }
+
+    const image =
+        document.getElementById(
+            "lightboxImage"
         );
 
+    image.src =
+        images[lightboxImageIndex];
 
-    document
-        .getElementById(
-            "lightboxImage"
-        )
-        .src =
-        images[safeIndex];
-
-
-    document
-        .getElementById(
-            "lightboxImage"
-        )
-        .alt =
+    image.alt =
         `${product.name || "Producto"} - ${variant.name}`;
-
 
     document
         .getElementById(
             "lightboxCounter"
         )
         .textContent =
-        `${safeIndex + 1} / ${images.length}`;
-
+        `${lightboxImageIndex + 1} / ${images.length}`;
 }
 
 
@@ -3467,53 +2866,32 @@ function changeLightboxImage(
             lightboxProductIndex
         ];
 
-
     if(!product){
         return;
     }
 
-
     const variants =
         getVariants(product);
 
-
-    const card =
-        document.getElementById(
-            `product-${lightboxProductIndex}`
-        );
-
-
-    if(!card){
+    if(!variants.length){
         return;
     }
 
-
     let variantIndex =
-        Number(
-            card.dataset.variant || 0
-        );
-
+        lightboxVariantIndex;
 
     let imageIndex =
-        Number(
-            card.dataset.image || 0
-        );
-
+        lightboxImageIndex;
 
     const variant =
         variants[variantIndex];
 
-
-    let images =
-        getVariantImages(
-            variant
-        );
-
+    const images =
+        getVariantImages(variant);
 
     if(!images.length){
         return;
     }
-
 
     if(direction > 0){
 
@@ -3532,13 +2910,10 @@ function changeLightboxImage(
                 variantIndex >=
                 variants.length
             ){
-
                 variantIndex = 0;
-
             }
 
             imageIndex = 0;
-
         }
 
     }else{
@@ -3552,29 +2927,33 @@ function changeLightboxImage(
             variantIndex--;
 
             if(variantIndex < 0){
-
                 variantIndex =
                     variants.length - 1;
-
             }
 
-
-            images =
+            const previousImages =
                 getVariantImages(
                     variants[variantIndex]
                 );
 
-
             imageIndex =
                 Math.max(
-                    images.length - 1,
+                    previousImages.length - 1,
                     0
                 );
-
         }
-
     }
 
+    lightboxVariantIndex =
+        variantIndex;
+
+    lightboxImageIndex =
+        imageIndex;
+
+    /*
+     * También sincronizamos
+     * la tarjeta principal.
+     */
 
     setVariant(
         lightboxProductIndex,
@@ -3582,9 +2961,7 @@ function changeLightboxImage(
         imageIndex
     );
 
-
     updateLightbox();
-
 }
 
 
@@ -3594,39 +2971,28 @@ function closeLightbox(){
         .getElementById(
             "imageLightbox"
         )
-        .classList.remove(
-            "show"
-        );
-
+        .classList.remove("show");
 
     if(
         !document
             .getElementById(
                 "customerModal"
             )
-            .classList.contains(
-                "show"
-            )
+            .classList.contains("show")
     ){
-
-        document.body.style.overflow =
-            "";
-
+        document.body.style.overflow = "";
     }
-
 }
 
 
 function imageError(image){
 
-    image.style.display =
-        "none";
-
+    image.style.display = "none";
 }
 
 
 /* =====================================================
-   EVENTOS
+   TECLADO Y MODALES
 ===================================================== */
 
 document.addEventListener(
@@ -3637,9 +3003,7 @@ document.addEventListener(
 
             closeLightbox();
             closeCustomerModal();
-
         }
-
 
         if(
             event.key === "ArrowRight" &&
@@ -3647,15 +3011,11 @@ document.addEventListener(
                 .getElementById(
                     "imageLightbox"
                 )
-                .classList.contains(
-                    "show"
-                )
+                .classList.contains("show")
         ){
 
             changeLightboxImage(1);
-
         }
-
 
         if(
             event.key === "ArrowLeft" &&
@@ -3663,15 +3023,11 @@ document.addEventListener(
                 .getElementById(
                     "imageLightbox"
                 )
-                .classList.contains(
-                    "show"
-                )
+                .classList.contains("show")
         ){
 
             changeLightboxImage(-1);
-
         }
-
     }
 );
 
@@ -3685,11 +3041,8 @@ document
         function(event){
 
             if(event.target === this){
-
                 closeCustomerModal();
-
             }
-
         }
     );
 
@@ -3703,11 +3056,8 @@ document
         function(event){
 
             if(event.target === this){
-
                 closeLightbox();
-
             }
-
         }
     );
 
