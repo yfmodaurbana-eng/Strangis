@@ -1,64 +1,22 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Strangis</title>
 
-    <meta
-        name="description"
-        content="Strangis — Tu tienda online."
-    >
-
-    <!-- =====================================================
-         COMPARTIR WEB
-    ====================================================== -->
+    <meta name="description" content="Strangis — Tu tienda online.">
 
     <meta property="og:type" content="website">
-
-    <meta
-        property="og:url"
-        content="https://yfmodaurbana-eng.github.io/TiendaOnline/"
-    >
-
-    <meta
-        property="og:image"
-        content="https://i.imgur.com/nomrvEn.jpeg"
-    >
-
-    <meta
-        property="og:image:secure_url"
-        content="https://i.imgur.com/nomrvEn.jpeg"
-    >
-
-    <meta
-        property="og:image:type"
-        content="image/jpeg"
-    >
-
-    <meta
-        property="og:image:width"
-        content="1200"
-    >
-
-    <meta
-        property="og:image:height"
-        content="630"
-    >
-
-    <!-- =====================================================
-         ESTILOS
-    ====================================================== -->
+    <meta property="og:url" content="https://yfmodaurbana-eng.github.io/TiendaOnline/">
+    <meta property="og:image" content="https://i.imgur.com/nomrvEn.jpeg">
+    <meta property="og:image:secure_url" content="https://i.imgur.com/nomrvEn.jpeg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 
     <style>
-
         *{
             margin:0;
             padding:0;
@@ -70,14 +28,8 @@
         }
 
         body{
-
             min-height:100vh;
-
-            font-family:
-                Arial,
-                Helvetica,
-                sans-serif;
-
+            font-family:Arial,Helvetica,sans-serif;
             color:#fff;
 
             background:
@@ -97,12 +49,9 @@
             font:inherit;
         }
 
-        /* =====================================================
-           HEADER
-        ====================================================== */
+        /* HEADER */
 
         header{
-
             position:sticky;
             top:0;
             z-index:1000;
@@ -113,18 +62,14 @@
             align-items:center;
             gap:30px;
 
-            border-bottom:
-                1px solid
-                rgba(255,255,255,.12);
+            border-bottom:1px solid rgba(255,255,255,.12);
 
-            background:
-                rgba(20,20,20,.92);
+            background:rgba(20,20,20,.92);
 
             backdrop-filter:blur(18px);
         }
 
         .logo{
-
             flex-shrink:0;
 
             color:#fff;
@@ -135,7 +80,6 @@
         }
 
         nav{
-
             flex:1;
 
             display:flex;
@@ -151,16 +95,12 @@
         }
 
         nav a{
-
             color:#999;
-
             text-decoration:none;
 
             font-size:11px;
             font-weight:bold;
-
             letter-spacing:1.5px;
-
             text-transform:uppercase;
 
             white-space:nowrap;
@@ -173,25 +113,16 @@
             color:#fff;
         }
 
-        /* =====================================================
-           BUSCADOR
-        ====================================================== */
+        /* BUSCADOR */
 
         .search-section{
-
             width:min(900px,90%);
-
             margin:0 auto;
-
-            padding:
-                25px 0
-                0;
+            padding:25px 0 0;
         }
 
         .search-box{
-
             position:relative;
-
             width:100%;
 
             display:flex;
@@ -199,48 +130,33 @@
         }
 
         .search-icon{
-
             position:absolute;
-
             left:17px;
 
             width:18px;
             height:18px;
 
             color:#888;
-
             pointer-events:none;
         }
 
         .search-input{
-
             width:100%;
-
             height:52px;
 
-            padding:
-                0 50px
-                0 48px;
+            padding:0 50px 0 48px;
 
-            border:
-                1px solid
-                rgba(255,255,255,.14);
-
+            border:1px solid rgba(255,255,255,.14);
             border-radius:10px;
 
             outline:none;
 
             color:#fff;
-
-            background:
-                rgba(255,255,255,.055);
+            background:rgba(255,255,255,.055);
 
             box-shadow:
-                inset 0 0 20px
-                rgba(255,255,255,.015),
-
-                0 8px 30px
-                rgba(0,0,0,.15);
+                inset 0 0 20px rgba(255,255,255,.015),
+                0 8px 30px rgba(0,0,0,.15);
 
             transition:
                 border-color .2s ease,
@@ -253,25 +169,16 @@
         }
 
         .search-input:focus{
-
-            border-color:
-                rgba(255,255,255,.35);
-
-            background:
-                rgba(255,255,255,.075);
+            border-color:rgba(255,255,255,.35);
+            background:rgba(255,255,255,.075);
 
             box-shadow:
-                0 0 0 3px
-                rgba(255,255,255,.035),
-
-                0 10px 35px
-                rgba(0,0,0,.2);
+                0 0 0 3px rgba(255,255,255,.035),
+                0 10px 35px rgba(0,0,0,.2);
         }
 
         .search-clear{
-
             position:absolute;
-
             right:10px;
 
             width:34px;
@@ -285,9 +192,7 @@
             border-radius:50%;
 
             color:#999;
-
-            background:
-                rgba(255,255,255,.07);
+            background:rgba(255,255,255,.07);
 
             cursor:pointer;
 
@@ -301,42 +206,32 @@
         }
 
         .search-clear.visible{
-
             opacity:1;
             visibility:visible;
         }
 
         .search-clear:hover{
-
             color:#fff;
-
-            background:
-                rgba(255,255,255,.14);
+            background:rgba(255,255,255,.14);
         }
 
         .search-help{
-
             margin-top:9px;
 
             color:#666;
 
             font-size:9px;
-
             letter-spacing:.8px;
-
             text-align:center;
         }
 
         .search-result{
-
             min-height:16px;
-
             margin-top:8px;
 
             color:#999;
 
             font-size:10px;
-
             text-align:center;
         }
 
@@ -344,14 +239,10 @@
             color:#ddd;
         }
 
-        /* =====================================================
-           HERO
-        ====================================================== */
+        /* HERO */
 
         .hero{
-
             width:min(1400px,90%);
-
             margin:auto;
 
             padding:
@@ -361,169 +252,105 @@
         }
 
         .hero h1{
-
             position:relative;
-
             display:inline-block;
 
-            margin-top:0;
-
-            font-size:
-                clamp(
-                    70px,
-                    15vw,
-                    180px
-                );
-
+            font-size:clamp(70px,15vw,180px);
             line-height:.8;
-
             letter-spacing:-9px;
-
             font-weight:900;
 
             color:#f7f7f7;
 
-            -webkit-text-stroke:
-                1px
-                rgba(255,255,255,.75);
+            -webkit-text-stroke:1px rgba(255,255,255,.75);
 
             text-shadow:
-
                 0 0 2px rgba(255,255,255,.8),
-
                 0 0 7px rgba(255,255,255,.45),
-
                 0 0 18px rgba(255,255,255,.25),
-
                 0 12px 35px rgba(0,0,0,.45);
 
-            animation:
-                neonBreath
-                4.5s
-                ease-in-out
-                infinite;
+            animation:neonBreath 4.5s ease-in-out infinite;
         }
 
         .hero h1::before{
-
             content:"STRANGIS";
 
             position:absolute;
-
             inset:0;
-
             z-index:-1;
 
             color:transparent;
 
-            -webkit-text-stroke:
-                1px
-                rgba(255,255,255,.25);
+            -webkit-text-stroke:1px rgba(255,255,255,.25);
 
             filter:blur(5px);
-
             opacity:.7;
 
-            animation:
-                neonHalo
-                4.5s
-                ease-in-out
-                infinite;
+            animation:neonHalo 4.5s ease-in-out infinite;
         }
 
         .hero h1::after{
-
             content:"";
 
             position:absolute;
 
             left:5%;
             right:5%;
-
             bottom:-18px;
 
             height:20px;
 
             border-radius:50%;
 
-            background:
-                rgba(255,255,255,.16);
+            background:rgba(255,255,255,.16);
 
             filter:blur(20px);
-
             opacity:.35;
 
-            animation:
-                floorGlow
-                4.5s
-                ease-in-out
-                infinite;
+            animation:floorGlow 4.5s ease-in-out infinite;
         }
 
         @keyframes neonBreath{
-
             0%{
-
                 color:#bdbdbd;
 
                 text-shadow:
-
                     0 0 2px rgba(255,255,255,.35),
-
                     0 0 6px rgba(255,255,255,.20),
-
                     0 0 14px rgba(255,255,255,.12),
-
                     0 12px 35px rgba(0,0,0,.50);
 
-                -webkit-text-stroke:
-                    1px
-                    rgba(255,255,255,.45);
+                -webkit-text-stroke:1px rgba(255,255,255,.45);
             }
 
             50%{
-
-                color:#ffffff;
+                color:#fff;
 
                 text-shadow:
-
                     0 0 2px rgba(255,255,255,.95),
-
                     0 0 8px rgba(255,255,255,.70),
-
                     0 0 18px rgba(255,255,255,.48),
-
                     0 0 35px rgba(255,255,255,.25),
-
                     0 12px 35px rgba(0,0,0,.45);
 
-                -webkit-text-stroke:
-                    1px
-                    rgba(255,255,255,.95);
+                -webkit-text-stroke:1px rgba(255,255,255,.95);
             }
 
             100%{
-
                 color:#bdbdbd;
 
                 text-shadow:
-
                     0 0 2px rgba(255,255,255,.35),
-
                     0 0 6px rgba(255,255,255,.20),
-
                     0 0 14px rgba(255,255,255,.12),
-
                     0 12px 35px rgba(0,0,0,.50);
 
-                -webkit-text-stroke:
-                    1px
-                    rgba(255,255,255,.45);
+                -webkit-text-stroke:1px rgba(255,255,255,.45);
             }
         }
 
         @keyframes neonHalo{
-
             0%{
                 opacity:.25;
                 filter:blur(7px);
@@ -541,7 +368,6 @@
         }
 
         @keyframes floorGlow{
-
             0%{
                 opacity:.15;
                 transform:scaleX(.7);
@@ -559,40 +385,25 @@
         }
 
         .hero p{
-
             max-width:700px;
-
             margin-top:35px;
 
             color:#b5b5b5;
 
             font-size:16px;
-
             line-height:1.8;
         }
 
         .hero-note{
-
             position:relative;
 
             max-width:850px;
-
             margin-top:25px;
 
-            padding:
-                22px
-                24px
-                22px
-                27px;
+            padding:22px 24px 22px 27px;
 
-            border:
-                1px solid
-                rgba(255,165,70,.45);
-
-            border-left:
-                4px solid
-                rgba(255,150,45,.95);
-
+            border:1px solid rgba(255,165,70,.45);
+            border-left:4px solid rgba(255,150,45,.95);
             border-radius:9px;
 
             background:
@@ -603,34 +414,25 @@
                 );
 
             box-shadow:
-
-                0 8px 30px
-                rgba(0,0,0,.25),
-
-                inset 0 0 25px
-                rgba(255,150,50,.04);
+                0 8px 30px rgba(0,0,0,.25),
+                inset 0 0 25px rgba(255,150,50,.04);
 
             color:#d0d0d0;
 
             font-size:13px;
-
             line-height:1.8;
         }
 
         .hero-note::before{
-
             content:"AVISO IMPORTANTE";
 
             display:block;
-
             margin-bottom:9px;
 
             color:#ffb15c;
 
             font-size:11px;
-
             font-weight:900;
-
             letter-spacing:2.5px;
         }
 
@@ -639,89 +441,62 @@
             font-weight:900;
         }
 
-        /* =====================================================
-           PRODUCTOS
-        ====================================================== */
+        /* PRODUCTOS */
 
         .products-section{
-
             width:min(1400px,90%);
-
             margin:auto;
 
-            padding:
-                10px
-                0
-                110px;
+            padding:10px 0 110px;
 
             overflow:hidden;
         }
 
         .section-heading{
-
             display:flex;
-
             align-items:end;
-
             justify-content:space-between;
 
             gap:20px;
-
             margin-bottom:25px;
         }
 
         .section-heading h2{
-
             font-size:14px;
-
             font-weight:900;
-
             letter-spacing:2px;
-
             text-transform:uppercase;
         }
 
         .section-heading span{
-
             color:#777;
-
             font-size:10px;
-
             letter-spacing:1px;
         }
 
         .carousel-window{
-
             width:100%;
-
             overflow:hidden;
-
             position:relative;
 
-            padding:
-                5px 0
-                15px;
+            padding:5px 0 15px;
         }
 
         .carousel-window::before,
         .carousel-window::after{
-
             content:"";
 
             position:absolute;
-
             top:0;
             bottom:0;
 
             width:70px;
 
             z-index:5;
-
             pointer-events:none;
         }
 
         .carousel-window::before{
-
             left:0;
 
             background:
@@ -733,7 +508,6 @@
         }
 
         .carousel-window::after{
-
             right:0;
 
             background:
@@ -745,9 +519,7 @@
         }
 
         .products{
-
             display:flex;
-
             width:max-content;
 
             gap:12px;
@@ -762,41 +534,27 @@
         }
 
         @keyframes carouselMove{
-
             from{
                 transform:translateX(0);
             }
 
             to{
-                transform:
-                    translateX(
-                        calc(
-                            -50% - 6px
-                        )
-                    );
+                transform:translateX(calc(-50% - 6px));
             }
         }
 
         .product{
-
             flex:0 0 205px;
-
             width:205px;
 
             overflow:hidden;
 
-            border:
-                1px solid
-                rgba(255,255,255,.10);
-
+            border:1px solid rgba(255,255,255,.10);
             border-radius:9px;
 
-            background:
-                rgba(255,255,255,.045);
+            background:rgba(255,255,255,.045);
 
-            box-shadow:
-                0 12px 35px
-                rgba(0,0,0,.18);
+            box-shadow:0 12px 35px rgba(0,0,0,.18);
 
             transition:
                 transform .25s ease,
@@ -805,22 +563,16 @@
         }
 
         .product:hover{
-
             transform:translateY(-5px);
 
-            border-color:
-                rgba(255,255,255,.25);
-
-            background:
-                rgba(255,255,255,.07);
+            border-color:rgba(255,255,255,.25);
+            background:rgba(255,255,255,.07);
         }
 
         .product-image{
-
             position:relative;
 
             width:100%;
-
             aspect-ratio:1 / 1.15;
 
             overflow:hidden;
@@ -829,7 +581,6 @@
         }
 
         .product-image img{
-
             width:100%;
             height:100%;
 
@@ -837,170 +588,115 @@
 
             object-fit:cover;
 
-            transition:
-                transform .4s ease;
+            transition:transform .4s ease;
         }
 
-        .product:hover
-        .product-image img{
-
+        .product:hover .product-image img{
             transform:scale(1.045);
         }
 
         .product-info{
-
-            padding:
-                12px 11px 14px;
+            padding:12px 11px 14px;
         }
 
         .product-name{
-
             color:#fff;
 
             font-size:12px;
-
             font-weight:800;
-
             line-height:1.35;
         }
 
         .product-ref{
-
             margin-top:5px;
 
             color:#aaa;
 
             font-size:9px;
-
             font-weight:bold;
-
             letter-spacing:.8px;
-
             text-transform:uppercase;
         }
 
         .product-category{
-
             margin-top:4px;
 
             color:#777;
 
             font-size:9px;
-
             font-weight:bold;
-
             letter-spacing:1px;
-
             text-transform:uppercase;
         }
 
         .product-variants{
-
             margin-top:6px;
 
             color:#777;
 
             font-size:8px;
-
             line-height:1.4;
         }
 
         .product-link{
-
             display:block;
-
             color:inherit;
-
             text-decoration:none;
         }
 
-        /* =====================================================
-           RESULTADO ENCONTRADO
-        ====================================================== */
-
         .product.search-match{
-
-            border-color:
-                rgba(255,180,90,.45);
+            border-color:rgba(255,180,90,.45);
 
             box-shadow:
-                0 0 0 1px
-                rgba(255,180,90,.12),
-
-                0 15px 40px
-                rgba(0,0,0,.25);
+                0 0 0 1px rgba(255,180,90,.12),
+                0 15px 40px rgba(0,0,0,.25);
         }
 
-        /* =====================================================
-           VACÍO
-        ====================================================== */
+        /* VACÍO */
 
         .empty{
-
             width:min(700px,100%);
-
             margin:auto;
 
-            padding:
-                80px 20px;
+            padding:80px 20px;
 
-            border:
-                1px solid
-                rgba(255,255,255,.08);
-
+            border:1px solid rgba(255,255,255,.08);
             border-radius:10px;
 
             text-align:center;
 
-            background:
-                rgba(255,255,255,.025);
+            background:rgba(255,255,255,.025);
         }
 
         .empty-title{
-
             color:#aaa;
 
             font-size:12px;
-
             font-weight:bold;
-
             letter-spacing:2px;
-
             text-transform:uppercase;
         }
 
         .empty-text{
-
             max-width:500px;
-
-            margin:
-                15px auto 0;
+            margin:15px auto 0;
 
             color:#666;
 
             font-size:11px;
-
             line-height:1.7;
         }
 
-        /* =====================================================
-           INFORMACIÓN
-        ====================================================== */
+        /* INFORMACIÓN */
 
         .info-section{
-
             width:min(1000px,90%);
-
             margin:auto;
 
-            padding:
-                0
-                0
-                110px;
+            padding:0 0 110px;
         }
 
         .info-grid{
-
             display:grid;
 
             grid-template-columns:
@@ -1010,15 +706,11 @@
         }
 
         .info-card{
-
             position:relative;
 
             padding:27px;
 
-            border:
-                1px solid
-                rgba(255,166,80,.28);
-
+            border:1px solid rgba(255,166,80,.28);
             border-radius:10px;
 
             background:
@@ -1029,12 +721,8 @@
                 );
 
             box-shadow:
-
-                0 10px 35px
-                rgba(0,0,0,.22),
-
-                inset 0 0 30px
-                rgba(255,150,50,.035);
+                0 10px 35px rgba(0,0,0,.22),
+                inset 0 0 30px rgba(255,150,50,.035);
 
             transition:
                 transform .25s ease,
@@ -1042,26 +730,19 @@
         }
 
         .info-card:hover{
-
             transform:translateY(-4px);
-
-            border-color:
-                rgba(255,180,100,.48);
+            border-color:rgba(255,180,100,.48);
         }
 
         .info-card small{
-
             color:#ffad5c;
 
             font-size:9px;
-
             font-weight:bold;
-
             letter-spacing:2px;
         }
 
         .info-card h3{
-
             position:relative;
 
             margin-top:12px;
@@ -1069,103 +750,71 @@
             color:#f5f5f5;
 
             font-size:16px;
-
             line-height:1.25;
 
-            -webkit-text-stroke:
-                .35px
-                rgba(255,255,255,.35);
+            -webkit-text-stroke:.35px rgba(255,255,255,.35);
 
             text-shadow:
-
                 0 0 3px rgba(255,255,255,.45),
-
                 0 0 9px rgba(255,255,255,.18);
 
-            animation:
-                cardNeon
-                4.5s
-                ease-in-out
-                infinite;
+            animation:cardNeon 4.5s ease-in-out infinite;
         }
 
         @keyframes cardNeon{
-
             0%{
-
                 color:#bdbdbd;
 
                 text-shadow:
-
                     0 0 2px rgba(255,255,255,.20),
-
                     0 0 7px rgba(255,255,255,.08);
             }
 
             50%{
-
-                color:#ffffff;
+                color:#fff;
 
                 text-shadow:
-
                     0 0 3px rgba(255,255,255,.85),
-
                     0 0 10px rgba(255,255,255,.40),
-
                     0 0 20px rgba(255,255,255,.15);
             }
 
             100%{
-
                 color:#bdbdbd;
 
                 text-shadow:
-
                     0 0 2px rgba(255,255,255,.20),
-
                     0 0 7px rgba(255,255,255,.08);
             }
         }
 
         .info-card p{
-
             margin-top:12px;
 
             color:#b5b5b5;
 
             font-size:12px;
-
             line-height:1.75;
         }
 
-        /* =====================================================
-           FOOTER
-        ====================================================== */
+        /* FOOTER */
 
         footer{
+            padding:35px 5%;
 
-            padding:
-                35px 5%;
-
-            border-top:
-                1px solid
-                rgba(255,255,255,.10);
+            border-top:1px solid rgba(255,255,255,.10);
 
             text-align:center;
 
             color:#666;
 
             font-size:9px;
-
             letter-spacing:1px;
         }
 
-        /* =====================================================
-           WHATSAPP
-        ====================================================== */
+        /* WHATSAPP */
 
         .whatsapp-button{
-
             position:fixed;
 
             right:20px;
@@ -1177,24 +826,19 @@
             height:58px;
 
             display:flex;
-
             align-items:center;
             justify-content:center;
 
             border-radius:50%;
 
             background:#25D366 !important;
-
             color:#fff;
 
             text-decoration:none;
 
-            box-shadow:
-                0 5px 18px
-                rgba(0,0,0,.35);
+            box-shadow:0 5px 18px rgba(0,0,0,.35);
 
-            transition:
-                transform .2s ease;
+            transition:transform .2s ease;
         }
 
         .whatsapp-button:hover{
@@ -1202,7 +846,6 @@
         }
 
         .whatsapp-button svg{
-
             width:30px;
             height:30px;
 
@@ -1211,12 +854,9 @@
             fill:#fff;
         }
 
-        /* =====================================================
-           RESPONSIVE
-        ====================================================== */
+        /* RESPONSIVE */
 
         @media(max-width:1100px){
-
             .product{
                 flex-basis:190px;
                 width:190px;
@@ -1224,7 +864,6 @@
         }
 
         @media(max-width:800px){
-
             .info-grid{
                 grid-template-columns:1fr;
             }
@@ -1236,31 +875,22 @@
         }
 
         @media(max-width:600px){
-
             header{
-
                 padding:15px;
-
                 flex-wrap:wrap;
-
                 gap:14px;
             }
 
             .logo{
-
                 font-size:17px;
-
                 letter-spacing:2.5px;
             }
 
             nav{
-
                 order:3;
-
                 flex-basis:100%;
 
                 justify-content:flex-start;
-
                 gap:22px;
             }
 
@@ -1269,21 +899,16 @@
             }
 
             .search-section{
-
                 width:94%;
-
                 padding-top:20px;
             }
 
             .search-input{
-
                 height:48px;
-
                 padding-left:45px;
             }
 
             .hero{
-
                 width:94%;
 
                 padding:
@@ -1292,9 +917,6 @@
             }
 
             .hero h1{
-
-                margin-top:0;
-
                 font-size:
                     clamp(
                         65px,
@@ -1306,14 +928,11 @@
             }
 
             .hero p{
-
                 margin-top:25px;
-
                 font-size:13px;
             }
 
             .hero-note{
-
                 padding:
                     19px
                     18px
@@ -1321,40 +940,29 @@
                     21px;
 
                 font-size:12px;
-
                 line-height:1.75;
             }
 
             .products-section{
-
                 width:94%;
-
                 padding-bottom:80px;
             }
 
             .product{
-
                 flex-basis:155px;
-
                 width:155px;
-
                 border-radius:7px;
             }
 
             .product-info{
-
-                padding:
-                    9px 8px 11px;
+                padding:9px 8px 11px;
             }
 
             .product-name{
                 font-size:10px;
             }
 
-            .product-ref{
-                font-size:8px;
-            }
-
+            .product-ref,
             .product-category{
                 font-size:8px;
             }
@@ -1364,9 +972,7 @@
             }
 
             .products{
-
                 gap:9px;
-
                 animation-duration:24s;
             }
 
@@ -1384,7 +990,6 @@
             }
 
             .whatsapp-button{
-
                 width:54px;
                 height:54px;
 
@@ -1393,18 +998,14 @@
             }
 
             .whatsapp-button svg{
-
                 width:28px;
                 height:28px;
             }
         }
 
         @media(max-width:380px){
-
             .product{
-
                 flex-basis:145px;
-
                 width:145px;
             }
 
@@ -1418,19 +1019,12 @@
         }
 
         @media(prefers-reduced-motion:reduce){
-
             html{
                 scroll-behavior:auto !important;
             }
 
-            .hero h1{
-                animation:none !important;
-            }
-
-            .products{
-                animation:none !important;
-            }
-
+            .hero h1,
+            .products,
             .info-card h3{
                 animation:none !important;
             }
@@ -1439,17 +1033,12 @@
                 transition:none !important;
             }
         }
-
     </style>
-
 </head>
-
 
 <body>
 
-    <!-- =====================================================
-         WHATSAPP
-    ====================================================== -->
+    <!-- WHATSAPP -->
 
     <a
         href="https://wa.me/34674559614"
@@ -1458,64 +1047,30 @@
         rel="noopener noreferrer"
         aria-label="WhatsApp"
     >
-
         <svg viewBox="0 0 24 24">
-
             <path d="M20.52 3.48A11.86 11.86 0 0 0 12.08 0C5.53 0 .2 5.33.2 11.88c0 2.09.55 4.13 1.59 5.93L.1 24l6.34-1.66a11.9 11.9 0 0 0 5.64 1.43h.01c6.55 0 11.88-5.33 11.88-11.88 0-3.18-1.24-6.17-3.45-8.41ZM12.09 21.75h-.01a9.86 9.86 0 0 1-5.03-1.38l-.36-.21-3.76.99 1-3.67-.23-.38a9.84 9.84 0 0 1-1.51-5.22C2.19 6.44 6.62 2 12.08 2a9.83 9.83 0 0 1 6.99 2.9 9.88 9.88 0 0 1 2.91 7c0 5.46-4.43 9.89-9.89 9.89Zm5.42-7.41c-.3-.15-1.77-.87-2.05-.97-.28-.1-.48-.15-.68.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.68-1.64-.93-2.25-.24-.59-.49-.51-.68-.52h-.58c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.5s1.07 2.9 1.22 3.1c.15.2 2.1 3.21 5.09 4.5.71.31 1.27.5 1.7.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.27-.2-.57-.35Z"/>
-
         </svg>
-
     </a>
 
-
-    <!-- =====================================================
-         CABECERA
-    ====================================================== -->
+    <!-- CABECERA -->
 
     <header>
-
         <div class="logo">
             Strangis
         </div>
 
         <nav>
-
-            <a class="active" href="index.html">
-                Inicio
-            </a>
-
-            <a href="camisetas.html">
-                Camisetas
-            </a>
-
-            <a href="pantalones.html">
-                Pantalones
-            </a>
-
-            <a href="conjuntos.html">
-                Conjuntos
-            </a>
-
-            <a href="gorras.html">
-                Gorras
-            </a>
-
-            <a href="gafas.html">
-                Gafas
-            </a>
-
-            <a href="bisuteria.html">
-                Bisutería
-            </a>
-
+            <a class="active" href="index.html">Inicio</a>
+            <a href="camisetas.html">Camisetas</a>
+            <a href="pantalones.html">Pantalones</a>
+            <a href="conjuntos.html">Conjuntos</a>
+            <a href="gorras.html">Gorras</a>
+            <a href="gafas.html">Gafas</a>
+            <a href="bisuteria.html">Bisutería</a>
         </nav>
-
     </header>
 
-
-    <!-- =====================================================
-         BUSCADOR
-    ====================================================== -->
+    <!-- BUSCADOR -->
 
     <section class="search-section">
 
@@ -1531,22 +1086,9 @@
                 stroke-linejoin="round"
                 aria-hidden="true"
             >
-
-                <circle
-                    cx="11"
-                    cy="11"
-                    r="7"
-                ></circle>
-
-                <line
-                    x1="16.65"
-                    y1="16.65"
-                    x2="21"
-                    y2="21"
-                ></line>
-
+                <circle cx="11" cy="11" r="7"></circle>
+                <line x1="16.65" y1="16.65" x2="21" y2="21"></line>
             </svg>
-
 
             <input
                 id="productSearch"
@@ -1557,7 +1099,6 @@
                 placeholder="Buscar por referencia, color o variante..."
                 aria-label="Buscar productos por referencia, color o variante"
             >
-
 
             <button
                 id="searchClear"
@@ -1570,14 +1111,10 @@
 
         </div>
 
-
         <div class="search-help">
-
             Puedes buscar por referencia, color, variante,
             nombre o categoría.
-
         </div>
-
 
         <div
             id="searchResult"
@@ -1587,10 +1124,7 @@
 
     </section>
 
-
-    <!-- =====================================================
-         HERO
-    ====================================================== -->
+    <!-- HERO -->
 
     <section class="hero">
 
@@ -1616,10 +1150,7 @@
 
     </section>
 
-
-    <!-- =====================================================
-         PRODUCTOS
-    ====================================================== -->
+    <!-- PRODUCTOS -->
 
     <section class="products-section">
 
@@ -1635,25 +1166,19 @@
 
         </div>
 
-
         <div
             class="carousel-window"
             id="carouselWindow"
         >
-
             <div
                 class="products"
                 id="productsContainer"
             ></div>
-
         </div>
 
     </section>
 
-
-    <!-- =====================================================
-         INFORMACIÓN
-    ====================================================== -->
+    <!-- INFORMACIÓN -->
 
     <section class="info-section">
 
@@ -1677,7 +1202,6 @@
 
             </div>
 
-
             <div class="info-card">
 
                 <small>
@@ -1695,7 +1219,6 @@
                 </p>
 
             </div>
-
 
             <div class="info-card">
 
@@ -1719,21 +1242,13 @@
 
     </section>
 
-
-    <!-- =====================================================
-         FOOTER
-    ====================================================== -->
+    <!-- FOOTER -->
 
     <footer>
-
         © 2026 STRANGIS · TODOS LOS DERECHOS RESERVADOS
-
     </footer>
 
-
-    <!-- =====================================================
-         SUPABASE
-    ====================================================== -->
+    <!-- SUPABASE -->
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -1751,52 +1266,29 @@
                 SUPABASE_PUBLISHABLE_KEY
             );
 
-
-        /* =====================================================
-           CATEGORÍAS
-        ====================================================== */
-
         const CATEGORY_LINKS = {
-
             camisetas:"camisetas.html",
             pantalones:"pantalones.html",
             conjuntos:"conjuntos.html",
             gorras:"gorras.html",
             gafas:"gafas.html",
             bisuteria:"bisuteria.html"
-
         };
 
-
         const CATEGORY_NAMES = {
-
             camisetas:"Camisetas",
             pantalones:"Pantalones",
             conjuntos:"Conjuntos",
             gorras:"Gorras",
             gafas:"Gafas",
             bisuteria:"Bisutería"
-
         };
 
-
-        /* =====================================================
-           ESTADO
-        ====================================================== */
-
         let allProducts = [];
-
         let currentSearch = "";
 
-
-        /* =====================================================
-           SEGURIDAD
-        ====================================================== */
-
         function escapeHTML(value){
-
             return String(value ?? "")
-
                 .replace(/&/g,"&amp;")
                 .replace(/</g,"&lt;")
                 .replace(/>/g,"&gt;")
@@ -1804,11 +1296,8 @@
                 .replace(/'/g,"&#039;");
         }
 
-
         function escapeAttribute(value){
-
             return String(value ?? "")
-
                 .replace(/&/g,"&amp;")
                 .replace(/"/g,"&quot;")
                 .replace(/'/g,"&#039;")
@@ -1816,28 +1305,13 @@
                 .replace(/>/g,"&gt;");
         }
 
-
-        /* =====================================================
-           NORMALIZAR
-        ====================================================== */
-
         function normalizeText(value){
-
             return String(value ?? "")
-
                 .normalize("NFD")
-
                 .replace(/[\u0300-\u036f]/g,"")
-
                 .toLowerCase()
-
                 .trim();
         }
-
-
-        /* =====================================================
-           IMÁGENES
-        ====================================================== */
 
         function getProductImages(product){
 
@@ -1850,9 +1324,7 @@
             if(typeof raw === "string"){
 
                 try{
-
                     raw = JSON.parse(raw);
-
                 }
 
                 catch(error){
@@ -1926,19 +1398,12 @@
             return [...new Set(result)];
         }
 
-
         function getProductImage(product){
-
             const images =
                 getProductImages(product);
 
             return images[0] || "";
         }
-
-
-        /* =====================================================
-           VARIANTES
-        ====================================================== */
 
         function getProductVariants(product){
 
@@ -1946,8 +1411,7 @@
                 return [];
             }
 
-            let value =
-                product.variants;
+            let value = product.variants;
 
             if(
                 value === null ||
@@ -1956,21 +1420,16 @@
                 return [];
             }
 
-
             if(typeof value === "string"){
 
-                const trimmed =
-                    value.trim();
+                const trimmed = value.trim();
 
                 if(!trimmed){
                     return [];
                 }
 
                 try{
-
-                    value =
-                        JSON.parse(trimmed);
-
+                    value = JSON.parse(trimmed);
                 }
 
                 catch(error){
@@ -1982,16 +1441,13 @@
                 }
             }
 
-
             if(Array.isArray(value)){
 
                 const result = [];
 
                 value.forEach(item=>{
 
-                    if(
-                        typeof item === "string"
-                    ){
+                    if(typeof item === "string"){
 
                         if(item.trim()){
                             result.push(item.trim());
@@ -2000,18 +1456,12 @@
                         return;
                     }
 
+                    if(typeof item === "number"){
 
-                    if(
-                        typeof item === "number"
-                    ){
-
-                        result.push(
-                            String(item)
-                        );
+                        result.push(String(item));
 
                         return;
                     }
-
 
                     if(
                         item &&
@@ -2031,8 +1481,7 @@
                         ].forEach(key=>{
 
                             if(
-                                item[key] !==
-                                undefined &&
+                                item[key] !== undefined &&
                                 item[key] !== null &&
                                 String(item[key]).trim()
                             ){
@@ -2040,89 +1489,58 @@
                                 result.push(
                                     String(item[key]).trim()
                                 );
-
                             }
 
                         });
-
                     }
 
                 });
 
-                return [
-                    ...new Set(result)
-                ];
+                return [...new Set(result)];
             }
 
-
-            if(
-                typeof value === "object"
-            ){
+            if(typeof value === "object"){
 
                 const result = [];
 
                 Object.entries(value)
-                    .forEach(
-                        ([key,val])=>{
+                    .forEach(([key,val])=>{
 
-                            result.push(key);
+                        result.push(key);
 
-                            if(
-                                typeof val === "string" ||
-                                typeof val === "number"
-                            ){
-
-                                result.push(
-                                    String(val)
-                                );
-
-                            }
-
-                            else if(
-                                Array.isArray(val)
-                            ){
-
-                                val.forEach(item=>{
-
-                                    if(
-                                        typeof item === "string" ||
-                                        typeof item === "number"
-                                    ){
-
-                                        result.push(
-                                            String(item)
-                                        );
-                                    }
-
-                                });
-
-                            }
-
+                        if(
+                            typeof val === "string" ||
+                            typeof val === "number"
+                        ){
+                            result.push(String(val));
                         }
-                    );
 
-                return [
-                    ...new Set(result)
-                ];
+                        else if(Array.isArray(val)){
+
+                            val.forEach(item=>{
+
+                                if(
+                                    typeof item === "string" ||
+                                    typeof item === "number"
+                                ){
+                                    result.push(String(item));
+                                }
+
+                            });
+                        }
+
+                    });
+
+                return [...new Set(result)];
             }
 
-
-            return [
-                String(value)
-            ];
+            return [String(value)];
         }
 
-
         function getVariantsText(product){
-
             return getProductVariants(product)
                 .join(" · ");
         }
-
-
-        /* =====================================================
-           EXTRAER COLORES
-        ====================================================== */
 
         function getProductColors(product){
 
@@ -2132,10 +1550,6 @@
 
             const colors = [];
 
-            /*
-             * Campos directos habituales.
-             */
-
             [
                 "color",
                 "colour",
@@ -2143,8 +1557,7 @@
                 "colours"
             ].forEach(key=>{
 
-                const value =
-                    product[key];
+                const value = product[key];
 
                 if(
                     value !== undefined &&
@@ -2159,58 +1572,38 @@
                                 typeof item === "string" &&
                                 item.trim()
                             ){
-
-                                colors.push(
-                                    item.trim()
-                                );
-
+                                colors.push(item.trim());
                             }
 
                         });
 
                     }
 
-                    else if(
-                        typeof value === "string"
-                    ){
+                    else if(typeof value === "string"){
 
                         value
                             .split(/[,|;]/)
                             .forEach(item=>{
 
                                 if(item.trim()){
-                                    colors.push(
-                                        item.trim()
-                                    );
+                                    colors.push(item.trim());
                                 }
 
                             });
-
                     }
-
                 }
-
             });
 
-
-            /*
-             * Intentamos extraer colores
-             * desde variants.
-             */
-
-            let variants =
-                product.variants;
-
+            let variants = product.variants;
 
             if(typeof variants === "string"){
 
                 try{
-                    variants =
-                        JSON.parse(variants);
+                    variants = JSON.parse(variants);
                 }
+
                 catch(error){}
             }
-
 
             if(Array.isArray(variants)){
 
@@ -2231,25 +1624,16 @@
                                 item[key] !== null &&
                                 String(item[key]).trim()
                             ){
-
                                 colors.push(
                                     String(item[key]).trim()
                                 );
-
                             }
 
                         });
-
                     }
 
                 });
-
             }
-
-
-            /*
-             * Eliminamos duplicados.
-             */
 
             return [
                 ...new Map(
@@ -2263,12 +1647,7 @@
             ];
         }
 
-
-        /* =====================================================
-           DETECTAR COLOR DE LA BÚSQUEDA
-        ====================================================== */
-
-        function getMatchedColor(product, search){
+        function getMatchedColor(product,search){
 
             const query =
                 normalizeText(search);
@@ -2280,10 +1659,6 @@
             const colors =
                 getProductColors(product);
 
-            /*
-             * Primero buscamos coincidencia exacta.
-             */
-
             const exact =
                 colors.find(
                     color =>
@@ -2293,11 +1668,6 @@
             if(exact){
                 return exact;
             }
-
-
-            /*
-             * Después coincidencia parcial.
-             */
 
             const partial =
                 colors.find(
@@ -2310,18 +1680,10 @@
                 return partial;
             }
 
-
-            /*
-             * Si la búsqueda contiene
-             * varias palabras, intentamos
-             * encontrar un color dentro.
-             */
-
             const words =
                 query
                     .split(/\s+/)
                     .filter(Boolean);
-
 
             for(const color of colors){
 
@@ -2334,19 +1696,12 @@
                             normalizedColor.includes(word)
                     )
                 ){
-
                     return color;
                 }
             }
 
-
             return "";
         }
-
-
-        /* =====================================================
-           REFERENCIA
-        ====================================================== */
 
         function getProductReference(product){
 
@@ -2357,11 +1712,6 @@
                 ""
             ).trim();
         }
-
-
-        /* =====================================================
-           CATEGORÍA
-        ====================================================== */
 
         function getCategoryName(category){
 
@@ -2375,11 +1725,7 @@
                 || "Strangis";
         }
 
-
-        function getProductLink(
-            product,
-            search
-        ){
+        function getProductLink(product,search){
 
             const category =
                 String(
@@ -2388,21 +1734,15 @@
                 .trim()
                 .toLowerCase();
 
-
             const base =
                 CATEGORY_LINKS[category];
-
 
             if(!base){
                 return "#";
             }
 
-
             const reference =
-                getProductReference(
-                    product
-                );
-
+                getProductReference(product);
 
             const matchedColor =
                 getMatchedColor(
@@ -2410,108 +1750,65 @@
                     search
                 );
 
-
             const params =
                 new URLSearchParams();
 
-
-            /*
-             * REFERENCIA
-             */
-
             if(reference){
-
                 params.set(
                     "ref",
                     reference
                 );
             }
 
-
-            /*
-             * COLOR ENCONTRADO
-             */
-
             if(matchedColor){
-
                 params.set(
                     "color",
                     matchedColor
                 );
             }
 
-
-            /*
-             * BÚSQUEDA ORIGINAL
-             */
-
             if(search){
-
                 params.set(
                     "buscar",
                     search
                 );
             }
 
-
             const query =
                 params.toString();
-
 
             return query
                 ? `${base}?${query}`
                 : base;
         }
 
-
-        /* =====================================================
-           DATOS PARA BUSCAR
-        ====================================================== */
-
         function getSearchableText(product){
 
             const reference =
-                getProductReference(
-                    product
-                );
-
+                getProductReference(product);
 
             const name =
-                product?.name ??
-                "";
-
+                product?.name ?? "";
 
             const variants =
                 getProductVariants(product)
                     .join(" ");
 
-
             const colors =
                 getProductColors(product)
                     .join(" ");
 
-
             const category =
-                product?.category ??
-                "";
-
-
-            /*
-             * También incluimos posibles
-             * campos adicionales si existen.
-             */
+                product?.category ?? "";
 
             const extra = [
-
                 product?.description,
                 product?.title,
                 product?.brand,
                 product?.model,
                 product?.color,
                 product?.colour
-
             ].filter(Boolean);
-
 
             return normalizeText(
                 [
@@ -2525,72 +1822,40 @@
             );
         }
 
-
-        /* =====================================================
-           FILTRAR
-        ====================================================== */
-
         function filterProducts(search){
 
             const query =
                 normalizeText(search);
 
-
             if(!query){
                 return allProducts;
             }
-
-
-            /*
-             * Si escribimos:
-             *
-             * "camiseta negra"
-             *
-             * exigimos que TODAS las palabras
-             * estén presentes.
-             */
 
             const words =
                 query
                     .split(/\s+/)
                     .filter(Boolean);
 
+            return allProducts.filter(product=>{
 
-            return allProducts.filter(
-                product => {
+                const searchable =
+                    getSearchableText(product);
 
-                    const searchable =
-                        getSearchableText(
-                            product
-                        );
-
-
-                    return words.every(
-                        word =>
-                            searchable.includes(word)
-                    );
-                }
-            );
+                return words.every(
+                    word =>
+                        searchable.includes(word)
+                );
+            });
         }
 
-
-        /* =====================================================
-           TARJETA
-        ====================================================== */
-
-        function createProductCard(
-            product,
-            search
-        ){
+        function createProductCard(product,search){
 
             const image =
                 getProductImage(product);
 
-
             if(!image){
                 return "";
             }
-
 
             const name =
                 String(
@@ -2598,39 +1863,24 @@
                     "Producto Strangis"
                 );
 
-
             const reference =
-                getProductReference(
-                    product
-                );
-
+                getProductReference(product);
 
             const category =
                 String(
-                    product?.category ||
-                    ""
+                    product?.category || ""
                 )
                 .trim()
                 .toLowerCase();
 
-
             const categoryName =
-                getCategoryName(
-                    category
-                );
-
+                getCategoryName(category);
 
             const variants =
-                getVariantsText(
-                    product
-                );
-
+                getVariantsText(product);
 
             const colors =
-                getProductColors(
-                    product
-                );
-
+                getProductColors(product);
 
             const matchedColor =
                 getMatchedColor(
@@ -2638,24 +1888,15 @@
                     search
                 );
 
-
             const link =
                 getProductLink(
                     product,
                     search
                 );
 
-
-            /*
-             * Si encontramos un color,
-             * lo mostramos claramente.
-             */
-
             const colorText =
-                matchedColor
-                ||
+                matchedColor ||
                 colors.join(" · ");
-
 
             return `
 
@@ -2684,13 +1925,11 @@
 
                         </div>
 
-
                         <div class="product-info">
 
                             <div class="product-name">
                                 ${escapeHTML(name)}
                             </div>
-
 
                             ${
                                 reference
@@ -2704,11 +1943,9 @@
                                 ""
                             }
 
-
                             <div class="product-category">
                                 ${escapeHTML(categoryName)}
                             </div>
-
 
                             ${
                                 colorText
@@ -2722,7 +1959,6 @@
                                 :
                                 ""
                             }
-
 
                             ${
                                 variants
@@ -2745,11 +1981,6 @@
             `;
         }
 
-
-        /* =====================================================
-           MOSTRAR
-        ====================================================== */
-
         function renderProducts(products){
 
             const container =
@@ -2757,35 +1988,28 @@
                     "productsContainer"
                 );
 
-
             const counter =
                 document.getElementById(
                     "productCount"
                 );
-
 
             const result =
                 document.getElementById(
                     "searchResult"
                 );
 
-
             if(!container){
                 return;
             }
 
-
             const activeProducts =
                 Array.isArray(products)
-
                 ? products.filter(
                     product =>
                         product &&
                         product.active !== false
                 )
-
                 : [];
-
 
             const validProducts =
                 activeProducts.filter(
@@ -2795,12 +2019,10 @@
                         )
                 );
 
-
             counter.textContent =
                 validProducts.length === 1
                 ? "1 artículo"
                 : `${validProducts.length} artículos`;
-
 
             if(currentSearch){
 
@@ -2827,16 +2049,12 @@
             }
 
             else{
-
                 result.textContent = "";
             }
 
-
             if(!validProducts.length){
 
-                container.style.animation =
-                    "none";
-
+                container.style.animation = "none";
 
                 container.innerHTML = `
 
@@ -2851,7 +2069,6 @@
                             }
 
                         </div>
-
 
                         <div class="empty-text">
 
@@ -2882,7 +2099,6 @@
                 return;
             }
 
-
             const cards =
                 validProducts
                     .map(
@@ -2894,19 +2110,12 @@
                     )
                     .join("");
 
-
-            /*
-             * Carrusel infinito.
-             */
-
             if(validProducts.length > 1){
 
                 container.innerHTML =
                     cards + cards;
 
-
-                container.style.animation =
-                    "";
+                container.style.animation = "";
 
             }
 
@@ -2915,16 +2124,9 @@
                 container.innerHTML =
                     cards;
 
-
-                container.style.animation =
-                    "none";
+                container.style.animation = "none";
             }
         }
-
-
-        /* =====================================================
-           BUSCAR
-        ====================================================== */
 
         function performSearch(){
 
@@ -2933,21 +2135,17 @@
                     "productSearch"
                 );
 
-
             const clearButton =
                 document.getElementById(
                     "searchClear"
                 );
 
-
             if(!input){
                 return;
             }
 
-
             currentSearch =
                 input.value.trim();
-
 
             if(clearButton){
 
@@ -2957,34 +2155,23 @@
                 );
             }
 
-
             const filtered =
                 filterProducts(
                     currentSearch
                 );
 
-
-            renderProducts(
-                filtered
-            );
+            renderProducts(filtered);
         }
-
-
-        /* =====================================================
-           EVENTOS
-        ====================================================== */
 
         const searchInput =
             document.getElementById(
                 "productSearch"
             );
 
-
         const searchClear =
             document.getElementById(
                 "searchClear"
             );
-
 
         if(searchInput){
 
@@ -2993,44 +2180,28 @@
                 performSearch
             );
 
-
             searchInput.addEventListener(
                 "search",
                 performSearch
             );
 
-
-            /*
-             * Enter:
-             *
-             * Si hay un único resultado,
-             * vamos directamente a él.
-             */
-
             searchInput.addEventListener(
                 "keydown",
-                event => {
+                event=>{
 
-                    if(
-                        event.key !== "Enter"
-                    ){
+                    if(event.key !== "Enter"){
                         return;
                     }
-
 
                     const filtered =
                         filterProducts(
                             searchInput.value.trim()
                         );
 
-
-                    if(
-                        filtered.length === 1
-                    ){
+                    if(filtered.length === 1){
 
                         const product =
                             filtered[0];
-
 
                         const link =
                             getProductLink(
@@ -3038,18 +2209,17 @@
                                 searchInput.value.trim()
                             );
 
-
-                        if(link && link !== "#"){
-
+                        if(
+                            link &&
+                            link !== "#"
+                        ){
                             window.location.href =
                                 link;
                         }
                     }
-
                 }
             );
         }
-
 
         if(searchClear){
 
@@ -3058,18 +2228,12 @@
                 ()=>{
 
                     searchInput.value = "";
-
                     searchInput.focus();
 
                     performSearch();
                 }
             );
         }
-
-
-        /* =====================================================
-           CARGAR PRODUCTOS
-        ====================================================== */
 
         async function loadInicioProducts(){
 
@@ -3078,18 +2242,15 @@
                     "productsContainer"
                 );
 
-
             const counter =
                 document.getElementById(
                     "productCount"
                 );
 
-
             try{
 
                 counter.textContent =
                     "Cargando...";
-
 
                 if(!currentSearch){
 
@@ -3110,19 +2271,14 @@
                     `;
                 }
 
-
                 const {
                     data,
                     error
                 } =
                     await supabaseClient
-
                         .from("Products")
-
                         .select("*")
-
                         .eq("active",true)
-
                         .order(
                             "id",
                             {
@@ -3130,34 +2286,26 @@
                             }
                         );
 
-
                 if(error){
                     throw error;
                 }
-
 
                 console.log(
                     "STRANGIS — productos recibidos:",
                     data
                 );
 
-
                 allProducts =
                     Array.isArray(data)
                     ? data
                     : [];
-
 
                 const filtered =
                     filterProducts(
                         currentSearch
                     );
 
-
-                renderProducts(
-                    filtered
-                );
-
+                renderProducts(filtered);
 
             }
 
@@ -3168,10 +2316,8 @@
                     error
                 );
 
-
                 counter.textContent =
                     "Error";
-
 
                 container.innerHTML = `
 
@@ -3204,16 +2350,10 @@
             }
         }
 
-
-        /* =====================================================
-           PAUSAR CARRUSEL
-        ====================================================== */
-
         const carouselWindow =
             document.getElementById(
                 "carouselWindow"
             );
-
 
         if(carouselWindow){
 
@@ -3226,15 +2366,12 @@
                             "productsContainer"
                         );
 
-
                     if(track){
-
                         track.style.animationPlayState =
                             "paused";
                     }
                 }
             );
-
 
             carouselWindow.addEventListener(
                 "mouseleave",
@@ -3245,9 +2382,7 @@
                             "productsContainer"
                         );
 
-
                     if(track){
-
                         track.style.animationPlayState =
                             "running";
                     }
@@ -3255,23 +2390,12 @@
             );
         }
 
-
-        /* =====================================================
-           INICIO
-        ====================================================== */
-
         loadInicioProducts();
-
-
-        /*
-         * Actualizar productos cada 30 segundos.
-         */
 
         setInterval(
             loadInicioProducts,
             30000
         );
-
 
         console.log(
             "STRANGIS — inicio conectado directamente a Supabase"
@@ -3288,5 +2412,4 @@
     </script>
 
 </body>
-
 </html>
