@@ -1,5 +1,32 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Strangis</title><meta name="description" content="Strangis — Tu tienda online."><style>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Strangis</title>
+
+<meta
+    name="description"
+    content="Strangis — Tu tienda online."
+>
+
+<meta property="og:type" content="website">
+
+<meta
+    property="og:url"
+    content="https://yfmodaurbana-eng.github.io/TiendaOnline/"
+>
+
+<meta
+    property="og:image"
+    content="https://i.imgur.com/nomrvEn.jpeg"
+>
+
+<style>
 
 *{
     margin:0;
@@ -39,6 +66,7 @@ input{
     font:inherit;
 }
 
+
 /* =====================================================
    HEADER
 ===================================================== */
@@ -73,7 +101,6 @@ header{
 
     font-size:22px;
     font-weight:900;
-
     letter-spacing:4px;
 }
 
@@ -82,13 +109,10 @@ nav{
     flex:1;
 
     display:flex;
-
     justify-content:center;
-
     gap:28px;
 
     overflow-x:auto;
-
     scrollbar-width:none;
 }
 
@@ -103,7 +127,6 @@ nav a{
     text-decoration:none;
 
     font-size:11px;
-
     font-weight:bold;
 
     letter-spacing:1.5px;
@@ -111,12 +134,15 @@ nav a{
     text-transform:uppercase;
 
     white-space:nowrap;
+
+    transition:color .2s ease;
 }
 
 nav a:hover,
 nav a.active{
     color:#fff;
 }
+
 
 /* =====================================================
    BUSCADOR
@@ -138,7 +164,6 @@ nav a.active{
     width:100%;
 
     display:flex;
-
     align-items:center;
 }
 
@@ -178,6 +203,13 @@ nav a.active{
 
     background:
         rgba(255,255,255,.055);
+
+    box-shadow:
+        inset 0 0 20px
+        rgba(255,255,255,.015),
+
+        0 8px 30px
+        rgba(0,0,0,.15);
 }
 
 .search-input::placeholder{
@@ -191,6 +223,13 @@ nav a.active{
 
     background:
         rgba(255,255,255,.075);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(255,255,255,.035),
+
+        0 10px 35px
+        rgba(0,0,0,.2);
 }
 
 .search-clear{
@@ -203,12 +242,10 @@ nav a.active{
     height:34px;
 
     display:flex;
-
     align-items:center;
     justify-content:center;
 
     border:0;
-
     border-radius:50%;
 
     color:#999;
@@ -219,14 +256,12 @@ nav a.active{
     cursor:pointer;
 
     opacity:0;
-
     visibility:hidden;
 }
 
 .search-clear.visible{
 
     opacity:1;
-
     visibility:visible;
 }
 
@@ -253,9 +288,9 @@ nav a.active{
 
 .search-result{
 
-    min-height:16px;
+    min-height:18px;
 
-    margin-top:8px;
+    margin-top:9px;
 
     color:#999;
 
@@ -267,6 +302,7 @@ nav a.active{
 .search-result strong{
     color:#ddd;
 }
+
 
 /* =====================================================
    HERO
@@ -285,6 +321,8 @@ nav a.active{
 }
 
 .hero h1{
+
+    display:inline-block;
 
     font-size:
         clamp(
@@ -381,6 +419,7 @@ nav a.active{
 .hero-note strong{
     color:#ffb15c;
 }
+
 
 /* =====================================================
    PRODUCTOS
@@ -541,7 +580,8 @@ nav a.active{
 
     transition:
         transform .25s ease,
-        border-color .25s ease;
+        border-color .25s ease,
+        background .25s ease;
 }
 
 .product:hover{
@@ -550,6 +590,9 @@ nav a.active{
 
     border-color:
         rgba(255,255,255,.25);
+
+    background:
+        rgba(255,255,255,.07);
 }
 
 .product-image{
@@ -635,7 +678,7 @@ nav a.active{
 
     margin-top:6px;
 
-    color:#ffb15c;
+    color:#aaa;
 
     font-size:9px;
 
@@ -652,6 +695,117 @@ nav a.active{
 
     text-decoration:none;
 }
+
+
+/* =====================================================
+   RESULTADO DE COLOR
+===================================================== */
+
+.color-result{
+
+    width:min(500px,100%);
+
+    margin:
+        0
+        auto
+        45px;
+
+    overflow:hidden;
+
+    border:
+        1px solid
+        rgba(255,255,255,.15);
+
+    border-radius:12px;
+
+    background:
+        rgba(255,255,255,.055);
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,.3);
+}
+
+.color-result-image{
+
+    width:100%;
+
+    aspect-ratio:1 / 1;
+
+    overflow:hidden;
+
+    background:#181818;
+}
+
+.color-result-image img{
+
+    width:100%;
+    height:100%;
+
+    display:block;
+
+    object-fit:cover;
+}
+
+.color-result-info{
+
+    padding:18px;
+}
+
+.color-result-name{
+
+    font-size:15px;
+
+    font-weight:900;
+}
+
+.color-result-color{
+
+    margin-top:6px;
+
+    color:#aaa;
+
+    font-size:11px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+}
+
+.color-result-button{
+
+    display:block;
+
+    margin-top:15px;
+
+    padding:12px;
+
+    border-radius:7px;
+
+    color:#fff;
+
+    background:
+        rgba(255,255,255,.08);
+
+    text-align:center;
+
+    text-decoration:none;
+
+    font-size:10px;
+
+    font-weight:bold;
+
+    letter-spacing:1px;
+
+    text-transform:uppercase;
+}
+
+.color-result-button:hover{
+
+    background:
+        rgba(255,255,255,.15);
+}
+
 
 /* =====================================================
    VACÍO
@@ -703,6 +857,7 @@ nav a.active{
     line-height:1.7;
 }
 
+
 /* =====================================================
    INFORMACIÓN
 ===================================================== */
@@ -742,6 +897,10 @@ nav a.active{
             rgba(255,145,45,.14),
             rgba(255,120,25,.045)
         );
+
+    box-shadow:
+        0 10px 35px
+        rgba(0,0,0,.22);
 }
 
 .info-card small{
@@ -762,6 +921,8 @@ nav a.active{
     color:#f5f5f5;
 
     font-size:16px;
+
+    line-height:1.25;
 }
 
 .info-card p{
@@ -774,6 +935,7 @@ nav a.active{
 
     line-height:1.75;
 }
+
 
 /* =====================================================
    FOOTER
@@ -795,6 +957,7 @@ footer{
 
     letter-spacing:1px;
 }
+
 
 /* =====================================================
    WHATSAPP
@@ -838,9 +1001,18 @@ footer{
     fill:#fff;
 }
 
+
 /* =====================================================
    RESPONSIVE
 ===================================================== */
+
+@media(max-width:1100px){
+
+    .product{
+        flex-basis:190px;
+        width:190px;
+    }
+}
 
 @media(max-width:800px){
 
@@ -849,9 +1021,7 @@ footer{
     }
 
     .product{
-
         flex-basis:175px;
-
         width:175px;
     }
 }
@@ -954,6 +1124,30 @@ footer{
         flex-basis:155px;
 
         width:155px;
+
+        border-radius:7px;
+    }
+
+    .product-info{
+
+        padding:
+            9px 8px 11px;
+    }
+
+    .product-name{
+        font-size:10px;
+    }
+
+    .product-ref{
+        font-size:8px;
+    }
+
+    .product-category{
+        font-size:8px;
+    }
+
+    .product-color{
+        font-size:8px;
     }
 
     .products{
@@ -972,6 +1166,10 @@ footer{
         width:94%;
     }
 
+    .info-card{
+        padding:23px;
+    }
+
     .whatsapp-button{
 
         width:54px;
@@ -982,160 +1180,349 @@ footer{
     }
 }
 
-</style></head><body><!-- =====================================================
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
      WHATSAPP
-===================================================== --><a
-href="https://wa.me/34674559614"
-class="whatsapp-button"
-target="_blank"
-rel="noopener noreferrer"
-aria-label="WhatsApp"
+===================================================== -->
 
-«»
+<a
+    href="https://wa.me/34674559614"
+    class="whatsapp-button"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="WhatsApp"
+>
 
-<svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.08 0C5.53 0 .2 5.33.2 11.88c0 2.09.55 4.13 1.59 5.93L.1 24l6.34-1.66a11.9 11.9 0 0 0 5.64 1.43h.01c6.55 0 11.88-5.33 11.88-11.88 0-3.18-1.24-6.17-3.45-8.41ZM12.09 21.75h-.01a9.86 9.86 0 0 1-5.03-1.38l-.36-.21-3.76.99 1-3.67-.23-.38a9.84 9.84 0 0 1-1.51-5.22C2.19 6.44 6.62 2 12.08 2a9.83 9.83 0 0 1 6.99 2.9 9.88 9.88 0 0 1 2.91 7c0 5.46-4.43 9.89-9.89 9.89Zm5.42-7.41c-.3-.15-1.77-.87-2.05-.97-.28-.1-.48-.15-.68.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.68-1.64-.93-2.25-.24-.59-.49-.51-.68-.52h-.58c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.5s1.07 2.9 1.22 3.1c.15.2 2.1 3.21 5.09 4.5.71.31 1.27.5 1.7.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.27-.2-.57-.35Z"/></svg></a><!-- =====================================================
-     CABECERA
-===================================================== --><header><div class="logo">
-Strangis
-</div><nav><a class="active" href="index.html">
-Inicio
-</a><a href="camisetas.html">
-Camisetas
-</a><a href="pantalones.html">
-Pantalones
-</a><a href="conjuntos.html">
-Conjuntos
-</a><a href="gorras.html">
-Gorras
-</a><a href="gafas.html">
-Gafas
-</a><a href="bisuteria.html">
-Bisutería
-</a></nav></header><!-- =====================================================
+<svg viewBox="0 0 24 24">
+
+<path d="M20.52 3.48A11.86 11.86 0 0 0 12.08 0C5.53 0 .2 5.33.2 11.88c0 2.09.55 4.13 1.59 5.93L.1 24l6.34-1.66a11.9 11.9 0 0 0 5.64 1.43h.01c6.55 0 11.88-5.33 11.88-11.88 0-3.18-1.24-6.17-3.45-8.41ZM12.09 21.75h-.01a9.86 9.86 0 0 1-5.03-1.38l-.36-.21-3.76.99 1-3.67-.23-.38a9.84 9.84 0 0 1-1.51-5.22C2.19 6.44 6.62 2 12.08 2a9.83 9.83 0 0 1 6.99 2.9 9.88 9.88 0 0 1 2.91 7c0 5.46-4.43 9.89-9.89 9.89Zm5.42-7.41c-.3-.15-1.77-.87-2.05-.97-.28-.1-.48-.15-.68.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.68-1.64-.93-2.25-.24-.59-.49-.51-.68-.52h-.58c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.5s1.07 2.9 1.22 3.1c.15.2 2.1 3.21 5.09 4.5.71.31 1.27.5 1.7.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.27-.2-.57-.35Z"/>
+
+</svg>
+
+</a>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+<div class="logo">
+    Strangis
+</div>
+
+<nav>
+
+<a class="active" href="index.html">
+    Inicio
+</a>
+
+<a href="camisetas.html">
+    Camisetas
+</a>
+
+<a href="pantalones.html">
+    Pantalones
+</a>
+
+<a href="conjuntos.html">
+    Conjuntos
+</a>
+
+<a href="gorras.html">
+    Gorras
+</a>
+
+<a href="gafas.html">
+    Gafas
+</a>
+
+<a href="bisuteria.html">
+    Bisutería
+</a>
+
+</nav>
+
+</header>
+
+
+<!-- =====================================================
      BUSCADOR
-===================================================== --><section class="search-section"><div class="search-box"><svg
-class="search-icon"
-viewBox="0 0 24 24"
-fill="none"
-stroke="currentColor"
-stroke-width="2"
-stroke-linecap="round"
-stroke-linejoin="round"
+===================================================== -->
 
-«»
+<section class="search-section">
+
+<div class="search-box">
+
+<svg
+    class="search-icon"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+>
 
 <circle
-cx="11"
-cy="11"
-r="7"
-
-«</circle>»
+    cx="11"
+    cy="11"
+    r="7"
+></circle>
 
 <line
-x1="16.65"
-y1="16.65"
-x2="21"
-y2="21"
+    x1="16.65"
+    y1="16.65"
+    x2="21"
+    y2="21"
+></line>
 
-«</line>»
+</svg>
 
-</svg><input
-id="productSearch"
-class="search-input"
-type="search"
-autocomplete="off"
-spellcheck="false"
-placeholder="Buscar por referencia, color o nombre..."
-aria-label="Buscar productos"
 
-«»
+<input
+    id="productSearch"
+    class="search-input"
+    type="search"
+    autocomplete="off"
+    spellcheck="false"
+    placeholder="Buscar por referencia, color o nombre..."
+    aria-label="Buscar productos"
+/>
+
 
 <button
-id="searchClear"
-class="search-clear"
-type="button"
-aria-label="Limpiar búsqueda"
-
-«»
-
+    id="searchClear"
+    class="search-clear"
+    type="button"
+    aria-label="Limpiar búsqueda"
+>
 ×
 </button>
 
-</div><div class="search-help">Puedes buscar por referencia, color o nombre.
+</div>
 
-</div><div
-id="searchResult"
-class="search-result"
-aria-live="polite"
-></div></section><!-- =====================================================
+
+<div class="search-help">
+
+Puedes buscar por referencia, color o nombre.
+
+</div>
+
+
+<div
+    id="searchResult"
+    class="search-result"
+    aria-live="polite"
+></div>
+
+</section>
+
+
+<!-- =====================================================
      HERO
-===================================================== --><section class="hero"><h1>
-STRANGIS
-</h1><p>
+===================================================== -->
+
+<section class="hero">
+
+<h1>
+    STRANGIS
+</h1>
+
+<p>
+
 Descubre nuestra selección de moda y accesorios.
 Productos seleccionados para crear tu propio estilo
 sin seguir las reglas de siempre.
-</p><div class="hero-note">Los artículos pueden proceder de proveedores
+
+</p>
+
+
+<div class="hero-note">
+
+Los artículos pueden proceder de proveedores
 internacionales. Por este motivo, algunos pedidos
 pueden tardar <strong>hasta 30 días</strong> en llegar.
 Te recomendamos tenerlo en cuenta antes de realizar
 tu compra.
 
-</div></section><!-- =====================================================
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     RESULTADO EXACTO DEL COLOR
+===================================================== -->
+
+<section
+    id="colorResultSection"
+    style="display:none;"
+>
+
+<div
+    id="colorResult"
+    class="color-result"
+></div>
+
+</section>
+
+
+<!-- =====================================================
      PRODUCTOS
-===================================================== --><section class="products-section"><div class="section-heading"><h2>
-Todos los artículos
-</h2><span id="productCount">
-Cargando...
-</span></div><div
-class="carousel-window"
-id="carouselWindow"
-><div
-class="products"
-id="productsContainer"
-></div></div></section><!-- =====================================================
+===================================================== -->
+
+<section class="products-section">
+
+<div class="section-heading">
+
+<h2>
+    Todos los artículos
+</h2>
+
+<span id="productCount">
+    Cargando...
+</span>
+
+</div>
+
+
+<div
+    class="carousel-window"
+    id="carouselWindow"
+>
+
+<div
+    class="products"
+    id="productsContainer"
+></div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
      INFORMACIÓN
-===================================================== --><section class="info-section"><div class="info-grid"><div class="info-card"><small>
-ENVÍOS
-</small><h3>
-Envíos internacionales
-</h3><p>
+===================================================== -->
+
+<section class="info-section">
+
+<div class="info-grid">
+
+
+<div class="info-card">
+
+<small>
+    ENVÍOS
+</small>
+
+<h3>
+    Envíos internacionales
+</h3>
+
+<p>
+
 Algunos artículos proceden de proveedores
 internacionales y pueden tardar
 <strong>hasta 30 días</strong> en llegar.
-</p></div><div class="info-card"><small>
-COLECCIÓN
-</small><h3>
-Selección Strangis
-</h3><p>
+
+</p>
+
+</div>
+
+
+<div class="info-card">
+
+<small>
+    COLECCIÓN
+</small>
+
+<h3>
+    Selección Strangis
+</h3>
+
+<p>
+
 Añadimos nuevos artículos
 progresivamente a nuestras diferentes
 categorías.
-</p></div><div class="info-card"><small>
-COMPRA
-</small><h3>
-Compra sencilla
-</h3><p>
+
+</p>
+
+</div>
+
+
+<div class="info-card">
+
+<small>
+    COMPRA
+</small>
+
+<h3>
+    Compra sencilla
+</h3>
+
+<p>
+
 Selecciona el artículo que quieras,
 elige las opciones disponibles y
 realiza tu pedido.
-</p></div></div></section><footer>© 2026 STRANGIS · TODOS LOS DERECHOS RESERVADOS
 
-</footer><!-- =====================================================
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+© 2026 STRANGIS · TODOS LOS DERECHOS RESERVADOS
+
+</footer>
+
+
+<!-- =====================================================
      SUPABASE
-===================================================== --><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>
+===================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<script>
+
+/* =====================================================
+   SUPABASE
+===================================================== */
 
 const SUPABASE_URL =
-"https://xbbjfatmdbxbuoqdrgoj.supabase.co";
+    "https://xbbjfatmdbxbuoqdrgoj.supabase.co";
 
 const SUPABASE_PUBLISHABLE_KEY =
-"sb_publishable_M7ETdIWvj4nCQZ55i24Vpw_5Yc5Islk";
+    "sb_publishable_M7ETdIWvj4nCQZ55i24Vpw_5Yc5Islk";
+
 
 const supabaseClient =
-window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY
-);
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+    );
 
 
 /* =====================================================
@@ -1145,16 +1532,23 @@ window.supabase.createClient(
 const CATEGORY_LINKS = {
 
     camisetas:"camisetas.html",
-
     pantalones:"pantalones.html",
-
     conjuntos:"conjuntos.html",
-
     gorras:"gorras.html",
-
     gafas:"gafas.html",
-
     bisuteria:"bisuteria.html"
+
+};
+
+
+const CATEGORY_NAMES = {
+
+    camisetas:"Camisetas",
+    pantalones:"Pantalones",
+    conjuntos:"Conjuntos",
+    gorras:"Gorras",
+    gafas:"Gafas",
+    bisuteria:"Bisutería"
 
 };
 
@@ -1165,9 +1559,35 @@ const CATEGORY_LINKS = {
 
 let allProducts = [];
 
-let colorImages = [];
+let allColors = [];
 
 let currentSearch = "";
+
+
+/* =====================================================
+   SEGURIDAD
+===================================================== */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+}
+
+
+function escapeAttribute(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;");
+}
 
 
 /* =====================================================
@@ -1185,114 +1605,107 @@ function normalizeText(value){
 
 
 /* =====================================================
-   ESCAPE
+   IMÁGENES DE PRODUCTS
 ===================================================== */
 
-function escapeHTML(value){
-
-    return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-}
-
-
-function escapeAttribute(value){
-
-    return escapeHTML(value);
-}
-
-
-/* =====================================================
-   IMAGEN PRINCIPAL
-===================================================== */
-
-function getMainImage(product){
+function getProductImage(product){
 
     if(!product){
         return "";
     }
 
-    let images =
-        product.images;
+    let raw = product.images;
 
-    if(typeof images === "string"){
+    if(typeof raw === "string"){
 
         try{
 
-            images =
-                JSON.parse(images);
+            raw = JSON.parse(raw);
 
         }catch(error){
 
-            return images.startsWith("http")
-                ? images
+            return raw.startsWith("http")
+                ? raw
                 : "";
         }
     }
 
-    if(!Array.isArray(images)){
+
+    if(!Array.isArray(raw)){
         return "";
     }
 
-    for(const item of images){
 
-        if(typeof item === "string"){
-            return item;
-        }
+    for(const item of raw){
 
         if(
             item &&
-            typeof item === "object"
+            typeof item === "object" &&
+            Array.isArray(item.images) &&
+            item.images.length
         ){
 
-            if(
-                Array.isArray(item.images) &&
-                item.images.length
-            ){
+            return item.images[0];
+        }
 
-                return item.images[0];
-            }
 
-            if(
-                typeof item.url === "string"
-            ){
+        if(
+            typeof item === "string" &&
+            item.startsWith("http")
+        ){
 
-                return item.url;
-            }
+            return item;
         }
     }
+
 
     return "";
 }
 
 
 /* =====================================================
-   BUSCAR COLOR EN product_colors
+   REFERENCIA
 ===================================================== */
 
-function findColorImage(
-    product,
-    search
-){
+function getProductReference(product){
+
+    return String(
+        product?.ref ??
+        product?.reference ??
+        product?.sku ??
+        ""
+    ).trim();
+}
+
+
+/* =====================================================
+   CATEGORÍA
+===================================================== */
+
+function getCategoryName(category){
+
+    const key =
+        String(category || "")
+            .trim()
+            .toLowerCase();
+
+    return CATEGORY_NAMES[key]
+        || category
+        || "Strangis";
+}
+
+
+/* =====================================================
+   IMAGEN EXACTA DEL COLOR
+===================================================== */
+
+function findColorResult(search){
 
     const query =
         normalizeText(search);
 
+
     if(!query){
-        return null;
-    }
-
-    const matches =
-        colorImages.filter(
-            item =>
-                Number(item.product_id) ===
-                Number(product.id)
-        );
-
-    if(!matches.length){
         return null;
     }
 
@@ -1301,43 +1714,38 @@ function findColorImage(
      * Primero coincidencia exacta.
      */
 
-    let found =
-        matches.find(
-            item =>
-                normalizeText(item.color) ===
-                query
+    let result =
+        allColors.find(row =>
+            normalizeText(row.color) === query
         );
 
-    if(found){
-        return found;
+
+    if(result){
+        return result;
     }
 
 
     /*
      * Después coincidencia parcial.
-     *
-     * Ejemplo:
-     * "azul" encuentra "Azul oscuro".
      */
 
-    found =
-        matches.find(
-            item =>
-                normalizeText(item.color)
-                    .includes(query)
+    result =
+        allColors.find(row =>
+            normalizeText(row.color)
+                .includes(query)
         );
 
-    if(found){
-        return found;
+
+    if(result){
+        return result;
     }
 
 
     /*
-     * También permitimos buscar
-     * varias palabras.
+     * Finalmente palabras.
      *
+     * Ejemplo:
      * "azul oscuro"
-     * encuentra "Azul oscuro".
      */
 
     const words =
@@ -1345,229 +1753,224 @@ function findColorImage(
             .split(/\s+/)
             .filter(Boolean);
 
-    found =
-        matches.find(
-            item => {
+
+    if(words.length){
+
+        result =
+            allColors.find(row => {
 
                 const color =
-                    normalizeText(
-                        item.color
-                    );
+                    normalizeText(row.color);
 
-                return words.every(
-                    word =>
-                        color.includes(word)
+                return words.every(word =>
+                    color.includes(word)
                 );
-            }
-        );
-
-    return found || null;
-}
-
-
-/* =====================================================
-   TEXTO BUSCABLE DEL PRODUCTO
-===================================================== */
-
-function productMatchesText(
-    product,
-    search
-){
-
-    const query =
-        normalizeText(search);
-
-    if(!query){
-        return true;
-    }
-
-    const text =
-        normalizeText(
-            [
-                product.name,
-                product.ref,
-                product.category,
-                product.description
-            ]
-            .filter(Boolean)
-            .join(" ")
-        );
-
-    return query
-        .split(/\s+/)
-        .filter(Boolean)
-        .every(
-            word =>
-                text.includes(word)
-        );
-}
-
-
-/* =====================================================
-   FILTRAR PRODUCTOS
-===================================================== */
-
-function filterProducts(){
-
-    const query =
-        normalizeText(
-            currentSearch
-        );
-
-    if(!query){
-
-        return allProducts.map(
-            product => ({
-                product,
-                color:null
-            })
-        );
-    }
-
-
-    const result = [];
-
-
-    for(const product of allProducts){
-
-        /*
-         * PRIMERO:
-         * comprobar si la búsqueda corresponde
-         * a un color de product_colors.
-         */
-
-        const color =
-            findColorImage(
-                product,
-                currentSearch
-            );
-
-
-        if(color){
-
-            result.push({
-
-                product,
-
-                color
-
             });
-
-            continue;
-        }
-
-
-        /*
-         * Si no es un color,
-         * buscar referencia/nombre/categoría.
-         */
-
-        if(
-            productMatchesText(
-                product,
-                currentSearch
-            )
-        ){
-
-            result.push({
-
-                product,
-
-                color:null
-
-            });
-        }
     }
 
 
-    return result;
+    return result || null;
 }
 
 
 /* =====================================================
-   LINK DEL PRODUCTO
+   OBTENER PRODUCTO
 ===================================================== */
 
-function getProductLink(
-    product,
-    color
-){
+function getProductById(id){
+
+    return allProducts.find(
+        product =>
+            String(product.id) ===
+            String(id)
+    ) || null;
+}
+
+
+/* =====================================================
+   LINK PRODUCTO
+===================================================== */
+
+function getProductLink(product){
+
+    if(!product){
+        return "#";
+    }
+
 
     const category =
-        normalizeText(
-            product.category
-        );
+        String(
+            product.category || ""
+        )
+        .trim()
+        .toLowerCase();
+
 
     const base =
         CATEGORY_LINKS[category];
+
 
     if(!base){
         return "#";
     }
 
+
     const params =
         new URLSearchParams();
+
+
+    const ref =
+        getProductReference(product);
+
+
+    if(ref){
+
+        params.set(
+            "ref",
+            ref
+        );
+    }
+
 
     if(product.id !== undefined){
 
         params.set(
             "id",
-            product.id
+            String(product.id)
         );
     }
 
-    if(product.ref){
 
-        params.set(
-            "ref",
-            product.ref
-        );
-    }
-
-    if(color?.color){
-
-        params.set(
-            "color",
-            color.color
-        );
-    }
-
-    const query =
-        params.toString();
-
-    return query
-        ? `${base}?${query}`
-        : base;
+    return `${base}?${params.toString()}`;
 }
 
 
 /* =====================================================
-   CREAR TARJETA
+   MOSTRAR RESULTADO DE COLOR
 ===================================================== */
 
-function createCard(
-    item
-){
+function renderColorResult(row){
+
+    const section =
+        document.getElementById(
+            "colorResultSection"
+        );
+
+
+    const container =
+        document.getElementById(
+            "colorResult"
+        );
+
+
+    if(!row){
+
+        section.style.display =
+            "none";
+
+        container.innerHTML =
+            "";
+
+        return;
+    }
+
 
     const product =
-        item.product;
+        getProductById(
+            row.product_id
+        );
 
-    const color =
-        item.color;
+
+    if(!product){
+
+        section.style.display =
+            "none";
+
+        return;
+    }
 
 
-    /*
-     * MUY IMPORTANTE:
-     *
-     * Si hemos encontrado color,
-     * usamos la imagen de product_colors.
-     *
-     * Si no, usamos la principal.
-     */
+    const productName =
+        product.name ||
+        "Producto";
+
+
+    const link =
+        getProductLink(
+            product
+        );
+
+
+    section.style.display =
+        "block";
+
+
+    container.innerHTML = `
+
+        <div class="color-result-image">
+
+            <img
+                src="${escapeAttribute(row.image_url)}"
+                alt="${escapeHTML(
+                    productName +
+                    " " +
+                    row.color
+                )}"
+            >
+
+        </div>
+
+
+        <div class="color-result-info">
+
+            <div class="color-result-name">
+
+                ${escapeHTML(
+                    productName
+                )}
+
+            </div>
+
+
+            <div class="color-result-color">
+
+                Color:
+                ${escapeHTML(
+                    row.color
+                )}
+
+            </div>
+
+
+            ${
+                link !== "#"
+                ?
+                `
+                <a
+                    class="color-result-button"
+                    href="${escapeAttribute(link)}"
+                >
+                    Ver producto
+                </a>
+                `
+                :
+                ""
+            }
+
+        </div>
+
+    `;
+}
+
+
+/* =====================================================
+   TARJETA NORMAL
+===================================================== */
+
+function createProductCard(product){
 
     const image =
-        color?.image_url ||
-        getMainImage(product);
+        getProductImage(product);
 
 
     if(!image){
@@ -1580,108 +1983,88 @@ function createCard(
         "Producto Strangis";
 
 
-    const ref =
-        product.ref ||
-        "";
+    const reference =
+        getProductReference(
+            product
+        );
 
 
     const category =
-        product.category ||
-        "";
+        getCategoryName(
+            product.category
+        );
 
 
     const link =
         getProductLink(
-            product,
-            color
+            product
         );
 
 
     return `
 
-    <article class="product">
+        <article class="product">
 
-        <a
-            class="product-link"
-            href="${escapeAttribute(link)}"
-        >
+            <a
+                class="product-link"
+                href="${escapeAttribute(link)}"
+            >
 
-            <div class="product-image">
+                <div class="product-image">
 
-                <img
-                    src="${escapeAttribute(image)}"
-                    alt="${escapeHTML(
-                        name +
-                        (
-                            color?.color
-                            ? " " + color.color
-                            : ""
-                        )
-                    )}"
-                    loading="lazy"
-                    draggable="false"
-                    onerror="
-                        this.closest('.product')
-                        .style.display='none';
-                    "
-                >
+                    <img
+                        src="${escapeAttribute(image)}"
+                        alt="${escapeHTML(name)}"
+                        loading="lazy"
+                        draggable="false"
+                    >
 
-            </div>
-
-
-            <div class="product-info">
-
-                <div class="product-name">
-                    ${escapeHTML(name)}
                 </div>
 
 
-                ${
-                    ref
-                    ?
-                    `
-                    <div class="product-ref">
-                        REF:
-                        ${escapeHTML(ref)}
+                <div class="product-info">
+
+                    <div class="product-name">
+
+                        ${escapeHTML(name)}
+
                     </div>
-                    `
-                    :
-                    ""
-                }
 
 
-                <div class="product-category">
-                    ${escapeHTML(category)}
+                    ${
+                        reference
+                        ?
+                        `
+                        <div class="product-ref">
+
+                            REF:
+                            ${escapeHTML(reference)}
+
+                        </div>
+                        `
+                        :
+                        ""
+                    }
+
+
+                    <div class="product-category">
+
+                        ${escapeHTML(category)}
+
+                    </div>
+
                 </div>
 
+            </a>
 
-                ${
-                    color?.color
-                    ?
-                    `
-                    <div class="product-color">
-                        COLOR:
-                        ${escapeHTML(
-                            color.color
-                        )}
-                    </div>
-                    `
-                    :
-                    ""
-                }
-
-            </div>
-
-        </a>
-
-    </article>
+        </article>
 
     `;
 }
 
 
 /* =====================================================
-   RENDER
+   MOSTRAR PRODUCTOS
 ===================================================== */
 
 function renderProducts(){
@@ -1691,10 +2074,81 @@ function renderProducts(){
             "productsContainer"
         );
 
+
     const counter =
         document.getElementById(
             "productCount"
         );
+
+
+    const activeProducts =
+        allProducts.filter(
+            product =>
+                product &&
+                product.active !== false &&
+                getProductImage(product)
+        );
+
+
+    counter.textContent =
+        activeProducts.length === 1
+        ? "1 artículo"
+        : `${activeProducts.length} artículos`;
+
+
+    if(!activeProducts.length){
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-title">
+                    Próximamente
+                </div>
+
+                <div class="empty-text">
+
+                    Estamos preparando nuevos
+                    artículos para Strangis.
+
+                </div>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    const cards =
+        activeProducts
+            .map(createProductCard)
+            .join("");
+
+
+    container.innerHTML =
+        cards + cards;
+}
+
+
+/* =====================================================
+   BUSCADOR
+===================================================== */
+
+async function performSearch(){
+
+    const input =
+        document.getElementById(
+            "productSearch"
+        );
+
+
+    const clear =
+        document.getElementById(
+            "searchClear"
+        );
+
 
     const result =
         document.getElementById(
@@ -1702,52 +2156,194 @@ function renderProducts(){
         );
 
 
-    const filtered =
-        filterProducts();
+    currentSearch =
+        input.value.trim();
 
 
-    if(currentSearch){
+    clear.classList.toggle(
+        "visible",
+        Boolean(currentSearch)
+    );
+
+
+    /*
+     * Si no hay búsqueda,
+     * volvemos a mostrar todo.
+     */
+
+    if(!currentSearch){
+
+        renderColorResult(null);
 
         result.innerHTML =
-            filtered.length
+            "";
 
-            ?
+        renderProducts();
 
-            `
-            Encontrados:
-            <strong>
-                ${filtered.length}
-            </strong>
-            ${
-                filtered.length === 1
-                ? "resultado"
-                : "resultados"
-            }
-            `
-
-            :
-
-            `
-            <strong>
-                No se encontró el color o producto
-            </strong>
-            `;
-
-    }else{
-
-        result.textContent = "";
+        return;
     }
 
 
-    counter.textContent =
-        filtered.length === 1
-        ? "1 artículo"
-        : `${filtered.length} artículos`;
+    /*
+     * BUSCAR PRIMERO EN product_colors.
+     *
+     * Esta es la parte importante.
+     */
+
+    const colorRow =
+        findColorResult(
+            currentSearch
+        );
 
 
-    if(!filtered.length){
+    if(colorRow){
 
-        container.innerHTML = `
+        const product =
+            getProductById(
+                colorRow.product_id
+            );
+
+
+        if(product){
+
+            renderColorResult(
+                colorRow
+            );
+
+
+            result.innerHTML = `
+
+                Color encontrado:
+                <strong>
+                    ${escapeHTML(
+                        colorRow.color
+                    )}
+                </strong>
+
+            `;
+
+            return;
+        }
+    }
+
+
+    /*
+     * Si no es color,
+     * buscar por nombre o referencia.
+     */
+
+    const query =
+        normalizeText(
+            currentSearch
+        );
+
+
+    const words =
+        query
+            .split(/\s+/)
+            .filter(Boolean);
+
+
+    const matches =
+        allProducts.filter(product => {
+
+            const text =
+                normalizeText(
+                    [
+                        product.name,
+                        product.ref,
+                        product.category,
+                        product.description
+                    ]
+                    .filter(Boolean)
+                    .join(" ")
+                );
+
+
+            return words.every(word =>
+                text.includes(word)
+            );
+        });
+
+
+    if(matches.length){
+
+        renderColorResult(
+            null
+        );
+
+
+        result.innerHTML = `
+
+            Encontrados:
+            <strong>
+                ${matches.length}
+            </strong>
+            ${
+                matches.length === 1
+                ? "producto"
+                : "productos"
+            }
+
+        `;
+
+
+        /*
+         * Mostrar solamente resultados
+         * coincidentes.
+         */
+
+        const container =
+            document.getElementById(
+                "productsContainer"
+            );
+
+
+        const cards =
+            matches
+                .map(createProductCard)
+                .join("");
+
+
+        container.innerHTML =
+            cards || `
+
+                <div class="empty">
+
+                    <div class="empty-title">
+                        Sin resultados
+                    </div>
+
+                </div>
+
+            `;
+
+
+        return;
+    }
+
+
+    /*
+     * Nada encontrado.
+     */
+
+    renderColorResult(
+        null
+    );
+
+
+    result.innerHTML = `
+
+        <strong>
+            No se encontró el color o producto
+        </strong>
+
+    `;
+
+
+    document.getElementById(
+        "productsContainer"
+    ).innerHTML = `
 
         <div class="empty">
 
@@ -1757,71 +2353,68 @@ function renderProducts(){
 
             <div class="empty-text">
 
-                No encontramos ningún producto
-                con esa referencia, color o nombre.
+                Prueba con un color como
+                <strong>Crema</strong>,
+                <strong>Verde</strong>,
+                <strong>Negro</strong>
+                o
+                <strong>Azul oscuro</strong>.
 
             </div>
 
         </div>
 
-        `;
-
-        return;
-    }
-
-
-    const cards =
-        filtered
-            .map(
-                item =>
-                    createCard(item)
-            )
-            .join("");
-
-
-    /*
-     * Cuando buscamos un color:
-     *
-     * NO duplicamos el carrusel.
-     *
-     * Así ves claramente la foto
-     * correspondiente al color.
-     */
-
-    if(currentSearch){
-
-        container.innerHTML =
-            cards;
-
-        container.style.animation =
-            "none";
-
-        return;
-    }
-
-
-    /*
-     * Sin búsqueda:
-     * carrusel normal.
-     */
-
-    container.innerHTML =
-        cards + cards;
-
-    container.style.animation = "";
+    `;
 }
 
 
 /* =====================================================
-   CARGAR PRODUCTOS
+   EVENTOS
+===================================================== */
+
+const searchInput =
+    document.getElementById(
+        "productSearch"
+    );
+
+
+const searchClear =
+    document.getElementById(
+        "searchClear"
+    );
+
+
+if(searchInput){
+
+    searchInput.addEventListener(
+        "input",
+        performSearch
+    );
+}
+
+
+if(searchClear){
+
+    searchClear.addEventListener(
+        "click",
+        ()=>{
+
+            searchInput.value = "";
+
+            searchInput.focus();
+
+            performSearch();
+
+        }
+    );
+}
+
+
+/* =====================================================
+   CARGAR PRODUCTS
 ===================================================== */
 
 async function loadProducts(){
-
-    const container =
-        document.getElementById(
-            "productsContainer"
-        );
 
     const counter =
         document.getElementById(
@@ -1835,11 +2428,10 @@ async function loadProducts(){
             "Cargando...";
 
 
-        /*
-         * PRODUCTOS
-         */
-
-        const productsResponse =
+        const {
+            data,
+            error
+        } =
             await supabaseClient
 
                 .from("Products")
@@ -1859,59 +2451,20 @@ async function loadProducts(){
                 );
 
 
-        if(productsResponse.error){
-
-            throw productsResponse.error;
+        if(error){
+            throw error;
         }
 
 
         allProducts =
-            productsResponse.data || [];
-
-
-        /*
-         * COLORES
-         *
-         * Esta es la parte importante.
-         *
-         * Consultamos la tabla
-         * product_colors.
-         */
-
-        const colorsResponse =
-            await supabaseClient
-
-                .from("product_colors")
-
-                .select(
-                    "id, product_id, color, image_url"
-                );
-
-
-        if(colorsResponse.error){
-
-            console.error(
-                "Error product_colors:",
-                colorsResponse.error
-            );
-
-            colorImages = [];
-
-        }else{
-
-            colorImages =
-                colorsResponse.data || [];
-        }
+            Array.isArray(data)
+            ? data
+            : [];
 
 
         console.log(
-            "STRANGIS — productos:",
+            "STRANGIS — Products:",
             allProducts
-        );
-
-        console.log(
-            "STRANGIS — colores:",
-            colorImages
         );
 
 
@@ -1921,7 +2474,7 @@ async function loadProducts(){
     }catch(error){
 
         console.error(
-            "STRANGIS — error:",
+            "STRANGIS — error Products:",
             error
         );
 
@@ -1930,24 +2483,25 @@ async function loadProducts(){
             "Error";
 
 
-        container.innerHTML = `
+        document.getElementById(
+            "productsContainer"
+        ).innerHTML = `
 
-        <div class="empty">
+            <div class="empty">
 
-            <div class="empty-title">
-                Error al cargar
+                <div class="empty-title">
+                    Error cargando productos
+                </div>
+
+                <div class="empty-text">
+
+                    ${escapeHTML(
+                        error.message
+                    )}
+
+                </div>
+
             </div>
-
-            <div class="empty-text">
-
-                ${escapeHTML(
-                    error?.message ||
-                    "No se pudieron cargar los productos."
-                )}
-
-            </div>
-
-        </div>
 
         `;
     }
@@ -1955,83 +2509,79 @@ async function loadProducts(){
 
 
 /* =====================================================
-   BUSCADOR
+   CARGAR PRODUCT_COLORS
 ===================================================== */
 
-const searchInput =
-    document.getElementById(
-        "productSearch"
-    );
+async function loadProductColors(){
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+
+                .from("product_colors")
+
+                .select(
+                    "id, product_id, color, image_url"
+                );
 
 
-const searchClear =
-    document.getElementById(
-        "searchClear"
-    );
-
-
-searchInput.addEventListener(
-    "input",
-    ()=>{
-
-        currentSearch =
-            searchInput.value.trim();
-
-
-        searchClear.classList.toggle(
-            "visible",
-            Boolean(currentSearch)
-        );
-
-
-        renderProducts();
-
-    }
-);
-
-
-searchInput.addEventListener(
-    "keydown",
-    event => {
-
-        if(
-            event.key === "Enter"
-        ){
-
-            event.preventDefault();
-
-            /*
-             * La imagen correspondiente
-             * ya aparece automáticamente.
-             *
-             * No hace falta redirigir.
-             */
-
-            renderProducts();
+        if(error){
+            throw error;
         }
 
-    }
-);
+
+        allColors =
+            Array.isArray(data)
+            ? data
+            : [];
 
 
-searchClear.addEventListener(
-    "click",
-    ()=>{
-
-        searchInput.value = "";
-
-        currentSearch = "";
-
-        searchClear.classList.remove(
-            "visible"
+        console.log(
+            "STRANGIS — product_colors:",
+            allColors
         );
 
-        searchInput.focus();
 
-        renderProducts();
+        /*
+         * Comprobación para que puedas ver
+         * claramente si Supabase devuelve los colores.
+         */
 
+        console.log(
+            "STRANGIS — colores disponibles:",
+            allColors.map(
+                row =>
+                    row.color
+            )
+        );
+
+
+    }catch(error){
+
+        console.error(
+            "STRANGIS — error product_colors:",
+            error
+        );
+
+
+        allColors = [];
+
+
+        document.getElementById(
+            "searchResult"
+        ).innerHTML = `
+
+            <strong>
+                No se pudo cargar la tabla de colores.
+            </strong>
+
+        `;
     }
-);
+}
 
 
 /* =====================================================
@@ -2044,55 +2594,77 @@ const carouselWindow =
     );
 
 
-carouselWindow.addEventListener(
-    "mouseenter",
-    ()=>{
+if(carouselWindow){
 
-        const track =
-            document.getElementById(
-                "productsContainer"
-            );
+    carouselWindow.addEventListener(
+        "mouseenter",
+        ()=>{
 
-        track.style.animationPlayState =
-            "paused";
-
-    }
-);
+            const track =
+                document.getElementById(
+                    "productsContainer"
+                );
 
 
-carouselWindow.addEventListener(
-    "mouseleave",
-    ()=>{
+            if(track){
 
-        const track =
-            document.getElementById(
-                "productsContainer"
-            );
-
-        if(!currentSearch){
-
-            track.style.animationPlayState =
-                "running";
+                track.style.animationPlayState =
+                    "paused";
+            }
         }
+    );
 
-    }
-);
+
+    carouselWindow.addEventListener(
+        "mouseleave",
+        ()=>{
+
+            const track =
+                document.getElementById(
+                    "productsContainer"
+                );
+
+
+            if(track){
+
+                track.style.animationPlayState =
+                    "running";
+            }
+        }
+    );
+}
 
 
 /* =====================================================
    INICIO
 ===================================================== */
 
-loadProducts();
+async function init(){
+
+    /*
+     * Cargamos ambas tablas.
+     */
+
+    await Promise.all([
+
+        loadProducts(),
+
+        loadProductColors()
+
+    ]);
 
 
-/*
- * Actualizar cada 30 segundos.
- */
+    console.log(
+        "STRANGIS — sistema de búsqueda por color listo."
+    );
+}
 
-setInterval(
-    loadProducts,
-    30000
-);
 
-</script></body></html>
+init();
+
+
+</script>
+
+</body>
+
+</html>
