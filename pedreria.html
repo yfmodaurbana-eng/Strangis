@@ -165,23 +165,51 @@ nav a.active{
         clamp(45px,6vw,75px);
 }
 
+/*
+   RUTA SUPERIOR
+   Puede hacer saltos de línea
+   después de "/" sin cortar palabras.
+*/
+
 .hero small{
     display:block;
 
+    width:100%;
     max-width:100%;
 
     color:#aaa;
+
     font-size:11px;
     font-weight:bold;
-    letter-spacing:5px;
 
-    line-height:1.6;
+    letter-spacing:3px;
 
-    /* No permite cortar palabras */
+    line-height:1.7;
+
     white-space:normal;
+
     word-break:normal;
+
     overflow-wrap:normal;
 }
+
+/*
+   Cada "/" se convierte en un punto
+   donde el navegador puede hacer salto.
+*/
+
+.hero small .route-part{
+    display:inline;
+}
+
+.hero small .route-separator{
+    display:inline;
+    white-space:pre;
+}
+
+/* =========================
+   HERO TITULO
+========================= */
 
 .hero h1{
     margin-top:18px;
@@ -1140,6 +1168,27 @@ footer{
         width:94%;
 
         padding:50px 0 38px;
+    }
+
+    /*
+       Ajuste específico para la ruta
+       en pantallas pequeñas.
+    */
+
+    .hero small{
+        font-size:9px;
+
+        letter-spacing:2.5px;
+
+        line-height:1.7;
+
+        max-width:100%;
+
+        white-space:normal;
+
+        word-break:normal;
+
+        overflow-wrap:normal;
     }
 
     .hero h1{
