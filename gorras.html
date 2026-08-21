@@ -166,10 +166,21 @@ nav a.active{
 }
 
 .hero small{
+    display:block;
+
+    max-width:100%;
+
     color:#aaa;
     font-size:11px;
     font-weight:bold;
     letter-spacing:5px;
+
+    line-height:1.6;
+
+    /* Permite saltos de línea sin romper palabras */
+    white-space:normal;
+    word-break:normal;
+    overflow-wrap:normal;
 }
 
 .hero h1{
@@ -1129,6 +1140,11 @@ footer{
         width:94%;
 
         padding:50px 0 38px;
+    }
+
+    .hero small{
+        letter-spacing:3px;
+        line-height:1.7;
     }
 
     .hero h1{
