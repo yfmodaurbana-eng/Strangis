@@ -166,10 +166,25 @@ nav a.active{
 }
 
 .hero small{
+    display:block;
+
+    max-width:100%;
+
     color:#aaa;
     font-size:11px;
     font-weight:bold;
     letter-spacing:5px;
+
+    line-height:1.6;
+
+    /*
+       Permite salto de línea solamente
+       entre palabras y nunca rompe palabras.
+    */
+    white-space:normal;
+    word-break:normal;
+    overflow-wrap:normal;
+    hyphens:none;
 }
 
 .hero h1{
@@ -1131,6 +1146,12 @@ footer{
         padding:50px 0 38px;
     }
 
+    .hero small{
+        font-size:10px;
+        letter-spacing:3px;
+        line-height:1.7;
+    }
+
     .hero h1{
         font-size:clamp(38px,12vw,55px);
 
@@ -1271,7 +1292,7 @@ footer{
 <section class="hero">
 
     <small>
-        STRANGIS / PANTALONES
+        Chandal/Conjuntos/Pantalones
     </small>
 
     <h1>
@@ -4124,4 +4145,4 @@ loadProducts();
 </script>
 
 </body>
-    </html>
+</html>
