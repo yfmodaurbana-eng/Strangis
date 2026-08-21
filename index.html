@@ -1830,10 +1830,6 @@ function findMatchingVariant(
     }
 
 
-    /* -----------------------------------------------
-       1. NOMBRE EXACTO
-    ----------------------------------------------- */
-
     const exactName =
         variants.find(
             variant =>
@@ -1848,10 +1844,6 @@ function findMatchingVariant(
     }
 
 
-    /* -----------------------------------------------
-       2. NOMBRE PARCIAL
-    ----------------------------------------------- */
-
     const partialName =
         variants.find(
             variant =>
@@ -1865,10 +1857,6 @@ function findMatchingVariant(
         return partialName;
     }
 
-
-    /* -----------------------------------------------
-       3. COLOR HEX
-    ----------------------------------------------- */
 
     const exactColor =
         variants.find(
@@ -1898,10 +1886,6 @@ function searchProducts(search){
         normalizeText(search);
 
 
-    /* -----------------------------------------------
-       SIN BÚSQUEDA
-    ----------------------------------------------- */
-
     if(!query){
 
         return allProducts.map(
@@ -1930,10 +1914,6 @@ function searchProducts(search){
 
     allProducts.forEach(product=>{
 
-        /* -------------------------------------------
-           BUSCAR COLOR / VARIANTE
-        ------------------------------------------- */
-
         const matchingVariant =
             findMatchingVariant(
                 product,
@@ -1954,10 +1934,6 @@ function searchProducts(search){
             return;
         }
 
-
-        /* -------------------------------------------
-           BUSCAR DATOS DEL PRODUCTO
-        ------------------------------------------- */
 
         const searchable =
             normalizeText(
@@ -2310,10 +2286,6 @@ function renderProducts(results){
     }
 
 
-    /* -----------------------------------------------
-       CONTADOR
-    ----------------------------------------------- */
-
     counter.textContent =
 
         results.length === 1
@@ -2326,10 +2298,6 @@ function renderProducts(results){
 
         `${results.length} artículos`;
 
-
-    /* -----------------------------------------------
-       MENSAJE DE BÚSQUEDA
-    ----------------------------------------------- */
 
     if(currentSearch){
 
@@ -2392,10 +2360,6 @@ function renderProducts(results){
     }
 
 
-    /* -----------------------------------------------
-       SIN RESULTADOS
-    ----------------------------------------------- */
-
     if(!results.length){
 
         container.style.animation =
@@ -2432,10 +2396,6 @@ function renderProducts(results){
     }
 
 
-    /* -----------------------------------------------
-       CREAR TARJETAS
-    ----------------------------------------------- */
-
     const cards =
         results
 
@@ -2449,10 +2409,6 @@ function renderProducts(results){
 
             .join("");
 
-
-    /* -----------------------------------------------
-       CARRUSEL
-    ----------------------------------------------- */
 
     if(results.length > 1){
 
@@ -2649,10 +2605,6 @@ async function loadProducts(){
         }
 
 
-        /* -------------------------------------------
-           GUARDAR PRODUCTOS
-        ------------------------------------------- */
-
         allProducts =
 
             Array.isArray(data)
@@ -2671,10 +2623,6 @@ async function loadProducts(){
             allProducts
         );
 
-
-        /* -------------------------------------------
-           RENDER
-        ------------------------------------------- */
 
         renderProducts(
 
@@ -2826,4 +2774,4 @@ console.log(
 
 </body>
 
-</html>
+    </html>
