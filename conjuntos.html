@@ -164,6 +164,7 @@ nav a.active{
         0
         clamp(45px,6vw,75px);
 }
+
 .hero small{
     display:block;
 
@@ -176,10 +177,14 @@ nav a.active{
 
     line-height:1.6;
 
-    /* No permite cortar palabras */
+    /*
+       Permite saltos de línea entre palabras
+       pero nunca rompe una palabra.
+    */
     white-space:normal;
     word-break:normal;
     overflow-wrap:normal;
+    hyphens:none;
 }
 
 .hero h1{
@@ -1141,6 +1146,20 @@ footer{
         padding:50px 0 38px;
     }
 
+    .hero small{
+        /*
+           En móvil el texto puede ocupar
+           varias líneas, pero nunca rompe
+           una palabra.
+        */
+        max-width:100%;
+        white-space:normal;
+        word-break:normal;
+        overflow-wrap:normal;
+        hyphens:none;
+        letter-spacing:3px;
+    }
+
     .hero h1{
         font-size:clamp(38px,12vw,55px);
 
@@ -1281,7 +1300,7 @@ footer{
 <section class="hero">
 
     <small>
-        Chandal/Hombre/Mujer/Sports/Vaqueros/Elegantes
+        Chandal/Conjuntos
     </small>
 
     <h1>
@@ -4134,4 +4153,4 @@ loadProducts();
 </script>
 
 </body>
-</html>
+    </html>
