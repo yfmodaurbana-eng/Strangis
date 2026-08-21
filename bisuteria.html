@@ -178,8 +178,8 @@ nav a.active{
     line-height:1.6;
 
     /*
-       Permite saltos de línea entre palabras
-       sin romper ninguna palabra.
+       Permite salto de línea
+       pero NO rompe las palabras.
     */
     white-space:normal;
     word-break:normal;
@@ -1147,16 +1147,15 @@ footer{
 
     .hero small{
         /*
-           En móvil el texto puede ocupar
-           varias líneas, pero nunca se
-           romperá una palabra.
+           En móvil también permitimos
+           salto de línea entre palabras,
+           nunca dentro de una palabra.
         */
-        max-width:100%;
-
         white-space:normal;
         word-break:normal;
         overflow-wrap:normal;
 
+        letter-spacing:3px;
         line-height:1.7;
     }
 
@@ -4153,4 +4152,4 @@ loadProducts();
 </script>
 
 </body>
-    </html>
+</html>
