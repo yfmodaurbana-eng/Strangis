@@ -166,10 +166,24 @@ nav a.active{
 }
 
 .hero small{
+    display:block;
+
+    max-width:100%;
+
     color:#aaa;
     font-size:11px;
     font-weight:bold;
     letter-spacing:5px;
+
+    line-height:1.6;
+
+    /*
+       Permite saltos de línea entre palabras,
+       pero nunca rompe una palabra.
+    */
+    white-space:normal;
+    word-break:normal;
+    overflow-wrap:normal;
 }
 
 .hero h1{
@@ -1271,7 +1285,7 @@ footer{
 <section class="hero">
 
     <small>
-        Anillos/Pulseras/Collares/Pendientes Relojes
+        Chandal/Conjuntos/Bisuteria/Diamantes
     </small>
 
     <h1>
