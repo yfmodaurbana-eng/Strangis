@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://yfmodaurbana-eng.github.io/TiendaOnline/sitemap.xml
+Sitemap: https://yfmodaurbana-eng.github.io/Strangis/sitemap.xml
