@@ -4,7 +4,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pantalones | Strangis</title>
+<title>Pantalones de Moda | Strangis</title>
+
+<meta name="description" content="Compra pantalones de moda en Strangis. Descubre pantalones para hombre y mujer, diferentes estilos y diseños para completar tus looks. Compra online en Strangis.">
+
+<meta name="keywords" content="pantalones, pantalones de moda, pantalones hombre, pantalones mujer, pantalones online, comprar pantalones, moda, ropa, Strangis">
+
+<meta name="robots" content="index, follow">
+
+<meta name="author" content="Strangis">
+
+<link rel="canonical" href="pantalones.html">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Pantalones de Moda | Strangis">
+<meta property="og:description" content="Descubre pantalones de moda para hombre y mujer en Strangis. Diferentes estilos y diseños para completar tus looks.">
+<meta property="og:site_name" content="Strangis">
+<meta property="og:locale" content="es_ES">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Pantalones de Moda | Strangis">
+<meta name="twitter:description" content="Pantalones de moda para hombre y mujer. Descubre la colección de Strangis y compra online.">
 
 <style>
 
@@ -177,14 +197,9 @@ nav a.active{
 
     line-height:1.6;
 
-    /*
-       Permite salto de línea solamente
-       entre palabras y nunca rompe palabras.
-    */
     white-space:normal;
     word-break:normal;
     overflow-wrap:normal;
-    hyphens:none;
 }
 
 .hero h1{
@@ -1147,9 +1162,12 @@ footer{
     }
 
     .hero small{
-        font-size:10px;
         letter-spacing:3px;
         line-height:1.7;
+
+        white-space:normal;
+        word-break:normal;
+        overflow-wrap:normal;
     }
 
     .hero h1{
@@ -1292,7 +1310,8 @@ footer{
 <section class="hero">
 
     <small>
-        Chandal/Conjuntos/Pantalones
+        • Pantalones • Moda • Estilo • Ropa
+        • Hombre • Mujer • Tendencias • Looks
     </small>
 
     <h1>
@@ -1300,8 +1319,9 @@ footer{
     </h1>
 
     <p>
-        Pantalones seleccionados para
-        completar tus looks con personalidad.
+        Descubre pantalones de moda para hombre y mujer,
+        con diferentes estilos y diseños para completar
+        tus looks con personalidad.
     </p>
 
 </section>
@@ -1315,7 +1335,7 @@ footer{
     >
 
         <div class="loading">
-            Cargando productos...
+            Cargando pantalones...
         </div>
 
     </div>
@@ -1324,7 +1344,7 @@ footer{
 
 
 <footer>
-    © 2026 Strangis · TODOS LOS DERECHOS RESERVADOS
+    © 2026 Strangis · PANTALONES DE MODA · TODOS LOS DERECHOS RESERVADOS
 </footer>
 
 
@@ -1978,7 +1998,7 @@ async function loadProducts(){
 
     container.innerHTML = `
         <div class="loading">
-            Cargando productos...
+            Cargando pantalones...
         </div>
     `;
 
@@ -2007,7 +2027,7 @@ async function loadProducts(){
 
                 <strong>
                     No se han podido cargar
-                    los productos.
+                    los pantalones.
                 </strong>
 
                 <br><br>
@@ -2049,7 +2069,7 @@ function renderProducts(){
 
             <div class="empty">
 
-                No hay productos de pantalones
+                No hay pantalones
                 activos disponibles actualmente.
 
             </div>
@@ -2142,7 +2162,7 @@ function createProductHTML(
                     ${escapeHTML(
                         product.description ||
                         product.name ||
-                        "Producto"
+                        "Pantalón"
                     )}
                 </div>
 
@@ -2214,7 +2234,7 @@ function createProductHTML(
                         src="${escapeHTML(firstImage)}"
                         alt="${escapeHTML(
                             product.name ||
-                            "Producto"
+                            "Pantalón de moda"
                         )}"
                         loading="lazy"
                         draggable="false"
@@ -2237,7 +2257,7 @@ function createProductHTML(
                             >
                                 ${escapeHTML(
                                     product.name ||
-                                    "Producto"
+                                    "Pantalón"
                                 )}
                             </div>
 
@@ -2603,7 +2623,7 @@ function setVariant(
 
 
     image.alt =
-        `${product.name || "Producto"} - ${variant.name}`;
+        `${product.name || "Pantalón"} - ${variant.name}`;
 
 
     const labelName =
@@ -2616,7 +2636,7 @@ function setVariant(
 
         labelName.textContent =
             product.name ||
-            "Producto";
+            "Pantalón";
 
     }
 
@@ -3788,7 +3808,7 @@ function updateLightbox(){
 
     image.alt =
         product.name ||
-        "Producto";
+        "Pantalón de moda";
 
 
     document
