@@ -4,7 +4,47 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Bisutería | Strangis</title>
+<title>Bisutería Online | Bisutería de Moda | Strangis</title>
+
+<meta
+    name="description"
+    content="Descubre bisutería online en Strangis. Complementos y accesorios de bisutería de moda para mujer y hombre, pensados para completar tus looks con estilo."
+>
+
+<meta
+    name="keywords"
+    content="bisutería, bisutería online, bisutería de moda, accesorios, complementos de moda, joyería de moda, accesorios mujer, accesorios hombre, Strangis"
+>
+
+<meta name="robots" content="index, follow">
+
+<meta name="author" content="Strangis">
+
+<meta
+    property="og:title"
+    content="Bisutería Online | Bisutería de Moda | Strangis"
+>
+
+<meta
+    property="og:description"
+    content="Compra bisutería online y descubre accesorios de moda para completar tus looks. Colección Strangis."
+>
+
+<meta
+    property="og:type"
+    content="website"
+>
+
+<meta
+    property="og:locale"
+    content="es_ES"
+>
+
+<link
+    rel="canonical"
+    href="bisuteria.html"
+>
+
 
 <style>
 
@@ -177,10 +217,6 @@ nav a.active{
 
     line-height:1.6;
 
-    /*
-       Permite salto de línea
-       pero NO rompe las palabras.
-    */
     white-space:normal;
     word-break:normal;
     overflow-wrap:normal;
@@ -197,7 +233,7 @@ nav a.active{
 }
 
 .hero p{
-    max-width:600px;
+    max-width:650px;
 
     margin-top:28px;
 
@@ -1146,17 +1182,12 @@ footer{
     }
 
     .hero small{
-        /*
-           En móvil también permitimos
-           salto de línea entre palabras,
-           nunca dentro de una palabra.
-        */
+        letter-spacing:3px;
+        line-height:1.7;
+
         white-space:normal;
         word-break:normal;
         overflow-wrap:normal;
-
-        letter-spacing:3px;
-        line-height:1.7;
     }
 
     .hero h1{
@@ -1299,8 +1330,8 @@ footer{
 <section class="hero">
 
     <small>
-        •RELOJES •COLLARES •PUSERAS •PENDIENTES 
-        •MODA •MARCA •DISEÑO •ESTILO
+        • Bisutería • Accesorios • Complementos
+        • Moda • Estilo • Mujer • Hombre
     </small>
 
     <h1>
@@ -1308,8 +1339,9 @@ footer{
     </h1>
 
     <p>
-        Bisutería seleccionada para
-        completar tus looks con personalidad.
+        Descubre nuestra selección de bisutería y
+        accesorios de moda para completar tus looks
+        con personalidad, estilo y carácter.
     </p>
 
 </section>
@@ -1323,7 +1355,7 @@ footer{
     >
 
         <div class="loading">
-            Cargando productos...
+            Cargando productos de bisutería...
         </div>
 
     </div>
@@ -1332,7 +1364,7 @@ footer{
 
 
 <footer>
-    © 2026 Strangis · TODOS LOS DERECHOS RESERVADOS
+    © 2026 Strangis · Bisutería online · TODOS LOS DERECHOS RESERVADOS
 </footer>
 
 
@@ -1367,7 +1399,7 @@ footer{
             class="lightbox-image"
             id="lightboxImage"
             src=""
-            alt=""
+            alt="Bisutería de moda Strangis"
         >
 
         <button
@@ -1986,7 +2018,7 @@ async function loadProducts(){
 
     container.innerHTML = `
         <div class="loading">
-            Cargando productos...
+            Cargando productos de bisutería...
         </div>
     `;
 
@@ -2015,7 +2047,7 @@ async function loadProducts(){
 
                 <strong>
                     No se han podido cargar
-                    los productos.
+                    los productos de bisutería.
                 </strong>
 
                 <br><br>
@@ -2150,7 +2182,7 @@ function createProductHTML(
                     ${escapeHTML(
                         product.description ||
                         product.name ||
-                        "Producto"
+                        "Bisutería"
                     )}
                 </div>
 
@@ -2221,8 +2253,9 @@ function createProductHTML(
                         id="image-${index}"
                         src="${escapeHTML(firstImage)}"
                         alt="${escapeHTML(
-                            product.name ||
-                            "Producto"
+                            product.name
+                                ? product.name + " - Bisutería de moda Strangis"
+                                : "Bisutería de moda Strangis"
                         )}"
                         loading="lazy"
                         draggable="false"
@@ -2245,7 +2278,7 @@ function createProductHTML(
                             >
                                 ${escapeHTML(
                                     product.name ||
-                                    "Producto"
+                                    "Bisutería"
                                 )}
                             </div>
 
@@ -2611,7 +2644,7 @@ function setVariant(
 
 
     image.alt =
-        `${product.name || "Producto"} - ${variant.name}`;
+        `${product.name || "Bisutería"} - ${variant.name} - Bisutería de moda Strangis`;
 
 
     const labelName =
@@ -2624,7 +2657,7 @@ function setVariant(
 
         labelName.textContent =
             product.name ||
-            "Producto";
+            "Bisutería";
 
     }
 
@@ -3795,8 +3828,7 @@ function updateLightbox(){
 
 
     image.alt =
-        product.name ||
-        "Producto";
+        `${product.name || "Bisutería"} - ${variant.name} - Bisutería de moda Strangis`;
 
 
     document
