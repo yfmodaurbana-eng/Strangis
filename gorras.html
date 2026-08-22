@@ -4,21 +4,45 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Gorras | Strangis | Gorras de Moda y Marcas</title>
+<title>Gorras de Moda y Marcas | Strangis</title>
 
 <meta name="description" content="Compra gorras de moda y marcas en Strangis. Descubre nuestra selección de gorras para hombre y mujer, diferentes estilos y diseños para completar tus looks.">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Strangis">
 <meta name="keywords" content="gorras, gorras de moda, gorras de marcas, gorras hombre, gorras mujer, gorras online, comprar gorras, accesorios de moda, Strangis">
 
+<!-- SEO CANÓNICO -->
+<link rel="canonical" href="https://yfmodaurbana-eng.github.io/Strangis/gorras.html">
+
+<!-- OPEN GRAPH -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Gorras de Moda y Marcas | Strangis">
 <meta property="og:description" content="Descubre gorras de moda y marcas en Strangis. Diseños y estilos para completar tus looks.">
+<meta property="og:url" content="https://yfmodaurbana-eng.github.io/Strangis/gorras.html">
+<meta property="og:site_name" content="Strangis">
 <meta property="og:locale" content="es_ES">
 
+<!-- TWITTER -->
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Gorras de Moda y Marcas | Strangis">
 <meta name="twitter:description" content="Descubre gorras de moda y marcas en Strangis.">
+
+<!-- DATOS ESTRUCTURADOS -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Gorras de Moda y Marcas | Strangis",
+    "description": "Compra gorras de moda y marcas en Strangis. Descubre nuestra selección de gorras para hombre y mujer, diferentes estilos y diseños para completar tus looks.",
+    "url": "https://yfmodaurbana-eng.github.io/Strangis/gorras.html",
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "Strangis",
+        "url": "https://yfmodaurbana-eng.github.io/Strangis/"
+    },
+    "inLanguage": "es-ES"
+}
+</script>
 
 <style>
 
@@ -1262,7 +1286,7 @@ footer{
         Strangis
     </div>
 
-    <nav>
+    <nav aria-label="Categorías de Strangis">
 
         <a href="index.html">
             Inicio
@@ -1280,7 +1304,9 @@ footer{
             Conjuntos
         </a>
 
-        <a class="active" href="gorras.html">
+        <a class="active"
+           href="gorras.html"
+           aria-current="page">
             Gorras
         </a>
 
@@ -1301,6 +1327,8 @@ footer{
 </header>
 
 
+<main>
+
 <section class="hero">
 
     <small>
@@ -1313,15 +1341,17 @@ footer{
     </h1>
 
     <p>
-        Descubre nuestra selección de gorras de moda
-        y marcas para completar tus looks con estilo
-        y personalidad.
+        Descubre nuestra selección de
+        <strong>gorras de moda y marcas</strong>
+        para hombre y mujer. Diseños y estilos
+        para completar tus looks con personalidad.
     </p>
 
 </section>
 
 
-<section class="products-section">
+<section class="products-section"
+         aria-label="Gorras disponibles">
 
     <div
         class="products"
@@ -1336,6 +1366,8 @@ footer{
 
 </section>
 
+</main>
+
 
 <footer>
     © 2026 Strangis · TODOS LOS DERECHOS RESERVADOS
@@ -1349,6 +1381,9 @@ footer{
 <div
     class="image-lightbox"
     id="imageLightbox"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Vista ampliada de la gorra"
 >
 
     <div class="lightbox-content">
@@ -1357,6 +1392,7 @@ footer{
             class="lightbox-close"
             type="button"
             onclick="closeLightbox()"
+            aria-label="Cerrar imagen"
         >
             ×
         </button>
@@ -1365,6 +1401,7 @@ footer{
             class="lightbox-arrow prev"
             type="button"
             onclick="changeLightboxImage(-1)"
+            aria-label="Imagen anterior"
         >
             ‹
         </button>
@@ -1380,6 +1417,7 @@ footer{
             class="lightbox-arrow next"
             type="button"
             onclick="changeLightboxImage(1)"
+            aria-label="Imagen siguiente"
         >
             ›
         </button>
@@ -1403,6 +1441,9 @@ footer{
 <div
     class="modal"
     id="customerModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="orderModalTitle"
 >
 
     <div class="modal-box">
@@ -1415,7 +1456,7 @@ footer{
                     FINALIZAR PEDIDO
                 </small>
 
-                <h2>
+                <h2 id="orderModalTitle">
                     Datos de envío
                 </h2>
 
@@ -1425,6 +1466,7 @@ footer{
                 class="close-modal"
                 type="button"
                 onclick="closeCustomerModal()"
+                aria-label="Cerrar formulario"
             >
                 ×
             </button>
@@ -1441,6 +1483,7 @@ footer{
         <div
             class="form-error"
             id="formError"
+            role="alert"
         ></div>
 
 
@@ -1453,7 +1496,7 @@ footer{
 
             <div class="form-field full">
 
-                <label>
+                <label for="customerName">
                     Nombre y apellidos *
                 </label>
 
@@ -1468,7 +1511,7 @@ footer{
 
             <div class="form-field">
 
-                <label>
+                <label for="customerPhone">
                     Teléfono *
                 </label>
 
@@ -1483,7 +1526,7 @@ footer{
 
             <div class="form-field">
 
-                <label>
+                <label for="customerEmail">
                     Email
                 </label>
 
@@ -1507,7 +1550,7 @@ footer{
 
             <div class="form-field full">
 
-                <label>
+                <label for="customerAddress">
                     Dirección *
                 </label>
 
@@ -1522,7 +1565,7 @@ footer{
 
             <div class="form-field">
 
-                <label>
+                <label for="customerNumber">
                     Número *
                 </label>
 
@@ -1536,7 +1579,7 @@ footer{
 
             <div class="form-field">
 
-                <label>
+                <label for="customerFloor">
                     Piso / Puerta
                 </label>
 
@@ -1550,7 +1593,7 @@ footer{
 
             <div class="form-field">
 
-                <label>
+                <label for="customerPostal">
                     Código postal *
                 </label>
 
@@ -1558,6 +1601,7 @@ footer{
                     id="customerPostal"
                     type="text"
                     inputmode="numeric"
+                    autocomplete="postal-code"
                 >
 
             </div>
@@ -1565,13 +1609,14 @@ footer{
 
             <div class="form-field">
 
-                <label>
+                <label for="customerCity">
                     Ciudad *
                 </label>
 
                 <input
                     id="customerCity"
                     type="text"
+                    autocomplete="address-level2"
                 >
 
             </div>
@@ -1579,13 +1624,14 @@ footer{
 
             <div class="form-field">
 
-                <label>
+                <label for="customerProvince">
                     Provincia *
                 </label>
 
                 <input
                     id="customerProvince"
                     type="text"
+                    autocomplete="address-level1"
                 >
 
             </div>
@@ -1593,7 +1639,7 @@ footer{
 
             <div class="form-field">
 
-                <label>
+                <label for="customerCountry">
                     País *
                 </label>
 
@@ -1601,6 +1647,7 @@ footer{
                     id="customerCountry"
                     type="text"
                     value="España"
+                    autocomplete="country-name"
                 >
 
             </div>
@@ -1608,7 +1655,7 @@ footer{
 
             <div class="form-field full">
 
-                <label>
+                <label for="customerNotes">
                     Observaciones
                 </label>
 
@@ -2324,6 +2371,7 @@ function createProductHTML(
                             event.stopPropagation();
                             selectPreviousVariant(${index})
                         "
+                        aria-label="Variante anterior"
                     >
                         ‹
                     </button>
@@ -2336,6 +2384,7 @@ function createProductHTML(
                             event.stopPropagation();
                             selectNextVariant(${index})
                         "
+                        aria-label="Variante siguiente"
                     >
                         ›
                     </button>
@@ -2440,6 +2489,7 @@ function createProductHTML(
                     type="button"
                     onclick="changeQuantity(${index},-1)"
                     ${outOfStock ? "disabled" : ""}
+                    aria-label="Reducir cantidad"
                 >
                     −
                 </button>
@@ -2456,6 +2506,7 @@ function createProductHTML(
                     type="button"
                     onclick="changeQuantity(${index},1)"
                     ${outOfStock ? "disabled" : ""}
+                    aria-label="Aumentar cantidad"
                 >
                     +
                 </button>
@@ -4159,4 +4210,4 @@ loadProducts();
 </script>
 
 </body>
-</html>
+    </html>
