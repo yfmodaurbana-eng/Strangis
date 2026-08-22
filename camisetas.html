@@ -1,10 +1,110 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Camisetas | Strangis</title>
+<!-- =========================
+     SEO
+========================= -->
+
+<title>Camisetas de Moda y Marcas | Strangis</title>
+
+<meta
+    name="description"
+    content="Descubre camisetas de moda para hombre y mujer en Strangis. Diseños, estilos y marcas seleccionadas para crear looks únicos. Compra online tus camisetas."
+>
+
+<meta
+    name="robots"
+    content="index, follow"
+>
+
+<meta
+    name="googlebot"
+    content="index, follow"
+>
+
+<meta
+    name="language"
+    content="Spanish"
+>
+
+<meta
+    name="author"
+    content="Strangis"
+>
+
+<meta
+    name="theme-color"
+    content="#151515"
+>
+
+<!-- Open Graph -->
+
+<meta
+    property="og:type"
+    content="website"
+>
+
+<meta
+    property="og:title"
+    content="Camisetas de Moda y Marcas | Strangis"
+>
+
+<meta
+    property="og:description"
+    content="Camisetas de moda para hombre y mujer. Descubre diseños, estilos y marcas seleccionadas en Strangis."
+>
+
+<meta
+    property="og:locale"
+    content="es_ES"
+>
+
+<meta
+    property="og:site_name"
+    content="Strangis"
+>
+
+<!-- Twitter -->
+
+<meta
+    name="twitter:card"
+    content="summary_large_image"
+>
+
+<meta
+    name="twitter:title"
+    content="Camisetas de Moda y Marcas | Strangis"
+>
+
+<meta
+    name="twitter:description"
+    content="Descubre camisetas de moda para hombre y mujer en Strangis. Diseños y marcas seleccionadas para tus looks."
+>
+
+<!-- Datos estructurados SEO -->
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Camisetas de Moda y Marcas",
+    "description": "Camisetas de moda para hombre y mujer. Descubre diseños, estilos y marcas seleccionadas en Strangis.",
+    "inLanguage": "es-ES",
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "Strangis"
+    },
+    "about": {
+        "@type": "ProductGroup",
+        "name": "Camisetas"
+    }
+}
+</script>
 
 <style>
 
@@ -185,15 +285,21 @@ nav a.active{
 .hero h1{
     margin-top:18px;
 
-    font-size:clamp(42px,7vw,82px);
+    /*
+       Tamaño corregido:
+       sigue siendo grande y visual,
+       pero sin ocupar demasiado espacio.
+    */
 
-    letter-spacing:-4px;
+    font-size:clamp(40px,6vw,68px);
 
-    line-height:.9;
+    letter-spacing:-3px;
+
+    line-height:.95;
 }
 
 .hero p{
-    max-width:600px;
+    max-width:680px;
 
     margin-top:28px;
 
@@ -1151,7 +1257,7 @@ footer{
     }
 
     .hero h1{
-        font-size:clamp(38px,12vw,55px);
+        font-size:clamp(36px,10vw,52px);
 
         letter-spacing:-2px;
     }
@@ -1287,20 +1393,30 @@ footer{
 </header>
 
 
+<!-- =========================
+     HERO SEO
+========================= -->
+
 <section class="hero">
 
     <small>
-        • Camisetas •Marcas •Estilos •Moda
-        •Polos •Camisas •Hombre •Mujer
+        • CAMISETAS DE MODA
+        • MARCAS
+        • ESTILO
+        • ROPA
+        • HOMBRE
+        • MUJER
     </small>
 
     <h1>
-        CAMISETAS
+        CAMISETAS DE MODA
     </h1>
 
     <p>
-        Camisetas seleccionadas para
-        completar tus looks con personalidad.
+        Descubre nuestra selección de camisetas de moda
+        para hombre y mujer. Diseños, estilos y marcas
+        seleccionadas para crear looks únicos y completar
+        tu outfit.
     </p>
 
 </section>
@@ -1323,7 +1439,7 @@ footer{
 
 
 <footer>
-    © 2026 Strangis · TODOS LOS DERECHOS RESERVADOS
+    © 2026 Strangis · CAMISETAS DE MODA · TODOS LOS DERECHOS RESERVADOS
 </footer>
 
 
@@ -1342,6 +1458,7 @@ footer{
             class="lightbox-close"
             type="button"
             onclick="closeLightbox()"
+            aria-label="Cerrar imagen"
         >
             ×
         </button>
@@ -1350,6 +1467,7 @@ footer{
             class="lightbox-arrow prev"
             type="button"
             onclick="changeLightboxImage(-1)"
+            aria-label="Imagen anterior"
         >
             ‹
         </button>
@@ -1358,13 +1476,14 @@ footer{
             class="lightbox-image"
             id="lightboxImage"
             src=""
-            alt=""
+            alt="Camiseta de moda Strangis"
         >
 
         <button
             class="lightbox-arrow next"
             type="button"
             onclick="changeLightboxImage(1)"
+            aria-label="Imagen siguiente"
         >
             ›
         </button>
@@ -1410,6 +1529,7 @@ footer{
                 class="close-modal"
                 type="button"
                 onclick="closeCustomerModal()"
+                aria-label="Cerrar formulario"
             >
                 ×
             </button>
@@ -1977,7 +2097,7 @@ async function loadProducts(){
 
     container.innerHTML = `
         <div class="loading">
-            Cargando productos...
+            Cargando camisetas...
         </div>
     `;
 
@@ -2006,7 +2126,7 @@ async function loadProducts(){
 
                 <strong>
                     No se han podido cargar
-                    los productos.
+                    las camisetas.
                 </strong>
 
                 <br><br>
@@ -2048,8 +2168,8 @@ function renderProducts(){
 
             <div class="empty">
 
-                No hay productos de camisetas
-                activos disponibles actualmente.
+                No hay camisetas de moda
+                activas disponibles actualmente.
 
             </div>
 
@@ -2141,7 +2261,7 @@ function createProductHTML(
                     ${escapeHTML(
                         product.description ||
                         product.name ||
-                        "Producto"
+                        "Camiseta de moda"
                     )}
                 </div>
 
@@ -2212,8 +2332,9 @@ function createProductHTML(
                         id="image-${index}"
                         src="${escapeHTML(firstImage)}"
                         alt="${escapeHTML(
-                            product.name ||
-                            "Producto"
+                            product.name
+                                ? `${product.name} - Camiseta de moda`
+                                : "Camiseta de moda Strangis"
                         )}"
                         loading="lazy"
                         draggable="false"
@@ -2236,7 +2357,7 @@ function createProductHTML(
                             >
                                 ${escapeHTML(
                                     product.name ||
-                                    "Producto"
+                                    "Camiseta de moda"
                                 )}
                             </div>
 
@@ -2309,6 +2430,7 @@ function createProductHTML(
                             event.stopPropagation();
                             selectPreviousVariant(${index})
                         "
+                        aria-label="Variante anterior"
                     >
                         ‹
                     </button>
@@ -2321,6 +2443,7 @@ function createProductHTML(
                             event.stopPropagation();
                             selectNextVariant(${index})
                         "
+                        aria-label="Siguiente variante"
                     >
                         ›
                     </button>
@@ -2425,6 +2548,7 @@ function createProductHTML(
                     type="button"
                     onclick="changeQuantity(${index},-1)"
                     ${outOfStock ? "disabled" : ""}
+                    aria-label="Reducir cantidad"
                 >
                     −
                 </button>
@@ -2441,6 +2565,7 @@ function createProductHTML(
                     type="button"
                     onclick="changeQuantity(${index},1)"
                     ${outOfStock ? "disabled" : ""}
+                    aria-label="Aumentar cantidad"
                 >
                     +
                 </button>
@@ -2602,7 +2727,7 @@ function setVariant(
 
 
     image.alt =
-        `${product.name || "Producto"} - ${variant.name}`;
+        `${product.name || "Camiseta de moda"} - ${variant.name}`;
 
 
     const labelName =
@@ -2615,7 +2740,7 @@ function setVariant(
 
         labelName.textContent =
             product.name ||
-            "Producto";
+            "Camiseta de moda";
 
     }
 
@@ -3786,8 +3911,9 @@ function updateLightbox(){
 
 
     image.alt =
-        product.name ||
-        "Producto";
+        product.name
+            ? `${product.name} - Camiseta de moda`
+            : "Camiseta de moda Strangis";
 
 
     document
