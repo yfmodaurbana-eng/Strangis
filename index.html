@@ -16,13 +16,52 @@
 
 <meta
     name="robots"
-    content="index, follow, max-image-preview:large"
+    content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+>
+
+<meta
+    name="googlebot"
+    content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
 >
 
 <link
     rel="canonical"
     href="https://yfmodaurbana-eng.github.io/Strangis/"
 >
+
+<!-- =====================================================
+     FAVICON
+===================================================== -->
+
+<link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="./apple-touch-icon.png"
+>
+
+<link
+    rel="icon"
+    type="image/png"
+    sizes="32x32"
+    href="./favicon-32x32.png"
+>
+
+<link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="./favicon-16x16.png"
+>
+
+<link
+    rel="manifest"
+    href="./site.webmanifest"
+>
+
+
+<!-- =====================================================
+     OPEN GRAPH
+===================================================== -->
 
 <meta
     property="og:type"
@@ -46,7 +85,7 @@
 
 <meta
     property="og:description"
-    content="Moda, accesorios, bisutería y pedrería a precios competitivos. Envío gratuito a toda España."
+    content="Descubre moda, accesorios, bisutería y pedrería a precios competitivos. Envío gratuito a toda España."
 >
 
 <meta
@@ -56,8 +95,18 @@
 
 <meta
     property="og:image"
-    content="https://i.imgur.com/nomrvEn.jpeg"
+    content="https://yfmodaurbana-eng.github.io/Strangis/logo.png"
 >
+
+<meta
+    property="og:image:alt"
+    content="Strangis - Tienda online de moda y accesorios"
+>
+
+
+<!-- =====================================================
+     TWITTER / X
+===================================================== -->
 
 <meta
     name="twitter:card"
@@ -71,12 +120,17 @@
 
 <meta
     name="twitter:description"
-    content="Moda y accesorios a precios competitivos. Envío gratuito a toda España."
+    content="Moda, accesorios, bisutería y pedrería a precios competitivos. Envío gratuito a toda España."
 >
 
 <meta
     name="twitter:image"
-    content="https://i.imgur.com/nomrvEn.jpeg"
+    content="https://yfmodaurbana-eng.github.io/Strangis/logo.png"
+>
+
+<meta
+    name="twitter:image:alt"
+    content="Strangis - Tienda online de moda y accesorios"
 >
 
 
@@ -86,19 +140,48 @@
 
 <script type="application/ld+json">
 {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Strangis",
-    "url": "https://yfmodaurbana-eng.github.io/Strangis/",
-    "description": "Tienda online de moda y accesorios.",
-    "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-            "@type": "EntryPoint",
-            "urlTemplate": "https://yfmodaurbana-eng.github.io/Strangis/?q={search_term_string}"
-        },
-        "query-input": "required name=search_term_string"
+  "@context": "https://schema.org",
+  "@graph": [
+
+    {
+      "@type": "Organization",
+      "@id": "https://yfmodaurbana-eng.github.io/Strangis/#organization",
+      "name": "Strangis",
+      "url": "https://yfmodaurbana-eng.github.io/Strangis/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://yfmodaurbana-eng.github.io/Strangis/logo.png"
+      }
+    },
+
+    {
+      "@type": "WebSite",
+      "@id": "https://yfmodaurbana-eng.github.io/Strangis/#website",
+      "url": "https://yfmodaurbana-eng.github.io/Strangis/",
+      "name": "Strangis",
+      "description": "Tienda online de moda y accesorios.",
+      "publisher": {
+        "@id": "https://yfmodaurbana-eng.github.io/Strangis/#organization"
+      },
+      "inLanguage": "es-ES"
+    },
+
+    {
+      "@type": "WebPage",
+      "@id": "https://yfmodaurbana-eng.github.io/Strangis/#webpage",
+      "url": "https://yfmodaurbana-eng.github.io/Strangis/",
+      "name": "Strangis | Tienda Online de Moda y Accesorios",
+      "description": "Strangis es una tienda online de moda y accesorios. Descubre camisetas, pantalones, conjuntos, gorras, gafas, bisutería y pedrería.",
+      "isPartOf": {
+        "@id": "https://yfmodaurbana-eng.github.io/Strangis/#website"
+      },
+      "about": {
+        "@id": "https://yfmodaurbana-eng.github.io/Strangis/#organization"
+      },
+      "inLanguage": "es-ES"
     }
+
+  ]
 }
 </script>
 
@@ -187,6 +270,13 @@ header{
     font-weight:900;
 
     letter-spacing:4px;
+}
+
+.logo-link{
+
+    color:inherit;
+
+    text-decoration:none;
 }
 
 nav{
@@ -1283,15 +1373,24 @@ footer{
 <header>
 
 <div class="logo">
+
+<a
+    class="logo-link"
+    href="./"
+    aria-label="Strangis - página de inicio"
+>
     Strangis
+</a>
+
 </div>
 
 
-<nav>
+<nav aria-label="Navegación principal">
 
 <a
     class="active"
-    href="./index.html"
+    href="./"
+    aria-current="page"
 >
     Inicio
 </a>
@@ -1333,7 +1432,10 @@ footer{
      BUSCADOR
 ===================================================== -->
 
-<section class="search-section">
+<section
+    class="search-section"
+    aria-label="Buscar productos"
+>
 
 <div class="search-box">
 
@@ -1345,6 +1447,7 @@ footer{
     stroke-width="2"
     stroke-linecap="round"
     stroke-linejoin="round"
+    aria-hidden="true"
 >
 
 <circle
@@ -1404,6 +1507,8 @@ footer{
      HERO SEO
 ===================================================== -->
 
+<main>
+
 <section class="hero">
 
 <h1>
@@ -1440,11 +1545,14 @@ footer{
      PRODUCTOS
 ===================================================== -->
 
-<section class="products-section">
+<section
+    class="products-section"
+    aria-labelledby="products-title"
+>
 
 <div class="section-heading">
 
-<h2>
+<h2 id="products-title">
     Moda y accesorios a buen precio
 </h2>
 
@@ -1458,6 +1566,7 @@ footer{
 <div
     class="carousel-window"
     id="carouselWindow"
+    aria-label="Productos destacados"
 >
 
 <div
@@ -1474,7 +1583,10 @@ footer{
      INFORMACIÓN SEO
 ===================================================== -->
 
-<section class="info-section">
+<section
+    class="info-section"
+    aria-label="Información sobre Strangis"
+>
 
 <div class="info-grid">
 
@@ -1547,6 +1659,8 @@ footer{
 </div>
 
 </section>
+
+</main>
 
 
 <!-- =====================================================
