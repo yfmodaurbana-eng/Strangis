@@ -11,7 +11,7 @@
 
 <meta
     name="description"
-    content="Compra bisutería online en Strangis. Descubre accesorios y complementos de moda para mujer y hombre, con diseños actuales para completar tus looks con estilo."
+    content="Descubre bisutería online en Strangis: accesorios y complementos de moda para mujer y hombre. Diseños actuales para completar tus looks con estilo."
 >
 
 <meta
@@ -39,13 +39,31 @@
     content="es"
 >
 
+<meta
+    name="theme-color"
+    content="#151515"
+>
+
 <link
     rel="canonical"
     href="https://yfmodaurbana-eng.github.io/Strangis/bisuteria.html"
 >
 
+<link
+    rel="icon"
+    href="favicon.ico"
+    type="image/x-icon"
+>
 
-<!-- OPEN GRAPH -->
+<link
+    rel="shortcut icon"
+    href="favicon.ico"
+    type="image/x-icon"
+>
+
+<!-- =====================================================
+     OPEN GRAPH
+===================================================== -->
 
 <meta
     property="og:type"
@@ -77,12 +95,23 @@
     content="https://yfmodaurbana-eng.github.io/Strangis/bisuteria.html"
 >
 
+<meta
+    property="og:image"
+    content="https://yfmodaurbana-eng.github.io/Strangis/favicon.ico"
+>
 
-<!-- TWITTER / X -->
+<meta
+    property="og:image:alt"
+    content="Strangis - Bisutería online"
+>
+
+<!-- =====================================================
+     TWITTER / X
+===================================================== -->
 
 <meta
     name="twitter:card"
-    content="summary_large_image"
+    content="summary"
 >
 
 <meta
@@ -95,22 +124,85 @@
     content="Compra bisutería online y descubre accesorios de moda para mujer y hombre en Strangis."
 >
 
+<meta
+    name="twitter:image"
+    content="https://yfmodaurbana-eng.github.io/Strangis/favicon.ico"
+>
 
-<!-- DATOS ESTRUCTURADOS -->
+<meta
+    name="twitter:image:alt"
+    content="Strangis - Bisutería online"
+>
+
+<!-- =====================================================
+     DATOS ESTRUCTURADOS
+===================================================== -->
 
 <script type="application/ld+json">
 {
     "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": "Bisutería Online | Strangis",
-    "description": "Bisutería online y accesorios de moda para mujer y hombre en Strangis.",
-    "url": "https://yfmodaurbana-eng.github.io/Strangis/bisuteria.html",
-    "inLanguage": "es-ES",
-    "isPartOf": {
-        "@type": "WebSite",
-        "name": "Strangis",
-        "url": "https://yfmodaurbana-eng.github.io/Strangis/"
-    }
+    "@graph": [
+
+        {
+            "@type": "Organization",
+            "@id": "https://yfmodaurbana-eng.github.io/Strangis/#organization",
+            "name": "Strangis",
+            "url": "https://yfmodaurbana-eng.github.io/Strangis/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://yfmodaurbana-eng.github.io/Strangis/favicon.ico"
+            }
+        },
+
+        {
+            "@type": "WebSite",
+            "@id": "https://yfmodaurbana-eng.github.io/Strangis/#website",
+            "url": "https://yfmodaurbana-eng.github.io/Strangis/",
+            "name": "Strangis",
+            "publisher": {
+                "@id": "https://yfmodaurbana-eng.github.io/Strangis/#organization"
+            },
+            "inLanguage": "es-ES"
+        },
+
+        {
+            "@type": "CollectionPage",
+            "@id": "https://yfmodaurbana-eng.github.io/Strangis/bisuteria.html#webpage",
+            "url": "https://yfmodaurbana-eng.github.io/Strangis/bisuteria.html",
+            "name": "Bisutería Online | Strangis",
+            "description": "Bisutería online y accesorios de moda para mujer y hombre en Strangis.",
+            "isPartOf": {
+                "@id": "https://yfmodaurbana-eng.github.io/Strangis/#website"
+            },
+            "publisher": {
+                "@id": "https://yfmodaurbana-eng.github.io/Strangis/#organization"
+            },
+            "inLanguage": "es-ES",
+            "breadcrumb": {
+                "@id": "https://yfmodaurbana-eng.github.io/Strangis/bisuteria.html#breadcrumb"
+            }
+        },
+
+        {
+            "@type": "BreadcrumbList",
+            "@id": "https://yfmodaurbana-eng.github.io/Strangis/bisuteria.html#breadcrumb",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Inicio",
+                    "item": "https://yfmodaurbana-eng.github.io/Strangis/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Bisutería",
+                    "item": "https://yfmodaurbana-eng.github.io/Strangis/bisuteria.html"
+                }
+            ]
+        }
+
+    ]
 }
 </script>
 
@@ -1347,11 +1439,14 @@ footer{
 
 <header>
 
-    <div class="logo">
+    <div
+        class="logo"
+        aria-label="Strangis"
+    >
         Strangis
     </div>
 
-    <nav>
+    <nav aria-label="Categorías de Strangis">
 
         <a href="index.html">
             Inicio
@@ -1380,6 +1475,7 @@ footer{
         <a
             class="active"
             href="bisuteria.html"
+            aria-current="page"
         >
             Bisutería
         </a>
@@ -1392,6 +1488,8 @@ footer{
 
 </header>
 
+
+<main>
 
 <section class="hero">
 
@@ -1413,7 +1511,10 @@ footer{
 </section>
 
 
-<section class="products-section">
+<section
+    class="products-section"
+    aria-label="Productos de bisutería"
+>
 
     <div
         class="products"
@@ -1428,6 +1529,8 @@ footer{
 
 </section>
 
+</main>
+
 
 <footer>
     © 2026 Strangis · Bisutería online · TODOS LOS DERECHOS RESERVADOS
@@ -1439,6 +1542,9 @@ footer{
 <div
     class="image-lightbox"
     id="imageLightbox"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Vista ampliada del producto"
 >
 
     <div class="lightbox-content">
@@ -1447,6 +1553,7 @@ footer{
             class="lightbox-close"
             type="button"
             onclick="closeLightbox()"
+            aria-label="Cerrar imagen"
         >
             ×
         </button>
@@ -1455,6 +1562,7 @@ footer{
             class="lightbox-arrow prev"
             type="button"
             onclick="changeLightboxImage(-1)"
+            aria-label="Imagen anterior"
         >
             ‹
         </button>
@@ -1470,6 +1578,7 @@ footer{
             class="lightbox-arrow next"
             type="button"
             onclick="changeLightboxImage(1)"
+            aria-label="Imagen siguiente"
         >
             ›
         </button>
@@ -1491,6 +1600,9 @@ footer{
 <div
     class="modal"
     id="customerModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="customerModalTitle"
 >
 
     <div class="modal-box">
@@ -1503,7 +1615,7 @@ footer{
                     FINALIZAR PEDIDO
                 </small>
 
-                <h2>
+                <h2 id="customerModalTitle">
                     Datos de envío
                 </h2>
 
@@ -1513,6 +1625,7 @@ footer{
                 class="close-modal"
                 type="button"
                 onclick="closeCustomerModal()"
+                aria-label="Cerrar formulario"
             >
                 ×
             </button>
@@ -1529,6 +1642,7 @@ footer{
         <div
             class="form-error"
             id="formError"
+            role="alert"
         ></div>
 
 
@@ -1541,7 +1655,7 @@ footer{
 
             <div class="form-field full">
 
-                <label>
+                <label for="customerName">
                     Nombre y apellidos *
                 </label>
 
@@ -1556,7 +1670,7 @@ footer{
 
             <div class="form-field">
 
-                <label>
+                <label for="customerPhone">
                     Teléfono *
                 </label>
 
@@ -1571,7 +1685,7 @@ footer{
 
             <div class="form-field">
 
-                <label>
+                <label for="customerEmail">
                     Email
                 </label>
 
@@ -1595,7 +1709,7 @@ footer{
 
             <div class="form-field full">
 
-                <label>
+                <label for="customerAddress">
                     Dirección *
                 </label>
 
@@ -1610,7 +1724,7 @@ footer{
 
             <div class="form-field">
 
-                <label>
+                <label for="customerNumber">
                     Número *
                 </label>
 
@@ -1624,7 +1738,7 @@ footer{
 
             <div class="form-field">
 
-                <label>
+                <label for="customerFloor">
                     Piso / Puerta
                 </label>
 
@@ -1638,7 +1752,7 @@ footer{
 
             <div class="form-field">
 
-                <label>
+                <label for="customerPostal">
                     Código postal *
                 </label>
 
@@ -1646,6 +1760,7 @@ footer{
                     id="customerPostal"
                     type="text"
                     inputmode="numeric"
+                    autocomplete="postal-code"
                 >
 
             </div>
@@ -1653,13 +1768,14 @@ footer{
 
             <div class="form-field">
 
-                <label>
+                <label for="customerCity">
                     Ciudad *
                 </label>
 
                 <input
                     id="customerCity"
                     type="text"
+                    autocomplete="address-level2"
                 >
 
             </div>
@@ -1667,13 +1783,14 @@ footer{
 
             <div class="form-field">
 
-                <label>
+                <label for="customerProvince">
                     Provincia *
                 </label>
 
                 <input
                     id="customerProvince"
                     type="text"
+                    autocomplete="address-level1"
                 >
 
             </div>
@@ -1681,7 +1798,7 @@ footer{
 
             <div class="form-field">
 
-                <label>
+                <label for="customerCountry">
                     País *
                 </label>
 
@@ -1689,6 +1806,7 @@ footer{
                     id="customerCountry"
                     type="text"
                     value="España"
+                    autocomplete="country-name"
                 >
 
             </div>
@@ -1696,7 +1814,7 @@ footer{
 
             <div class="form-field full">
 
-                <label>
+                <label for="customerNotes">
                     Observaciones
                 </label>
 
