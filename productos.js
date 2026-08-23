@@ -1,7 +1,15 @@
-/* =====================================================
+/* =========================================================
    STRANGIS — PRODUCTS.JS
    MOTOR DE PRODUCTOS + SUPABASE
-   ===================================================== */
+   REFERENCIAS AUTOMÁTICAS POR PRODUCTO E IMAGEN
+   ========================================================= */
+
+"use strict";
+
+
+/* =========================================================
+   SUPABASE
+========================================================= */
 
 const STRANGIS_SUPABASE_URL =
     "https://xbbjfatmdbxbuoqdrgoj.supabase.co";
@@ -13,9 +21,9 @@ const STRANGIS_PRODUCTS_TABLE =
     "Products";
 
 
-/* =====================================================
-   CONFIGURACIÓN GENERAL
-===================================================== */
+/* =========================================================
+   CONFIGURACIÓN
+========================================================= */
 
 const STRANGIS_ALLOWED_CATEGORIES = [
     "camisetas",
@@ -28,25 +36,32 @@ const STRANGIS_ALLOWED_CATEGORIES = [
 
 
 const STRANGIS_CATEGORY_NAMES = {
+
     camisetas: "Camisetas",
+
     pantalones: "Pantalones",
+
     conjuntos: "Conjuntos",
+
     gorras: "Gorras",
+
     gafas: "Gafas",
+
     bisuteria: "Bisutería"
+
 };
 
 
-/* =====================================================
-   PRODUCTOS EN MEMORIA
-===================================================== */
+/* =========================================================
+   MEMORIA
+========================================================= */
 
 const STRANGIS_PRODUCTS = [];
 
 
-/* =====================================================
+/* =========================================================
    UTILIDADES
-===================================================== */
+========================================================= */
 
 function strangisString(value) {
 
@@ -81,8 +96,10 @@ function strangisNumber(
 
     }
 
+
     const number =
         Number(value);
+
 
     return Number.isFinite(number)
         ? number
@@ -102,6 +119,7 @@ function strangisPositiveInteger(
             fallback
         );
 
+
     return Math.max(
         0,
         Math.floor(number)
@@ -120,8 +138,10 @@ function strangisParseJSON(value) {
 
     }
 
+
     const text =
         value.trim();
+
 
     if (!text) {
 
@@ -129,9 +149,12 @@ function strangisParseJSON(value) {
 
     }
 
+
     try {
 
-        return JSON.parse(text);
+        return JSON.parse(
+            text
+        );
 
     }
     catch {
@@ -143,29 +166,182 @@ function strangisParseJSON(value) {
 }
 
 
-/* =====================================================
-   NORMALIZAR UNA IMAGEN
-=====================================================
+/* =========================================================
+   REFERENCIAS AUTOMÁTICAS
+========================================================= */
 
-   Admite:
+/*
+ * Generamos referencias que no dependen
+ * de que el usuario escriba nada.
+ *
+ * Ejemplo:
+ *
+ * STR-000001
+ * STR-000002
+ *
+ * IMG-000001
+ * IMG-000002
+ */
 
-   "https://..."
+function generateProductReference() {
 
-   {
-       "name": "Negro",
-       "image": "https://..."
-   }
+    const now =
+        Date.now()
+            .toString(36)
+            .toUpperCase();
 
-   {
-       "name": "Negro",
-       "url": "https://..."
-   }
 
-   {
-       "name": "Negro",
-       "src": "https://..."
-   }
-===================================================== */
+    const random =
+        Math.random()
+            .toString(36)
+            .substring(
+                2,
+                7
+            )
+            .toUpperCase();
+
+
+    return `STR-${now}-${random}`;
+
+}
+
+
+function generateImageReference() {
+
+    const now =
+        Date.now()
+            .toString(36)
+            .toUpperCase();
+
+
+    const random =
+        Math.random()
+            .toString(36)
+            .substring(
+                2,
+                7
+            )
+            .toUpperCase();
+
+
+    return `IMG-${now}-${random}`;
+
+}
+
+
+/*
+ * Genera una referencia de producto
+ * que no exista en memoria.
+ */
+
+function generateUniqueProductReference() {
+
+    let reference = "";
+
+
+    do {
+
+        reference =
+            generateProductReference();
+
+    }
+    while (
+        productReferenceExists(
+            reference
+        )
+    );
+
+
+    return reference;
+
+}
+
+
+/*
+ * Comprueba referencias de imagen
+ * existentes en todos los productos.
+ */
+
+function imageReferenceExists(
+    reference
+) {
+
+    const wanted =
+        strangisString(
+            reference
+        ).toLowerCase();
+
+
+    if (!wanted) {
+
+        return false;
+
+    }
+
+
+    for (
+        const product
+        of STRANGIS_PRODUCTS
+    ) {
+
+        const images =
+            normalizeProductImages(
+                product?.images
+            );
+
+
+        for (
+            const image
+            of images
+        ) {
+
+            if (
+                strangisString(
+                    image?.ref
+                ).toLowerCase() ===
+                wanted
+            ) {
+
+                return true;
+
+            }
+
+        }
+
+    }
+
+
+    return false;
+
+}
+
+
+function generateUniqueImageReference() {
+
+    let reference = "";
+
+
+    do {
+
+        reference =
+            generateImageReference();
+
+    }
+    while (
+        imageReferenceExists(
+            reference
+        )
+    );
+
+
+    return reference;
+
+}
+
+
+/* =========================================================
+   NORMALIZAR IMAGEN
+========================================================= */
 
 function normalizeProductImage(item) {
 
@@ -176,15 +352,23 @@ function normalizeProductImage(item) {
         const image =
             item.trim();
 
+
         if (!image) {
 
             return null;
 
         }
 
+
         return {
+
             name: "",
-            image: image
+
+            image: image,
+
+            ref:
+                generateUniqueImageReference()
+
         };
 
     }
@@ -202,6 +386,7 @@ function normalizeProductImage(item) {
 
     const image =
         strangisString(
+
             item.image ||
             item.url ||
             item.src ||
@@ -210,15 +395,27 @@ function normalizeProductImage(item) {
             item.photo ||
             item.photo_url ||
             item.photoUrl
+
         );
 
 
     const name =
         strangisString(
+
             item.name ||
             item.color ||
             item.colour ||
             item.variant
+
+        );
+
+
+    const ref =
+        strangisString(
+            item.ref ||
+            item.reference ||
+            item.image_ref ||
+            item.imageReference
         );
 
 
@@ -230,16 +427,23 @@ function normalizeProductImage(item) {
 
 
     return {
-        name: name,
-        image: image
+
+        name,
+
+        image,
+
+        ref:
+            ref ||
+            generateUniqueImageReference()
+
     };
 
 }
 
 
-/* =====================================================
+/* =========================================================
    NORMALIZAR LISTA DE IMÁGENES
-===================================================== */
+========================================================= */
 
 function normalizeProductImages(value) {
 
@@ -248,10 +452,6 @@ function normalizeProductImages(value) {
             value
         );
 
-
-    /*
-     * Si no existe nada
-     */
 
     if (
         raw === null ||
@@ -264,15 +464,6 @@ function normalizeProductImages(value) {
     }
 
 
-    /*
-     * Caso:
-
-     * {
-     *     name: "Negro",
-     *     image: "https://..."
-     * }
-     */
-
     if (
         raw &&
         typeof raw === "object" &&
@@ -284,18 +475,13 @@ function normalizeProductImages(value) {
                 raw
             );
 
+
         return normalized
             ? [normalized]
             : [];
 
     }
 
-
-    /*
-     * Caso:
-
-     * "https://..."
-     */
 
     if (
         typeof raw === "string"
@@ -306,30 +492,13 @@ function normalizeProductImages(value) {
                 raw
             );
 
+
         return normalized
             ? [normalized]
             : [];
 
     }
 
-
-    /*
-     * Caso:
-
-     * [
-     *     "https://...",
-     *     "https://..."
-     * ]
-     *
-     * o:
-     *
-     * [
-     *     {
-     *         name: "Negro",
-     *         image: "https://..."
-     *     }
-     * ]
-     */
 
     if (
         Array.isArray(raw)
@@ -354,9 +523,9 @@ function normalizeProductImages(value) {
 }
 
 
-/* =====================================================
+/* =========================================================
    CLIENTE SUPABASE
-===================================================== */
+========================================================= */
 
 const supabaseClient = {
 
@@ -427,7 +596,9 @@ const supabaseClient = {
             try {
 
                 data =
-                    JSON.parse(text);
+                    JSON.parse(
+                        text
+                    );
 
             }
             catch {
@@ -470,14 +641,20 @@ const supabaseClient = {
             error.status =
                 response.status;
 
+
             error.code =
-                data?.code || null;
+                data?.code ||
+                null;
+
 
             error.details =
-                data?.details || null;
+                data?.details ||
+                null;
+
 
             error.hint =
-                data?.hint || null;
+                data?.hint ||
+                null;
 
 
             throw error;
@@ -510,33 +687,43 @@ const supabaseClient = {
                             `/rest/v1/${encodedTable}`,
 
                             {
+
                                 method: "POST",
 
                                 headers: {
+
                                     "Prefer":
                                         "return=representation"
+
                                 },
 
                                 body:
                                     JSON.stringify(
                                         product
                                     )
+
                             }
 
                         );
 
 
                     return {
+
                         data,
+
                         error: null
+
                     };
 
                 }
                 catch (error) {
 
                     return {
+
                         data: null,
+
                         error
+
                     };
 
                 }
@@ -557,64 +744,22 @@ const supabaseClient = {
 
 
                     return {
+
                         data,
+
                         error: null
+
                     };
 
                 }
                 catch (error) {
 
                     return {
+
                         data: null,
+
                         error
-                    };
 
-                }
-
-            },
-
-
-            async selectWhere(
-                column,
-                operator,
-                value
-            ) {
-
-                try {
-
-                    const encodedColumn =
-                        encodeURIComponent(
-                            column
-                        );
-
-                    const encodedValue =
-                        encodeURIComponent(
-                            value
-                        );
-
-
-                    const data =
-                        await supabaseClient.request(
-
-                            `/rest/v1/${encodedTable}` +
-                            `?select=*` +
-                            `&${encodedColumn}=` +
-                            `${operator}.${encodedValue}`
-
-                        );
-
-
-                    return {
-                        data,
-                        error: null
-                    };
-
-                }
-                catch (error) {
-
-                    return {
-                        data: null,
-                        error
                     };
 
                 }
@@ -628,9 +773,9 @@ const supabaseClient = {
 };
 
 
-/* =====================================================
+/* =========================================================
    NORMALIZAR PRODUCTO
-===================================================== */
+========================================================= */
 
 function normalizeProduct(product) {
 
@@ -645,7 +790,9 @@ function normalizeProduct(product) {
 
 
     const normalized = {
+
         ...product
+
     };
 
 
@@ -661,10 +808,16 @@ function normalizeProduct(product) {
         );
 
 
+    /*
+     * Si el producto antiguo no tiene
+     * referencia, generamos una.
+     */
+
     normalized.ref =
         strangisString(
             product.ref
-        );
+        ) ||
+        generateUniqueProductReference();
 
 
     normalized.price =
@@ -711,10 +864,6 @@ function normalizeProduct(product) {
         product.active !== false;
 
 
-    /* =============================================
-       IMÁGENES
-    ============================================= */
-
     normalized.images =
         normalizeProductImages(
             product.images
@@ -722,10 +871,7 @@ function normalizeProduct(product) {
 
 
     /*
-     * Compatibilidad adicional:
-     *
-     * Si la tabla tiene "image"
-     * en vez de "images".
+     * Compatibilidad con image.
      */
 
     if (
@@ -742,9 +888,7 @@ function normalizeProduct(product) {
 
 
     /*
-     * Compatibilidad adicional:
-     *
-     * image_url
+     * Compatibilidad con image_url.
      */
 
     if (
@@ -760,9 +904,9 @@ function normalizeProduct(product) {
     }
 
 
-    /* =============================================
-       TALLAS
-    ============================================= */
+    /*
+     * TALLAS
+     */
 
     const rawSizes =
         strangisParseJSON(
@@ -771,7 +915,9 @@ function normalizeProduct(product) {
 
 
     if (
-        Array.isArray(rawSizes)
+        Array.isArray(
+            rawSizes
+        )
     ) {
 
         normalized.sizes =
@@ -814,46 +960,29 @@ function normalizeProduct(product) {
     }
 
 
-    /*
-     * DEBUG IMPORTANTE
-     */
-
-    console.log(
-        "STRANGIS — producto normalizado:",
-        {
-            name:
-                normalized.name,
-
-            ref:
-                normalized.ref,
-
-            images:
-                normalized.images
-        }
-    );
-
-
     return normalized;
 
 }
 
 
-/* =====================================================
-   CARGAR PRODUCTOS DESDE SUPABASE
-===================================================== */
+/* =========================================================
+   CARGAR PRODUCTOS
+========================================================= */
 
 async function loadProductsFromSupabase() {
 
     console.log(
-        "STRANGIS — cargando productos desde Supabase..."
+        "STRANGIS — cargando productos..."
     );
 
 
     const result =
         await supabaseClient
+
             .from(
                 STRANGIS_PRODUCTS_TABLE
             )
+
             .select();
 
 
@@ -864,30 +993,28 @@ async function loadProductsFromSupabase() {
             result.error
         );
 
+
         throw result.error;
 
     }
 
 
     const products =
-        Array.isArray(result.data)
+        Array.isArray(
+            result.data
+        )
             ? result.data
             : [];
 
 
-    /*
-     * DEBUG:
-     * mostramos exactamente lo que
-     * devuelve Supabase.
-     */
-
     console.log(
-        "STRANGIS — RESPUESTA ORIGINAL DE SUPABASE:",
+        "STRANGIS — respuesta Supabase:",
         products
     );
 
 
-    STRANGIS_PRODUCTS.length = 0;
+    STRANGIS_PRODUCTS.length =
+        0;
 
 
     products.forEach(
@@ -922,9 +1049,9 @@ async function loadProductsFromSupabase() {
 }
 
 
-/* =====================================================
-   OBTENER PRODUCTOS
-===================================================== */
+/* =========================================================
+   GETTERS
+========================================================= */
 
 function getProducts() {
 
@@ -943,15 +1070,11 @@ function getActiveProducts() {
 }
 
 
-/* =====================================================
-   PRODUCTOS POR CATEGORÍA
-===================================================== */
-
 function getProductsByCategory(
     category
 ) {
 
-    const wantedCategory =
+    const wanted =
         strangisNormalizeCategory(
             category
         );
@@ -961,7 +1084,7 @@ function getProductsByCategory(
         product =>
             strangisNormalizeCategory(
                 product?.category
-            ) === wantedCategory
+            ) === wanted
     );
 
 }
@@ -971,7 +1094,7 @@ function getActiveProductsByCategory(
     category
 ) {
 
-    const wantedCategory =
+    const wanted =
         strangisNormalizeCategory(
             category
         );
@@ -992,7 +1115,7 @@ function getActiveProductsByCategory(
             return (
                 strangisNormalizeCategory(
                     product?.category
-                ) === wantedCategory
+                ) === wanted
             );
 
         }
@@ -1001,9 +1124,9 @@ function getActiveProductsByCategory(
 }
 
 
-/* =====================================================
+/* =========================================================
    PRODUCTO POR ID
-===================================================== */
+========================================================= */
 
 function getProductById(id) {
 
@@ -1017,34 +1140,35 @@ function getProductById(id) {
     }
 
 
-    const wantedId =
+    const wanted =
         String(id);
 
 
     return STRANGIS_PRODUCTS.find(
         product =>
-            String(product?.id) ===
-            wantedId
+            String(
+                product?.id
+            ) === wanted
     );
 
 }
 
 
-/* =====================================================
+/* =========================================================
    PRODUCTO POR REFERENCIA
-===================================================== */
+========================================================= */
 
 function getProductByReference(
     ref
 ) {
 
-    const wantedRef =
+    const wanted =
         strangisString(
             ref
         ).toLowerCase();
 
 
-    if (!wantedRef) {
+    if (!wanted) {
 
         return undefined;
 
@@ -1055,8 +1179,7 @@ function getProductByReference(
         product =>
             strangisString(
                 product?.ref
-            ).toLowerCase() ===
-            wantedRef
+            ).toLowerCase() === wanted
     );
 
 }
@@ -1075,9 +1198,9 @@ function productReferenceExists(
 }
 
 
-/* =====================================================
-   NOMBRE DE CATEGORÍA
-===================================================== */
+/* =========================================================
+   CATEGORÍA
+========================================================= */
 
 function getCategoryName(
     category
@@ -1097,9 +1220,9 @@ function getCategoryName(
 }
 
 
-/* =====================================================
-   IMÁGENES DEL PRODUCTO
-===================================================== */
+/* =========================================================
+   IMÁGENES
+========================================================= */
 
 function getProductImages(
     product
@@ -1112,74 +1235,23 @@ function getProductImages(
     }
 
 
-    /*
-     * Si el producto ya está normalizado,
-     * usamos directamente normalized.images.
-     */
-
-    if (
-        Array.isArray(
-            product.images
-        )
-    ) {
-
-        return product.images
-
-            .map(
-                item => {
-
-                    if (
-                        typeof item === "string"
-                    ) {
-
-                        return item.trim();
-
-                    }
-
-
-                    if (
-                        item &&
-                        typeof item === "object"
-                    ) {
-
-                        return strangisString(
-                            item.image ||
-                            item.url ||
-                            item.src
-                        );
-
-                    }
-
-
-                    return "";
-
-                }
-            )
-
-            .filter(Boolean);
-
-    }
-
-
-    /*
-     * Fallback para productos no normalizados.
-     */
-
     return normalizeProductImages(
         product.images
     )
+
         .map(
             item =>
                 item.image
         )
+
         .filter(Boolean);
 
 }
 
 
-/* =====================================================
+/* =========================================================
    PRIMERA IMAGEN
-===================================================== */
+========================================================= */
 
 function getProductImage(
     product
@@ -1196,9 +1268,9 @@ function getProductImage(
 }
 
 
-/* =====================================================
-   VARIANTES
-===================================================== */
+/* =========================================================
+   VARIANTES / IMÁGENES CON REFERENCIA
+========================================================= */
 
 function getProductVariants(
     product
@@ -1211,93 +1283,16 @@ function getProductVariants(
     }
 
 
-    /*
-     * Si ya está normalizado,
-     * product.images contiene objetos
-     * { name, image }.
-     */
-
-    if (
-        Array.isArray(
-            product.images
-        )
-    ) {
-
-        return product.images
-
-            .map(
-                variant => {
-
-                    if (
-                        typeof variant ===
-                        "string"
-                    ) {
-
-                        return {
-
-                            name: "",
-
-                            image:
-                                variant.trim()
-
-                        };
-
-                    }
-
-
-                    if (
-                        variant &&
-                        typeof variant ===
-                        "object"
-                    ) {
-
-                        return {
-
-                            name:
-                                strangisString(
-                                    variant.name
-                                ),
-
-                            image:
-                                strangisString(
-                                    variant.image ||
-                                    variant.url ||
-                                    variant.src
-                                )
-
-                        };
-
-                    }
-
-
-                    return {
-
-                        name: "",
-
-                        image: ""
-
-                    };
-
-                }
-            )
-
-            .filter(
-                variant =>
-                    variant.name ||
-                    variant.image
-            );
-
-    }
-
-
-    return [];
+    return normalizeProductImages(
+        product.images
+    );
 
 }
 
 
-/* =====================================================
+/* =========================================================
    TALLAS
-===================================================== */
+========================================================= */
 
 function getProductSizes(
     product
@@ -1306,26 +1301,6 @@ function getProductSizes(
     if (!product) {
 
         return [];
-
-    }
-
-
-    if (
-        Array.isArray(
-            product.sizes
-        )
-    ) {
-
-        return product.sizes
-
-            .map(
-                size =>
-                    strangisString(
-                        size
-                    )
-            )
-
-            .filter(Boolean);
 
     }
 
@@ -1355,8 +1330,7 @@ function getProductSizes(
 
 
     if (
-        typeof sizes ===
-        "string"
+        typeof sizes === "string"
     ) {
 
         return sizes
@@ -1380,9 +1354,9 @@ function getProductSizes(
 }
 
 
-/* =====================================================
-   VALIDAR CATEGORÍA
-===================================================== */
+/* =========================================================
+   VALIDACIÓN
+========================================================= */
 
 function isValidProductCategory(
     category
@@ -1397,9 +1371,9 @@ function isValidProductCategory(
 }
 
 
-/* =====================================================
-   VALORES DEL FORMULARIO
-===================================================== */
+/* =========================================================
+   FORMULARIO
+========================================================= */
 
 function getProductFormValues() {
 
@@ -1425,13 +1399,6 @@ function getProductFormValues() {
             strangisString(
                 getValue(
                     "productName"
-                )
-            ),
-
-        ref:
-            strangisString(
-                getValue(
-                    "productRef"
                 )
             ),
 
@@ -1498,13 +1465,13 @@ function getProductFormValues() {
 }
 
 
-/* =====================================================
+/* =========================================================
    VARIANTES DEL FORMULARIO
-===================================================== */
+========================================================= */
 
 function getFormVariants() {
 
-    const sourceVariants =
+    const source =
         Array.isArray(
             window.variants
         )
@@ -1512,7 +1479,7 @@ function getFormVariants() {
             : [];
 
 
-    return sourceVariants
+    return source
 
         .map(
             variant => ({
@@ -1527,7 +1494,19 @@ function getFormVariants() {
                         variant?.image ||
                         variant?.url ||
                         variant?.src
-                    )
+                    ),
+
+                /*
+                 * La referencia se genera
+                 * automáticamente para
+                 * cada imagen.
+                 */
+
+                ref:
+                    strangisString(
+                        variant?.ref
+                    ) ||
+                    generateUniqueImageReference()
 
             })
         )
@@ -1541,13 +1520,13 @@ function getFormVariants() {
 }
 
 
-/* =====================================================
-   TALLAS DEL FORMULARIO
-===================================================== */
+/* =========================================================
+   TALLAS FORMULARIO
+========================================================= */
 
 function getFormSizes() {
 
-    const sourceSizes =
+    const source =
         Array.isArray(
             window.sizes
         )
@@ -1555,7 +1534,7 @@ function getFormSizes() {
             : [];
 
 
-    return sourceSizes
+    return source
 
         .map(
             size =>
@@ -1569,16 +1548,18 @@ function getFormSizes() {
 }
 
 
-/* =====================================================
+/* =========================================================
    VALIDAR VARIANTES
-===================================================== */
+========================================================= */
 
 function validateProductVariants(
     variants
 ) {
 
     if (
-        !Array.isArray(variants) ||
+        !Array.isArray(
+            variants
+        ) ||
         !variants.length
     ) {
 
@@ -1587,7 +1568,7 @@ function validateProductVariants(
             valid: false,
 
             message:
-                "Añade al menos un color con su imagen."
+                "Añade al menos una imagen con su color."
 
         };
 
@@ -1595,7 +1576,8 @@ function validateProductVariants(
 
 
     for (
-        const variant of variants
+        const variant
+        of variants
     ) {
 
         if (!variant.name) {
@@ -1619,7 +1601,7 @@ function validateProductVariants(
                 valid: false,
 
                 message:
-                    "Todos los colores deben tener una URL de imagen."
+                    "Todas las imágenes necesitan una URL."
 
             };
 
@@ -1639,9 +1621,9 @@ function validateProductVariants(
 }
 
 
-/* =====================================================
+/* =========================================================
    VALIDAR PRODUCTO
-===================================================== */
+========================================================= */
 
 function validateProductData(
     data,
@@ -1656,20 +1638,6 @@ function validateProductData(
 
             message:
                 "Introduce el nombre del producto."
-
-        };
-
-    }
-
-
-    if (!data.ref) {
-
-        return {
-
-            valid: false,
-
-            message:
-                "Introduce la referencia / ID."
 
         };
 
@@ -1760,35 +1728,16 @@ function validateProductData(
     }
 
 
-    const variantsResult =
-        validateProductVariants(
-            variants
-        );
-
-
-    if (
-        !variantsResult.valid
-    ) {
-
-        return variantsResult;
-
-    }
-
-
-    return {
-
-        valid: true,
-
-        message: ""
-
-    };
+    return validateProductVariants(
+        variants
+    );
 
 }
 
 
-/* =====================================================
-   CREAR PRODUCTO DESDE FORMULARIO
-===================================================== */
+/* =========================================================
+   CONSTRUIR PRODUCTO
+========================================================= */
 
 function buildProductFromForm() {
 
@@ -1827,6 +1776,37 @@ function buildProductFromForm() {
     }
 
 
+    /*
+     * REFERENCIA AUTOMÁTICA DEL PRODUCTO
+     */
+
+    const productReference =
+        generateUniqueProductReference();
+
+
+    /*
+     * REFERENCIAS AUTOMÁTICAS
+     * DE CADA IMAGEN
+     */
+
+    const images =
+        variants.map(
+            variant => ({
+
+                name:
+                    variant.name,
+
+                image:
+                    variant.image,
+
+                ref:
+                    variant.ref ||
+                    generateUniqueImageReference()
+
+            })
+        );
+
+
     const product = {
 
         name:
@@ -1835,8 +1815,12 @@ function buildProductFromForm() {
         category:
             data.category,
 
+        /*
+         * REFERENCIA AUTOMÁTICA
+         */
+
         ref:
-            data.ref,
+            productReference,
 
         price:
             data.price,
@@ -1851,21 +1835,12 @@ function buildProductFromForm() {
             data.whatsapp,
 
         /*
-         * IMPORTANTE:
-         *
-         * Guardamos las variantes
-         * como objetos:
-         *
-         * [
-         *   {
-         *      name: "Negro",
-         *      image: "https://..."
-         *   }
-         * ]
+         * CADA IMAGEN TIENE
+         * SU PROPIA REFERENCIA
          */
 
         images:
-            variants,
+            images,
 
         sizes:
             sizes,
@@ -1893,36 +1868,21 @@ function buildProductFromForm() {
 }
 
 
-/* =====================================================
-   GUARDAR PRODUCTO EN SUPABASE
-===================================================== */
+/* =========================================================
+   GUARDAR PRODUCTO
+========================================================= */
 
 async function saveProductToSupabase() {
 
     try {
 
-        const nameElement =
-            document.getElementById(
-                "productName"
-            );
-
-
-        if (!nameElement) {
-
-            alert(
-                "No se encontró el campo del nombre del producto."
-            );
-
-            return null;
-
-        }
-
-
         const built =
             buildProductFromForm();
 
 
-        if (built.error) {
+        if (
+            built.error
+        ) {
 
             alert(
                 built.error
@@ -1937,35 +1897,8 @@ async function saveProductToSupabase() {
             built.product;
 
 
-        const existingProduct =
-            getProductByReference(
-                product.ref
-            );
-
-
-        if (existingProduct) {
-
-            const shouldContinue =
-                window.confirm(
-
-                    "Ya existe un producto en memoria " +
-                    `con la referencia "${product.ref}".\n\n` +
-                    "¿Quieres continuar de todos modos?"
-
-                );
-
-
-            if (!shouldContinue) {
-
-                return null;
-
-            }
-
-        }
-
-
         console.log(
-            "STRANGIS — producto a guardar:",
+            "STRANGIS — PRODUCTO GENERADO:",
             product
         );
 
@@ -1982,7 +1915,9 @@ async function saveProductToSupabase() {
                 );
 
 
-        if (result.error) {
+        if (
+            result.error
+        ) {
 
             console.error(
                 "STRANGIS — error guardando:",
@@ -2001,7 +1936,7 @@ async function saveProductToSupabase() {
             ) {
 
                 message =
-                    "La referencia del producto ya existe.";
+                    "Ya existe una referencia igual en Supabase.";
 
             }
 
@@ -2041,7 +1976,7 @@ async function saveProductToSupabase() {
                 }
 
 
-                const existingIndex =
+                const index =
                     normalized.id !== undefined &&
                     normalized.id !== null
 
@@ -2059,12 +1994,10 @@ async function saveProductToSupabase() {
 
 
                 if (
-                    existingIndex >= 0
+                    index >= 0
                 ) {
 
-                    STRANGIS_PRODUCTS[
-                        existingIndex
-                    ] =
+                    STRANGIS_PRODUCTS[index] =
                         normalized;
 
                 }
@@ -2081,9 +2014,16 @@ async function saveProductToSupabase() {
 
 
         alert(
-            "✅ Producto guardado correctamente en Supabase."
+            "✅ Producto guardado correctamente.\n\n" +
+            `Referencia producto: ${product.ref}\n` +
+            `Imágenes: ${product.images.length}`
         );
 
+
+        /*
+         * Si existe generateCode
+         * lo mantenemos compatible.
+         */
 
         if (
             typeof window.generateCode ===
@@ -2098,7 +2038,7 @@ async function saveProductToSupabase() {
             catch (error) {
 
                 console.error(
-                    "STRANGIS — error generando código:",
+                    "STRANGIS — generateCode:",
                     error
                 );
 
@@ -2116,7 +2056,7 @@ async function saveProductToSupabase() {
     catch (error) {
 
         console.error(
-            "STRANGIS — error inesperado guardando producto:",
+            "STRANGIS — error inesperado:",
             error
         );
 
@@ -2137,9 +2077,9 @@ async function saveProductToSupabase() {
 }
 
 
-/* =====================================================
-   RECARGAR PRODUCTOS
-===================================================== */
+/* =========================================================
+   REFRESH
+========================================================= */
 
 async function refreshProducts() {
 
@@ -2147,10 +2087,6 @@ async function refreshProducts() {
 
 }
 
-
-/* =====================================================
-   INICIALIZACIÓN
-===================================================== */
 
 async function initStrangisProducts() {
 
@@ -2175,9 +2111,9 @@ async function initStrangisProducts() {
 }
 
 
-/* =====================================================
+/* =========================================================
    EXPORTACIÓN GLOBAL
-===================================================== */
+========================================================= */
 
 window.STRANGIS_PRODUCTS =
     STRANGIS_PRODUCTS;
@@ -2185,11 +2121,32 @@ window.STRANGIS_PRODUCTS =
 window.STRANGIS_ALLOWED_CATEGORIES =
     STRANGIS_ALLOWED_CATEGORIES;
 
+window.STRANGIS_CATEGORY_NAMES =
+    STRANGIS_CATEGORY_NAMES;
+
 window.supabaseClient =
     supabaseClient;
 
 window.normalizeProduct =
     normalizeProduct;
+
+window.normalizeProductImages =
+    normalizeProductImages;
+
+window.generateProductReference =
+    generateProductReference;
+
+window.generateImageReference =
+    generateImageReference;
+
+window.generateUniqueProductReference =
+    generateUniqueProductReference;
+
+window.generateUniqueImageReference =
+    generateUniqueImageReference;
+
+window.imageReferenceExists =
+    imageReferenceExists;
 
 window.loadProductsFromSupabase =
     loadProductsFromSupabase;
@@ -2261,9 +2218,9 @@ window.saveProductToSupabase =
     saveProductToSupabase;
 
 
-/* =====================================================
+/* =========================================================
    FIN
-===================================================== */
+========================================================= */
 
 console.log(
     "STRANGIS — products.js cargado correctamente."
