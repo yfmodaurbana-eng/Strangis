@@ -1,34 +1,51 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Bisutería Online | Bisutería de Moda | Strangis</title>
+<title>Bisutería Online | Accesorios de Moda para Mujer y Hombre | Strangis</title>
 
 <meta
     name="description"
-    content="Descubre bisutería online en Strangis. Complementos y accesorios de bisutería de moda para mujer y hombre, pensados para completar tus looks con estilo."
+    content="Compra bisutería online en Strangis. Descubre accesorios y complementos de moda para mujer y hombre, con diseños actuales para completar tus looks con estilo."
 >
 
 <meta
     name="keywords"
-    content="bisutería, bisutería online, bisutería de moda, accesorios, complementos de moda, joyería de moda, accesorios mujer, accesorios hombre, Strangis"
->
-
-<meta name="robots" content="index, follow">
-
-<meta name="author" content="Strangis">
-
-<meta
-    property="og:title"
-    content="Bisutería Online | Bisutería de Moda | Strangis"
+    content="bisutería online, bisutería, accesorios de moda, complementos de moda, bisutería mujer, bisutería hombre, accesorios mujer, accesorios hombre, joyería de moda, Strangis"
 >
 
 <meta
-    property="og:description"
-    content="Compra bisutería online y descubre accesorios de moda para completar tus looks. Colección Strangis."
+    name="robots"
+    content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
 >
+
+<meta
+    name="googlebot"
+    content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+>
+
+<meta
+    name="author"
+    content="Strangis"
+>
+
+<meta
+    name="language"
+    content="es"
+>
+
+<link
+    rel="canonical"
+    href="https://yfmodaurbana-eng.github.io/Strangis/bisuteria.html"
+>
+
+
+<!-- OPEN GRAPH -->
 
 <meta
     property="og:type"
@@ -36,14 +53,66 @@
 >
 
 <meta
+    property="og:site_name"
+    content="Strangis"
+>
+
+<meta
     property="og:locale"
     content="es_ES"
 >
 
-<link
-    rel="canonical"
-    href="bisuteria.html"
+<meta
+    property="og:title"
+    content="Bisutería Online | Accesorios de Moda | Strangis"
 >
+
+<meta
+    property="og:description"
+    content="Descubre bisutería online y accesorios de moda para mujer y hombre en Strangis. Complementos actuales para completar tus looks."
+>
+
+<meta
+    property="og:url"
+    content="https://yfmodaurbana-eng.github.io/Strangis/bisuteria.html"
+>
+
+
+<!-- TWITTER / X -->
+
+<meta
+    name="twitter:card"
+    content="summary_large_image"
+>
+
+<meta
+    name="twitter:title"
+    content="Bisutería Online | Accesorios de Moda | Strangis"
+>
+
+<meta
+    name="twitter:description"
+    content="Compra bisutería online y descubre accesorios de moda para mujer y hombre en Strangis."
+>
+
+
+<!-- DATOS ESTRUCTURADOS -->
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Bisutería Online | Strangis",
+    "description": "Bisutería online y accesorios de moda para mujer y hombre en Strangis.",
+    "url": "https://yfmodaurbana-eng.github.io/Strangis/bisuteria.html",
+    "inLanguage": "es-ES",
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "Strangis",
+        "url": "https://yfmodaurbana-eng.github.io/Strangis/"
+    }
+}
+</script>
 
 
 <style>
@@ -333,7 +402,7 @@ nav a.active{
 }
 
 /* =========================
-   ETIQUETA EN LA IMAGEN
+   ETIQUETA
 ========================= */
 
 .product-image-label{
@@ -555,18 +624,9 @@ nav a.active{
     line-height:1.55;
 }
 
-.product-price{
-    display:none;
-}
-
-.colors{
-    display:none;
-}
-
-.variant-selector{
-    display:none;
-}
-
+.product-price,
+.colors,
+.variant-selector,
 .label{
     display:none;
 }
@@ -1278,9 +1338,12 @@ footer{
 }
 
 </style>
+
 </head>
 
+
 <body>
+
 
 <header>
 
@@ -1314,7 +1377,10 @@ footer{
             Gafas
         </a>
 
-        <a class="active" href="bisuteria.html">
+        <a
+            class="active"
+            href="bisuteria.html"
+        >
             Bisutería
         </a>
 
@@ -1368,9 +1434,7 @@ footer{
 </footer>
 
 
-<!-- =========================
-     LIGHTBOX
-========================= -->
+<!-- LIGHTBOX -->
 
 <div
     class="image-lightbox"
@@ -1422,9 +1486,7 @@ footer{
 </div>
 
 
-<!-- =========================
-     MODAL PEDIDO
-========================= -->
+<!-- MODAL PEDIDO -->
 
 <div
     class="modal"
@@ -1673,7 +1735,6 @@ footer{
 
 /* =====================================================
    STRANGIS
-   CONFIGURACIÓN
 ===================================================== */
 
 const STRANGIS_SUPABASE_URL =
@@ -1687,7 +1748,7 @@ const STRANGIS_PRODUCTS_TABLE =
 
 
 /* =====================================================
-   CATEGORÍA BISUTERÍA
+   CATEGORÍA
 ===================================================== */
 
 const CATEGORY =
@@ -1704,7 +1765,7 @@ let lightboxVariantIndex = 0;
 
 
 /* =====================================================
-   CLIENTE SUPABASE
+   SUPABASE
 ===================================================== */
 
 const supabaseClient = {
@@ -2072,7 +2133,7 @@ async function loadProducts(){
 
 
 /* =====================================================
-   RENDER PRODUCTOS
+   RENDER
 ===================================================== */
 
 function renderProducts(){
@@ -2116,7 +2177,7 @@ function renderProducts(){
 
 
 /* =====================================================
-   CREAR PRODUCTO
+   PRODUCTO
 ===================================================== */
 
 function createProductHTML(
@@ -2567,7 +2628,7 @@ function createProductHTML(
 
 
 /* =====================================================
-   CAMBIAR VARIANTE / IMAGEN
+   VARIANTES / IMÁGENES
 ===================================================== */
 
 function setVariant(
@@ -2777,20 +2838,6 @@ function updateGalleryCounter(
             `${imageIndex + 1} / ${images.length}`;
 
     }
-
-}
-
-
-function selectColor(
-    productIndex,
-    variantIndex
-){
-
-    setVariant(
-        productIndex,
-        variantIndex,
-        0
-    );
 
 }
 
@@ -4015,7 +4062,7 @@ function imageError(image){
 
 
 /* =====================================================
-   RECORDAR POSICIÓN DE CATEGORÍAS
+   POSICIÓN CATEGORÍAS
 ===================================================== */
 
 const categoryNav =
