@@ -7,41 +7,22 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- =====================================================
-     SEO PRINCIPAL
-===================================================== -->
-
-<title>
-    Strangis | Tienda Online de Moda, Accesorios y Bisutería
-</title>
+<title>Strangis | Tienda Online de Moda y Accesorios</title>
 
 <meta
     name="description"
-    content="Strangis es una tienda online de moda, accesorios, bisutería y pedrería. Descubre camisetas, pantalones, conjuntos, gorras, gafas y mucho más a precios competitivos. Envío gratuito a toda España."
+    content="Strangis es una tienda online de moda y accesorios. Descubre camisetas, pantalones, conjuntos, gorras, gafas, bisutería y pedrería a precios competitivos. Envío gratuito a toda España."
 >
 
 <meta
     name="robots"
-    content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    content="index, follow, max-image-preview:large"
 >
-
-<meta
-    name="googlebot"
-    content="index, follow"
->
-
-<!-- =====================================================
-     URL CANÓNICA CORRECTA
-===================================================== -->
 
 <link
     rel="canonical"
     href="https://yfmodaurbana-eng.github.io/Strangis/"
 >
-
-<!-- =====================================================
-     OPEN GRAPH
-===================================================== -->
 
 <meta
     property="og:type"
@@ -65,7 +46,7 @@
 
 <meta
     property="og:description"
-    content="Moda, accesorios, bisutería y pedrería a precios competitivos. Descubre la selección de productos Strangis con envío gratuito a toda España."
+    content="Moda, accesorios, bisutería y pedrería a precios competitivos. Envío gratuito a toda España."
 >
 
 <meta
@@ -79,15 +60,6 @@
 >
 
 <meta
-    property="og:image:alt"
-    content="Strangis tienda online de moda y accesorios"
->
-
-<!-- =====================================================
-     TWITTER / X
-===================================================== -->
-
-<meta
     name="twitter:card"
     content="summary_large_image"
 >
@@ -99,7 +71,7 @@
 
 <meta
     name="twitter:description"
-    content="Moda, accesorios, bisutería y pedrería a precios competitivos. Envío gratuito a toda España."
+    content="Moda y accesorios a precios competitivos. Envío gratuito a toda España."
 >
 
 <meta
@@ -107,24 +79,9 @@
     content="https://i.imgur.com/nomrvEn.jpeg"
 >
 
-<!-- =====================================================
-     DATOS ESTRUCTURADOS — ORGANIZACIÓN / TIENDA
-===================================================== -->
-
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "OnlineStore",
-    "name": "Strangis",
-    "url": "https://yfmodaurbana-eng.github.io/Strangis/",
-    "logo": "https://i.imgur.com/nomrvEn.jpeg",
-    "description": "Tienda online de moda, accesorios, bisutería y pedrería.",
-    "sameAs": []
-}
-</script>
 
 <!-- =====================================================
-     DATOS ESTRUCTURADOS — WEB
+     DATOS ESTRUCTURADOS
 ===================================================== -->
 
 <script type="application/ld+json">
@@ -133,11 +90,12 @@
     "@type": "WebSite",
     "name": "Strangis",
     "url": "https://yfmodaurbana-eng.github.io/Strangis/",
+    "description": "Tienda online de moda y accesorios.",
     "potentialAction": {
         "@type": "SearchAction",
         "target": {
             "@type": "EntryPoint",
-            "urlTemplate": "https://yfmodaurbana-eng.github.io/Strangis/index.html?search={search_term_string}"
+            "urlTemplate": "https://yfmodaurbana-eng.github.io/Strangis/?q={search_term_string}"
         },
         "query-input": "required name=search_term_string"
     }
@@ -146,10 +104,6 @@
 
 
 <style>
-
-/* =====================================================
-   RESET
-===================================================== */
 
 *{
     margin:0;
@@ -280,7 +234,6 @@ nav a{
 }
 
 nav a:hover{
-
     color:#fff;
 }
 
@@ -361,11 +314,6 @@ nav a.active{
 
         0 8px 30px
         rgba(0,0,0,.15);
-
-    transition:
-        border-color .2s ease,
-        background .2s ease,
-        box-shadow .2s ease;
 }
 
 .search-input::placeholder{
@@ -379,14 +327,6 @@ nav a.active{
 
     background:
         rgba(255,255,255,.075);
-
-    box-shadow:
-
-        0 0 0 3px
-        rgba(255,255,255,.035),
-
-        0 10px 35px
-        rgba(0,0,0,.2);
 }
 
 .search-clear{
@@ -419,11 +359,6 @@ nav a.active{
     opacity:0;
 
     visibility:hidden;
-
-    transition:
-        opacity .2s ease,
-        background .2s ease,
-        color .2s ease;
 }
 
 .search-clear.visible{
@@ -488,11 +423,6 @@ nav a.active{
         clamp(50px,7vw,90px);
 }
 
-
-/* =====================================================
-   ANIMACIÓN TÍTULO
-===================================================== */
-
 @keyframes titleBreathingGlow{
 
     0%{
@@ -548,13 +478,7 @@ nav a.active{
             rgba(0,0,0,.45);
 
     }
-
 }
-
-
-/* =====================================================
-   H1
-===================================================== */
 
 .hero h1{
 
@@ -570,31 +494,12 @@ nav a.active{
 
     color:#f7f7f7;
 
-    text-shadow:
-
-        0 0 2px
-        rgba(255,255,255,.8),
-
-        0 0 7px
-        rgba(255,255,255,.45),
-
-        0 0 18px
-        rgba(255,255,255,.25),
-
-        0 12px 35px
-        rgba(0,0,0,.45);
-
     animation:
         titleBreathingGlow
         3.8s
         ease-in-out
         infinite;
 }
-
-
-/* =====================================================
-   TEXTO SEO
-===================================================== */
 
 .hero p{
 
@@ -608,11 +513,6 @@ nav a.active{
 
     line-height:1.8;
 }
-
-
-/* =====================================================
-   AVISO
-===================================================== */
 
 .hero-note{
 
@@ -1181,14 +1081,11 @@ footer{
 @media(max-width:800px){
 
     .info-grid{
-
         grid-template-columns:1fr;
     }
 
     .product{
-
         flex-basis:175px;
-
         width:175px;
     }
 }
@@ -1303,7 +1200,6 @@ footer{
     }
 
     .info-section{
-
         width:94%;
     }
 
@@ -1326,10 +1222,6 @@ footer{
     }
 }
 
-
-/* =====================================================
-   REDUCE MOTION
-===================================================== */
 
 @media(prefers-reduced-motion:reduce){
 
@@ -1372,14 +1264,14 @@ footer{
     aria-label="Contactar por WhatsApp"
 >
 
-    <svg
-        viewBox="0 0 24 24"
-        aria-hidden="true"
-    >
+<svg
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+>
 
-        <path d="M20.52 3.48A11.86 11.86 0 0 0 12.08 0C5.54 .22 .22 5.32 .22 11.86c0 2.09 .55 4.13 1.59 5.93L.12 24l6.36-1.67a11.85 11.85 0 0 0 5.6 1.42h.01c6.54 0 11.86-5.32 11.86-11.86 0-3.17-1.24-6.15-3.43-8.41ZM12.09 21.7h-.01a9.84 9.84 0 0 1-5.02-1.37l-.36-.21-3.77.99 1.01-3.68-.23-.38a9.82 9.82 0 0 1-1.51-5.19C2.2 6.43 6.63 2 12.08 2a9.82 9.82 0 0 1 6.99 2.9 9.82 9.82 0 0 1 2.9 6.99c0 5.45-4.43 9.88-9.88 9.88Zm5.42-7.4c-.3-.15-1.77-.87-2.05-.97-.28-.1-.48-.15-.68.15-.2.3-.78.97-.96 1.17-.18.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.49-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46 .13-.61.13-.13 .3-.35 .45-.52.15-.17 .2-.3 .3-.5.1-.2 .05-.37-.02-.52-.07-.15-.68-1.64-.93-2.24-.24-.58-.49-.5-.68-.51h-.58c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.89 1.22 3.09c.15.2 2.1 3.21 5.09 4.5.71.31 1.26.49 1.69.63.71.23 1.35.2 1.86.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35Z"/>
+<path d="M20.52 3.48A11.86 11.86 0 0 0 12.08 0C5.54 .22 .22 5.32 .22 11.86c0 2.09 .55 4.13 1.59 5.93L.12 24l6.36-1.67a11.85 11.85 0 0 0 5.6 1.42h.01c6.54 0 11.86-5.32 11.86-11.86 0-3.17-1.24-6.15-3.43-8.41ZM12.09 21.7h-.01a9.84 9.84 0 0 1-5.02-1.37l-.36-.21-3.77.99 1.01-3.68-.23-.38a9.82 9.82 0 0 1-1.51-5.19C2.2 6.43 6.63 2 12.08 2a9.82 9.82 0 0 1 6.99 2.9 9.82 9.82 0 0 1 2.9 6.99c0 5.45-4.43 9.88-9.88 9.88Zm5.42-7.4c-.3-.15-1.77-.87-2.05-.97-.28-.1-.48-.15-.68.15-.2.3-.78.97-.96 1.17-.18.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.49-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46 .13-.61.13-.13 .3-.35 .45-.52.15-.17 .2-.3 .3-.5.1-.2 .05-.37-.02-.52-.07-.15-.68-1.64-.93-2.24-.24-.58-.49-.5-.68-.51h-.58c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.89 1.22 3.09c.15.2 2.1 3.21 5.09 4.5.71.31 1.26.49 1.69.63.71.23 1.35.2 1.86.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35Z"/>
 
-    </svg>
+</svg>
 
 </a>
 
@@ -1495,9 +1387,7 @@ footer{
 
 
 <div class="search-help">
-
-Puedes buscar por referencia, color o nombre.
-
+    Puedes buscar por referencia, color o nombre.
 </div>
 
 
@@ -1524,9 +1414,9 @@ Puedes buscar por referencia, color o nombre.
 <p>
 
     Descubre en <strong>Strangis</strong> una selección de
-    <strong>moda, marcas y accesorios a precios competitivos</strong>.
-    Encuentra camisetas, pantalones, conjuntos, gorras,
-    gafas, bisutería y pedrería para completar tu estilo.
+    <strong>moda, accesorios y complementos</strong> a precios
+    competitivos. Encuentra camisetas, pantalones, conjuntos,
+    gorras, gafas, bisutería y pedrería para completar tu estilo.
     <strong>Envío gratuito a toda España.</strong>
 
 </p>
@@ -1537,11 +1427,9 @@ Puedes buscar por referencia, color o nombre.
     Algunos artículos pueden proceder de
     <strong>proveedores internacionales</strong>.
     Esto nos permite ofrecer determinados productos
-    a precios más competitivos. Dependiendo del artículo
+    a precios competitivos. Dependiendo del artículo
     y del proveedor, algunos pedidos pueden tardar
     <strong>hasta 30 días</strong> en llegar.
-    Te recomendamos tenerlo en cuenta antes de realizar
-    tu compra.
 
 </div>
 
@@ -1559,7 +1447,6 @@ Puedes buscar por referencia, color o nombre.
 <h2>
     Moda y accesorios a buen precio
 </h2>
-
 
 <span id="productCount">
     Cargando...
@@ -1598,11 +1485,9 @@ Puedes buscar por referencia, color o nombre.
     ENVÍOS
 </small>
 
-
 <h3>
     Envío gratuito a toda España
 </h3>
-
 
 <p>
 
@@ -1623,11 +1508,9 @@ Puedes buscar por referencia, color o nombre.
     MODA
 </small>
 
-
 <h3>
-    Moda, marcas y accesorios
+    Moda y accesorios
 </h3>
-
 
 <p>
 
@@ -1647,17 +1530,14 @@ Puedes buscar por referencia, color o nombre.
     PRECIO
 </small>
 
-
 <h3>
     Precios competitivos
 </h3>
 
-
 <p>
 
     Seleccionamos productos de diferentes proveedores
-    internacionales para ofrecer
-    <strong>precios competitivos</strong>
+    para ofrecer <strong>precios competitivos</strong>
     y una amplia variedad de estilos.
 
 </p>
@@ -1689,17 +1569,11 @@ Puedes buscar por referencia, color o nombre.
 
 <script>
 
-/* =====================================================
-   SUPABASE
-===================================================== */
-
 const SUPABASE_URL =
     "https://xbbjfatmdbxbuoqdrgoj.supabase.co";
 
-
 const SUPABASE_PUBLISHABLE_KEY =
     "sb_publishable_M7ETdIWvj4nCQZ55i24Vpw_5Yc5Islk";
-
 
 const supabaseClient =
     window.supabase.createClient(
@@ -1708,20 +1582,12 @@ const supabaseClient =
     );
 
 
-/* =====================================================
-   ESTADO
-===================================================== */
-
 let allProducts = [];
 
 let currentSearch = "";
 
 let refreshTimer = null;
 
-
-/* =====================================================
-   CATEGORÍAS
-===================================================== */
 
 const CATEGORY_LINKS = {
 
@@ -1749,22 +1615,14 @@ const CATEGORY_LINKS = {
 };
 
 
-/* =====================================================
-   SEGURIDAD
-===================================================== */
-
 function escapeHTML(value){
 
     return String(value ?? "")
 
         .replace(/&/g,"&amp;")
-
         .replace(/</g,"&lt;")
-
         .replace(/>/g,"&gt;")
-
         .replace(/"/g,"&quot;")
-
         .replace(/'/g,"&#039;");
 }
 
@@ -1774,20 +1632,12 @@ function escapeAttribute(value){
     return String(value ?? "")
 
         .replace(/&/g,"&amp;")
-
         .replace(/"/g,"&quot;")
-
         .replace(/'/g,"&#039;")
-
         .replace(/</g,"&lt;")
-
         .replace(/>/g,"&gt;");
 }
 
-
-/* =====================================================
-   NORMALIZAR TEXTO
-===================================================== */
 
 function normalizeText(value){
 
@@ -1795,10 +1645,7 @@ function normalizeText(value){
 
         .normalize("NFD")
 
-        .replace(
-            /[\u0300-\u036f]/g,
-            ""
-        )
+        .replace(/[\u0300-\u036f]/g,"")
 
         .toLowerCase()
 
@@ -1806,37 +1653,23 @@ function normalizeText(value){
 }
 
 
-/* =====================================================
-   REFERENCIA
-===================================================== */
-
 function getReference(product){
 
     return String(
-        product?.ref ||
-        ""
+        product?.ref || ""
     ).trim();
 }
 
 
-/* =====================================================
-   CATEGORÍA
-===================================================== */
-
 function getCategory(product){
 
     return String(
-        product?.category ||
-        ""
+        product?.category || ""
     )
     .trim()
     .toLowerCase();
 }
 
-
-/* =====================================================
-   IMÁGENES / VARIANTES
-===================================================== */
 
 function getImageVariants(product){
 
@@ -1882,14 +1715,12 @@ function getImageVariants(product){
 
         const name =
             String(
-                item.name ||
-                ""
+                item.name || ""
             ).trim();
 
         const color =
             String(
-                item.color ||
-                ""
+                item.color || ""
             ).trim();
 
         let images =
@@ -1941,16 +1772,10 @@ function getImageVariants(product){
 }
 
 
-/* =====================================================
-   VARIANTE PRINCIPAL
-===================================================== */
-
 function getMainVariant(product){
 
     const variants =
-        getImageVariants(
-            product
-        );
+        getImageVariants(product);
 
     if(!variants.length){
         return null;
@@ -1969,10 +1794,6 @@ function getMainVariant(product){
 }
 
 
-/* =====================================================
-   BUSCAR VARIANTE
-===================================================== */
-
 function findMatchingVariant(
     product,
     search
@@ -1986,9 +1807,7 @@ function findMatchingVariant(
     }
 
     const variants =
-        getImageVariants(
-            product
-        );
+        getImageVariants(product);
 
     if(!variants.length){
         return null;
@@ -2034,10 +1853,6 @@ function findMatchingVariant(
 }
 
 
-/* =====================================================
-   BUSCAR PRODUCTOS
-===================================================== */
-
 function searchProducts(search){
 
     const query =
@@ -2051,9 +1866,7 @@ function searchProducts(search){
                 product:product,
 
                 variant:
-                    getMainVariant(
-                        product
-                    )
+                    getMainVariant(product)
 
             })
         );
@@ -2121,9 +1934,7 @@ function searchProducts(search){
                 product:product,
 
                 variant:
-                    getMainVariant(
-                        product
-                    )
+                    getMainVariant(product)
 
             });
 
@@ -2134,10 +1945,6 @@ function searchProducts(search){
     return results;
 }
 
-
-/* =====================================================
-   CREAR ENLACE DE PRODUCTO
-===================================================== */
 
 function createProductLink(
     product,
@@ -2153,7 +1960,6 @@ function createProductLink(
         ];
 
     if(!linkBase){
-
         return "#";
     }
 
@@ -2191,16 +1997,10 @@ function createProductLink(
         params.toString();
 
     return query
-
         ? `${linkBase}?${query}`
-
         : linkBase;
 }
 
-
-/* =====================================================
-   CREAR TARJETA
-===================================================== */
 
 function createProductCard(
     item,
@@ -2214,7 +2014,6 @@ function createProductCard(
         item.variant;
 
     if(!variant?.image){
-
         return "";
     }
 
@@ -2225,28 +2024,19 @@ function createProductCard(
         );
 
     const reference =
-        getReference(
-            product
-        );
+        getReference(product);
 
     const category =
-        getCategory(
-            product
-        );
+        getCategory(product);
 
     const variantName =
         variant.name &&
-
         normalizeText(
             variant.name
         ) !== "principal"
-
         ?
-
         variant.name
-
         :
-
         "";
 
     const link =
@@ -2263,13 +2053,9 @@ function createProductCard(
 
     const altText =
         variantName
-
         ?
-
         `${name} - ${variantName}`
-
         :
-
         name;
 
     return `
@@ -2306,70 +2092,44 @@ function createProductCard(
 
                 </div>
 
-
                 <div class="product-info">
 
                     <div class="product-name">
-
                         ${escapeHTML(name)}
-
                     </div>
-
 
                     ${
                         reference
-
                         ?
-
                         `
-
                         <div class="product-ref">
-
                             REF:
-                            ${escapeHTML(
-                                reference
-                            )}
-
+                            ${escapeHTML(reference)}
                         </div>
-
                         `
-
                         :
-
                         ""
                     }
 
-
                     <div class="product-category">
-
                         ${escapeHTML(
                             category ||
                             "Strangis"
                         )}
-
                     </div>
-
 
                     ${
                         variantName
-
                         ?
-
                         `
-
                         <div class="product-color">
-
                             COLOR:
                             ${escapeHTML(
                                 variantName
                             )}
-
                         </div>
-
                         `
-
                         :
-
                         ""
                     }
 
@@ -2382,10 +2142,6 @@ function createProductCard(
     `;
 }
 
-
-/* =====================================================
-   MOSTRAR PRODUCTOS
-===================================================== */
 
 function renderProducts(results){
 
@@ -2413,66 +2169,31 @@ function renderProducts(results){
     }
 
     counter.textContent =
-
         results.length === 1
-
         ?
-
         "1 artículo"
-
         :
-
         `${results.length} artículos`;
 
     if(currentSearch){
 
         if(results.length){
 
-            const colorMatch =
-                results.find(
-                    item =>
-                        item.variant &&
+            resultText.innerHTML = `
 
-                        normalizeText(
-                            item.variant.name
-                        ) ===
+                Encontrados:
+                <strong>
+                    ${results.length}
+                </strong>
 
-                        normalizeText(
-                            currentSearch
-                        )
-                );
-
-            if(colorMatch){
-
-                resultText.innerHTML = `
-
-                    Color encontrado:
-                    <strong>
-                        ${escapeHTML(
-                            colorMatch.variant.name
-                        )}
-                    </strong>
-
-                `;
-
-            }else{
-
-                resultText.innerHTML = `
-
-                    Encontrados:
-                    <strong>
-                        ${results.length}
-                    </strong>
-
-                `;
-            }
+            `;
 
         }else{
 
             resultText.innerHTML = `
 
                 <strong>
-                    No se encontró el color o producto
+                    No se encontró el producto
                 </strong>
 
             `;
@@ -2482,6 +2203,7 @@ function renderProducts(results){
 
         resultText.textContent = "";
     }
+
 
     if(!results.length){
 
@@ -2493,11 +2215,8 @@ function renderProducts(results){
             <div class="empty">
 
                 <div class="empty-title">
-
                     No encontrado
-
                 </div>
-
 
                 <div class="empty-text">
 
@@ -2516,9 +2235,9 @@ function renderProducts(results){
         return;
     }
 
+
     const cards =
         results
-
             .map(
                 item =>
                     createProductCard(
@@ -2526,8 +2245,8 @@ function renderProducts(results){
                         currentSearch
                     )
             )
-
             .join("");
+
 
     if(results.length > 1){
 
@@ -2551,10 +2270,6 @@ function renderProducts(results){
 }
 
 
-/* =====================================================
-   REALIZAR BÚSQUEDA
-===================================================== */
-
 function performSearch(){
 
     const input =
@@ -2575,13 +2290,8 @@ function performSearch(){
         input.value.trim();
 
     clearButton.classList.toggle(
-
         "visible",
-
-        Boolean(
-            currentSearch
-        )
-
+        Boolean(currentSearch)
     );
 
     const results =
@@ -2589,15 +2299,9 @@ function performSearch(){
             currentSearch
         );
 
-    renderProducts(
-        results
-    );
+    renderProducts(results);
 }
 
-
-/* =====================================================
-   EVENTOS DEL BUSCADOR
-===================================================== */
 
 const searchInput =
     document.getElementById(
@@ -2645,10 +2349,6 @@ if(searchClear){
 }
 
 
-/* =====================================================
-   CARGAR PRODUCTOS
-===================================================== */
-
 async function loadProducts(){
 
     const container =
@@ -2677,7 +2377,6 @@ async function loadProducts(){
             data,
             error
         } =
-
             await supabaseClient
 
                 .from("Products")
@@ -2697,20 +2396,14 @@ async function loadProducts(){
                 );
 
         if(error){
-
             throw error;
         }
 
         allProducts =
-
             Array.isArray(data)
-
             ?
-
             data
-
             :
-
             [];
 
         console.log(
@@ -2719,11 +2412,9 @@ async function loadProducts(){
         );
 
         renderProducts(
-
             searchProducts(
                 currentSearch
             )
-
         );
 
     }catch(error){
@@ -2741,20 +2432,15 @@ async function loadProducts(){
             <div class="empty">
 
                 <div class="empty-title">
-
                     No se pudieron cargar
                     los productos
-
                 </div>
 
-
                 <div class="empty-text">
-
                     ${escapeHTML(
                         error?.message ||
                         "Error desconocido"
                     )}
-
                 </div>
 
             </div>
@@ -2763,10 +2449,6 @@ async function loadProducts(){
     }
 }
 
-
-/* =====================================================
-   PAUSAR CARRUSEL
-===================================================== */
 
 const carouselWindow =
     document.getElementById(
@@ -2777,9 +2459,7 @@ const carouselWindow =
 if(carouselWindow){
 
     carouselWindow.addEventListener(
-
         "mouseenter",
-
         ()=>{
 
             const track =
@@ -2792,15 +2472,12 @@ if(carouselWindow){
                 track.style.animationPlayState =
                     "paused";
             }
-
         }
     );
 
 
     carouselWindow.addEventListener(
-
         "mouseleave",
-
         ()=>{
 
             const track =
@@ -2813,22 +2490,13 @@ if(carouselWindow){
                 track.style.animationPlayState =
                     "running";
             }
-
         }
     );
 }
 
 
-/* =====================================================
-   INICIO
-===================================================== */
-
 loadProducts();
 
-
-/* =====================================================
-   ACTUALIZACIÓN AUTOMÁTICA
-===================================================== */
 
 refreshTimer =
     setInterval(
@@ -2837,20 +2505,8 @@ refreshTimer =
     );
 
 
-/* =====================================================
-   LOG
-===================================================== */
-
 console.log(
     "STRANGIS — sistema iniciado correctamente"
-);
-
-console.log(
-    "STRANGIS — SEO canónico configurado para /Strangis/"
-);
-
-console.log(
-    "STRANGIS — búsqueda directa por color desde Products.images"
 );
 
 </script>
