@@ -8,21 +8,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- =====================================================
-     SEO PRINCIPAL — STRANGIS
+     SEO PRINCIPAL
 ===================================================== -->
 
 <title>
-    Strangis | Tienda Online de Moda, Marcas y Accesorios
+    Strangis | Tienda Online de Moda, Accesorios y Bisutería
 </title>
 
 <meta
     name="description"
-    content="Strangis es una tienda online de moda, marcas y accesorios a buen precio. Descubre camisetas, pantalones, conjuntos, gorras, gafas, bisutería y pedrería. Envío gratuito a toda España."
+    content="Strangis es una tienda online de moda, accesorios, bisutería y pedrería. Descubre camisetas, pantalones, conjuntos, gorras, gafas y mucho más a precios competitivos. Envío gratuito a toda España."
 >
 
 <meta
     name="robots"
-    content="index, follow, max-image-preview:large"
+    content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
 >
 
 <meta
@@ -31,7 +31,7 @@
 >
 
 <!-- =====================================================
-     CANÓNICA CORRECTA
+     URL CANÓNICA CORRECTA
 ===================================================== -->
 
 <link
@@ -60,12 +60,12 @@
 
 <meta
     property="og:title"
-    content="Strangis | Tienda Online de Moda, Marcas y Accesorios"
+    content="Strangis | Tienda Online de Moda y Accesorios"
 >
 
 <meta
     property="og:description"
-    content="Moda, marcas y accesorios a buen precio. Camisetas, pantalones, conjuntos, gorras, gafas, bisutería y pedrería. Envío gratuito a toda España."
+    content="Moda, accesorios, bisutería y pedrería a precios competitivos. Descubre la selección de productos Strangis con envío gratuito a toda España."
 >
 
 <meta
@@ -99,7 +99,7 @@
 
 <meta
     name="twitter:description"
-    content="Descubre moda, marcas, bisutería, gafas, gorras y accesorios a buen precio en Strangis."
+    content="Moda, accesorios, bisutería y pedrería a precios competitivos. Envío gratuito a toda España."
 >
 
 <meta
@@ -108,7 +108,23 @@
 >
 
 <!-- =====================================================
-     DATOS ESTRUCTURADOS — GOOGLE
+     DATOS ESTRUCTURADOS — ORGANIZACIÓN / TIENDA
+===================================================== -->
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "OnlineStore",
+    "name": "Strangis",
+    "url": "https://yfmodaurbana-eng.github.io/Strangis/",
+    "logo": "https://i.imgur.com/nomrvEn.jpeg",
+    "description": "Tienda online de moda, accesorios, bisutería y pedrería.",
+    "sameAs": []
+}
+</script>
+
+<!-- =====================================================
+     DATOS ESTRUCTURADOS — WEB
 ===================================================== -->
 
 <script type="application/ld+json">
@@ -117,26 +133,14 @@
     "@type": "WebSite",
     "name": "Strangis",
     "url": "https://yfmodaurbana-eng.github.io/Strangis/",
-    "description": "Tienda online de moda, marcas y accesorios a buen precio.",
-    "inLanguage": "es-ES",
     "potentialAction": {
         "@type": "SearchAction",
         "target": {
             "@type": "EntryPoint",
-            "urlTemplate": "https://yfmodaurbana-eng.github.io/Strangis/?q={search_term_string}"
+            "urlTemplate": "https://yfmodaurbana-eng.github.io/Strangis/index.html?search={search_term_string}"
         },
         "query-input": "required name=search_term_string"
     }
-}
-</script>
-
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Strangis",
-    "url": "https://yfmodaurbana-eng.github.io/Strangis/",
-    "logo": "https://i.imgur.com/nomrvEn.jpeg"
 }
 </script>
 
@@ -158,6 +162,7 @@ html{
 }
 
 body{
+
     min-height:100vh;
 
     font-family:
@@ -190,14 +195,19 @@ input{
 ===================================================== */
 
 header{
+
     position:sticky;
+
     top:0;
+
     z-index:1000;
 
     padding:18px 5%;
 
     display:flex;
+
     align-items:center;
+
     gap:30px;
 
     border-bottom:
@@ -208,24 +218,31 @@ header{
         rgba(20,20,20,.92);
 
     backdrop-filter:blur(18px);
+
     -webkit-backdrop-filter:blur(18px);
 }
 
 .logo{
+
     flex-shrink:0;
 
     color:#fff;
 
     font-size:22px;
+
     font-weight:900;
+
     letter-spacing:4px;
 }
 
 nav{
+
     flex:1;
 
     display:flex;
+
     justify-content:center;
+
     gap:28px;
 
     overflow-x:auto;
@@ -238,14 +255,17 @@ nav::-webkit-scrollbar{
 }
 
 nav a{
+
     color:#999;
 
     text-decoration:none;
 
     font-size:11px;
+
     font-weight:bold;
 
     letter-spacing:1.5px;
+
     text-transform:uppercase;
 
     white-space:nowrap;
@@ -260,11 +280,14 @@ nav a{
 }
 
 nav a:hover{
+
     color:#fff;
 }
 
 nav a.active{
+
     color:#111;
+
     background:#fff;
 }
 
@@ -274,27 +297,33 @@ nav a.active{
 ===================================================== */
 
 .search-section{
+
     width:min(900px,90%);
+
     margin:0 auto;
 
     padding:25px 0 0;
 }
 
 .search-box{
+
     position:relative;
 
     width:100%;
 
     display:flex;
+
     align-items:center;
 }
 
 .search-icon{
+
     position:absolute;
 
     left:17px;
 
     width:18px;
+
     height:18px;
 
     color:#888;
@@ -303,7 +332,9 @@ nav a.active{
 }
 
 .search-input{
+
     width:100%;
+
     height:52px;
 
     padding:
@@ -324,6 +355,7 @@ nav a.active{
         rgba(255,255,255,.055);
 
     box-shadow:
+
         inset 0 0 20px
         rgba(255,255,255,.015),
 
@@ -341,6 +373,7 @@ nav a.active{
 }
 
 .search-input:focus{
+
     border-color:
         rgba(255,255,255,.35);
 
@@ -348,6 +381,7 @@ nav a.active{
         rgba(255,255,255,.075);
 
     box-shadow:
+
         0 0 0 3px
         rgba(255,255,255,.035),
 
@@ -356,17 +390,23 @@ nav a.active{
 }
 
 .search-clear{
+
     position:absolute;
+
     right:10px;
 
     width:34px;
+
     height:34px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     border:0;
+
     border-radius:50%;
 
     color:#999;
@@ -377,6 +417,7 @@ nav a.active{
     cursor:pointer;
 
     opacity:0;
+
     visibility:hidden;
 
     transition:
@@ -386,11 +427,14 @@ nav a.active{
 }
 
 .search-clear.visible{
+
     opacity:1;
+
     visibility:visible;
 }
 
 .search-clear:hover{
+
     color:#fff;
 
     background:
@@ -398,17 +442,20 @@ nav a.active{
 }
 
 .search-help{
+
     margin-top:9px;
 
     color:#666;
 
     font-size:9px;
+
     letter-spacing:.8px;
 
     text-align:center;
 }
 
 .search-result{
+
     min-height:18px;
 
     margin-top:9px;
@@ -430,7 +477,9 @@ nav a.active{
 ===================================================== */
 
 .hero{
+
     width:min(1400px,90%);
+
     margin:auto;
 
     padding:
@@ -439,37 +488,80 @@ nav a.active{
         clamp(50px,7vw,90px);
 }
 
+
+/* =====================================================
+   ANIMACIÓN TÍTULO
+===================================================== */
+
 @keyframes titleBreathingGlow{
 
     0%{
+
         text-shadow:
-            0 0 2px rgba(255,255,255,.8),
-            0 0 7px rgba(255,255,255,.45),
-            0 0 18px rgba(255,255,255,.25),
-            0 12px 35px rgba(0,0,0,.45);
+
+            0 0 2px
+            rgba(255,255,255,.8),
+
+            0 0 7px
+            rgba(255,255,255,.45),
+
+            0 0 18px
+            rgba(255,255,255,.25),
+
+            0 12px 35px
+            rgba(0,0,0,.45);
+
     }
 
     50%{
+
         text-shadow:
-            0 0 3px rgba(255,255,255,1),
-            0 0 12px rgba(255,255,255,.75),
-            0 0 30px rgba(255,255,255,.45),
-            0 12px 35px rgba(0,0,0,.45);
+
+            0 0 3px
+            rgba(255,255,255,1),
+
+            0 0 12px
+            rgba(255,255,255,.75),
+
+            0 0 30px
+            rgba(255,255,255,.45),
+
+            0 12px 35px
+            rgba(0,0,0,.45);
+
     }
 
     100%{
+
         text-shadow:
-            0 0 2px rgba(255,255,255,.8),
-            0 0 7px rgba(255,255,255,.45),
-            0 0 18px rgba(255,255,255,.25),
-            0 12px 35px rgba(0,0,0,.45);
+
+            0 0 2px
+            rgba(255,255,255,.8),
+
+            0 0 7px
+            rgba(255,255,255,.45),
+
+            0 0 18px
+            rgba(255,255,255,.25),
+
+            0 12px 35px
+            rgba(0,0,0,.45);
+
     }
+
 }
 
+
+/* =====================================================
+   H1
+===================================================== */
+
 .hero h1{
+
     display:inline-block;
 
     font-size:42px;
+
     line-height:1.1;
 
     letter-spacing:-1px;
@@ -479,10 +571,18 @@ nav a.active{
     color:#f7f7f7;
 
     text-shadow:
-        0 0 2px rgba(255,255,255,.8),
-        0 0 7px rgba(255,255,255,.45),
-        0 0 18px rgba(255,255,255,.25),
-        0 12px 35px rgba(0,0,0,.45);
+
+        0 0 2px
+        rgba(255,255,255,.8),
+
+        0 0 7px
+        rgba(255,255,255,.45),
+
+        0 0 18px
+        rgba(255,255,255,.25),
+
+        0 12px 35px
+        rgba(0,0,0,.45);
 
     animation:
         titleBreathingGlow
@@ -491,7 +591,13 @@ nav a.active{
         infinite;
 }
 
+
+/* =====================================================
+   TEXTO SEO
+===================================================== */
+
 .hero p{
+
     max-width:750px;
 
     margin-top:25px;
@@ -499,10 +605,17 @@ nav a.active{
     color:#b5b5b5;
 
     font-size:16px;
+
     line-height:1.8;
 }
 
+
+/* =====================================================
+   AVISO
+===================================================== */
+
 .hero-note{
+
     max-width:850px;
 
     margin-top:25px;
@@ -533,10 +646,12 @@ nav a.active{
     color:#d0d0d0;
 
     font-size:13px;
+
     line-height:1.8;
 }
 
 .hero-note::before{
+
     content:"ENVÍO Y PLAZOS";
 
     display:block;
@@ -546,6 +661,7 @@ nav a.active{
     color:#ffb15c;
 
     font-size:11px;
+
     font-weight:900;
 
     letter-spacing:2.5px;
@@ -561,7 +677,9 @@ nav a.active{
 ===================================================== */
 
 .products-section{
+
     width:min(1400px,90%);
+
     margin:auto;
 
     padding:
@@ -571,9 +689,11 @@ nav a.active{
 }
 
 .section-heading{
+
     display:flex;
 
     align-items:end;
+
     justify-content:space-between;
 
     gap:20px;
@@ -582,21 +702,27 @@ nav a.active{
 }
 
 .section-heading h2{
+
     font-size:14px;
+
     font-weight:900;
 
     letter-spacing:2px;
+
     text-transform:uppercase;
 }
 
 .section-heading span{
+
     color:#777;
 
     font-size:10px;
+
     letter-spacing:1px;
 }
 
 .carousel-window{
+
     width:100%;
 
     overflow:hidden;
@@ -608,11 +734,13 @@ nav a.active{
 
 .carousel-window::before,
 .carousel-window::after{
+
     content:"";
 
     position:absolute;
 
     top:0;
+
     bottom:0;
 
     width:70px;
@@ -623,6 +751,7 @@ nav a.active{
 }
 
 .carousel-window::before{
+
     left:0;
 
     background:
@@ -634,6 +763,7 @@ nav a.active{
 }
 
 .carousel-window::after{
+
     right:0;
 
     background:
@@ -645,6 +775,7 @@ nav a.active{
 }
 
 .products{
+
     display:flex;
 
     width:max-content;
@@ -661,6 +792,7 @@ nav a.active{
 }
 
 @keyframes carouselMove{
+
     from{
         transform:translateX(0);
     }
@@ -668,12 +800,15 @@ nav a.active{
     to{
         transform:
             translateX(
-                calc(-50% - 6px)
+                calc(
+                    -50% - 6px
+                )
             );
     }
 }
 
 .product{
+
     flex:0 0 205px;
 
     width:205px;
@@ -699,6 +834,7 @@ nav a.active{
 }
 
 .product:hover{
+
     transform:translateY(-5px);
 
     border-color:
@@ -706,10 +842,12 @@ nav a.active{
 }
 
 .product.search-match{
+
     border-color:
         rgba(255,180,90,.60);
 
     box-shadow:
+
         0 0 0 1px
         rgba(255,180,90,.15),
 
@@ -718,15 +856,18 @@ nav a.active{
 }
 
 .product-link{
+
     display:block;
 
     width:100%;
 
     color:inherit;
+
     text-decoration:none;
 }
 
 .product-image{
+
     position:relative;
 
     width:100%;
@@ -739,7 +880,9 @@ nav a.active{
 }
 
 .product-image img{
+
     width:100%;
+
     height:100%;
 
     display:block;
@@ -752,56 +895,69 @@ nav a.active{
 
 .product:hover
 .product-image img{
+
     transform:scale(1.045);
 }
 
 .product-info{
+
     padding:
         12px 11px 14px;
 }
 
 .product-name{
+
     color:#fff;
 
     font-size:12px;
+
     font-weight:800;
 
     line-height:1.35;
 }
 
 .product-ref{
+
     margin-top:5px;
 
     color:#aaa;
 
     font-size:9px;
+
     font-weight:bold;
 
     letter-spacing:.8px;
+
     text-transform:uppercase;
 }
 
 .product-category{
+
     margin-top:4px;
 
     color:#777;
 
     font-size:9px;
+
     font-weight:bold;
 
     letter-spacing:1px;
+
     text-transform:uppercase;
 }
 
 .product-color{
+
     margin-top:6px;
 
     color:#ffb15c;
 
     font-size:9px;
+
     font-weight:bold;
 
     letter-spacing:.5px;
+
     text-transform:uppercase;
 }
 
@@ -811,6 +967,7 @@ nav a.active{
 ===================================================== */
 
 .empty{
+
     width:min(700px,100%);
 
     margin:auto;
@@ -830,16 +987,20 @@ nav a.active{
 }
 
 .empty-title{
+
     color:#aaa;
 
     font-size:12px;
+
     font-weight:bold;
 
     letter-spacing:2px;
+
     text-transform:uppercase;
 }
 
 .empty-text{
+
     max-width:500px;
 
     margin:15px auto 0;
@@ -847,6 +1008,7 @@ nav a.active{
     color:#666;
 
     font-size:11px;
+
     line-height:1.7;
 }
 
@@ -856,15 +1018,16 @@ nav a.active{
 ===================================================== */
 
 .info-section{
+
     width:min(1000px,90%);
 
     margin:auto;
 
-    padding:
-        0 0 110px;
+    padding:0 0 110px;
 }
 
 .info-grid{
+
     display:grid;
 
     grid-template-columns:
@@ -874,6 +1037,7 @@ nav a.active{
 }
 
 .info-card{
+
     padding:27px;
 
     border:
@@ -895,15 +1059,18 @@ nav a.active{
 }
 
 .info-card small{
+
     color:#ffad5c;
 
     font-size:9px;
+
     font-weight:bold;
 
     letter-spacing:2px;
 }
 
 .info-card h3{
+
     margin-top:12px;
 
     color:#f5f5f5;
@@ -912,11 +1079,13 @@ nav a.active{
 }
 
 .info-card p{
+
     margin-top:12px;
 
     color:#b5b5b5;
 
     font-size:12px;
+
     line-height:1.75;
 }
 
@@ -926,6 +1095,7 @@ nav a.active{
 ===================================================== */
 
 footer{
+
     padding:35px 5%;
 
     border-top:
@@ -937,6 +1107,7 @@ footer{
     color:#666;
 
     font-size:9px;
+
     letter-spacing:1px;
 }
 
@@ -946,19 +1117,23 @@ footer{
 ===================================================== */
 
 .whatsapp-button{
+
     position:fixed;
 
     right:20px;
+
     bottom:20px;
 
     z-index:99999;
 
     width:58px;
+
     height:58px;
 
     display:flex;
 
     align-items:center;
+
     justify-content:center;
 
     border-radius:50%;
@@ -979,6 +1154,7 @@ footer{
 }
 
 .whatsapp-button:hover{
+
     transform:
         translateY(-3px)
         scale(1.04);
@@ -989,7 +1165,9 @@ footer{
 }
 
 .whatsapp-button svg{
+
     width:30px;
+
     height:30px;
 
     fill:#fff;
@@ -1003,18 +1181,23 @@ footer{
 @media(max-width:800px){
 
     .info-grid{
+
         grid-template-columns:1fr;
     }
 
     .product{
+
         flex-basis:175px;
+
         width:175px;
     }
 }
 
+
 @media(max-width:600px){
 
     header{
+
         padding:15px;
 
         flex-wrap:wrap;
@@ -1023,11 +1206,14 @@ footer{
     }
 
     .logo{
+
         font-size:17px;
+
         letter-spacing:2.5px;
     }
 
     nav{
+
         order:3;
 
         flex-basis:100%;
@@ -1038,16 +1224,21 @@ footer{
     }
 
     .search-section{
+
         width:94%;
+
         padding-top:20px;
     }
 
     .search-input{
+
         height:48px;
+
         padding-left:45px;
     }
 
     .hero{
+
         width:94%;
 
         padding:
@@ -1056,6 +1247,7 @@ footer{
     }
 
     .hero h1{
+
         font-size:32px;
 
         line-height:1.1;
@@ -1064,13 +1256,16 @@ footer{
     }
 
     .hero p{
+
         margin-top:25px;
 
         font-size:13px;
+
         line-height:1.7;
     }
 
     .hero-note{
+
         padding:
             19px
             18px
@@ -1081,17 +1276,21 @@ footer{
     }
 
     .products-section{
+
         width:94%;
 
         padding-bottom:80px;
     }
 
     .product{
+
         flex-basis:155px;
+
         width:155px;
     }
 
     .products{
+
         gap:9px;
 
         animation-duration:24s;
@@ -1099,23 +1298,30 @@ footer{
 
     .carousel-window::before,
     .carousel-window::after{
+
         width:35px;
     }
 
     .info-section{
+
         width:94%;
     }
 
     .whatsapp-button{
+
         width:54px;
+
         height:54px;
 
         right:16px;
+
         bottom:16px;
     }
 
     .whatsapp-button svg{
+
         width:28px;
+
         height:28px;
     }
 }
@@ -1235,10 +1441,7 @@ footer{
      BUSCADOR
 ===================================================== -->
 
-<section
-    class="search-section"
-    aria-label="Buscar productos"
->
+<section class="search-section">
 
 <div class="search-box">
 
@@ -1250,7 +1453,6 @@ footer{
     stroke-width="2"
     stroke-linecap="round"
     stroke-linejoin="round"
-    aria-hidden="true"
 >
 
 <circle
@@ -1293,7 +1495,9 @@ footer{
 
 
 <div class="search-help">
-    Puedes buscar por referencia, color o nombre.
+
+Puedes buscar por referencia, color o nombre.
+
 </div>
 
 
@@ -1310,18 +1514,16 @@ footer{
      HERO SEO
 ===================================================== -->
 
-<main>
-
 <section class="hero">
 
 <h1>
-    Strangis: tienda online de moda y marcas a buen precio
+    Strangis: tienda online de moda y accesorios
 </h1>
 
 
 <p>
 
-    Descubre en Strangis una selección de
+    Descubre en <strong>Strangis</strong> una selección de
     <strong>moda, marcas y accesorios a precios competitivos</strong>.
     Encuentra camisetas, pantalones, conjuntos, gorras,
     gafas, bisutería y pedrería para completar tu estilo.
@@ -1350,14 +1552,11 @@ footer{
      PRODUCTOS
 ===================================================== -->
 
-<section
-    class="products-section"
-    aria-labelledby="productos-title"
->
+<section class="products-section">
 
 <div class="section-heading">
 
-<h2 id="productos-title">
+<h2>
     Moda y accesorios a buen precio
 </h2>
 
@@ -1385,13 +1584,10 @@ footer{
 
 
 <!-- =====================================================
-     INFORMACIÓN
+     INFORMACIÓN SEO
 ===================================================== -->
 
-<section
-    class="info-section"
-    aria-label="Información de Strangis"
->
+<section class="info-section">
 
 <div class="info-grid">
 
@@ -1402,9 +1598,11 @@ footer{
     ENVÍOS
 </small>
 
+
 <h3>
     Envío gratuito a toda España
 </h3>
+
 
 <p>
 
@@ -1425,9 +1623,11 @@ footer{
     MODA
 </small>
 
+
 <h3>
     Moda, marcas y accesorios
 </h3>
+
 
 <p>
 
@@ -1447,9 +1647,11 @@ footer{
     PRECIO
 </small>
 
+
 <h3>
     Precios competitivos
 </h3>
+
 
 <p>
 
@@ -1465,8 +1667,6 @@ footer{
 </div>
 
 </section>
-
-</main>
 
 
 <!-- =====================================================
@@ -1496,8 +1696,10 @@ footer{
 const SUPABASE_URL =
     "https://xbbjfatmdbxbuoqdrgoj.supabase.co";
 
+
 const SUPABASE_PUBLISHABLE_KEY =
     "sb_publishable_M7ETdIWvj4nCQZ55i24Vpw_5Yc5Islk";
+
 
 const supabaseClient =
     window.supabase.createClient(
@@ -1556,9 +1758,13 @@ function escapeHTML(value){
     return String(value ?? "")
 
         .replace(/&/g,"&amp;")
+
         .replace(/</g,"&lt;")
+
         .replace(/>/g,"&gt;")
+
         .replace(/"/g,"&quot;")
+
         .replace(/'/g,"&#039;");
 }
 
@@ -1568,15 +1774,19 @@ function escapeAttribute(value){
     return String(value ?? "")
 
         .replace(/&/g,"&amp;")
+
         .replace(/"/g,"&quot;")
+
         .replace(/'/g,"&#039;")
+
         .replace(/</g,"&lt;")
+
         .replace(/>/g,"&gt;");
 }
 
 
 /* =====================================================
-   NORMALIZAR
+   NORMALIZAR TEXTO
 ===================================================== */
 
 function normalizeText(value){
@@ -1603,7 +1813,8 @@ function normalizeText(value){
 function getReference(product){
 
     return String(
-        product?.ref || ""
+        product?.ref ||
+        ""
     ).trim();
 }
 
@@ -1615,7 +1826,8 @@ function getReference(product){
 function getCategory(product){
 
     return String(
-        product?.category || ""
+        product?.category ||
+        ""
     )
     .trim()
     .toLowerCase();
@@ -1623,7 +1835,7 @@ function getCategory(product){
 
 
 /* =====================================================
-   IMÁGENES
+   IMÁGENES / VARIANTES
 ===================================================== */
 
 function getImageVariants(product){
@@ -1639,7 +1851,8 @@ function getImageVariants(product){
 
         try{
 
-            raw = JSON.parse(raw);
+            raw =
+                JSON.parse(raw);
 
         }catch(error){
 
@@ -1669,12 +1882,14 @@ function getImageVariants(product){
 
         const name =
             String(
-                item.name || ""
+                item.name ||
+                ""
             ).trim();
 
         const color =
             String(
-                item.color || ""
+                item.color ||
+                ""
             ).trim();
 
         let images =
@@ -1689,7 +1904,9 @@ function getImageVariants(product){
 
             }catch(error){
 
-                images = [images];
+                images = [
+                    images
+                ];
             }
         }
 
@@ -1731,7 +1948,9 @@ function getImageVariants(product){
 function getMainVariant(product){
 
     const variants =
-        getImageVariants(product);
+        getImageVariants(
+            product
+        );
 
     if(!variants.length){
         return null;
@@ -1767,7 +1986,9 @@ function findMatchingVariant(
     }
 
     const variants =
-        getImageVariants(product);
+        getImageVariants(
+            product
+        );
 
     if(!variants.length){
         return null;
@@ -1872,8 +2093,11 @@ function searchProducts(search){
                 [
 
                     product?.name,
+
                     product?.ref,
+
                     product?.category,
+
                     product?.description
 
                 ]
@@ -1902,6 +2126,7 @@ function searchProducts(search){
                     )
 
             });
+
         }
 
     });
@@ -1911,7 +2136,7 @@ function searchProducts(search){
 
 
 /* =====================================================
-   ENLACE PRODUCTO
+   CREAR ENLACE DE PRODUCTO
 ===================================================== */
 
 function createProductLink(
@@ -1923,9 +2148,12 @@ function createProductLink(
         getCategory(product);
 
     const linkBase =
-        CATEGORY_LINKS[category];
+        CATEGORY_LINKS[
+            category
+        ];
 
     if(!linkBase){
+
         return "#";
     }
 
@@ -1963,13 +2191,15 @@ function createProductLink(
         params.toString();
 
     return query
+
         ? `${linkBase}?${query}`
+
         : linkBase;
 }
 
 
 /* =====================================================
-   TARJETA
+   CREAR TARJETA
 ===================================================== */
 
 function createProductCard(
@@ -1984,6 +2214,7 @@ function createProductCard(
         item.variant;
 
     if(!variant?.image){
+
         return "";
     }
 
@@ -1994,18 +2225,29 @@ function createProductCard(
         );
 
     const reference =
-        getReference(product);
+        getReference(
+            product
+        );
 
     const category =
-        getCategory(product);
+        getCategory(
+            product
+        );
 
     const variantName =
         variant.name &&
+
         normalizeText(
             variant.name
         ) !== "principal"
-            ? variant.name
-            : "";
+
+        ?
+
+        variant.name
+
+        :
+
+        "";
 
     const link =
         createProductLink(
@@ -2021,8 +2263,14 @@ function createProductCard(
 
     const altText =
         variantName
-            ? `${name} - ${variantName}`
-            : name;
+
+        ?
+
+        `${name} - ${variantName}`
+
+        :
+
+        name;
 
     return `
 
@@ -2058,44 +2306,70 @@ function createProductCard(
 
                 </div>
 
+
                 <div class="product-info">
 
                     <div class="product-name">
+
                         ${escapeHTML(name)}
+
                     </div>
+
 
                     ${
                         reference
+
                         ?
+
                         `
+
                         <div class="product-ref">
+
                             REF:
-                            ${escapeHTML(reference)}
+                            ${escapeHTML(
+                                reference
+                            )}
+
                         </div>
+
                         `
+
                         :
+
                         ""
                     }
 
+
                     <div class="product-category">
+
                         ${escapeHTML(
                             category ||
                             "Strangis"
                         )}
+
                     </div>
+
 
                     ${
                         variantName
+
                         ?
+
                         `
+
                         <div class="product-color">
+
                             COLOR:
                             ${escapeHTML(
                                 variantName
                             )}
+
                         </div>
+
                         `
+
                         :
+
                         ""
                     }
 
@@ -2139,9 +2413,16 @@ function renderProducts(results){
     }
 
     counter.textContent =
+
         results.length === 1
-            ? "1 artículo"
-            : `${results.length} artículos`;
+
+        ?
+
+        "1 artículo"
+
+        :
+
+        `${results.length} artículos`;
 
     if(currentSearch){
 
@@ -2151,9 +2432,11 @@ function renderProducts(results){
                 results.find(
                     item =>
                         item.variant &&
+
                         normalizeText(
                             item.variant.name
                         ) ===
+
                         normalizeText(
                             currentSearch
                         )
@@ -2200,18 +2483,21 @@ function renderProducts(results){
         resultText.textContent = "";
     }
 
-
     if(!results.length){
 
-        container.style.animation = "none";
+        container.style.animation =
+            "none";
 
         container.innerHTML = `
 
             <div class="empty">
 
                 <div class="empty-title">
+
                     No encontrado
+
                 </div>
+
 
                 <div class="empty-text">
 
@@ -2230,9 +2516,9 @@ function renderProducts(results){
         return;
     }
 
-
     const cards =
         results
+
             .map(
                 item =>
                     createProductCard(
@@ -2240,15 +2526,16 @@ function renderProducts(results){
                         currentSearch
                     )
             )
-            .join("");
 
+            .join("");
 
     if(results.length > 1){
 
         container.innerHTML =
             cards + cards;
 
-        container.style.animation = "";
+        container.style.animation =
+            "";
 
         container.style.animationPlayState =
             "running";
@@ -2265,7 +2552,7 @@ function renderProducts(results){
 
 
 /* =====================================================
-   BÚSQUEDA
+   REALIZAR BÚSQUEDA
 ===================================================== */
 
 function performSearch(){
@@ -2288,8 +2575,13 @@ function performSearch(){
         input.value.trim();
 
     clearButton.classList.toggle(
+
         "visible",
-        Boolean(currentSearch)
+
+        Boolean(
+            currentSearch
+        )
+
     );
 
     const results =
@@ -2297,12 +2589,14 @@ function performSearch(){
             currentSearch
         );
 
-    renderProducts(results);
+    renderProducts(
+        results
+    );
 }
 
 
 /* =====================================================
-   EVENTOS
+   EVENTOS DEL BUSCADOR
 ===================================================== */
 
 const searchInput =
@@ -2314,6 +2608,7 @@ const searchClear =
     document.getElementById(
         "searchClear"
     );
+
 
 if(searchInput){
 
@@ -2327,6 +2622,7 @@ if(searchInput){
         performSearch
     );
 }
+
 
 if(searchClear){
 
@@ -2381,6 +2677,7 @@ async function loadProducts(){
             data,
             error
         } =
+
             await supabaseClient
 
                 .from("Products")
@@ -2400,13 +2697,21 @@ async function loadProducts(){
                 );
 
         if(error){
+
             throw error;
         }
 
         allProducts =
+
             Array.isArray(data)
-                ? data
-                : [];
+
+            ?
+
+            data
+
+            :
+
+            [];
 
         console.log(
             "STRANGIS — productos:",
@@ -2414,9 +2719,11 @@ async function loadProducts(){
         );
 
         renderProducts(
+
             searchProducts(
                 currentSearch
             )
+
         );
 
     }catch(error){
@@ -2439,6 +2746,7 @@ async function loadProducts(){
                     los productos
 
                 </div>
+
 
                 <div class="empty-text">
 
@@ -2465,10 +2773,13 @@ const carouselWindow =
         "carouselWindow"
     );
 
+
 if(carouselWindow){
 
     carouselWindow.addEventListener(
+
         "mouseenter",
+
         ()=>{
 
             const track =
@@ -2481,12 +2792,15 @@ if(carouselWindow){
                 track.style.animationPlayState =
                     "paused";
             }
+
         }
     );
 
 
     carouselWindow.addEventListener(
+
         "mouseleave",
+
         ()=>{
 
             const track =
@@ -2499,6 +2813,7 @@ if(carouselWindow){
                 track.style.animationPlayState =
                     "running";
             }
+
         }
     );
 }
@@ -2531,7 +2846,7 @@ console.log(
 );
 
 console.log(
-    "STRANGIS — URL canónica: /Strangis/"
+    "STRANGIS — SEO canónico configurado para /Strangis/"
 );
 
 console.log(
