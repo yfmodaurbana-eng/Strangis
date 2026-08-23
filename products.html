@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -15,254 +17,801 @@
         content="Gestión de productos STRANGIS"
     >
 
+
     <style>
+
         * {
             box-sizing: border-box;
         }
 
+
         html,
         body {
+
             margin: 0;
             padding: 0;
             min-height: 100%;
+
             font-family:
                 Arial,
                 Helvetica,
                 sans-serif;
-            background: #f5f5f5;
-            color: #111;
+
+            background:
+                #f5f5f5;
+
+            color:
+                #111;
+
         }
+
 
         body {
-            padding: 20px;
+
+            padding:
+                20px;
+
         }
+
 
         .container {
-            width: 100%;
-            max-width: 1100px;
-            margin: 0 auto;
+
+            width:
+                100%;
+
+            max-width:
+                1200px;
+
+            margin:
+                0 auto;
+
         }
+
 
         .header {
-            background: #111;
-            color: #fff;
-            padding: 24px;
-            border-radius: 14px;
-            margin-bottom: 20px;
+
+            background:
+                #111;
+
+            color:
+                #fff;
+
+            padding:
+                24px;
+
+            border-radius:
+                14px;
+
+            margin-bottom:
+                20px;
+
         }
+
 
         .header h1 {
-            margin: 0 0 8px;
-            font-size: 28px;
+
+            margin:
+                0 0 8px;
+
+            font-size:
+                28px;
+
         }
+
 
         .header p {
-            margin: 0;
-            color: #ccc;
+
+            margin:
+                0;
+
+            color:
+                #ccc;
+
         }
+
 
         .card {
-            background: #fff;
-            border-radius: 14px;
-            padding: 24px;
-            margin-bottom: 20px;
+
+            background:
+                #fff;
+
+            border-radius:
+                14px;
+
+            padding:
+                24px;
+
+            margin-bottom:
+                20px;
+
             box-shadow:
-                0 4px 20px rgba(0, 0, 0, 0.06);
+                0 4px 20px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    .06
+                );
+
         }
+
 
         .card h2 {
-            margin-top: 0;
-            margin-bottom: 20px;
+
+            margin-top:
+                0;
+
+            margin-bottom:
+                20px;
+
         }
 
+
         .grid {
-            display: grid;
+
+            display:
+                grid;
+
             grid-template-columns:
                 repeat(
                     2,
-                    minmax(0, 1fr)
+                    minmax(
+                        0,
+                        1fr
+                    )
                 );
-            gap: 16px;
+
+            gap:
+                16px;
+
         }
+
 
         .field {
-            display: flex;
-            flex-direction: column;
-            gap: 7px;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            gap:
+                7px;
+
         }
+
 
         .field.full {
-            grid-column: 1 / -1;
+
+            grid-column:
+                1 / -1;
+
         }
 
+
         label {
-            font-weight: 700;
-            font-size: 14px;
+
+            font-weight:
+                700;
+
+            font-size:
+                14px;
+
         }
+
 
         input,
         select,
         textarea {
-            width: 100%;
-            border: 1px solid #d5d5d5;
-            border-radius: 9px;
-            padding: 12px;
-            font-size: 15px;
-            background: #fff;
-            color: #111;
-            outline: none;
+
+            width:
+                100%;
+
+            border:
+                1px solid
+                #d5d5d5;
+
+            border-radius:
+                9px;
+
+            padding:
+                12px;
+
+            font-size:
+                15px;
+
+            background:
+                #fff;
+
+            color:
+                #111;
+
+            outline:
+                none;
+
         }
+
 
         input:focus,
         select:focus,
         textarea:focus {
-            border-color: #111;
+
+            border-color:
+                #111;
+
         }
+
 
         textarea {
-            min-height: 110px;
-            resize: vertical;
+
+            min-height:
+                110px;
+
+            resize:
+                vertical;
+
         }
+
 
         .actions {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 20px;
+
+            display:
+                flex;
+
+            gap:
+                10px;
+
+            flex-wrap:
+                wrap;
+
+            margin-top:
+                20px;
+
         }
+
 
         button {
-            border: 0;
-            border-radius: 9px;
-            padding: 12px 18px;
-            font-size: 15px;
-            font-weight: 700;
-            cursor: pointer;
+
+            border:
+                0;
+
+            border-radius:
+                9px;
+
+            padding:
+                12px 18px;
+
+            font-size:
+                15px;
+
+            font-weight:
+                700;
+
+            cursor:
+                pointer;
+
         }
+
+
+        button:disabled {
+
+            opacity:
+                .5;
+
+            cursor:
+                not-allowed;
+
+        }
+
 
         .btn-primary {
-            background: #111;
-            color: #fff;
+
+            background:
+                #111;
+
+            color:
+                #fff;
+
         }
 
+
         .btn-secondary {
-            background: #e9e9e9;
-            color: #111;
+
+            background:
+                #e9e9e9;
+
+            color:
+                #111;
+
         }
+
+
+        .btn-danger {
+
+            background:
+                #e8e8e8;
+
+            color:
+                #111;
+
+        }
+
 
         .variants,
         .sizes {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            gap:
+                12px;
+
         }
+
 
         .variant {
-            display: grid;
+
+            display:
+                grid;
+
             grid-template-columns:
-                1fr 2fr auto;
-            gap: 10px;
-            align-items: end;
+                1fr
+                2fr
+                170px
+                auto;
+
+            gap:
+                10px;
+
+            align-items:
+                end;
+
+            padding:
+                14px;
+
+            border:
+                1px solid
+                #e5e5e5;
+
+            border-radius:
+                12px;
+
+            background:
+                #fafafa;
+
         }
+
+
+        .variant-ref {
+
+            font-size:
+                13px;
+
+            color:
+                #555;
+
+        }
+
+
+        .variant-ref strong {
+
+            display:
+                block;
+
+            color:
+                #111;
+
+            margin-top:
+                4px;
+
+            word-break:
+                break-all;
+
+        }
+
 
         .size-row {
-            display: flex;
-            gap: 10px;
+
+            display:
+                flex;
+
+            gap:
+                10px;
+
         }
+
 
         .size-row input {
-            flex: 1;
+
+            flex:
+                1;
+
         }
 
+
         .products-list {
-            display: grid;
+
+            display:
+                grid;
+
             grid-template-columns:
                 repeat(
                     auto-fill,
-                    minmax(240px, 1fr)
+                    minmax(
+                        250px,
+                        1fr
+                    )
                 );
-            gap: 16px;
+
+            gap:
+                16px;
+
         }
+
 
         .product {
-            border: 1px solid #e5e5e5;
-            border-radius: 12px;
-            padding: 16px;
-            background: #fff;
+
+            border:
+                1px solid
+                #e5e5e5;
+
+            border-radius:
+                12px;
+
+            padding:
+                16px;
+
+            background:
+                #fff;
+
         }
+
 
         .product-image {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            border-radius: 10px;
-            overflow: hidden;
-            background: #eee;
-            margin-bottom: 12px;
+
+            width:
+                100%;
+
+            aspect-ratio:
+                1 / 1;
+
+            border-radius:
+                10px;
+
+            overflow:
+                hidden;
+
+            background:
+                #eee;
+
+            margin-bottom:
+                12px;
+
         }
+
 
         .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
+
+            width:
+                100%;
+
+            height:
+                100%;
+
+            object-fit:
+                cover;
+
+            display:
+                block;
+
         }
+
+
+        .no-image {
+
+            width:
+                100%;
+
+            height:
+                100%;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            color:
+                #777;
+
+            font-size:
+                14px;
+
+        }
+
 
         .product h3 {
-            margin: 0 0 8px;
+
+            margin:
+                0 0 8px;
+
         }
+
 
         .product p {
-            margin: 5px 0;
-            color: #555;
+
+            margin:
+                5px 0;
+
+            color:
+                #555;
+
         }
+
+
+        .product-reference {
+
+            display:
+                inline-block;
+
+            margin:
+                5px 0 10px;
+
+            padding:
+                6px 9px;
+
+            border-radius:
+                7px;
+
+            background:
+                #f0f0f0;
+
+            font-size:
+                12px;
+
+            font-weight:
+                700;
+
+            word-break:
+                break-all;
+
+        }
+
+
+        .image-references {
+
+            margin-top:
+                14px;
+
+            padding-top:
+                14px;
+
+            border-top:
+                1px solid
+                #eee;
+
+        }
+
+
+        .image-reference {
+
+            padding:
+                8px 0;
+
+            font-size:
+                12px;
+
+            border-bottom:
+                1px solid
+                #eee;
+
+        }
+
+
+        .image-reference:last-child {
+
+            border-bottom:
+                0;
+
+        }
+
+
+        .image-reference strong {
+
+            display:
+                block;
+
+            margin-top:
+                3px;
+
+            word-break:
+                break-all;
+
+        }
+
 
         .status {
-            padding: 12px;
-            border-radius: 9px;
-            background: #f0f0f0;
-            margin-bottom: 16px;
-            font-size: 14px;
+
+            padding:
+                12px;
+
+            border-radius:
+                9px;
+
+            background:
+                #f0f0f0;
+
+            margin-bottom:
+                16px;
+
+            font-size:
+                14px;
+
         }
+
 
         .empty {
-            text-align: center;
-            padding: 30px;
-            color: #666;
+
+            text-align:
+                center;
+
+            padding:
+                30px;
+
+            color:
+                #666;
+
+            grid-column:
+                1 / -1;
+
         }
 
-        @media (max-width: 700px) {
+
+        .help {
+
+            padding:
+                14px;
+
+            border-radius:
+                10px;
+
+            background:
+                #f5f5f5;
+
+            color:
+                #555;
+
+            font-size:
+                14px;
+
+            line-height:
+                1.5;
+
+        }
+
+
+        .preview {
+
+            margin-top:
+                10px;
+
+            width:
+                80px;
+
+            height:
+                80px;
+
+            border-radius:
+                9px;
+
+            overflow:
+                hidden;
+
+            background:
+                #eee;
+
+        }
+
+
+        .preview img {
+
+            width:
+                100%;
+
+            height:
+                100%;
+
+            object-fit:
+                cover;
+
+        }
+
+
+        @media (
+            max-width: 800px
+        ) {
 
             body {
-                padding: 10px;
+
+                padding:
+                    10px;
+
             }
+
 
             .grid {
-                grid-template-columns: 1fr;
+
+                grid-template-columns:
+                    1fr;
+
             }
+
 
             .field.full {
-                grid-column: auto;
+
+                grid-column:
+                    auto;
+
             }
+
 
             .variant {
-                grid-template-columns: 1fr;
-            }
 
-            .size-row {
-                flex-direction: column;
+                grid-template-columns:
+                    1fr;
+
             }
 
         }
+
+
+        @media (
+            max-width: 500px
+        ) {
+
+            .card {
+
+                padding:
+                    16px;
+
+            }
+
+
+            .header {
+
+                padding:
+                    18px;
+
+            }
+
+        }
+
     </style>
+
 </head>
+
 
 <body>
 
+
 <div class="container">
+
+
+    <!-- =================================================
+         CABECERA
+    ================================================== -->
 
     <header class="header">
 
-        <h1>STRANGIS</h1>
+        <h1>
+            STRANGIS
+        </h1>
 
         <p>
             Gestión de productos
@@ -283,6 +832,7 @@
         >
             Cargando productos...
         </div>
+
 
         <div class="actions">
 
@@ -310,10 +860,27 @@
         </h2>
 
 
+        <div class="help">
+
+            <strong>
+                Referencias automáticas
+            </strong>
+
+            <br>
+
+            STRANGIS generará automáticamente
+            una referencia para el producto y
+            una referencia diferente para cada
+            imagen.
+
+        </div>
+
+
         <form
             id="productForm"
             autocomplete="off"
         >
+
 
             <div class="grid">
 
@@ -331,25 +898,6 @@
                         id="productName"
                         name="productName"
                         placeholder="Ej. Camiseta Strangis"
-                        required
-                    >
-
-                </div>
-
-
-                <!-- REFERENCIA -->
-
-                <div class="field">
-
-                    <label for="productRef">
-                        Referencia / ID
-                    </label>
-
-                    <input
-                        type="text"
-                        id="productRef"
-                        name="productRef"
-                        placeholder="Ej. CAM-001"
                         required
                     >
 
@@ -515,25 +1063,38 @@
                 </div>
 
 
-                <!-- VARIANTES -->
+                <!-- =================================================
+                     IMÁGENES / COLORES
+                ================================================== -->
 
                 <div class="field full">
 
                     <label>
-                        Colores / variantes
+                        Imágenes / colores
                     </label>
+
+
+                    <div class="help">
+
+                        Cada imagen que añadas recibirá
+                        automáticamente una referencia
+                        única.
+
+                    </div>
+
 
                     <div
                         id="variantsContainer"
                         class="variants"
                     ></div>
 
+
                     <button
                         type="button"
                         class="btn-secondary"
                         id="addVariantButton"
                     >
-                        + Añadir color
+                        + Añadir imagen / color
                     </button>
 
                 </div>
@@ -547,10 +1108,12 @@
                         Tallas
                     </label>
 
+
                     <div
                         id="sizesContainer"
                         class="sizes"
                     ></div>
+
 
                     <button
                         type="button"
@@ -562,8 +1125,11 @@
 
                 </div>
 
+
             </div>
 
+
+            <!-- BOTONES -->
 
             <div class="actions">
 
@@ -574,6 +1140,7 @@
                     Guardar producto
                 </button>
 
+
                 <button
                     type="reset"
                     class="btn-secondary"
@@ -582,6 +1149,7 @@
                 </button>
 
             </div>
+
 
         </form>
 
@@ -598,6 +1166,7 @@
             Productos cargados
         </h2>
 
+
         <div
             id="productsList"
             class="products-list"
@@ -611,18 +1180,19 @@
 
     </section>
 
+
 </div>
 
 
 <!-- =====================================================
-     VARIABLES GLOBALES DEL FORMULARIO
+     VARIABLES GLOBALES
 ===================================================== -->
 
 <script>
 
-    window.variants = [];
+window.variants = [];
 
-    window.sizes = [];
+window.sizes = [];
 
 </script>
 
@@ -645,44 +1215,51 @@
     "use strict";
 
 
-    /*
-     * ELEMENTOS
-     */
+    /* =====================================================
+       ELEMENTOS
+    ===================================================== */
 
     const form =
         document.getElementById(
             "productForm"
         );
 
+
     const variantsContainer =
         document.getElementById(
             "variantsContainer"
         );
+
 
     const sizesContainer =
         document.getElementById(
             "sizesContainer"
         );
 
+
     const productsList =
         document.getElementById(
             "productsList"
         );
+
 
     const productsStatus =
         document.getElementById(
             "productsStatus"
         );
 
+
     const addVariantButton =
         document.getElementById(
             "addVariantButton"
         );
 
+
     const addSizeButton =
         document.getElementById(
             "addSizeButton"
         );
+
 
     const refreshButton =
         document.getElementById(
@@ -690,31 +1267,36 @@
         );
 
 
-    /*
-     * ESCAPAR HTML
-     */
+    /* =====================================================
+       ESCAPAR HTML
+    ===================================================== */
 
     function escapeHTML(value) {
 
         return String(
             value ?? ""
         )
+
         .replace(
             /&/g,
             "&amp;"
         )
+
         .replace(
             /</g,
             "&lt;"
         )
+
         .replace(
             />/g,
             "&gt;"
         )
+
         .replace(
             /"/g,
             "&quot;"
         )
+
         .replace(
             /'/g,
             "&#039;"
@@ -723,119 +1305,94 @@
     }
 
 
-    /*
-     * COMPROBAR SI ES UNA URL DE IMAGEN VÁLIDA
-     */
+    /* =====================================================
+       URL DE IMAGEN
+    ===================================================== */
 
-    function isValidImageURL(value) {
+    function isValidImageURL(
+        value
+    ) {
 
         if (
-            typeof value !== "string"
+            typeof value !==
+            "string"
         ) {
+
             return false;
+
         }
+
 
         const url =
             value.trim();
 
+
         if (!url) {
+
             return false;
+
         }
 
-        /*
-         * Aceptamos:
-         * - https://...
-         * - http://...
-         * - URLs de Supabase Storage
-         * - data:image/...
-         * - rutas relativas
-         */
 
-        if (
-            /^data:image\//i.test(url)
-        ) {
-            return true;
-        }
+        return (
 
-        if (
-            /^https?:\/\//i.test(url)
-        ) {
-            return true;
-        }
+            /^data:image\//i.test(
+                url
+            )
 
-        if (
+            ||
+
+            /^https?:\/\//i.test(
+                url
+            )
+
+            ||
+
             url.startsWith("/")
-        ) {
-            return true;
-        }
 
-        if (
+            ||
+
             url.startsWith("./")
-        ) {
-            return true;
-        }
 
-        if (
+            ||
+
             url.startsWith("../")
-        ) {
-            return true;
-        }
 
-        return false;
+        );
 
     }
 
 
-    /*
-     * EXTRAER URL DE UNA IMAGEN
-     *
-     * Admite:
-     *
-     * "https://..."
-     *
-     * {
-     *     image: "https://..."
-     * }
-     *
-     * {
-     *     name: "Negro",
-     *     image: "https://..."
-     * }
-     *
-     * {
-     *     url: "https://..."
-     * }
-     *
-     * {
-     *     src: "https://..."
-     * }
-     */
+    /* =====================================================
+       EXTRAER URL
+    ===================================================== */
 
-    function extractImageURL(value) {
+    function extractImageURL(
+        value
+    ) {
 
         if (
-            typeof value === "string"
+            typeof value ===
+            "string"
         ) {
 
             const image =
                 value.trim();
 
-            if (
-                isValidImageURL(image)
-            ) {
 
-                return image;
-
-            }
-
-            return "";
+            return isValidImageURL(
+                image
+            )
+                ? image
+                : "";
 
         }
 
 
         if (
             !value ||
-            typeof value !== "object"
+            typeof value !==
+            "object"
         ) {
 
             return "";
@@ -843,7 +1400,7 @@
         }
 
 
-        const possibleKeys = [
+        const keys = [
 
             "image",
 
@@ -865,24 +1422,34 @@
 
 
         for (
-            const key of possibleKeys
+            const key of keys
         ) {
 
+            const valueImage =
+                value[key];
+
+
             if (
-                typeof value[key] ===
+                typeof valueImage !==
                 "string"
             ) {
 
-                const image =
-                    value[key].trim();
+                continue;
 
-                if (
-                    isValidImageURL(image)
-                ) {
+            }
 
-                    return image;
 
-                }
+            const image =
+                valueImage.trim();
+
+
+            if (
+                isValidImageURL(
+                    image
+                )
+            ) {
+
+                return image;
 
             }
 
@@ -894,32 +1461,18 @@
     }
 
 
-    /*
-     * BUSCAR IMAGEN RECURSIVAMENTE
-     *
-     * Esto permite trabajar con:
-     *
-     * images: [
-     *     "https://..."
-     * ]
-     *
-     * images: [
-     *     {
-     *         name: "Negro",
-     *         image: "https://..."
-     *     }
-     * ]
-     *
-     * images: {
-     *     name: "Negro",
-     *     image: "https://..."
-     * }
-     */
+    /* =====================================================
+       BUSCAR IMAGEN
+    ===================================================== */
 
-    function findImageURL(value) {
+    function findImageURL(
+        value
+    ) {
 
         const direct =
-            extractImageURL(value);
+            extractImageURL(
+                value
+            );
 
 
         if (direct) {
@@ -930,15 +1483,21 @@
 
 
         if (
-            Array.isArray(value)
+            Array.isArray(
+                value
+            )
         ) {
 
             for (
-                const item of value
+                const item
+                of value
             ) {
 
                 const image =
-                    findImageURL(item);
+                    findImageURL(
+                        item
+                    );
+
 
                 if (image) {
 
@@ -956,15 +1515,18 @@
     }
 
 
-    /*
-     * OBTENER IMAGEN PRINCIPAL DEL PRODUCTO
-     */
+    /* =====================================================
+       IMAGEN PRODUCTO
+    ===================================================== */
 
-    function resolveProductImage(product) {
+    function resolveProductImage(
+        product
+    ) {
 
         if (
             !product ||
-            typeof product !== "object"
+            typeof product !==
+            "object"
         ) {
 
             return "";
@@ -972,30 +1534,9 @@
         }
 
 
-        /*
-         * 1. images
-         */
-
-        const images =
-            findImageURL(
-                product.images
-            );
-
-
-        if (images) {
-
-            return images;
-
-        }
-
-
-        /*
-         * 2. image
-         */
-
         const image =
             findImageURL(
-                product.image
+                product.images
             );
 
 
@@ -1006,121 +1547,63 @@
         }
 
 
-        /*
-         * 3. image_url
-         */
+        return (
+            findImageURL(
+                product.image
+            )
 
-        const imageURL =
+            ||
+
             findImageURL(
                 product.image_url
-            );
-
-
-        if (imageURL) {
-
-            return imageURL;
-
-        }
-
-
-        /*
-         * 4. variants
-         *
-         * Si no existe imagen principal,
-         * buscamos la primera imagen
-         * de cualquiera de los colores.
-         */
-
-        const variants =
-            product.variants ||
-            product.colors ||
-            product.colours;
-
-
-        if (
-            Array.isArray(variants)
-        ) {
-
-            for (
-                const variant
-                of variants
-            ) {
-
-                const variantImage =
-                    findImageURL(
-                        variant
-                    );
-
-
-                if (variantImage) {
-
-                    return variantImage;
-
-                }
-
-            }
-
-        }
-
-
-        /*
-         * 5. Algunos proyectos guardan
-         * directamente los colores dentro
-         * de "options".
-         */
-
-        if (
-            Array.isArray(
-                product.options
             )
-        ) {
 
-            for (
-                const option
-                of product.options
-            ) {
-
-                const optionImage =
-                    findImageURL(
-                        option
-                    );
-
-
-                if (optionImage) {
-
-                    return optionImage;
-
-                }
-
-            }
-
-        }
-
-
-        return "";
+        );
 
     }
 
 
-    /*
-     * RENDERIZAR VARIANTES
-     */
+    /* =====================================================
+       RENDER VARIANTES
+    ===================================================== */
 
     function renderVariants() {
 
-        variantsContainer.innerHTML = "";
+        variantsContainer.innerHTML =
+            "";
 
 
         window.variants.forEach(
-            function (variant, index) {
+            function (
+                variant,
+                index
+            ) {
 
                 const row =
                     document.createElement(
                         "div"
                     );
 
+
                 row.className =
                     "variant";
+
+
+                /*
+                 * Si todavía no tiene referencia,
+                 * la generamos inmediatamente.
+                 */
+
+                if (
+                    !variant.ref &&
+                    typeof window.generateUniqueImageReference ===
+                    "function"
+                ) {
+
+                    variant.ref =
+                        window.generateUniqueImageReference();
+
+                }
 
 
                 row.innerHTML = `
@@ -1158,6 +1641,24 @@
                             data-variant-image="${index}"
                         >
 
+                        <div
+                            class="preview"
+                            data-preview="${index}"
+                        ></div>
+
+                    </div>
+
+
+                    <div class="variant-ref">
+
+                        Referencia automática
+
+                        <strong>
+                            ${escapeHTML(
+                                variant.ref
+                            )}
+                        </strong>
+
                     </div>
 
 
@@ -1176,25 +1677,100 @@
                     row
                 );
 
+
+                updateVariantPreview(
+                    index
+                );
+
             }
         );
 
     }
 
 
-    /*
-     * AÑADIR VARIANTE
-     */
+    /* =====================================================
+       PREVISUALIZACIÓN
+    ===================================================== */
+
+    function updateVariantPreview(
+        index
+    ) {
+
+        const variant =
+            window.variants[index];
+
+
+        const preview =
+            variantsContainer.querySelector(
+                `[data-preview="${index}"]`
+            );
+
+
+        if (
+            !preview
+        ) {
+
+            return;
+
+        }
+
+
+        const image =
+            variant?.image?.trim();
+
+
+        if (
+            !image
+        ) {
+
+            preview.innerHTML =
+                "";
+
+            return;
+
+        }
+
+
+        preview.innerHTML = `
+
+            <img
+                src="${escapeHTML(image)}"
+                alt="Vista previa"
+                onerror="this.style.display='none';"
+            >
+
+        `;
+
+    }
+
+
+    /* =====================================================
+       AÑADIR IMAGEN
+    ===================================================== */
 
     addVariantButton.addEventListener(
         "click",
         function () {
 
+            const reference =
+                typeof window.generateUniqueImageReference ===
+                "function"
+
+                    ? window.generateUniqueImageReference()
+
+                    : `IMG-${Date.now()}`;
+
+
             window.variants.push({
 
-                name: "",
+                name:
+                    "",
 
-                image: ""
+                image:
+                    "",
+
+                ref:
+                    reference
 
             });
 
@@ -1205,9 +1781,9 @@
     );
 
 
-    /*
-     * CAMBIOS EN VARIANTES
-     */
+    /* =====================================================
+       CAMBIOS IMÁGENES
+    ===================================================== */
 
     variantsContainer.addEventListener(
         "input",
@@ -1218,11 +1794,13 @@
 
 
             const nameIndex =
-                target.dataset.variantName;
+                target.dataset
+                    .variantName;
 
 
             const imageIndex =
-                target.dataset.variantImage;
+                target.dataset
+                    .variantImage;
 
 
             if (
@@ -1231,7 +1809,9 @@
             ) {
 
                 window.variants[
-                    Number(nameIndex)
+                    Number(
+                        nameIndex
+                    )
                 ].name =
                     target.value;
 
@@ -1243,10 +1823,21 @@
                 undefined
             ) {
 
+                const index =
+                    Number(
+                        imageIndex
+                    );
+
+
                 window.variants[
-                    Number(imageIndex)
+                    index
                 ].image =
                     target.value;
+
+
+                updateVariantPreview(
+                    index
+                );
 
             }
 
@@ -1254,9 +1845,9 @@
     );
 
 
-    /*
-     * ELIMINAR VARIANTE
-     */
+    /* =====================================================
+       ELIMINAR IMAGEN
+    ===================================================== */
 
     variantsContainer.addEventListener(
         "click",
@@ -1277,7 +1868,8 @@
 
             const index =
                 Number(
-                    button.dataset.removeVariant
+                    button.dataset
+                        .removeVariant
                 );
 
 
@@ -1293,22 +1885,27 @@
     );
 
 
-    /*
-     * RENDERIZAR TALLAS
-     */
+    /* =====================================================
+       TALLAS
+    ===================================================== */
 
     function renderSizes() {
 
-        sizesContainer.innerHTML = "";
+        sizesContainer.innerHTML =
+            "";
 
 
         window.sizes.forEach(
-            function (size, index) {
+            function (
+                size,
+                index
+            ) {
 
                 const row =
                     document.createElement(
                         "div"
                     );
+
 
                 row.className =
                     "size-row";
@@ -1344,25 +1941,20 @@
     }
 
 
-    /*
-     * AÑADIR TALLA
-     */
-
     addSizeButton.addEventListener(
         "click",
         function () {
 
-            window.sizes.push("");
+            window.sizes.push(
+                ""
+            );
+
 
             renderSizes();
 
         }
     );
 
-
-    /*
-     * CAMBIAR TALLA
-     */
 
     sizesContainer.addEventListener(
         "input",
@@ -1377,8 +1969,7 @@
 
 
             if (
-                index ===
-                undefined
+                index === undefined
             ) {
 
                 return;
@@ -1394,10 +1985,6 @@
         }
     );
 
-
-    /*
-     * ELIMINAR TALLA
-     */
 
     sizesContainer.addEventListener(
         "click",
@@ -1418,7 +2005,8 @@
 
             const index =
                 Number(
-                    button.dataset.removeSize
+                    button.dataset
+                        .removeSize
                 );
 
 
@@ -1434,20 +2022,24 @@
     );
 
 
-    /*
-     * RENDERIZAR PRODUCTOS
-     */
+    /* =====================================================
+       RENDER PRODUCTOS
+    ===================================================== */
 
     function renderProducts() {
 
         const products =
-            typeof getProducts ===
+            typeof window.getProducts ===
             "function"
-                ? getProducts()
+
+                ? window.getProducts()
+
                 : [];
 
 
-        if (!products.length) {
+        if (
+            !products.length
+        ) {
 
             productsList.innerHTML = `
 
@@ -1459,8 +2051,10 @@
 
             `;
 
+
             productsStatus.textContent =
                 "0 productos cargados.";
+
 
             return;
 
@@ -1473,19 +2067,9 @@
 
         productsList.innerHTML =
             products
+
                 .map(
                     function (product) {
-
-                        /*
-                         * IMPORTANTE:
-                         * No dependemos únicamente de
-                         * getProductImage().
-                         *
-                         * Primero intentamos interpretar
-                         * directamente todos los formatos
-                         * posibles que puede devolver
-                         * Supabase.
-                         */
 
                         const image =
                             resolveProductImage(
@@ -1493,84 +2077,405 @@
                             );
 
 
-                        /*
-                         * Si por alguna razón
-                         * products.js tiene una función
-                         * getProductImage() que sí conoce
-                         * otro formato, la usamos como
-                         * último recurso.
-                         */
-
-                        const fallbackImage =
-                            !image &&
-                            typeof getProductImage ===
+                        const category =
+                            typeof window.getCategoryName ===
                             "function"
-                                ? findImageURL(
-                                    getProductImage(
-                                        product
-                                    )
+
+                                ? window.getCategoryName(
+                                    product.category
                                 )
-                                : "";
+
+                                : product.category;
 
 
-                        const finalImage =
-                            image ||
-                            fallbackImage;
+                        const images =
+                            Array.isArray(
+                                product.images
+                            )
+
+                                ? product.images
+
+                                : [];
+
+
+                        const imageReferences =
+                            images
+                                .map(
+                                    function (
+                                        item
+                                    ) {
+
+                                        const ref =
+                                            item?.ref ||
+                                            "";
+
+                                        const name =
+                                            item?.name ||
+                                            "Imagen";
+
+                                        return `
+
+                                            <div class="image-reference">
+
+                                                ${escapeHTML(
+                                                    name
+                                                )}
+
+                                                <strong>
+                                                    ${escapeHTML(
+                                                        ref
+                                                    )}
+                                                </strong>
+
+                                            </div>
+
+                                        `;
+
+                                    }
+                                )
+                                .join("");
 
 
                         return `
 
-                            <article class="product">
+                            <article
+                                class="product"
+                            >
 
-                                <div class="product-image">
+                                <div
+                                    class="product-image"
+                                >
 
                                     ${
-                                        finalImage
+                                        image
+
                                             ? `
+
                                                 <img
-                                                    src="${escapeHTML(finalImage)}"
+                                                    src="${escapeHTML(image)}"
                                                     alt="${escapeHTML(product.name)}"
                                                     loading="lazy"
                                                     onerror="this.style.display='none';"
                                                 >
+
                                               `
-                                            : ""
+
+                                            : `
+
+                                                <div class="no-image">
+
+                                                    Sin imagen
+
+                                                </div>
+
+                                              `
                                     }
 
                                 </div>
 
+
                                 <h3>
+
                                     ${escapeHTML(
                                         product.name
                                     )}
+
                                 </h3>
 
-                                <p>
-                                    Ref:
+
+                                <div
+                                    class="product-reference"
+                                >
+
+                                    Ref. producto:
                                     ${escapeHTML(
                                         product.ref
                                     )}
-                                </p>
+
+                                </div>
+
 
                                 <p>
+
                                     Categoría:
                                     ${escapeHTML(
-                                        typeof getCategoryName ===
-                                        "function"
-                                            ? getCategoryName(
-                                                product.category
-                                            )
-                                            : product.category
+                                        category
                                     )}
+
                                 </p>
 
+
                                 <p>
+
                                     Precio:
                                     ${Number(
-                                        product.price
+                                        product.price || 0
                                     ).toFixed(2)}
                                     €
+
                                 </p>
 
+
                                 <p>
-                                   
+
+                                    Stock:
+                                    ${escapeHTML(
+                                        product.stock
+                                    )}
+
+                                </p>
+
+
+                                ${
+                                    product.description
+
+                                        ? `
+
+                                            <p>
+
+                                                ${escapeHTML(
+                                                    product.description
+                                                )}
+
+                                            </p>
+
+                                          `
+
+                                        : ""
+                                }
+
+
+                                ${
+                                    imageReferences
+
+                                        ? `
+
+                                            <div
+                                                class="image-references"
+                                            >
+
+                                                <strong>
+                                                    Referencias de imágenes
+                                                </strong>
+
+                                                ${imageReferences}
+
+                                            </div>
+
+                                          `
+
+                                        : ""
+                                }
+
+                            </article>
+
+                        `;
+
+                    }
+                )
+                .join("");
+
+    }
+
+
+    /* =====================================================
+       CARGAR
+    ===================================================== */
+
+    async function loadPageProducts() {
+
+        productsStatus.textContent =
+            "Cargando productos...";
+
+
+        try {
+
+            await window.initStrangisProducts();
+
+
+            renderProducts();
+
+        }
+        catch (error) {
+
+            console.error(
+                error
+            );
+
+
+            productsStatus.textContent =
+                "❌ Error cargando productos.";
+
+        }
+
+    }
+
+
+    /* =====================================================
+       ACTUALIZAR
+    ===================================================== */
+
+    refreshButton.addEventListener(
+        "click",
+        async function () {
+
+            refreshButton.disabled =
+                true;
+
+
+            productsStatus.textContent =
+                "Actualizando productos...";
+
+
+            try {
+
+                await window.refreshProducts();
+
+
+                renderProducts();
+
+            }
+            catch (error) {
+
+                console.error(
+                    error
+                );
+
+
+                productsStatus.textContent =
+                    "❌ No se pudieron actualizar los productos.";
+
+            }
+            finally {
+
+                refreshButton.disabled =
+                    false;
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       GUARDAR
+    ===================================================== */
+
+    form.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+
+            const submitButton =
+                form.querySelector(
+                    'button[type="submit"]'
+                );
+
+
+            submitButton.disabled =
+                true;
+
+
+            submitButton.textContent =
+                "Guardando...";
+
+
+            try {
+
+                const saved =
+                    await window.saveProductToSupabase();
+
+
+                if (saved) {
+
+                    form.reset();
+
+
+                    window.variants =
+                        [];
+
+                    window.sizes =
+                        [];
+
+
+                    renderVariants();
+
+                    renderSizes();
+
+                    renderProducts();
+
+                }
+
+            }
+            catch (error) {
+
+                console.error(
+                    error
+                );
+
+            }
+            finally {
+
+                submitButton.disabled =
+                    false;
+
+
+                submitButton.textContent =
+                    "Guardar producto";
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       RESET
+    ===================================================== */
+
+    form.addEventListener(
+        "reset",
+        function () {
+
+            setTimeout(
+                function () {
+
+                    window.variants =
+                        [];
+
+                    window.sizes =
+                        [];
+
+
+                    renderVariants();
+
+                    renderSizes();
+
+                },
+                0
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       INICIO
+    ===================================================== */
+
+    renderVariants();
+
+    renderSizes();
+
+    loadPageProducts();
+
+
+})();
+
+</script>
+
+
+</body>
+    </html>
