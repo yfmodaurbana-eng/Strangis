@@ -2319,6 +2319,17 @@ async function loadProducts(){
         );
 
 
+    if(!container){
+
+        console.error(
+            "No existe #productsContainer"
+        );
+
+        return;
+
+    }
+
+
     container.innerHTML = `
         <div class="loading">
             Cargando gafas...
@@ -2328,9 +2339,30 @@ async function loadProducts(){
 
     try{
 
+        console.log(
+            "Cargando productos de categoría:",
+            CATEGORY
+        );
+
+
         PRODUCTS =
             await supabaseClient
                 .getProducts();
+
+
+        console.log(
+            "Productos recibidos:",
+            PRODUCTS
+        );
+
+
+        if(!Array.isArray(PRODUCTS)){
+
+            throw new Error(
+                "Supabase no devolvió una lista de productos."
+            );
+
+        }
 
 
         renderProducts();
@@ -2356,22 +2388,30 @@ async function loadProducts(){
                 <br><br>
 
                 Error:
-                ${escapeHTML(error.message)}
+
+                ${escapeHTML(
+                    error?.message ||
+                    String(error)
+                )}
 
                 <br><br>
 
-                Comprueba que la tabla
-                <strong>Products</strong>
-                permita SELECT público
-                mediante RLS/policies.
+                Categoría consultada:
+
+                <strong>
+                    ${escapeHTML(CATEGORY)}
+                </strong>
+
+                <br><br>
+
+                Abre la consola del navegador
+                para ver el error completo.
 
             </div>
 
         `;
 
     }
-
-}
 
 
 /* =====================================================
