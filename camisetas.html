@@ -10,13 +10,22 @@
 
 <meta
     name="description"
-    content="Descubre camisetas de moda para hombre y mujer en Strangis. Diseños, estilos y marcas seleccionadas para crear looks únicos."
+    content="Descubre camisetas de moda para hombre y mujer en Strangis. Diseños, colores, estilos y marcas seleccionadas para crear looks únicos."
 >
 
 <meta
     name="robots"
     content="index, follow, max-image-preview:large"
 >
+
+<meta
+    name="googlebot"
+    content="index, follow, max-image-preview:large"
+>
+
+<meta name="author" content="Strangis">
+<meta name="theme-color" content="#151515">
+<meta name="application-name" content="Strangis">
 
 <link
     rel="canonical"
@@ -25,6 +34,11 @@
 
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 
+<link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="apple-touch-icon.png"
+>
 
 <!-- =========================
      OPEN GRAPH
@@ -47,7 +61,7 @@
 
 <meta
     property="og:description"
-    content="Descubre camisetas de moda para hombre y mujer en Strangis. Diseños, estilos y marcas seleccionadas para crear looks únicos."
+    content="Descubre camisetas de moda para hombre y mujer en Strangis. Diseños, colores, estilos y marcas seleccionadas para crear looks únicos."
 >
 
 <meta
@@ -66,6 +80,7 @@
 ========================= -->
 
 <script type="application/ld+json">
+
 {
     "@context":"https://schema.org",
     "@graph":[
@@ -90,7 +105,7 @@
             "@id":"https://yfmodaurbana-eng.github.io/Strangis/camisetas.html#webpage",
             "url":"https://yfmodaurbana-eng.github.io/Strangis/camisetas.html",
             "name":"Camisetas de Moda para Hombre y Mujer | Strangis",
-            "description":"Descubre camisetas de moda para hombre y mujer en Strangis. Diseños, estilos y marcas seleccionadas para crear looks únicos.",
+            "description":"Descubre camisetas de moda para hombre y mujer en Strangis. Diseños, colores, estilos y marcas seleccionadas para crear looks únicos.",
             "isPartOf":{
                 "@id":"https://yfmodaurbana-eng.github.io/Strangis/#website"
             },
@@ -124,6 +139,7 @@
 
     ]
 }
+
 </script>
 
 
@@ -144,6 +160,7 @@ html{
 }
 
 body{
+
     min-height:100vh;
 
     font-family:
@@ -177,15 +194,12 @@ textarea{
 header{
 
     position:sticky;
-
     top:0;
-
     z-index:1000;
 
     padding:16px 5%;
 
     display:flex;
-
     align-items:center;
 
     gap:28px;
@@ -197,9 +211,11 @@ header{
     background:
         rgba(20,20,20,.94);
 
-    backdrop-filter:blur(18px);
+    backdrop-filter:
+        blur(18px);
 
-    -webkit-backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:
+        blur(18px);
 }
 
 .logo{
@@ -227,7 +243,7 @@ nav{
 
     scrollbar-width:none;
 
-    padding:4px 2px;
+    -webkit-overflow-scrolling:touch;
 }
 
 nav::-webkit-scrollbar{
@@ -241,7 +257,6 @@ nav a{
     display:flex;
 
     align-items:center;
-
     justify-content:center;
 
     min-height:34px;
@@ -267,6 +282,8 @@ nav a{
     text-transform:uppercase;
 
     white-space:nowrap;
+
+    transition:.2s;
 }
 
 nav a:hover{
@@ -301,7 +318,7 @@ nav a.active{
     margin:auto;
 
     padding:
-        clamp(60px,9vw,105px)
+        clamp(55px,8vw,100px)
         0
         45px;
 }
@@ -318,7 +335,7 @@ nav a.active{
 
     letter-spacing:4px;
 
-    line-height:1.7;
+    line-height:1.8;
 }
 
 .hero h1{
@@ -352,10 +369,10 @@ nav a.active{
 
 
 /* =====================================================
-   CATÁLOGO PREVIEW
+   PRODUCT PREVIEW GRID
 ===================================================== */
 
-.catalog-section{
+.products-section{
 
     width:min(1400px,90%);
 
@@ -367,7 +384,7 @@ nav a.active{
         100px;
 }
 
-.catalog{
+.products{
 
     display:grid;
 
@@ -382,33 +399,36 @@ nav a.active{
 
 
 /* =====================================================
-   MINIATURA PRODUCTO
+   PRODUCT CARD
 ===================================================== */
 
-.preview-product{
+.product{
 
     min-width:0;
 
-    cursor:pointer;
-
     overflow:hidden;
+
+    padding:16px;
 
     border:
         1px solid
-        rgba(255,255,255,.10);
+        rgba(255,255,255,.12);
 
-    border-radius:10px;
+    border-radius:12px;
 
     background:
-        rgba(255,255,255,.045);
+        rgba(255,255,255,.055);
 
-    transition:
-        transform .25s ease,
-        border-color .25s ease,
-        background .25s ease;
+    box-shadow:
+        0 15px 45px
+        rgba(0,0,0,.15);
+
+    transition:.25s;
+
+    cursor:pointer;
 }
 
-.preview-product:hover{
+.product:hover{
 
     transform:
         translateY(-4px);
@@ -417,79 +437,182 @@ nav a.active{
         rgba(255,255,255,.25);
 
     background:
-        rgba(255,255,255,.07);
+        rgba(255,255,255,.075);
 }
 
-.preview-image{
 
-    width:100%;
+/* =====================================================
+   MINIATURA
+===================================================== */
 
-    aspect-ratio:1 / 1;
+.product-preview{
+
+    position:relative;
+
+    height:300px;
+
+    margin:
+        -16px
+        -16px
+        14px;
 
     overflow:hidden;
 
     background:#171717;
 }
 
-.preview-image img{
+.product-preview img{
 
     width:100%;
-
     height:100%;
-
-    display:block;
 
     object-fit:cover;
 
+    display:block;
+
     transition:
-        transform .35s ease;
+        transform .35s;
 }
 
-.preview-product:hover
-.preview-image img{
+.product:hover
+.product-preview img{
 
-    transform:scale(1.05);
+    transform:
+        scale(1.05);
 }
 
-.preview-info{
+.preview-label{
 
-    padding:
-        11px 12px 13px;
+    position:absolute;
+
+    left:12px;
+    right:12px;
+    bottom:12px;
+
+    padding:10px 12px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.18);
+
+    border-radius:8px;
+
+    background:
+        rgba(10,10,10,.76);
+
+    backdrop-filter:
+        blur(14px);
+
+    pointer-events:none;
 }
 
 .preview-name{
 
+    display:block;
+
     overflow:hidden;
 
-    color:#fff;
+    text-overflow:ellipsis;
+
+    white-space:nowrap;
 
     font-size:12px;
 
     font-weight:800;
+}
 
-    white-space:nowrap;
+.preview-info{
 
-    text-overflow:ellipsis;
+    margin-top:5px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    color:#aaa;
+
+    font-size:9px;
+
+    font-weight:bold;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
 }
 
 .preview-price{
 
-    margin-top:5px;
+    color:#fff;
 
-    color:#aaa;
-
-    font-size:11px;
-
-    font-weight:bold;
+    font-size:12px;
 }
 
 
 /* =====================================================
-   LOADING / EMPTY
+   CARD INFO
 ===================================================== */
 
-.loading,
-.empty{
+.product-description{
+
+    color:#999;
+
+    font-size:12px;
+
+    line-height:1.55;
+
+    display:
+        -webkit-box;
+
+    -webkit-line-clamp:2;
+
+    -webkit-box-orient:vertical;
+
+    overflow:hidden;
+}
+
+
+/* =====================================================
+   CARD BUTTON
+===================================================== */
+
+.view-product{
+
+    width:100%;
+
+    margin-top:14px;
+
+    padding:13px;
+
+    border:0;
+
+    border-radius:6px;
+
+    background:#fff;
+
+    color:#111;
+
+    cursor:pointer;
+
+    font-size:10px;
+
+    font-weight:900;
+
+    letter-spacing:1.4px;
+}
+
+.view-product:hover{
+    background:#ddd;
+}
+
+
+/* =====================================================
+   EMPTY / LOADING
+===================================================== */
+
+.empty,
+.loading{
 
     grid-column:1/-1;
 
@@ -502,7 +625,7 @@ nav a.active{
 
 
 /* =====================================================
-   PANEL PRODUCTO
+   PRODUCT PANEL
 ===================================================== */
 
 .product-panel{
@@ -511,18 +634,9 @@ nav a.active{
 
     inset:0;
 
-    z-index:5000;
+    z-index:6000;
 
     display:none;
-
-    align-items:flex-start;
-
-    justify-content:center;
-
-    padding:
-        30px;
-
-    overflow-y:auto;
 
     background:
         rgba(0,0,0,.82);
@@ -535,30 +649,28 @@ nav a.active{
 }
 
 .product-panel.show{
-
     display:flex;
 }
 
-.product-box{
-
-    position:relative;
+.product-panel-inner{
 
     width:min(
-        1000px,
-        100%
+        1150px,
+        96%
     );
 
-    margin:
-        20px
-        auto;
+    max-height:
+        94vh;
 
-    padding:20px;
+    margin:auto;
+
+    overflow-y:auto;
 
     border:
         1px solid
-        rgba(255,255,255,.15);
+        rgba(255,255,255,.16);
 
-    border-radius:15px;
+    border-radius:16px;
 
     background:
         linear-gradient(
@@ -569,127 +681,20 @@ nav a.active{
 
     box-shadow:
         0 30px 100px
-        rgba(0,0,0,.6);
+        rgba(0,0,0,.55);
 }
 
-
-/* =====================================================
-   CERRAR PANEL
-===================================================== */
-
-.close-product{
+.panel-close{
 
     position:absolute;
 
-    top:12px;
+    top:20px;
+    right:25px;
 
-    right:12px;
+    z-index:30;
 
-    z-index:50;
-
-    width:42px;
-
-    height:42px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.2);
-
-    border-radius:50%;
-
-    background:
-        rgba(0,0,0,.7);
-
-    color:#fff;
-
-    cursor:pointer;
-
-    font-size:22px;
-}
-
-
-/* =====================================================
-   PRODUCTO COMPLETO
-===================================================== */
-
-.product-detail{
-
-    display:grid;
-
-    grid-template-columns:
-        minmax(0,1.05fr)
-        minmax(320px,.95fr);
-
-    gap:25px;
-}
-
-
-/* =====================================================
-   GALERÍA
-===================================================== */
-
-.product-gallery{
-
-    position:relative;
-
-    height:620px;
-
-    overflow:hidden;
-
-    border-radius:10px;
-
-    background:#171717;
-
-    touch-action:pan-y;
-}
-
-.product-image{
-
-    width:100%;
-
-    height:100%;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    cursor:zoom-in;
-
-    user-select:none;
-}
-
-.product-image img{
-
-    width:100%;
-
-    height:100%;
-
-    object-fit:cover;
-}
-
-
-/* =====================================================
-   FLECHAS
-===================================================== */
-
-.gallery-arrow,
-.lightbox-arrow{
-
-    position:absolute;
-
-    z-index:10;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    width:40px;
-
-    height:40px;
+    width:44px;
+    height:44px;
 
     border:
         1px solid
@@ -698,53 +703,136 @@ nav a.active{
     border-radius:50%;
 
     background:
-        rgba(0,0,0,.6);
+        rgba(0,0,0,.75);
 
     color:#fff;
 
     cursor:pointer;
 
-    font-size:22px;
+    font-size:25px;
 }
 
-.gallery-arrow{
+
+/* =====================================================
+   PANEL LAYOUT
+===================================================== */
+
+.panel-content{
+
+    display:grid;
+
+    grid-template-columns:
+        1.1fr
+        .9fr;
+
+    gap:0;
+}
+
+
+/* =====================================================
+   PANEL GALLERY
+===================================================== */
+
+.panel-gallery{
+
+    position:relative;
+
+    min-height:650px;
+
+    background:#111;
+
+    overflow:hidden;
+
+    touch-action:pan-y;
+}
+
+.panel-image{
+
+    width:100%;
+    height:650px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    user-select:none;
+}
+
+.panel-image img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    user-select:none;
+
+    -webkit-user-drag:none;
+}
+
+.panel-gallery-arrow{
+
+    position:absolute;
 
     top:50%;
+
+    z-index:10;
+
+    width:46px;
+    height:46px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.25);
+
+    border-radius:50%;
+
+    background:
+        rgba(0,0,0,.58);
+
+    color:#fff;
+
+    cursor:pointer;
+
+    font-size:24px;
 
     transform:
         translateY(-50%);
 }
 
-.gallery-arrow.prev{
-    left:12px;
+.panel-gallery-arrow.prev{
+    left:15px;
 }
 
-.gallery-arrow.next{
-    right:12px;
+.panel-gallery-arrow.next{
+    right:15px;
 }
 
+.panel-gallery-arrow:hover{
 
-/* =====================================================
-   CONTADOR
-===================================================== */
+    background:
+        rgba(0,0,0,.85);
+}
 
-.gallery-counter{
+.panel-counter{
 
     position:absolute;
 
     left:50%;
 
-    bottom:15px;
+    bottom:18px;
 
     z-index:10;
 
-    padding:
-        5px 10px;
+    padding:6px 10px;
 
     border-radius:20px;
 
     background:
-        rgba(0,0,0,.6);
+        rgba(0,0,0,.65);
 
     color:#fff;
 
@@ -758,18 +846,76 @@ nav a.active{
 
 
 /* =====================================================
-   INFORMACIÓN
+   VARIANT / COLOR INDICATOR
 ===================================================== */
 
-.product-information{
+.panel-color{
 
-    padding:
-        10px 5px;
+    position:absolute;
+
+    left:15px;
+
+    bottom:15px;
+
+    z-index:10;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:8px 11px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.18);
+
+    border-radius:20px;
+
+    background:
+        rgba(0,0,0,.65);
+
+    font-size:9px;
+
+    font-weight:bold;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
 }
 
-.product-category{
+.color-dot{
 
-    color:#999;
+    width:10px;
+    height:10px;
+
+    border-radius:50%;
+
+    border:
+        1px solid
+        rgba(255,255,255,.4);
+}
+
+
+/* =====================================================
+   PANEL DETAILS
+===================================================== */
+
+.panel-details{
+
+    padding:45px 38px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+}
+
+.panel-category{
+
+    color:#888;
 
     font-size:10px;
 
@@ -780,47 +926,58 @@ nav a.active{
     text-transform:uppercase;
 }
 
-.product-name{
+.panel-title{
 
     margin-top:10px;
 
-    font-size:30px;
+    font-size:
+        clamp(
+            28px,
+            4vw,
+            44px
+        );
 
-    line-height:1.05;
+    line-height:1;
+
+    letter-spacing:-2px;
 }
 
-.product-ref{
+.panel-ref{
 
-    margin-top:8px;
+    margin-top:12px;
 
     color:#777;
 
     font-size:10px;
+
+    font-weight:bold;
+
+    letter-spacing:1px;
 }
 
-.product-description{
+.panel-description{
 
     margin-top:25px;
 
-    color:#999;
+    color:#aaa;
 
     font-size:13px;
 
     line-height:1.7;
 }
 
-.product-price{
+.panel-price{
 
     margin-top:25px;
 
-    font-size:24px;
+    font-size:25px;
 
     font-weight:900;
 }
 
 
 /* =====================================================
-   VARIANTES
+   VARIANTS
 ===================================================== */
 
 .variant-title{
@@ -851,23 +1008,30 @@ nav a.active{
 
 .variant-button{
 
-    padding:
-        9px 12px;
+    padding:9px 12px;
 
     border:
         1px solid
-        rgba(255,255,255,.2);
+        rgba(255,255,255,.18);
 
     border-radius:5px;
 
-    background:
-        transparent;
+    background:transparent;
 
     color:#aaa;
 
     cursor:pointer;
 
     font-size:10px;
+
+    font-weight:bold;
+}
+
+.variant-button:hover{
+
+    border-color:#fff;
+
+    color:#fff;
 }
 
 .variant-button.active{
@@ -881,8 +1045,23 @@ nav a.active{
 
 
 /* =====================================================
-   TALLAS
+   SIZES
 ===================================================== */
+
+.sizes-title{
+
+    margin-top:22px;
+
+    color:#aaa;
+
+    font-size:10px;
+
+    font-weight:bold;
+
+    letter-spacing:1.5px;
+
+    text-transform:uppercase;
+}
 
 .sizes{
 
@@ -892,15 +1071,14 @@ nav a.active{
 
     gap:7px;
 
-    margin-top:12px;
+    margin-top:9px;
 }
 
 .size{
 
     min-width:43px;
 
-    padding:
-        9px 12px;
+    padding:9px 12px;
 
     border:
         1px solid
@@ -908,15 +1086,19 @@ nav a.active{
 
     border-radius:5px;
 
-    color:#bbb;
-
     background:transparent;
+
+    color:#bbb;
 
     cursor:pointer;
 
     font-size:11px;
 
     font-weight:bold;
+}
+
+.size:hover{
+    border-color:#fff;
 }
 
 .size.active{
@@ -930,7 +1112,7 @@ nav a.active{
 
 
 /* =====================================================
-   CANTIDAD
+   QUANTITY
 ===================================================== */
 
 .quantity{
@@ -946,13 +1128,12 @@ nav a.active{
 
 .quantity button{
 
-    width:36px;
-
-    height:36px;
+    width:38px;
+    height:38px;
 
     border:
         1px solid
-        rgba(255,255,255,.2);
+        rgba(255,255,255,.20);
 
     border-radius:5px;
 
@@ -971,20 +1152,21 @@ nav a.active{
 
     text-align:center;
 
+    font-size:14px;
+
     font-weight:bold;
 }
 
 
 /* =====================================================
-   ENVÍO
+   SHIPPING
 ===================================================== */
 
 .shipping{
 
-    margin-top:20px;
+    margin-top:18px;
 
-    padding:
-        12px;
+    padding:11px 12px;
 
     border:
         1px solid
@@ -1019,7 +1201,7 @@ nav a.active{
 
 .stock{
 
-    margin-top:10px;
+    margin-top:8px;
 
     color:#777;
 
@@ -1035,14 +1217,14 @@ nav a.active{
 
 
 /* =====================================================
-   COMPRAR
+   BUY
 ===================================================== */
 
 .buy{
 
     width:100%;
 
-    margin-top:20px;
+    margin-top:18px;
 
     padding:16px;
 
@@ -1063,104 +1245,15 @@ nav a.active{
     letter-spacing:1.5px;
 }
 
+.buy:hover{
+    background:#ddd;
+}
+
 .buy:disabled{
 
     opacity:.45;
 
     cursor:not-allowed;
-}
-
-
-/* =====================================================
-   LIGHTBOX
-===================================================== */
-
-.image-lightbox{
-
-    position:fixed;
-
-    inset:0;
-
-    z-index:10000;
-
-    display:none;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:25px;
-
-    background:
-        rgba(0,0,0,.94);
-}
-
-.image-lightbox.show{
-
-    display:flex;
-}
-
-.lightbox-content{
-
-    position:relative;
-
-    width:min(
-        1100px,
-        100%
-    );
-
-    height:90vh;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-}
-
-.lightbox-image{
-
-    max-width:100%;
-
-    max-height:90vh;
-
-    width:auto;
-
-    height:auto;
-
-    object-fit:contain;
-
-    border-radius:8px;
-}
-
-.lightbox-close{
-
-    position:absolute;
-
-    top:0;
-
-    right:0;
-
-    z-index:20;
-
-    width:44px;
-
-    height:44px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.25);
-
-    border-radius:50%;
-
-    background:
-        rgba(0,0,0,.7);
-
-    color:#fff;
-
-    cursor:pointer;
-
-    font-size:24px;
 }
 
 
@@ -1174,12 +1267,11 @@ nav a.active{
 
     inset:0;
 
-    z-index:15000;
+    z-index:9000;
 
     display:none;
 
     align-items:center;
-
     justify-content:center;
 
     padding:25px;
@@ -1257,7 +1349,6 @@ nav a.active{
 .close-modal{
 
     width:40px;
-
     height:40px;
 
     border:
@@ -1303,8 +1394,7 @@ nav a.active{
 
 .form-title{
 
-    margin:
-        25px 0 15px;
+    margin:25px 0 15px;
 
     font-size:13px;
 
@@ -1318,18 +1408,17 @@ nav a.active{
     display:grid;
 
     grid-template-columns:
-        1fr 1fr;
+        1fr
+        1fr;
 
     gap:14px;
 }
 
 .form-field{
-
     margin-bottom:14px;
 }
 
 .form-field.full{
-
     grid-column:1/-1;
 }
 
@@ -1374,7 +1463,6 @@ nav a.active{
 }
 
 .form-field input{
-
     min-height:48px;
 }
 
@@ -1484,7 +1572,7 @@ footer{
 
 @media(max-width:1100px){
 
-    .catalog{
+    .products{
 
         grid-template-columns:
             repeat(
@@ -1493,18 +1581,28 @@ footer{
             );
     }
 
-    .product-detail{
+    .product-preview{
+        height:270px;
+    }
+
+    .panel-content{
 
         grid-template-columns:
             1fr;
     }
 
-    .product-gallery{
+    .panel-gallery{
 
-        height:520px;
+        min-height:500px;
+    }
+
+    .panel-image{
+
+        height:500px;
     }
 
 }
+
 
 @media(max-width:700px){
 
@@ -1537,8 +1635,7 @@ footer{
 
         min-height:36px;
 
-        padding:
-            8px 12px;
+        padding:8px 12px;
 
         font-size:10px;
     }
@@ -1548,7 +1645,9 @@ footer{
         width:94%;
 
         padding:
-            50px 0 35px;
+            50px
+            0
+            35px;
     }
 
     .hero h1{
@@ -1564,11 +1663,10 @@ footer{
     }
 
     .hero p{
-
         font-size:13px;
     }
 
-    .catalog-section{
+    .products-section{
 
         width:94%;
     }
@@ -1577,75 +1675,96 @@ footer{
        3 COLUMNAS EN MÓVIL
     */
 
-    .catalog{
+    .products{
 
         grid-template-columns:
-            repeat(3,minmax(0,1fr));
+            repeat(
+                3,
+                minmax(0,1fr)
+            );
 
         gap:8px;
     }
 
-    .preview-product{
+    .product{
 
-        border-radius:7px;
+        padding:7px;
+
+        border-radius:8px;
     }
 
-    .preview-info{
+    .product-preview{
 
-        padding:
-            7px 7px 9px;
+        height:145px;
+
+        margin:
+            -7px
+            -7px
+            8px;
+    }
+
+    .preview-label{
+
+        left:5px;
+        right:5px;
+        bottom:5px;
+
+        padding:6px;
     }
 
     .preview-name{
 
-        font-size:9px;
+        font-size:8px;
+    }
+
+    .preview-info{
+
+        font-size:6px;
+
+        margin-top:3px;
     }
 
     .preview-price{
 
-        margin-top:3px;
-
-        font-size:9px;
+        font-size:8px;
     }
 
-    .product-panel{
+    .product-description{
 
-        padding:0;
-
-        align-items:flex-end;
+        display:none;
     }
 
-    .product-box{
+    .view-product{
 
-        width:100%;
+        margin-top:7px;
 
-        margin:0;
+        padding:8px 4px;
 
-        max-height:96vh;
+        font-size:7px;
 
-        overflow-y:auto;
-
-        padding:12px;
-
-        border-radius:
-            18px
-            18px
-            0
-            0;
+        letter-spacing:.7px;
     }
 
-    .product-gallery{
+    .panel-gallery{
 
-        height:
-            min(
-                105vw,
-                480px
-            );
+        min-height:
+            430px;
     }
 
-    .product-name{
+    .panel-image{
 
-        font-size:25px;
+        height:430px;
+    }
+
+    .panel-details{
+
+        padding:30px 20px;
+    }
+
+    .panel-close{
+
+        top:10px;
+        right:10px;
     }
 
     .form-grid{
@@ -1672,7 +1791,9 @@ footer{
         max-height:96vh;
 
         padding:
-            22px 17px 25px;
+            22px
+            17px
+            25px;
 
         border-radius:
             18px
@@ -1681,6 +1802,29 @@ footer{
             0;
     }
 
+}
+
+
+/* =====================================================
+   PANTALLAS MUY PEQUEÑAS
+===================================================== */
+
+@media(max-width:380px){
+
+    .products{
+
+        gap:6px;
+    }
+
+    .product-preview{
+
+        height:125px;
+    }
+
+    .view-product{
+
+        font-size:6px;
+    }
 }
 
 </style>
@@ -1707,7 +1851,10 @@ footer{
             Inicio
         </a>
 
-        <a class="active" href="camisetas.html">
+        <a
+            class="active"
+            href="camisetas.html"
+        >
             Camisetas
         </a>
 
@@ -1751,11 +1898,14 @@ footer{
 <section class="hero">
 
     <small>
+
         • CAMISETAS DE MODA
-        • ROPA
-        • HOMBRE
-        • MUJER
+        • CAMISETAS HOMBRE
+        • CAMISETAS MUJER
+        • COLORES
         • ESTILO
+        • ROPA
+
     </small>
 
     <h1>
@@ -1763,23 +1913,29 @@ footer{
     </h1>
 
     <p>
-        Descubre nuestra selección de camisetas de moda
-        para hombre y mujer. Explora diseños, estilos y
-        marcas seleccionadas y elige tu camiseta favorita.
+
+        Explora nuestra selección de
+        camisetas de moda para hombre
+        y mujer. Elige tu modelo para
+        consultar todos sus colores,
+        imágenes, tallas, precio,
+        disponibilidad y detalles
+        antes de realizar tu pedido.
+
     </p>
 
 </section>
 
 
 <!-- =====================================================
-     CATÁLOGO
+     PRODUCTOS
 ===================================================== -->
 
-<section class="catalog-section">
+<section class="products-section">
 
     <div
-        class="catalog"
-        id="catalogContainer"
+        class="products"
+        id="productsContainer"
     >
 
         <div class="loading">
@@ -1800,7 +1956,7 @@ footer{
 
 
 <!-- =====================================================
-     PANEL PRODUCTO
+     PANEL DEL PRODUCTO
 ===================================================== -->
 
 <div
@@ -1808,10 +1964,10 @@ footer{
     id="productPanel"
 >
 
-    <div class="product-box">
+    <div class="product-panel-inner">
 
         <button
-            class="close-product"
+            class="panel-close"
             type="button"
             onclick="closeProductPanel()"
             aria-label="Cerrar producto"
@@ -1819,56 +1975,209 @@ footer{
             ×
         </button>
 
-        <div
-            id="productDetail"
-        ></div>
 
-    </div>
-
-</div>
+        <div class="panel-content">
 
 
-<!-- =====================================================
-     LIGHTBOX
-===================================================== -->
+            <!-- GALERÍA -->
 
-<div
-    class="image-lightbox"
-    id="imageLightbox"
->
+            <div
+                class="panel-gallery"
+                id="panelGallery"
+            >
 
-    <div class="lightbox-content">
+                <div class="panel-image">
 
-        <button
-            class="lightbox-close"
-            type="button"
-            onclick="closeLightbox()"
-        >
-            ×
-        </button>
+                    <img
+                        id="panelImage"
+                        src=""
+                        alt=""
+                        draggable="false"
+                    >
 
-        <button
-            class="gallery-arrow prev"
-            type="button"
-            onclick="changeLightboxImage(-1)"
-        >
-            ‹
-        </button>
+                </div>
 
-        <img
-            class="lightbox-image"
-            id="lightboxImage"
-            src=""
-            alt="Camiseta de moda Strangis"
-        >
 
-        <button
-            class="gallery-arrow next"
-            type="button"
-            onclick="changeLightboxImage(1)"
-        >
-            ›
-        </button>
+                <button
+                    class="panel-gallery-arrow prev"
+                    type="button"
+                    onclick="changePanelImage(-1)"
+                    aria-label="Imagen anterior"
+                >
+                    ‹
+                </button>
+
+
+                <button
+                    class="panel-gallery-arrow next"
+                    type="button"
+                    onclick="changePanelImage(1)"
+                    aria-label="Imagen siguiente"
+                >
+                    ›
+                </button>
+
+
+                <div
+                    class="panel-color"
+                    id="panelColor"
+                >
+
+                    <span
+                        class="color-dot"
+                        id="panelColorDot"
+                    ></span>
+
+                    <span
+                        id="panelColorName"
+                    >
+                        Color
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="panel-counter"
+                    id="panelCounter"
+                >
+                    1 / 1
+                </div>
+
+            </div>
+
+
+            <!-- DETALLES -->
+
+            <div class="panel-details">
+
+                <div
+                    class="panel-category"
+                    id="panelCategory"
+                >
+                    CAMISETAS
+                </div>
+
+
+                <h2
+                    class="panel-title"
+                    id="panelTitle"
+                >
+                    Camiseta
+                </h2>
+
+
+                <div
+                    class="panel-ref"
+                    id="panelRef"
+                >
+                    REF:
+                </div>
+
+
+                <div
+                    class="panel-description"
+                    id="panelDescription"
+                ></div>
+
+
+                <div
+                    class="panel-price"
+                    id="panelPrice"
+                >
+                    0,00 €
+                </div>
+
+
+                <!-- VARIANTES -->
+
+                <div
+                    class="variant-title"
+                    id="variantTitle"
+                >
+                    COLOR / VARIANTE
+                </div>
+
+
+                <div
+                    class="variants"
+                    id="variantsContainer"
+                ></div>
+
+
+                <!-- TALLAS -->
+
+                <div
+                    class="sizes-title"
+                    id="sizesTitle"
+                >
+                    TALLA
+                </div>
+
+
+                <div
+                    class="sizes"
+                    id="sizesContainer"
+                ></div>
+
+
+                <!-- CANTIDAD -->
+
+                <div class="quantity">
+
+                    <button
+                        type="button"
+                        onclick="changePanelQuantity(-1)"
+                    >
+                        −
+                    </button>
+
+                    <span
+                        id="panelQuantity"
+                    >
+                        1
+                    </span>
+
+                    <button
+                        type="button"
+                        onclick="changePanelQuantity(1)"
+                    >
+                        +
+                    </button>
+
+                </div>
+
+
+                <!-- ENVÍO -->
+
+                <div
+                    class="shipping"
+                    id="panelShipping"
+                ></div>
+
+
+                <!-- STOCK -->
+
+                <div
+                    class="stock"
+                    id="panelStock"
+                ></div>
+
+
+                <!-- COMPRAR -->
+
+                <button
+                    class="buy"
+                    id="panelBuy"
+                    type="button"
+                    onclick="buyCurrentProduct()"
+                >
+                    COMPRAR
+                </button>
+
+            </div>
+
+        </div>
 
     </div>
 
@@ -2125,7 +2434,7 @@ footer{
 <script>
 
 /* =====================================================
-   CONFIGURACIÓN
+   CONFIGURACIÓN SUPABASE
 ===================================================== */
 
 const STRANGIS_SUPABASE_URL =
@@ -2141,24 +2450,32 @@ const CATEGORY =
     "camisetas";
 
 
+/* =====================================================
+   ESTADO
+===================================================== */
+
 let PRODUCTS = [];
+
+let currentProductIndex = -1;
+
+let currentVariantIndex = 0;
+
+let currentImageIndex = 0;
+
+let currentQuantity = 1;
+
+let currentSize = "";
 
 let currentOrder = null;
 
-let selectedProductIndex = null;
-
-let lightboxProductIndex = 0;
-
-let lightboxVariantIndex = 0;
-
 
 /* =====================================================
-   SUPABASE
+   CLIENTE SUPABASE
 ===================================================== */
 
 const supabaseClient = {
 
-    async request(path,options={}){
+    async request(path,options = {}){
 
         const response =
             await fetch(
@@ -2257,7 +2574,9 @@ const supabaseClient = {
 
 function money(value){
 
-    return Number(value || 0).toLocaleString(
+    return Number(
+        value || 0
+    ).toLocaleString(
         "es-ES",
         {
             style:"currency",
@@ -2270,17 +2589,22 @@ function money(value){
 
 function escapeHTML(value){
 
-    return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+    return String(
+        value ?? ""
+    )
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 
 }
 
 
-function parseJSON(value,fallback=[]){
+function parseJSON(
+    value,
+    fallback=[]
+){
 
     if(Array.isArray(value)){
         return value;
@@ -2331,6 +2655,11 @@ function getVariants(product){
     raw.forEach(
         (variant,index)=>{
 
+            /*
+             VARIANTE EN FORMATO SIMPLE:
+             "url.jpg"
+            */
+
             if(typeof variant === "string"){
 
                 variants.push({
@@ -2338,7 +2667,8 @@ function getVariants(product){
                     name:
                         `Variante ${index + 1}`,
 
-                    color:"#888888",
+                    color:
+                        "#888888",
 
                     images:[
                         variant
@@ -2355,14 +2685,20 @@ function getVariants(product){
                 !variant ||
                 typeof variant !== "object"
             ){
+
                 return;
+
             }
 
 
             let images = [];
 
 
-            if(Array.isArray(variant.images)){
+            if(
+                Array.isArray(
+                    variant.images
+                )
+            ){
 
                 images =
                     variant.images
@@ -2378,7 +2714,9 @@ function getVariants(product){
             ){
 
                 images = [
-                    String(variant.image)
+                    String(
+                        variant.image
+                    )
                 ];
 
             }
@@ -2390,7 +2728,9 @@ function getVariants(product){
             ){
 
                 images = [
-                    String(variant.url)
+                    String(
+                        variant.url
+                    )
                 ];
 
             }
@@ -2426,22 +2766,6 @@ function getVariants(product){
 }
 
 
-function getVariantImages(variant){
-
-    if(!variant){
-        return [];
-    }
-
-
-    return Array.isArray(variant.images)
-        ? variant.images
-            .filter(Boolean)
-            .map(String)
-        : [];
-
-}
-
-
 function getSizes(product){
 
     return parseJSON(
@@ -2453,15 +2777,24 @@ function getSizes(product){
 
 
 /* =====================================================
-   CARGAR
+   CARGAR PRODUCTOS
 ===================================================== */
 
 async function loadProducts(){
 
     const container =
         document.getElementById(
-            "catalogContainer"
+            "productsContainer"
         );
+
+
+    container.innerHTML = `
+
+        <div class="loading">
+            Cargando camisetas...
+        </div>
+
+    `;
 
 
     try{
@@ -2471,19 +2804,23 @@ async function loadProducts(){
                 .getProducts();
 
 
-        renderCatalog();
+        renderProducts();
 
     }catch(error){
 
-        console.error(error);
+        console.error(
+            error
+        );
 
 
         container.innerHTML = `
 
             <div class="empty">
 
-                No se han podido cargar
-                las camisetas.
+                <strong>
+                    No se han podido cargar
+                    las camisetas.
+                </strong>
 
                 <br><br>
 
@@ -2501,14 +2838,14 @@ async function loadProducts(){
 
 
 /* =====================================================
-   CATÁLOGO PREVIEW
+   GRID DE PRODUCTOS
 ===================================================== */
 
-function renderCatalog(){
+function renderProducts(){
 
     const container =
         document.getElementById(
-            "catalogContainer"
+            "productsContainer"
         );
 
 
@@ -2518,8 +2855,8 @@ function renderCatalog(){
 
             <div class="empty">
 
-                No hay camisetas disponibles
-                actualmente.
+                No hay camisetas
+                disponibles actualmente.
 
             </div>
 
@@ -2533,117 +2870,165 @@ function renderCatalog(){
     container.innerHTML =
         PRODUCTS
             .map(
-                (product,index)=>{
-
-                    const variants =
-                        getVariants(product);
-
-                    const firstVariant =
-                        variants[0];
-
-                    const images =
-                        getVariantImages(
-                            firstVariant
-                        );
-
-                    const image =
-                        images[0];
-
-
-                    if(!image){
-
-                        return `
-                            <article
-                                class="preview-product"
-                                onclick="openProductPanel(${index})"
-                            >
-
-                                <div
-                                    class="preview-image"
-                                    style="
-                                        display:flex;
-                                        align-items:center;
-                                        justify-content:center;
-                                        color:#555;
-                                    "
-                                >
-                                    SIN IMAGEN
-                                </div>
-
-                                <div class="preview-info">
-
-                                    <div class="preview-name">
-                                        ${escapeHTML(
-                                            product.name ||
-                                            "Camiseta"
-                                        )}
-                                    </div>
-
-                                    <div class="preview-price">
-                                        ${money(
-                                            product.price
-                                        )}
-                                    </div>
-
-                                </div>
-
-                            </article>
-                        `;
-
-                    }
-
-
-                    return `
-
-                        <article
-                            class="preview-product"
-                            onclick="openProductPanel(${index})"
-                        >
-
-                            <div class="preview-image">
-
-                                <img
-                                    src="${escapeHTML(image)}"
-                                    alt="${escapeHTML(
-                                        product.name ||
-                                        "Camiseta de moda Strangis"
-                                    )}"
-                                    loading="lazy"
-                                    onerror="this.style.display='none'"
-                                >
-
-                            </div>
-
-
-                            <div class="preview-info">
-
-                                <div class="preview-name">
-
-                                    ${escapeHTML(
-                                        product.name ||
-                                        "Camiseta de moda"
-                                    )}
-
-                                </div>
-
-
-                                <div class="preview-price">
-
-                                    ${money(
-                                        product.price
-                                    )}
-
-                                </div>
-
-                            </div>
-
-                        </article>
-
-                    `;
-
-                }
+                createPreviewCard
             )
             .join("");
+
+}
+
+
+/* =====================================================
+   TARJETA PREVIA
+===================================================== */
+
+function createPreviewCard(
+    product,
+    index
+){
+
+    const variants =
+        getVariants(product);
+
+
+    const firstVariant =
+        variants[0];
+
+
+    const firstImage =
+        firstVariant?.images?.[0];
+
+
+    if(!firstImage){
+
+        return `
+
+            <article
+                class="product"
+                onclick="openProductPanel(${index})"
+            >
+
+                <div
+                    class="product-preview"
+                    style="
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        color:#555;
+                    "
+                >
+                    SIN IMAGEN
+                </div>
+
+                <button
+                    class="view-product"
+                    type="button"
+                    onclick="
+                        event.stopPropagation();
+                        openProductPanel(${index})
+                    "
+                >
+                    VER PRODUCTO
+                </button>
+
+            </article>
+
+        `;
+
+    }
+
+
+    return `
+
+        <article
+            class="product"
+            onclick="openProductPanel(${index})"
+        >
+
+            <div class="product-preview">
+
+                <img
+                    src="${escapeHTML(firstImage)}"
+                    alt="${escapeHTML(
+                        product.name ||
+                        "Camiseta de moda Strangis"
+                    )}"
+                    loading="lazy"
+                    draggable="false"
+                    onerror="this.style.display='none'"
+                >
+
+
+                <div class="preview-label">
+
+                    <span class="preview-name">
+
+                        ${escapeHTML(
+                            product.name ||
+                            "Camiseta de moda"
+                        )}
+
+                    </span>
+
+
+                    <div class="preview-info">
+
+                        <span>
+
+                            REF:
+                            ${escapeHTML(
+                                product.ref ||
+                                product.id
+                            )}
+
+                        </span>
+
+
+                        <span class="preview-price">
+
+                            ${money(
+                                product.price
+                            )}
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            ${
+                product.description
+                ?
+                `
+                    <div class="product-description">
+
+                        ${escapeHTML(
+                            product.description
+                        )}
+
+                    </div>
+                `
+                :
+                ""
+            }
+
+
+            <button
+                class="view-product"
+                type="button"
+                onclick="
+                    event.stopPropagation();
+                    openProductPanel(${index})
+                "
+            >
+                VER PRODUCTO
+            </button>
+
+        </article>
+
+    `;
 
 }
 
@@ -2652,10 +3037,12 @@ function renderCatalog(){
    ABRIR FICHA
 ===================================================== */
 
-function openProductPanel(index){
+function openProductPanel(
+    productIndex
+){
 
     const product =
-        PRODUCTS[index];
+        PRODUCTS[productIndex];
 
 
     if(!product){
@@ -2663,13 +3050,34 @@ function openProductPanel(index){
     }
 
 
-    selectedProductIndex =
-        index;
+    const variants =
+        getVariants(product);
 
 
-    renderProductDetail(
-        index
-    );
+    if(!variants.length){
+
+        alert(
+            "Este producto no tiene imágenes configuradas."
+        );
+
+        return;
+
+    }
+
+
+    currentProductIndex =
+        productIndex;
+
+    currentVariantIndex = 0;
+
+    currentImageIndex = 0;
+
+    currentQuantity = 1;
+
+    currentSize = "";
+
+
+    updateProductPanel();
 
 
     document
@@ -2687,583 +3095,21 @@ function openProductPanel(index){
 }
 
 
-function closeProductPanel(){
-
-    document
-        .getElementById(
-            "productPanel"
-        )
-        .classList.remove(
-            "show"
-        );
-
-
-    document.body.style.overflow =
-        "";
-
-}
-
-
 /* =====================================================
-   FICHA COMPLETA
+   ACTUALIZAR FICHA
 ===================================================== */
 
-function renderProductDetail(index){
-
-    const product =
-        PRODUCTS[index];
-
-
-    const variants =
-        getVariants(product);
-
-
-    const sizes =
-        getSizes(product);
-
-
-    const firstVariant =
-        variants[0];
-
-
-    const images =
-        getVariantImages(
-            firstVariant
-        );
-
-
-    const stockDefined =
-        product.stock !== null &&
-        product.stock !== undefined;
-
-
-    const stock =
-        stockDefined
-            ? Number(product.stock)
-            : null;
-
-
-    const outOfStock =
-        stockDefined &&
-        stock <= 0;
-
-
-    const container =
-        document.getElementById(
-            "productDetail"
-        );
-
-
-    container.innerHTML = `
-
-        <div class="product-detail">
-
-
-            <!-- =====================
-                 GALERÍA
-            ====================== -->
-
-            <div
-                class="product-gallery"
-                id="detailGallery"
-            >
-
-                <div
-                    class="product-image"
-                    onclick="openLightbox(${index})"
-                    ontouchstart="detailTouchStart(event)"
-                    ontouchend="detailTouchEnd(event)"
-                >
-
-                    <img
-                        id="detailImage"
-                        src="${escapeHTML(
-                            images[0] || ""
-                        )}"
-                        alt="${escapeHTML(
-                            product.name ||
-                            "Camiseta de moda Strangis"
-                        )}"
-                    >
-
-                </div>
-
-
-                ${
-                    variants.length > 1
-                    ?
-                    `
-
-                    <button
-                        class="gallery-arrow prev"
-                        type="button"
-                        onclick="
-                            changeDetailVariant(-1)
-                        "
-                    >
-                        ‹
-                    </button>
-
-
-                    <button
-                        class="gallery-arrow next"
-                        type="button"
-                        onclick="
-                            changeDetailVariant(1)
-                        "
-                    >
-                        ›
-                    </button>
-
-                    `
-                    :
-                    ""
-                }
-
-
-                ${
-                    images.length > 1
-                    ?
-                    `
-
-                    <div
-                        class="gallery-counter"
-                        id="detailCounter"
-                    >
-                        1 / ${images.length}
-                    </div>
-
-                    `
-                    :
-                    ""
-                }
-
-            </div>
-
-
-            <!-- =====================
-                 INFORMACIÓN
-            ====================== -->
-
-            <div class="product-information">
-
-                <div class="product-category">
-                    CAMISETAS
-                </div>
-
-
-                <h2 class="product-name">
-
-                    ${escapeHTML(
-                        product.name ||
-                        "Camiseta de moda"
-                    )}
-
-                </h2>
-
-
-                <div class="product-ref">
-
-                    REF:
-                    ${escapeHTML(
-                        product.ref ||
-                        product.id
-                    )}
-
-                </div>
-
-
-                ${
-                    product.description
-                    ?
-                    `
-
-                    <div class="product-description">
-
-                        ${escapeHTML(
-                            product.description
-                        )}
-
-                    </div>
-
-                    `
-                    :
-                    ""
-                }
-
-
-                <div class="product-price">
-
-                    ${money(
-                        product.price
-                    )}
-
-                </div>
-
-
-                ${
-                    variants.length > 1
-                    ?
-                    `
-
-                    <div class="variant-title">
-                        COLOR / VARIANTE
-                    </div>
-
-                    <div class="variants">
-
-                        ${variants
-                            .map(
-                                (
-                                    variant,
-                                    variantIndex
-                                )=>`
-
-                                    <button
-                                        type="button"
-                                        class="variant-button ${
-                                            variantIndex === 0
-                                                ? "active"
-                                                : ""
-                                        }"
-                                        onclick="
-                                            selectDetailVariant(
-                                                ${variantIndex}
-                                            )
-                                        "
-                                    >
-                                        ${escapeHTML(
-                                            variant.name
-                                        )}
-                                    </button>
-
-                                `
-                            )
-                            .join("")
-                        }
-
-                    </div>
-
-                    `
-                    :
-                    ""
-                }
-
-
-                ${
-                    sizes.length
-                    ?
-                    `
-
-                    <div class="variant-title">
-                        TALLA
-                    </div>
-
-                    <div class="sizes">
-
-                        ${sizes
-                            .map(
-                                (
-                                    size,
-                                    sizeIndex
-                                )=>`
-
-                                    <button
-                                        type="button"
-                                        class="size"
-                                        onclick="
-                                            selectDetailSize(
-                                                ${sizeIndex}
-                                            )
-                                        "
-                                    >
-                                        ${escapeHTML(size)}
-                                    </button>
-
-                                `
-                            )
-                            .join("")
-                        }
-
-                    </div>
-
-                    `
-                    :
-                    ""
-                }
-
-
-                <div class="quantity">
-
-                    <button
-                        type="button"
-                        onclick="
-                            changeDetailQuantity(-1)
-                        "
-                        ${outOfStock ? "disabled" : ""}
-                    >
-                        −
-                    </button>
-
-
-                    <span id="detailQuantity">
-                        1
-                    </span>
-
-
-                    <button
-                        type="button"
-                        onclick="
-                            changeDetailQuantity(1)
-                        "
-                        ${outOfStock ? "disabled" : ""}
-                    >
-                        +
-                    </button>
-
-                </div>
-
-
-                <div class="shipping">
-
-                    🚚
-
-                    <strong>
-                        Envío estimado:
-                    </strong>
-
-                    ${escapeHTML(
-                        product.shipping_min ?? 3
-                    )}
-
-                    –
-
-                    ${escapeHTML(
-                        product.shipping_max ?? 9
-                    )}
-
-                    días laborables
-
-                </div>
-
-
-                ${
-                    stockDefined
-                    ?
-                    `
-
-                    <div
-                        class="stock ${
-                            outOfStock
-                                ? "out"
-                                : ""
-                        }"
-                    >
-
-                        ${
-                            outOfStock
-                                ? "AGOTADO"
-                                : `Stock disponible: ${escapeHTML(stock)}`
-                        }
-
-                    </div>
-
-                    `
-                    :
-                    ""
-                }
-
-
-                <button
-                    type="button"
-                    class="buy"
-                    onclick="buyProduct()"
-                    ${outOfStock ? "disabled" : ""}
-                >
-
-                    ${
-                        outOfStock
-                            ? "AGOTADO"
-                            : "COMPRAR"
-                    }
-
-                </button>
-
-            </div>
-
-        </div>
-
-    `;
-
-
-    const panel =
-        document.getElementById(
-            "productPanel"
-        );
-
-
-    panel.dataset.variant = "0";
-
-    panel.dataset.image = "0";
-
-    panel.dataset.size = "";
-
-    panel.dataset.quantity = "1";
-
-}
-
-
-/* =====================================================
-   VARIANTE
-===================================================== */
-
-function selectDetailVariant(index){
+function updateProductPanel(){
 
     const product =
         PRODUCTS[
-            selectedProductIndex
+            currentProductIndex
         ];
 
 
-    const variants =
-        getVariants(product);
-
-
-    if(!variants[index]){
+    if(!product){
         return;
     }
-
-
-    const images =
-        getVariantImages(
-            variants[index]
-        );
-
-
-    const panel =
-        document.getElementById(
-            "productPanel"
-        );
-
-
-    panel.dataset.variant =
-        index;
-
-    panel.dataset.image =
-        0;
-
-
-    const image =
-        document.getElementById(
-            "detailImage"
-        );
-
-
-    if(image){
-
-        image.src =
-            images[0] || "";
-
-        image.alt =
-            `${product.name || "Camiseta"} - ${variants[index].name}`;
-
-    }
-
-
-    document
-        .querySelectorAll(
-            ".variant-button"
-        )
-        .forEach(
-            (button,buttonIndex)=>{
-
-                button.classList.toggle(
-                    "active",
-                    buttonIndex === index
-                );
-
-            }
-        );
-
-
-    updateDetailCounter();
-
-}
-
-
-function changeDetailVariant(direction){
-
-    const product =
-        PRODUCTS[
-            selectedProductIndex
-        ];
-
-
-    const variants =
-        getVariants(product);
-
-
-    if(variants.length <= 1){
-        return;
-    }
-
-
-    const panel =
-        document.getElementById(
-            "productPanel"
-        );
-
-
-    let current =
-        Number(
-            panel.dataset.variant || 0
-        );
-
-
-    current += direction;
-
-
-    if(current < 0){
-        current = variants.length - 1;
-    }
-
-
-    if(current >= variants.length){
-        current = 0;
-    }
-
-
-    selectDetailVariant(
-        current
-    );
-
-}
-
-
-function updateDetailCounter(){
-
-    const product =
-        PRODUCTS[
-            selectedProductIndex
-        ];
-
-
-    const panel =
-        document.getElementById(
-            "productPanel"
-        );
-
-
-    const variantIndex =
-        Number(
-            panel.dataset.variant || 0
-        );
-
-
-    const imageIndex =
-        Number(
-            panel.dataset.image || 0
-        );
 
 
     const variants =
@@ -3271,27 +3117,325 @@ function updateDetailCounter(){
 
 
     const variant =
-        variants[variantIndex];
+        variants[
+            currentVariantIndex
+        ];
+
+
+    if(!variant){
+        return;
+    }
 
 
     const images =
-        getVariantImages(
-            variant
-        );
+        variant.images || [];
 
 
-    const counter =
-        document.getElementById(
-            "detailCounter"
-        );
+    if(
+        currentImageIndex >=
+        images.length
+    ){
 
-
-    if(counter){
-
-        counter.textContent =
-            `${imageIndex + 1} / ${images.length}`;
+        currentImageIndex = 0;
 
     }
+
+
+    document
+        .getElementById(
+            "panelCategory"
+        )
+        .textContent =
+            product.category ||
+            CATEGORY;
+
+
+    document
+        .getElementById(
+            "panelTitle"
+        )
+        .textContent =
+            product.name ||
+            "Camiseta de moda";
+
+
+    document
+        .getElementById(
+            "panelRef"
+        )
+        .textContent =
+            "REF: " +
+            (
+                product.ref ||
+                product.id
+            );
+
+
+    document
+        .getElementById(
+            "panelDescription"
+        )
+        .textContent =
+            product.description ||
+            "Camiseta de moda Strangis.";
+
+
+    document
+        .getElementById(
+            "panelPrice"
+        )
+        .textContent =
+            money(product.price);
+
+
+    document
+        .getElementById(
+            "panelImage"
+        )
+        .src =
+            images[currentImageIndex];
+
+
+    document
+        .getElementById(
+            "panelImage"
+        )
+        .alt =
+            `${product.name || "Camiseta"} - ${variant.name}`;
+
+
+    document
+        .getElementById(
+            "panelColorName"
+        )
+        .textContent =
+            variant.name;
+
+
+    document
+        .getElementById(
+            "panelColorDot"
+        )
+        .style.background =
+            variant.color ||
+            "#888";
+
+
+    document
+        .getElementById(
+            "panelCounter"
+        )
+        .textContent =
+            `${currentImageIndex + 1} / ${images.length}`;
+
+
+    renderVariants(
+        variants
+    );
+
+
+    renderSizes(
+        product
+    );
+
+
+    updateQuantity();
+
+
+    updateShipping(
+        product
+    );
+
+
+    updateStock(
+        product
+    );
+
+}
+
+
+/* =====================================================
+   VARIANTES / COLORES
+===================================================== */
+
+function renderVariants(
+    variants
+){
+
+    const container =
+        document.getElementById(
+            "variantsContainer"
+        );
+
+
+    if(variants.length <= 1){
+
+        container.innerHTML = "";
+
+        document
+            .getElementById(
+                "variantTitle"
+            )
+            .style.display =
+                "none";
+
+        return;
+
+    }
+
+
+    document
+        .getElementById(
+            "variantTitle"
+        )
+        .style.display =
+            "block";
+
+
+    container.innerHTML =
+        variants
+            .map(
+                (variant,index)=>`
+
+                    <button
+                        type="button"
+                        class="variant-button ${
+                            index ===
+                            currentVariantIndex
+                            ? "active"
+                            : ""
+                        }"
+                        onclick="
+                            selectVariant(${index})
+                        "
+                    >
+
+                        ${escapeHTML(
+                            variant.name
+                        )}
+
+                    </button>
+
+                `
+            )
+            .join("");
+
+}
+
+
+/* =====================================================
+   SELECCIONAR COLOR
+===================================================== */
+
+function selectVariant(
+    variantIndex
+){
+
+    currentVariantIndex =
+        variantIndex;
+
+    currentImageIndex = 0;
+
+    updateProductPanel();
+
+}
+
+
+/* =====================================================
+   TALLAS
+===================================================== */
+
+function renderSizes(
+    product
+){
+
+    const sizes =
+        getSizes(product);
+
+
+    const container =
+        document.getElementById(
+            "sizesContainer"
+        );
+
+
+    const title =
+        document.getElementById(
+            "sizesTitle"
+        );
+
+
+    if(!sizes.length){
+
+        title.style.display =
+            "none";
+
+        container.innerHTML = "";
+
+        currentSize = "";
+
+        return;
+
+    }
+
+
+    title.style.display =
+        "block";
+
+
+    container.innerHTML =
+        sizes
+            .map(
+                (size,index)=>`
+
+                    <button
+                        type="button"
+                        class="size ${
+                            currentSize ===
+                            String(size)
+                            ? "active"
+                            : ""
+                        }"
+                        onclick="
+                            selectSize('${String(size).replace(/'/g,"\\'")}')
+                        "
+                    >
+
+                        ${escapeHTML(size)}
+
+                    </button>
+
+                `
+            )
+            .join("");
+
+}
+
+
+function selectSize(
+    size
+){
+
+    currentSize =
+        String(size);
+
+
+    document
+        .querySelectorAll(
+            "#sizesContainer .size"
+        )
+        .forEach(
+            button=>{
+
+                button.classList.toggle(
+                    "active",
+                    button.textContent.trim()
+                    ===
+                    currentSize
+                );
+
+            }
+        );
 
 }
 
@@ -3300,30 +3444,19 @@ function updateDetailCounter(){
    IMÁGENES
 ===================================================== */
 
-function changeDetailImage(direction){
+function changePanelImage(
+    direction
+){
 
     const product =
         PRODUCTS[
-            selectedProductIndex
+            currentProductIndex
         ];
 
 
-    const panel =
-        document.getElementById(
-            "productPanel"
-        );
-
-
-    const variantIndex =
-        Number(
-            panel.dataset.variant || 0
-        );
-
-
-    let imageIndex =
-        Number(
-            panel.dataset.image || 0
-        );
+    if(!product){
+        return;
+    }
 
 
     const variants =
@@ -3331,13 +3464,18 @@ function changeDetailImage(direction){
 
 
     const variant =
-        variants[variantIndex];
+        variants[
+            currentVariantIndex
+        ];
+
+
+    if(!variant){
+        return;
+    }
 
 
     const images =
-        getVariantImages(
-            variant
-        );
+        variant.images || [];
 
 
     if(!images.length){
@@ -3345,116 +3483,222 @@ function changeDetailImage(direction){
     }
 
 
-    imageIndex += direction;
+    currentImageIndex +=
+        direction;
 
 
-    if(imageIndex < 0){
-        imageIndex = images.length - 1;
+    if(
+        currentImageIndex >=
+        images.length
+    ){
+
+        currentImageIndex = 0;
+
     }
 
 
-    if(imageIndex >= images.length){
-        imageIndex = 0;
+    if(
+        currentImageIndex < 0
+    ){
+
+        currentImageIndex =
+            images.length - 1;
+
     }
 
 
-    panel.dataset.image =
-        imageIndex;
-
-
-    const image =
-        document.getElementById(
-            "detailImage"
-        );
-
-
-    image.src =
-        images[imageIndex];
-
-
-    updateDetailCounter();
+    updateProductPanel();
 
 }
 
 
 /* =====================================================
-   TALLA
+   SWIPE CON DEDO / RATÓN
 ===================================================== */
 
-function selectDetailSize(index){
+let swipeStartX = 0;
 
-    const product =
-        PRODUCTS[
-            selectedProductIndex
-        ];
+let swipeStartY = 0;
 
-
-    const sizes =
-        getSizes(product);
+let swipeStartTime = 0;
 
 
-    if(sizes[index] === undefined){
-        return;
+const panelGallery =
+    document.getElementById(
+        "panelGallery"
+    );
+
+
+panelGallery.addEventListener(
+    "touchstart",
+    function(event){
+
+        if(
+            !event.touches ||
+            !event.touches.length
+        ){
+            return;
+        }
+
+
+        swipeStartX =
+            event.touches[0].clientX;
+
+        swipeStartY =
+            event.touches[0].clientY;
+
+        swipeStartTime =
+            Date.now();
+
+    },
+    {
+        passive:true
     }
+);
 
 
-    const panel =
-        document.getElementById(
-            "productPanel"
-        );
+panelGallery.addEventListener(
+    "touchend",
+    function(event){
+
+        if(
+            !event.changedTouches ||
+            !event.changedTouches.length
+        ){
+            return;
+        }
 
 
-    panel.dataset.size =
-        sizes[index];
+        const endX =
+            event.changedTouches[0].clientX;
+
+        const endY =
+            event.changedTouches[0].clientY;
 
 
-    document
-        .querySelectorAll(
-            "#productDetail .size"
-        )
-        .forEach(
-            (button,buttonIndex)=>{
+        const diffX =
+            endX - swipeStartX;
 
-                button.classList.toggle(
-                    "active",
-                    buttonIndex === index
-                );
+        const diffY =
+            endY - swipeStartY;
 
-            }
-        );
 
-}
+        if(
+            Math.abs(diffX) < 45 ||
+            Math.abs(diffX) <=
+            Math.abs(diffY)
+        ){
+
+            return;
+
+        }
+
+
+        if(diffX < 0){
+
+            changePanelImage(1);
+
+        }else{
+
+            changePanelImage(-1);
+
+        }
+
+    },
+    {
+        passive:true
+    }
+);
+
+
+/* =====================================================
+   RATÓN
+===================================================== */
+
+let mouseDownX = 0;
+
+let mouseDownY = 0;
+
+
+panelGallery.addEventListener(
+    "mousedown",
+    function(event){
+
+        mouseDownX =
+            event.clientX;
+
+        mouseDownY =
+            event.clientY;
+
+    }
+);
+
+
+panelGallery.addEventListener(
+    "mouseup",
+    function(event){
+
+        const diffX =
+            event.clientX -
+            mouseDownX;
+
+        const diffY =
+            event.clientY -
+            mouseDownY;
+
+
+        if(
+            Math.abs(diffX) < 45 ||
+            Math.abs(diffX) <=
+            Math.abs(diffY)
+        ){
+
+            return;
+
+        }
+
+
+        if(diffX < 0){
+
+            changePanelImage(1);
+
+        }else{
+
+            changePanelImage(-1);
+
+        }
+
+    }
+);
 
 
 /* =====================================================
    CANTIDAD
 ===================================================== */
 
-function changeDetailQuantity(change){
+function changePanelQuantity(
+    change
+){
 
     const product =
         PRODUCTS[
-            selectedProductIndex
+            currentProductIndex
         ];
 
 
-    const panel =
-        document.getElementById(
-            "productPanel"
-        );
+    if(!product){
+        return;
+    }
 
 
-    let quantity =
-        Number(
-            panel.dataset.quantity || 1
-        );
+    currentQuantity +=
+        change;
 
 
-    quantity += change;
+    if(currentQuantity < 1){
 
+        currentQuantity = 1;
 
-    if(quantity < 1){
-        quantity = 1;
     }
 
 
@@ -3469,26 +3713,138 @@ function changeDetailQuantity(change){
 
         if(
             stock > 0 &&
-            quantity > stock
+            currentQuantity > stock
         ){
 
-            quantity = stock;
+            currentQuantity =
+                stock;
 
         }
 
     }
 
 
-    panel.dataset.quantity =
-        quantity;
+    updateQuantity();
 
+}
+
+
+function updateQuantity(){
 
     document
         .getElementById(
-            "detailQuantity"
+            "panelQuantity"
         )
         .textContent =
-        quantity;
+            currentQuantity;
+
+}
+
+
+/* =====================================================
+   ENVÍO
+===================================================== */
+
+function updateShipping(
+    product
+){
+
+    document
+        .getElementById(
+            "panelShipping"
+        )
+        .innerHTML = `
+
+            🚚
+
+            <strong>
+                Envío estimado:
+            </strong>
+
+            ${escapeHTML(
+                product.shipping_min ?? 3
+            )}
+            –
+            ${escapeHTML(
+                product.shipping_max ?? 9
+            )}
+
+            días laborables
+
+        `;
+
+}
+
+
+/* =====================================================
+   STOCK
+===================================================== */
+
+function updateStock(
+    product
+){
+
+    const element =
+        document.getElementById(
+            "panelStock"
+        );
+
+
+    const buy =
+        document.getElementById(
+            "panelBuy"
+        );
+
+
+    if(
+        product.stock === null ||
+        product.stock === undefined
+    ){
+
+        element.textContent = "";
+
+        buy.disabled = false;
+
+        buy.textContent =
+            "COMPRAR";
+
+        return;
+
+    }
+
+
+    const stock =
+        Number(product.stock);
+
+
+    if(stock <= 0){
+
+        element.textContent =
+            "AGOTADO";
+
+        element.className =
+            "stock out";
+
+        buy.disabled = true;
+
+        buy.textContent =
+            "AGOTADO";
+
+        return;
+
+    }
+
+
+    element.className =
+        "stock";
+
+    element.textContent =
+        `Stock disponible: ${stock}`;
+
+    buy.disabled = false;
+
+    buy.textContent =
+        "COMPRAR";
 
 }
 
@@ -3497,11 +3853,11 @@ function changeDetailQuantity(change){
    COMPRAR
 ===================================================== */
 
-function buyProduct(){
+function buyCurrentProduct(){
 
     const product =
         PRODUCTS[
-            selectedProductIndex
+            currentProductIndex
         ];
 
 
@@ -3510,21 +3866,13 @@ function buyProduct(){
     }
 
 
-    const panel =
-        document.getElementById(
-            "productPanel"
-        );
-
-
     const variants =
         getVariants(product);
 
 
     const variant =
         variants[
-            Number(
-                panel.dataset.variant || 0
-            )
+            currentVariantIndex
         ];
 
 
@@ -3532,20 +3880,9 @@ function buyProduct(){
         getSizes(product);
 
 
-    const size =
-        panel.dataset.size ||
-        "No especificada";
-
-
-    const quantity =
-        Number(
-            panel.dataset.quantity || 1
-        );
-
-
     if(
         sizes.length &&
-        !panel.dataset.size
+        !currentSize
     ){
 
         alert(
@@ -3586,7 +3923,8 @@ function buyProduct(){
     if(
         product.stock !== null &&
         product.stock !== undefined &&
-        quantity > Number(product.stock)
+        currentQuantity >
+        Number(product.stock)
     ){
 
         alert(
@@ -3604,13 +3942,18 @@ function buyProduct(){
 
         variant,
 
-        size,
+        size:
+            currentSize ||
+            "No especificada",
 
-        quantity,
+        quantity:
+            currentQuantity,
 
         total:
-            Number(product.price || 0) *
-            quantity
+            Number(
+                product.price || 0
+            ) *
+            currentQuantity
 
     };
 
@@ -3627,6 +3970,9 @@ function buyProduct(){
         );
 
 
+    closeProductPanel();
+
+
     document
         .getElementById(
             "customerModal"
@@ -3634,6 +3980,10 @@ function buyProduct(){
         .classList.add(
             "show"
         );
+
+
+    document.body.style.overflow =
+        "hidden";
 
 }
 
@@ -3680,7 +4030,7 @@ function showOrderSummary(){
 
             <br>
 
-            Variante:
+            Color / Variante:
             <strong>
                 ${escapeHTML(
                     order.variant.name
@@ -3727,8 +4077,58 @@ function showOrderSummary(){
 
 
 /* =====================================================
-   FORMULARIO
+   CERRAR FICHA
 ===================================================== */
+
+function closeProductPanel(){
+
+    document
+        .getElementById(
+            "productPanel"
+        )
+        .classList.remove(
+            "show"
+        );
+
+
+    if(
+        !document
+            .getElementById(
+                "customerModal"
+            )
+            .classList.contains(
+                "show"
+            )
+    ){
+
+        document.body.style.overflow =
+            "";
+
+    }
+
+}
+
+
+/* =====================================================
+   MODAL PEDIDO
+===================================================== */
+
+function closeCustomerModal(){
+
+    document
+        .getElementById(
+            "customerModal"
+        )
+        .classList.remove(
+            "show"
+        );
+
+
+    document.body.style.overflow =
+        "";
+
+}
+
 
 function fieldValue(id){
 
@@ -3743,7 +4143,9 @@ function fieldValue(id){
 }
 
 
-function showFormError(message){
+function showFormError(
+    message
+){
 
     const error =
         document.getElementById(
@@ -3778,50 +4180,60 @@ function sendOrderToWhatsApp(){
             "customerName"
         );
 
+
     const phone =
         fieldValue(
             "customerPhone"
         );
+
 
     const email =
         fieldValue(
             "customerEmail"
         );
 
+
     const address =
         fieldValue(
             "customerAddress"
         );
+
 
     const number =
         fieldValue(
             "customerNumber"
         );
 
+
     const floor =
         fieldValue(
             "customerFloor"
         );
+
 
     const postal =
         fieldValue(
             "customerPostal"
         );
 
+
     const city =
         fieldValue(
             "customerCity"
         );
+
 
     const province =
         fieldValue(
             "customerProvince"
         );
 
+
     const country =
         fieldValue(
             "customerCountry"
         );
+
 
     const notes =
         fieldValue(
@@ -3871,7 +4283,9 @@ function sendOrderToWhatsApp(){
 
     const whatsapp =
         String(
-            currentOrder.product.whatsapp ||
+            currentOrder
+                .product
+                .whatsapp ||
             ""
         )
         .replace(
@@ -3908,7 +4322,7 @@ ${currentOrder.product.ref || currentOrder.product.id}
 Categoría:
 ${currentOrder.product.category || CATEGORY}
 
-Variante:
+Color / Variante:
 ${currentOrder.variant.name}
 
 Talla:
@@ -3979,8 +4393,6 @@ ${notes || "Ninguna"}
 
     closeCustomerModal();
 
-    closeProductPanel();
-
 
     window.open(
         url,
@@ -3991,219 +4403,7 @@ ${notes || "Ninguna"}
 
 
 /* =====================================================
-   LIGHTBOX
-===================================================== */
-
-function openLightbox(index){
-
-    selectedProductIndex =
-        index;
-
-
-    const product =
-        PRODUCTS[index];
-
-
-    if(!product){
-        return;
-    }
-
-
-    const panel =
-        document.getElementById(
-            "productPanel"
-        );
-
-
-    lightboxProductIndex =
-        index;
-
-
-    lightboxVariantIndex =
-        Number(
-            panel.dataset.variant || 0
-        );
-
-
-    updateLightbox();
-
-
-    document
-        .getElementById(
-            "imageLightbox"
-        )
-        .classList.add(
-            "show"
-        );
-
-}
-
-
-function updateLightbox(){
-
-    const product =
-        PRODUCTS[
-            lightboxProductIndex
-        ];
-
-
-    const panel =
-        document.getElementById(
-            "productPanel"
-        );
-
-
-    const variants =
-        getVariants(product);
-
-
-    const variant =
-        variants[
-            lightboxVariantIndex
-        ];
-
-
-    const images =
-        getVariantImages(
-            variant
-        );
-
-
-    const imageIndex =
-        Number(
-            panel.dataset.image || 0
-        );
-
-
-    const image =
-        document.getElementById(
-            "lightboxImage"
-        );
-
-
-    image.src =
-        images[
-            Math.min(
-                imageIndex,
-                images.length - 1
-            )
-        ];
-
-}
-
-
-function changeLightboxImage(direction){
-
-    changeDetailImage(
-        direction
-    );
-
-
-    const panel =
-        document.getElementById(
-            "productPanel"
-        );
-
-
-    lightboxVariantIndex =
-        Number(
-            panel.dataset.variant || 0
-        );
-
-
-    updateLightbox();
-
-}
-
-
-function closeLightbox(){
-
-    document
-        .getElementById(
-            "imageLightbox"
-        )
-        .classList.remove(
-            "show"
-        );
-
-}
-
-
-/* =====================================================
-   TOUCH GALERÍA
-===================================================== */
-
-let touchStartX = 0;
-
-let touchStartY = 0;
-
-
-function detailTouchStart(event){
-
-    if(
-        !event.touches ||
-        !event.touches.length
-    ){
-        return;
-    }
-
-
-    touchStartX =
-        event.touches[0].clientX;
-
-    touchStartY =
-        event.touches[0].clientY;
-
-}
-
-
-function detailTouchEnd(event){
-
-    if(
-        !event.changedTouches ||
-        !event.changedTouches.length
-    ){
-        return;
-    }
-
-
-    const endX =
-        event.changedTouches[0].clientX;
-
-    const endY =
-        event.changedTouches[0].clientY;
-
-
-    const diffX =
-        endX - touchStartX;
-
-    const diffY =
-        endY - touchStartY;
-
-
-    if(
-        Math.abs(diffX) < 45 ||
-        Math.abs(diffX) < Math.abs(diffY)
-    ){
-        return;
-    }
-
-
-    if(diffX < 0){
-
-        changeDetailImage(1);
-
-    }else{
-
-        changeDetailImage(-1);
-
-    }
-
-}
-
-
-/* =====================================================
-   CERRAR AL TOCAR FONDO
+   CERRAR AL PULSAR FUERA
 ===================================================== */
 
 document
@@ -4214,27 +4414,11 @@ document
         "click",
         function(event){
 
-            if(event.target === this){
+            if(
+                event.target === this
+            ){
 
                 closeProductPanel();
-
-            }
-
-        }
-    );
-
-
-document
-    .getElementById(
-        "imageLightbox"
-    )
-    .addEventListener(
-        "click",
-        function(event){
-
-            if(event.target === this){
-
-                closeLightbox();
 
             }
 
@@ -4250,7 +4434,9 @@ document
         "click",
         function(event){
 
-            if(event.target === this){
+            if(
+                event.target === this
+            ){
 
                 closeCustomerModal();
 
@@ -4270,11 +4456,9 @@ document.addEventListener(
 
         if(event.key === "Escape"){
 
-            closeLightbox();
+            closeProductPanel();
 
             closeCustomerModal();
-
-            closeProductPanel();
 
         }
 
@@ -4283,14 +4467,15 @@ document.addEventListener(
             event.key === "ArrowRight" &&
             document
                 .getElementById(
-                    "imageLightbox"
+                    "productPanel"
                 )
-                .classList.contains(
+                .classList
+                .contains(
                     "show"
                 )
         ){
 
-            changeLightboxImage(1);
+            changePanelImage(1);
 
         }
 
@@ -4299,14 +4484,15 @@ document.addEventListener(
             event.key === "ArrowLeft" &&
             document
                 .getElementById(
-                    "imageLightbox"
+                    "productPanel"
                 )
-                .classList.contains(
+                .classList
+                .contains(
                     "show"
                 )
         ){
 
-            changeLightboxImage(-1);
+            changePanelImage(-1);
 
         }
 
@@ -4315,18 +4501,47 @@ document.addEventListener(
 
 
 /* =====================================================
-   MODAL
+   RECORDAR POSICIÓN DEL MENÚ
 ===================================================== */
 
-function closeCustomerModal(){
+const categoryNav =
+    document.querySelector(
+        "header nav"
+    );
 
-    document
-        .getElementById(
-            "customerModal"
-        )
-        .classList.remove(
-            "show"
+
+if(categoryNav){
+
+    const savedScroll =
+        sessionStorage.getItem(
+            "strangisCategoryScroll"
         );
+
+
+    if(savedScroll !== null){
+
+        categoryNav.scrollLeft =
+            Number(savedScroll);
+
+    }
+
+
+    categoryNav.addEventListener(
+        "scroll",
+        function(){
+
+            sessionStorage.setItem(
+                "strangisCategoryScroll",
+                String(
+                    categoryNav.scrollLeft
+                )
+            );
+
+        },
+        {
+            passive:true
+        }
+    );
 
 }
 
@@ -4340,4 +4555,4 @@ loadProducts();
 </script>
 
 </body>
-     </html>
+    </html>
