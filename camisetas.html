@@ -2756,52 +2756,61 @@ async function loadProducts(){
 
 /* =====================================================
    PREVISUALIZACIÓN
-   CAMBIO DE FOTOS POR SWIPE / RATÓN
+   CAMBIO DE IMAGEN EN TARJETAS
+   SWIPE + ARRASTRE + CLICK
 ===================================================== */
 
 function getAllProductImages(product){
 
     const variants = getVariants(product);
 
-    const allImages = [];
+    const images = [];
 
     variants.forEach(variant => {
 
-        if(
-            !variant ||
-            !Array.isArray(variant.images)
-        ){
+        if(!variant || !Array.isArray(variant.images)){
             return;
         }
 
-        variant.images
-            .filter(Boolean)
-            .forEach(image => {
+        variant.images.forEach(image => {
 
-                const cleanImage =
-                    String(image).trim();
+            if(!image){
+                return;
+            }
 
-                if(
-                    cleanImage &&
-                    !allImages.includes(cleanImage)
-                ){
-                    allImages.push(cleanImage);
-                }
+            const url = String(image).trim();
 
-            });
+            if(
+                url &&
+                !images.includes(url)
+            ){
+                images.push(url);
+            }
+
+        });
 
     });
 
-    return allImages;
+    return images;
 }
 
+
+/* =====================================================
+   RENDER TARJETAS
+===================================================== */
 
 function renderPreview(){
 
     const container =
-        document.getElementById(
-            "productsContainer"
-        );
+        document.getElementById("productsContainer");
+
+
+    if(!container){
+        return;
+    }
+
+
+    container.innerHTML = "";
 
 
     if(!PRODUCTS.length){
@@ -2814,559 +2823,520 @@ function renderPreview(){
         `;
 
         return;
-
     }
 
 
-    const cards = [];
+    PRODUCTS.forEach((product, productIndex) => {
+
+        const images =
+            getAllProductImages(product);
 
 
-    PRODUCTS.forEach(
-        (product,index) => {
-
-            const allImages =
-                getAllProductImages(product);
-
-
-            /*
-             * Si el producto no tiene imágenes
-             * no creamos tarjeta.
-             */
-
-            if(!allImages.length){
-                return;
-            }
-
-
-            const firstImage =
-                allImages[0];
-
-
-            cards.push(`
-
-                <article
-                    class="preview-card"
-                    data-product-index="${index}"
-                    data-image-index="0"
-                >
-
-                    <div
-                        class="preview-image"
-                    >
-
-                        <img
-                            src="${escapeHTML(firstImage)}"
-                            alt="${escapeHTML(
-                                product.name ||
-                                "Camiseta de moda"
-                            )}"
-                            loading="lazy"
-                            draggable="false"
-                        >
-
-                    </div>
-
-                </article>
-
-            `);
-
+        if(!images.length){
+            return;
         }
-    );
 
 
-    container.innerHTML =
-        cards.length
-            ? cards.join("")
-            :
-            `
-            <div class="empty">
-                No hay imágenes disponibles.
-            </div>
-            `;
+        const card =
+            document.createElement("article");
 
 
-    /*
-     * =================================================
-     * CONFIGURAR CADA TARJETA
-     * =================================================
-     */
+        card.className =
+            "preview-card";
 
-    container
-        .querySelectorAll(".preview-card")
-        .forEach(card => {
 
-            const productIndex =
-                Number(
-                    card.dataset.productIndex
-                );
+        card.dataset.productIndex =
+            productIndex;
 
 
-            const product =
-                PRODUCTS[productIndex];
+        card.dataset.imageIndex =
+            "0";
 
 
-            if(!product){
-                return;
-            }
+        const imageBox =
+            document.createElement("div");
 
 
-            const allImages =
-                getAllProductImages(product);
+        imageBox.className =
+            "preview-image";
 
 
-            const imageElement =
-                card.querySelector(
-                    ".preview-image img"
-                );
+        const image =
+            document.createElement("img");
 
 
-            if(
-                !imageElement ||
-                !allImages.length
-            ){
-                return;
-            }
+        image.src =
+            images[0];
 
 
-            /*
-             * =================================================
-             * ESTADO INDIVIDUAL DE ESTA TARJETA
-             * =================================================
-             */
+        image.alt =
+            product.name ||
+            "Camiseta de moda";
 
-            let currentIndex = 0;
 
-            let startX = 0;
-            let startY = 0;
+        image.loading =
+            "lazy";
 
-            let lastX = 0;
-            let lastY = 0;
 
-            let isDragging = false;
-            let hasSwiped = false;
+        image.draggable =
+            false;
 
 
-            /*
-             * =================================================
-             * CAMBIAR IMAGEN
-             * =================================================
-             */
+        image.setAttribute(
+            "draggable",
+            "false"
+        );
 
-            function changeCardImage(direction){
 
-                if(allImages.length <= 1){
-                    return;
-                }
+        imageBox.appendChild(image);
 
 
-                currentIndex += direction;
+        card.appendChild(imageBox);
 
 
-                if(
-                    currentIndex >=
-                    allImages.length
-                ){
+        container.appendChild(card);
 
-                    currentIndex = 0;
 
-                }
+        /*
+         * =================================================
+         * SI SOLO HAY UNA IMAGEN
+         * =================================================
+         */
 
-
-                if(currentIndex < 0){
-
-                    currentIndex =
-                        allImages.length - 1;
-
-                }
-
-
-                card.dataset.imageIndex =
-                    String(currentIndex);
-
-
-                imageElement.src =
-                    allImages[currentIndex];
-
-            }
-
-
-            /*
-             * =================================================
-             * POINTER DOWN
-             * Funciona con dedo, ratón y lápiz.
-             * =================================================
-             */
-
-            card.addEventListener(
-                "pointerdown",
-                function(event){
-
-                    /*
-                     * Solo botón principal
-                     * del ratón.
-                     */
-
-                    if(
-                        event.pointerType === "mouse" &&
-                        event.button !== 0
-                    ){
-                        return;
-                    }
-
-
-                    startX =
-                        event.clientX;
-
-
-                    startY =
-                        event.clientY;
-
-
-                    lastX =
-                        event.clientX;
-
-
-                    lastY =
-                        event.clientY;
-
-
-                    isDragging = true;
-
-                    hasSwiped = false;
-
-
-                    /*
-                     * Capturamos el puntero para
-                     * que no se pierda al salir
-                     * ligeramente de la tarjeta.
-                     */
-
-                    try{
-
-                        card.setPointerCapture(
-                            event.pointerId
-                        );
-
-                    }catch(error){}
-
-                }
-            );
-
-
-            /*
-             * =================================================
-             * POINTER MOVE
-             * =================================================
-             */
-
-            card.addEventListener(
-                "pointermove",
-                function(event){
-
-                    if(!isDragging){
-                        return;
-                    }
-
-
-                    lastX =
-                        event.clientX;
-
-
-                    lastY =
-                        event.clientY;
-
-
-                    const diffX =
-                        lastX - startX;
-
-
-                    const diffY =
-                        lastY - startY;
-
-
-                    /*
-                     * Consideramos swipe cuando
-                     * el movimiento horizontal
-                     * supera 20px y domina sobre
-                     * el vertical.
-                     */
-
-                    if(
-                        Math.abs(diffX) > 20 &&
-                        Math.abs(diffX) >
-                        Math.abs(diffY)
-                    ){
-
-                        hasSwiped = true;
-
-                    }
-
-                }
-            );
-
-
-            /*
-             * =================================================
-             * POINTER UP
-             * =================================================
-             */
-
-            card.addEventListener(
-                "pointerup",
-                function(event){
-
-                    if(!isDragging){
-                        return;
-                    }
-
-
-                    isDragging = false;
-
-
-                    const endX =
-                        event.clientX;
-
-
-                    const endY =
-                        event.clientY;
-
-
-                    const diffX =
-                        endX - startX;
-
-
-                    const diffY =
-                        endY - startY;
-
-
-                    /*
-                     * No es swipe.
-                     */
-
-                    if(
-                        Math.abs(diffX) < 45 ||
-                        Math.abs(diffX) <=
-                        Math.abs(diffY)
-                    ){
-
-                        return;
-
-                    }
-
-
-                    /*
-                     * Si solo existe una imagen,
-                     * no hacemos nada.
-                     */
-
-                    if(allImages.length <= 1){
-                        return;
-                    }
-
-
-                    hasSwiped = true;
-
-
-                    /*
-                     * IZQUIERDA
-                     * = SIGUIENTE
-                     */
-
-                    if(diffX < 0){
-
-                        changeCardImage(1);
-
-                    }
-
-
-                    /*
-                     * DERECHA
-                     * = ANTERIOR
-                     */
-
-                    else{
-
-                        changeCardImage(-1);
-
-                    }
-
-
-                    /*
-                     * Evitamos que el click
-                     * posterior abra el producto.
-                     */
-
-                    setTimeout(
-                        function(){
-
-                            hasSwiped = false;
-
-                        },
-                        350
-                    );
-
-                }
-            );
-
-
-            /*
-             * =================================================
-             * POINTER CANCEL
-             * =================================================
-             */
-
-            card.addEventListener(
-                "pointercancel",
-                function(){
-
-                    isDragging = false;
-
-                }
-            );
-
-
-            /*
-             * =================================================
-             * CLICK
-             * =================================================
-             */
+        if(images.length <= 1){
 
             card.addEventListener(
                 "click",
                 function(){
 
-                    /*
-                     * Si acabamos de deslizar,
-                     * NO abrimos el producto.
-                     */
-
-                    if(hasSwiped){
-
-                        return;
-
-                    }
-
-
-                    /*
-                     * Imagen actualmente visible.
-                     */
-
-                    const imageIndex =
-                        Number(
-                            card.dataset.imageIndex ||
-                            0
-                        );
-
-
-                    /*
-                     * Buscamos a qué variante
-                     * pertenece la imagen.
-                     */
-
-                    const variants =
-                        getVariants(product);
-
-
-                    let variantIndex = 0;
-                    let variantImageIndex = 0;
-
-                    let globalIndex = 0;
-
-                    let found = false;
-
-
-                    for(
-                        let v = 0;
-                        v < variants.length;
-                        v++
-                    ){
-
-                        const variant =
-                            variants[v];
-
-
-                        const variantImages =
-                            variant?.images || [];
-
-
-                        for(
-                            let i = 0;
-                            i < variantImages.length;
-                            i++
-                        ){
-
-                            const image =
-                                String(
-                                    variantImages[i]
-                                ).trim();
-
-
-                            /*
-                             * Solo contamos imágenes
-                             * únicas, igual que en
-                             * getAllProductImages().
-                             */
-
-                            if(
-                                globalIndex ===
-                                imageIndex
-                            ){
-
-                                variantIndex =
-                                    v;
-
-
-                                variantImageIndex =
-                                    i;
-
-
-                                found = true;
-
-                                break;
-
-                            }
-
-
-                            globalIndex++;
-
-                        }
-
-
-                        if(found){
-                            break;
-                        }
-
-                    }
-
-
                     openProduct(
                         productIndex,
-                        variantIndex,
-                        variantImageIndex
+                        0,
+                        0
                     );
 
                 }
             );
 
+            return;
+        }
 
-            /*
-             * =================================================
-             * EVITAR DRAG NATIVO DE LA IMAGEN
-             * =================================================
-             */
 
-            imageElement.addEventListener(
-                "dragstart",
-                function(event){
+        /*
+         * =================================================
+         * ESTADO DE ESTA TARJETA
+         * =================================================
+         */
 
-                    event.preventDefault();
+        let currentIndex = 0;
+
+        let startX = 0;
+        let startY = 0;
+
+        let isMoving = false;
+
+        let swipeDetected = false;
+
+
+        /*
+         * =================================================
+         * FUNCIÓN CAMBIAR FOTO
+         * =================================================
+         */
+
+        function changeImage(direction){
+
+            currentIndex += direction;
+
+
+            if(currentIndex >= images.length){
+
+                currentIndex = 0;
+
+            }
+
+
+            if(currentIndex < 0){
+
+                currentIndex =
+                    images.length - 1;
+
+            }
+
+
+            card.dataset.imageIndex =
+                currentIndex;
+
+
+            image.src =
+                images[currentIndex];
+
+        }
+
+
+        /*
+         * =================================================
+         * TOUCH START
+         * =================================================
+         */
+
+        card.addEventListener(
+            "touchstart",
+            function(event){
+
+                if(
+                    !event.touches ||
+                    !event.touches.length
+                ){
+                    return;
+                }
+
+
+                startX =
+                    event.touches[0].clientX;
+
+
+                startY =
+                    event.touches[0].clientY;
+
+
+                isMoving = true;
+
+                swipeDetected = false;
+
+            },
+            {
+                passive:true
+            }
+        );
+
+
+        /*
+         * =================================================
+         * TOUCH END
+         * =================================================
+         */
+
+        card.addEventListener(
+            "touchend",
+            function(event){
+
+                if(!isMoving){
+                    return;
+                }
+
+
+                isMoving = false;
+
+
+                if(
+                    !event.changedTouches ||
+                    !event.changedTouches.length
+                ){
+                    return;
+                }
+
+
+                const endX =
+                    event.changedTouches[0].clientX;
+
+
+                const endY =
+                    event.changedTouches[0].clientY;
+
+
+                const differenceX =
+                    endX - startX;
+
+
+                const differenceY =
+                    endY - startY;
+
+
+                /*
+                 * Tiene que ser un movimiento
+                 * claramente horizontal.
+                 */
+
+                if(
+                    Math.abs(differenceX) < 35
+                ){
+                    return;
+                }
+
+
+                if(
+                    Math.abs(differenceX) <=
+                    Math.abs(differenceY)
+                ){
+                    return;
+                }
+
+
+                swipeDetected = true;
+
+
+                /*
+                 * DEDO HACIA LA IZQUIERDA
+                 * = SIGUIENTE
+                 */
+
+                if(differenceX < 0){
+
+                    changeImage(1);
 
                 }
-            );
 
-        });
 
-}
+                /*
+                 * DEDO HACIA LA DERECHA
+                 * = ANTERIOR
+                 */
+
+                else{
+
+                    changeImage(-1);
+
+                }
+
+
+                /*
+                 * Evita que el click posterior
+                 * abra el producto.
+                 */
+
+                setTimeout(
+                    function(){
+
+                        swipeDetected = false;
+
+                    },
+                    500
+                );
+
+            },
+            {
+                passive:true
+            }
+        );
+
+
+        /*
+         * =================================================
+         * MOUSE / TRACKPAD
+         * =================================================
+         */
+
+        let mouseStartX = 0;
+        let mouseStartY = 0;
+
+        let mouseDragging = false;
+
+
+        card.addEventListener(
+            "mousedown",
+            function(event){
+
+                if(event.button !== 0){
+                    return;
+                }
+
+
+                mouseStartX =
+                    event.clientX;
+
+
+                mouseStartY =
+                    event.clientY;
+
+
+                mouseDragging = true;
+
+                swipeDetected = false;
+
+            }
+        );
+
+
+        card.addEventListener(
+            "mouseup",
+            function(event){
+
+                if(!mouseDragging){
+                    return;
+                }
+
+
+                mouseDragging = false;
+
+
+                const differenceX =
+                    event.clientX -
+                    mouseStartX;
+
+
+                const differenceY =
+                    event.clientY -
+                    mouseStartY;
+
+
+                if(
+                    Math.abs(differenceX) < 45 ||
+                    Math.abs(differenceX) <=
+                    Math.abs(differenceY)
+                ){
+                    return;
+                }
+
+
+                swipeDetected = true;
+
+
+                if(differenceX < 0){
+
+                    changeImage(1);
+
+                }else{
+
+                    changeImage(-1);
+
+                }
+
+
+                setTimeout(
+                    function(){
+
+                        swipeDetected = false;
+
+                    },
+                    500
+                );
+
+            }
+        );
+
+
+        /*
+         * =================================================
+         * CLICK
+         * =================================================
+         */
+
+        card.addEventListener(
+            "click",
+            function(){
+
+                /*
+                 * Si acabamos de deslizar,
+                 * NO abrimos el producto.
+                 */
+
+                if(swipeDetected){
+                    return;
+                }
+
+
+                /*
+                 * IMPORTANTE:
+                 *
+                 * Buscamos qué variante y qué
+                 * imagen corresponde a la imagen
+                 * que está actualmente visible.
+                 */
+
+                let variantIndex = 0;
+                let variantImageIndex = 0;
+
+                let counter = 0;
+
+                const variants =
+                    getVariants(product);
+
+
+                let found = false;
+
+
+                for(
+                    let v = 0;
+                    v < variants.length;
+                    v++
+                ){
+
+                    const variant =
+                        variants[v];
+
+
+                    const variantImages =
+                        variant.images || [];
+
+
+                    for(
+                        let i = 0;
+                        i < variantImages.length;
+                        i++
+                    ){
+
+                        const url =
+                            String(
+                                variantImages[i]
+                            ).trim();
+
+
+                        if(
+                            !url ||
+                            !images.includes(url)
+                        ){
+                            continue;
+                        }
+
+
+                        /*
+                         * El índice global debe
+                         * coincidir con el índice
+                         * mostrado en la tarjeta.
+                         */
+
+                        if(
+                            counter === currentIndex
+                        ){
+
+                            variantIndex =
+                                v;
+
+
+                            variantImageIndex =
+                                i;
+
+
+                            found = true;
+
+                            break;
+
+                        }
+
+
+                        counter++;
+
+                    }
+
+
+                    if(found){
+                        break;
+                    }
+
+                }
+
+
+                openProduct(
+                    productIndex,
+                    variantIndex,
+                    variantImageIndex
+                );
+
+            }
+        );
+
+    });
 
 
 /* =====================================================
