@@ -95,7 +95,6 @@
 {
     "@context":"https://schema.org",
     "@graph":[
-
         {
             "@type":"WebSite",
             "@id":"https://yfmodaurbana-eng.github.io/Strangis/#website",
@@ -103,14 +102,12 @@
             "name":"Strangis",
             "inLanguage":"es-ES"
         },
-
         {
             "@type":"Organization",
             "@id":"https://yfmodaurbana-eng.github.io/Strangis/#organization",
             "name":"Strangis",
             "url":"https://yfmodaurbana-eng.github.io/Strangis/"
         },
-
         {
             "@type":"CollectionPage",
             "@id":"https://yfmodaurbana-eng.github.io/Strangis/camisetas.html#webpage",
@@ -125,29 +122,24 @@
             },
             "inLanguage":"es-ES"
         },
-
         {
             "@type":"BreadcrumbList",
             "@id":"https://yfmodaurbana-eng.github.io/Strangis/camisetas.html#breadcrumb",
             "itemListElement":[
-
                 {
                     "@type":"ListItem",
                     "position":1,
                     "name":"Inicio",
                     "item":"https://yfmodaurbana-eng.github.io/Strangis/"
                 },
-
                 {
                     "@type":"ListItem",
                     "position":2,
                     "name":"Camisetas",
                     "item":"https://yfmodaurbana-eng.github.io/Strangis/camisetas.html"
                 }
-
             ]
         }
-
     ]
 }
 </script>
@@ -204,6 +196,7 @@ textarea{
 header{
 
     position:sticky;
+
     top:0;
 
     z-index:1000;
@@ -211,6 +204,7 @@ header{
     padding:16px 5%;
 
     display:flex;
+
     align-items:center;
 
     gap:28px;
@@ -245,11 +239,13 @@ nav{
     flex:1;
 
     display:flex;
+
     align-items:center;
 
     gap:12px;
 
     overflow-x:auto;
+
     overflow-y:hidden;
 
     scrollbar-width:none;
@@ -268,7 +264,9 @@ nav a{
     flex:0 0 auto;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     min-height:34px;
@@ -295,7 +293,10 @@ nav a{
 
     white-space:nowrap;
 
-    transition:.2s;
+    transition:
+        color .2s ease,
+        background .2s ease,
+        border-color .2s ease;
 }
 
 nav a:hover{
@@ -408,8 +409,7 @@ nav a.active{
 
 
 /* =====================================================
-   PREVISUALIZACIÓN
-   SOLO FOTO PRINCIPAL
+   TARJETA
 ===================================================== */
 
 .preview-card{
@@ -449,6 +449,15 @@ nav a.active{
         rgba(0,0,0,.30);
 }
 
+.preview-card:focus-visible{
+
+    outline:
+        2px solid
+        #fff;
+
+    outline-offset:3px;
+}
+
 .preview-image{
 
     position:relative;
@@ -461,11 +470,6 @@ nav a.active{
 
     background:#191919;
 
-    /*
-     * Permitimos desplazamiento vertical
-     * de la página pero controlamos el
-     * gesto horizontal nosotros.
-     */
     touch-action:pan-y;
 
     user-select:none;
@@ -475,8 +479,29 @@ nav a.active{
     -webkit-touch-callout:none;
 }
 
+.preview-image img{
+
+    width:100%;
+
+    height:100%;
+
+    display:block;
+
+    object-fit:cover;
+
+    user-select:none;
+
+    -webkit-user-drag:none;
+
+    pointer-events:none;
+
+    transition:
+        opacity .18s ease;
+}
+
+
 /* =====================================================
-   CARGANDO / VACÍO
+   ESTADOS
 ===================================================== */
 
 .loading,
@@ -489,6 +514,8 @@ nav a.active{
     text-align:center;
 
     color:#aaa;
+
+    line-height:1.6;
 }
 
 
@@ -576,11 +603,13 @@ nav a.active{
     position:absolute;
 
     top:10px;
+
     right:10px;
 
     z-index:30;
 
     width:40px;
+
     height:40px;
 
     border:
@@ -597,6 +626,13 @@ nav a.active{
     cursor:pointer;
 
     font-size:21px;
+}
+
+.panel-close:hover{
+
+    background:#fff;
+
+    color:#111;
 }
 
 
@@ -641,13 +677,13 @@ nav a.active{
 }
 
 .panel-main-image:active{
-
     cursor:grabbing;
 }
 
 .panel-main-image img{
 
     width:100%;
+
     height:100%;
 
     object-fit:cover;
@@ -663,7 +699,7 @@ nav a.active{
 
 
 /* =====================================================
-   INFORMACIÓN SOBRE LA IMAGEN
+   INFORMACIÓN IMAGEN
 ===================================================== */
 
 .panel-image-info{
@@ -671,7 +707,9 @@ nav a.active{
     position:absolute;
 
     left:10px;
+
     right:10px;
+
     bottom:10px;
 
     z-index:10;
@@ -771,6 +809,7 @@ nav a.active{
 .panel-image-dot{
 
     width:3px;
+
     height:3px;
 
     flex:0 0 3px;
@@ -794,11 +833,13 @@ nav a.active{
     z-index:20;
 
     width:40px;
+
     height:40px;
 
     display:flex;
 
     align-items:center;
+
     justify-content:center;
 
     border:
@@ -834,6 +875,15 @@ nav a.active{
         rgba(0,0,0,.88);
 }
 
+.panel-arrow:focus-visible{
+
+    outline:
+        2px solid
+        #fff;
+
+    outline-offset:2px;
+}
+
 
 /* =====================================================
    CONTADOR
@@ -844,6 +894,7 @@ nav a.active{
     position:absolute;
 
     left:50%;
+
     top:12px;
 
     z-index:20;
@@ -978,6 +1029,7 @@ nav a.active{
 .quantity button{
 
     width:34px;
+
     height:34px;
 
     border:
@@ -993,6 +1045,13 @@ nav a.active{
     cursor:pointer;
 
     font-size:18px;
+}
+
+.quantity button:hover{
+
+    border-color:#fff;
+
+    background:#252525;
 }
 
 .quantity span{
@@ -1092,10 +1151,18 @@ nav a.active{
     font-weight:900;
 
     letter-spacing:1.5px;
+
+    transition:
+        background .2s ease,
+        transform .2s ease;
 }
 
 .buy:hover{
+
     background:#ddd;
+
+    transform:
+        translateY(-1px);
 }
 
 .buy:disabled{
@@ -1103,6 +1170,8 @@ nav a.active{
     opacity:.45;
 
     cursor:not-allowed;
+
+    transform:none;
 }
 
 
@@ -1141,6 +1210,7 @@ nav a.active{
     max-height:92vh;
 
     width:auto;
+
     height:auto;
 
     object-fit:contain;
@@ -1153,9 +1223,11 @@ nav a.active{
     position:absolute;
 
     top:15px;
+
     right:15px;
 
     width:44px;
+
     height:44px;
 
     border:
@@ -1172,6 +1244,8 @@ nav a.active{
     cursor:pointer;
 
     font-size:24px;
+
+    z-index:20;
 }
 
 
@@ -1199,6 +1273,9 @@ nav a.active{
         rgba(0,0,0,.80);
 
     backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
         blur(10px);
 }
 
@@ -1265,6 +1342,7 @@ nav a.active{
 .close-order{
 
     width:40px;
+
     height:40px;
 
     border:
@@ -1379,7 +1457,19 @@ nav a.active{
 }
 
 .form-field input{
+
     min-height:48px;
+}
+
+.form-field input:focus,
+.form-field textarea:focus{
+
+    border-color:
+        rgba(255,255,255,.55);
+
+    box-shadow:
+        0 0 0 2px
+        rgba(255,255,255,.06);
 }
 
 .form-field textarea{
@@ -1409,6 +1499,8 @@ nav a.active{
     color:#fff;
 
     font-size:11px;
+
+    line-height:1.5;
 }
 
 .form-error.show{
@@ -1440,6 +1532,10 @@ nav a.active{
     letter-spacing:1.2px;
 }
 
+.send-order:hover{
+    background:#ddd;
+}
+
 .cancel-order{
 
     width:100%;
@@ -1459,6 +1555,14 @@ nav a.active{
     color:#aaa;
 
     cursor:pointer;
+}
+
+.cancel-order:hover{
+
+    color:#fff;
+
+    border-color:
+        rgba(255,255,255,.35);
 }
 
 
@@ -1505,7 +1609,6 @@ footer{
 
         padding:15px;
     }
-
 }
 
 
@@ -1612,6 +1715,7 @@ footer{
     .panel-close{
 
         top:7px;
+
         right:7px;
     }
 
@@ -1624,7 +1728,9 @@ footer{
     .panel-image-info{
 
         left:7px;
+
         right:7px;
+
         bottom:7px;
 
         padding:8px;
@@ -1679,7 +1785,6 @@ footer{
     .form-field.full{
         grid-column:auto;
     }
-
 }
 
 
@@ -1688,7 +1793,6 @@ footer{
     .products{
         gap:5px;
     }
-
 }
 
 
@@ -1704,7 +1808,6 @@ footer{
 
         animation:none !important;
     }
-
 }
 
 </style>
@@ -1734,6 +1837,7 @@ footer{
         <a
             class="active"
             href="camisetas.html"
+            aria-current="page"
         >
             Camisetas
         </a>
@@ -1801,8 +1905,7 @@ footer{
 
 
 <!-- =====================================================
-     PREVISUALIZACIÓN
-     SOLO FOTO PRINCIPAL
+     PRODUCTOS
 ===================================================== -->
 
 <section class="products-section">
@@ -1836,6 +1939,9 @@ footer{
 <div
     class="product-panel"
     id="productPanel"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Detalle del producto"
 >
 
     <div class="product-box">
@@ -1864,10 +1970,6 @@ footer{
                     draggable="false"
                 >
 
-
-                <!-- =========================================
-                     DATOS SOBRE LA IMAGEN
-                ========================================== -->
 
                 <div
                     class="panel-image-info"
@@ -1954,10 +2056,6 @@ footer{
         </div>
 
 
-        <!-- =================================================
-             DETALLES
-        ================================================= -->
-
         <div class="panel-details">
 
             <div
@@ -1991,6 +2089,7 @@ footer{
                 <button
                     type="button"
                     id="quantityMinus"
+                    aria-label="Reducir cantidad"
                 >
                     −
                 </button>
@@ -2002,6 +2101,7 @@ footer{
                 <button
                     type="button"
                     id="quantityPlus"
+                    aria-label="Aumentar cantidad"
                 >
                     +
                 </button>
@@ -2053,6 +2153,9 @@ footer{
 <div
     class="lightbox"
     id="lightbox"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Imagen ampliada"
 >
 
     <button
@@ -2080,6 +2183,9 @@ footer{
 <div
     class="order-modal"
     id="orderModal"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Finalizar pedido"
 >
 
     <div class="order-box">
@@ -2119,6 +2225,7 @@ footer{
         <div
             class="form-error"
             id="formError"
+            role="alert"
         ></div>
 
 
@@ -2131,7 +2238,7 @@ footer{
 
             <div class="form-field full">
 
-                <label>
+                <label for="customerName">
                     Nombre y apellidos *
                 </label>
 
@@ -2146,7 +2253,7 @@ footer{
 
             <div class="form-field">
 
-                <label>
+                <label for="customerPhone">
                     Teléfono *
                 </label>
 
@@ -2161,7 +2268,7 @@ footer{
 
             <div class="form-field">
 
-                <label>
+                <label for="customerEmail">
                     Email
                 </label>
 
@@ -2185,7 +2292,7 @@ footer{
 
             <div class="form-field full">
 
-                <label>
+                <label for="customerAddress">
                     Dirección *
                 </label>
 
@@ -2200,7 +2307,7 @@ footer{
 
             <div class="form-field">
 
-                <label>
+                <label for="customerNumber">
                     Número *
                 </label>
 
@@ -2214,7 +2321,7 @@ footer{
 
             <div class="form-field">
 
-                <label>
+                <label for="customerFloor">
                     Piso / Puerta
                 </label>
 
@@ -2228,7 +2335,7 @@ footer{
 
             <div class="form-field">
 
-                <label>
+                <label for="customerPostal">
                     Código postal *
                 </label>
 
@@ -2236,6 +2343,7 @@ footer{
                     id="customerPostal"
                     type="text"
                     inputmode="numeric"
+                    autocomplete="postal-code"
                 >
 
             </div>
@@ -2243,13 +2351,14 @@ footer{
 
             <div class="form-field">
 
-                <label>
+                <label for="customerCity">
                     Ciudad *
                 </label>
 
                 <input
                     id="customerCity"
                     type="text"
+                    autocomplete="address-level2"
                 >
 
             </div>
@@ -2257,13 +2366,14 @@ footer{
 
             <div class="form-field">
 
-                <label>
+                <label for="customerProvince">
                     Provincia *
                 </label>
 
                 <input
                     id="customerProvince"
                     type="text"
+                    autocomplete="address-level1"
                 >
 
             </div>
@@ -2271,7 +2381,7 @@ footer{
 
             <div class="form-field">
 
-                <label>
+                <label for="customerCountry">
                     País *
                 </label>
 
@@ -2279,6 +2389,7 @@ footer{
                     id="customerCountry"
                     type="text"
                     value="España"
+                    autocomplete="country-name"
                 >
 
             </div>
@@ -2286,7 +2397,7 @@ footer{
 
             <div class="form-field full">
 
-                <label>
+                <label for="customerNotes">
                     Observaciones
                 </label>
 
@@ -2364,6 +2475,7 @@ let currentOrder = null;
 ===================================================== */
 
 let touchStartX = 0;
+
 let touchStartY = 0;
 
 let touchMoved = false;
@@ -2381,14 +2493,21 @@ const supabaseClient = {
             await fetch(
                 STRANGIS_SUPABASE_URL + path,
                 {
+                    method:"GET",
+
                     headers:{
                         "apikey":
                             STRANGIS_SUPABASE_KEY,
 
                         "Authorization":
                             "Bearer " +
-                            STRANGIS_SUPABASE_KEY
-                    }
+                            STRANGIS_SUPABASE_KEY,
+
+                        "Accept":
+                            "application/json"
+                    },
+
+                    cache:"no-store"
                 }
             );
 
@@ -2419,6 +2538,7 @@ const supabaseClient = {
             throw new Error(
                 data?.message ||
                 data?.error_description ||
+                data?.hint ||
                 text ||
                 `Error HTTP ${response.status}`
             );
@@ -2451,7 +2571,9 @@ const supabaseClient = {
 
 
         return this.request(
-            `/rest/v1/${encodeURIComponent(STRANGIS_PRODUCTS_TABLE)}?${params.toString()}`
+            `/rest/v1/${encodeURIComponent(
+                STRANGIS_PRODUCTS_TABLE
+            )}?${params.toString()}`
         );
 
     }
@@ -2465,13 +2587,18 @@ const supabaseClient = {
 
 function money(value){
 
-    return Number(value || 0).toLocaleString(
-        "es-ES",
-        {
-            style:"currency",
-            currency:"EUR"
-        }
-    );
+    const number =
+        Number(value);
+
+    return Number.isFinite(number)
+        ? number.toLocaleString(
+            "es-ES",
+            {
+                style:"currency",
+                currency:"EUR"
+            }
+        )
+        : "0,00 €";
 
 }
 
@@ -2495,12 +2622,34 @@ function parseJSON(value,fallback=[]){
     }
 
 
+    if(
+        value &&
+        typeof value === "object"
+    ){
+
+        return Array.isArray(value)
+            ? value
+            : fallback;
+
+    }
+
+
     if(typeof value === "string"){
+
+        const text =
+            value.trim();
+
+
+        if(!text){
+            return fallback;
+        }
+
 
         try{
 
             const parsed =
-                JSON.parse(value);
+                JSON.parse(text);
+
 
             return Array.isArray(parsed)
                 ? parsed
@@ -2520,11 +2669,31 @@ function parseJSON(value,fallback=[]){
 }
 
 
+function normaliseImageURL(value){
+
+    if(
+        value === null ||
+        value === undefined
+    ){
+        return "";
+    }
+
+
+    return String(value).trim();
+
+}
+
+
 /* =====================================================
    VARIANTES
 ===================================================== */
 
 function getVariants(product){
+
+    if(!product){
+        return [];
+    }
+
 
     const raw =
         parseJSON(
@@ -2539,7 +2708,27 @@ function getVariants(product){
     raw.forEach(
         (variant,index)=>{
 
+            /*
+             * Formato antiguo:
+             *
+             * [
+             *   "imagen.jpg",
+             *   "imagen2.jpg"
+             * ]
+             */
+
             if(typeof variant === "string"){
+
+                const image =
+                    normaliseImageURL(
+                        variant
+                    );
+
+
+                if(!image){
+                    return;
+                }
+
 
                 variants.push({
 
@@ -2550,7 +2739,7 @@ function getVariants(product){
                         "#888888",
 
                     images:[
-                        variant
+                        image
                     ]
 
                 });
@@ -2577,8 +2766,10 @@ function getVariants(product){
 
                 images =
                     variant.images
-                        .filter(Boolean)
-                        .map(String);
+                        .map(
+                            normaliseImageURL
+                        )
+                        .filter(Boolean);
 
             }
 
@@ -2588,9 +2779,15 @@ function getVariants(product){
                 variant.image
             ){
 
-                images = [
-                    String(variant.image)
-                ];
+                const image =
+                    normaliseImageURL(
+                        variant.image
+                    );
+
+
+                if(image){
+                    images = [image];
+                }
 
             }
 
@@ -2600,11 +2797,26 @@ function getVariants(product){
                 variant.url
             ){
 
-                images = [
-                    String(variant.url)
-                ];
+                const image =
+                    normaliseImageURL(
+                        variant.url
+                    );
+
+
+                if(image){
+                    images = [image];
+                }
 
             }
+
+
+            /*
+             * Evitar imágenes duplicadas
+             * dentro de una misma variante.
+             */
+
+            images =
+                [...new Set(images)];
 
 
             if(!images.length){
@@ -2639,15 +2851,37 @@ function getVariants(product){
 
 function getSizes(product){
 
-    return parseJSON(
-        product.sizes,
-        []
-    );
+    if(!product){
+        return [];
+    }
+
+
+    const sizes =
+        parseJSON(
+            product.sizes,
+            []
+        );
+
+
+    return sizes
+        .map(
+            size =>
+                String(size ?? "").trim()
+        )
+        .filter(Boolean);
 
 }
 
 
 function getCurrentProduct(){
+
+    if(
+        currentProductIndex < 0 ||
+        currentProductIndex >= PRODUCTS.length
+    ){
+        return null;
+    }
+
 
     return PRODUCTS[
         currentProductIndex
@@ -2671,6 +2905,19 @@ function getCurrentVariant(){
         getVariants(product);
 
 
+    if(!variants.length){
+        return null;
+    }
+
+
+    if(
+        currentVariantIndex < 0 ||
+        currentVariantIndex >= variants.length
+    ){
+        currentVariantIndex = 0;
+    }
+
+
     return variants[
         currentVariantIndex
     ];
@@ -2684,7 +2931,11 @@ function getCurrentImages(){
         getCurrentVariant();
 
 
-    return variant?.images || [];
+    return Array.isArray(
+        variant?.images
+    )
+        ? variant.images
+        : [];
 
 }
 
@@ -2701,18 +2952,44 @@ async function loadProducts(){
         );
 
 
+    if(!container){
+        return;
+    }
+
+
+    container.innerHTML = `
+
+        <div class="loading">
+            Cargando camisetas...
+        </div>
+
+    `;
+
+
     try{
 
-        PRODUCTS =
+        const result =
             await supabaseClient
                 .getProducts();
+
+
+        PRODUCTS =
+            Array.isArray(result)
+                ? result
+                : [];
 
 
         renderPreview();
 
     }catch(error){
 
-        console.error(error);
+        console.error(
+            "Strangis / Products:",
+            error
+        );
+
+
+        PRODUCTS = [];
 
 
         container.innerHTML = `
@@ -2724,9 +3001,12 @@ async function loadProducts(){
 
                 <br><br>
 
-                ${escapeHTML(
-                    error.message
-                )}
+                <small>
+                    ${escapeHTML(
+                        error?.message ||
+                        "Error desconocido"
+                    )}
+                </small>
 
             </div>
 
@@ -2736,44 +3016,129 @@ async function loadProducts(){
 
 }
 
+
 /* =====================================================
-   PREVISUALIZACIÓN
-   CAMBIO DE IMAGEN EN TARJETAS
-   SWIPE + ARRASTRE + CLICK
+   TODAS LAS IMÁGENES DEL PRODUCTO
 ===================================================== */
 
 function getAllProductImages(product){
 
-    const variants = getVariants(product);
+    const variants =
+        getVariants(product);
+
 
     const images = [];
 
-    variants.forEach(variant => {
 
-        if(!variant || !Array.isArray(variant.images)){
-            return;
-        }
+    variants.forEach(
+        variant => {
 
-        variant.images.forEach(image => {
-
-            if(!image){
+            if(
+                !variant ||
+                !Array.isArray(
+                    variant.images
+                )
+            ){
                 return;
             }
 
-            const url = String(image).trim();
 
-            if(
-                url &&
-                !images.includes(url)
-            ){
-                images.push(url);
-            }
+            variant.images.forEach(
+                image => {
 
-        });
+                    const url =
+                        normaliseImageURL(
+                            image
+                        );
 
-    });
+
+                    if(
+                        url &&
+                        !images.includes(url)
+                    ){
+
+                        images.push(url);
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
 
     return images;
+
+}
+
+
+/* =====================================================
+   ENCONTRAR VARIANTE / IMAGEN
+===================================================== */
+
+function findImageLocation(
+    product,
+    globalImageIndex
+){
+
+    const variants =
+        getVariants(product);
+
+
+    let counter = 0;
+
+
+    for(
+        let variantIndex = 0;
+        variantIndex < variants.length;
+        variantIndex++
+    ){
+
+        const variant =
+            variants[variantIndex];
+
+
+        const images =
+            variant.images || [];
+
+
+        for(
+            let imageIndex = 0;
+            imageIndex < images.length;
+            imageIndex++
+        ){
+
+            if(
+                counter === globalImageIndex
+            ){
+
+                return {
+
+                    variantIndex,
+
+                    imageIndex
+
+                };
+
+            }
+
+
+            counter++;
+
+        }
+
+    }
+
+
+    return {
+
+        variantIndex:0,
+
+        imageIndex:0
+
+    };
+
 }
 
 
@@ -2784,7 +3149,9 @@ function getAllProductImages(product){
 function renderPreview(){
 
     const container =
-        document.getElementById("productsContainer");
+        document.getElementById(
+            "productsContainer"
+        );
 
 
     if(!container){
@@ -2798,527 +3165,493 @@ function renderPreview(){
     if(!PRODUCTS.length){
 
         container.innerHTML = `
+
             <div class="empty">
+
                 No hay camisetas activas
                 disponibles actualmente.
+
             </div>
+
         `;
 
         return;
+
     }
 
 
-    PRODUCTS.forEach((product, productIndex) => {
+    PRODUCTS.forEach(
+        (product,productIndex)=>{
 
-        const images =
-            getAllProductImages(product);
-
-
-        if(!images.length){
-            return;
-        }
+            const images =
+                getAllProductImages(
+                    product
+                );
 
 
-        const card =
-            document.createElement("article");
+            /*
+             * Si el producto no tiene imágenes,
+             * no mostramos una tarjeta vacía.
+             */
+
+            if(!images.length){
+                return;
+            }
 
 
-        card.className =
-            "preview-card";
+            const card =
+                document.createElement(
+                    "article"
+                );
 
 
-        card.dataset.productIndex =
-            productIndex;
+            card.className =
+                "preview-card";
 
 
-        card.dataset.imageIndex =
-            "0";
+            card.dataset.productIndex =
+                String(productIndex);
 
 
-        const imageBox =
-            document.createElement("div");
+            card.dataset.imageIndex =
+                "0";
 
 
-        imageBox.className =
-            "preview-image";
+            card.setAttribute(
+                "role",
+                "button"
+            );
 
 
-        const image =
-            document.createElement("img");
+            card.setAttribute(
+                "tabindex",
+                "0"
+            );
 
 
-        image.src =
-            images[0];
+            card.setAttribute(
+                "aria-label",
+                `Ver ${product.name || "camiseta"}`
+            );
 
 
-        image.alt =
-            product.name ||
-            "Camiseta de moda";
+            const imageBox =
+                document.createElement(
+                    "div"
+                );
 
 
-        image.loading =
-            "lazy";
+            imageBox.className =
+                "preview-image";
 
 
-        image.draggable =
-            false;
+            const image =
+                document.createElement(
+                    "img"
+                );
 
 
-        image.setAttribute(
-            "draggable",
-            "false"
-        );
+            image.src =
+                images[0];
 
 
-        imageBox.appendChild(image);
+            image.alt =
+                product.name ||
+                "Camiseta de moda";
 
 
-        card.appendChild(imageBox);
+            image.loading =
+                "lazy";
 
 
-        container.appendChild(card);
+            image.decoding =
+                "async";
 
 
-        /*
-         * =================================================
-         * SI SOLO HAY UNA IMAGEN
-         * =================================================
-         */
+            image.draggable =
+                false;
 
-        if(images.length <= 1){
+
+            image.setAttribute(
+                "draggable",
+                "false"
+            );
+
+
+            imageBox.appendChild(
+                image
+            );
+
+
+            card.appendChild(
+                imageBox
+            );
+
+
+            container.appendChild(
+                card
+            );
+
+
+            /*
+             * =============================================
+             * ESTADO DE LA TARJETA
+             * =============================================
+             */
+
+            let currentIndex = 0;
+
+            let startX = 0;
+
+            let startY = 0;
+
+            let pointerStartX = 0;
+
+            let pointerStartY = 0;
+
+            let pointerDown = false;
+
+            let swipeDetected = false;
+
+
+            /*
+             * =============================================
+             * CAMBIAR FOTO
+             * =============================================
+             */
+
+            function changeImage(
+                direction
+            ){
+
+                if(images.length <= 1){
+                    return;
+                }
+
+
+                currentIndex +=
+                    direction;
+
+
+                if(
+                    currentIndex >=
+                    images.length
+                ){
+
+                    currentIndex = 0;
+
+                }
+
+
+                if(
+                    currentIndex < 0
+                ){
+
+                    currentIndex =
+                        images.length - 1;
+
+                }
+
+
+                card.dataset.imageIndex =
+                    String(currentIndex);
+
+
+                image.src =
+                    images[currentIndex];
+
+            }
+
+
+            /*
+             * =============================================
+             * TOUCH START
+             * =============================================
+             */
 
             card.addEventListener(
-                "click",
-                function(){
+                "touchstart",
+                event => {
 
-                    openProduct(
-                        productIndex,
-                        0,
-                        0
+                    if(
+                        !event.touches ||
+                        !event.touches.length
+                    ){
+                        return;
+                    }
+
+
+                    startX =
+                        event.touches[0].clientX;
+
+
+                    startY =
+                        event.touches[0].clientY;
+
+
+                    swipeDetected =
+                        false;
+
+                },
+                {
+                    passive:true
+                }
+            );
+
+
+            /*
+             * =============================================
+             * TOUCH END
+             * =============================================
+             */
+
+            card.addEventListener(
+                "touchend",
+                event => {
+
+                    if(
+                        !event.changedTouches ||
+                        !event.changedTouches.length
+                    ){
+                        return;
+                    }
+
+
+                    const endX =
+                        event.changedTouches[0].clientX;
+
+
+                    const endY =
+                        event.changedTouches[0].clientY;
+
+
+                    const differenceX =
+                        endX - startX;
+
+
+                    const differenceY =
+                        endY - startY;
+
+
+                    if(
+                        Math.abs(differenceX) < 35
+                    ){
+                        return;
+                    }
+
+
+                    if(
+                        Math.abs(differenceX) <=
+                        Math.abs(differenceY)
+                    ){
+                        return;
+                    }
+
+
+                    swipeDetected =
+                        true;
+
+
+                    if(differenceX < 0){
+
+                        changeImage(1);
+
+                    }else{
+
+                        changeImage(-1);
+
+                    }
+
+
+                    /*
+                     * El click generado
+                     * inmediatamente después
+                     * del touch no debe abrir
+                     * el producto.
+                     */
+
+                    setTimeout(
+                        ()=>{
+                            swipeDetected =
+                                false;
+                        },
+                        450
+                    );
+
+                },
+                {
+                    passive:true
+                }
+            );
+
+
+            /*
+             * =============================================
+             * MOUSE
+             * =============================================
+             */
+
+            card.addEventListener(
+                "mousedown",
+                event => {
+
+                    if(
+                        event.button !== 0
+                    ){
+                        return;
+                    }
+
+
+                    pointerStartX =
+                        event.clientX;
+
+
+                    pointerStartY =
+                        event.clientY;
+
+
+                    pointerDown =
+                        true;
+
+
+                    swipeDetected =
+                        false;
+
+                }
+            );
+
+
+            card.addEventListener(
+                "mouseup",
+                event => {
+
+                    if(!pointerDown){
+                        return;
+                    }
+
+
+                    pointerDown =
+                        false;
+
+
+                    const differenceX =
+                        event.clientX -
+                        pointerStartX;
+
+
+                    const differenceY =
+                        event.clientY -
+                        pointerStartY;
+
+
+                    if(
+                        Math.abs(differenceX) < 45 ||
+                        Math.abs(differenceX) <=
+                        Math.abs(differenceY)
+                    ){
+                        return;
+                    }
+
+
+                    swipeDetected =
+                        true;
+
+
+                    if(differenceX < 0){
+
+                        changeImage(1);
+
+                    }else{
+
+                        changeImage(-1);
+
+                    }
+
+
+                    setTimeout(
+                        ()=>{
+                            swipeDetected =
+                                false;
+                        },
+                        450
                     );
 
                 }
             );
 
-            return;
-        }
+
+            /*
+             * =============================================
+             * CLICK
+             * =============================================
+             */
+
+            card.addEventListener(
+                "click",
+                ()=>{
+                    
+                    if(swipeDetected){
+                        return;
+                    }
 
 
-        /*
-         * =================================================
-         * ESTADO DE ESTA TARJETA
-         * =================================================
-         */
-
-        let currentIndex = 0;
-
-        let startX = 0;
-        let startY = 0;
-
-        let isMoving = false;
-
-        let swipeDetected = false;
+                    const location =
+                        findImageLocation(
+                            product,
+                            currentIndex
+                        );
 
 
-        /*
-         * =================================================
-         * FUNCIÓN CAMBIAR FOTO
-         * =================================================
-         */
-
-        function changeImage(direction){
-
-            currentIndex += direction;
-
-
-            if(currentIndex >= images.length){
-
-                currentIndex = 0;
-
-            }
-
-
-            if(currentIndex < 0){
-
-                currentIndex =
-                    images.length - 1;
-
-            }
-
-
-            card.dataset.imageIndex =
-                currentIndex;
-
-
-            image.src =
-                images[currentIndex];
-
-        }
-
-
-        /*
-         * =================================================
-         * TOUCH START
-         * =================================================
-         */
-
-        card.addEventListener(
-            "touchstart",
-            function(event){
-
-                if(
-                    !event.touches ||
-                    !event.touches.length
-                ){
-                    return;
-                }
-
-
-                startX =
-                    event.touches[0].clientX;
-
-
-                startY =
-                    event.touches[0].clientY;
-
-
-                isMoving = true;
-
-                swipeDetected = false;
-
-            },
-            {
-                passive:true
-            }
-        );
-
-
-        /*
-         * =================================================
-         * TOUCH END
-         * =================================================
-         */
-
-        card.addEventListener(
-            "touchend",
-            function(event){
-
-                if(!isMoving){
-                    return;
-                }
-
-
-                isMoving = false;
-
-
-                if(
-                    !event.changedTouches ||
-                    !event.changedTouches.length
-                ){
-                    return;
-                }
-
-
-                const endX =
-                    event.changedTouches[0].clientX;
-
-
-                const endY =
-                    event.changedTouches[0].clientY;
-
-
-                const differenceX =
-                    endX - startX;
-
-
-                const differenceY =
-                    endY - startY;
-
-
-                /*
-                 * Tiene que ser un movimiento
-                 * claramente horizontal.
-                 */
-
-                if(
-                    Math.abs(differenceX) < 35
-                ){
-                    return;
-                }
-
-
-                if(
-                    Math.abs(differenceX) <=
-                    Math.abs(differenceY)
-                ){
-                    return;
-                }
-
-
-                swipeDetected = true;
-
-
-                /*
-                 * DEDO HACIA LA IZQUIERDA
-                 * = SIGUIENTE
-                 */
-
-                if(differenceX < 0){
-
-                    changeImage(1);
+                    openProduct(
+                        productIndex,
+                        location.variantIndex,
+                        location.imageIndex
+                    );
 
                 }
+            );
 
 
-                /*
-                 * DEDO HACIA LA DERECHA
-                 * = ANTERIOR
-                 */
+            /*
+             * =============================================
+             * TECLADO
+             * =============================================
+             */
 
-                else{
+            card.addEventListener(
+                "keydown",
+                event => {
 
-                    changeImage(-1);
-
-                }
-
-
-                /*
-                 * Evita que el click posterior
-                 * abra el producto.
-                 */
-
-                setTimeout(
-                    function(){
-
-                        swipeDetected = false;
-
-                    },
-                    500
-                );
-
-            },
-            {
-                passive:true
-            }
-        );
-
-
-        /*
-         * =================================================
-         * MOUSE / TRACKPAD
-         * =================================================
-         */
-
-        let mouseStartX = 0;
-        let mouseStartY = 0;
-
-        let mouseDragging = false;
-
-
-        card.addEventListener(
-            "mousedown",
-            function(event){
-
-                if(event.button !== 0){
-                    return;
-                }
-
-
-                mouseStartX =
-                    event.clientX;
-
-
-                mouseStartY =
-                    event.clientY;
-
-
-                mouseDragging = true;
-
-                swipeDetected = false;
-
-            }
-        );
-
-
-        card.addEventListener(
-            "mouseup",
-            function(event){
-
-                if(!mouseDragging){
-                    return;
-                }
-
-
-                mouseDragging = false;
-
-
-                const differenceX =
-                    event.clientX -
-                    mouseStartX;
-
-
-                const differenceY =
-                    event.clientY -
-                    mouseStartY;
-
-
-                if(
-                    Math.abs(differenceX) < 45 ||
-                    Math.abs(differenceX) <=
-                    Math.abs(differenceY)
-                ){
-                    return;
-                }
-
-
-                swipeDetected = true;
-
-
-                if(differenceX < 0){
-
-                    changeImage(1);
-
-                }else{
-
-                    changeImage(-1);
-
-                }
-
-
-                setTimeout(
-                    function(){
-
-                        swipeDetected = false;
-
-                    },
-                    500
-                );
-
-            }
-        );
-
-
-        /*
-         * =================================================
-         * CLICK
-         * =================================================
-         */
-
-        card.addEventListener(
-            "click",
-            function(){
-
-                /*
-                 * Si acabamos de deslizar,
-                 * NO abrimos el producto.
-                 */
-
-                if(swipeDetected){
-                    return;
-                }
-
-
-                /*
-                 * IMPORTANTE:
-                 *
-                 * Buscamos qué variante y qué
-                 * imagen corresponde a la imagen
-                 * que está actualmente visible.
-                 */
-
-                let variantIndex = 0;
-                let variantImageIndex = 0;
-
-                let counter = 0;
-
-                const variants =
-                    getVariants(product);
-
-
-                let found = false;
-
-
-                for(
-                    let v = 0;
-                    v < variants.length;
-                    v++
-                ){
-
-                    const variant =
-                        variants[v];
-
-
-                    const variantImages =
-                        variant.images || [];
-
-
-                    for(
-                        let i = 0;
-                        i < variantImages.length;
-                        i++
+                    if(
+                        event.key === "Enter" ||
+                        event.key === " "
                     ){
 
-                        const url =
-                            String(
-                                variantImages[i]
-                            ).trim();
+                        event.preventDefault();
 
 
-                        if(
-                            !url ||
-                            !images.includes(url)
-                        ){
-                            continue;
-                        }
+                        const location =
+                            findImageLocation(
+                                product,
+                                currentIndex
+                            );
 
 
-                        /*
-                         * El índice global debe
-                         * coincidir con el índice
-                         * mostrado en la tarjeta.
-                         */
+                        openProduct(
+                            productIndex,
+                            location.variantIndex,
+                            location.imageIndex
+                        );
 
-                        if(
-                            counter === currentIndex
-                        ){
-
-                            variantIndex =
-                                v;
-
-
-                            variantImageIndex =
-                                i;
-
-
-                            found = true;
-
-                            break;
-
-                        }
-
-
-                        counter++;
-
-                    }
-
-
-                    if(found){
-                        break;
                     }
 
                 }
+            );
 
+        }
+    );
 
-                openProduct(
-                    productIndex,
-                    variantIndex,
-                    variantImageIndex
-                );
-
-            }
-        );
-
-    });
+}
 
 
 /* =====================================================
@@ -3357,7 +3690,7 @@ function openProduct(
         Math.max(
             0,
             Math.min(
-                variantIndex,
+                Number(variantIndex) || 0,
                 variants.length - 1
             )
         );
@@ -3382,7 +3715,7 @@ function openProduct(
             Math.max(
                 0,
                 Math.min(
-                    imageIndex,
+                    Number(imageIndex) || 0,
                     images.length - 1
                 )
             );
@@ -3426,18 +3759,16 @@ function renderProductPanel(){
         getCurrentImages();
 
 
-    const sizes =
-        getSizes(product);
-
-
     if(!product || !variant){
         return;
     }
 
 
-    /* ================================================
-       DATOS DENTRO DE LA IMAGEN
-    ================================================= */
+    /*
+     * =============================================
+     * INFORMACIÓN
+     * =============================================
+     */
 
     document
         .getElementById(
@@ -3473,13 +3804,16 @@ function renderProductPanel(){
         "REF: " +
         (
             product.ref ||
-            product.id
+            product.id ||
+            "-"
         );
 
 
-    /* ================================================
-       DESCRIPCIÓN
-    ================================================= */
+    /*
+     * =============================================
+     * DESCRIPCIÓN
+     * =============================================
+     */
 
     document
         .getElementById(
@@ -3490,9 +3824,11 @@ function renderProductPanel(){
         "";
 
 
-    /* ================================================
-       IMAGEN
-    ================================================= */
+    /*
+     * =============================================
+     * IMAGEN
+     * =============================================
+     */
 
     const panelImage =
         document.getElementById(
@@ -3501,6 +3837,16 @@ function renderProductPanel(){
 
 
     if(images.length){
+
+        currentImageIndex =
+            Math.max(
+                0,
+                Math.min(
+                    currentImageIndex,
+                    images.length - 1
+                )
+            );
+
 
         panelImage.src =
             images[
@@ -3523,9 +3869,11 @@ function renderProductPanel(){
     updatePanelCounter();
 
 
-    /* ================================================
-       TALLAS
-    ================================================= */
+    /*
+     * =============================================
+     * TALLAS
+     * =============================================
+     */
 
     const sizeArea =
         document.getElementById(
@@ -3539,6 +3887,10 @@ function renderProductPanel(){
         );
 
 
+    const sizes =
+        getSizes(product);
+
+
     if(sizes.length){
 
         sizeArea.style.display =
@@ -3546,52 +3898,65 @@ function renderProductPanel(){
 
 
         sizesContainer.innerHTML =
-            sizes
-                .map(
-                    (size,index)=>`
-
-                        <button
-                            type="button"
-                            class="size ${
-                                currentSize === size
-                                    ? "active"
-                                    : ""
-                            }"
-                            data-size-index="${index}"
-                        >
-
-                            ${escapeHTML(size)}
-
-                        </button>
-
-                    `
-                )
-                .join("");
+            "";
 
 
-        sizesContainer
-            .querySelectorAll(".size")
-            .forEach(button=>{
+        sizes.forEach(
+            (size,index)=>{
+
+                const button =
+                    document.createElement(
+                        "button"
+                    );
+
+
+                button.type =
+                    "button";
+
+
+                button.className =
+                    "size";
+
+
+                if(
+                    currentSize === size
+                ){
+
+                    button.classList.add(
+                        "active"
+                    );
+
+                }
+
+
+                button.dataset.sizeIndex =
+                    String(index);
+
+
+                button.textContent =
+                    size;
+
 
                 button.addEventListener(
                     "click",
-                    function(){
-
-                        selectSize(
-                            Number(
-                                this.dataset.sizeIndex
-                            )
-                        );
-
+                    ()=>{
+                        selectSize(index);
                     }
                 );
 
-            });
+
+                sizesContainer.appendChild(
+                    button
+                );
+
+            }
+        );
 
     }else{
 
         sizeArea.style.display =
             "none";
+
 
         sizesContainer.innerHTML =
             "";
@@ -3599,21 +3964,33 @@ function renderProductPanel(){
     }
 
 
-    /* ================================================
-       CANTIDAD
-    ================================================= */
+    /*
+     * =============================================
+     * CANTIDAD
+     * =============================================
+     */
 
     document
         .getElementById(
             "panelQuantity"
         )
         .textContent =
-        currentQuantity;
+        String(currentQuantity);
 
 
-    /* ================================================
-       ENVÍO
-    ================================================= */
+    /*
+     * =============================================
+     * ENVÍO
+     * =============================================
+     */
+
+    const shippingMin =
+        product.shipping_min ?? 3;
+
+
+    const shippingMax =
+        product.shipping_max ?? 9;
+
 
     document
         .getElementById(
@@ -3628,11 +4005,11 @@ function renderProductPanel(){
             </strong>
 
             ${escapeHTML(
-                product.shipping_min ?? 3
+                shippingMin
             )}
             –
             ${escapeHTML(
-                product.shipping_max ?? 9
+                shippingMax
             )}
 
             días laborables
@@ -3640,9 +4017,11 @@ function renderProductPanel(){
         `;
 
 
-    /* ================================================
-       STOCK
-    ================================================= */
+    /*
+     * =============================================
+     * STOCK
+     * =============================================
+     */
 
     const stockElement =
         document.getElementById(
@@ -3658,7 +4037,8 @@ function renderProductPanel(){
 
     const stockDefined =
         product.stock !== null &&
-        product.stock !== undefined;
+        product.stock !== undefined &&
+        product.stock !== "";
 
 
     if(stockDefined){
@@ -3667,30 +4047,49 @@ function renderProductPanel(){
             Number(product.stock);
 
 
-        if(stock <= 0){
+        if(
+            !Number.isFinite(stock) ||
+            stock <= 0
+        ){
 
             stockElement.textContent =
                 "AGOTADO";
 
+
             stockElement.className =
                 "stock out";
 
+
             buyButton.disabled =
                 true;
+
 
             buyButton.textContent =
                 "AGOTADO";
 
         }else{
 
+            if(
+                currentQuantity > stock
+            ){
+
+                currentQuantity =
+                    stock;
+
+            }
+
+
             stockElement.textContent =
                 `Stock disponible: ${stock}`;
+
 
             stockElement.className =
                 "stock";
 
+
             buyButton.disabled =
                 false;
+
 
             buyButton.textContent =
                 "COMPRAR";
@@ -3702,11 +4101,14 @@ function renderProductPanel(){
         stockElement.textContent =
             "";
 
+
         stockElement.className =
             "stock";
 
+
         buyButton.disabled =
             false;
+
 
         buyButton.textContent =
             "COMPRAR";
@@ -3717,18 +4119,15 @@ function renderProductPanel(){
 
 
 /* =====================================================
-   CAMBIAR FOTO
+   CAMBIAR FOTO DEL PANEL
 ===================================================== */
 
-function changePanelImage(direction){
+function changePanelImage(
+    direction
+){
 
     const images =
         getCurrentImages();
-
-
-    if(!images.length){
-        return;
-    }
 
 
     if(images.length <= 1){
@@ -3745,7 +4144,8 @@ function changePanelImage(direction){
         images.length
     ){
 
-        currentImageIndex = 0;
+        currentImageIndex =
+            0;
 
     }
 
@@ -3766,7 +4166,7 @@ function changePanelImage(direction){
 
 
 /* =====================================================
-   ACTUALIZAR SOLO IMAGEN
+   ACTUALIZAR IMAGEN
 ===================================================== */
 
 function updatePanelImage(){
@@ -3870,10 +4270,12 @@ function updatePanelCounter(){
 
 
 /* =====================================================
-   SWIPE CON DEDO
+   TOUCH PANEL
 ===================================================== */
 
-function panelTouchStart(event){
+function panelTouchStart(
+    event
+){
 
     if(
         !event.touches ||
@@ -3891,12 +4293,15 @@ function panelTouchStart(event){
         event.touches[0].clientY;
 
 
-    touchMoved = false;
+    touchMoved =
+        false;
 
 }
 
 
-function panelTouchEnd(event){
+function panelTouchEnd(
+    event
+){
 
     if(
         !event.changedTouches ||
@@ -3922,19 +4327,14 @@ function panelTouchEnd(event){
         endY - touchStartY;
 
 
-    /*
-     * Solo cambiamos la foto cuando
-     * realmente ha habido un gesto
-     * horizontal.
-     */
-
     if(
         Math.abs(diffX) >= 45 &&
         Math.abs(diffX) >
         Math.abs(diffY)
     ){
 
-        touchMoved = true;
+        touchMoved =
+            true;
 
 
         changePanelImage(
@@ -3949,19 +4349,15 @@ function panelTouchEnd(event){
 
 
 /* =====================================================
-   CLICK SOBRE LA IMAGEN
+   CLICK IMAGEN
 ===================================================== */
 
 function handlePanelImageClick(){
 
-    /*
-     * Si venimos de un swipe,
-     * no abrimos el lightbox.
-     */
-
     if(touchMoved){
 
-        touchMoved = false;
+        touchMoved =
+            false;
 
         return;
 
@@ -3979,10 +4375,17 @@ function handlePanelImageClick(){
 
 function selectSize(index){
 
+    const product =
+        getCurrentProduct();
+
+
+    if(!product){
+        return;
+    }
+
+
     const sizes =
-        getSizes(
-            getCurrentProduct()
-        );
+        getSizes(product);
 
 
     if(
@@ -4005,7 +4408,9 @@ function selectSize(index){
    CANTIDAD
 ===================================================== */
 
-function changeQuantity(change){
+function changeQuantity(
+    change
+){
 
     const product =
         getCurrentProduct();
@@ -4017,26 +4422,31 @@ function changeQuantity(change){
 
 
     currentQuantity +=
-        change;
+        Number(change) || 0;
 
 
     if(currentQuantity < 1){
 
-        currentQuantity = 1;
+        currentQuantity =
+            1;
 
     }
 
 
-    if(
+    const stockDefined =
         product.stock !== null &&
-        product.stock !== undefined
-    ){
+        product.stock !== undefined &&
+        product.stock !== "";
+
+
+    if(stockDefined){
 
         const stock =
             Number(product.stock);
 
 
         if(
+            Number.isFinite(stock) &&
             stock > 0 &&
             currentQuantity > stock
         ){
@@ -4054,13 +4464,13 @@ function changeQuantity(change){
             "panelQuantity"
         )
         .textContent =
-        currentQuantity;
+        String(currentQuantity);
 
 }
 
 
 /* =====================================================
-   CERRAR PANEL
+   CERRAR PRODUCTO
 ===================================================== */
 
 function closeProductPanel(){
@@ -4074,27 +4484,7 @@ function closeProductPanel(){
         );
 
 
-    if(
-        !document
-            .getElementById(
-                "lightbox"
-            )
-            .classList.contains(
-                "show"
-            ) &&
-        !document
-            .getElementById(
-                "orderModal"
-            )
-            .classList.contains(
-                "show"
-            )
-    ){
-
-        document.body.style.overflow =
-            "";
-
-    }
+    restoreBodyScroll();
 
 }
 
@@ -4132,6 +4522,10 @@ function openLightbox(){
             "show"
         );
 
+
+    document.body.style.overflow =
+        "hidden";
+
 }
 
 
@@ -4150,6 +4544,50 @@ function closeLightbox(){
         !document
             .getElementById(
                 "productPanel"
+            )
+            .classList.contains(
+                "show"
+            ) &&
+        !document
+            .getElementById(
+                "orderModal"
+            )
+            .classList.contains(
+                "show"
+            )
+    ){
+
+        restoreBodyScroll();
+
+    }
+
+}
+
+
+/* =====================================================
+   SCROLL BODY
+===================================================== */
+
+function restoreBodyScroll(){
+
+    if(
+        !document
+            .getElementById(
+                "productPanel"
+            )
+            .classList.contains(
+                "show"
+            ) &&
+        !document
+            .getElementById(
+                "lightbox"
+            )
+            .classList.contains(
+                "show"
+            ) &&
+        !document
+            .getElementById(
+                "orderModal"
             )
             .classList.contains(
                 "show"
@@ -4192,7 +4630,7 @@ function buyCurrentProduct(){
         !currentSize
     ){
 
-        alert(
+        showSimpleMessage(
             "Selecciona una talla antes de continuar."
         );
 
@@ -4201,33 +4639,44 @@ function buyCurrentProduct(){
     }
 
 
-    if(
+    const stockDefined =
         product.stock !== null &&
         product.stock !== undefined &&
-        Number(product.stock) <= 0
-    ){
-
-        alert(
-            "Este producto está agotado."
-        );
-
-        return;
-
-    }
+        product.stock !== "";
 
 
-    if(
-        product.stock !== null &&
-        product.stock !== undefined &&
-        currentQuantity >
-        Number(product.stock)
-    ){
+    if(stockDefined){
 
-        alert(
-            "La cantidad seleccionada supera el stock disponible."
-        );
+        const stock =
+            Number(product.stock);
 
-        return;
+
+        if(
+            !Number.isFinite(stock) ||
+            stock <= 0
+        ){
+
+            showSimpleMessage(
+                "Este producto está agotado."
+            );
+
+            return;
+
+        }
+
+
+        if(
+            currentQuantity >
+            stock
+        ){
+
+            showSimpleMessage(
+                "La cantidad seleccionada supera el stock disponible."
+            );
+
+            return;
+
+        }
 
     }
 
@@ -4283,6 +4732,25 @@ function buyCurrentProduct(){
 
 
 /* =====================================================
+   MENSAJE
+===================================================== */
+
+function showSimpleMessage(
+    message
+){
+
+    /*
+     * Mantiene el comportamiento
+     * sencillo y compatible con
+     * todos los navegadores.
+     */
+
+    alert(message);
+
+}
+
+
+/* =====================================================
    RESUMEN PEDIDO
 ===================================================== */
 
@@ -4290,6 +4758,11 @@ function showOrderSummary(){
 
     const order =
         currentOrder;
+
+
+    if(!order){
+        return;
+    }
 
 
     document
@@ -4300,7 +4773,8 @@ function showOrderSummary(){
 
             <strong>
                 ${escapeHTML(
-                    order.product.name
+                    order.product.name ||
+                    "Producto"
                 )}
             </strong>
 
@@ -4309,7 +4783,8 @@ function showOrderSummary(){
             REF:
             ${escapeHTML(
                 order.product.ref ||
-                order.product.id
+                order.product.id ||
+                "-"
             )}
 
             <br>
@@ -4329,7 +4804,8 @@ function showOrderSummary(){
 
             <strong>
                 ${escapeHTML(
-                    order.variant.name
+                    order.variant.name ||
+                    "Color"
                 )}
             </strong>
 
@@ -4391,8 +4867,7 @@ function closeOrderModal(){
         );
 
 
-    document.body.style.overflow =
-        "";
+    restoreBodyScroll();
 
 }
 
@@ -4414,7 +4889,9 @@ function fieldValue(id){
 }
 
 
-function showFormError(message){
+function showFormError(
+    message
+){
 
     const error =
         document.getElementById(
@@ -4516,6 +4993,12 @@ function sendOrderToWhatsApp(){
             "Introduce tu nombre y apellidos."
         );
 
+        document
+            .getElementById(
+                "customerName"
+            )
+            .focus();
+
         return;
 
     }
@@ -4526,6 +5009,12 @@ function sendOrderToWhatsApp(){
         showFormError(
             "Introduce tu teléfono."
         );
+
+        document
+            .getElementById(
+                "customerPhone"
+            )
+            .focus();
 
         return;
 
@@ -4544,6 +5033,29 @@ function sendOrderToWhatsApp(){
         showFormError(
             "Completa todos los campos obligatorios."
         );
+
+        return;
+
+    }
+
+
+    const emailElement =
+        document.getElementById(
+            "customerEmail"
+        );
+
+
+    if(
+        email &&
+        emailElement &&
+        !emailElement.checkValidity()
+    ){
+
+        showFormError(
+            "Introduce un email válido."
+        );
+
+        emailElement.focus();
 
         return;
 
@@ -4581,16 +5093,16 @@ function sendOrderToWhatsApp(){
 📦 PRODUCTO
 
 Producto:
-${currentOrder.product.name}
+${currentOrder.product.name || "Producto"}
 
 REF:
-${currentOrder.product.ref || currentOrder.product.id}
+${currentOrder.product.ref || currentOrder.product.id || "-"}
 
 Categoría:
 ${currentOrder.product.category || CATEGORY}
 
 Variante:
-${currentOrder.variant.name}
+${currentOrder.variant.name || "Color"}
 
 Talla:
 ${currentOrder.size}
@@ -4661,16 +5173,39 @@ ${notes || "Ninguna"}
     closeOrderModal();
 
 
-    window.open(
-        url,
-        "_blank"
-    );
+    /*
+     * En algunos navegadores,
+     * window.open funciona mejor
+     * inmediatamente después de la
+     * acción del usuario.
+     */
+
+    const newWindow =
+        window.open(
+            url,
+            "_blank",
+            "noopener,noreferrer"
+        );
+
+
+    /*
+     * Si el navegador bloquea la ventana,
+     * dejamos la URL preparada para que
+     * el usuario pueda continuar.
+     */
+
+    if(!newWindow){
+
+        window.location.href =
+            url;
+
+    }
 
 }
 
 
 /* =====================================================
-   EVENTOS DEL PANEL
+   EVENTOS PANEL
 ===================================================== */
 
 const panelImageArea =
@@ -4679,28 +5214,32 @@ const panelImageArea =
     );
 
 
-panelImageArea.addEventListener(
-    "touchstart",
-    panelTouchStart,
-    {
-        passive:true
-    }
-);
+if(panelImageArea){
+
+    panelImageArea.addEventListener(
+        "touchstart",
+        panelTouchStart,
+        {
+            passive:true
+        }
+    );
 
 
-panelImageArea.addEventListener(
-    "touchend",
-    panelTouchEnd,
-    {
-        passive:true
-    }
-);
+    panelImageArea.addEventListener(
+        "touchend",
+        panelTouchEnd,
+        {
+            passive:true
+        }
+    );
 
 
-panelImageArea.addEventListener(
-    "click",
-    handlePanelImageClick
-);
+    panelImageArea.addEventListener(
+        "click",
+        handlePanelImageClick
+    );
+
+}
 
 
 /* =====================================================
@@ -4944,36 +5483,47 @@ const categoryNav =
 
 if(categoryNav){
 
-    const savedScroll =
-        sessionStorage.getItem(
-            "strangisCategoryScroll"
-        );
+    try{
 
-
-    if(savedScroll !== null){
-
-        categoryNav.scrollLeft =
-            Number(savedScroll);
-
-    }
-
-
-    categoryNav.addEventListener(
-        "scroll",
-        function(){
-
-            sessionStorage.setItem(
-                "strangisCategoryScroll",
-                String(
-                    categoryNav.scrollLeft
-                )
+        const savedScroll =
+            sessionStorage.getItem(
+                "strangisCategoryScroll"
             );
 
-        },
-        {
-            passive:true
+
+        if(savedScroll !== null){
+
+            categoryNav.scrollLeft =
+                Number(savedScroll);
+
         }
-    );
+
+
+        categoryNav.addEventListener(
+            "scroll",
+            function(){
+
+                sessionStorage.setItem(
+                    "strangisCategoryScroll",
+                    String(
+                        categoryNav.scrollLeft
+                    )
+                );
+
+            },
+            {
+                passive:true
+            }
+        );
+
+    }catch(error){
+
+        console.warn(
+            "No se pudo guardar la posición del menú.",
+            error
+        );
+
+    }
 
 }
 
