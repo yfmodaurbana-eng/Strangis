@@ -2744,10 +2744,9 @@ async function loadProducts(){
 
 }
 
-
 /* =====================================================
    PREVISUALIZACIÓN
-   SOLO PRIMERA FOTO DE CADA PRODUCTO
+   FOTO + SWIPE EN TARJETA
 ===================================================== */
 
 function renderPreview(){
@@ -2807,13 +2806,17 @@ function renderPreview(){
 
 
             /*
-             * MUY IMPORTANTE:
-             * La previsualización solo
-             * utiliza la primera imagen.
+             * Todas las imágenes de la primera
+             * variante estarán disponibles
+             * para deslizar dentro de la tarjeta.
              */
 
+            const images =
+                firstVariant.images;
+
+
             const image =
-                firstVariant.images[0];
+                images[0];
 
 
             cards.push(`
@@ -2821,6 +2824,7 @@ function renderPreview(){
                 <article
                     class="preview-card"
                     data-product-index="${index}"
+                    data-image-index="0"
                 >
 
                     <div
@@ -2855,33 +2859,289 @@ function renderPreview(){
             ? cards.join("")
             :
             `
+
             <div class="empty">
 
                 No hay imágenes disponibles.
 
             </div>
+
             `;
 
 
     /*
-     * Eventos después de crear
-     * las tarjetas.
+     * =================================================
+     * EVENTOS DE LAS TARJETAS
+     * =================================================
      */
 
     container
         .querySelectorAll(".preview-card")
         .forEach(card=>{
 
+            const productIndex =
+                Number(
+                    card.dataset.productIndex
+                );
+
+
+            const product =
+                PRODUCTS[productIndex];
+
+
+            const variants =
+                getVariants(product);
+
+
+            const images =
+                variants.length &&
+                variants[0].images
+                    ? variants[0].images
+                    : [];
+
+
+            let startX = 0;
+            let startY = 0;
+            let moved = false;
+
+
+            const imageElement =
+                card.querySelector(
+                    ".preview-image img"
+                );
+
+
+            /*
+             * =================================================
+             * TOUCH START
+             * =================================================
+             */
+
+            card.addEventListener(
+                "touchstart",
+                function(event){
+
+                    if(
+                        !event.touches ||
+                        !event.touches.length
+                    ){
+                        return;
+                    }
+
+
+                    startX =
+                        event.touches[0].clientX;
+
+
+                    startY =
+                        event.touches[0].clientY;
+
+
+                    moved = false;
+
+                },
+                {
+                    passive:true
+                }
+            );
+
+
+            /*
+             * =================================================
+             * TOUCH MOVE
+             * =================================================
+             */
+
+            card.addEventListener(
+                "touchmove",
+                function(event){
+
+                    if(
+                        !event.touches ||
+                        !event.touches.length
+                    ){
+                        return;
+                    }
+
+
+                    const diffX =
+                        event.touches[0].clientX -
+                        startX;
+
+
+                    const diffY =
+                        event.touches[0].clientY -
+                        startY;
+
+
+                    /*
+                     * Solo consideramos gesto horizontal.
+                     */
+
+                    if(
+                        Math.abs(diffX) > 15 &&
+                        Math.abs(diffX) >
+                        Math.abs(diffY)
+                    ){
+
+                        moved = true;
+
+                    }
+
+                },
+                {
+                    passive:true
+                }
+            );
+
+
+            /*
+             * =================================================
+             * TOUCH END
+             * =================================================
+             */
+
+            card.addEventListener(
+                "touchend",
+                function(event){
+
+                    if(
+                        !event.changedTouches ||
+                        !event.changedTouches.length
+                    ){
+                        return;
+                    }
+
+
+                    const endX =
+                        event.changedTouches[0].clientX;
+
+
+                    const endY =
+                        event.changedTouches[0].clientY;
+
+
+                    const diffX =
+                        endX - startX;
+
+
+                    const diffY =
+                        endY - startY;
+
+
+                    /*
+                     * Si no es un gesto horizontal,
+                     * no hacemos nada.
+                     */
+
+                    if(
+                        Math.abs(diffX) < 45 ||
+                        Math.abs(diffX) <= Math.abs(diffY)
+                    ){
+
+                        return;
+
+                    }
+
+
+                    if(images.length <= 1){
+
+                        return;
+
+                    }
+
+
+                    let currentIndex =
+                        Number(
+                            card.dataset.imageIndex || 0
+                        );
+
+
+                    /*
+                     * Deslizar hacia la izquierda:
+                     * siguiente imagen.
+                     */
+
+                    if(diffX < 0){
+
+                        currentIndex++;
+
+                        if(
+                            currentIndex >=
+                            images.length
+                        ){
+
+                            currentIndex = 0;
+
+                        }
+
+                    }
+
+
+                    /*
+                     * Deslizar hacia la derecha:
+                     * imagen anterior.
+                     */
+
+                    else{
+
+                        currentIndex--;
+
+                        if(currentIndex < 0){
+
+                            currentIndex =
+                                images.length - 1;
+
+                        }
+
+                    }
+
+
+                    card.dataset.imageIndex =
+                        String(currentIndex);
+
+
+                    imageElement.src =
+                        images[currentIndex];
+
+
+                },
+                {
+                    passive:true
+                }
+            );
+
+
+            /*
+             * =================================================
+             * CLICK
+             * =================================================
+             *
+             * Si el usuario solamente toca la tarjeta,
+             * se abre el producto.
+             *
+             * Si acaba de deslizar, NO se abre.
+             */
+
             card.addEventListener(
                 "click",
                 function(){
 
+                    if(moved){
+
+                        moved = false;
+
+                        return;
+
+                    }
+
+
                     openProduct(
-                        Number(
-                            this.dataset.productIndex
-                        ),
+                        productIndex,
                         0,
-                        0
+                        Number(
+                            card.dataset.imageIndex || 0
+                        )
                     );
 
                 }
@@ -2890,7 +3150,6 @@ function renderPreview(){
         });
 
 }
-
 
 /* =====================================================
    ABRIR PRODUCTO
