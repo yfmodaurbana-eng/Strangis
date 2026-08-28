@@ -1529,14 +1529,14 @@ footer{
     <div class="logo">STRANGIS</div>
 
     <nav aria-label="Categorías">
-        <a href="previsualizacion.html?categoria=bisuteria" data-category="bisuteria">Bisutería</a>
-        <a href="previsualizacion.html?categoria=camisetas" data-category="camisetas">Camisetas</a>
-        <a href="previsualizacion.html?categoria=conjuntos" data-category="conjuntos">Conjuntos</a>
-        <a href="previsualizacion.html?categoria=gafas" data-category="gafas">Gafas</a>
-        <a href="previsualizacion.html?categoria=gorras" data-category="gorras">Gorras</a>
-        <a href="previsualizacion.html?categoria=pantalones" data-category="pantalones">Pantalones</a>
-        <a href="previsualizacion.html?categoria=pedreria" data-category="pedreria">Pedrería</a>
-        <a href="previsualizacion.html?categoria=zapatillas" data-category="zapatillas">Zapatillas</a>
+        <a href="previsualizacion_categorias.html?categoria=bisuteria" data-category="bisuteria">Bisutería</a>
+        <a href="previsualizacion_categorias.html?categoria=camisetas" data-category="camisetas">Camisetas</a>
+        <a href="previsualizacion_categorias.html?categoria=conjuntos" data-category="conjuntos">Conjuntos</a>
+        <a href="previsualizacion_categorias.html?categoria=gafas" data-category="gafas">Gafas</a>
+        <a href="previsualizacion_categorias.html?categoria=gorras" data-category="gorras">Gorras</a>
+        <a href="previsualizacion_categorias.html?categoria=pantalones" data-category="pantalones">Pantalones</a>
+        <a href="previsualizacion_categorias.html?categoria=pedreria" data-category="pedreria">Pedrería</a>
+        <a href="previsualizacion_categorias.html?categoria=zapatillas" data-category="zapatillas">Zapatillas</a>
     </nav>
 </header>
 
@@ -2144,7 +2144,13 @@ function buyProduct() {
     */
 
     const phone =
-        '34600000000';
+        String(state.products[state.productIndex]?.whatsapp || '')
+            .replace(/\D/g, '');
+
+    if (!phone) {
+        alert('Este producto no tiene configurado el WhatsApp.');
+        return;
+    }
 
     window.open(
         `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
