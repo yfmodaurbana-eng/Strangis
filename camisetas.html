@@ -2749,7 +2749,7 @@ async function loadProducts(){
 
 /* =====================================================
    PREVISUALIZACIÓN
-   FOTO + SWIPE EN TARJETA
+   TODAS LAS FOTOS + SWIPE
 ===================================================== */
 
 function renderPreview(){
@@ -2793,33 +2793,63 @@ function renderPreview(){
             }
 
 
-            const firstVariant =
-                variants[0];
+            /*
+             * =================================================
+             * REUNIR TODAS LAS IMÁGENES DEL PRODUCTO
+             * =================================================
+             *
+             * Antes solamente utilizábamos variants[0].
+             *
+             * Ahora recorremos TODAS las variantes y
+             * reunimos todas sus imágenes.
+             */
+
+            const allImages = [];
 
 
-            if(
-                !firstVariant ||
-                !firstVariant.images ||
-                !firstVariant.images.length
-            ){
+            variants.forEach(
+                variant=>{
 
+                    if(
+                        variant &&
+                        Array.isArray(variant.images)
+                    ){
+
+                        variant.images
+                            .filter(Boolean)
+                            .forEach(
+                                image=>{
+
+                                    if(
+                                        !allImages.includes(image)
+                                    ){
+
+                                        allImages.push(
+                                            image
+                                        );
+
+                                    }
+
+                                }
+                            );
+
+                    }
+
+                }
+            );
+
+
+            if(!allImages.length){
                 return;
-
             }
 
 
             /*
-             * Todas las imágenes de la primera
-             * variante estarán disponibles
-             * para deslizar dentro de la tarjeta.
+             * Primera imagen que verá el cliente.
              */
 
-            const images =
-                firstVariant.images;
-
-
             const image =
-                images[0];
+                allImages[0];
 
 
             cards.push(`
@@ -2896,22 +2926,62 @@ function renderPreview(){
                 getVariants(product);
 
 
-            const images =
-                variants.length &&
-                variants[0].images
-                    ? variants[0].images
-                    : [];
+            /*
+             * =================================================
+             * TODAS LAS IMÁGENES DEL PRODUCTO
+             * =================================================
+             */
+
+            const allImages = [];
 
 
-            let startX = 0;
-            let startY = 0;
-            let moved = false;
+            variants.forEach(
+                variant=>{
+
+                    if(
+                        variant &&
+                        Array.isArray(variant.images)
+                    ){
+
+                        variant.images
+                            .filter(Boolean)
+                            .forEach(
+                                image=>{
+
+                                    if(
+                                        !allImages.includes(image)
+                                    ){
+
+                                        allImages.push(
+                                            image
+                                        );
+
+                                    }
+
+                                }
+                            );
+
+                    }
+
+                }
+            );
+
+
+            if(!allImages.length){
+                return;
+            }
 
 
             const imageElement =
                 card.querySelector(
                     ".preview-image img"
                 );
+
+
+            let startX = 0;
+            let startY = 0;
+
+            let moved = false;
 
 
             /*
@@ -2977,10 +3047,6 @@ function renderPreview(){
                         startY;
 
 
-                    /*
-                     * Solo consideramos gesto horizontal.
-                     */
-
                     if(
                         Math.abs(diffX) > 15 &&
                         Math.abs(diffX) >
@@ -3033,8 +3099,8 @@ function renderPreview(){
 
 
                     /*
-                     * Si no es un gesto horizontal,
-                     * no hacemos nada.
+                     * No hacemos nada si no es un
+                     * desplazamiento horizontal real.
                      */
 
                     if(
@@ -3047,7 +3113,7 @@ function renderPreview(){
                     }
 
 
-                    if(images.length <= 1){
+                    if(allImages.length <= 1){
 
                         return;
 
@@ -3061,17 +3127,17 @@ function renderPreview(){
 
 
                     /*
-                     * Deslizar hacia la izquierda:
-                     * siguiente imagen.
+                     * IZQUIERDA = SIGUIENTE
                      */
 
                     if(diffX < 0){
 
                         currentIndex++;
 
+
                         if(
                             currentIndex >=
-                            images.length
+                            allImages.length
                         ){
 
                             currentIndex = 0;
@@ -3082,18 +3148,18 @@ function renderPreview(){
 
 
                     /*
-                     * Deslizar hacia la derecha:
-                     * imagen anterior.
+                     * DERECHA = ANTERIOR
                      */
 
                     else{
 
                         currentIndex--;
 
+
                         if(currentIndex < 0){
 
                             currentIndex =
-                                images.length - 1;
+                                allImages.length - 1;
 
                         }
 
@@ -3104,9 +3170,14 @@ function renderPreview(){
                         String(currentIndex);
 
 
-                    imageElement.src =
-                        images[currentIndex];
+                    /*
+                     * Cambiar imagen inmediatamente.
+                     */
 
+                    imageElement.src =
+                        allImages[
+                            currentIndex
+                        ];
 
                 },
                 {
@@ -3119,16 +3190,16 @@ function renderPreview(){
              * =================================================
              * CLICK
              * =================================================
-             *
-             * Si el usuario solamente toca la tarjeta,
-             * se abre el producto.
-             *
-             * Si acaba de deslizar, NO se abre.
              */
 
             card.addEventListener(
                 "click",
                 function(){
+
+                    /*
+                     * Si el usuario acaba de deslizar,
+                     * no abrimos el producto.
+                     */
 
                     if(moved){
 
@@ -3139,12 +3210,85 @@ function renderPreview(){
                     }
 
 
-                    openProduct(
-                        productIndex,
-                        0,
+                    /*
+                     * Averiguamos qué imagen está viendo.
+                     */
+
+                    const imageIndex =
                         Number(
                             card.dataset.imageIndex || 0
-                        )
+                        );
+
+
+                    /*
+                     * Abrimos el producto.
+                     *
+                     * Como las imágenes pueden estar
+                     * repartidas entre varias variantes,
+                     * buscamos también la variante
+                     * correspondiente.
+                     */
+
+                    let variantIndex = 0;
+                    let variantImageIndex = 0;
+                    let found = false;
+
+
+                    let globalIndex = 0;
+
+
+                    for(
+                        let v = 0;
+                        v < variants.length;
+                        v++
+                    ){
+
+                        const variant =
+                            variants[v];
+
+
+                        const variantImages =
+                            variant?.images || [];
+
+
+                        for(
+                            let i = 0;
+                            i < variantImages.length;
+                            i++
+                        ){
+
+                            if(
+                                globalIndex ===
+                                imageIndex
+                            ){
+
+                                variantIndex = v;
+
+                                variantImageIndex = i;
+
+                                found = true;
+
+                                break;
+
+                            }
+
+
+                            globalIndex++;
+
+                        }
+
+
+                        if(found){
+                            break;
+                        }
+
+                    }
+
+
+                    openProduct(
+                        productIndex,
+                        variantIndex,
+                        variantImageIndex
                     );
 
                 }
@@ -3153,6 +3297,7 @@ function renderPreview(){
         });
 
 }
+
 
 /* =====================================================
    ABRIR PRODUCTO
