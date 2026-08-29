@@ -4124,7 +4124,7 @@ function changeLightboxImage(
 
 }
 
-
+    
 function closeLightbox(){
 
     const lightbox =
@@ -4132,17 +4132,34 @@ function closeLightbox(){
             "imageLightbox"
         );
 
+    if(!lightbox){
+        return;
+    }
+
+    /*
+     * Quitamos primero el foco del botón
+     * antes de ocultar el Lightbox.
+     */
+    const activeElement =
+        document.activeElement;
+
+    if(
+        activeElement &&
+        lightbox.contains(activeElement)
+    ){
+
+        activeElement.blur();
+
+    }
 
     lightbox.classList.remove(
         "show"
     );
 
-
     lightbox.setAttribute(
         "aria-hidden",
         "true"
     );
-
 
     if(
         !document
