@@ -1,14 +1,9 @@
+"use strict";
+
 /* =========================================================
    STRANGIS — PRODUCTS.JS
    MOTOR DE PRODUCTOS + SUPABASE
-   REFERENCIAS AUTOMÁTICAS POR PRODUCTO E IMAGEN
-   ========================================================= */
-
-"use strict";
-
-
-/* =========================================================
-   SUPABASE
+   COMPATIBLE CON TODAS LAS CATEGORÍAS
 ========================================================= */
 
 const STRANGIS_SUPABASE_URL =
@@ -22,33 +17,29 @@ const STRANGIS_PRODUCTS_TABLE =
 
 
 /* =========================================================
-   CONFIGURACIÓN
+   CATEGORÍAS
 ========================================================= */
 
 const STRANGIS_ALLOWED_CATEGORIES = [
     "camisetas",
-    "pantalones",
     "conjuntos",
+    "pantalones",
     "gorras",
     "gafas",
-    "bisuteria"
+    "bisuteria",
+    "pedreria",
+    "zapatillas"
 ];
 
-
 const STRANGIS_CATEGORY_NAMES = {
-
     camisetas: "Camisetas",
-
-    pantalones: "Pantalones",
-
     conjuntos: "Conjuntos",
-
+    pantalones: "Pantalones",
     gorras: "Gorras",
-
     gafas: "Gafas",
-
-    bisuteria: "Bisutería"
-
+    bisuteria: "Bisutería",
+    pedreria: "Pedrería",
+    zapatillas: "Zapatillas"
 };
 
 
@@ -64,47 +55,43 @@ const STRANGIS_PRODUCTS = [];
 ========================================================= */
 
 function strangisString(value) {
-
-    return String(
-        value ?? ""
-    ).trim();
-
+    return String(value ?? "").trim();
 }
 
 
+/*
+ * Normaliza categorías:
+ *
+ * Bisutería  -> bisuteria
+ * BISUTERÍA  -> bisuteria
+ * Pedrería   -> pedreria
+ * conjuntos  -> conjuntos
+ */
 function strangisNormalizeCategory(category) {
 
-    return strangisString(
-        category
-    ).toLowerCase();
-
+    return strangisString(category)
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/\s+/g, "");
 }
 
 
-function strangisNumber(
-    value,
-    fallback = 0
-) {
+function strangisNumber(value, fallback = 0) {
 
     if (
         value === null ||
         value === undefined ||
         value === ""
     ) {
-
         return fallback;
-
     }
 
-
-    const number =
-        Number(value);
-
+    const number = Number(value);
 
     return Number.isFinite(number)
         ? number
         : fallback;
-
 }
 
 
@@ -119,69 +106,37 @@ function strangisPositiveInteger(
             fallback
         );
 
-
     return Math.max(
         0,
         Math.floor(number)
     );
-
 }
 
 
 function strangisParseJSON(value) {
 
-    if (
-        typeof value !== "string"
-    ) {
-
+    if (typeof value !== "string") {
         return value;
-
     }
 
-
-    const text =
-        value.trim();
-
+    const text = value.trim();
 
     if (!text) {
-
         return value;
-
     }
-
 
     try {
-
-        return JSON.parse(
-            text
-        );
-
+        return JSON.parse(text);
     }
     catch {
-
         return value;
-
     }
-
 }
 
 
 /* =========================================================
-   REFERENCIAS AUTOMÁTICAS
+   REFERENCIAS
 ========================================================= */
-
-/*
- * Generamos referencias que no dependen
- * de que el usuario escriba nada.
- *
- * Ejemplo:
- *
- * STR-000001
- * STR-000002
- *
- * IMG-000001
- * IMG-000002
- */
 
 function generateProductReference() {
 
@@ -190,19 +145,13 @@ function generateProductReference() {
             .toString(36)
             .toUpperCase();
 
-
     const random =
         Math.random()
             .toString(36)
-            .substring(
-                2,
-                7
-            )
+            .substring(2, 7)
             .toUpperCase();
 
-
     return `STR-${now}-${random}`;
-
 }
 
 
@@ -213,71 +162,41 @@ function generateImageReference() {
             .toString(36)
             .toUpperCase();
 
-
     const random =
         Math.random()
             .toString(36)
-            .substring(
-                2,
-                7
-            )
+            .substring(2, 7)
             .toUpperCase();
 
-
     return `IMG-${now}-${random}`;
-
 }
 
-
-/*
- * Genera una referencia de producto
- * que no exista en memoria.
- */
 
 function generateUniqueProductReference() {
 
     let reference = "";
 
-
     do {
-
         reference =
             generateProductReference();
-
     }
     while (
-        productReferenceExists(
-            reference
-        )
+        productReferenceExists(reference)
     );
 
-
     return reference;
-
 }
 
 
-/*
- * Comprueba referencias de imagen
- * existentes en todos los productos.
- */
-
-function imageReferenceExists(
-    reference
-) {
+function imageReferenceExists(reference) {
 
     const wanted =
-        strangisString(
-            reference
-        ).toLowerCase();
-
+        strangisString(reference)
+            .toLowerCase();
 
     if (!wanted) {
-
         return false;
-
     }
-
 
     for (
         const product
@@ -289,7 +208,6 @@ function imageReferenceExists(
                 product?.images
             );
 
-
         for (
             const image
             of images
@@ -298,21 +216,14 @@ function imageReferenceExists(
             if (
                 strangisString(
                     image?.ref
-                ).toLowerCase() ===
-                wanted
+                ).toLowerCase() === wanted
             ) {
-
                 return true;
-
             }
-
         }
-
     }
 
-
     return false;
-
 }
 
 
@@ -320,22 +231,15 @@ function generateUniqueImageReference() {
 
     let reference = "";
 
-
     do {
-
         reference =
             generateImageReference();
-
     }
     while (
-        imageReferenceExists(
-            reference
-        )
+        imageReferenceExists(reference)
     );
 
-
     return reference;
-
 }
 
 
@@ -345,32 +249,19 @@ function generateUniqueImageReference() {
 
 function normalizeProductImage(item) {
 
-    if (
-        typeof item === "string"
-    ) {
+    if (typeof item === "string") {
 
-        const image =
-            item.trim();
-
+        const image = item.trim();
 
         if (!image) {
-
             return null;
-
         }
 
-
         return {
-
             name: "",
-
-            image: image,
-
-            ref:
-                generateUniqueImageReference()
-
+            image,
+            ref: generateUniqueImageReference()
         };
-
     }
 
 
@@ -378,15 +269,12 @@ function normalizeProductImage(item) {
         !item ||
         typeof item !== "object"
     ) {
-
         return null;
-
     }
 
 
     const image =
         strangisString(
-
             item.image ||
             item.url ||
             item.src ||
@@ -395,18 +283,15 @@ function normalizeProductImage(item) {
             item.photo ||
             item.photo_url ||
             item.photoUrl
-
         );
 
 
     const name =
         strangisString(
-
             item.name ||
             item.color ||
             item.colour ||
             item.variant
-
         );
 
 
@@ -420,24 +305,15 @@ function normalizeProductImage(item) {
 
 
     if (!image) {
-
         return null;
-
     }
 
 
     return {
-
         name,
-
         image,
-
-        ref:
-            ref ||
-            generateUniqueImageReference()
-
+        ref: ref || generateUniqueImageReference()
     };
-
 }
 
 
@@ -448,9 +324,7 @@ function normalizeProductImage(item) {
 function normalizeProductImages(value) {
 
     let raw =
-        strangisParseJSON(
-            value
-        );
+        strangisParseJSON(value);
 
 
     if (
@@ -458,9 +332,7 @@ function normalizeProductImages(value) {
         raw === undefined ||
         raw === ""
     ) {
-
         return [];
-
     }
 
 
@@ -471,55 +343,36 @@ function normalizeProductImages(value) {
     ) {
 
         const normalized =
-            normalizeProductImage(
-                raw
-            );
-
+            normalizeProductImage(raw);
 
         return normalized
             ? [normalized]
             : [];
-
     }
 
 
-    if (
-        typeof raw === "string"
-    ) {
+    if (typeof raw === "string") {
 
         const normalized =
-            normalizeProductImage(
-                raw
-            );
-
+            normalizeProductImage(raw);
 
         return normalized
             ? [normalized]
             : [];
-
     }
 
 
-    if (
-        Array.isArray(raw)
-    ) {
+    if (Array.isArray(raw)) {
 
         return raw
-
-            .map(
-                item =>
-                    normalizeProductImage(
-                        item
-                    )
+            .map(item =>
+                normalizeProductImage(item)
             )
-
             .filter(Boolean);
-
     }
 
 
     return [];
-
 }
 
 
@@ -552,7 +405,6 @@ const supabaseClient = {
                 "application/json",
 
             ...(options.headers || {})
-
         };
 
 
@@ -580,7 +432,6 @@ const supabaseClient = {
                     "Comprueba tu conexión a Internet."
                 )
             );
-
         }
 
 
@@ -596,18 +447,13 @@ const supabaseClient = {
             try {
 
                 data =
-                    JSON.parse(
-                        text
-                    );
+                    JSON.parse(text);
 
             }
             catch {
 
-                data =
-                    text;
-
+                data = text;
             }
-
         }
 
 
@@ -641,38 +487,28 @@ const supabaseClient = {
             error.status =
                 response.status;
 
-
             error.code =
-                data?.code ||
-                null;
-
+                data?.code || null;
 
             error.details =
-                data?.details ||
-                null;
-
+                data?.details || null;
 
             error.hint =
-                data?.hint ||
-                null;
+                data?.hint || null;
 
 
             throw error;
-
         }
 
 
         return data;
-
     },
 
 
     from(table) {
 
         const encodedTable =
-            encodeURIComponent(
-                table
-            );
+            encodeURIComponent(table);
 
 
         return {
@@ -687,47 +523,34 @@ const supabaseClient = {
                             `/rest/v1/${encodedTable}`,
 
                             {
-
                                 method: "POST",
 
                                 headers: {
-
                                     "Prefer":
                                         "return=representation"
-
                                 },
 
                                 body:
                                     JSON.stringify(
                                         product
                                     )
-
                             }
-
                         );
 
 
                     return {
-
                         data,
-
                         error: null
-
                     };
 
                 }
                 catch (error) {
 
                     return {
-
                         data: null,
-
                         error
-
                     };
-
                 }
-
             },
 
 
@@ -737,39 +560,26 @@ const supabaseClient = {
 
                     const data =
                         await supabaseClient.request(
-
                             `/rest/v1/${encodedTable}?select=*`
-
                         );
 
 
                     return {
-
                         data,
-
                         error: null
-
                     };
 
                 }
                 catch (error) {
 
                     return {
-
                         data: null,
-
                         error
-
                     };
-
                 }
-
             }
-
         };
-
     }
-
 };
 
 
@@ -783,16 +593,12 @@ function normalizeProduct(product) {
         !product ||
         typeof product !== "object"
     ) {
-
         return null;
-
     }
 
 
     const normalized = {
-
         ...product
-
     };
 
 
@@ -807,11 +613,6 @@ function normalizeProduct(product) {
             product.category
         );
 
-
-    /*
-     * Si el producto antiguo no tiene
-     * referencia, generamos una.
-     */
 
     normalized.ref =
         strangisString(
@@ -870,10 +671,6 @@ function normalizeProduct(product) {
         );
 
 
-    /*
-     * Compatibilidad con image.
-     */
-
     if (
         !normalized.images.length &&
         product.image
@@ -883,13 +680,8 @@ function normalizeProduct(product) {
             normalizeProductImages(
                 product.image
             );
-
     }
 
-
-    /*
-     * Compatibilidad con image_url.
-     */
 
     if (
         !normalized.images.length &&
@@ -900,13 +692,12 @@ function normalizeProduct(product) {
             normalizeProductImages(
                 product.image_url
             );
-
     }
 
 
-    /*
-     * TALLAS
-     */
+    /* =====================================================
+       TALLAS
+    ===================================================== */
 
     const rawSizes =
         strangisParseJSON(
@@ -914,22 +705,13 @@ function normalizeProduct(product) {
         );
 
 
-    if (
-        Array.isArray(
-            rawSizes
-        )
-    ) {
+    if (Array.isArray(rawSizes)) {
 
         normalized.sizes =
             rawSizes
-
-                .map(
-                    size =>
-                        strangisString(
-                            size
-                        )
+                .map(size =>
+                    strangisString(size)
                 )
-
                 .filter(Boolean);
 
     }
@@ -940,28 +722,20 @@ function normalizeProduct(product) {
 
         normalized.sizes =
             rawSizes
-
                 .split(",")
-
-                .map(
-                    size =>
-                        strangisString(
-                            size
-                        )
+                .map(size =>
+                    strangisString(size)
                 )
-
                 .filter(Boolean);
 
     }
     else {
 
         normalized.sizes = [];
-
     }
 
 
     return normalized;
-
 }
 
 
@@ -978,11 +752,9 @@ async function loadProductsFromSupabase() {
 
     const result =
         await supabaseClient
-
             .from(
                 STRANGIS_PRODUCTS_TABLE
             )
-
             .select();
 
 
@@ -993,16 +765,12 @@ async function loadProductsFromSupabase() {
             result.error
         );
 
-
         throw result.error;
-
     }
 
 
     const products =
-        Array.isArray(
-            result.data
-        )
+        Array.isArray(result.data)
             ? result.data
             : [];
 
@@ -1013,29 +781,22 @@ async function loadProductsFromSupabase() {
     );
 
 
-    STRANGIS_PRODUCTS.length =
-        0;
+    STRANGIS_PRODUCTS.length = 0;
 
 
-    products.forEach(
-        product => {
+    products.forEach(product => {
 
-            const normalized =
-                normalizeProduct(
-                    product
-                );
+        const normalized =
+            normalizeProduct(product);
 
 
-            if (normalized) {
+        if (normalized) {
 
-                STRANGIS_PRODUCTS.push(
-                    normalized
-                );
-
-            }
-
+            STRANGIS_PRODUCTS.push(
+                normalized
+            );
         }
-    );
+    });
 
 
     console.log(
@@ -1045,7 +806,6 @@ async function loadProductsFromSupabase() {
 
 
     return STRANGIS_PRODUCTS;
-
 }
 
 
@@ -1054,9 +814,7 @@ async function loadProductsFromSupabase() {
 ========================================================= */
 
 function getProducts() {
-
     return STRANGIS_PRODUCTS;
-
 }
 
 
@@ -1066,13 +824,10 @@ function getActiveProducts() {
         product =>
             product?.active !== false
     );
-
 }
 
 
-function getProductsByCategory(
-    category
-) {
+function getProductsByCategory(category) {
 
     const wanted =
         strangisNormalizeCategory(
@@ -1086,13 +841,10 @@ function getProductsByCategory(
                 product?.category
             ) === wanted
     );
-
 }
 
 
-function getActiveProductsByCategory(
-    category
-) {
+function getActiveProductsByCategory(category) {
 
     const wanted =
         strangisNormalizeCategory(
@@ -1106,9 +858,7 @@ function getActiveProductsByCategory(
             if (
                 product?.active === false
             ) {
-
                 return false;
-
             }
 
 
@@ -1117,10 +867,8 @@ function getActiveProductsByCategory(
                     product?.category
                 ) === wanted
             );
-
         }
     );
-
 }
 
 
@@ -1134,9 +882,7 @@ function getProductById(id) {
         id === null ||
         id === undefined
     ) {
-
         return undefined;
-
     }
 
 
@@ -1150,7 +896,6 @@ function getProductById(id) {
                 product?.id
             ) === wanted
     );
-
 }
 
 
@@ -1158,20 +903,15 @@ function getProductById(id) {
    PRODUCTO POR REFERENCIA
 ========================================================= */
 
-function getProductByReference(
-    ref
-) {
+function getProductByReference(ref) {
 
     const wanted =
-        strangisString(
-            ref
-        ).toLowerCase();
+        strangisString(ref)
+            .toLowerCase();
 
 
     if (!wanted) {
-
         return undefined;
-
     }
 
 
@@ -1181,20 +921,50 @@ function getProductByReference(
                 product?.ref
             ).toLowerCase() === wanted
     );
-
 }
 
 
-function productReferenceExists(
-    ref
-) {
+function productReferenceExists(ref) {
 
     return Boolean(
-        getProductByReference(
-            ref
-        )
+        getProductByReference(ref)
     );
+}
 
+
+/* =========================================================
+   PRODUCTO POR REFERENCIA DE IMAGEN
+========================================================= */
+
+function getProductByImageReference(ref) {
+
+    const wanted =
+        strangisString(ref)
+            .toLowerCase();
+
+
+    if (!wanted) {
+        return undefined;
+    }
+
+
+    return STRANGIS_PRODUCTS.find(
+        product => {
+
+            const images =
+                normalizeProductImages(
+                    product?.images
+                );
+
+
+            return images.some(
+                image =>
+                    strangisString(
+                        image?.ref
+                    ).toLowerCase() === wanted
+            );
+        }
+    );
 }
 
 
@@ -1202,9 +972,7 @@ function productReferenceExists(
    CATEGORÍA
 ========================================================= */
 
-function getCategoryName(
-    category
-) {
+function getCategoryName(category) {
 
     const key =
         strangisNormalizeCategory(
@@ -1216,7 +984,6 @@ function getCategoryName(
         STRANGIS_CATEGORY_NAMES[key] ||
         strangisString(category)
     );
-
 }
 
 
@@ -1224,69 +991,47 @@ function getCategoryName(
    IMÁGENES
 ========================================================= */
 
-function getProductImages(
-    product
-) {
+function getProductImages(product) {
 
     if (!product) {
-
         return [];
-
     }
 
 
     return normalizeProductImages(
         product.images
     )
-
-        .map(
-            item =>
-                item.image
+        .map(item =>
+            item.image
         )
-
         .filter(Boolean);
-
 }
 
 
-/* =========================================================
-   PRIMERA IMAGEN
-========================================================= */
-
-function getProductImage(
-    product
-) {
+function getProductImage(product) {
 
     const images =
-        getProductImages(
-            product
-        );
+        getProductImages(product);
 
 
     return images[0] || "";
-
 }
 
 
 /* =========================================================
-   VARIANTES / IMÁGENES CON REFERENCIA
+   VARIANTES
 ========================================================= */
 
-function getProductVariants(
-    product
-) {
+function getProductVariants(product) {
 
     if (!product) {
-
         return [];
-
     }
 
 
     return normalizeProductImages(
         product.images
     );
-
 }
 
 
@@ -1294,14 +1039,10 @@ function getProductVariants(
    TALLAS
 ========================================================= */
 
-function getProductSizes(
-    product
-) {
+function getProductSizes(product) {
 
     if (!product) {
-
         return [];
-
     }
 
 
@@ -1311,46 +1052,28 @@ function getProductSizes(
         );
 
 
-    if (
-        Array.isArray(sizes)
-    ) {
+    if (Array.isArray(sizes)) {
 
         return sizes
-
-            .map(
-                size =>
-                    strangisString(
-                        size
-                    )
+            .map(size =>
+                strangisString(size)
             )
-
             .filter(Boolean);
-
     }
 
 
-    if (
-        typeof sizes === "string"
-    ) {
+    if (typeof sizes === "string") {
 
         return sizes
-
             .split(",")
-
-            .map(
-                size =>
-                    strangisString(
-                        size
-                    )
+            .map(size =>
+                strangisString(size)
             )
-
             .filter(Boolean);
-
     }
 
 
     return [];
-
 }
 
 
@@ -1358,16 +1081,13 @@ function getProductSizes(
    VALIDACIÓN
 ========================================================= */
 
-function isValidProductCategory(
-    category
-) {
+function isValidProductCategory(category) {
 
     return STRANGIS_ALLOWED_CATEGORIES.includes(
         strangisNormalizeCategory(
             category
         )
     );
-
 }
 
 
@@ -1381,15 +1101,11 @@ function getProductFormValues() {
         id => {
 
             const element =
-                document.getElementById(
-                    id
-                );
-
+                document.getElementById(id);
 
             return element
                 ? element.value
                 : "";
-
         };
 
 
@@ -1431,10 +1147,10 @@ function getProductFormValues() {
                     "productWhatsapp"
                 )
             )
-            .replace(
-                /\D/g,
-                ""
-            ),
+                .replace(
+                    /\D/g,
+                    ""
+                ),
 
         shippingMin:
             strangisNumber(
@@ -1459,14 +1175,12 @@ function getProductFormValues() {
                 ) ||
                 "camisetas"
             )
-
     };
-
 }
 
 
 /* =========================================================
-   VARIANTES DEL FORMULARIO
+   VARIANTES FORMULARIO
 ========================================================= */
 
 function getFormVariants() {
@@ -1480,43 +1194,31 @@ function getFormVariants() {
 
 
     return source
+        .map(variant => ({
 
-        .map(
-            variant => ({
+            name:
+                strangisString(
+                    variant?.name
+                ),
 
-                name:
-                    strangisString(
-                        variant?.name
-                    ),
+            image:
+                strangisString(
+                    variant?.image ||
+                    variant?.url ||
+                    variant?.src
+                ),
 
-                image:
-                    strangisString(
-                        variant?.image ||
-                        variant?.url ||
-                        variant?.src
-                    ),
-
-                /*
-                 * La referencia se genera
-                 * automáticamente para
-                 * cada imagen.
-                 */
-
-                ref:
-                    strangisString(
-                        variant?.ref
-                    ) ||
-                    generateUniqueImageReference()
-
-            })
-        )
-
+            ref:
+                strangisString(
+                    variant?.ref
+                ) ||
+                generateUniqueImageReference()
+        }))
         .filter(
             variant =>
                 variant.name ||
                 variant.image
         );
-
 }
 
 
@@ -1535,16 +1237,10 @@ function getFormSizes() {
 
 
     return source
-
-        .map(
-            size =>
-                strangisString(
-                    size
-                )
+        .map(size =>
+            strangisString(size)
         )
-
         .filter(Boolean);
-
 }
 
 
@@ -1552,26 +1248,18 @@ function getFormSizes() {
    VALIDAR VARIANTES
 ========================================================= */
 
-function validateProductVariants(
-    variants
-) {
+function validateProductVariants(variants) {
 
     if (
-        !Array.isArray(
-            variants
-        ) ||
+        !Array.isArray(variants) ||
         !variants.length
     ) {
 
         return {
-
             valid: false,
-
             message:
                 "Añade al menos una imagen con su color."
-
         };
-
     }
 
 
@@ -1583,41 +1271,28 @@ function validateProductVariants(
         if (!variant.name) {
 
             return {
-
                 valid: false,
-
                 message:
                     "Todos los colores deben tener nombre."
-
             };
-
         }
 
 
         if (!variant.image) {
 
             return {
-
                 valid: false,
-
                 message:
                     "Todas las imágenes necesitan una URL."
-
             };
-
         }
-
     }
 
 
     return {
-
         valid: true,
-
         message: ""
-
     };
-
 }
 
 
@@ -1633,14 +1308,10 @@ function validateProductData(
     if (!data.name) {
 
         return {
-
             valid: false,
-
             message:
                 "Introduce el nombre del producto."
-
         };
-
     }
 
 
@@ -1651,46 +1322,30 @@ function validateProductData(
     ) {
 
         return {
-
             valid: false,
-
             message:
                 "Selecciona una categoría válida."
-
         };
-
     }
 
 
-    if (
-        data.price < 0
-    ) {
+    if (data.price < 0) {
 
         return {
-
             valid: false,
-
             message:
                 "El precio no puede ser negativo."
-
         };
-
     }
 
 
-    if (
-        data.stock < 0
-    ) {
+    if (data.stock < 0) {
 
         return {
-
             valid: false,
-
             message:
                 "El stock no puede ser negativo."
-
         };
-
     }
 
 
@@ -1700,14 +1355,10 @@ function validateProductData(
     ) {
 
         return {
-
             valid: false,
-
             message:
                 "Los gastos de envío no pueden ser negativos."
-
         };
-
     }
 
 
@@ -1717,21 +1368,16 @@ function validateProductData(
     ) {
 
         return {
-
             valid: false,
-
             message:
                 "El envío mínimo no puede ser superior al máximo."
-
         };
-
     }
 
 
     return validateProductVariants(
         variants
     );
-
 }
 
 
@@ -1760,51 +1406,33 @@ function buildProductFromForm() {
         );
 
 
-    if (
-        !validation.valid
-    ) {
+    if (!validation.valid) {
 
         return {
-
             product: null,
-
             error:
                 validation.message
-
         };
-
     }
 
-
-    /*
-     * REFERENCIA AUTOMÁTICA DEL PRODUCTO
-     */
 
     const productReference =
         generateUniqueProductReference();
 
 
-    /*
-     * REFERENCIAS AUTOMÁTICAS
-     * DE CADA IMAGEN
-     */
-
     const images =
-        variants.map(
-            variant => ({
+        variants.map(variant => ({
 
-                name:
-                    variant.name,
+            name:
+                variant.name,
 
-                image:
-                    variant.image,
+            image:
+                variant.image,
 
-                ref:
-                    variant.ref ||
-                    generateUniqueImageReference()
-
-            })
-        );
+            ref:
+                variant.ref ||
+                generateUniqueImageReference()
+        }));
 
 
     const product = {
@@ -1814,10 +1442,6 @@ function buildProductFromForm() {
 
         category:
             data.category,
-
-        /*
-         * REFERENCIA AUTOMÁTICA
-         */
 
         ref:
             productReference,
@@ -1834,16 +1458,9 @@ function buildProductFromForm() {
         whatsapp:
             data.whatsapp,
 
-        /*
-         * CADA IMAGEN TIENE
-         * SU PROPIA REFERENCIA
-         */
+        images,
 
-        images:
-            images,
-
-        sizes:
-            sizes,
+        sizes,
 
         shipping_min:
             data.shippingMin,
@@ -1853,18 +1470,13 @@ function buildProductFromForm() {
 
         active:
             true
-
     };
 
 
     return {
-
         product,
-
         error: null
-
     };
-
 }
 
 
@@ -1880,16 +1492,13 @@ async function saveProductToSupabase() {
             buildProductFromForm();
 
 
-        if (
-            built.error
-        ) {
+        if (built.error) {
 
             alert(
                 built.error
             );
 
             return null;
-
         }
 
 
@@ -1905,19 +1514,15 @@ async function saveProductToSupabase() {
 
         const result =
             await supabaseClient
-
                 .from(
                     STRANGIS_PRODUCTS_TABLE
                 )
-
                 .insert(
                     product
                 );
 
 
-        if (
-            result.error
-        ) {
+        if (result.error) {
 
             console.error(
                 "STRANGIS — error guardando:",
@@ -1937,7 +1542,6 @@ async function saveProductToSupabase() {
 
                 message =
                     "Ya existe una referencia igual en Supabase.";
-
             }
 
 
@@ -1948,7 +1552,6 @@ async function saveProductToSupabase() {
 
 
             return null;
-
         }
 
 
@@ -1970,9 +1573,7 @@ async function saveProductToSupabase() {
 
 
                 if (!normalized) {
-
                     return;
-
                 }
 
 
@@ -1993,9 +1594,7 @@ async function saveProductToSupabase() {
                         : -1;
 
 
-                if (
-                    index >= 0
-                ) {
+                if (index >= 0) {
 
                     STRANGIS_PRODUCTS[index] =
                         normalized;
@@ -2006,9 +1605,7 @@ async function saveProductToSupabase() {
                     STRANGIS_PRODUCTS.push(
                         normalized
                     );
-
                 }
-
             }
         );
 
@@ -2019,11 +1616,6 @@ async function saveProductToSupabase() {
             `Imágenes: ${product.images.length}`
         );
 
-
-        /*
-         * Si existe generateCode
-         * lo mantenemos compatible.
-         */
 
         if (
             typeof window.generateCode ===
@@ -2041,9 +1633,7 @@ async function saveProductToSupabase() {
                     "STRANGIS — generateCode:",
                     error
                 );
-
             }
-
         }
 
 
@@ -2071,9 +1661,7 @@ async function saveProductToSupabase() {
 
 
         return null;
-
     }
-
 }
 
 
@@ -2084,7 +1672,6 @@ async function saveProductToSupabase() {
 async function refreshProducts() {
 
     return await loadProductsFromSupabase();
-
 }
 
 
@@ -2105,9 +1692,7 @@ async function initStrangisProducts() {
         );
 
         return [];
-
     }
-
 }
 
 
@@ -2175,6 +1760,9 @@ window.getProductById =
 window.getProductByReference =
     getProductByReference;
 
+window.getProductByImageReference =
+    getProductByImageReference;
+
 window.productReferenceExists =
     productReferenceExists;
 
@@ -2217,10 +1805,6 @@ window.buildProductFromForm =
 window.saveProductToSupabase =
     saveProductToSupabase;
 
-
-/* =========================================================
-   FIN
-========================================================= */
 
 console.log(
     "STRANGIS — products.js cargado correctamente."
