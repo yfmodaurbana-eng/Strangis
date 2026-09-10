@@ -1708,7 +1708,6 @@ const CATEGORY_LINKS = {
 function escapeHTML(value){
 
     return String(value ?? "")
-
         .replace(/&/g,"&amp;")
         .replace(/</g,"&lt;")
         .replace(/>/g,"&gt;")
@@ -1720,7 +1719,6 @@ function escapeHTML(value){
 function escapeAttribute(value){
 
     return String(value ?? "")
-
         .replace(/&/g,"&amp;")
         .replace(/"/g,"&quot;")
         .replace(/'/g,"&#039;")
@@ -1736,40 +1734,20 @@ function escapeAttribute(value){
 function normalizeText(value){
 
     return String(value ?? "")
-
         .normalize("NFD")
-
         .replace(/[\u0300-\u036f]/g,"")
-
         .toLowerCase()
-
         .trim();
 }
 
 
-/*
- * Normalización especial para referencias.
- *
- * CAM-001
- * CAM 001
- * CAM_001
- * cam001
- *
- * serán tratados como la misma referencia.
- */
-
 function normalizeReference(value){
 
     return String(value ?? "")
-
         .normalize("NFD")
-
         .replace(/[\u0300-\u036f]/g,"")
-
         .toLowerCase()
-
         .replace(/[\s_-]+/g,"")
-
         .trim();
 }
 
@@ -1797,8 +1775,33 @@ function getCategory(product){
 
 
 /* =====================================================
-   VARIANTES / IMÁGENES
+   IMÁGENES / VARIANTES
 ===================================================== */
+
+/*
+ * IMPORTANTE
+ *
+ * products.js utiliza esta estructura:
+ *
+ * images: [
+ *
+ *   {
+ *      name: "Rojo",
+ *      image: "URL",
+ *      ref: "IMG-001"
+ *   },
+ *
+ *   {
+ *      name: "Azul",
+ *      image: "URL",
+ *      ref: "IMG-002"
+ *   }
+ *
+ * ]
+ *
+ * Por tanto, cada objeto de images[] es tratado
+ * como una variante/imagen independiente.
+ */
 
 function getImageVariants(product){
 
@@ -1808,6 +1811,7 @@ function getImageVariants(product){
 
     let raw =
         product.images;
+
 
     if(typeof raw === "string"){
 
@@ -1819,7 +1823,7 @@ function getImageVariants(product){
         }catch(error){
 
             console.error(
-                "Error leyendo Products.images:",
+                "STRANGIS — Error leyendo Products.images:",
                 error
             );
 
@@ -1827,99 +1831,312 @@ function getImageVariants(product){
         }
     }
 
+
     if(!Array.isArray(raw)){
         return [];
     }
 
+
     const result = [];
 
-    raw.forEach(item=>{
 
-        if(
-            !item ||
-            typeof item !== "object"
-        ){
-            return;
-        }
-
-        const name =
-            String(
-                item.name || ""
-            ).trim();
-
-        const color =
-            String(
-                item.color || ""
-            ).trim();
-
-        let images =
-            item.images;
-
-        if(typeof images === "string"){
-
-            try{
-
-                images =
-                    JSON.parse(images);
-
-            }catch(error){
-
-                images = [
-                    images
-                ];
-            }
-        }
-
-        if(!Array.isArray(images)){
-            return;
-        }
-
-        images.forEach(url=>{
+    raw.forEach(
+        (item,index)=>{
 
             if(
-                typeof url !== "string" ||
-                !url.trim()
+                typeof item === "string"
+            ){
+
+                const image =
+                    item.trim();
+
+                if(!image){
+                    return;
+                }
+
+                result.push({
+
+                    name:
+                        `Variante ${index + 1}`,
+
+                    color:
+                        "",
+
+                    image:
+                        image,
+
+                    ref:
+                        ""
+
+                });
+
+                return;
+            }
+
+
+            if(
+                !item ||
+                typeof item !== "object"
             ){
                 return;
             }
 
-            result.push({
 
-                name:name,
+            /*
+             * -------------------------------------------------
+             * Estructura normal de products.js
+             * -------------------------------------------------
+             */
 
-                color:color,
+            const directImage =
+                String(
+                    item.image ||
+                    item.url ||
+                    item.src ||
+                    item.image_url ||
+                    item.imageUrl ||
+                    item.photo ||
+                    item.photo_url ||
+                    item.photoUrl ||
+                    ""
+                ).trim();
 
-                image:url.trim()
 
-            });
+            const directReference =
+                String(
+                    item.ref ||
+                    item.reference ||
+                    item.image_ref ||
+                    item.imageReference ||
+                    ""
+                ).trim();
 
-        });
 
-    });
+            const directName =
+                String(
+                    item.name ||
+                    item.colorName ||
+                    item.color ||
+                    item.colour ||
+                    item.variant ||
+                    `Variante ${index + 1}`
+                ).trim();
+
+
+            const directColor =
+                String(
+                    item.color ||
+                    item.colour ||
+                    ""
+                ).trim();
+
+
+            /*
+             * Si la imagen está directamente en el objeto:
+             */
+
+            if(directImage){
+
+                result.push({
+
+                    name:
+                        directName,
+
+                    color:
+                        directColor,
+
+                    image:
+                        directImage,
+
+                    ref:
+                        directReference
+
+                });
+
+                return;
+            }
+
+
+            /*
+             * -------------------------------------------------
+             * Compatibilidad con estructura antigua/nested
+             * -------------------------------------------------
+             */
+
+            let nestedImages =
+                item.images;
+
+
+            if(
+                typeof nestedImages === "string"
+            ){
+
+                try{
+
+                    nestedImages =
+                        JSON.parse(
+                            nestedImages
+                        );
+
+                }catch(error){
+
+                    nestedImages = [
+                        nestedImages
+                    ];
+                }
+            }
+
+
+            if(
+                !Array.isArray(
+                    nestedImages
+                )
+            ){
+                return;
+            }
+
+
+            nestedImages.forEach(
+                nestedItem=>{
+
+                    let imageUrl = "";
+
+                    let imageReference =
+                        directReference;
+
+
+                    if(
+                        nestedItem &&
+                        typeof nestedItem === "object"
+                    ){
+
+                        imageUrl =
+                            String(
+                                nestedItem.image ||
+                                nestedItem.url ||
+                                nestedItem.src ||
+                                nestedItem.path ||
+                                nestedItem.image_url ||
+                                nestedItem.imageUrl ||
+                                ""
+                            ).trim();
+
+
+                        imageReference =
+                            String(
+                                nestedItem.ref ||
+                                nestedItem.reference ||
+                                nestedItem.image_ref ||
+                                nestedItem.imageReference ||
+                                directReference ||
+                                ""
+                            ).trim();
+
+                    }else{
+
+                        imageUrl =
+                            String(
+                                nestedItem || ""
+                            ).trim();
+
+                    }
+
+
+                    if(!imageUrl){
+                        return;
+                    }
+
+
+                    result.push({
+
+                        name:
+                            directName,
+
+                        color:
+                            directColor,
+
+                        image:
+                            imageUrl,
+
+                        ref:
+                            imageReference
+
+                    });
+
+                }
+            );
+
+        }
+    );
+
 
     return result;
 }
 
+
+/* =====================================================
+   VARIANTE PRINCIPAL
+===================================================== */
 
 function getMainVariant(product){
 
     const variants =
         getImageVariants(product);
 
-    if(!variants.length){
-        return null;
+
+    if(variants.length){
+        return variants[0];
     }
 
-    const principal =
-        variants.find(
-            variant =>
-                normalizeText(
-                    variant.name
-                ) === "principal"
-        );
 
-    return principal ||
-        variants[0];
+    /*
+     * Compatibilidad si algún producto antiguo
+     * todavía tiene image directamente.
+     */
+
+    const image =
+        String(
+            product?.image ||
+            product?.image_url ||
+            ""
+        ).trim();
+
+
+    if(image){
+
+        return {
+
+            name:
+                "",
+
+            color:
+                "",
+
+            image:
+                image,
+
+            ref:
+                ""
+
+        };
+    }
+
+
+    return {
+
+        name:
+            "",
+
+        color:
+            "",
+
+        image:
+            "",
+
+        ref:
+            ""
+
+    };
 }
 
 
@@ -1935,17 +2152,72 @@ function findMatchingVariant(
     const query =
         normalizeText(search);
 
+
+    const normalizedReference =
+        normalizeReference(search);
+
+
     if(!query){
         return null;
     }
 
+
     const variants =
         getImageVariants(product);
+
 
     if(!variants.length){
         return null;
     }
 
+
+    /*
+     * 1. REF EXACTA DE IMAGEN
+     */
+
+    const exactReference =
+        variants.find(
+            variant =>
+                variant.ref &&
+                normalizeReference(
+                    variant.ref
+                ) === normalizedReference
+        );
+
+
+    if(exactReference){
+        return exactReference;
+    }
+
+
+    /*
+     * 2. REF PARCIAL DE IMAGEN
+     */
+
+    const partialReference =
+        variants.find(
+            variant =>
+                variant.ref &&
+                normalizeReference(
+                    variant.ref
+                ).includes(
+                    normalizedReference
+                )
+        );
+
+
+    if(
+        partialReference &&
+        normalizedReference
+    ){
+
+        return partialReference;
+    }
+
+
+    /*
+     * 3. NOMBRE EXACTO
+     */
 
     const exactName =
         variants.find(
@@ -1955,23 +2227,15 @@ function findMatchingVariant(
                 ) === query
         );
 
+
     if(exactName){
         return exactName;
     }
 
 
-    const partialName =
-        variants.find(
-            variant =>
-                normalizeText(
-                    variant.name
-                ).includes(query)
-        );
-
-    if(partialName){
-        return partialName;
-    }
-
+    /*
+     * 4. COLOR EXACTO
+     */
 
     const exactColor =
         variants.find(
@@ -1981,10 +2245,33 @@ function findMatchingVariant(
                 ) === query
         );
 
+
     if(exactColor){
         return exactColor;
     }
 
+
+    /*
+     * 5. NOMBRE PARCIAL
+     */
+
+    const partialName =
+        variants.find(
+            variant =>
+                normalizeText(
+                    variant.name
+                ).includes(query)
+        );
+
+
+    if(partialName){
+        return partialName;
+    }
+
+
+    /*
+     * 6. COLOR PARCIAL
+     */
 
     const partialColor =
         variants.find(
@@ -1993,6 +2280,7 @@ function findMatchingVariant(
                     variant.color
                 ).includes(query)
         );
+
 
     if(partialColor){
         return partialColor;
@@ -2004,7 +2292,7 @@ function findMatchingVariant(
 
 
 /* =====================================================
-   BUSCADOR PRINCIPAL
+   BÚSQUEDA PRINCIPAL
 ===================================================== */
 
 function searchProducts(search){
@@ -2012,10 +2300,9 @@ function searchProducts(search){
     const query =
         normalizeText(search);
 
+
     /*
      * SIN BÚSQUEDA
-     *
-     * Un producto se muestra una sola vez.
      */
 
     if(!query){
@@ -2023,7 +2310,8 @@ function searchProducts(search){
         return allProducts.map(
             product => ({
 
-                product:product,
+                product:
+                    product,
 
                 variant:
                     getMainVariant(product)
@@ -2046,119 +2334,208 @@ function searchProducts(search){
     const results = [];
 
 
-    allProducts.forEach(product=>{
+    allProducts.forEach(
+        product=>{
 
-        /*
-         * =================================================
-         * 1. REFERENCIA DEL PRODUCTO
-         * =================================================
-         *
-         * IMPORTANTE:
-         *
-         * La referencia pertenece al producto completo,
-         * no a sus imágenes.
-         */
-
-        const reference =
-            normalizeReference(
-                getReference(product)
-            );
+            const variants =
+                getImageVariants(product);
 
 
-        if(
-            reference &&
-            (
-                reference === normalizedReference ||
-                reference.includes(normalizedReference)
-            )
-        ){
+            const productReference =
+                normalizeReference(
+                    getReference(product)
+                );
 
-            results.push({
 
-                product:product,
+            /* =================================================
+               1. REF EXACTA DE IMAGEN
+            ================================================= */
 
-                variant:
-                    getMainVariant(product)
+            const exactImageReference =
+                variants.find(
+                    variant =>
+                        variant.ref &&
+                        normalizeReference(
+                            variant.ref
+                        ) === normalizedReference
+                );
 
-            });
 
-            return;
+            if(exactImageReference){
+
+                results.push({
+
+                    product:
+                        product,
+
+                    variant:
+                        exactImageReference
+
+                });
+
+                return;
+            }
+
+
+            /* =================================================
+               2. REF EXACTA DEL PRODUCTO
+            ================================================= */
+
+            if(
+                productReference &&
+                productReference ===
+                    normalizedReference
+            ){
+
+                results.push({
+
+                    product:
+                        product,
+
+                    variant:
+                        getMainVariant(product)
+
+                });
+
+                return;
+            }
+
+
+            /* =================================================
+               3. REF PARCIAL DE IMAGEN
+            ================================================= */
+
+            const partialImageReference =
+                variants.find(
+                    variant =>
+                        variant.ref &&
+                        normalizeReference(
+                            variant.ref
+                        ).includes(
+                            normalizedReference
+                        )
+                );
+
+
+            if(
+                normalizedReference &&
+                partialImageReference
+            ){
+
+                results.push({
+
+                    product:
+                        product,
+
+                    variant:
+                        partialImageReference
+
+                });
+
+                return;
+            }
+
+
+            /* =================================================
+               4. REF PARCIAL DEL PRODUCTO
+            ================================================= */
+
+            if(
+                normalizedReference &&
+                productReference &&
+                productReference.includes(
+                    normalizedReference
+                )
+            ){
+
+                results.push({
+
+                    product:
+                        product,
+
+                    variant:
+                        getMainVariant(product)
+
+                });
+
+                return;
+            }
+
+
+            /* =================================================
+               5. COLOR / NOMBRE DE VARIANTE
+            ================================================= */
+
+            const matchingVariant =
+                findMatchingVariant(
+                    product,
+                    search
+                );
+
+
+            if(matchingVariant){
+
+                results.push({
+
+                    product:
+                        product,
+
+                    variant:
+                        matchingVariant
+
+                });
+
+                return;
+            }
+
+
+            /* =================================================
+               6. NOMBRE / CATEGORÍA / DESCRIPCIÓN
+            ================================================= */
+
+            const searchable =
+                normalizeText(
+
+                    [
+
+                        product?.name,
+
+                        product?.category,
+
+                        product?.description
+
+                    ]
+
+                    .filter(Boolean)
+
+                    .join(" ")
+
+                );
+
+
+            const matchesProduct =
+                words.every(
+                    word =>
+                        searchable.includes(word)
+                );
+
+
+            if(matchesProduct){
+
+                results.push({
+
+                    product:
+                        product,
+
+                    variant:
+                        getMainVariant(product)
+
+                });
+
+            }
+
         }
-
-
-        /*
-         * =================================================
-         * 2. COLOR / VARIANTE
-         * =================================================
-         */
-
-        const matchingVariant =
-            findMatchingVariant(
-                product,
-                search
-            );
-
-
-        if(matchingVariant){
-
-            results.push({
-
-                product:product,
-
-                variant:matchingVariant
-
-            });
-
-            return;
-        }
-
-
-        /*
-         * =================================================
-         * 3. NOMBRE / CATEGORÍA / DESCRIPCIÓN
-         * ================================================= */
-
-        const searchable =
-            normalizeText(
-
-                [
-
-                    product?.name,
-
-                    product?.category,
-
-                    product?.description
-
-                ]
-
-                .filter(Boolean)
-
-                .join(" ")
-
-            );
-
-
-        const matchesProduct =
-            words.every(
-                word =>
-                    searchable.includes(word)
-            );
-
-
-        if(matchesProduct){
-
-            results.push({
-
-                product:product,
-
-                variant:
-                    getMainVariant(product)
-
-            });
-
-        }
-
-    });
+    );
 
 
     return results;
@@ -2171,16 +2548,18 @@ function searchProducts(search){
 
 function createProductLink(
     product,
-    variantName
+    variant
 ){
 
     const category =
         getCategory(product);
 
+
     const linkBase =
         CATEGORY_LINKS[
             category
         ];
+
 
     if(!linkBase){
         return "#";
@@ -2191,14 +2570,27 @@ function createProductLink(
         new URLSearchParams();
 
 
-    const reference =
+    /*
+     * PRIORIDAD:
+     *
+     * 1. REF individual de la imagen
+     * 2. REF del producto
+     */
+
+    const variantReference =
+        String(
+            variant?.ref || ""
+        ).trim();
+
+
+    const productReference =
         getReference(product);
 
 
-    /*
-     * La referencia que se manda a la categoría
-     * es SIEMPRE la referencia del producto.
-     */
+    const reference =
+        variantReference ||
+        productReference;
+
 
     if(reference){
 
@@ -2207,6 +2599,21 @@ function createProductLink(
             reference
         );
     }
+
+
+    /*
+     * Variante/color
+     */
+
+    const variantName =
+        variant?.name &&
+        normalizeText(
+            variant.name
+        ) !== "principal"
+        ?
+        variant.name
+        :
+        "";
 
 
     if(variantName){
@@ -2218,11 +2625,19 @@ function createProductLink(
     }
 
 
-    if(product?.id){
+    /*
+     * ID del producto
+     */
+
+    if(
+        product?.id !== undefined &&
+        product?.id !== null &&
+        String(product.id).trim()
+    ){
 
         params.set(
             "id",
-            product.id
+            String(product.id)
         );
     }
 
@@ -2232,8 +2647,10 @@ function createProductLink(
 
 
     return query
-        ? `${linkBase}?${query}`
-        : linkBase;
+        ?
+        `${linkBase}?${query}`
+        :
+        linkBase;
 }
 
 
@@ -2247,13 +2664,32 @@ function createProductCard(
 ){
 
     const product =
-        item.product;
+        item?.product;
+
 
     const variant =
-        item.variant;
+        item?.variant;
 
 
-    if(!variant?.image){
+    if(!product){
+        return "";
+    }
+
+
+    /*
+     * Si no encontramos imagen de variante,
+     * intentamos recuperar la principal.
+     */
+
+    const finalVariant =
+        variant?.image
+        ?
+        variant
+        :
+        getMainVariant(product);
+
+
+    if(!finalVariant?.image){
         return "";
     }
 
@@ -2265,8 +2701,20 @@ function createProductCard(
         );
 
 
+    /*
+     * En la tarjeta mostramos la REF de la
+     * imagen seleccionada cuando existe.
+     *
+     * Esto es especialmente útil cuando la
+     * búsqueda encontró una REF individual.
+     */
+
     const reference =
-        getReference(product);
+        String(
+            finalVariant?.ref ||
+            getReference(product) ||
+            ""
+        ).trim();
 
 
     const category =
@@ -2274,20 +2722,33 @@ function createProductCard(
 
 
     const variantName =
-        variant.name &&
+        finalVariant?.name &&
         normalizeText(
-            variant.name
+            finalVariant.name
         ) !== "principal"
         ?
-        variant.name
+        finalVariant.name
         :
         "";
 
 
+    /*
+     * IMPORTANTE:
+     *
+     * Aquí se pasa el OBJETO variant completo,
+     * no solamente variantName.
+     *
+     * Antes estaba:
+     *
+     * createProductLink(product, variantName)
+     *
+     * y eso hacía que se perdiera variant.ref.
+     */
+
     const link =
         createProductLink(
             product,
-            variantName
+            finalVariant
         );
 
 
@@ -2325,7 +2786,7 @@ function createProductCard(
 
                     <img
                         src="${escapeAttribute(
-                            variant.image
+                            finalVariant.image
                         )}"
                         alt="${escapeHTML(
                             altText
@@ -2406,10 +2867,12 @@ function renderProducts(results){
             "productsContainer"
         );
 
+
     const counter =
         document.getElementById(
             "productCount"
         );
+
 
     const resultText =
         document.getElementById(
@@ -2469,6 +2932,7 @@ function renderProducts(results){
         container.style.animation =
             "none";
 
+
         container.innerHTML = `
 
             <div class="empty">
@@ -2491,6 +2955,7 @@ function renderProducts(results){
 
         `;
 
+
         return;
     }
 
@@ -2509,11 +2974,18 @@ function renderProducts(results){
 
     if(results.length > 1){
 
+        /*
+         * Duplicamos las tarjetas para mantener
+         * el carrusel infinito.
+         */
+
         container.innerHTML =
             cards + cards;
 
+
         container.style.animation =
             "";
+
 
         container.style.animationPlayState =
             "running";
@@ -2523,8 +2995,125 @@ function renderProducts(results){
         container.innerHTML =
             cards;
 
+
         container.style.animation =
             "none";
+    }
+}
+
+
+/* =====================================================
+   NAVEGACIÓN DIRECTA POR REF EXACTA
+===================================================== */
+
+/*
+ * Cuando el usuario pulsa ENTER y lo escrito coincide
+ * EXACTAMENTE con la REF individual de una imagen,
+ * se navega directamente a esa imagen.
+ *
+ * Si no es una REF exacta, se mantiene la búsqueda
+ * normal por nombre/color/categoría/etc.
+ */
+
+function findExactImageReference(
+    search
+){
+
+    const normalized =
+        normalizeReference(search);
+
+
+    if(!normalized){
+        return null;
+    }
+
+
+    for(
+        const product of allProducts
+    ){
+
+        const variants =
+            getImageVariants(product);
+
+
+        for(
+            const variant of variants
+        ){
+
+            if(
+                variant?.ref &&
+                normalizeReference(
+                    variant.ref
+                ) === normalized
+            ){
+
+                return {
+
+                    product:
+                        product,
+
+                    variant:
+                        variant
+
+                };
+            }
+
+        }
+
+    }
+
+
+    return null;
+}
+
+
+function goToExactReference(){
+
+    const input =
+        document.getElementById(
+            "productSearch"
+        );
+
+
+    if(!input){
+        return;
+    }
+
+
+    const search =
+        input.value.trim();
+
+
+    if(!search){
+        return;
+    }
+
+
+    const match =
+        findExactImageReference(
+            search
+        );
+
+
+    if(!match){
+        return;
+    }
+
+
+    const link =
+        createProductLink(
+            match.product,
+            match.variant
+        );
+
+
+    if(
+        link &&
+        link !== "#"
+    ){
+
+        window.location.href =
+            link;
     }
 }
 
@@ -2539,6 +3128,7 @@ function performSearch(){
         document.getElementById(
             "productSearch"
         );
+
 
     const clearButton =
         document.getElementById(
@@ -2590,10 +3180,30 @@ if(searchInput){
         performSearch
     );
 
+
     searchInput.addEventListener(
         "search",
         performSearch
     );
+
+
+    searchInput.addEventListener(
+        "keydown",
+        event=>{
+
+            if(
+                event.key === "Enter"
+            ){
+
+                event.preventDefault();
+
+                goToExactReference();
+
+            }
+
+        }
+    );
+
 }
 
 
@@ -2607,14 +3217,18 @@ if(searchClear){
                 return;
             }
 
+
             searchInput.value = "";
 
+
             searchInput.focus();
+
 
             performSearch();
 
         }
     );
+
 }
 
 
@@ -2628,6 +3242,7 @@ async function loadProducts(){
         document.getElementById(
             "productsContainer"
         );
+
 
     const counter =
         document.getElementById(
