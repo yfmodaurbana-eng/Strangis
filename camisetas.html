@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+parte 1. <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -2627,12 +2627,205 @@ function escapeHTML(value){
         .replace(/'/g,"&#39;");
 
 }
+<script>
 
+/* =====================================================
+   CONFIGURACIÓN
+===================================================== */
+
+const STRANGIS_SUPABASE_URL =
+    "https://xbbjfatmdbxbuoqdrgoj.supabase.co";
+
+const STRANGIS_SUPABASE_KEY =
+    "sb_publishable_M7ETdIWvj4nCQZ55i24Vpw_5Yc5Islk";
+
+const STRANGIS_PRODUCTS_TABLE =
+    "Products";
+
+const CATEGORY =
+    "camisetas";
+
+
+/* =====================================================
+   ESTADO
+===================================================== */
+
+let PRODUCTS = [];
+
+let currentOrder = null;
+
+let productPanelIndex = -1;
+
+let productPanelVariantIndex = 0;
+
+let productPanelImageIndex = 0;
+
+let productPanelSize = "";
+
+let productPanelQuantity = 1;
+
+let lightboxProductIndex = 0;
+
+let lightboxVariantIndex = 0;
+
+
+/* =====================================================
+   CONTROL DE CLICK DESPUÉS DE SWIPE
+===================================================== */
+
+let suppressProductClickUntil = 0;
+
+
+/* =====================================================
+   CLIENTE SUPABASE
+===================================================== */
+
+const supabaseClient = {
+
+    async request(path,options = {}){
+
+        const response =
+            await fetch(
+                STRANGIS_SUPABASE_URL + path,
+                {
+                    ...options,
+
+                    headers:{
+                        "apikey":
+                            STRANGIS_SUPABASE_KEY,
+
+                        "Authorization":
+                            "Bearer " +
+                            STRANGIS_SUPABASE_KEY,
+
+                        "Content-Type":
+                            "application/json",
+
+                        ...(options.headers || {})
+                    }
+                }
+            );
+
+
+        const text =
+            await response.text();
+
+
+        let data = null;
+
+
+        try{
+
+            data =
+                text
+                    ? JSON.parse(text)
+                    : null;
+
+        }catch{
+
+            data = text;
+
+        }
+
+
+        if(!response.ok){
+
+            throw new Error(
+                data?.message ||
+                data?.error_description ||
+                text ||
+                `Error HTTP ${response.status}`
+            );
+
+        }
+
+
+        return data;
+
+    },
+
+
+    async getProducts(){
+
+        const params =
+            new URLSearchParams({
+
+                select:"*",
+
+                category:
+                    `eq.${CATEGORY}`,
+
+                active:
+                    "eq.true",
+
+                order:
+                    "id.asc"
+
+            });
+
+
+        return this.request(
+            `/rest/v1/${encodeURIComponent(STRANGIS_PRODUCTS_TABLE)}?${params.toString()}`
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function money(value){
+
+    return Number(value || 0).toLocaleString(
+        "es-ES",
+        {
+            style:"currency",
+            currency:"EUR"
+        }
+    );
+
+}
+
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#39;");
+
+}
+
+
+/* =====================================================
+   NORMALIZAR REF DE IMAGEN
+===================================================== */
+
+function normalizeImageReference(value){
+
+    return String(value ?? "")
+        .trim()
+        .toLowerCase()
+        .replace(/[\s_-]+/g,"");
+
+}
+
+
+/* =====================================================
+   PARSE JSON
+===================================================== */
 
 function parseJSON(value,fallback=[]){
 
     if(Array.isArray(value)){
+
         return value;
+
     }
 
 
@@ -2673,14 +2866,30 @@ function getVariants(product){
             []
         );
 
-
     const variants = [];
 
 
     raw.forEach(
         (variant,index)=>{
 
+            /*
+             * COMPATIBILIDAD:
+             * si images[] contiene directamente
+             * una URL.
+             */
+
             if(typeof variant === "string"){
+
+                const image =
+                    variant.trim();
+
+
+                if(!image){
+
+                    return;
+
+                }
+
 
                 variants.push({
 
@@ -2690,9 +2899,14 @@ function getVariants(product){
                     color:
                         "#888888",
 
-                    images:[
-                        variant
-                    ]
+                    images:
+                        [image],
+
+                    imageRefs:
+                        [""],
+
+                    stock:
+                        null
 
                 });
 
@@ -2701,50 +2915,187 @@ function getVariants(product){
             }
 
 
-            if(!variant || typeof variant !== "object"){
+            if(!variant ||
+               typeof variant !== "object"){
+
                 return;
+
             }
 
 
             let images = [];
 
+            let imageRefs = [];
+
+
+            /*
+             * FORMATO ANIDADO
+             *
+             * {
+             *   name:"Rojo",
+             *   images:[
+             *      {
+             *          image:"...",
+             *          ref:"..."
+             *      }
+             *   ]
+             * }
+             */
 
             if(Array.isArray(variant.images)){
 
-                images =
-                    variant.images
-                        .filter(Boolean)
-                        .map(String);
+                variant.images.forEach(
+                    imageItem => {
+
+                        if(
+                            typeof imageItem ===
+                            "string"
+                        ){
+
+                            const image =
+                                imageItem.trim();
+
+
+                            if(image){
+
+                                images.push(
+                                    image
+                                );
+
+                                imageRefs.push(
+                                    ""
+                                );
+
+                            }
+
+                            return;
+
+                        }
+
+
+                        if(
+                            !imageItem ||
+                            typeof imageItem !==
+                            "object"
+                        ){
+
+                            return;
+
+                        }
+
+
+                        const image =
+                            imageItem.image ||
+                            imageItem.url ||
+                            imageItem.src ||
+                            imageItem.path ||
+                            "";
+
+
+                        if(!image){
+
+                            return;
+
+                        }
+
+
+                        const imageRef =
+                            imageItem.ref ||
+                            imageItem.reference ||
+                            imageItem.image_ref ||
+                            imageItem.imageReference ||
+                            "";
+
+
+                        images.push(
+                            String(image)
+                        );
+
+
+                        imageRefs.push(
+                            String(imageRef)
+                        );
+
+                    }
+                );
 
             }
 
+
+            /*
+             * FORMATO REAL DE STRANGIS
+             *
+             * images:[
+             *   {
+             *      name:"Rojo",
+             *      image:"URL",
+             *      ref:"IMG-XXXXX"
+             *   }
+             * ]
+             */
 
             if(
                 !images.length &&
                 variant.image
             ){
 
-                images = [
-                    String(variant.image)
-                ];
+                images =
+                    [
+                        String(
+                            variant.image
+                        )
+                    ];
+
+
+                imageRefs =
+                    [
+                        String(
+                            variant.ref ||
+                            variant.reference ||
+                            variant.image_ref ||
+                            variant.imageReference ||
+                            ""
+                        )
+                    ];
 
             }
 
+
+            /*
+             * COMPATIBILIDAD CON URL
+             */
 
             if(
                 !images.length &&
                 variant.url
             ){
 
-                images = [
-                    String(variant.url)
-                ];
+                images =
+                    [
+                        String(
+                            variant.url
+                        )
+                    ];
+
+
+                imageRefs =
+                    [
+                        String(
+                            variant.ref ||
+                            variant.reference ||
+                            variant.image_ref ||
+                            variant.imageReference ||
+                            ""
+                        )
+                    ];
 
             }
 
 
             if(!images.length){
+
                 return;
+
             }
 
 
@@ -2761,6 +3112,8 @@ function getVariants(product){
                     "#888888",
 
                 images,
+
+                imageRefs,
 
                 stock:
                     variant.stock !== undefined &&
@@ -2779,10 +3132,43 @@ function getVariants(product){
 }
 
 
+/* =====================================================
+   REF DE LA IMAGEN ACTUAL
+===================================================== */
+
+function getImageReference(
+    product,
+    variant,
+    imageIndex = 0
+){
+
+    const imageRef =
+        variant &&
+        Array.isArray(variant.imageRefs)
+            ? variant.imageRefs[imageIndex]
+            : "";
+
+
+    return String(
+        imageRef ||
+        product?.ref ||
+        product?.id ||
+        "—"
+    ).trim();
+
+}
+
+
+/* =====================================================
+   IMÁGENES DE VARIANTE
+===================================================== */
+
 function getVariantImages(variant){
 
     if(!variant){
+
         return [];
+
     }
 
 
@@ -2800,7 +3186,14 @@ function getVariantImages(variant){
 }
 
 
-function getProductStock(product,variant=null){
+/* =====================================================
+   STOCK
+===================================================== */
+
+function getProductStock(
+    product,
+    variant=null
+){
 
     const variantStock =
         variant &&
@@ -2835,6 +3228,10 @@ function getProductStock(product,variant=null){
 
 }
 
+
+/* =====================================================
+   TALLAS
+===================================================== */
 
 function getSizes(product){
 
@@ -2874,6 +3271,25 @@ async function loadProducts(){
 
         renderProducts();
 
+
+        /*
+         * IMPORTANTE:
+         *
+         * Primero esperamos a que las tarjetas
+         * estén renderizadas.
+         *
+         * Después comprobamos si la URL contiene:
+         *
+         * camisetas.html?ref=IMG-XXXXX
+         */
+
+        requestAnimationFrame(() => {
+
+            openProductFromUrl();
+
+        });
+
+
     }catch(error){
 
         console.error(
@@ -2908,6 +3324,304 @@ async function loadProducts(){
         `;
 
     }
+
+}
+
+
+/* =====================================================
+   ABRIR PRODUCTO DESDE URL
+===================================================== */
+
+function openProductFromUrl(){
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    const wantedRef =
+        String(
+            params.get("ref") || ""
+        ).trim();
+
+
+    const wantedId =
+        String(
+            params.get("id") || ""
+        ).trim();
+
+
+    /*
+     * Si la URL no tiene ni ref ni id,
+     * no hacemos nada.
+     */
+
+    if(
+        !wantedRef &&
+        !wantedId
+    ){
+
+        return;
+
+    }
+
+
+    const normalizedWantedRef =
+        normalizeImageReference(
+            wantedRef
+        );
+
+
+    let productIndex = -1;
+
+    let variantIndex = 0;
+
+    let imageIndex = 0;
+
+
+    /*
+     * =================================================
+     * 1. BUSCAR REF EXACTO DE IMAGEN
+     * =================================================
+     *
+     * Este es el caso prioritario.
+     *
+     * Ejemplo:
+     *
+     * camisetas.html?ref=IMG-ABC123
+     *
+     * Busca IMG-ABC123 dentro de:
+     *
+     * product.images[].ref
+     */
+
+    if(normalizedWantedRef){
+
+        outerLoop:
+
+        for(
+            let i = 0;
+            i < PRODUCTS.length;
+            i++
+        ){
+
+            const product =
+                PRODUCTS[i];
+
+
+            const variants =
+                getVariants(product);
+
+
+            for(
+                let v = 0;
+                v < variants.length;
+                v++
+            ){
+
+                const variant =
+                    variants[v];
+
+
+                const refs =
+                    Array.isArray(
+                        variant.imageRefs
+                    )
+                        ? variant.imageRefs
+                        : [];
+
+
+                for(
+                    let j = 0;
+                    j < refs.length;
+                    j++
+                ){
+
+                    if(
+                        normalizeImageReference(
+                            refs[j]
+                        ) ===
+                        normalizedWantedRef
+                    ){
+
+                        productIndex =
+                            i;
+
+                        variantIndex =
+                            v;
+
+                        imageIndex =
+                            j;
+
+
+                        break outerLoop;
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+
+    /*
+     * =================================================
+     * 2. SI NO ENCUENTRA REF DE IMAGEN,
+     *    BUSCAR POR ID DE PRODUCTO
+     * =================================================
+     */
+
+    if(
+        productIndex < 0 &&
+        wantedId
+    ){
+
+        const foundIndex =
+            PRODUCTS.findIndex(
+                product =>
+                    String(
+                        product.id ?? ""
+                    ) === wantedId
+            );
+
+
+        if(foundIndex >= 0){
+
+            productIndex =
+                foundIndex;
+
+            variantIndex =
+                0;
+
+            imageIndex =
+                0;
+
+        }
+
+    }
+
+
+    /*
+     * =================================================
+     * 3. COMO ÚLTIMO RECURSO,
+     *    BUSCAR REF DEL PRODUCTO
+     * =================================================
+     */
+
+    if(
+        productIndex < 0 &&
+        normalizedWantedRef
+    ){
+
+        const foundIndex =
+            PRODUCTS.findIndex(
+                product =>
+                    normalizeImageReference(
+                        product.ref
+                    ) ===
+                    normalizedWantedRef
+            );
+
+
+        if(foundIndex >= 0){
+
+            productIndex =
+                foundIndex;
+
+            variantIndex =
+                0;
+
+            imageIndex =
+                0;
+
+        }
+
+    }
+
+
+    /*
+     * =================================================
+     * 4. NO ENCONTRADO
+     * =================================================
+     */
+
+    if(productIndex < 0){
+
+        console.warn(
+            "No se encontró ningún producto para la referencia:",
+            wantedRef
+        );
+
+        return;
+
+    }
+
+
+    /*
+     * =================================================
+     * 5. GUARDAR LA POSICIÓN EN LA TARJETA
+     * =================================================
+     */
+
+    const card =
+        document.getElementById(
+            `product-${productIndex}`
+        );
+
+
+    if(card){
+
+        card.dataset.variant =
+            String(variantIndex);
+
+
+        card.dataset.image =
+            String(imageIndex);
+
+
+        /*
+         * Scroll hasta la camiseta encontrada.
+         */
+
+        card.scrollIntoView({
+
+            behavior:
+                "smooth",
+
+            block:
+                "center"
+
+        });
+
+    }
+
+
+    /*
+     * =================================================
+     * 6. ABRIR PANEL DIRECTAMENTE
+     *    EN LA IMAGEN ENCONTRADA
+     * =================================================
+     */
+
+    productPanelIndex =
+        productIndex;
+
+
+    productPanelVariantIndex =
+        variantIndex;
+
+
+    productPanelImageIndex =
+        imageIndex;
+
+
+    openProduct(
+        productIndex
+    );
 
 }
 
@@ -3019,11 +3733,13 @@ function createProductHTML(
                 </div>
 
                 <div class="product-description">
+
                     ${escapeHTML(
                         product.description ||
                         product.name ||
                         "Camiseta"
                     )}
+
                 </div>
 
                 <div class="shipping">
@@ -3144,8 +3860,11 @@ function createProductHTML(
                             >
                                 REF:
                                 ${escapeHTML(
-                                    product.ref ||
-                                    product.id
+                                    getImageReference(
+                                        product,
+                                        firstVariant,
+                                        0
+                                    )
                                 )}
                             </span>
 
@@ -3422,7 +4141,9 @@ function createProductHTML(
 ===================================================== */
 
 function panelEl(id){
+
     return document.getElementById(id);
+
 }
 
 
@@ -3430,6 +4151,7 @@ function getPanelGallery(product){
 
     const variants =
         getVariants(product);
+
 
     const gallery = [];
 
@@ -3491,7 +4213,9 @@ function renderProductPanel(){
 
 
     if(!product){
+
         return;
+
     }
 
 
@@ -3507,7 +4231,9 @@ function renderProductPanel(){
 
 
     if(!variant){
+
         return;
+
     }
 
 
@@ -3516,7 +4242,9 @@ function renderProductPanel(){
 
 
     if(!gallery.length){
+
         return;
+
     }
 
 
@@ -3529,7 +4257,9 @@ function renderProductPanel(){
 
 
     if(position < 0){
+
         position = 0;
+
     }
 
 
@@ -3553,6 +4283,7 @@ function renderProductPanel(){
 
         image.src =
             current.src;
+
 
         image.alt =
             product.name ||
@@ -3610,10 +4341,10 @@ function renderProductPanel(){
 
         ref.textContent =
             "REF: " +
-            (
-                product.ref ||
-                product.id ||
-                "—"
+            getImageReference(
+                product,
+                current.variant,
+                current.imageIndex
             );
 
     }
@@ -3788,6 +4519,10 @@ function renderProductPanel(){
 }
 
 
+/* =====================================================
+   ABRIR PRODUCTO
+===================================================== */
+
 function openProduct(index){
 
     const product =
@@ -3795,7 +4530,9 @@ function openProduct(index){
 
 
     if(!product){
+
         return;
+
     }
 
 
@@ -3850,11 +4587,14 @@ function openProduct(index){
 
 
     if(!panel){
+
         return;
+
     }
 
 
     panel.classList.add("show");
+
 
     panel.setAttribute(
         "aria-hidden",
@@ -3868,6 +4608,10 @@ function openProduct(index){
 }
 
 
+/* =====================================================
+   CERRAR PANEL
+===================================================== */
+
 function closeProductPanel(){
 
     const panel =
@@ -3875,11 +4619,16 @@ function closeProductPanel(){
 
 
     if(!panel){
+
         return;
+
     }
 
 
-    panel.classList.remove("show");
+    panel.classList.remove(
+        "show"
+    );
+
 
     panel.setAttribute(
         "aria-hidden",
@@ -3892,6 +4641,10 @@ function closeProductPanel(){
 
 }
 
+
+/* =====================================================
+   TALLA DEL PANEL
+===================================================== */
 
 function selectProductPanelSize(index){
 
@@ -3910,6 +4663,10 @@ function selectProductPanelSize(index){
 }
 
 
+/* =====================================================
+   IMAGEN PANEL
+===================================================== */
+
 function changeProductPanelImage(delta){
 
     const product =
@@ -3917,7 +4674,9 @@ function changeProductPanelImage(delta){
 
 
     if(!product){
+
         return;
+
     }
 
 
@@ -3926,7 +4685,9 @@ function changeProductPanelImage(delta){
 
 
     if(!gallery.length){
+
         return;
+
     }
 
 
@@ -3939,7 +4700,9 @@ function changeProductPanelImage(delta){
 
 
     if(position < 0){
+
         position = 0;
+
     }
 
 
@@ -3976,6 +4739,7 @@ function changeProductPanelImage(delta){
         card.dataset.variant =
             productPanelVariantIndex;
 
+
         card.dataset.image =
             productPanelImageIndex;
 
@@ -3984,6 +4748,10 @@ function changeProductPanelImage(delta){
 }
 
 
+/* =====================================================
+   CANTIDAD PANEL
+===================================================== */
+
 function changeProductPanelQuantity(delta){
 
     const product =
@@ -3991,7 +4759,9 @@ function changeProductPanelQuantity(delta){
 
 
     if(!product){
+
         return;
+
     }
 
 
@@ -4034,6 +4804,10 @@ function changeProductPanelQuantity(delta){
 }
 
 
+/* =====================================================
+   COMPRAR DESDE PANEL
+===================================================== */
+
 function buyProductFromPanel(){
 
     const product =
@@ -4041,7 +4815,9 @@ function buyProductFromPanel(){
 
 
     if(!product){
+
         return;
+
     }
 
 
@@ -4052,18 +4828,23 @@ function buyProductFromPanel(){
 
 
     if(!card){
+
         return;
+
     }
 
 
     card.dataset.variant =
         productPanelVariantIndex;
 
+
     card.dataset.image =
         productPanelImageIndex;
 
+
     card.dataset.size =
         productPanelSize;
+
 
     card.dataset.quantity =
         productPanelQuantity;
@@ -4094,7 +4875,9 @@ document.addEventListener(
 
 
         if(!container){
+
             return;
+
         }
 
 
@@ -4105,15 +4888,11 @@ document.addEventListener(
 
 
         if(!card){
+
             return;
+
         }
 
-
-        /*
-         * Si acabamos de hacer swipe,
-         * ignoramos el click sintético
-         * que algunos móviles generan.
-         */
 
         if(
             Date.now() <
@@ -4128,10 +4907,6 @@ document.addEventListener(
 
         }
 
-
-        /*
-         * Los botones tienen sus propios eventos.
-         */
 
         if(
             event.target.closest(
@@ -4164,7 +4939,7 @@ document.addEventListener(
 
 
 /* =====================================================
-   GALERÍA DE TARJETA
+   GALERÍA TARJETA
 ===================================================== */
 
 function changeProductGalleryImage(
@@ -4183,7 +4958,9 @@ function changeProductGalleryImage(
 
 
     if(!product || !card){
+
         return;
+
     }
 
 
@@ -4192,7 +4969,9 @@ function changeProductGalleryImage(
 
 
     if(!variants.length){
+
         return;
+
     }
 
 
@@ -4213,6 +4992,7 @@ function changeProductGalleryImage(
         const variant =
             variants[variantIndex];
 
+
         const images =
             getVariantImages(
                 variant
@@ -4230,6 +5010,7 @@ function changeProductGalleryImage(
 
             variantIndex++;
 
+
             if(
                 variantIndex >=
                 variants.length
@@ -4238,6 +5019,7 @@ function changeProductGalleryImage(
                 variantIndex = 0;
 
             }
+
 
             imageIndex = 0;
 
@@ -4252,6 +5034,7 @@ function changeProductGalleryImage(
         }else{
 
             variantIndex--;
+
 
             if(
                 variantIndex < 0
@@ -4308,7 +5091,9 @@ function setVariant(
 
 
     if(!product){
+
         return;
+
     }
 
 
@@ -4321,7 +5106,9 @@ function setVariant(
 
 
     if(!variant){
+
         return;
+
     }
 
 
@@ -4332,13 +5119,13 @@ function setVariant(
 
 
     if(!images.length){
+
         return;
+
     }
 
 
-    if(
-        imageIndex < 0
-    ){
+    if(imageIndex < 0){
 
         imageIndex =
             images.length - 1;
@@ -4369,7 +5156,9 @@ function setVariant(
 
 
     if(!card || !image){
+
         return;
+
     }
 
 
@@ -4414,9 +5203,10 @@ function setVariant(
 
         labelRef.textContent =
             "REF: " +
-            (
-                product.ref ||
-                product.id
+            getImageReference(
+                product,
+                variant,
+                imageIndex
             );
 
     }
@@ -4457,6 +5247,10 @@ function setVariant(
 }
 
 
+/* =====================================================
+   CONTADOR GALERÍA
+===================================================== */
+
 function updateGalleryCounter(
     productIndex
 ){
@@ -4472,7 +5266,9 @@ function updateGalleryCounter(
 
 
     if(!product || !card){
+
         return;
+
     }
 
 
@@ -4497,7 +5293,9 @@ function updateGalleryCounter(
 
 
     if(!variant){
+
         return;
+
     }
 
 
@@ -4585,13 +5383,6 @@ function galleryTouchEnd(
         endY - galleryStartY;
 
 
-    /*
-     * Solo consideramos swipe si:
-     * - hay al menos 45px de movimiento
-     * - el movimiento horizontal es mayor
-     *   que el vertical
-     */
-
     if(
         Math.abs(diffX) < 45 ||
         Math.abs(diffX) <= Math.abs(diffY)
@@ -4601,11 +5392,6 @@ function galleryTouchEnd(
 
     }
 
-
-    /*
-     * Bloqueamos el click sintético
-     * posterior al gesto.
-     */
 
     suppressProductClickUntil =
         Date.now() + 450;
@@ -4703,7 +5489,9 @@ function changeQuantity(
 
 
     if(!card){
+
         return;
+
     }
 
 
@@ -4780,7 +5568,9 @@ function buyProduct(productIndex){
 
 
     if(!product){
+
         return;
+
     }
 
 
@@ -4791,7 +5581,9 @@ function buyProduct(productIndex){
 
 
     if(!card){
+
         return;
+
     }
 
 
@@ -4888,6 +5680,11 @@ function buyProduct(productIndex){
 
         variant,
 
+        imageIndex:
+            Number(
+                card.dataset.image || 0
+            ),
+
         size,
 
         quantity,
@@ -4921,6 +5718,7 @@ function buyProduct(productIndex){
 
     modal.classList.add("show");
 
+
     document.body.style.overflow =
         "hidden";
 
@@ -4953,8 +5751,11 @@ function showOrderSummary(){
 
             REF:
             ${escapeHTML(
-                order.product.ref ||
-                order.product.id
+                getImageReference(
+                    order.product,
+                    order.variant,
+                    order.imageIndex
+                )
             )}
 
             <br>
@@ -5081,7 +5882,9 @@ function showFormError(message){
 function sendOrderToWhatsApp(){
 
     if(!currentOrder){
+
         return;
+
     }
 
 
@@ -5203,7 +6006,11 @@ Producto:
 ${currentOrder.product.name}
 
 REF:
-${currentOrder.product.ref || currentOrder.product.id}
+${getImageReference(
+    currentOrder.product,
+    currentOrder.variant,
+    currentOrder.imageIndex
+)}
 
 Categoría:
 ${currentOrder.product.category || CATEGORY}
@@ -5308,7 +6115,9 @@ function updateLightbox(){
 
 
     if(!product){
+
         return;
+
     }
 
 
@@ -5323,7 +6132,9 @@ function updateLightbox(){
 
 
     if(!variant){
+
         return;
+
     }
 
 
@@ -5334,7 +6145,9 @@ function updateLightbox(){
 
 
     if(!images.length){
+
         return;
+
     }
 
 
@@ -5394,7 +6207,9 @@ function changeLightboxImage(
 
 
     if(!product){
+
         return;
+
     }
 
 
@@ -5409,7 +6224,9 @@ function changeLightboxImage(
 
 
     if(!card){
+
         return;
+
     }
 
 
@@ -5436,7 +6253,9 @@ function changeLightboxImage(
 
 
     if(!images.length){
+
         return;
+
     }
 
 
@@ -5453,6 +6272,7 @@ function changeLightboxImage(
 
             variantIndex++;
 
+
             if(
                 variantIndex >=
                 variants.length
@@ -5461,6 +6281,7 @@ function changeLightboxImage(
                 variantIndex = 0;
 
             }
+
 
             imageIndex = 0;
 
@@ -5475,6 +6296,7 @@ function changeLightboxImage(
         }else{
 
             variantIndex--;
+
 
             if(
                 variantIndex < 0
@@ -5532,7 +6354,9 @@ function closeLightbox(){
 
 
     if(!lightbox){
+
         return;
+
     }
 
 
@@ -5823,4 +6647,4 @@ loadProducts();
 </script>
 
 </body>
-    </html>
+</html>
