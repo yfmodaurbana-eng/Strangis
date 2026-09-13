@@ -35,18 +35,26 @@ button,input,textarea{font:inherit}
 button{cursor:pointer}
 
 header{
- position:relative;
+ position:sticky;
  top:0;
  z-index:1000;
- ...
+ padding:16px 5%;
+ display:flex;
+ align-items:center;
+ gap:28px;
+ border-bottom:1px solid #ffffff1f;
+ background:#141414f0;
+ backdrop-filter:blur(18px)
 }
+.logo{flex-shrink:0;font-size:22px;font-weight:900;letter-spacing:4px}
 
 nav{
  flex:1;
  display:flex;
  align-items:center;
  gap:12px;
- overflow:hidden;
+ overflow-x:auto;
+ scrollbar-width:none;
  padding:4px 2px
 }
 nav::-webkit-scrollbar{display:none}
@@ -110,7 +118,7 @@ nav a.active{color:#111;border-color:#fff;background:#fff}
 .product{
  min-width:0;
  overflow:hidden;
- padding:16px;
+ padding:12px;
  border:1px solid #ffffff1f;
  border-radius:12px;
  background:#ffffff0e;
@@ -125,8 +133,8 @@ nav a.active{color:#111;border-color:#fff;background:#fff}
 
 .product-gallery{
  position:relative;
- height:390px;
- margin:-16px -16px 14px;
+ height:300px;
+ margin:-12px -12px 10px;
  overflow:hidden;
  background:#171717
 }
@@ -347,6 +355,47 @@ footer{
  font-size:10px
 }
 
+/* TARJETAS COMPACTAS */
+.product-description,.product > .sizes{display:none}
+.product .quantity{margin-top:9px;gap:10px}
+.product .quantity button{width:30px;height:30px;font-size:16px}
+.product .shipping{margin-top:9px;padding:8px 9px;font-size:10px}
+.product .buy{margin-top:9px;padding:11px;font-size:10px}
+
+/* DESPLEGABLES DEL PANEL */
+.product-panel-fold{
+ margin:12px 0;
+ border:1px solid #ffffff1f;
+ border-radius:8px;
+ background:#ffffff08;
+ overflow:hidden
+}
+.product-panel-fold summary{
+ list-style:none;
+ padding:11px 13px;
+ cursor:pointer;
+ color:#ddd;
+ font-size:10px;
+ font-weight:900;
+ letter-spacing:1px;
+ text-transform:uppercase;
+ display:flex;
+ align-items:center;
+ justify-content:space-between
+}
+.product-panel-fold summary::-webkit-details-marker{display:none}
+.product-panel-fold summary::after{content:'+';font-size:15px;color:#888}
+.product-panel-fold[open] summary::after{content:'−'}
+.product-panel-fold .product-panel-description{
+ margin:0;
+ padding:0 13px 13px;
+ font-size:11px;
+ line-height:1.55
+}
+.product-panel-fold .product-panel-sizes{
+ margin:0;
+ padding:0 13px 13px
+}
 /* PANEL */
 .product-panel,.modal,.image-lightbox{
  position:fixed;
@@ -366,8 +415,8 @@ footer{
 }
 .product-panel-box{
  position:relative;
- width:min(980px,100%);
- max-height:94vh;
+ width:min(860px,100%);
+ max-height:88vh;
  overflow:auto;
  display:grid;
  grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
@@ -377,7 +426,7 @@ footer{
 }
 .product-panel-media{
  position:relative;
- min-height:520px;
+ min-height:430px;
  display:flex;
  align-items:center;
  justify-content:center;
@@ -390,7 +439,7 @@ footer{
  max-height:72vh;
  object-fit:contain
 }
-.product-panel-info{padding:30px}
+.product-panel-info{padding:22px}
 
 .product-panel-close,.close-modal,.lightbox-close{
  position:absolute;
@@ -423,7 +472,7 @@ footer{
  text-transform:uppercase
 }
 .product-panel-description{
- margin:20px 0;
+ margin:0;
  color:#bbb;
  font-size:13px;
  line-height:1.65
@@ -789,13 +838,12 @@ footer{
 <nav>
 <a href="index.html">Inicio</a>
 <a class="active" href="camisetas.html" aria-current="page">Camisetas</a>
-<a href="conjuntos.html">Conjuntos</a>
 <a href="pantalones.html">Pantalones</a>
 <a href="gorras.html">Gorras</a>
 <a href="gafas.html">Gafas</a>
 <a href="bisuteria.html">Bisutería</a>
-<a href="pedreria.html">Pedrería</a>
-<a href="zapatillas.html">Zapatillas</a>
+<a href="camisetas.html">Camisetas</a>
+<a href="camisetas.html">Camisetas</a>
 </nav>
 </header>
 
@@ -838,13 +886,18 @@ footer{
 <div class="product-panel-price" id="panelImagePrice"></div>
 <div class="product-panel-meta" id="panelImageColor"></div>
 <div class="product-panel-meta" id="panelImageRef"></div>
+<details class="product-panel-fold">
+<summary>Descripción</summary>
 <div class="product-panel-description" id="panelDescription"></div>
+</details>
 
 <div class="product-panel-label" id="variantArea">Variante</div>
 <div class="product-panel-swatches" id="variantsContainer"></div>
 
-<div class="product-panel-label" id="sizeArea">Talla</div>
+<details class="product-panel-fold" id="sizeFold">
+<summary id="sizeSummary">Tallas disponibles</summary>
 <div class="product-panel-sizes" id="sizesContainer"></div>
+</details>
 
 <div class="product-panel-qty">
 <button type="button" onclick="changeProductPanelQuantity(-1)">−</button>
@@ -1643,7 +1696,7 @@ function createProductHTML(product,index){
   <button
    type="button"
    class="buy"
-   onclick="event.stopPropagation();buyProduct(${index})"
+   onclick="event.stopPropagation();openProduct(${index})"
    ${outOfStock?"disabled":""}
   >
    ${outOfStock?"AGOTADO":"COMPRAR"}
@@ -1891,8 +1944,11 @@ function renderProductPanel(){
 
  const sizes=getSizes(product);
 
- $("sizeArea").style.display=
+ $("sizeFold").style.display=
   sizes.length?"":"none";
+
+ $("sizeSummary").textContent=
+  sizes.length===1?"Talla disponible":"Tallas disponibles";
 
  $("sizesContainer").innerHTML=
   sizes.map((size,index)=>`
@@ -2159,7 +2215,17 @@ function buyProductFromPanel(){
 
  syncCardWithPanel();
 
- closeProductPanel();
+ /* Si el producto tiene tallas, obliga a elegir una
+    antes de continuar. */
+ const product=PRODUCTS[productPanelIndex];
+ const sizes=getSizes(product);
+
+ if(sizes.length&&!productPanelSize){
+  const fold=$("sizeFold");
+  if(fold)fold.open=true;
+  alert("Selecciona una talla antes de continuar.");
+  return;
+ }
 
  buyProduct(productPanelIndex);
 }
