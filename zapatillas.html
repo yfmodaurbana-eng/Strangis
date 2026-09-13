@@ -35,26 +35,18 @@ button,input,textarea{font:inherit}
 button{cursor:pointer}
 
 header{
- position:sticky;
+ position:relative;
  top:0;
  z-index:1000;
- padding:16px 5%;
- display:flex;
- align-items:center;
- gap:28px;
- border-bottom:1px solid #ffffff1f;
- background:#141414f0;
- backdrop-filter:blur(18px)
+ ...
 }
-.logo{flex-shrink:0;font-size:22px;font-weight:900;letter-spacing:4px}
 
 nav{
  flex:1;
  display:flex;
  align-items:center;
  gap:12px;
- overflow-x:auto;
- scrollbar-width:none;
+ overflow:hidden;
  padding:4px 2px
 }
 nav::-webkit-scrollbar{display:none}
