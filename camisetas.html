@@ -54,15 +54,26 @@ footer{padding:35px 5%;border-top:1px solid #ffffff1a;text-align:center;color:#7
 .panel-price{margin-top:12px;font-size:26px;font-weight:900}
 .panel-label{margin:16px 0 8px;font-size:10px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;color:#aaa}
 .panel-select{width:100%;padding:14px;border:1px solid #333;background:#222;color:#fff;border-radius:8px;font-size:15px}
+.panel-select:invalid{color:#888}
 .panel-qty{display:flex;align-items:center;width:max-content;border:1px solid #333;border-radius:8px;overflow:hidden}.panel-qty button{width:46px;height:44px;border:0;background:#222;color:#fff;font-size:20px}.panel-qty span{width:44px;text-align:center}
 .panel-buy{width:100%;margin-top:18px;padding:16px;border:0;border-radius:10px;background:#25D366;color:#fff;font-weight:900;font-size:15px}
 .panel-note{margin-top:12px;color:#888;font-size:11px;line-height:1.6;text-align:center}
+.panel-error{display:none;margin-top:12px;padding:10px;background:#4a1a1a;color:#ffb3b3;border-radius:8px;font-size:12px;text-align:center}
 .checkout-panel{position:fixed;inset:0;z-index:10001;display:none;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.8)}
 .checkout-panel.show{display:flex}
 .checkout-box{width:100%;max-width:520px;max-height:92vh;overflow-y:auto;background:#1a1a1a;border-radius:16px 16px 0 0;position:relative;padding-bottom:20px}
 .checkout-label{display:block;margin:14px 0 6px;font-size:10px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;color:#aaa}
 .checkout-input{width:100%;padding:14px;border:1px solid #333;background:#222;color:#fff;border-radius:8px;font-size:15px}
 .checkout-error{display:none;margin-top:12px;padding:10px;background:#4a1a1a;color:#ffb3b3;border-radius:8px;font-size:12px}
+.bizum-box{margin-top:20px;padding:16px;background:#1e2a1e;border:1px solid #2f6b2f;border-radius:12px}
+.bizum-title{font-size:13px;font-weight:900;letter-spacing:1px;color:#7ee787}
+.bizum-amount{margin:8px 0;font-size:22px;font-weight:900}
+.bizum-steps{margin:10px 0 0;padding-left:18px;color:#ccc;font-size:12px;line-height:1.7}
+.bizum-steps b{color:#fff}
+.bizum-important{margin-top:14px;padding:12px;background:#fff3cd;border:1px solid #e6a800;border-radius:10px;color:#3a2a00;font-size:12px;line-height:1.6}
+.bizum-important b{color:#000}
+.bizum-check{display:flex;gap:10px;align-items:flex-start;margin-top:16px;padding:12px;background:#222;border:1px solid #333;border-radius:10px;color:#ddd;font-size:12px;line-height:1.6;cursor:pointer}
+.bizum-check input{width:20px;height:20px;flex-shrink:0;margin-top:2px;accent-color:#25D366}
 @media(max-width:1100px){.products{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:850px){.products{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){
@@ -101,11 +112,12 @@ footer{padding:35px 5%;border-top:1px solid #ffffff1a;text-align:center;color:#7
       <div class="panel-desc" id="panelDesc"></div>
       <div class="panel-price" id="panelPrice">—</div>
       <div class="panel-label">Color / Variante</div>
-      <select id="panelVariant" class="panel-select" onchange="onPanelVariantChange(this.value)"></select>
+      <select id="panelVariant" class="panel-select" required onchange="onPanelVariantChange(this.value)"></select>
       <div class="panel-label">Talla</div>
-      <select id="panelSize" class="panel-select"></select>
+      <select id="panelSize" class="panel-select" required onchange="onPanelSizeChange(this.value)"></select>
       <div class="panel-label">Cantidad</div>
       <div class="panel-qty"><button type="button" onclick="changePanelQty(-1)">−</button><span id="panelQty">1</span><button type="button" onclick="changePanelQty(1)">+</button></div>
+      <div id="panelError" class="panel-error"></div>
       <button class="panel-buy" type="button" onclick="openCheckout()">COMPRAR PRODUCTO</button>
       <div class="panel-note">Envío gratuito a toda España.<br>Algunos pedidos pueden tardar hasta 30 días según proveedor.</div>
     </div>
@@ -132,8 +144,29 @@ footer{padding:35px 5%;border-top:1px solid #ffffff1a;text-align:center;color:#7
       <input id="ckZip" class="checkout-input" type="text" inputmode="numeric" placeholder="46001" autocomplete="postal-code">
       <label class="checkout-label">Notas (opcional)</label>
       <textarea id="ckNotes" class="checkout-input" rows="2" placeholder="Ej: Dejar en portería..."></textarea>
+
+      <div class="bizum-box">
+        <div class="bizum-title">💳 PAGO POR BIZUM</div>
+        <div class="bizum-amount" id="bizumAmount">—</div>
+        <ul class="bizum-steps">
+          <li>Envía el Bizum al <b>607 877 328</b></li>
+          <li>Concepto: <b id="bizumConcept">tu nombre + REF</b></li>
+          <li>Después, envía la captura por este WhatsApp</li>
+        </ul>
+        <div class="bizum-important">
+          ⚠️ <b>IMPORTANTE — LEE ESTO:</b><br>
+          Si el Bizum lo hace otra persona con otro nombre, <b>escribe abajo el nombre exacto con el que se hizo el Bizum</b>. Sin ese nombre no podemos identificar tu pago.<br><br>
+          Y es <b>obligatorio enviar la captura de pantalla del Bizum</b> por WhatsApp para confirmar tu pedido. Sin captura, no se tramita el envío.
+        </div>
+        <label class="checkout-label">Nombre del Bizum (si es distinto al tuyo)</label>
+        <input id="ckBizumName" class="checkout-input" type="text" placeholder="Ej: María García — si el Bizum lo hizo otra persona">
+        <p style="margin-top:8px;color:#aaa;font-size:11px;line-height:1.6">Si el Bizum lo haces tú con tu mismo nombre, déjalo vacío.</p>
+      </div>
+
+      <label class="bizum-check"><input id="ckBizumCheck" type="checkbox"><span>Confirmo que he enviado el Bizum y que <b>enviaré la captura de pantalla por WhatsApp</b> para confirmar el pedido.</span></label>
+
       <button class="panel-buy" type="button" onclick="confirmCheckout()">CONFIRMAR PEDIDO POR WHATSAPP</button>
-      <p style="margin-top:10px;color:#777;font-size:11px;text-align:center">Al confirmar se abrirá WhatsApp con tu pedido completo.</p>
+      <p style="margin-top:10px;color:#777;font-size:11px;text-align:center">Al confirmar se abrirá WhatsApp con tu pedido completo. No olvides adjuntar la captura del Bizum.</p>
     </div>
   </div>
 </div>
@@ -145,7 +178,8 @@ const STRANGIS_PRODUCTS_TABLE="Products";
 const PAGE_CATEGORY="camisetas";
 let PRODUCTS=[]; let FILTERED=[];
 let suppressProductClickUntil=0, galleryStartX=0, galleryStartY=0;
-let productPanelIndex=-1, productPanelVariantIndex=0, productPanelImageIndex=0, productPanelSize="", productPanelQuantity=1;
+let productPanelIndex=-1, productPanelVariantIndex=-1, productPanelImageIndex=0, productPanelSize="", productPanelQuantity=1;
+let productPanelDisplayVariant=0;
 const $=id=>document.getElementById(id);
 const supabaseClient={async request(path,options={}){const r=await fetch(STRANGIS_SUPABASE_URL+path,{...options,headers:{apikey:STRANGIS_SUPABASE_KEY,Authorization:"Bearer "+STRANGIS_SUPABASE_KEY,"Content-Type":"application/json",...(options.headers||{})}});const t=await r.text();let d=null;try{d=t?JSON.parse(t):null}catch{d=t}if(!r.ok)throw new Error(d?.message||t||`Error ${r.status}`);return d;},async getProducts(){const p=new URLSearchParams({select:"*",active:"eq.true",order:"id.asc"});return this.request(`/rest/v1/${encodeURIComponent(STRANGIS_PRODUCTS_TABLE)}?${p}`);}};
 const escapeHTML=v=>String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");
@@ -209,11 +243,13 @@ function openProduct(i, forceVariant, forceImage){
   const p=FILTERED[i]; const card=$(`product-${i}`);
   if(!p) return;
   productPanelIndex=i;
-  productPanelVariantIndex = forceVariant!=null ? forceVariant : Number(card?.dataset.variant||0);
-  productPanelImageIndex = forceImage!=null ? forceImage : Number(card?.dataset.image||0);
+  const hasForce = forceVariant!=null;
+  productPanelVariantIndex = hasForce ? Number(forceVariant) : -1;
+  productPanelDisplayVariant = hasForce ? Number(forceVariant) : Number(card?.dataset.variant||0);
+  productPanelImageIndex = forceImage!=null ? Number(forceImage) : Number(card?.dataset.image||0);
   productPanelQuantity=1;
-  const sizes=parseJSON(p.sizes,[]);
-  productPanelSize = Array.isArray(sizes)&&sizes.length ? String(sizes[0]) : "";
+  productPanelSize="";
+  $("panelError").style.display="none";
   renderProductPanel();
   $("productPanel").classList.add("show");
   document.body.style.overflow="hidden";
@@ -223,35 +259,44 @@ function renderProductPanel(){
   const p=FILTERED[productPanelIndex]; if(!p) return;
   const variants=getVariants(p);
   if(!variants.length) return;
-  if(productPanelVariantIndex<0||productPanelVariantIndex>=variants.length) productPanelVariantIndex=0;
-  const v=variants[productPanelVariantIndex];
-  const imgs=getVariantImages(v);
+  if(productPanelDisplayVariant<0||productPanelDisplayVariant>=variants.length) productPanelDisplayVariant=0;
+  const displayV=variants[productPanelDisplayVariant];
+  const imgs=getVariantImages(displayV);
   if(productPanelImageIndex<0||productPanelImageIndex>=imgs.length) productPanelImageIndex=0;
   $("panelImage").src=imgs[productPanelImageIndex]||"";
-  $("panelImage").alt=`${p.name} - ${v.name}`;
+  $("panelImage").alt=`${p.name} - ${displayV.name}`;
   const flat=getFlatGallery(p);
-  const pos=flat.findIndex(x=>x.variantIndex===productPanelVariantIndex&&x.imageIndex===productPanelImageIndex);
+  const pos=flat.findIndex(x=>x.variantIndex===productPanelDisplayVariant&&x.imageIndex===productPanelImageIndex);
   $("panelCounter").textContent=`${pos<0?1:pos+1} / ${flat.length}`;
   $("panelThumbs").innerHTML=imgs.map((src,ii)=>`<button type="button" class="${ii===productPanelImageIndex?"active":""}" onclick="setPanelImage(${ii})"><img src="${escapeHTML(src)}" alt=""></button>`).join("");
   $("panelName").textContent=p.name||"Producto";
-  $("panelRef").textContent="REF: "+getImageReference(p,v,productPanelImageIndex)+"  ·  Color: "+v.name;
+  const refVariant = productPanelVariantIndex>=0 ? variants[productPanelVariantIndex] : displayV;
+  const refIdx = productPanelVariantIndex>=0 ? 0 : productPanelImageIndex;
+  $("panelRef").textContent="REF: "+getImageReference(p,refVariant,refIdx)+"  ·  Color: "+(productPanelVariantIndex>=0 ? refVariant.name : "— Elige variante —");
   $("panelDesc").textContent=p.description||"";
   $("panelPrice").textContent=(Number(p.price)||0).toLocaleString("es-ES",{style:"currency",currency:"EUR"});
-  $("panelVariant").innerHTML=variants.map((vv,vi)=>`<option value="${vi}" ${vi===productPanelVariantIndex?"selected":""}>${escapeHTML(vv.name)}</option>`).join("");
+  $("panelVariant").innerHTML=`<option value="" ${productPanelVariantIndex<0?"selected":""} disabled>Variantes</option>`+variants.map((vv,vi)=>`<option value="${vi}" ${vi===productPanelVariantIndex?"selected":""}>${escapeHTML(vv.name)}</option>`).join("");
   const sizes=parseJSON(p.sizes,[]);
   const sizesList=Array.isArray(sizes)&&sizes.length?sizes:["Única"];
-  $("panelSize").innerHTML=sizesList.map(s=>`<option value="${escapeHTML(s)}" ${String(s)===productPanelSize?"selected":""}>${escapeHTML(s)}</option>`).join("");
-  if(!productPanelSize) productPanelSize=String(sizesList[0]);
+  $("panelSize").innerHTML=`<option value="" ${!productPanelSize?"selected":""} disabled>Tallas</option>`+sizesList.map(s=>`<option value="${escapeHTML(s)}" ${String(s)===productPanelSize?"selected":""}>${escapeHTML(s)}</option>`).join("");
   $("panelQty").textContent=productPanelQuantity;
 }
-function onPanelVariantChange(val){productPanelVariantIndex=Number(val);productPanelImageIndex=0;renderProductPanel()}
+function onPanelVariantChange(val){
+  if(val===""){ productPanelVariantIndex=-1; renderProductPanel(); return; }
+  productPanelVariantIndex=Number(val);
+  productPanelDisplayVariant=Number(val);
+  productPanelImageIndex=0;
+  $("panelError").style.display="none";
+  renderProductPanel();
+}
+function onPanelSizeChange(val){ productPanelSize=val||""; $("panelError").style.display="none"; }
 function setPanelImage(ii){productPanelImageIndex=ii;renderProductPanel()}
 function changePanelImage(dir){
   const p=FILTERED[productPanelIndex]; if(!p) return;
   const flat=getFlatGallery(p); if(!flat.length) return;
-  let pos=flat.findIndex(x=>x.variantIndex===productPanelVariantIndex&&x.imageIndex===productPanelImageIndex);
+  let pos=flat.findIndex(x=>x.variantIndex===productPanelDisplayVariant&&x.imageIndex===productPanelImageIndex);
   if(pos<0) pos=0; pos=(pos+dir+flat.length)%flat.length;
-  productPanelVariantIndex=flat[pos].variantIndex; productPanelImageIndex=flat[pos].imageIndex;
+  productPanelDisplayVariant=flat[pos].variantIndex; productPanelImageIndex=flat[pos].imageIndex;
   renderProductPanel();
 }
 function changePanelQty(dir){productPanelQuantity=Math.max(1,productPanelQuantity+dir);$("panelQty").textContent=productPanelQuantity}
@@ -287,27 +332,38 @@ function openProductFromUrl(){
 }
 function openCheckout(){
   const p=FILTERED[productPanelIndex]; if(!p) return;
+  if(productPanelVariantIndex<0){
+    const e=$("panelError"); e.textContent="Elige una variante antes de comprar."; e.style.display="block"; return;
+  }
+  if(!productPanelSize){
+    const e=$("panelError"); e.textContent="Elige una talla antes de comprar."; e.style.display="block"; return;
+  }
   const variants=getVariants(p);
   const v=variants[productPanelVariantIndex];
-  const ref=getImageReference(p,v,productPanelImageIndex);
-  const size=$("panelSize")?.value||"";
-  $("checkoutSummary").innerHTML=`<strong style="color:#fff">${escapeHTML(p.name)}</strong><br>REF: ${escapeHTML(ref)} · Color: ${escapeHTML(v.name)} · Talla: ${escapeHTML(size)} · Cant: ${productPanelQuantity}<br>Total: <strong style="color:#fff">${(Number(p.price)*productPanelQuantity).toLocaleString("es-ES",{style:"currency",currency:"EUR"})}</strong>`;
+  const ref=getImageReference(p,v,0);
+  const total=(Number(p.price)*productPanelQuantity).toLocaleString("es-ES",{style:"currency",currency:"EUR"});
+  $("checkoutSummary").innerHTML=`<strong style="color:#fff">${escapeHTML(p.name)}</strong><br>REF: ${escapeHTML(ref)} · Color: ${escapeHTML(v.name)} · Talla: ${escapeHTML(productPanelSize)} · Cant: ${productPanelQuantity}<br>Total: <strong style="color:#fff">${total}</strong>`;
+  $("bizumAmount").textContent="Total a pagar por Bizum: "+total;
+  $("bizumConcept").textContent=($("ckName").value.trim()||"tu nombre")+" + "+ref;
   $("checkoutError").style.display="none";
+  $("ckBizumCheck").checked=false;
   $("checkoutPanel").classList.add("show");
 }
 function closeCheckout(){$("checkoutPanel").classList.remove("show")}
 function confirmCheckout(){
   const p=FILTERED[productPanelIndex]; if(!p) return;
   const variants=getVariants(p);
-  const v=variants[productPanelVariantIndex];
-  const ref=getImageReference(p,v,productPanelImageIndex);
-  const size=$("panelSize")?.value||"";
+  const v=variants[productPanelVariantIndex>=0?productPanelVariantIndex:productPanelDisplayVariant];
+  const ref=getImageReference(p,v,0);
+  const size=productPanelSize||"";
   const name=$("ckName").value.trim();
   const phone=$("ckPhone").value.trim();
   const address=$("ckAddress").value.trim();
   const city=$("ckCity").value.trim();
   const zip=$("ckZip").value.trim();
   const notes=$("ckNotes").value.trim();
+  const bizumName=$("ckBizumName").value.trim();
+  const bizumChecked=$("ckBizumCheck").checked;
   const missing=[];
   if(!name) missing.push("nombre");
   if(!phone) missing.push("teléfono");
@@ -320,7 +376,16 @@ function confirmCheckout(){
     e.style.display="block";
     return;
   }
-  const msg=`Hola!! 👋 Quiero hacer este pedido:\n\n🛍️ PRODUCTO: ${p.name}\nREF: ${ref}\nColor: ${v.name}\nTalla: ${size}\nCantidad: ${productPanelQuantity}\nPrecio: ${(Number(p.price)*productPanelQuantity).toLocaleString("es-ES",{style:"currency",currency:"EUR"})}\n\n📦 DATOS DE ENVÍO:\nNombre: ${name}\nTeléfono: ${phone}\nDirección: ${address}\nCiudad: ${city}\nCP: ${zip}${notes?`\nNotas: ${notes}`:""}`;
+  if(!bizumChecked){
+    const e=$("checkoutError");
+    e.textContent="Marca la casilla de confirmación del Bizum: debes confirmar que enviarás la captura por WhatsApp.";
+    e.style.display="block";
+    return;
+  }
+  const bizumLine = bizumName && bizumName.toLowerCase()!==name.toLowerCase()
+    ? `\n⚠️ BIZUM A NOMBRE DE: ${bizumName} (distinto al del pedido)`
+    : `\nBizum a nombre de: ${name}`;
+  const msg=`Hola!! 👋 Quiero hacer este pedido:\n\n🛍️ PRODUCTO: ${p.name}\nREF: ${ref}\nColor: ${v.name}\nTalla: ${size}\nCantidad: ${productPanelQuantity}\nPrecio: ${(Number(p.price)*productPanelQuantity).toLocaleString("es-ES",{style:"currency",currency:"EUR"})}\n\n📦 DATOS DE ENVÍO:\nNombre: ${name}\nTeléfono: ${phone}\nDirección: ${address}\nCiudad: ${city}\nCP: ${zip}${notes?`\nNotas: ${notes}`:""}\n\n💳 PAGO BIZUM:\nBizum enviado al 607 877 328${bizumLine}\n✅ Voy a enviar la captura de pantalla del Bizum para confirmar el pedido.`;
   window.open(`https://wa.me/34607877328?text=${encodeURIComponent(msg)}`,"_blank");
   closeCheckout();
 }
@@ -333,6 +398,7 @@ if(searchInput){
 if(searchClear){searchClear.addEventListener("click",()=>{searchInput.value="";searchInput.focus();applySearch()})}
 $("productPanel").addEventListener("click",e=>{if(e.target.id==="productPanel") closeProductPanel()});
 $("checkoutPanel").addEventListener("click",e=>{if(e.target.id==="checkoutPanel") closeCheckout()});
+if($("ckName")) $("ckName").addEventListener("input",()=>{ const p=FILTERED[productPanelIndex]; if(!p) return; const v=getVariants(p)[productPanelVariantIndex>=0?productPanelVariantIndex:0]; $("bizumConcept").textContent=($("ckName").value.trim()||"tu nombre")+" + "+getImageReference(p,v,0); });
 loadProducts();
 setInterval(loadProducts,30000);
 </script>
