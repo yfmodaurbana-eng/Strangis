@@ -33,8 +33,9 @@ nav a:hover{color:#fff;border-color:#ffffff29;background:#ffffff0d}nav a.active{
 .products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
 .product{min-width:0;overflow:hidden;padding:0;border:1px solid #ffffff1f;border-radius:12px;background:#171717;cursor:pointer;transition:.25s}.product:hover{transform:translateY(-3px);border-color:#ffffff50;box-shadow:0 15px 40px rgba(0,0,0,.4)}
 .product-gallery{position:relative;width:100%;aspect-ratio:1/1.15;overflow:hidden;background:#171717}
-.product-image{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center;cursor:pointer;user-select:none}
-.product-image img{width:100%;height:100%;object-fit:cover;transition:.35s}.product:hover .product-image img{transform:scale(1.05)}
+.product-image{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center;cursor:grab;user-select:none;touch-action:pan-y}
+.product-image:active{cursor:grabbing}
+.product-image img{width:100%;height:100%;object-fit:cover;transition:.35s;pointer-events:none}.product:hover .product-image img{transform:scale(1.05)}
 .gallery-arrow{position:absolute;z-index:8;display:flex;align-items:center;justify-content:center;border:1px solid #ffffff40;border-radius:50%;background:#0000008c;color:#fff;top:50%;width:36px;height:36px;transform:translateY(-50%)}.gallery-arrow.prev{left:10px}.gallery-arrow.next{right:10px}
 .gallery-counter{position:absolute;left:50%;z-index:8;padding:5px 9px;border-radius:20px;background:#0000008c;color:#fff;font-size:9px;font-weight:bold;transform:translateX(-50%);bottom:12px}
 .empty,.loading{grid-column:1/-1;padding:100px 20px;text-align:center;color:#aaa}
@@ -42,8 +43,9 @@ footer{padding:35px 5%;border-top:1px solid #ffffff1a;text-align:center;color:#7
 .product-panel{position:fixed;inset:0;z-index:10000;display:none;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.75)}.product-panel.show{display:flex}
 .panel-box{width:100%;max-width:520px;max-height:92vh;overflow-y:auto;background:#1a1a1a;border-radius:16px 16px 0 0;padding:0 0 20px;position:relative}
 .panel-close{position:absolute;top:12px;right:12px;z-index:10;width:38px;height:38px;border:0;border-radius:50%;background:rgba(0,0,0,.6);color:#fff;font-size:20px}
-.panel-image-wrap{position:relative;width:100%;aspect-ratio:1/1.15;background:#000;overflow:hidden}
-.panel-image-wrap img{width:100%;height:100%;object-fit:cover}
+.panel-image-wrap{position:relative;width:100%;aspect-ratio:1/1.15;background:#000;overflow:hidden;touch-action:pan-y;cursor:grab;user-select:none}
+.panel-image-wrap:active{cursor:grabbing}
+.panel-image-wrap img{width:100%;height:100%;object-fit:cover;pointer-events:none}
 .panel-arrow{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border:1px solid #ffffff40;border-radius:50%;background:#0000008c;color:#fff;font-size:22px;z-index:5}.panel-arrow.prev{left:10px}.panel-arrow.next{right:10px}
 .panel-counter{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);padding:5px 10px;border-radius:20px;background:#0000008c;font-size:11px}
 .panel-thumbs{display:flex;gap:8px;padding:12px;overflow-x:auto}.panel-thumbs button{flex:0 0 56px;width:56px;height:68px;padding:0;border:2px solid transparent;border-radius:8px;overflow:hidden;background:#222}.panel-thumbs button.active{border-color:#fff}.panel-thumbs img{width:100%;height:100%;object-fit:cover}
@@ -99,10 +101,10 @@ footer{padding:35px 5%;border-top:1px solid #ffffff1a;text-align:center;color:#7
 <div id="productPanel" class="product-panel">
   <div class="panel-box">
     <button class="panel-close" type="button" onclick="closeProductPanel()">×</button>
-    <div class="panel-image-wrap">
+    <div class="panel-image-wrap" id="panelImageWrap" ontouchstart="panelTouchStart(event)" ontouchend="panelTouchEnd(event)" onmousedown="panelMouseDown(event)" onmouseup="panelMouseUp(event)">
       <img id="panelImage" src="" alt="">
-      <button class="panel-arrow prev" type="button" onclick="changePanelImage(-1)">‹</button>
-      <button class="panel-arrow next" type="button" onclick="changePanelImage(1)">›</button>
+      <button class="panel-arrow prev" type="button" onclick="event.stopPropagation();changePanelImage(-1)">‹</button>
+      <button class="panel-arrow next" type="button" onclick="event.stopPropagation();changePanelImage(1)">›</button>
       <div class="panel-counter" id="panelCounter">1 / 1</div>
     </div>
     <div class="panel-thumbs" id="panelThumbs"></div>
@@ -144,7 +146,6 @@ footer{padding:35px 5%;border-top:1px solid #ffffff1a;text-align:center;color:#7
       <input id="ckZip" class="checkout-input" type="text" inputmode="numeric" placeholder="46001" autocomplete="postal-code">
       <label class="checkout-label">Notas (opcional)</label>
       <textarea id="ckNotes" class="checkout-input" rows="2" placeholder="Ej: Dejar en portería..."></textarea>
-
       <div class="bizum-box">
         <div class="bizum-title">💳 PAGO POR BIZUM</div>
         <div class="bizum-amount" id="bizumAmount">—</div>
@@ -162,9 +163,7 @@ footer{padding:35px 5%;border-top:1px solid #ffffff1a;text-align:center;color:#7
         <input id="ckBizumName" class="checkout-input" type="text" placeholder="Ej: María García — si el Bizum lo hizo otra persona">
         <p style="margin-top:8px;color:#aaa;font-size:11px;line-height:1.6">Si el Bizum lo haces tú con tu mismo nombre, déjalo vacío.</p>
       </div>
-
       <label class="bizum-check"><input id="ckBizumCheck" type="checkbox"><span>Confirmo que he enviado el Bizum y que <b>enviaré la captura de pantalla por WhatsApp</b> para confirmar el pedido.</span></label>
-
       <button class="panel-buy" type="button" onclick="confirmCheckout()">CONFIRMAR PEDIDO POR WHATSAPP</button>
       <p style="margin-top:10px;color:#777;font-size:11px;text-align:center">Al confirmar se abrirá WhatsApp con tu pedido completo. No olvides adjuntar la captura del Bizum.</p>
     </div>
@@ -178,7 +177,8 @@ const STRANGIS_PRODUCTS_TABLE="Products";
 const PAGE_CATEGORY="camisetas";
 let PRODUCTS=[]; let FILTERED=[];
 let suppressProductClickUntil=0, galleryStartX=0, galleryStartY=0;
-let productPanelIndex=-1, productPanelVariantIndex=-1, productPanelImageIndex=0, productPanelSize="", productPanelQuantity=1;
+let panelStartX=0, panelStartY=0, panelMouseX=0;
+let productPanelIndex=-1, productPanelVariantIndex=0, productPanelImageIndex=0, productPanelSize="", productPanelQuantity=1;
 let productPanelDisplayVariant=0;
 const $=id=>document.getElementById(id);
 const supabaseClient={async request(path,options={}){const r=await fetch(STRANGIS_SUPABASE_URL+path,{...options,headers:{apikey:STRANGIS_SUPABASE_KEY,Authorization:"Bearer "+STRANGIS_SUPABASE_KEY,"Content-Type":"application/json",...(options.headers||{})}});const t=await r.text();let d=null;try{d=t?JSON.parse(t):null}catch{d=t}if(!r.ok)throw new Error(d?.message||t||`Error ${r.status}`);return d;},async getProducts(){const p=new URLSearchParams({select:"*",active:"eq.true",order:"id.asc"});return this.request(`/rest/v1/${encodeURIComponent(STRANGIS_PRODUCTS_TABLE)}?${p}`);}};
@@ -230,22 +230,29 @@ function createProductHTML(product,index){
   const total=variants.reduce((t,v)=>t+getVariantImages(v).length,0);
   const g=getFlatGallery(product);
   const pos=g.findIndex(x=>x.variantIndex===startVariant&&x.imageIndex===startImage);
-  return `<article class="product" id="product-${index}" data-variant="${startVariant}" data-image="${startImage}" onclick="openProduct(${index})"><div class="product-gallery"><div class="product-image" ontouchstart="galleryTouchStart(event)" ontouchend="galleryTouchEnd(event,${index})"><img id="image-${index}" src="${escapeHTML(startImg)}" alt="${escapeHTML(product.name||"Producto")}" loading="lazy" draggable="false" onerror="imageError(this)"></div>${total>1?`<button class="gallery-arrow prev" type="button" onclick="event.stopPropagation();changeProductGalleryImage(${index},-1)">‹</button><button class="gallery-arrow next" type="button" onclick="event.stopPropagation();changeProductGalleryImage(${index},1)">›</button><div class="gallery-counter" id="gallery-counter-${index}">${pos<0?1:pos+1} / ${total}</div>`:""}</div></article>`;
+  return `<article class="product" id="product-${index}" data-variant="${startVariant}" data-image="${startImage}" onclick="openProduct(${index})"><div class="product-gallery"><div class="product-image" ontouchstart="galleryTouchStart(event)" ontouchmove="galleryTouchMove(event)" ontouchend="galleryTouchEnd(event,${index})" onmousedown="galleryMouseDown(event,${index})" onmouseup="galleryMouseUp(event,${index})"><img id="image-${index}" src="${escapeHTML(startImg)}" alt="${escapeHTML(product.name||"Producto")}" loading="lazy" draggable="false" onerror="imageError(this)"></div>${total>1?`<button class="gallery-arrow prev" type="button" onclick="event.stopPropagation();changeProductGalleryImage(${index},-1)">‹</button><button class="gallery-arrow next" type="button" onclick="event.stopPropagation();changeProductGalleryImage(${index},1)">›</button><div class="gallery-counter" id="gallery-counter-${index}">${pos<0?1:pos+1} / ${total}</div>`:""}</div></article>`;
 }
 function changeProductGalleryImage(pi,dir){const p=FILTERED[pi];const card=$(`product-${pi}`);if(!p||!card)return;const g=getFlatGallery(p);if(!g.length)return;let pos=g.findIndex(x=>x.variantIndex===Number(card.dataset.variant||0)&&x.imageIndex===Number(card.dataset.image||0));if(pos<0)pos=0;pos=(pos+dir+g.length)%g.length;setVariant(pi,g[pos].variantIndex,g[pos].imageIndex)}
 function setVariant(pi,vi,ii=0){const p=FILTERED[pi];const card=$(`product-${pi}`);const img=$(`image-${pi}`);if(!p||!card||!img)return;const v=getVariants(p)[vi];const imgs=getVariantImages(v);if(!v||!imgs.length)return;ii=Math.max(0,Math.min(ii,imgs.length-1));card.dataset.variant=vi;card.dataset.image=ii;img.src=imgs[ii];img.alt=`${p.name} - ${v.name}`;updateGalleryCounter(pi)}
 function updateGalleryCounter(pi){const p=FILTERED[pi];const card=$(`product-${pi}`);const c=$(`gallery-counter-${pi}`);if(!p||!card||!c)return;const g=getFlatGallery(p);const pos=g.findIndex(x=>x.variantIndex===Number(card.dataset.variant||0)&&x.imageIndex===Number(card.dataset.image||0));c.textContent=`${pos<0?1:pos+1} / ${g.length}`}
+// === SWIPE EN TARJETA ===
 function galleryTouchStart(e){if(e.touches?.length){galleryStartX=e.touches[0].clientX;galleryStartY=e.touches[0].clientY}}
-function galleryTouchEnd(e,pi){if(!e.changedTouches?.length)return;const dx=e.changedTouches[0].clientX-galleryStartX;const dy=e.changedTouches[0].clientY-galleryStartY;if(Math.abs(dx)<45||Math.abs(dx)<=Math.abs(dy))return;suppressProductClickUntil=Date.now()+500;changeProductGalleryImage(pi,dx<0?1:-1)}
+function galleryTouchMove(e){if(e.touches?.length && Math.abs(e.touches[0].clientX-galleryStartX)>10 && Math.abs(e.touches[0].clientX-galleryStartX)>Math.abs(e.touches[0].clientY-galleryStartY)){e.preventDefault()}}
+function galleryTouchEnd(e,pi){if(!e.changedTouches?.length)return;const dx=e.changedTouches[0].clientX-galleryStartX;const dy=e.changedTouches[0].clientY-galleryStartY;if(Math.abs(dx)<40||Math.abs(dx)<=Math.abs(dy))return;suppressProductClickUntil=Date.now()+500;changeProductGalleryImage(pi,dx<0?1:-1)}
+let cardMouseX=0, cardMouseDown=false;
+function galleryMouseDown(e,pi){cardMouseDown=true;cardMouseX=e.clientX;e.currentTarget.dataset.pi=pi}
+function galleryMouseUp(e,pi){if(!cardMouseDown) return;cardMouseDown=false;const dx=e.clientX-cardMouseX;if(Math.abs(dx)<40) return;suppressProductClickUntil=Date.now()+500;changeProductGalleryImage(pi,dx<0?1:-1)}
 function imageError(img){img.style.display="none"}
 function openProduct(i, forceVariant, forceImage){
   if(Date.now()<suppressProductClickUntil) return;
   const p=FILTERED[i]; const card=$(`product-${i}`);
   if(!p) return;
   productPanelIndex=i;
+  // Variante = la de la foto que se está viendo en la tarjeta. Así foto y variante siempre van juntas.
   const hasForce = forceVariant!=null;
-  productPanelVariantIndex = hasForce ? Number(forceVariant) : -1;
-  productPanelDisplayVariant = hasForce ? Number(forceVariant) : Number(card?.dataset.variant||0);
+  const startVariant = hasForce ? Number(forceVariant) : Number(card?.dataset.variant||0);
+  productPanelVariantIndex = startVariant;
+  productPanelDisplayVariant = startVariant;
   productPanelImageIndex = forceImage!=null ? Number(forceImage) : Number(card?.dataset.image||0);
   productPanelQuantity=1;
   productPanelSize="";
@@ -259,6 +266,8 @@ function renderProductPanel(){
   const p=FILTERED[productPanelIndex]; if(!p) return;
   const variants=getVariants(p);
   if(!variants.length) return;
+  // Sincronización total: variante seleccionada = variante de la foto
+  productPanelDisplayVariant = productPanelVariantIndex;
   if(productPanelDisplayVariant<0||productPanelDisplayVariant>=variants.length) productPanelDisplayVariant=0;
   const displayV=variants[productPanelDisplayVariant];
   const imgs=getVariantImages(displayV);
@@ -270,19 +279,19 @@ function renderProductPanel(){
   $("panelCounter").textContent=`${pos<0?1:pos+1} / ${flat.length}`;
   $("panelThumbs").innerHTML=imgs.map((src,ii)=>`<button type="button" class="${ii===productPanelImageIndex?"active":""}" onclick="setPanelImage(${ii})"><img src="${escapeHTML(src)}" alt=""></button>`).join("");
   $("panelName").textContent=p.name||"Producto";
-  const refVariant = productPanelVariantIndex>=0 ? variants[productPanelVariantIndex] : displayV;
-  const refIdx = productPanelVariantIndex>=0 ? 0 : productPanelImageIndex;
-  $("panelRef").textContent="REF: "+getImageReference(p,refVariant,refIdx)+"  ·  Color: "+(productPanelVariantIndex>=0 ? refVariant.name : "— Elige variante —");
+  $("panelRef").textContent="REF: "+getImageReference(p,displayV,productPanelImageIndex)+"  ·  Color: "+displayV.name;
   $("panelDesc").textContent=p.description||"";
   $("panelPrice").textContent=(Number(p.price)||0).toLocaleString("es-ES",{style:"currency",currency:"EUR"});
-  $("panelVariant").innerHTML=`<option value="" ${productPanelVariantIndex<0?"selected":""} disabled>Variantes</option>`+variants.map((vv,vi)=>`<option value="${vi}" ${vi===productPanelVariantIndex?"selected":""}>${escapeHTML(vv.name)}</option>`).join("");
+  // Variante ya viene puesta según la foto, sin placeholder. Tallas sí sigue en placeholder.
+  $("panelVariant").innerHTML=variants.map((vv,vi)=>`<option value="${vi}" ${vi===productPanelVariantIndex?"selected":""}>${escapeHTML(vv.name)}</option>`).join("");
   const sizes=parseJSON(p.sizes,[]);
   const sizesList=Array.isArray(sizes)&&sizes.length?sizes:["Única"];
   $("panelSize").innerHTML=`<option value="" ${!productPanelSize?"selected":""} disabled>Tallas</option>`+sizesList.map(s=>`<option value="${escapeHTML(s)}" ${String(s)===productPanelSize?"selected":""}>${escapeHTML(s)}</option>`).join("");
   $("panelQty").textContent=productPanelQuantity;
 }
 function onPanelVariantChange(val){
-  if(val===""){ productPanelVariantIndex=-1; renderProductPanel(); return; }
+  // Variante -> Foto: al cambiar la variante, salta a la primera foto de esa variante
+  if(val==="") return;
   productPanelVariantIndex=Number(val);
   productPanelDisplayVariant=Number(val);
   productPanelImageIndex=0;
@@ -292,13 +301,21 @@ function onPanelVariantChange(val){
 function onPanelSizeChange(val){ productPanelSize=val||""; $("panelError").style.display="none"; }
 function setPanelImage(ii){productPanelImageIndex=ii;renderProductPanel()}
 function changePanelImage(dir){
+  // Foto -> Variante: al pasar de foto, la variante se actualiza sola a la de esa foto
   const p=FILTERED[productPanelIndex]; if(!p) return;
   const flat=getFlatGallery(p); if(!flat.length) return;
   let pos=flat.findIndex(x=>x.variantIndex===productPanelDisplayVariant&&x.imageIndex===productPanelImageIndex);
   if(pos<0) pos=0; pos=(pos+dir+flat.length)%flat.length;
-  productPanelDisplayVariant=flat[pos].variantIndex; productPanelImageIndex=flat[pos].imageIndex;
+  productPanelDisplayVariant=flat[pos].variantIndex;
+  productPanelVariantIndex=flat[pos].variantIndex;
+  productPanelImageIndex=flat[pos].imageIndex;
   renderProductPanel();
 }
+// === SWIPE EN PANEL DE PRODUCTO ===
+function panelTouchStart(e){if(e.touches?.length){panelStartX=e.touches[0].clientX;panelStartY=e.touches[0].clientY}}
+function panelTouchEnd(e){if(!e.changedTouches?.length)return;const dx=e.changedTouches[0].clientX-panelStartX;const dy=e.changedTouches[0].clientY-panelStartY;if(Math.abs(dx)<40||Math.abs(dx)<=Math.abs(dy))return;changePanelImage(dx<0?1:-1)}
+function panelMouseDown(e){panelMouseX=e.clientX}
+function panelMouseUp(e){const dx=e.clientX-panelMouseX;if(Math.abs(dx)<40) return;changePanelImage(dx<0?1:-1)}
 function changePanelQty(dir){productPanelQuantity=Math.max(1,productPanelQuantity+dir);$("panelQty").textContent=productPanelQuantity}
 function openProductFromUrl(){
   const params=new URLSearchParams(location.search);
@@ -340,7 +357,7 @@ function openCheckout(){
   }
   const variants=getVariants(p);
   const v=variants[productPanelVariantIndex];
-  const ref=getImageReference(p,v,0);
+  const ref=getImageReference(p,v,productPanelImageIndex);
   const total=(Number(p.price)*productPanelQuantity).toLocaleString("es-ES",{style:"currency",currency:"EUR"});
   $("checkoutSummary").innerHTML=`<strong style="color:#fff">${escapeHTML(p.name)}</strong><br>REF: ${escapeHTML(ref)} · Color: ${escapeHTML(v.name)} · Talla: ${escapeHTML(productPanelSize)} · Cant: ${productPanelQuantity}<br>Total: <strong style="color:#fff">${total}</strong>`;
   $("bizumAmount").textContent="Total a pagar por Bizum: "+total;
@@ -354,7 +371,7 @@ function confirmCheckout(){
   const p=FILTERED[productPanelIndex]; if(!p) return;
   const variants=getVariants(p);
   const v=variants[productPanelVariantIndex>=0?productPanelVariantIndex:productPanelDisplayVariant];
-  const ref=getImageReference(p,v,0);
+  const ref=getImageReference(p,v,productPanelImageIndex);
   const size=productPanelSize||"";
   const name=$("ckName").value.trim();
   const phone=$("ckPhone").value.trim();
@@ -398,7 +415,7 @@ if(searchInput){
 if(searchClear){searchClear.addEventListener("click",()=>{searchInput.value="";searchInput.focus();applySearch()})}
 $("productPanel").addEventListener("click",e=>{if(e.target.id==="productPanel") closeProductPanel()});
 $("checkoutPanel").addEventListener("click",e=>{if(e.target.id==="checkoutPanel") closeCheckout()});
-if($("ckName")) $("ckName").addEventListener("input",()=>{ const p=FILTERED[productPanelIndex]; if(!p) return; const v=getVariants(p)[productPanelVariantIndex>=0?productPanelVariantIndex:0]; $("bizumConcept").textContent=($("ckName").value.trim()||"tu nombre")+" + "+getImageReference(p,v,0); });
+if($("ckName")) $("ckName").addEventListener("input",()=>{ const p=FILTERED[productPanelIndex]; if(!p) return; const v=getVariants(p)[productPanelVariantIndex>=0?productPanelVariantIndex:0]; $("bizumConcept").textContent=($("ckName").value.trim()||"tu nombre")+" + "+getImageReference(p,v,productPanelImageIndex); });
 loadProducts();
 setInterval(loadProducts,30000);
 </script>
