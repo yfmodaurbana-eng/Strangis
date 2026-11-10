@@ -32,7 +32,6 @@ nav a:hover{color:#fff;border-color:#ffffff29;background:#ffffff0d}nav a.active{
 .hero-note{max-width:850px;margin:22px auto 0;padding:18px 20px;border:1px solid rgba(255,165,70,.45);border-left:4px solid #ff962d;border-radius:9px;background:linear-gradient(135deg,rgba(255,145,45,.16),rgba(120,65,20,.08));color:#d0d0d0;font-size:13px;line-height:1.7;text-align:left}.hero-note strong{color:#ffb15c}
 .products-section{width:min(1400px,90%);margin:auto;padding:10px 0 100px}
 .section-heading{display:flex;justify-content:space-between;align-items:end;margin-bottom:20px}.section-heading h2{font-size:14px;font-weight:900;letter-spacing:2px;text-transform:uppercase}.section-heading span{color:#777;font-size:11px}
-/* SOLO IMAGEN - CLICK LLEVA A CATEGORIA */
 .products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
 .product{min-width:0;overflow:hidden;padding:0;border:1px solid #ffffff1f;border-radius:12px;background:#171717;cursor:pointer;transition:.25s}.product:hover{transform:translateY(-3px);border-color:#ffffff50;box-shadow:0 15px 40px rgba(0,0,0,.4)}
 .product-gallery{position:relative;width:100%;aspect-ratio:1/1.15;overflow:hidden;background:#171717}
@@ -84,8 +83,21 @@ function getVariants(product){const raw=parseJSON(product?.images,[]);const vari
 function getVariantImages(v){return Array.isArray(v?.images)?v.images.filter(Boolean).map(String):[]}
 function getImageReference(product,variant,idx=0){const ref=Array.isArray(variant?.imageRefs)?variant.imageRefs[idx]:"";return String(ref||product?.ref||product?.id||"—").trim()}
 function getFlatGallery(p){const g=[];getVariants(p).forEach((v,vi)=>{getVariantImages(v).forEach((src,ii)=>{g.push({src,variantIndex:vi,imageIndex:ii,variant:v})})});return g}
-
-/* === CLIC LLEVA A SU CATEGORÍA === */
+// === NUEVO: BUSCAR LA FOTO EXACTA DE LA REF ===
+function findRefMatch(p, refQ){
+  if(!refQ) return null;
+  const variants=getVariants(p);
+  // 1. Buscar en las REF de cada foto
+  for(let vi=0; vi<variants.length; vi++){
+    const refs=variants[vi].imageRefs||[];
+    for(let ii=0; ii<refs.length; ii++){
+      if(normalizeImageReference(refs[ii]) && normalizeImageReference(refs[ii]).includes(refQ)) return {variantIndex:vi, imageIndex:ii};
+    }
+  }
+  // 2. Si la REF es la REF general del producto, primera foto
+  if(normalizeImageReference(p.ref) && normalizeImageReference(p.ref).includes(refQ)) return {variantIndex:0, imageIndex:0};
+  return null;
+}
 function categoryToPage(category){
   const c = normalizeText(category||"");
   if(c.includes("camiseta")) return "camisetas.html";
@@ -104,22 +116,48 @@ function goToCategory(index){
   const p = FILTERED[index];
   if(!p) return;
   const page = categoryToPage(p.category);
-  // Lleva a la categoría y con la REF para que esa página abra ese producto
-  const v = getVariants(p)[Number(document.getElementById(`product-${index}`)?.dataset.variant||0)];
-  const ref = getImageReference(p, v, Number(document.getElementById(`product-${index}`)?.dataset.image||0));
+  const card=document.getElementById(`product-${index}`);
+  const v = getVariants(p)[Number(card?.dataset.variant||0)];
+  const ref = getImageReference(p, v, Number(card?.dataset.image||0));
   const url = ref && ref!=="—" ? `${page}?ref=${encodeURIComponent(ref)}` : page;
   window.location.href = url;
 }
-
 async function loadProducts(){const c=$("productsContainer");c.innerHTML='<div class="loading">Cargando productos...</div>';try{const r=await supabaseClient.getProducts();if(!Array.isArray(r))throw new Error("Supabase no devolvió lista");PRODUCTS=r;applySearch();}catch(e){console.error(e);c.innerHTML=`<div class="empty"><strong>No se pudieron cargar.</strong><br><br>${escapeHTML(e.message)}</div>`}}
-function applySearch(){const q=normalizeText($("productSearch")?.value||"");const refQ=normalizeImageReference($("productSearch")?.value||"");if(!q){FILTERED=PRODUCTS}else{FILTERED=PRODUCTS.filter(p=>{const variants=getVariants(p);const refs=[normalizeImageReference(p.ref),...variants.flatMap(v=>(v.imageRefs||[]).map(normalizeImageReference))];if(refQ&&refs.some(r=>r.includes(refQ)))return true;const hay=normalizeText([p.name,p.category,p.description,...variants.map(v=>v.name)].filter(Boolean).join(" "));return q.split(/\s+/).every(w=>hay.includes(w))})}renderProducts();const rt=$("searchResult");if(q){rt.innerHTML=FILTERED.length?`Encontrados: <strong>${FILTERED.length}</strong>`:`<strong>No se encontró el producto</strong>`}else rt.textContent="";const clr=$("searchClear");if(clr)clr.classList.toggle("visible",!!q)}
+function applySearch(){
+  const raw=($("productSearch")?.value||"");
+  const q=normalizeText(raw);
+  const refQ=normalizeImageReference(raw);
+  if(!q){FILTERED=PRODUCTS}
+  else{
+    FILTERED=PRODUCTS.filter(p=>{
+      const variants=getVariants(p);
+      const refs=[normalizeImageReference(p.ref),...variants.flatMap(v=>(v.imageRefs||[]).map(normalizeImageReference))];
+      if(refQ&&refs.some(r=>r.includes(refQ)))return true;
+      const hay=normalizeText([p.name,p.category,p.description,...variants.map(v=>v.name)].filter(Boolean).join(" "));
+      return q.split(/\s+/).every(w=>hay.includes(w))
+    });
+  }
+  renderProducts();
+  const rt=$("searchResult");
+  if(q){rt.innerHTML=FILTERED.length?`Encontrados: <strong>${FILTERED.length}</strong>`:`<strong>No se encontró el producto</strong>`}else rt.textContent="";
+  const clr=$("searchClear");if(clr)clr.classList.toggle("visible",!!q)
+}
 function renderProducts(){const c=$("productsContainer");$("productCount").textContent=FILTERED.length===1?"1 artículo":`${FILTERED.length} artículos`;if(!FILTERED.length){c.innerHTML='<div class="empty">No hay productos activos.</div>';return}c.innerHTML=FILTERED.map((p,i)=>createProductHTML(p,i)).join("")}
 function createProductHTML(product,index){
-  const variants=getVariants(product);const first=variants[0];
-  if(!first) return `<article class="product" id="product-${index}" data-variant="0" data-image="0"><div class="product-gallery" style="display:flex;align-items:center;justify-content:center;color:#555">SIN IMAGEN</div></article>`;
-  const images=getVariantImages(first);const firstImage=images[0]||"";const total=variants.reduce((t,v)=>t+getVariantImages(v).length,0);
-  // SOLO IMAGEN, onclick = ir a su categoría
-  return `<article class="product" id="product-${index}" data-variant="0" data-image="0" onclick="goToCategory(${index})"><div class="product-gallery"><div class="product-image" ontouchstart="galleryTouchStart(event)" ontouchend="galleryTouchEnd(event,${index})"><img id="image-${index}" src="${escapeHTML(firstImage)}" alt="${escapeHTML(product.name||"Producto")}" loading="lazy" draggable="false" onerror="imageError(this)"></div>${total>1?`<button class="gallery-arrow prev" type="button" onclick="event.stopPropagation();changeProductGalleryImage(${index},-1)">‹</button><button class="gallery-arrow next" type="button" onclick="event.stopPropagation();changeProductGalleryImage(${index},1)">›</button><div class="gallery-counter" id="gallery-counter-${index}">1 / ${total}</div>`:""}</div></article>`;
+  const variants=getVariants(product);
+  if(!variants.length) return `<article class="product" id="product-${index}" data-variant="0" data-image="0"><div class="product-gallery" style="display:flex;align-items:center;justify-content:center;color:#555">SIN IMAGEN</div></article>`;
+  const raw=($("productSearch")?.value||"");
+  const refQ=normalizeImageReference(raw);
+  // AQUÍ ESTÁ EL ARREGLO: si busca por REF, empieza en esa foto, no en la primera
+  const match=findRefMatch(product, refQ);
+  const startVariant=match?match.variantIndex:0;
+  const startImage=match?match.imageIndex:0;
+  const startImg=getVariantImages(variants[startVariant])[startImage]||getVariantImages(variants[0])[0]||"";
+  const total=variants.reduce((t,v)=>t+getVariantImages(v).length,0);
+  const g=getFlatGallery(product);
+  const pos=g.findIndex(x=>x.variantIndex===startVariant&&x.imageIndex===startImage);
+  const counterText=`${pos<0?1:pos+1} / ${total}`;
+  return `<article class="product" id="product-${index}" data-variant="${startVariant}" data-image="${startImage}" onclick="goToCategory(${index})"><div class="product-gallery"><div class="product-image" ontouchstart="galleryTouchStart(event)" ontouchend="galleryTouchEnd(event,${index})"><img id="image-${index}" src="${escapeHTML(startImg)}" alt="${escapeHTML(product.name||"Producto")}" loading="lazy" draggable="false" onerror="imageError(this)"></div>${total>1?`<button class="gallery-arrow prev" type="button" onclick="event.stopPropagation();changeProductGalleryImage(${index},-1)">‹</button><button class="gallery-arrow next" type="button" onclick="event.stopPropagation();changeProductGalleryImage(${index},1)">›</button><div class="gallery-counter" id="gallery-counter-${index}">${counterText}</div>`:""}</div></article>`;
 }
 function changeProductGalleryImage(pi,dir){const p=FILTERED[pi];const card=$(`product-${pi}`);if(!p||!card)return;const g=getFlatGallery(p);if(!g.length)return;let pos=g.findIndex(x=>x.variantIndex===Number(card.dataset.variant||0)&&x.imageIndex===Number(card.dataset.image||0));if(pos<0)pos=0;pos=(pos+dir+g.length)%g.length;setVariant(pi,g[pos].variantIndex,g[pos].imageIndex)}
 function setVariant(pi,vi,ii=0){const p=FILTERED[pi];const card=$(`product-${pi}`);const img=$(`image-${pi}`);if(!p||!card||!img)return;const v=getVariants(p)[vi];const imgs=getVariantImages(v);if(!v||!imgs.length)return;ii=Math.max(0,Math.min(ii,imgs.length-1));card.dataset.variant=vi;card.dataset.image=ii;img.src=imgs[ii];img.alt=`${p.name} - ${v.name}`;updateGalleryCounter(pi)}
@@ -128,7 +166,17 @@ function galleryTouchStart(e){if(e.touches?.length){galleryStartX=e.touches[0].c
 function galleryTouchEnd(e,pi){if(!e.changedTouches?.length)return;const dx=e.changedTouches[0].clientX-galleryStartX;const dy=e.changedTouches[0].clientY-galleryStartY;if(Math.abs(dx)<45||Math.abs(dx)<=Math.abs(dy))return;suppressProductClickUntil=Date.now()+500;changeProductGalleryImage(pi,dx<0?1:-1)}
 function imageError(img){console.error("No se pudo cargar:",img.src);img.style.display="none"}
 const searchInput=$("productSearch"), searchClear=$("searchClear");
-if(searchInput){searchInput.addEventListener("input",applySearch);searchInput.addEventListener("search",applySearch);searchInput.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();const val=searchInput.value.trim();if(!val)return;goToCategory(FILTERED.findIndex(p=>normalizeText(p.name).includes(normalizeText(val))>=0?true:false))}})}
+if(searchInput){
+  searchInput.addEventListener("input",applySearch);
+  searchInput.addEventListener("search",applySearch);
+  searchInput.addEventListener("keydown",e=>{
+    if(e.key==="Enter"){
+      e.preventDefault();
+      if(!FILTERED.length) return;
+      goToCategory(0);
+    }
+  });
+}
 if(searchClear){searchClear.addEventListener("click",()=>{searchInput.value="";searchInput.focus();applySearch()})}
 loadProducts();
 setInterval(loadProducts,30000);
