@@ -35,9 +35,12 @@ nav a:hover{color:#fff;border-color:#ffffff29;background:#ffffff0d}nav a.active{
 .product-image img{width:100%;height:100%;object-fit:contain;transition:.35s;pointer-events:none}.product:hover .product-image img{transform:scale(1.05)}
 .gallery-arrow{position:absolute;z-index:8;display:flex;align-items:center;justify-content:center;border:1px solid #ffffff40;border-radius:50%;background:#0000008c;color:#fff;top:50%;width:36px;height:36px;transform:translateY(-50%)}.gallery-arrow.prev{left:10px}.gallery-arrow.next{right:10px}
 .gallery-counter{position:absolute;left:50%;top:10px;z-index:8;padding:5px 9px;border-radius:20px;background:#0000008c;color:#fff;font-size:9px;font-weight:bold;transform:translateX(-50%);backdrop-filter:blur(6px)}
-.product-info{position:absolute;left:0;right:0;bottom:0;z-index:7;display:flex;align-items:flex-end;justify-content:space-between;gap:10px;padding:38px 12px 11px;text-align:left;background:linear-gradient(to top,rgba(0,0,0,.78) 0%,rgba(0,0,0,.35) 45%,rgba(0,0,0,0) 100%);pointer-events:none}
+.product-info{position:absolute;left:0;right:0;bottom:0;z-index:7;display:flex;flex-direction:column;gap:4px;padding:38px 12px 11px;text-align:left;background:linear-gradient(to top,rgba(0,0,0,.78) 0%,rgba(0,0,0,.35) 45%,rgba(0,0,0,0) 100%);pointer-events:none}
+.product-info-top{display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
 .product-name{flex:1;min-width:0;font-size:13px;font-weight:700;line-height:1.35;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.9);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .product-price{flex-shrink:0;padding:5px 9px;border-radius:20px;background:#fff;color:#111;font-size:13px;font-weight:900;letter-spacing:.2px;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.product-shipping{font-size:10px;color:#ddd;text-shadow:0 1px 6px rgba(0,0,0,.9)}
+.product-shipping b{color:#fff}
 .empty,.loading{grid-column:1/-1;padding:100px 20px;text-align:center;color:#aaa}
 footer{position:relative;z-index:2;padding:35px 5%;border-top:1px solid #ffffff1a;text-align:center;color:#777;font-size:10px}
 .product-panel{position:fixed;inset:0;z-index:10000;display:none;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.75)}.product-panel.show{display:flex}
@@ -57,6 +60,8 @@ footer{position:relative;z-index:2;padding:35px 5%;border-top:1px solid #ffffff1
 .panel-desc-details[open] summary{border-bottom:1px solid #333}
 .panel-desc-text{padding:12px 14px;color:#b5b5b5;font-size:13px;line-height:1.6}
 .panel-price{margin-top:12px;font-size:26px;font-weight:900}
+.panel-shipping{margin-top:8px;display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid rgba(255,255,255,.12);border-radius:10px;background:#222;color:#ccc;font-size:12px;line-height:1.5}
+.panel-shipping b{color:#fff}
 .panel-label{margin:16px 0 8px;font-size:10px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;color:#aaa}
 .panel-select{width:100%;padding:14px;border:1px solid #333;background:#222;color:#fff;border-radius:8px;font-size:15px}
 .panel-select:invalid{color:#888}
@@ -126,6 +131,7 @@ footer{position:relative;z-index:2;padding:35px 5%;border-top:1px solid #ffffff1
       <div class="panel-name" id="panelName">—</div>
       <div id="panelDescWrap"></div>
       <div class="panel-price" id="panelPrice">—</div>
+      <div class="panel-shipping" id="panelShipping">🚚 Envío estimado: <b>—</b></div>
       <div class="panel-label">Color / Variante</div>
       <select id="panelVariant" class="panel-select" required onchange="onPanelVariantChange(this.value)"></select>
       <div class="panel-label">Talla</div>
@@ -194,7 +200,6 @@ let panelStartX=0, panelStartY=0, panelMouseX=0;
 let productPanelIndex=-1, productPanelVariantIndex=0, productPanelImageIndex=0, productPanelSize="", productPanelQuantity=1;
 let productPanelDisplayVariant=0;
 const $=id=>document.getElementById(id);
-// Destellos en todo el fondo de la web
 (function(){
   const box=$("sparkles"); if(!box) return;
   const isMobile=window.innerWidth<=600;
@@ -220,6 +225,14 @@ function getVariants(product){const raw=parseJSON(product?.images,[]);const vari
 function getVariantImages(v){return Array.isArray(v?.images)?v.images.filter(Boolean).map(String):[]}
 function getImageReference(product,variant,idx=0){const ref=Array.isArray(variant?.imageRefs)?variant.imageRefs[idx]:"";return String(ref||product?.ref||product?.id||"—").trim()}
 function getFlatGallery(p){const g=[];getVariants(p).forEach((v,vi)=>{getVariantImages(v).forEach((src,ii)=>{g.push({src,variantIndex:vi,imageIndex:ii,variant:v})})});return g}
+function formatShipping(p){
+  const min = Number(p.shipping_min);
+  const max = Number(p.shipping_max);
+  if(min > 0 && max > 0) return min === max ? `${min} días` : `${min}-${max} días`;
+  if(max > 0) return `hasta ${max} días`;
+  if(min > 0) return `desde ${min} días`;
+  return "";
+}
 function findRefMatch(p, refQ){
   if(!refQ) return null;
   const variants=getVariants(p);
@@ -240,7 +253,9 @@ function createProductHTML(product,index){
   const g=getFlatGallery(product);
   const pos=g.findIndex(x=>x.variantIndex===startVariant&&x.imageIndex===startImage);
   const price=(Number(product.price)||0).toLocaleString("es-ES",{style:"currency",currency:"EUR"});
-  return `<article class="product" id="product-${index}" data-variant="${startVariant}" data-image="${startImage}" onclick="openProduct(${index})"><div class="product-gallery"><div class="product-image" ontouchstart="galleryTouchStart(event)" ontouchmove="galleryTouchMove(event)" ontouchend="galleryTouchEnd(event,${index})" onmousedown="galleryMouseDown(event,${index})" onmouseup="galleryMouseUp(event,${index})"><img id="image-${index}" src="${escapeHTML(startImg)}" alt="${escapeHTML(product.name||"Producto")}" loading="lazy" draggable="false" onerror="imageError(this)"></div>${total>1?`<button class="gallery-arrow prev" type="button" onclick="event.stopPropagation();changeProductGalleryImage(${index},-1)">‹</button><button class="gallery-arrow next" type="button" onclick="event.stopPropagation();changeProductGalleryImage(${index},1)">›</button><div class="gallery-counter" id="gallery-counter-${index}">${pos<0?1:pos+1} / ${total}</div>`:""}<div class="product-info"><div class="product-name">${escapeHTML(product.name||"Producto")}</div><div class="product-price">${price}</div></div></div></article>`;
+  const envio = formatShipping(product);
+  const envioTxt = envio || "hasta 30 días";
+  return `<article class="product" id="product-${index}" data-variant="${startVariant}" data-image="${startImage}" onclick="openProduct(${index})"><div class="product-gallery"><div class="product-image" ontouchstart="galleryTouchStart(event)" ontouchmove="galleryTouchMove(event)" ontouchend="galleryTouchEnd(event,${index})" onmousedown="galleryMouseDown(event,${index})" onmouseup="galleryMouseUp(event,${index})"><img id="image-${index}" src="${escapeHTML(startImg)}" alt="${escapeHTML(product.name||"Producto")}" loading="lazy" draggable="false" onerror="imageError(this)"></div>${total>1?`<button class="gallery-arrow prev" type="button" onclick="event.stopPropagation();changeProductGalleryImage(${index},-1)">‹</button><button class="gallery-arrow next" type="button" onclick="event.stopPropagation();changeProductGalleryImage(${index},1)">›</button><div class="gallery-counter" id="gallery-counter-${index}">${pos<0?1:pos+1} / ${total}</div>`:""}<div class="product-info"><div class="product-info-top"><div class="product-name">${escapeHTML(product.name||"Producto")}</div><div class="product-price">${price}</div></div><div class="product-shipping">🚚 Envío: <b>${envioTxt}</b></div></div></div></article>`;
 }
 function changeProductGalleryImage(pi,dir){const p=FILTERED[pi];const card=$(`product-${pi}`);if(!p||!card)return;const g=getFlatGallery(p);if(!g.length)return;let pos=g.findIndex(x=>x.variantIndex===Number(card.dataset.variant||0)&&x.imageIndex===Number(card.dataset.image||0));if(pos<0)pos=0;pos=(pos+dir+g.length)%g.length;setVariant(pi,g[pos].variantIndex,g[pos].imageIndex)}
 function setVariant(pi,vi,ii=0){const p=FILTERED[pi];const card=$(`product-${pi}`);const img=$(`image-${pi}`);if(!p||!card||!img)return;const v=getVariants(p)[vi];const imgs=getVariantImages(v);if(!v||!imgs.length)return;ii=Math.max(0,Math.min(ii,imgs.length-1));card.dataset.variant=vi;card.dataset.image=ii;img.src=imgs[ii];img.alt=`${p.name} - ${v.name}`;updateGalleryCounter(pi)}
@@ -289,6 +304,8 @@ function renderProductPanel(){
   const desc=(p.description||"").trim();
   $("panelDescWrap").innerHTML=desc?`<details class="panel-desc-details"><summary>Descripción ▾</summary><div class="panel-desc-text">${escapeHTML(desc)}</div></details>`:"";
   $("panelPrice").textContent=(Number(p.price)||0).toLocaleString("es-ES",{style:"currency",currency:"EUR"});
+  const envioPanel = formatShipping(p) || "hasta 30 días según proveedor";
+  $("panelShipping").innerHTML = `🚚 Envío estimado: <b>${envioPanel}</b>`;
   $("panelVariant").innerHTML=variants.map((vv,vi)=>`<option value="${vi}" ${vi===productPanelVariantIndex?"selected":""}>${escapeHTML(vv.name)}</option>`).join("");
   const sizes=parseJSON(p.sizes,[]);
   const sizesList=Array.isArray(sizes)&&sizes.length?sizes:["Única"];
@@ -414,8 +431,6 @@ $("checkoutPanel").addEventListener("click",e=>{if(e.target.id==="checkoutPanel"
 if($("ckName")) $("ckName").addEventListener("input",()=>{ const p=FILTERED[productPanelIndex]; if(!p) return; const v=getVariants(p)[productPanelVariantIndex>=0?productPanelVariantIndex:0]; $("bizumConcept").textContent=($("ckName").value.trim()||"tu nombre")+" + "+getImageReference(p,v,productPanelImageIndex); });
 loadProducts();
 setInterval(loadProducts,30000);
-
-// === MENÚ CATEGORÍAS: PESTAÑA ACTIVA SIEMPRE CENTRADA ===
 (function(){
   var nav = document.querySelector('header nav');
   var active = document.querySelector('header nav a.active');
@@ -425,11 +440,9 @@ setInterval(loadProducts,30000);
     target = Math.max(0, Math.min(target, nav.scrollWidth - nav.clientWidth));
     nav.scrollTo({left: target, behavior: instant ? 'auto' : 'smooth'});
   }
-  // Al cargar, sin animación para que no se vea el salto
   requestAnimationFrame(function(){ centerActive(true); });
   window.addEventListener('load', function(){ centerActive(true); });
   window.addEventListener('resize', function(){ centerActive(true); });
-  // Si el usuario pulsa otra pestaña, la centramos antes de cambiar de página
   nav.querySelectorAll('a').forEach(function(a){
     a.addEventListener('click', function(){
       nav.querySelectorAll('a').forEach(function(x){ x.classList.remove('active'); });
