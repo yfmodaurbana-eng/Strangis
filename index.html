@@ -36,9 +36,12 @@ nav a:hover{color:#fff;border-color:#ffffff29;background:#ffffff0d}nav a.active{
 .product{min-width:0;overflow:hidden;padding:0;border:1px solid #ffffff1f;border-radius:12px;background:#171717;cursor:pointer;transition:.25s}.product:hover{transform:translateY(-3px);border-color:#ffffff50;box-shadow:0 15px 40px rgba(0,0,0,.4)}
 .product-gallery{position:relative;width:100%;aspect-ratio:1/1.15;overflow:hidden;background:#171717}
 .product-image{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center;cursor:pointer;user-select:none}
-.product-image img{width:100%;height:100%;object-fit:cover;transition:.35s}.product:hover .product-image img{transform:scale(1.05)}
+.product-image img{width:100%;height:100%;object-fit:contain;transition:.35s}.product:hover .product-image img{transform:scale(1.05)}
 .gallery-arrow{position:absolute;z-index:8;display:flex;align-items:center;justify-content:center;border:1px solid #ffffff40;border-radius:50%;background:#0000008c;color:#fff}.gallery-arrow{top:50%;width:36px;height:36px;transform:translateY(-50%)}.gallery-arrow.prev{left:10px}.gallery-arrow.next{right:10px}
-.gallery-counter{position:absolute;left:50%;z-index:8;padding:5px 9px;border-radius:20px;background:#0000008c;color:#fff;font-size:9px;font-weight:bold;transform:translateX(-50%);bottom:12px}
+.gallery-counter{position:absolute;left:50%;top:10px;z-index:8;padding:5px 9px;border-radius:20px;background:#0000008c;color:#fff;font-size:9px;font-weight:bold;transform:translateX(-50%);backdrop-filter:blur(6px)}
+.product-info{position:absolute;left:0;right:0;bottom:0;z-index:7;display:flex;align-items:flex-end;justify-content:space-between;gap:10px;padding:38px 12px 11px;text-align:left;background:linear-gradient(to top,rgba(0,0,0,.78) 0%,rgba(0,0,0,.35) 45%,rgba(0,0,0,0) 100%);pointer-events:none}
+.product-name{flex:1;min-width:0;font-size:13px;font-weight:700;line-height:1.35;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.9);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.product-price{flex-shrink:0;padding:5px 9px;border-radius:20px;background:#fff;color:#111;font-size:13px;font-weight:900;letter-spacing:.2px;box-shadow:0 2px 10px rgba(0,0,0,.35)}
 .empty,.loading{grid-column:1/-1;padding:100px 20px;text-align:center;color:#aaa}
 .info-section{width:min(1000px,90%);margin:auto;padding:0 0 80px}.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.info-card{padding:24px;border:1px solid rgba(255,166,80,.28);border-radius:10px;background:linear-gradient(145deg,rgba(255,145,45,.14),rgba(255,120,25,.045))}.info-card small{color:#ffad5c;font-size:9px;font-weight:bold;letter-spacing:2px}.info-card h3{margin-top:10px;font-size:16px}.info-card p{margin-top:10px;color:#b5b5b5;font-size:12px;line-height:1.7}
 footer{padding:35px 5%;border-top:1px solid #ffffff1a;text-align:center;color:#777;font-size:10px}
@@ -53,6 +56,9 @@ footer{padding:35px 5%;border-top:1px solid #ffffff1a;text-align:center;color:#7
  .product-gallery{aspect-ratio:1/1.1!important}
  .search-input{height:50px!important;font-size:15px!important}.whatsapp-button{bottom:16px!important;right:16px!important}
  .gallery-arrow{width:34px;height:34px}
+ .product-info{padding:32px 10px 10px;gap:8px}
+ .product-name{font-size:12px}
+ .product-price{font-size:12px;padding:4px 8px}
 }
 @media(prefers-reduced-motion:reduce){.hero h1{animation:none;opacity:1}}
 </style>
@@ -83,18 +89,20 @@ function getVariants(product){const raw=parseJSON(product?.images,[]);const vari
 function getVariantImages(v){return Array.isArray(v?.images)?v.images.filter(Boolean).map(String):[]}
 function getImageReference(product,variant,idx=0){const ref=Array.isArray(variant?.imageRefs)?variant.imageRefs[idx]:"";return String(ref||product?.ref||product?.id||"—").trim()}
 function getFlatGallery(p){const g=[];getVariants(p).forEach((v,vi)=>{getVariantImages(v).forEach((src,ii)=>{g.push({src,variantIndex:vi,imageIndex:ii,variant:v})})});return g}
-// === NUEVO: BUSCAR LA FOTO EXACTA DE LA REF ===
+function formatPrice(p){
+  const v = Number(p?.price ?? p?.precio ?? p?.amount);
+  if(!isFinite(v)) return "";
+  return v.toFixed(2).replace(".",",") + " €";
+}
 function findRefMatch(p, refQ){
   if(!refQ) return null;
   const variants=getVariants(p);
-  // 1. Buscar en las REF de cada foto
   for(let vi=0; vi<variants.length; vi++){
     const refs=variants[vi].imageRefs||[];
     for(let ii=0; ii<refs.length; ii++){
       if(normalizeImageReference(refs[ii]) && normalizeImageReference(refs[ii]).includes(refQ)) return {variantIndex:vi, imageIndex:ii};
     }
   }
-  // 2. Si la REF es la REF general del producto, primera foto
   if(normalizeImageReference(p.ref) && normalizeImageReference(p.ref).includes(refQ)) return {variantIndex:0, imageIndex:0};
   return null;
 }
@@ -145,10 +153,10 @@ function applySearch(){
 function renderProducts(){const c=$("productsContainer");$("productCount").textContent=FILTERED.length===1?"1 artículo":`${FILTERED.length} artículos`;if(!FILTERED.length){c.innerHTML='<div class="empty">No hay productos activos.</div>';return}c.innerHTML=FILTERED.map((p,i)=>createProductHTML(p,i)).join("")}
 function createProductHTML(product,index){
   const variants=getVariants(product);
-  if(!variants.length) return `<article class="product" id="product-${index}" data-variant="0" data-image="0"><div class="product-gallery" style="display:flex;align-items:center;justify-content:center;color:#555">SIN IMAGEN</div></article>`;
+  const infoHTML=`<div class="product-info"><div class="product-name">${escapeHTML(product.name||"Producto")}</div>${formatPrice(product)?`<div class="product-price">${formatPrice(product)}</div>`:""}</div>`;
+  if(!variants.length) return `<article class="product" id="product-${index}" data-variant="0" data-image="0"><div class="product-gallery" style="display:flex;align-items:center;justify-content:center;color:#555">SIN IMAGEN${infoHTML}</div></article>`;
   const raw=($("productSearch")?.value||"");
   const refQ=normalizeImageReference(raw);
-  // AQUÍ ESTÁ EL ARREGLO: si busca por REF, empieza en esa foto, no en la primera
   const match=findRefMatch(product, refQ);
   const startVariant=match?match.variantIndex:0;
   const startImage=match?match.imageIndex:0;
@@ -157,7 +165,7 @@ function createProductHTML(product,index){
   const g=getFlatGallery(product);
   const pos=g.findIndex(x=>x.variantIndex===startVariant&&x.imageIndex===startImage);
   const counterText=`${pos<0?1:pos+1} / ${total}`;
-  return `<article class="product" id="product-${index}" data-variant="${startVariant}" data-image="${startImage}" onclick="goToCategory(${index})"><div class="product-gallery"><div class="product-image" ontouchstart="galleryTouchStart(event)" ontouchend="galleryTouchEnd(event,${index})"><img id="image-${index}" src="${escapeHTML(startImg)}" alt="${escapeHTML(product.name||"Producto")}" loading="lazy" draggable="false" onerror="imageError(this)"></div>${total>1?`<button class="gallery-arrow prev" type="button" onclick="event.stopPropagation();changeProductGalleryImage(${index},-1)">‹</button><button class="gallery-arrow next" type="button" onclick="event.stopPropagation();changeProductGalleryImage(${index},1)">›</button><div class="gallery-counter" id="gallery-counter-${index}">${counterText}</div>`:""}</div></article>`;
+  return `<article class="product" id="product-${index}" data-variant="${startVariant}" data-image="${startImage}" onclick="goToCategory(${index})"><div class="product-gallery"><div class="product-image" ontouchstart="galleryTouchStart(event)" ontouchend="galleryTouchEnd(event,${index})"><img id="image-${index}" src="${escapeHTML(startImg)}" alt="${escapeHTML(product.name||"Producto")}" loading="lazy" draggable="false" onerror="imageError(this)"></div>${total>1?`<button class="gallery-arrow prev" type="button" onclick="event.stopPropagation();changeProductGalleryImage(${index},-1)">‹</button><button class="gallery-arrow next" type="button" onclick="event.stopPropagation();changeProductGalleryImage(${index},1)">›</button><div class="gallery-counter" id="gallery-counter-${index}">${counterText}</div>`:""}${infoHTML}</div></article>`;
 }
 function changeProductGalleryImage(pi,dir){const p=FILTERED[pi];const card=$(`product-${pi}`);if(!p||!card)return;const g=getFlatGallery(p);if(!g.length)return;let pos=g.findIndex(x=>x.variantIndex===Number(card.dataset.variant||0)&&x.imageIndex===Number(card.dataset.image||0));if(pos<0)pos=0;pos=(pos+dir+g.length)%g.length;setVariant(pi,g[pos].variantIndex,g[pos].imageIndex)}
 function setVariant(pi,vi,ii=0){const p=FILTERED[pi];const card=$(`product-${pi}`);const img=$(`image-${pi}`);if(!p||!card||!img)return;const v=getVariants(p)[vi];const imgs=getVariantImages(v);if(!v||!imgs.length)return;ii=Math.max(0,Math.min(ii,imgs.length-1));card.dataset.variant=vi;card.dataset.image=ii;img.src=imgs[ii];img.alt=`${p.name} - ${v.name}`;updateGalleryCounter(pi)}
