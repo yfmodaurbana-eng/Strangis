@@ -14,8 +14,8 @@ body{min-height:100vh;font-family:Arial,Helvetica,sans-serif;color:#fff;backgrou
 button,input,textarea,select{font:inherit}button{cursor:pointer}
 header{position:sticky;top:0;z-index:1000;padding:16px 5%;display:flex;align-items:center;gap:28px;border-bottom:1px solid #ffffff1f;background:#141414f0;backdrop-filter:blur(18px)}
 .logo{flex-shrink:0;font-size:22px;font-weight:900;letter-spacing:4px}.logo a{color:#fff;text-decoration:none}
-nav{flex:1;display:flex;align-items:center;gap:12px;overflow-x:auto;scrollbar-width:none;padding:4px 2px}nav::-webkit-scrollbar{display:none}
-nav a{flex:0 0 auto;display:flex;align-items:center;justify-content:center;min-height:34px;padding:8px 13px;border:1px solid transparent;border-radius:7px;color:#999;text-decoration:none;font-size:11px;font-weight:bold;letter-spacing:1.3px;text-transform:uppercase;white-space:nowrap}
+nav{flex:1;display:flex;align-items:center;gap:12px;overflow-x:auto;scrollbar-width:none;padding:4px 2px;scroll-behavior:auto}nav::-webkit-scrollbar{display:none}
+nav a{flex:0 0 auto;display:flex;align-items:center;justify-content:center;min-height:34px;padding:8px 13px;border:1px solid transparent;border-radius:7px;color:#999;text-decoration:none;font-size:11px;font-weight:bold;letter-spacing:1.3px;text-transform:uppercase;white-space:nowrap;scroll-margin-left:12px;scroll-margin-right:12px}
 nav a:hover{color:#fff;border-color:#ffffff29;background:#ffffff0d}nav a.active{color:#111;border-color:#fff;background:#fff}
 .search-section{width:min(900px,90%);margin:0 auto;padding:25px 0 0}
 .search-box{position:relative;width:100%;display:flex;align-items:center}
@@ -412,6 +412,17 @@ $("checkoutPanel").addEventListener("click",e=>{if(e.target.id==="checkoutPanel"
 if($("ckName")) $("ckName").addEventListener("input",()=>{ const p=FILTERED[productPanelIndex]; if(!p) return; const v=getVariants(p)[productPanelVariantIndex>=0?productPanelVariantIndex:0]; $("bizumConcept").textContent=($("ckName").value.trim()||"tu nombre")+" + "+getImageReference(p,v,productPanelImageIndex); });
 loadProducts();
 setInterval(loadProducts,30000);
+
+// === MENÚ CATEGORÍAS: QUE NO VUELVA AL PRINCIPIO ===
+(function(){
+  var nav = document.querySelector('header nav');
+  var active = document.querySelector('header nav a.active');
+  if(!nav || !active) return;
+  active.scrollIntoView({ behavior: 'auto', inline: 'nearest', block: 'nearest' });
+  nav.addEventListener('scroll', function(){
+    try{ sessionStorage.setItem('strangis_nav_scroll', nav.scrollLeft); }catch(e){}
+  }, { passive: true });
+})();
 </script>
 </body>
 </html>
