@@ -397,4 +397,35 @@ function confirmCheckout(){
     return;
   }
   const bizumLine = bizumName && bizumName.toLowerCase()!==name.toLowerCase()
-    ? `\n⚠️ BIZUM A
+    ? `\n⚠️ BIZUM A NOMBRE DE: ${bizumName} (distinto al del pedido)`
+    : `\nBizum a nombre de: ${name}`;
+  const msg=`Hola!! 👋 Quiero hacer este pedido:\n\n🛍️ PRODUCTO: ${p.name}\nREF: ${ref}\nColor: ${v.name}\nTalla: ${size}\nCantidad: ${productPanelQuantity}\nPrecio: ${(Number(p.price)*productPanelQuantity).toLocaleString("es-ES",{style:"currency",currency:"EUR"})}\n\n📦 DATOS DE ENVÍO:\nNombre: ${name}\nTeléfono: ${phone}\nDirección: ${address}\nCiudad: ${city}\nCP: ${zip}${notes?`\nNotas: ${notes}`:""}\n\n💳 PAGO BIZUM:\nBizum enviado al 607 877 328${bizumLine}\n✅ Voy a enviar la captura de pantalla del Bizum para confirmar el pedido.`;
+  window.open(`https://wa.me/34607877328?text=${encodeURIComponent(msg)}`,"_blank");
+  closeCheckout();
+}
+const searchInput=$("productSearch"), searchClear=$("searchClear");
+if(searchInput){
+  searchInput.addEventListener("input",applySearch);
+  searchInput.addEventListener("search",applySearch);
+  searchInput.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();if(!FILTERED.length) return;openProduct(0)}});
+}
+if(searchClear){searchClear.addEventListener("click",()=>{searchInput.value="";searchInput.focus();applySearch()})}
+$("productPanel").addEventListener("click",e=>{if(e.target.id==="productPanel") closeProductPanel()});
+$("checkoutPanel").addEventListener("click",e=>{if(e.target.id==="checkoutPanel") closeCheckout()});
+if($("ckName")) $("ckName").addEventListener("input",()=>{ const p=FILTERED[productPanelIndex]; if(!p) return; const v=getVariants(p)[productPanelVariantIndex>=0?productPanelVariantIndex:0]; $("bizumConcept").textContent=($("ckName").value.trim()||"tu nombre")+" + "+getImageReference(p,v,productPanelImageIndex); });
+loadProducts();
+setInterval(loadProducts,30000);
+
+// === MENÚ CATEGORÍAS: QUE NO VUELVA AL PRINCIPIO ===
+(function(){
+  var nav = document.querySelector('header nav');
+  var active = document.querySelector('header nav a.active');
+  if(!nav || !active) return;
+  active.scrollIntoView({ behavior: 'auto', inline: 'nearest', block: 'nearest' });
+  nav.addEventListener('scroll', function(){
+    try{ sessionStorage.setItem('strangis_nav_scroll', nav.scrollLeft); }catch(e){}
+  }, { passive: true });
+})();
+</script>
+</body>
+</html>
