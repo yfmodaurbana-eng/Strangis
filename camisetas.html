@@ -1,1 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Camisetas | Strangis - Moda Urbana</title>
+<meta name="description" content="Camisetas Strangis. Camisetas urbanas con estilo a precios competitivos. Envío gratuito a toda España.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://yfmodaurbana-eng.github.io/Strangis/camisetas.html">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{min-height:100vh;font-family:Arial,Helvetica,sans-serif;color:#fff;background:linear-gradient(135deg,#151515,#292929 38%,#4d4d4d 65%,#222)}
+button,input,textarea,select{font:inherit}button{cursor:pointer}
+header{position:sticky;top:0;z-index:1000;padding:16px 5%;display:flex;align-items:center;gap:28px;border-bottom:1px solid #ffffff1f;background:#141414f0;backdrop-filter:blur(18px)}
+.logo{flex-shrink:0;font-size:22px;font-weight:900;letter-spacing:4px}.logo a{color:#fff;text-decoration:none}
+nav{flex:1;display:flex;align-items:center;gap:12px;overflow-x:auto;scrollbar-width:none;padding:4px 2px;scroll-behavior:smooth}nav::-webkit-scrollbar{display:none}
+nav a{flex:0 0 auto;display:flex;align-items:center;justify-content:center;min-height:34px;padding:8px 13px;border:1px solid transparent;border-radius:7px;color:#999;text-decoration:none;font-size:11px;font-weight:bold;letter-spacing:1.3px;text-transform:uppercase;white-space:nowrap;scroll-margin-left:12px;scroll-margin-right:12px}
+nav a:hover{color:#fff;border-color:#ffffff29;background:#ffffff0d}nav a.active{color:#111;border-color:#fff;background:#fff}
+.hero{position:relative;z-index:2;width:min(1400px,90%);margin:auto;padding:clamp(60px,9vw,100px) 0 clamp(30px,5vw,50px);text-align:center}
+.hero h1{position:relative;z-index:2;font-size:clamp(48px,9vw,88px);letter-spacing:2px;line-height:1;font-weight:900;text-transform:uppercase;background:linear-gradient(110deg,#8a8a8a 0%,#e8e8e8 25%,#ffffff 50%,#e8e8e8 75%,#8a8a8a 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:breathing 4.5s ease-in-out infinite}
+@keyframes breathing{0%,100%{opacity:.55;filter:drop-shadow(0 0 2px rgba(255,255,255,.2)) drop-shadow(0 0 6px rgba(180,190,255,.12));transform:scale(.985)}50%{opacity:1;filter:drop-shadow(0 0 10px rgba(255,255,255,.9)) drop-shadow(0 0 28px rgba(210,220,255,.65)) drop-shadow(0 0 55px rgba(160,180,255,.4));transform:scale(1.015)}}
+.sparkles{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.sparkle{position:absolute;border-radius:50%;background:#fff;opacity:0;box-shadow:0 0 6px 1px rgba(255,255,255,.7);animation:sparkleTwinkle 4s ease-in-out infinite}
+@keyframes sparkleTwinkle{0%,100%{opacity:0;transform:scale(.4)}50%{opacity:.75;transform:scale(1)}}
+.hero p{position:relative;z-index:2;max-width:700px;margin:20px auto 0;color:#b5b5b5;font-size:15px;line-height:1.7}
+.hero-note{position:relative;z-index:2;max-width:850px;margin:22px auto 0;padding:18px 20px;border:1px solid rgba(255,165,70,.45);border-left:4px solid #ff962d;border-radius:9px;background:linear-gradient(135deg,rgba(255,145,45,.16),rgba(120,65,20,.08));color:#d0d0d0;font-size:13px;line-height:1.7;text-align:left}.hero-note strong{color:#ffb15c}
+.products-section{position:relative;z-index:2;width:min(1400px,90%);margin:auto;padding:10px 0 100px}
+.section-heading{display:flex;justify-content:space-between;align-items:end;margin-bottom:20px}.section-heading h2{font-size:14px;font-weight:900;letter-spacing:2px;text-transform:uppercase}.section-heading span{color:#777;font-size:11px}
+.products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.product{min-width:0;overflow:hidden;padding:0;border:1px solid #ffffff1f;border-radius:12px;background:#171717;cursor:pointer;transition:.25s}.product:hover{transform:translateY(-3px);border-color:#ffffff50;box-shadow:0 15px 40px rgba(0,0,0,.4)}
+.product-gallery{position:relative;width:100%;aspect-ratio:1/1.15;overflow:hidden;background:#171717}
+.product-image{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center;cursor:grab;user-select:none;touch-action:pan-y}
+.product-image:active{cursor:grabbing}
+.product-image img{width:100%;height:100%;object-fit:contain;transition:.35s;pointer-events:none}.product:hover .product-image img{transform:scale(1.05)}
+.gallery-arrow{position:absolute;z-index:8;display:flex;align-items:center;justify-content:center;border:1px solid #ffffff40;border-radius:50%;background:#0000008c;color:#fff;top:50%;width:36px;height:36px;transform:translateY(-50%)}.gallery-arrow.prev{left:10px}.gallery-arrow.next{right:10px}
+.gallery-counter{position:absolute;left:50%;top:10px;z-index:8;padding:5px 9px;border-radius:20px;background:#0000008c;color:#fff;font-size:9px;font-weight:bold;transform:translateX(-50%);backdrop-filter:blur(6px)}
+.product-info{position:absolute;left:0;right:0;bottom:0;z-index:7;display:flex;align-items:flex-end;justify-content:space-between;gap:10px;padding:38px 12px 11px;text-align:left;background:linear-gradient(to top,rgba(0,0,0,.78) 0%,rgba(0,0,0,.35) 45%,rgba(0,0,0,0) 100%);pointer-events:none}
+.product-name{flex:1;min-width:0;font-size:13px;font-weight:700;line-height:1.35;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.9);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.product-price{flex-shrink:0;padding:5px 9px;border-radius:20px;background:#fff;color:#111;font-size:13px;font-weight:900;letter-spacing:.2px;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.empty,.loading{grid-column:1/-1;padding:100px 20px;text-align:center;color:#aaa}
+footer{position:relative;z-index:2;padding:35px 5%;border-top:1px solid #ffffff1a;text-align:center;color:#777;font-size:10px}
+.product-panel{position:fixed;inset:0;z-index:10000;display:none;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.75)}.product-panel.show{display:flex}
+.panel-box{width:100%;max-width:520px;max-height:92vh;overflow-y:auto;background:#1a1a1a;border-radius:16px 16px 0 0;padding:0 0 20px;position:relative}
+.panel-close{position:absolute;top:12px;right:12px;z-index:10;width:38px;height:38px;border:0;border-radius:50%;background:rgba(0,0,0,.6);color:#fff;font-size:20px}
+.panel-image-wrap{position:relative;width:100%;aspect-ratio:1/1.15;background:#000;overflow:hidden;touch-action:pan-y;cursor:grab;user-select:none}
+.panel-image-wrap:active{cursor:grabbing}
+.panel-image-wrap img{width:100%;height:100%;object-fit:cover;pointer-events:none}
+.panel-arrow{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border:1px solid #ffffff40;border-radius:50%;background:#0000008c;color:#fff;font-size:22px;z-index:5}.panel-arrow.prev{left:10px}.panel-arrow.next{right:10px}
+.panel-counter{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);padding:5px 10px;border-radius:20px;background:#0000008c;font-size:11px}
+.panel-thumbs{display:flex;gap:8px;padding:12px;overflow-x:auto}.panel-thumbs button{flex:0 0 56px;width:56px;height:68px;padding:0;border:2px solid transparent;border-radius:8px;overflow:hidden;background:#222}.panel-thumbs button.active{border-color:#fff}.panel-thumbs img{width:100%;height:100%;object-fit:cover}
+.panel-content{padding:0 18px}
+.panel-name{font-size:20px;font-weight:900;line-height:1.2}
+.panel-desc-details{margin-top:12px;border:1px solid #333;border-radius:10px;background:#222;overflow:hidden}
+.panel-desc-details summary{padding:12px 14px;cursor:pointer;font-size:12px;font-weight:900;letter-spacing:.5px;list-style:none}
+.panel-desc-details summary::-webkit-details-marker{display:none}
+.panel-desc-details[open] summary{border-bottom:1px solid #333}
+.panel-desc-text{padding:12px 14px;color:#b5b5b5;font-size:13px;line-height:1.6}
+.panel-price{margin-top:12px;font-size:26px;font-weight:900}
+.panel-label{margin:16px 0 8px;font-size:10px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;color:#aaa}
+.panel-select{width:100%;padding:14px;border:1px solid #333;background:#222;color:#fff;border-radius:8px;font-size:15px}
+.panel-select:invalid{color:#888}
+.panel-qty{display:flex;align-items:center;width:max-content;border:1px solid #333;border-radius:8px;overflow:hidden}.panel-qty button{width:46px;height:44px;border:0;background:#222;color:#fff;font-size:20px}.panel-qty span{width:44px;text-align:center}
+.panel-buy{width:100%;margin-top:18px;padding:16px;border:0;border-radius:10px;background:#25D366;color:#fff;font-weight:900;font-size:15px}
+.panel-note{margin-top:12px;color:#888;font-size:11px;line-height:1.6;text-align:center}
+.panel-error{display:none;margin-top:12px;padding:10px;background:#4a1a1a;color:#ffb3b3;border-radius:8px;font-size:12px;text-align:center}
+.checkout-panel{position:fixed;inset:0;z-index:10001;display:none;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.8)}
+.checkout-panel.show{display:flex}
+.checkout-box{width:100%;max-width:520px;max-height:92vh;overflow-y:auto;background:#1a1a1a;border-radius:16px 16px 0 0;position:relative;padding-bottom:20px}
+.checkout-label{display:block;margin:14px 0 6px;font-size:10px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;color:#aaa}
+.checkout-input{width:100%;padding:14px;border:1px solid #333;background:#222;color:#fff;border-radius:8px;font-size:15px}
+.checkout-error{display:none;margin-top:12px;padding:10px;background:#4a1a1a;color:#ffb3b3;border-radius:8px;font-size:12px}
+.bizum-box{margin-top:20px;padding:16px;background:#1e2a1e;border:1px solid #2f6b2f;border-radius:12px}
+.bizum-title{font-size:13px;font-weight:900;letter-spacing:1px;color:#7ee787}
+.bizum-amount{margin:8px 0;font-size:22px;font-weight:900}
+.bizum-steps{margin:10px 0 0;padding-left:18px;color:#ccc;font-size:12px;line-height:1.7}
+.bizum-steps b{color:#fff}
+.bizum-important{margin-top:14px;padding:12px;background:#fff3cd;border:1px solid #e6a800;border-radius:10px;color:#3a2a00;font-size:12px;line-height:1.6}
+.bizum-important b{color:#000}
+.bizum-check{display:flex;gap:10px;align-items:flex-start;margin-top:16px;padding:12px;background:#222;border:1px solid #333;border-radius:10px;color:#ddd;font-size:12px;line-height:1.6;cursor:pointer}
+.bizum-check input{width:20px;height:20px;flex-shrink:0;margin-top:2px;accent-color:#25D366}
+@media(max-width:1100px){.products{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:850px){.products{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){
+ header{padding:8px 12px;gap:0}
+ .logo{display:none}
+ nav{order:0;flex-basis:100%;gap:8px;padding:0}
+ nav a{min-height:32px;padding:7px 11px;font-size:10px}
+ .hero{width:100%;padding:12px 12px 8px;text-align:left}
+ .hero h1{font-size:19px!important;line-height:1.15!important;letter-spacing:1px}
+ .hero p{display:none}
+ .hero-note{display:block!important;margin:8px 0 0!important;padding:10px 12px!important;font-size:11px!important;line-height:1.5!important}
+ .sparkle{box-shadow:0 0 4px 1px rgba(255,255,255,.5)}
+ .products-section{width:100%!important;padding-left:12px!important;padding-right:12px!important;padding-top:10px!important;padding-bottom:70px}
+ .section-heading{margin-bottom:12px}
+ .products{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+ .product-gallery{aspect-ratio:1/1.1!important}
+ .gallery-arrow{width:34px;height:34px}
+ .product-info{padding:32px 10px 10px;gap:8px}
+ .product-name{font-size:12px}
+ .product-price{font-size:12px;padding:4px 8px}
+}
+@media(prefers-reduced-motion:reduce){.hero h1{animation:none;opacity:1}.sparkle{animation:none;display:none}}
+</style>
+</head>
+<body>
+<div class="sparkles" id="sparkles"></div>
+<header><div class="logo"><a href="./">Strangis</a></div><nav><a href="./">Inicio</a><a class="active" href="./camisetas.html">Camisetas</a><a href="./pantalones.html">Pantalones</a><a href="./conjuntos.html">Conjuntos</a><a href="./gorras.html">Gorras</a><a href="./gafas.html">Gafas</a><a href="./bisuteria.html">Bisutería</a><a href="./pedreria.html">Pedrería</a><a href="./zapatillas.html">Zapatillas</a></nav></header>
+<main>
+<section class="hero"><h1>Camisetas - Tienda Online</h1><p>Camisetas Strangis. Elige tu color y tu talla. <strong>Envío gratuito a toda España.</strong></p><div class="hero-note">Algunos artículos pueden proceder de <strong>proveedores internacionales</strong>. Dependiendo del artículo y del proveedor, algunos pedidos pueden tardar <strong>hasta 30 días</strong> en llegar.</div></section>
+<section class="products-section"><div class="section-heading"><h2>Camisetas</h2><span id="productCount">Cargando...</span></div><div class="products" id="productsContainer"><div class="loading">Cargando productos...</div></div></section>
+</main>
+<footer>© 2026 STRANGIS · TODOS LOS DERECHOS RESERVADOS</footer>
 
+<div id="productPanel" class="product-panel">
+  <div class="panel-box">
+    <button class="panel-close" type="button" onclick="closeProductPanel()">×</button>
+    <div class="panel-image-wrap" id="panelImageWrap" ontouchstart="panelTouchStart(event)" ontouchend="panelTouchEnd(event)" onmousedown="panelMouseDown(event)" onmouseup="panelMouseUp(event)">
+      <img id="panelImage" src="" alt="">
+      <button class="panel-arrow prev" type="button" onclick="event.stopPropagation();changePanelImage(-1)">‹</button>
+      <button class="panel-arrow next" type="button" onclick="event.stopPropagation();changePanelImage(1)">›</button>
+      <div class="panel-counter" id="panelCounter">1 / 1</div>
+    </div>
+    <div class="panel-thumbs" id="panelThumbs"></div>
+    <div class="panel-content">
+      <div class="panel-name" id="panelName">—</div>
+      <div id="panelDescWrap"></div>
+      <div class="panel-price" id="panelPrice">—</div>
+      <div class="panel-label">Color / Variante</div>
+      <select id="panelVariant" class="panel-select" required onchange="onPanelVariantChange(this.value)"></select>
+      <div class="panel-label">Talla</div>
+      <select id="panelSize" class="panel-select" required onchange="onPanelSizeChange(this.value)"></select>
+      <div class="panel-label">Cantidad</div>
+      <div class="panel-qty"><button type="button" onclick="changePanelQty(-1)">−</button><span id="panelQty">1</span><button type="button" onclick="changePanelQty(1)">+</button></div>
+      <div id="panelError" class="panel-error"></div>
+      <button class="panel-buy" type="button" onclick="openCheckout()">COMPRAR PRODUCTO</button>
+      <div class="panel-note">Envío gratuito a toda España.<br>Algunos pedidos pueden tardar hasta 30 días según proveedor.</div>
+    </div>
+  </div>
+</div>
+
+<div id="checkoutPanel" class="checkout-panel">
+  <div class="checkout-box">
+    <button class="panel-close" type="button" onclick="closeCheckout()">×</button>
+    <h3 style="padding:20px 18px 0;font-size:18px">Datos de envío</h3>
+    <p style="padding:8px 18px 0;color:#999;font-size:12px;line-height:1.6">Rellena tus datos y te mandamos el pedido a WhatsApp ya listo para enviar.</p>
+    <div style="padding:16px 18px">
+      <div id="checkoutSummary" style="background:#222;padding:12px;border-radius:10px;font-size:12px;line-height:1.7;color:#ccc;margin-bottom:4px"></div>
+      <div id="checkoutError" class="checkout-error"></div>
+      <label class="checkout-label">Nombre completo *</label>
+      <input id="ckName" class="checkout-input" type="text" placeholder="Tu nombre y apellidos" autocomplete="name">
+      <label class="checkout-label">Teléfono *</label>
+      <input id="ckPhone" class="checkout-input" type="tel" placeholder="600 123 456" autocomplete="tel">
+      <label class="checkout-label">Dirección *</label>
+      <input id="ckAddress" class="checkout-input" type="text" placeholder="Calle, número, piso, puerta" autocomplete="street-address">
+      <label class="checkout-label">Ciudad *</label>
+      <input id="ckCity" class="checkout-input" type="text" placeholder="Valencia" autocomplete="address-level2">
+      <label class="checkout-label">Código postal *</label>
+      <input id="ckZip" class="checkout-input" type="text" inputmode="numeric" placeholder="46001" autocomplete="postal-code">
+      <label class="checkout-label">Notas (opcional)</label>
+      <textarea id="ckNotes" class="checkout-input" rows="2" placeholder="Ej: Dejar en portería..."></textarea>
+      <div class="bizum-box">
+        <div class="bizum-title">💳 PAGO POR BIZUM</div>
+        <div class="bizum-amount" id="bizumAmount">—</div>
+        <ul class="bizum-steps">
+          <li>Envía el Bizum al <b>607 877 328</b></li>
+          <li>Concepto: <b id="bizumConcept">tu nombre + REF</b></li>
+          <li>Después, envía la captura por este WhatsApp</li>
+        </ul>
+        <div class="bizum-important">
+          ⚠️ <b>IMPORTANTE — LEE ESTO:</b><br>
+          Si el Bizum lo hace otra persona con otro nombre, <b>escribe abajo el nombre exacto con el que se hizo el Bizum</b>. Sin ese nombre no podemos identificar tu pago.<br><br>
+          Y es <b>obligatorio enviar la captura de pantalla del Bizum</b> por WhatsApp para confirmar tu pedido. Sin captura, no se tramita el envío.
+        </div>
+        <label class="checkout-label">Nombre del Bizum (si es distinto al tuyo)</label>
+        <input id="ckBizumName" class="checkout-input" type="text" placeholder="Ej: María García — si el Bizum lo hizo otra persona">
+        <p style="margin-top:8px;color:#aaa;font-size:11px;line-height:1.6">Si el Bizum lo haces tú con tu mismo nombre, déjalo vacío.</p>
+      </div>
+      <label class="bizum-check"><input id="ckBizumCheck" type="checkbox"><span>Confirmo que he enviado el Bizum y que <b>enviaré la captura de pantalla por WhatsApp</b> para confirmar el pedido.</span></label>
+      <button class="panel-buy" type="button" onclick="confirmCheckout()">CONFIRMAR PEDIDO POR WHATSAPP</button>
+      <p style="margin-top:10px;color:#777;font-size:11px;text-align:center">Al confirmar se abrirá WhatsApp con tu pedido completo. No olvides adjuntar la captura del Bizum.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+const STRANGIS_SUPABASE_URL="https://xbbjfatmdbxbuoqdrgoj.supabase.co";
+const STRANGIS_SUPABASE_KEY="sb_publishable_M7ETdIWvj4nCQZ55i24Vpw_5Yc5Islk";
+const STRANGIS_PRODUCTS_TABLE="Products";
+const PAGE_CATEGORY="camisetas";
+let PRODUCTS=[]; let FILTERED=[];
+let suppressProductClickUntil=0, galleryStartX=0, galleryStartY=0;
+let panelStartX=0, panelStartY=0, panelMouseX=0;
+let productPanelIndex=-1, productPanelVariantIndex=0, productPanelImageIndex=0, productPanelSize="", productPanelQuantity=1;
+let productPanelDisplayVariant=0;
+const $=id=>document.getElementById(id);
+// Destellos en todo el fondo de la web
+(function(){
+  const box=$("sparkles"); if(!box) return;
+  const isMobile=window.innerWidth<=600;
+  const count=isMobile?28:55;
+  for(let i=0;i<count;i++){
+    const s=document.createElement("span");
+    s.className="sparkle";
+    const size=1.2+Math.random()*2.2;
+    s.style.width=size+"px"; s.style.height=size+"px";
+    s.style.left=(Math.random()*100)+"%";
+    s.style.top=(Math.random()*100)+"%";
+    s.style.animationDelay=(Math.random()*4)+"s";
+    s.style.animationDuration=(3+Math.random()*3)+"s";
+    box.appendChild(s);
+  }
+})();
+const supabaseClient={async request(path,options={}){const r=await fetch(STRANGIS_SUPABASE_URL+path,{...options,headers:{apikey:STRANGIS_SUPABASE_KEY,Authorization:"Bearer "+STRANGIS_SUPABASE_KEY,"Content-Type":"application/json",...(options.headers||{})}});const t=await r.text();let d=null;try{d=t?JSON.parse(t):null}catch{d=t}if(!r.ok)throw new Error(d?.message||t||`Error ${r.status}`);return d;},async getProducts(){const p=new URLSearchParams({select:"*",active:"eq.true",order:"id.asc"});return this.request(`/rest/v1/${encodeURIComponent(STRANGIS_PRODUCTS_TABLE)}?${p}`);}};
+const escapeHTML=v=>String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+const normalizeImageReference=v=>String(v??"").trim().toLowerCase().replace(/[\s_-]+/g,"");
+const normalizeText=v=>String(v??"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().trim();
+function parseJSON(v,f=[]){if(Array.isArray(v))return v;if(typeof v==="string"){try{const p=JSON.parse(v);return Array.isArray(p)?p:f}catch{return f}}return f}
+function getVariants(product){const raw=parseJSON(product?.images,[]);const variants=[];raw.forEach((item,index)=>{if(typeof item==="string"){const im=item.trim();if(im)variants.push({name:`Variante ${index+1}`,color:"#888",images:[im],imageRefs:[""],stock:null});return}if(!item||typeof item!=="object")return;let images=[],refs=[];if(Array.isArray(item.images)){item.images.forEach(ii=>{if(typeof ii==="string"){if(ii.trim()){images.push(ii.trim());refs.push("")}return}if(!ii||typeof ii!=="object")return;const im=ii.image||ii.url||ii.src||ii.path||"";if(!im)return;images.push(String(im));refs.push(String(ii.ref||ii.reference||ii.image_ref||""))})}if(!images.length&&item.image){images=[String(item.image)];refs=[String(item.ref||item.reference||"")]}if(!images.length&&item.url){images=[String(item.url)];refs=[String(item.ref||"")]}if(!images.length)return;variants.push({name:item.name||item.colorName||item.color||item.variant||`Variante ${index+1}`,color:item.color||"#888",images,imageRefs:refs,stock:item.stock!=null?Number(item.stock):null})});return variants}
+function getVariantImages(v){return Array.isArray(v?.images)?v.images.filter(Boolean).map(String):[]}
+function getImageReference(product,variant,idx=0){const ref=Array.isArray(variant?.imageRefs)?variant.imageRefs[idx]:"";return String(ref||product?.ref||product?.id||"—").trim()}
+function getFlatGallery(p){const g=[];getVariants(p).forEach((v,vi)=>{getVariantImages(v).forEach((src,ii)=>{g.push({src,variantIndex:vi,imageIndex:ii,variant:v})})});return g}
+function findRefMatch(p, refQ){
+  if(!refQ) return null;
+  const variants=getVariants(p);
+  for(let vi=0;vi<variants.length;vi++){const refs=variants[vi].imageRefs||[];for(let ii=0;ii<refs.length;ii++){if(normalizeImageReference(refs[ii])===refQ) return {variantIndex:vi,imageIndex:ii}}}
+  for(let vi=0;vi<variants.length;vi++){const refs=variants[vi].imageRefs||[];for(let ii=0;ii<refs.length;ii++){if(normalizeImageReference(refs[ii])&&normalizeImageReference(refs[ii]).includes(refQ)) return {variantIndex:vi,imageIndex:ii}}}
+  if(normalizeImageReference(p.ref)===refQ) return {variantIndex:0,imageIndex:0};
+  return null;
+}
+async function loadProducts(){const c=$("productsContainer");c.innerHTML='<div class="loading">Cargando productos...</div>';try{const r=await supabaseClient.getProducts();if(!Array.isArray(r))throw new Error("Supabase no devolvió lista");PRODUCTS=r.filter(p=>normalizeText(p.category)===PAGE_CATEGORY);FILTERED=PRODUCTS;renderProducts();openProductFromUrl();}catch(e){console.error(e);c.innerHTML=`<div class="empty"><strong>No se pudieron cargar.</strong><br><br>${escapeHTML(e.message)}</div>`}}
+function renderProducts(){const c=$("productsContainer");$("productCount").textContent=FILTERED.length===1?"1 artículo":`${FILTERED.length} artículos`;if(!FILTERED.length){c.innerHTML='<div class="empty">No hay productos activos en esta categoría.</div>';return}c.innerHTML=FILTERED.map((p,i)=>createProductHTML(p,i)).join("")}
+function createProductHTML(product,index){
+  const variants=getVariants(product);
+  if(!variants.length) return `<article class="product" id="product-${index}" data-variant="0" data-image="0"><div class="product-gallery" style="display:flex;align-items:center;justify-content:center;color:#555">SIN IMAGEN</div></article>`;
+  const startVariant=0;
+  const startImage=0;
+  const startImg=getVariantImages(variants[startVariant])[startImage]||getVariantImages(variants[0])[0]||"";
+  const total=variants.reduce((t,v)=>t+getVariantImages(v).length,0);
+  const g=getFlatGallery(product);
+  const pos=g.findIndex(x=>x.variantIndex===startVariant&&x.imageIndex===startImage);
+  const price=(Number(product.price)||0).toLocaleString("es-ES",{style:"currency",currency:"EUR"});
+  return `<article class="product" id="product-${index}" data-variant="${startVariant}" data-image="${startImage}" onclick="openProduct(${index})"><div class="product-gallery"><div class="product-image" ontouchstart="galleryTouchStart(event)" ontouchmove="galleryTouchMove(event)" ontouchend="galleryTouchEnd(event,${index})" onmousedown="galleryMouseDown(event,${index})" onmouseup="galleryMouseUp(event,${index})"><img id="image-${index}" src="${escapeHTML(startImg)}" alt="${escapeHTML(product.name||"Producto")}" loading="lazy" draggable="false" onerror="imageError(this)"></div>${total>1?`<button class="gallery-arrow prev" type="button" onclick="event.stopPropagation();changeProductGalleryImage(${index},-1)">‹</button><button class="gallery-arrow next" type="button" onclick="event.stopPropagation();changeProductGalleryImage(${index},1)">›</button><div class="gallery-counter" id="gallery-counter-${index}">${pos<0?1:pos+1} / ${total}</div>`:""}<div class="product-info"><div class="product-name">${escapeHTML(product.name||"Producto")}</div><div class="product-price">${price}</div></div></div></article>`;
+}
+function changeProductGalleryImage(pi,dir){const p=FILTERED[pi];const card=$(`product-${pi}`);if(!p||!card)return;const g=getFlatGallery(p);if(!g.length)return;let pos=g.findIndex(x=>x.variantIndex===Number(card.dataset.variant||0)&&x.imageIndex===Number(card.dataset.image||0));if(pos<0)pos=0;pos=(pos+dir+g.length)%g.length;setVariant(pi,g[pos].variantIndex,g[pos].imageIndex)}
+function setVariant(pi,vi,ii=0){const p=FILTERED[pi];const card=$(`product-${pi}`);const img=$(`image-${pi}`);if(!p||!card||!img)return;const v=getVariants(p)[vi];const imgs=getVariantImages(v);if(!v||!imgs.length)return;ii=Math.max(0,Math.min(ii,imgs.length-1));card.dataset.variant=vi;card.dataset.image=ii;img.src=imgs[ii];img.alt=`${p.name} - ${v.name}`;updateGalleryCounter(pi)}
+function updateGalleryCounter(pi){const p=FILTERED[pi];const card=$(`product-${pi}`);const c=$(`gallery-counter-${pi}`);if(!p||!card||!c)return;const g=getFlatGallery(p);const pos=g.findIndex(x=>x.variantIndex===Number(card.dataset.variant||0)&&x.imageIndex===Number(card.dataset.image||0));c.textContent=`${pos<0?1:pos+1} / ${g.length}`}
+function galleryTouchStart(e){if(e.touches?.length){galleryStartX=e.touches[0].clientX;galleryStartY=e.touches[0].clientY}}
+function galleryTouchMove(e){if(e.touches?.length && Math.abs(e.touches[0].clientX-galleryStartX)>10 && Math.abs(e.touches[0].clientX-galleryStartX)>Math.abs(e.touches[0].clientY-galleryStartY)){e.preventDefault()}}
+function galleryTouchEnd(e,pi){if(!e.changedTouches?.length)return;const dx=e.changedTouches[0].clientX-galleryStartX;const dy=e.changedTouches[0].clientY-galleryStartY;if(Math.abs(dx)<40||Math.abs(dx)<=Math.abs(dy))return;suppressProductClickUntil=Date.now()+500;changeProductGalleryImage(pi,dx<0?1:-1)}
+let cardMouseX=0, cardMouseDown=false;
+function galleryMouseDown(e,pi){cardMouseDown=true;cardMouseX=e.clientX;e.currentTarget.dataset.pi=pi}
+function galleryMouseUp(e,pi){if(!cardMouseDown) return;cardMouseDown=false;const dx=e.clientX-cardMouseX;if(Math.abs(dx)<40) return;suppressProductClickUntil=Date.now()+500;changeProductGalleryImage(pi,dx<0?1:-1)}
+function imageError(img){img.style.display="none"}
+function openProduct(i, forceVariant, forceImage){
+  if(Date.now()<suppressProductClickUntil) return;
+  const p=FILTERED[i]; const card=$(`product-${i}`);
+  if(!p) return;
+  productPanelIndex=i;
+  const hasForce = forceVariant!=null;
+  const startVariant = hasForce ? Number(forceVariant) : Number(card?.dataset.variant||0);
+  productPanelVariantIndex = startVariant;
+  productPanelDisplayVariant = startVariant;
+  productPanelImageIndex = forceImage!=null ? Number(forceImage) : Number(card?.dataset.image||0);
+  productPanelQuantity=1;
+  productPanelSize="";
+  $("panelError").style.display="none";
+  renderProductPanel();
+  $("productPanel").classList.add("show");
+  document.body.style.overflow="hidden";
+}
+function closeProductPanel(){$("productPanel").classList.remove("show");document.body.style.overflow=""}
+function renderProductPanel(){
+  const p=FILTERED[productPanelIndex]; if(!p) return;
+  const variants=getVariants(p);
+  if(!variants.length) return;
+  productPanelDisplayVariant = productPanelVariantIndex;
+  if(productPanelDisplayVariant<0||productPanelDisplayVariant>=variants.length) productPanelDisplayVariant=0;
+  const displayV=variants[productPanelDisplayVariant];
+  const imgs=getVariantImages(displayV);
+  if(productPanelImageIndex<0||productPanelImageIndex>=imgs.length) productPanelImageIndex=0;
+  $("panelImage").src=imgs[productPanelImageIndex]||"";
+  $("panelImage").alt=`${p.name} - ${displayV.name}`;
+  const flat=getFlatGallery(p);
+  const pos=flat.findIndex(x=>x.variantIndex===productPanelDisplayVariant&&x.imageIndex===productPanelImageIndex);
+  $("panelCounter").textContent=`${pos<0?1:pos+1} / ${flat.length}`;
+  $("panelThumbs").innerHTML=imgs.map((src,ii)=>`<button type="button" class="${ii===productPanelImageIndex?"active":""}" onclick="setPanelImage(${ii})"><img src="${escapeHTML(src)}" alt=""></button>`).join("");
+  $("panelName").textContent=p.name||"Producto";
+  const desc=(p.description||"").trim();
+  $("panelDescWrap").innerHTML=desc?`<details class="panel-desc-details"><summary>Descripción ▾</summary><div class="panel-desc-text">${escapeHTML(desc)}</div></details>`:"";
+  $("panelPrice").textContent=(Number(p.price)||0).toLocaleString("es-ES",{style:"currency",currency:"EUR"});
+  $("panelVariant").innerHTML=variants.map((vv,vi)=>`<option value="${vi}" ${vi===productPanelVariantIndex?"selected":""}>${escapeHTML(vv.name)}</option>`).join("");
+  const sizes=parseJSON(p.sizes,[]);
+  const sizesList=Array.isArray(sizes)&&sizes.length?sizes:["Única"];
+  $("panelSize").innerHTML=`<option value="" ${!productPanelSize?"selected":""} disabled>Tallas</option>`+sizesList.map(s=>`<option value="${escapeHTML(s)}" ${String(s)===productPanelSize?"selected":""}>${escapeHTML(s)}</option>`).join("");
+  $("panelQty").textContent=productPanelQuantity;
+}
+function onPanelVariantChange(val){
+  if(val==="") return;
+  productPanelVariantIndex=Number(val);
+  productPanelDisplayVariant=Number(val);
+  productPanelImageIndex=0;
+  $("panelError").style.display="none";
+  renderProductPanel();
+}
+function onPanelSizeChange(val){ productPanelSize=val||""; $("panelError").style.display="none"; }
+function setPanelImage(ii){productPanelImageIndex=ii;renderProductPanel()}
+function changePanelImage(dir){
+  const p=FILTERED[productPanelIndex]; if(!p) return;
+  const flat=getFlatGallery(p); if(!flat.length) return;
+  let pos=flat.findIndex(x=>x.variantIndex===productPanelDisplayVariant&&x.imageIndex===productPanelImageIndex);
+  if(pos<0) pos=0; pos=(pos+dir+flat.length)%flat.length;
+  productPanelDisplayVariant=flat[pos].variantIndex;
+  productPanelVariantIndex=flat[pos].variantIndex;
+  productPanelImageIndex=flat[pos].imageIndex;
+  renderProductPanel();
+}
+function panelTouchStart(e){if(e.touches?.length){panelStartX=e.touches[0].clientX;panelStartY=e.touches[0].clientY}}
+function panelTouchEnd(e){if(!e.changedTouches?.length)return;const dx=e.changedTouches[0].clientX-panelStartX;const dy=e.changedTouches[0].clientY-panelStartY;if(Math.abs(dx)<40||Math.abs(dx)<=Math.abs(dy))return;changePanelImage(dx<0?1:-1)}
+function panelMouseDown(e){panelMouseX=e.clientX}
+function panelMouseUp(e){const dx=e.clientX-panelMouseX;if(Math.abs(dx)<40) return;changePanelImage(dx<0?1:-1)}
+function changePanelQty(dir){productPanelQuantity=Math.max(1,productPanelQuantity+dir);$("panelQty").textContent=productPanelQuantity}
+function openProductFromUrl(){
+  const params=new URLSearchParams(location.search);
+  const wantedRef=params.get("ref")||"";
+  const vParam=params.get("v");
+  const iParam=params.get("i");
+  if(!wantedRef && vParam==null) return;
+  const nr=normalizeImageReference(wantedRef);
+  if(vParam!=null && iParam!=null){
+    for(let pIdx=0;pIdx<FILTERED.length;pIdx++){
+      const vs=getVariants(FILTERED[pIdx]);
+      for(let vi=0;vi<vs.length;vi++){
+        for(let ii=0;ii<(vs[vi].imageRefs||[]).length;ii++){
+          if(normalizeImageReference(vs[vi].imageRefs[ii])===nr){
+            openProduct(pIdx, Number(vParam), Number(iParam));
+            return;
+          }
+        }
+      }
+    }
+    if(FILTERED.length){ openProduct(0, Number(vParam), Number(iParam)); return; }
+  }
+  for(let i=0;i<FILTERED.length;i++){
+    const vs=getVariants(FILTERED[i]);
+    for(let v=0;v<vs.length;v++){
+      for(let j=0;j<(vs[v].imageRefs||[]).length;j++){
+        if(normalizeImageReference(vs[v].imageRefs[j])===nr){ openProduct(i, v, j); return; }
+      }
+    }
+  }
+}
+function openCheckout(){
+  const p=FILTERED[productPanelIndex]; if(!p) return;
+  if(productPanelVariantIndex<0){
+    const e=$("panelError"); e.textContent="Elige una variante antes de comprar."; e.style.display="block"; return;
+  }
+  if(!productPanelSize){
+    const e=$("panelError"); e.textContent="Elige una talla antes de comprar."; e.style.display="block"; return;
+  }
+  const variants=getVariants(p);
+  const v=variants[productPanelVariantIndex];
+  const ref=getImageReference(p,v,productPanelImageIndex);
+  const total=(Number(p.price)*productPanelQuantity).toLocaleString("es-ES",{style:"currency",currency:"EUR"});
+  $("checkoutSummary").innerHTML=`<strong style="color:#fff">${escapeHTML(p.name)}</strong><br>REF: ${escapeHTML(ref)} · Color: ${escapeHTML(v.name)} · Talla: ${escapeHTML(productPanelSize)} · Cant: ${productPanelQuantity}<br>Total: <strong style="color:#fff">${total}</strong>`;
+  $("bizumAmount").textContent="Total a pagar por Bizum: "+total;
+  $("bizumConcept").textContent=($("ckName").value.trim()||"tu nombre")+" + "+ref;
+  $("checkoutError").style.display="none";
+  $("ckBizumCheck").checked=false;
+  $("checkoutPanel").classList.add("show");
+}
+function closeCheckout(){$("checkoutPanel").classList.remove("show")}
+function confirmCheckout(){
+  const p=FILTERED[productPanelIndex]; if(!p) return;
+  const variants=getVariants(p);
+  const v=variants[productPanelVariantIndex>=0?productPanelVariantIndex:productPanelDisplayVariant];
+  const ref=getImageReference(p,v,productPanelImageIndex);
+  const size=productPanelSize||"";
+  const name=$("ckName").value.trim();
+  const phone=$("ckPhone").value.trim();
+  const address=$("ckAddress").value.trim();
+  const city=$("ckCity").value.trim();
+  const zip=$("ckZip").value.trim();
+  const notes=$("ckNotes").value.trim();
+  const bizumName=$("ckBizumName").value.trim();
+  const bizumChecked=$("ckBizumCheck").checked;
+  const missing=[];
+  if(!name) missing.push("nombre");
+  if(!phone) missing.push("teléfono");
+  if(!address) missing.push("dirección");
+  if(!city) missing.push("ciudad");
+  if(!zip) missing.push("código postal");
+  if(missing.length){
+    const e=$("checkoutError");
+    e.textContent="Falta rellenar: "+missing.join(", ")+".";
+    e.style.display="block";
+    return;
+  }
+  if(!bizumChecked){
+    const e=$("checkoutError");
+    e.textContent="Marca la casilla de confirmación del Bizum: debes confirmar que enviarás la captura por WhatsApp.";
+    e.style.display="block";
+    return;
+  }
+  const bizumLine = bizumName && bizumName.toLowerCase()!==name.toLowerCase()
+    ? `\n⚠️ BIZUM A NOMBRE DE: ${bizumName} (distinto al del pedido)`
+    : `\nBizum a nombre de: ${name}`;
+  const msg=`Hola!! 👋 Quiero hacer este pedido:\n\n🛍️ PRODUCTO: ${p.name}\nREF: ${ref}\nColor: ${v.name}\nTalla: ${size}\nCantidad: ${productPanelQuantity}\nPrecio: ${(Number(p.price)*productPanelQuantity).toLocaleString("es-ES",{style:"currency",currency:"EUR"})}\n\n📦 DATOS DE ENVÍO:\nNombre: ${name}\nTeléfono: ${phone}\nDirección: ${address}\nCiudad: ${city}\nCP: ${zip}${notes?`\nNotas: ${notes}`:""}\n\n💳 PAGO BIZUM:\nBizum enviado al 607 877 328${bizumLine}\n✅ Voy a enviar la captura de pantalla del Bizum para confirmar el pedido.`;
+  window.open(`https://wa.me/34607877328?text=${encodeURIComponent(msg)}`,"_blank");
+  closeCheckout();
+}
+$("productPanel").addEventListener("click",e=>{if(e.target.id==="productPanel") closeProductPanel()});
+$("checkoutPanel").addEventListener("click",e=>{if(e.target.id==="checkoutPanel") closeCheckout()});
+if($("ckName")) $("ckName").addEventListener("input",()=>{ const p=FILTERED[productPanelIndex]; if(!p) return; const v=getVariants(p)[productPanelVariantIndex>=0?productPanelVariantIndex:0]; $("bizumConcept").textContent=($("ckName").value.trim()||"tu nombre")+" + "+getImageReference(p,v,productPanelImageIndex); });
+loadProducts();
+setInterval(loadProducts,30000);
+
+// === MENÚ CATEGORÍAS: PESTAÑA ACTIVA SIEMPRE CENTRADA ===
+(function(){
+  var nav = document.querySelector('header nav');
+  var active = document.querySelector('header nav a.active');
+  if(!nav || !active) return;
+  function centerActive(instant){
+    var target = active.offsetLeft + active.offsetWidth/2 - nav.clientWidth/2;
+    target = Math.max(0, Math.min(target, nav.scrollWidth - nav.clientWidth));
+    nav.scrollTo({left: target, behavior: instant ? 'auto' : 'smooth'});
+  }
+  // Al cargar, sin animación para que no se vea el salto
+  requestAnimationFrame(function(){ centerActive(true); });
+  window.addEventListener('load', function(){ centerActive(true); });
+  window.addEventListener('resize', function(){ centerActive(true); });
+  // Si el usuario pulsa otra pestaña, la centramos antes de cambiar de página
+  nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      nav.querySelectorAll('a').forEach(function(x){ x.classList.remove('active'); });
+      a.classList.add('active');
+      active = a;
+      centerActive(false);
+    });
+  });
+})();
+</script>
+</body>
+</html>
