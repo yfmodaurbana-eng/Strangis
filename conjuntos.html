@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Conjuntos | Strangis - Moda Urbana</title>
-<meta name="description" content="Conjuntos Strangis. Conjuntos urbanos completos con estilo a precios competitivos. Envío gratuito a toda España.">
+<meta name="description" content="Conjuntos Strangis. Conjuntos urbanos con estilo a precios competitivos. Envío gratuito a toda España.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://yfmodaurbana-eng.github.io/Strangis/conjuntos.html">
 <style>
@@ -232,14 +232,6 @@ function formatShipping(p){
   if(max > 0) return `hasta ${max} días`;
   if(min > 0) return `desde ${min} días`;
   return "";
-}
-function findRefMatch(p, refQ){
-  if(!refQ) return null;
-  const variants=getVariants(p);
-  for(let vi=0;vi<variants.length;vi++){const refs=variants[vi].imageRefs||[];for(let ii=0;ii<refs.length;ii++){if(normalizeImageReference(refs[ii])===refQ) return {variantIndex:vi,imageIndex:ii}}}
-  for(let vi=0;vi<variants.length;vi++){const refs=variants[vi].imageRefs||[];for(let ii=0;ii<refs.length;ii++){if(normalizeImageReference(refs[ii])&&normalizeImageReference(refs[ii]).includes(refQ)) return {variantIndex:vi,imageIndex:ii}}}
-  if(normalizeImageReference(p.ref)===refQ) return {variantIndex:0,imageIndex:0};
-  return null;
 }
 async function loadProducts(){const c=$("productsContainer");c.innerHTML='<div class="loading">Cargando productos...</div>';try{const r=await supabaseClient.getProducts();if(!Array.isArray(r))throw new Error("Supabase no devolvió lista");PRODUCTS=r.filter(p=>normalizeText(p.category)===PAGE_CATEGORY);FILTERED=PRODUCTS;renderProducts();openProductFromUrl();}catch(e){console.error(e);c.innerHTML=`<div class="empty"><strong>No se pudieron cargar.</strong><br><br>${escapeHTML(e.message)}</div>`}}
 function renderProducts(){const c=$("productsContainer");$("productCount").textContent=FILTERED.length===1?"1 artículo":`${FILTERED.length} artículos`;if(!FILTERED.length){c.innerHTML='<div class="empty">No hay productos activos en esta categoría.</div>';return}c.innerHTML=FILTERED.map((p,i)=>createProductHTML(p,i)).join("")}
