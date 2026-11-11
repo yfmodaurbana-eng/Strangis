@@ -14,8 +14,8 @@ body{min-height:100vh;font-family:Arial,Helvetica,sans-serif;color:#fff;backgrou
 button,input,textarea{font:inherit}button{cursor:pointer}
 header{position:sticky;top:0;z-index:1000;padding:16px 5%;display:flex;align-items:center;gap:28px;border-bottom:1px solid #ffffff1f;background:#141414f0;backdrop-filter:blur(18px)}
 .logo{flex-shrink:0;font-size:22px;font-weight:900;letter-spacing:4px}.logo a{color:#fff;text-decoration:none}
-nav{flex:1;display:flex;align-items:center;gap:12px;overflow-x:auto;scrollbar-width:none;padding:4px 2px}nav::-webkit-scrollbar{display:none}
-nav a{flex:0 0 auto;display:flex;align-items:center;justify-content:center;min-height:34px;padding:8px 13px;border:1px solid transparent;border-radius:7px;color:#999;text-decoration:none;font-size:11px;font-weight:bold;letter-spacing:1.3px;text-transform:uppercase;white-space:nowrap}
+nav{flex:1;display:flex;align-items:center;gap:12px;overflow-x:auto;scrollbar-width:none;padding:4px 2px;scroll-behavior:smooth}nav::-webkit-scrollbar{display:none}
+nav a{flex:0 0 auto;display:flex;align-items:center;justify-content:center;min-height:34px;padding:8px 13px;border:1px solid transparent;border-radius:7px;color:#999;text-decoration:none;font-size:11px;font-weight:bold;letter-spacing:1.3px;text-transform:uppercase;white-space:nowrap;scroll-margin-left:12px;scroll-margin-right:12px}
 nav a:hover{color:#fff;border-color:#ffffff29;background:#ffffff0d}nav a.active{color:#111;border-color:#fff;background:#fff}
 .search-section{position:relative;z-index:2;width:min(900px,90%);margin:0 auto;padding:25px 0 0}
 .search-box{position:relative;width:100%;display:flex;align-items:center}
@@ -221,6 +221,29 @@ if(searchInput){
 if(searchClear){searchClear.addEventListener("click",()=>{searchInput.value="";searchInput.focus();applySearch()})}
 loadProducts();
 setInterval(loadProducts,30000);
+
+// === MENÚ CATEGORÍAS: PESTAÑA ACTIVA SIEMPRE CENTRADA ===
+(function(){
+  var nav = document.querySelector('header nav');
+  var active = document.querySelector('header nav a.active');
+  if(!nav || !active) return;
+  function centerActive(instant){
+    var target = active.offsetLeft + active.offsetWidth/2 - nav.clientWidth/2;
+    target = Math.max(0, Math.min(target, nav.scrollWidth - nav.clientWidth));
+    nav.scrollTo({left: target, behavior: instant ? 'auto' : 'smooth'});
+  }
+  requestAnimationFrame(function(){ centerActive(true); });
+  window.addEventListener('load', function(){ centerActive(true); });
+  window.addEventListener('resize', function(){ centerActive(true); });
+  nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      nav.querySelectorAll('a').forEach(function(x){ x.classList.remove('active'); });
+      a.classList.add('active');
+      active = a;
+      centerActive(false);
+    });
+  });
+})();
 </script>
 </body>
 </html>
