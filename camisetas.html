@@ -14,8 +14,8 @@ body{min-height:100vh;font-family:Arial,Helvetica,sans-serif;color:#fff;backgrou
 button,input,textarea,select{font:inherit}button{cursor:pointer}
 header{position:sticky;top:0;z-index:1000;padding:16px 5%;display:flex;align-items:center;gap:28px;border-bottom:1px solid #ffffff1f;background:#141414f0;backdrop-filter:blur(18px)}
 .logo{flex-shrink:0;font-size:22px;font-weight:900;letter-spacing:4px}.logo a{color:#fff;text-decoration:none}
-nav{flex:1;display:flex;align-items:center;gap:12px;overflow-x:auto;scrollbar-width:none;padding:4px 2px}nav::-webkit-scrollbar{display:none}
-nav a{flex:0 0 auto;display:flex;align-items:center;justify-content:center;min-height:34px;padding:8px 13px;border:1px solid transparent;border-radius:7px;color:#999;text-decoration:none;font-size:11px;font-weight:bold;letter-spacing:1.3px;text-transform:uppercase;white-space:nowrap}
+nav{flex:1;display:flex;align-items:center;gap:12px;overflow-x:auto;scrollbar-width:none;padding:4px 2px;scroll-behavior:auto}nav::-webkit-scrollbar{display:none}
+nav a{flex:0 0 auto;display:flex;align-items:center;justify-content:center;min-height:34px;padding:8px 13px;border:1px solid transparent;border-radius:7px;color:#999;text-decoration:none;font-size:11px;font-weight:bold;letter-spacing:1.3px;text-transform:uppercase;white-space:nowrap;scroll-margin-left:12px;scroll-margin-right:12px}
 nav a:hover{color:#fff;border-color:#ffffff29;background:#ffffff0d}nav a.active{color:#111;border-color:#fff;background:#fff}
 .search-section{width:min(900px,90%);margin:0 auto;padding:25px 0 0}
 .search-box{position:relative;width:100%;display:flex;align-items:center}
@@ -248,7 +248,6 @@ function openProduct(i, forceVariant, forceImage){
   const p=FILTERED[i]; const card=$(`product-${i}`);
   if(!p) return;
   productPanelIndex=i;
-  // Variante = la de la foto que se está viendo en la tarjeta. Así foto y variante siempre van juntas.
   const hasForce = forceVariant!=null;
   const startVariant = hasForce ? Number(forceVariant) : Number(card?.dataset.variant||0);
   productPanelVariantIndex = startVariant;
@@ -266,7 +265,6 @@ function renderProductPanel(){
   const p=FILTERED[productPanelIndex]; if(!p) return;
   const variants=getVariants(p);
   if(!variants.length) return;
-  // Sincronización total: variante seleccionada = variante de la foto
   productPanelDisplayVariant = productPanelVariantIndex;
   if(productPanelDisplayVariant<0||productPanelDisplayVariant>=variants.length) productPanelDisplayVariant=0;
   const displayV=variants[productPanelDisplayVariant];
@@ -282,7 +280,6 @@ function renderProductPanel(){
   $("panelRef").textContent="REF: "+getImageReference(p,displayV,productPanelImageIndex)+"  ·  Color: "+displayV.name;
   $("panelDesc").textContent=p.description||"";
   $("panelPrice").textContent=(Number(p.price)||0).toLocaleString("es-ES",{style:"currency",currency:"EUR"});
-  // Variante ya viene puesta según la foto, sin placeholder. Tallas sí sigue en placeholder.
   $("panelVariant").innerHTML=variants.map((vv,vi)=>`<option value="${vi}" ${vi===productPanelVariantIndex?"selected":""}>${escapeHTML(vv.name)}</option>`).join("");
   const sizes=parseJSON(p.sizes,[]);
   const sizesList=Array.isArray(sizes)&&sizes.length?sizes:["Única"];
@@ -290,7 +287,6 @@ function renderProductPanel(){
   $("panelQty").textContent=productPanelQuantity;
 }
 function onPanelVariantChange(val){
-  // Variante -> Foto: al cambiar la variante, salta a la primera foto de esa variante
   if(val==="") return;
   productPanelVariantIndex=Number(val);
   productPanelDisplayVariant=Number(val);
@@ -301,7 +297,6 @@ function onPanelVariantChange(val){
 function onPanelSizeChange(val){ productPanelSize=val||""; $("panelError").style.display="none"; }
 function setPanelImage(ii){productPanelImageIndex=ii;renderProductPanel()}
 function changePanelImage(dir){
-  // Foto -> Variante: al pasar de foto, la variante se actualiza sola a la de esa foto
   const p=FILTERED[productPanelIndex]; if(!p) return;
   const flat=getFlatGallery(p); if(!flat.length) return;
   let pos=flat.findIndex(x=>x.variantIndex===productPanelDisplayVariant&&x.imageIndex===productPanelImageIndex);
@@ -311,7 +306,6 @@ function changePanelImage(dir){
   productPanelImageIndex=flat[pos].imageIndex;
   renderProductPanel();
 }
-// === SWIPE EN PANEL DE PRODUCTO ===
 function panelTouchStart(e){if(e.touches?.length){panelStartX=e.touches[0].clientX;panelStartY=e.touches[0].clientY}}
 function panelTouchEnd(e){if(!e.changedTouches?.length)return;const dx=e.changedTouches[0].clientX-panelStartX;const dy=e.changedTouches[0].clientY-panelStartY;if(Math.abs(dx)<40||Math.abs(dx)<=Math.abs(dy))return;changePanelImage(dx<0?1:-1)}
 function panelMouseDown(e){panelMouseX=e.clientX}
@@ -418,6 +412,17 @@ $("checkoutPanel").addEventListener("click",e=>{if(e.target.id==="checkoutPanel"
 if($("ckName")) $("ckName").addEventListener("input",()=>{ const p=FILTERED[productPanelIndex]; if(!p) return; const v=getVariants(p)[productPanelVariantIndex>=0?productPanelVariantIndex:0]; $("bizumConcept").textContent=($("ckName").value.trim()||"tu nombre")+" + "+getImageReference(p,v,productPanelImageIndex); });
 loadProducts();
 setInterval(loadProducts,30000);
+
+// === MENÚ CATEGORÍAS: QUE NO VUELVA AL PRINCIPIO ===
+(function(){
+  var nav = document.querySelector('header nav');
+  var active = document.querySelector('header nav a.active');
+  if(!nav || !active) return;
+  active.scrollIntoView({ behavior: 'auto', inline: 'nearest', block: 'nearest' });
+  nav.addEventListener('scroll', function(){
+    try{ sessionStorage.setItem('strangis_nav_scroll', nav.scrollLeft); }catch(e){}
+  }, { passive: true });
+})();
 </script>
 </body>
 </html>
