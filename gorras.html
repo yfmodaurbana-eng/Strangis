@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Gorras | Strangis - Moda Urbana</title>
-<meta name="description" content="Gorras Strangis. Gorras urbanas para completar tu look. Envío gratuito a toda España.">
+<meta name="description" content="Gorras Strangis. Gorras planas, trucker y snapback de moda urbana. Complementa tu look. Envío gratuito a toda España.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://yfmodaurbana-eng.github.io/Strangis/gorras.html">
 <style>
@@ -37,7 +37,10 @@ nav a:hover{color:#fff;border-color:#ffffff29;background:#ffffff0d}nav a.active{
 .product-image:active{cursor:grabbing}
 .product-image img{width:100%;height:100%;object-fit:cover;transition:.35s;pointer-events:none}.product:hover .product-image img{transform:scale(1.05)}
 .gallery-arrow{position:absolute;z-index:8;display:flex;align-items:center;justify-content:center;border:1px solid #ffffff40;border-radius:50%;background:#0000008c;color:#fff;top:50%;width:36px;height:36px;transform:translateY(-50%)}.gallery-arrow.prev{left:10px}.gallery-arrow.next{right:10px}
-.gallery-counter{position:absolute;left:50%;z-index:8;padding:5px 9px;border-radius:20px;background:#0000008c;color:#fff;font-size:9px;font-weight:bold;transform:translateX(-50%);bottom:12px}
+.gallery-counter{position:absolute;left:50%;top:10px;z-index:8;padding:5px 9px;border-radius:20px;background:#0000008c;color:#fff;font-size:9px;font-weight:bold;transform:translateX(-50%)}
+.product-overlay{position:absolute;left:0;right:0;bottom:0;z-index:5;padding:30px 11px 11px;background:linear-gradient(to top,rgba(0,0,0,.88),rgba(0,0,0,.25) 55%,transparent);text-align:left;pointer-events:none}
+.product-overlay-name{font-size:12px;font-weight:900;line-height:1.2;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 1px 4px #000}
+.product-overlay-price{margin-top:3px;font-size:15px;font-weight:900;text-shadow:0 1px 4px #000}
 .empty,.loading{grid-column:1/-1;padding:100px 20px;text-align:center;color:#aaa}
 footer{padding:35px 5%;border-top:1px solid #ffffff1a;text-align:center;color:#777;font-size:10px}
 .product-panel{position:fixed;inset:0;z-index:10000;display:none;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.75)}.product-panel.show{display:flex}
@@ -93,7 +96,7 @@ footer{padding:35px 5%;border-top:1px solid #ffffff1a;text-align:center;color:#7
 <header><div class="logo"><a href="./">Strangis</a></div><nav><a href="./">Inicio</a><a href="./camisetas.html">Camisetas</a><a href="./pantalones.html">Pantalones</a><a href="./conjuntos.html">Conjuntos</a><a class="active" href="./gorras.html">Gorras</a><a href="./gafas.html">Gafas</a><a href="./bisuteria.html">Bisutería</a><a href="./pedreria.html">Pedrería</a><a href="./zapatillas.html">Zapatillas</a></nav></header>
 <section class="search-section"><div class="search-box"><svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><line x1="16.65" y1="16.65" x2="21" y2="21"></line></svg><input id="productSearch" class="search-input" type="search" autocomplete="off" spellcheck="false" placeholder="Buscar por referencia, color o nombre..."><button id="searchClear" class="search-clear" type="button">×</button></div><div id="searchResult" class="search-result"></div></section>
 <main>
-<section class="hero"><h1>Gorras</h1><p>Gorras Strangis. Elige tu color. <strong>Envío gratuito a toda España.</strong></p></section>
+<section class="hero"><h1>Gorras</h1><p>Gorras Strangis. Elige tu color y tu talla. <strong>Envío gratuito a toda España.</strong></p></section>
 <section class="products-section"><div class="section-heading"><h2>Gorras</h2><span id="productCount">Cargando...</span></div><div class="products" id="productsContainer"><div class="loading">Cargando productos...</div></div></section>
 </main>
 <footer>© 2026 STRANGIS · TODOS LOS DERECHOS RESERVADOS</footer>
@@ -230,12 +233,12 @@ function createProductHTML(product,index){
   const total=variants.reduce((t,v)=>t+getVariantImages(v).length,0);
   const g=getFlatGallery(product);
   const pos=g.findIndex(x=>x.variantIndex===startVariant&&x.imageIndex===startImage);
-  return `<article class="product" id="product-${index}" data-variant="${startVariant}" data-image="${startImage}" onclick="openProduct(${index})"><div class="product-gallery"><div class="product-image" ontouchstart="galleryTouchStart(event)" ontouchmove="galleryTouchMove(event)" ontouchend="galleryTouchEnd(event,${index})" onmousedown="galleryMouseDown(event,${index})" onmouseup="galleryMouseUp(event,${index})"><img id="image-${index}" src="${escapeHTML(startImg)}" alt="${escapeHTML(product.name||"Producto")}" loading="lazy" draggable="false" onerror="imageError(this)"></div>${total>1?`<button class="gallery-arrow prev" type="button" onclick="event.stopPropagation();changeProductGalleryImage(${index},-1)">‹</button><button class="gallery-arrow next" type="button" onclick="event.stopPropagation();changeProductGalleryImage(${index},1)">›</button><div class="gallery-counter" id="gallery-counter-${index}">${pos<0?1:pos+1} / ${total}</div>`:""}</div></article>`;
+  const price=(Number(product.price)||0).toLocaleString("es-ES",{style:"currency",currency:"EUR"});
+  return `<article class="product" id="product-${index}" data-variant="${startVariant}" data-image="${startImage}" onclick="openProduct(${index})"><div class="product-gallery"><div class="product-image" ontouchstart="galleryTouchStart(event)" ontouchmove="galleryTouchMove(event)" ontouchend="galleryTouchEnd(event,${index})" onmousedown="galleryMouseDown(event,${index})" onmouseup="galleryMouseUp(event,${index})"><img id="image-${index}" src="${escapeHTML(startImg)}" alt="${escapeHTML(product.name||"Producto")}" loading="lazy" draggable="false" onerror="imageError(this)"></div>${total>1?`<button class="gallery-arrow prev" type="button" onclick="event.stopPropagation();changeProductGalleryImage(${index},-1)">‹</button><button class="gallery-arrow next" type="button" onclick="event.stopPropagation();changeProductGalleryImage(${index},1)">›</button><div class="gallery-counter" id="gallery-counter-${index}">${pos<0?1:pos+1} / ${total}</div>`:""}<div class="product-overlay"><div class="product-overlay-name">${escapeHTML(product.name||"Producto")}</div><div class="product-overlay-price">${price}</div></div></div></article>`;
 }
 function changeProductGalleryImage(pi,dir){const p=FILTERED[pi];const card=$(`product-${pi}`);if(!p||!card)return;const g=getFlatGallery(p);if(!g.length)return;let pos=g.findIndex(x=>x.variantIndex===Number(card.dataset.variant||0)&&x.imageIndex===Number(card.dataset.image||0));if(pos<0)pos=0;pos=(pos+dir+g.length)%g.length;setVariant(pi,g[pos].variantIndex,g[pos].imageIndex)}
 function setVariant(pi,vi,ii=0){const p=FILTERED[pi];const card=$(`product-${pi}`);const img=$(`image-${pi}`);if(!p||!card||!img)return;const v=getVariants(p)[vi];const imgs=getVariantImages(v);if(!v||!imgs.length)return;ii=Math.max(0,Math.min(ii,imgs.length-1));card.dataset.variant=vi;card.dataset.image=ii;img.src=imgs[ii];img.alt=`${p.name} - ${v.name}`;updateGalleryCounter(pi)}
 function updateGalleryCounter(pi){const p=FILTERED[pi];const card=$(`product-${pi}`);const c=$(`gallery-counter-${pi}`);if(!p||!card||!c)return;const g=getFlatGallery(p);const pos=g.findIndex(x=>x.variantIndex===Number(card.dataset.variant||0)&&x.imageIndex===Number(card.dataset.image||0));c.textContent=`${pos<0?1:pos+1} / ${g.length}`}
-// === SWIPE EN TARJETA ===
 function galleryTouchStart(e){if(e.touches?.length){galleryStartX=e.touches[0].clientX;galleryStartY=e.touches[0].clientY}}
 function galleryTouchMove(e){if(e.touches?.length && Math.abs(e.touches[0].clientX-galleryStartX)>10 && Math.abs(e.touches[0].clientX-galleryStartX)>Math.abs(e.touches[0].clientY-galleryStartY)){e.preventDefault()}}
 function galleryTouchEnd(e,pi){if(!e.changedTouches?.length)return;const dx=e.changedTouches[0].clientX-galleryStartX;const dy=e.changedTouches[0].clientY-galleryStartY;if(Math.abs(dx)<40||Math.abs(dx)<=Math.abs(dy))return;suppressProductClickUntil=Date.now()+500;changeProductGalleryImage(pi,dx<0?1:-1)}
